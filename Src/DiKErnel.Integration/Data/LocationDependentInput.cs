@@ -50,11 +50,10 @@ namespace DiKErnel.Integration.Data
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) = 0;
 
-        private:
-            const double _x;
-            const double _initialDamage;
-            const double _failureNumber;
-            bool _derivedLocationDependentInputInitialized = false;
-            double _z = std::numeric_limits<double>::infinity();
+            private const double _x;
+            private const double _initialDamage;
+            private const double _failureNumber;
+            private bool _derivedLocationDependentInputInitialized = false;
+            private double _z = std::numeric_limits<double>::infinity();
     };
 }

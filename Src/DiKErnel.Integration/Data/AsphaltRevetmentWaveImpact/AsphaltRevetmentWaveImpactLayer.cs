@@ -28,8 +28,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
         public double GetElasticModulus() const;
 
-        private:
-            double _thickness;
-            double _elasticModulus;
+        private double _thickness;
+        private double _elasticModulus;
     };
 }

@@ -58,14 +58,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override = 0;
 
-        private:
-            double _outerSlope;
-            double _criticalCumulativeOverload;
-            double _criticalFrontVelocity;
-            double _increasedLoadTransitionAlphaM;
-            double _reducedStrengthTransitionAlphaS;
-            double _averageNumberOfWavesCtm;
-            std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
-            std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
+            private double _outerSlope;
+            private double _criticalCumulativeOverload;
+            private double _criticalFrontVelocity;
+            private double _increasedLoadTransitionAlphaM;
+            private double _reducedStrengthTransitionAlphaS;
+            private double _averageNumberOfWavesCtm;
+            private std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
+            private std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
     };
 }

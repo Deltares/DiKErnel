@@ -76,32 +76,31 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-        private:
-            const double _failureTension;
-            const double _densityOfWater;
-            const double _soilElasticity;
-            std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _upperLayer;
-            std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _subLayer;
-            const double _averageNumberOfWavesCtm;
-            std::unique_ptr<AsphaltRevetmentWaveImpactFatigue> _fatigue;
-            const double _impactNumberC;
-            const double _stiffnessRelationNu;
-            std::vector<std::pair<double, double>> _widthFactors;
-            std::vector<std::pair<double, double>> _depthFactors;
-            std::vector<std::pair<double, double>> _impactFactors;
-            double _outerSlope = std::numeric_limits<double>::infinity();
-            double _logFailureTension = std::numeric_limits<double>::infinity();
-            double _computationalThickness = std::numeric_limits<double>::infinity();
-            double _stiffnessRelation = std::numeric_limits<double>::infinity();
-            double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
-            double _averageNumberOfWaves = std::numeric_limits<double>::infinity();
-            double _maximumPeakStress = std::numeric_limits<double>::infinity();
+            private const double _failureTension;
+            private const double _densityOfWater;
+            private const double _soilElasticity;
+            private std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _upperLayer;
+            private std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _subLayer;
+            private const double _averageNumberOfWavesCtm;
+            private std::unique_ptr<AsphaltRevetmentWaveImpactFatigue> _fatigue;
+            private const double _impactNumberC;
+            private const double _stiffnessRelationNu;
+            private std::vector<std::pair<double, double>> _widthFactors;
+            private std::vector<std::pair<double, double>> _depthFactors;
+            private std::vector<std::pair<double, double>> _impactFactors;
+            private double _outerSlope = std::numeric_limits<double>::infinity();
+            private double _logFailureTension = std::numeric_limits<double>::infinity();
+            private double _computationalThickness = std::numeric_limits<double>::infinity();
+            private double _stiffnessRelation = std::numeric_limits<double>::infinity();
+            private double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
+            private double _averageNumberOfWaves = std::numeric_limits<double>::infinity();
+            private double _maximumPeakStress = std::numeric_limits<double>::infinity();
 
-            FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
+    private FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
                 double waterLevel,
                 double waveHeightHm0) const;
 
-            std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);

@@ -58,27 +58,26 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-        private:
-            std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpactInput;
-            double _minimumWaveHeightTemax;
-            double _maximumWaveHeightTemin;
-            std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
-            double _upperLimitLoadingAul;
-            double _lowerLimitLoadingAll;
+            private std::unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpactInput;
+            private double _minimumWaveHeightTemax;
+            private double _maximumWaveHeightTemin;
+            private std::unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
+            private double _upperLimitLoadingAul;
+            private double _lowerLimitLoadingAll;
 
-            double _minimumWaveHeight = std::numeric_limits<double>::infinity();
-            double _maximumWaveHeight = std::numeric_limits<double>::infinity();
-            double _lowerLimitLoading = std::numeric_limits<double>::infinity();
-            double _upperLimitLoading = std::numeric_limits<double>::infinity();
-            bool _loadingRevetment = false;
-            double _waveAngleImpact = std::numeric_limits<double>::infinity();
-            double _waveHeightImpact = std::numeric_limits<double>::infinity();
+            private double _minimumWaveHeight = std::numeric_limits<double>::infinity();
+            private double _maximumWaveHeight = std::numeric_limits<double>::infinity();
+            private double _lowerLimitLoading = std::numeric_limits<double>::infinity();
+            private double _upperLimitLoading = std::numeric_limits<double>::infinity();
+            private bool _loadingRevetment = false;
+            private double _waveAngleImpact = std::numeric_limits<double>::infinity();
+            private double _waveHeightImpact = std::numeric_limits<double>::infinity();
 
-            bool CalculateLoadingRevetment(
+    private bool CalculateLoadingRevetment(
                 double waterLevel,
                 double waveHeightHm0);
 
-            std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);

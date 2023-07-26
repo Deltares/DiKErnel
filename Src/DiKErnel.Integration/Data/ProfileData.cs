@@ -39,11 +39,10 @@ namespace DiKErnel.Integration.Data
 
     public const std::vector<std::reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() const override;
 
-        private:
-            std::vector<std::reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
-            std::vector<std::unique_ptr<Core::ProfileSegment>> _profileSegments;
-            std::vector<std::reference_wrapper<Core::ProfileSegment>> _profileSegmentReferences;
-            std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
-            std::vector<std::reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
+            private std::vector<std::reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
+            private std::vector<std::unique_ptr<Core::ProfileSegment>> _profileSegments;
+            private std::vector<std::reference_wrapper<Core::ProfileSegment>> _profileSegmentReferences;
+            private std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
+            private std::vector<std::reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
     };
 }

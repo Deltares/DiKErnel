@@ -49,15 +49,14 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
         public double GetHydraulicLoadXib() const;
 
-        private:
-            double _hydraulicLoadAp;
-            double _hydraulicLoadBp;
-            double _hydraulicLoadCp;
-            double _hydraulicLoadNp;
-            double _hydraulicLoadAs;
-            double _hydraulicLoadBs;
-            double _hydraulicLoadCs;
-            double _hydraulicLoadNs;
-            double _hydraulicLoadXib;
+            private double _hydraulicLoadAp;
+            private double _hydraulicLoadBp;
+            private double _hydraulicLoadCp;
+            private double _hydraulicLoadNp;
+            private double _hydraulicLoadAs;
+            private double _hydraulicLoadBs;
+            private double _hydraulicLoadCs;
+            private double _hydraulicLoadNs;
+            private double _hydraulicLoadXib;
     };
 }
