@@ -38,34 +38,34 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
     public double GetThicknessTopLayer();
 
-    public NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads();
+    public NaturalStoneRevetmentHydraulicLoads GetHydraulicLoads();
 
-    public NaturalStoneRevetmentSlope& GetSlope();
+    public NaturalStoneRevetmentSlope GetSlope();
 
-    public NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading();
+    public NaturalStoneRevetmentUpperLimitLoading GetUpperLimitLoading();
 
-    public NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading();
+    public NaturalStoneRevetmentLowerLimitLoading GetLowerLimitLoading();
 
-    public NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation();
+    public NaturalStoneRevetmentDistanceMaximumWaveElevation GetDistanceMaximumWaveElevation();
 
-    public NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact();
+    public NaturalStoneRevetmentNormativeWidthOfWaveImpact GetNormativeWidthOfWaveImpact();
 
-    public NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact();
+    public NaturalStoneRevetmentWaveAngleImpact GetWaveAngleImpact();
 
     public bool Validate(
-                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
-                IProfileData& profileData) override;
+                IReadOnlyList<ITimeDependentInput> timeDependentInputs,
+                IProfileData profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(
                 IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
-                IProfileData& profileData) override;
+                IProfileData profileData) override;
 
     protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
-                ITimeDependentInput& timeDependentInput,
-                IProfileData& profileData) override;
+                ITimeDependentInput timeDependentInput,
+                IProfileData profileData) override;
 
             private double _relativeDensity;
             private double _thicknessTopLayer;
@@ -103,7 +103,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
     private double CalculateOuterSlope(
                 double waterLevel,
                 double waveHeightHm0,
-                IProfileData& profileData);
+                IProfileData profileData);
 
     private bool CalculateLoadingRevetment(
                 double depthMaximumWaveLoad,

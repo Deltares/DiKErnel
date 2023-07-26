@@ -31,32 +31,32 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
-    public GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact();
+    public GrassRevetmentWaveImpactWaveAngleImpact GetWaveAngleImpact();
 
     public double GetMinimumWaveHeightTemax();
 
     public double GetMaximumWaveHeightTemin();
 
-    public GrassRevetmentWaveImpactTimeLine& GetTimeLine();
+    public GrassRevetmentWaveImpactTimeLine GetTimeLine();
 
     public double GetUpperLimitLoadingAul();
 
     public double GetLowerLimitLoadingAll();
 
     public bool Validate(
-                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
-                IProfileData& profileData) override;
+                IReadOnlyList<ITimeDependentInput> timeDependentInputs,
+                IProfileData profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(
                 IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
-                IProfileData& profileData) override;
+                IProfileData profileData) override;
 
     protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
-                ITimeDependentInput& timeDependentInput,
-                IProfileData& profileData) override;
+                ITimeDependentInput timeDependentInput,
+                IProfileData profileData) override;
 
             private GrassRevetmentWaveImpactWaveAngleImpact _waveAngleImpactInput;
             private double _minimumWaveHeightTemax;

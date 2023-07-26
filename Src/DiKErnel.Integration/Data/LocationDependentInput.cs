@@ -21,13 +21,13 @@ namespace DiKErnel.Integration.Data
     internal class LocationDependentInput : ILocationDependentInput
     {
     public bool Validate(
-                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
-                IProfileData& profileData) override;
+                IReadOnlyList<ITimeDependentInput> timeDependentInputs,
+                IProfileData profileData) override;
 
     public TimeDependentOutput Calculate(
                 double initialDamage,
-                ITimeDependentInput& timeDependentInput,
-                IProfileData& profileData) override;
+                ITimeDependentInput timeDependentInput,
+                IProfileData profileData) override;
 
     public double GetX() override;
 
@@ -43,12 +43,12 @@ namespace DiKErnel.Integration.Data
                 double failureNumber);
 
     protected virtual void InitializeDerivedLocationDependentInput(
-                IProfileData& profileData);
+                IProfileData profileData);
 
     protected virtual TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
-                ITimeDependentInput& timeDependentInput,
-                IProfileData& profileData) = 0;
+                ITimeDependentInput timeDependentInput,
+                IProfileData profileData) = 0;
 
             private double _x;
             private double _initialDamage;

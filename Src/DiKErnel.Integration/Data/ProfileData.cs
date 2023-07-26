@@ -35,9 +35,9 @@ namespace DiKErnel.Integration.Data
     public ProfileSegment* GetProfileSegment(
                 double horizontalPosition) override;
 
-    public IReadOnlyList<ProfileSegment>& GetProfileSegments() override;
+    public IReadOnlyList<ProfileSegment> GetProfileSegments() override;
 
-    public IReadOnlyList<CharacteristicPoint>& GetCharacteristicPoints() override;
+    public IReadOnlyList<CharacteristicPoint> GetCharacteristicPoints() override;
 
             private IReadOnlyList<ProfilePoint> _profilePointReferences;
             private IReadOnlyList<ProfileSegment> _profileSegments;

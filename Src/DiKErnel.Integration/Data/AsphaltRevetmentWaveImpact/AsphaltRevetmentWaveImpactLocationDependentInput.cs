@@ -43,38 +43,38 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
     public double GetSoilElasticity();
 
-    public AsphaltRevetmentWaveImpactLayer& GetUpperLayer();
+    public AsphaltRevetmentWaveImpactLayer GetUpperLayer();
 
     public AsphaltRevetmentWaveImpactLayer* GetSubLayer();
 
     public double GetAverageNumberOfWavesCtm();
 
-    public AsphaltRevetmentWaveImpactFatigue& GetFatigue();
+    public AsphaltRevetmentWaveImpactFatigue GetFatigue();
 
     public double GetImpactNumberC();
 
     public double GetStiffnessRelationNu();
 
-    public IReadOnlyList<(double, double)>& GetWidthFactors();
+    public IReadOnlyList<(double, double)> GetWidthFactors();
 
-    public IReadOnlyList<(double, double)>& GetDepthFactors();
+    public IReadOnlyList<(double, double)> GetDepthFactors();
 
-    public IReadOnlyList<(double, double)>& GetImpactFactors();
+    public IReadOnlyList<(double, double)> GetImpactFactors();
 
     public bool Validate(
-                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
-                IProfileData& profileData) override;
+                IReadOnlyList<ITimeDependentInput> timeDependentInputs,
+                IProfileData profileData) override;
 
     public LocationDependentOutput GetLocationDependentOutput(
                 IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) override;
 
     protected void InitializeDerivedLocationDependentInput(
-                IProfileData& profileData) override;
+                IProfileData profileData) override;
 
     protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
-                ITimeDependentInput& timeDependentInput,
-                IProfileData& profileData) override;
+                ITimeDependentInput timeDependentInput,
+                IProfileData profileData) override;
 
             private double _failureTension;
             private double _densityOfWater;

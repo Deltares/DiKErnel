@@ -32,13 +32,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
     public double GetAverageNumberOfWavesCtm();
 
-    public GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P();
+    public GrassRevetmentWaveRunupRepresentative2P GetRepresentative2P();
 
-    public GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact();
+    public GrassRevetmentWaveRunupWaveAngleImpact GetWaveAngleImpact();
 
     public bool Validate(
-                IReadOnlyList<ITimeDependentInput>& timeDependentInputs,
-                IProfileData& profileData) override;
+                IReadOnlyList<ITimeDependentInput> timeDependentInputs,
+                IProfileData profileData) override;
 
         protected void GrassRevetmentWaveRunupLocationDependentInput(
                 double x,
@@ -55,8 +55,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
     protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
-                ITimeDependentInput& timeDependentInput,
-                IProfileData& profileData) override = 0;
+                ITimeDependentInput timeDependentInput,
+                IProfileData profileData) override = 0;
 
             private double _outerSlope;
             private double _criticalCumulativeOverload;

@@ -25,11 +25,11 @@ namespace DiKErnel.Integration.Data
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems,
                 IReadOnlyList<ITimeDependentInput> timeDependentInputItems);
 
-    public IProfileData& GetProfileData() override;
+    public IProfileData GetProfileData() override;
 
-    public IReadOnlyList<ILocationDependentInput>& GetLocationDependentInputItems() override;
+    public IReadOnlyList<ILocationDependentInput> GetLocationDependentInputItems() override;
 
-    public IReadOnlyList<ITimeDependentInput>& GetTimeDependentInputItems() override;
+    public IReadOnlyList<ITimeDependentInput> GetTimeDependentInputItems() override;
 
             private IProfileData _profileData;
             private IReadOnlyList<ILocationDependentInput> _locationDependentInputItems;
