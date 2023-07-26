@@ -42,7 +42,8 @@ namespace DiKErnel.Integration.Data
 
         public double FailureNumber { get; }
 
-        public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
+        public virtual bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                     IProfileData profileData)
         {
             throw new NotImplementedException();
         }
@@ -53,7 +54,8 @@ namespace DiKErnel.Integration.Data
             throw new NotImplementedException();
         }
 
-        public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        public virtual LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
             throw new NotImplementedException();
         }

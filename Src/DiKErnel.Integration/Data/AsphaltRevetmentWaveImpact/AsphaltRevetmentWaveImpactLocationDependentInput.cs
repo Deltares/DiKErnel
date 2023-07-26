@@ -16,33 +16,15 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
 
 namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
     internal class AsphaltRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
-        private double _failureTension;
-        private double _densityOfWater;
-        private double _soilElasticity;
-        private AsphaltRevetmentWaveImpactLayer _upperLayer;
-        private AsphaltRevetmentWaveImpactLayer _subLayer;
-        private double _averageNumberOfWavesCtm;
-        private AsphaltRevetmentWaveImpactFatigue _fatigue;
-        private double _impactNumberC;
-        private double _stiffnessRelationNu;
-        private IReadOnlyList<(double, double)> _widthFactors;
-        private IReadOnlyList<(double, double)> _depthFactors;
-        private IReadOnlyList<(double, double)> _impactFactors;
-        private double _outerSlope = double.PositiveInfinity;
-        private double _logFailureTension = double.PositiveInfinity;
-        private double _computationalThickness = double.PositiveInfinity;
-        private double _stiffnessRelation = double.PositiveInfinity;
-        private double _subLayerElasticModulus = double.PositiveInfinity;
-        private double _averageNumberOfWaves = double.PositiveInfinity;
-        private double _maximumPeakStress = double.PositiveInfinity;
-
         public AsphaltRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                 double failureTension, double densityOfWater,
                                                                 double soilElasticity,
@@ -54,54 +36,105 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                                                                 IReadOnlyList<(double, double)> widthFactors,
                                                                 IReadOnlyList<(double, double)> depthFactors,
                                                                 IReadOnlyList<(double, double)> impactFactors)
-            : base(x, initialDamage, failureNumber) {}
+            : base(x, initialDamage, failureNumber)
+        {
+            FailureTension = failureTension;
+            DensityOfWater = densityOfWater;
+            SoilElasticity = soilElasticity;
+            UpperLayer = upperLayer;
+            SubLayer = subLayer;
+            AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
+            Fatigue = fatigue;
+            ImpactNumberC = impactNumberC;
+            StiffnessRelationNu = stiffnessRelationNu;
+            WidthFactors = widthFactors;
+            DepthFactors = depthFactors;
+            ImpactFactors = impactFactors;
+            OuterSlope = double.PositiveInfinity;
+            LogFailureTension = double.PositiveInfinity;
+            ComputationalThickness = double.PositiveInfinity;
+            StiffnessRelation = double.PositiveInfinity;
+            SubLayerElasticModulus = double.PositiveInfinity;
+            AverageNumberOfWaves = double.PositiveInfinity;
+            MaximumPeakStress = double.PositiveInfinity;
+        }
 
-        public double GetFailureTension();
+        public double FailureTension { get; }
 
-        public double GetDensityOfWater();
+        public double DensityOfWater { get; }
 
-        public double GetSoilElasticity();
+        public double SoilElasticity { get; }
 
-        public AsphaltRevetmentWaveImpactLayer GetUpperLayer();
+        public AsphaltRevetmentWaveImpactLayer UpperLayer { get; }
 
-        public AsphaltRevetmentWaveImpactLayer GetSubLayer();
+        public AsphaltRevetmentWaveImpactLayer SubLayer { get; }
 
-        public double GetAverageNumberOfWavesCtm();
+        public double AverageNumberOfWavesCtm { get; }
 
-        public AsphaltRevetmentWaveImpactFatigue GetFatigue();
+        public AsphaltRevetmentWaveImpactFatigue Fatigue { get; }
 
-        public double GetImpactNumberC();
+        public double ImpactNumberC { get; }
 
-        public double GetStiffnessRelationNu();
+        public double StiffnessRelationNu { get; }
 
-        public IReadOnlyList<(double, double)> GetWidthFactors();
+        public IReadOnlyList<(double, double)> WidthFactors { get; }
 
-        public IReadOnlyList<(double, double)> GetDepthFactors();
+        public IReadOnlyList<(double, double)> DepthFactors { get; }
 
-        public IReadOnlyList<(double, double)> GetImpactFactors();
+        public IReadOnlyList<(double, double)> ImpactFactors { get; }
 
-        public bool Validate(
-            IReadOnlyList<ITimeDependentInput> timeDependentInputs,
-            IProfileData profileData)
+        public double OuterSlope { get; private set; }
 
-        public LocationDependentOutput GetLocationDependentOutput(
+        public double LogFailureTension { get; private set; }
+
+        public double ComputationalThickness { get; private set; }
+
+        public double StiffnessRelation { get; private set; }
+
+        public double SubLayerElasticModulus { get; private set; }
+
+        public double AverageNumberOfWaves { get; private set; }
+
+        public double MaximumPeakStress { get; private set; }
+
+        public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                      IProfileData profileData)
+        {
+            return base.Validate(timeDependentInputItems, profileData);
+        }
+
+        public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return base.GetLocationDependentOutput(timeDependentOutputItems);
+        }
 
-        protected void InitializeDerivedLocationDependentInput(
-            IProfileData profileData)
+        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        {
+            base.InitializeDerivedLocationDependentInput(profileData);
+        }
 
-        protected TimeDependentOutput CalculateTimeDependentOutput(
-            double initialDamage,
-            ITimeDependentInput timeDependentInput,
-            IProfileData profileData)override;override;override;override;
+        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
+                                                                            ITimeDependentInput timeDependentInput,
+                                                                            IProfileData profileData)
+        {
+            throw new NotImplementedException();
+        }
 
-        private FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
-            double waterLevel,
-            double waveHeightHm0);
+        private AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(double waterLevel,
+                                                                                    double waveHeightHm0)
+        {
+            throw new NotImplementedException();
+        }
 
         private AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage,
             double damage,
-            int? timeOfFailure);
+            int? timeOfFailure)
+        {
+            throw new NotImplementedException();
+        }
+
+        private class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties {}
     }
 }

@@ -4,6 +4,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj" />
+      <ProjectReference Include="..\DiKErnel.FunctionLibrary\DiKErnel.FunctionLibrary.csproj" />
     </ItemGroup>
 
 </Project>
