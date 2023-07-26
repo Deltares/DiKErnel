@@ -67,13 +67,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-            private const double _criticalCumulativeOverload;
-            private const double _criticalFrontVelocity;
-            private const double _increasedLoadTransitionAlphaM;
-            private const double _reducedStrengthTransitionAlphaS;
-            private const double _averageNumberOfWavesCtm;
-            private const int _fixedNumberOfWaves;
-            private const double _frontVelocityCwo;
+            private double _criticalCumulativeOverload;
+            private double _criticalFrontVelocity;
+            private double _increasedLoadTransitionAlphaM;
+            private double _reducedStrengthTransitionAlphaS;
+            private double _averageNumberOfWavesCtm;
+            private int _fixedNumberOfWaves;
+            private double _frontVelocityCwo;
             private std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> _locationDependentAccelerationAlphaA;
             private std::unique_ptr<double> _enforcedDikeHeight;
 

@@ -51,8 +51,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-            private const int _fixedNumberOfWaves;
-            private const double _frontVelocityCu;
+            private int _fixedNumberOfWaves;
+            private double _frontVelocityCu;
 
             private double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
             private double _waveAngleImpact = std::numeric_limits<double>::infinity();

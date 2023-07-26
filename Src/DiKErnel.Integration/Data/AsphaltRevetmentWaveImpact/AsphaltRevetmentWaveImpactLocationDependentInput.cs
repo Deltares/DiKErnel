@@ -76,15 +76,15 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-            private const double _failureTension;
-            private const double _densityOfWater;
-            private const double _soilElasticity;
+            private double _failureTension;
+            private double _densityOfWater;
+            private double _soilElasticity;
             private std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _upperLayer;
             private std::unique_ptr<AsphaltRevetmentWaveImpactLayer> _subLayer;
-            private const double _averageNumberOfWavesCtm;
+            private double _averageNumberOfWavesCtm;
             private std::unique_ptr<AsphaltRevetmentWaveImpactFatigue> _fatigue;
-            private const double _impactNumberC;
-            private const double _stiffnessRelationNu;
+            private double _impactNumberC;
+            private double _stiffnessRelationNu;
             private std::vector<std::pair<double, double>> _widthFactors;
             private std::vector<std::pair<double, double>> _depthFactors;
             private std::vector<std::pair<double, double>> _impactFactors;
