@@ -16,33 +16,43 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+
 namespace DiKErnel.Integration.Data
 {
     internal class ProfileData : IProfileData
     {
-        public ProfileData(
-                IReadOnlyList<ProfileSegment> profileSegments,
-                IReadOnlyList<CharacteristicPoint> characteristicPoints) {};
+        public ProfileData(IReadOnlyList<ProfileSegment> profileSegments,
+                           IReadOnlyList<CharacteristicPoint> characteristicPoints)
+        {
+            ProfileSegments = profileSegments;
+            CharacteristicPoints = characteristicPoints;
+        }
 
-    public bool Validate() override;
+        public IReadOnlyList<ProfileSegment> ProfileSegments { get; }
 
-    public double InterpolationVerticalHeight(
-                double horizontalPosition) override;
+        public IReadOnlyList<CharacteristicPoint> CharacteristicPoints { get; }
 
-    public double InterpolationHorizontalPosition(
-                double verticalHeight) override;
+        public bool Validate()
+        {
+            throw new NotImplementedException();
+        }
 
-    public ProfileSegment GetProfileSegment(
-                double horizontalPosition) override;
+        public double GetVerticalHeight(double horizontalPosition)
+        {
+            throw new NotImplementedException();
+        }
 
-    public IReadOnlyList<ProfileSegment> GetProfileSegments() override;
+        public double GetHorizontalPosition(double verticalHeight)
+        {
+            throw new NotImplementedException();
+        }
 
-    public IReadOnlyList<CharacteristicPoint> GetCharacteristicPoints() override;
-
-            private IReadOnlyList<ProfilePoint> _profilePointReferences;
-            private IReadOnlyList<ProfileSegment> _profileSegments;
-            private IReadOnlyList<ProfileSegment> _profileSegmentReferences;
-            private IReadOnlyList<CharacteristicPoint> _characteristicPoints;
-            private IReadOnlyList<CharacteristicPoint> _characteristicPointReferences;
+        public ProfileSegment GetProfileSegment(double horizontalPosition)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
