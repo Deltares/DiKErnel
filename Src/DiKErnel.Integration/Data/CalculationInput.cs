@@ -36,5 +36,5 @@ namespace DiKErnel.Integration.Data
             private std::vector<std::reference_wrapper<Core::ILocationDependentInput>> _locationDependentInputItemReferences;
             private std::vector<std::unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems;
             private std::vector<std::reference_wrapper<Core::ITimeDependentInput>> _timeDependentInputItemReferences;
-    };
+    }
 }

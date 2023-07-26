@@ -66,5 +66,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             private double _averageNumberOfWavesCtm;
             private std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
             private std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
-    };
+    }
 }

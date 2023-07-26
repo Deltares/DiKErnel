@@ -30,5 +30,5 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
             private const double _distanceMaximumWaveElevationAsmax;
             private const double _distanceMaximumWaveElevationBsmax;
-    };
+    }
 }

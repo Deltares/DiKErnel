@@ -58,5 +58,5 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             private double _hydraulicLoadCs;
             private double _hydraulicLoadNs;
             private double _hydraulicLoadXib;
-    };
+    }
 }

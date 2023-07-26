@@ -44,5 +44,5 @@ namespace DiKErnel.Integration.Data
             private std::vector<std::reference_wrapper<Core::ProfileSegment>> _profileSegmentReferences;
             private std::vector<std::unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
             private std::vector<std::reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
-    };
+    }
 }

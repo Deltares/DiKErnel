@@ -104,5 +104,5 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);
-    };
+    }
 }

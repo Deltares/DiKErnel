@@ -124,5 +124,5 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);
-    };
+    }
 }

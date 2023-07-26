@@ -55,5 +55,5 @@ namespace DiKErnel.Integration.Data
             private const double _failureNumber;
             private bool _derivedLocationDependentInputInitialized = false;
             private double _z = std::numeric_limits<double>::infinity();
-    };
+    }
 }

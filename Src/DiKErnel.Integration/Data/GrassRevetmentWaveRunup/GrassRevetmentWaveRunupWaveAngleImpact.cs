@@ -30,5 +30,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
             private double _abeta;
             private double _betamax;
-    };
+    }
 }

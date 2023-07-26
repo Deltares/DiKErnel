@@ -81,5 +81,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);
-    };
+    }
 }

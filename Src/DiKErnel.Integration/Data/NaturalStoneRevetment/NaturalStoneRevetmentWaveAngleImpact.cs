@@ -26,5 +26,5 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         public double GetBetamax() const;
 
         private double _betamax;
-    };
+    }
 }

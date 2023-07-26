@@ -30,5 +30,5 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
         private double _thickness;
         private double _elasticModulus;
-    };
+    }
 }

@@ -48,5 +48,5 @@ namespace DiKErnel.Integration.Data
             private double _waveHeightHm0;
             private double _wavePeriodTm10;
             private double _waveAngle;
-    };
+    }
 }

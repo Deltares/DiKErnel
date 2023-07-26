@@ -34,5 +34,5 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             private double _upperLimitAul;
             private double _upperLimitBul;
             private double _upperLimitCul;
-    };
+    }
 }

@@ -42,5 +42,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             private double _representative2PCru;
             private double _gammab;
             private double _gammaf;
-    };
+    }
 }

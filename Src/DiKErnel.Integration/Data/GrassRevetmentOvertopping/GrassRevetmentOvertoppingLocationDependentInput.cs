@@ -118,5 +118,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 double incrementDamage,
                 double damage,
                 std::unique_ptr<int> timeOfFailure);
-    };
+    }
 }

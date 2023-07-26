@@ -30,5 +30,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
             private double _valueAtCrest;
             private double _valueAtInnerSlope;
-    };
+    }
 }
