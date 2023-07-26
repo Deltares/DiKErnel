@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
@@ -23,38 +24,28 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentLocationDependentInput : LocationDependentInput
     {
-        private double _relativeDensity;
-        private double _thicknessTopLayer;
-        private NaturalStoneRevetmentHydraulicLoads _hydraulicLoadsInput;
-        private NaturalStoneRevetmentSlope _slopeInput;
-        private NaturalStoneRevetmentUpperLimitLoading _upperLimitLoadingInput;
-        private NaturalStoneRevetmentLowerLimitLoading _lowerLimitLoadingInput;
-        private NaturalStoneRevetmentDistanceMaximumWaveElevation _distanceMaximumWaveElevationInput;
-        private NaturalStoneRevetmentNormativeWidthOfWaveImpact _normativeWidthOfWaveImpactInput;
-        private NaturalStoneRevetmentWaveAngleImpact _waveAngleImpactInput;
-        private double _outerToeHeight = double.PositiveInfinity;
-        private double _outerCrestHeight = double.PositiveInfinity;
-        private pair<double, double>? _notchOuterBerm = nullptr;
-        private pair<double, double>? _crestOuterBerm = nullptr;
-
-        private double _resistance = double.PositiveInfinity;
-        private double _slopeLowerPosition = double.PositiveInfinity;
-        private double _slopeLowerLevel = double.PositiveInfinity;
-        private double _slopeUpperPosition = double.PositiveInfinity;
-        private double _slopeUpperLevel = double.PositiveInfinity;
-        private double _outerSlope = double.PositiveInfinity;
-        private double _waveSteepnessDeepWater = double.PositiveInfinity;
-        private double _distanceMaximumWaveElevation = double.PositiveInfinity;
-        private double _surfSimilarityParameter = double.PositiveInfinity;
-        private double _normativeWidthWaveImpact = double.PositiveInfinity;
-        private double _depthMaximumWaveLoad = double.PositiveInfinity;
-        private double _upperLimitLoading = double.PositiveInfinity;
-        private double _lowerLimitLoading = double.PositiveInfinity;
-        private bool _loadingRevetment = false;
-        private double _hydraulicLoad = double.PositiveInfinity;
-        private double _waveAngleImpact = double.PositiveInfinity;
-        private double _referenceTimeDegradation = double.PositiveInfinity;
-        private double _referenceDegradation = double.PositiveInfinity;
+        private double outerToeHeight = double.PositiveInfinity;
+        private double outerCrestHeight = double.PositiveInfinity;
+        private (double, double)? notchOuterBerm = null;
+        private (double, double)? crestOuterBerm = null;
+        private double resistance = double.PositiveInfinity;
+        private double slopeLowerPosition = double.PositiveInfinity;
+        private double slopeLowerLevel = double.PositiveInfinity;
+        private double slopeUpperPosition = double.PositiveInfinity;
+        private double slopeUpperLevel = double.PositiveInfinity;
+        private double outerSlope = double.PositiveInfinity;
+        private double waveSteepnessDeepWater = double.PositiveInfinity;
+        private double distanceMaximumWaveElevation = double.PositiveInfinity;
+        private double surfSimilarityParameter = double.PositiveInfinity;
+        private double normativeWidthWaveImpact = double.PositiveInfinity;
+        private double depthMaximumWaveLoad = double.PositiveInfinity;
+        private double upperLimitLoading = double.PositiveInfinity;
+        private double lowerLimitLoading = double.PositiveInfinity;
+        private bool loadingRevetment = false;
+        private double hydraulicLoad = double.PositiveInfinity;
+        private double waveAngleImpact = double.PositiveInfinity;
+        private double referenceTimeDegradation = double.PositiveInfinity;
+        private double referenceDegradation = double.PositiveInfinity;
 
         public NaturalStoneRevetmentLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                            double relativeDensity, double thicknessTopLayer,
@@ -65,64 +56,88 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                                                            NaturalStoneRevetmentDistanceMaximumWaveElevation distanceMaximumWaveElevation,
                                                            NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
                                                            NaturalStoneRevetmentWaveAngleImpact waveAngleImpact)
-            : base(x, initialDamage, failureNumber) {}
+            : base(x, initialDamage, failureNumber)
+        {
+            RelativeDensity = relativeDensity;
+            ThicknessTopLayer = thicknessTopLayer;
+            HydraulicLoads = hydraulicLoads;
+            Slope = slope;
+            UpperLimitLoading = upperLimitLoading;
+            LowerLimitLoading = lowerLimitLoading;
+            DistanceMaximumWaveElevation = distanceMaximumWaveElevation;
+            NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact;
+            WaveAngleImpact = waveAngleImpact;
+        }
 
-        public double GetRelativeDensity();
+        public double RelativeDensity { get; }
 
-        public double GetThicknessTopLayer();
+        public double ThicknessTopLayer { get; }
 
-        public NaturalStoneRevetmentHydraulicLoads GetHydraulicLoads();
+        public NaturalStoneRevetmentHydraulicLoads HydraulicLoads { get; }
 
-        public NaturalStoneRevetmentSlope GetSlope();
+        public NaturalStoneRevetmentSlope Slope { get; }
 
-        public NaturalStoneRevetmentUpperLimitLoading GetUpperLimitLoading();
+        public NaturalStoneRevetmentUpperLimitLoading UpperLimitLoading { get; }
 
-        public NaturalStoneRevetmentLowerLimitLoading GetLowerLimitLoading();
+        public NaturalStoneRevetmentLowerLimitLoading LowerLimitLoading { get; }
 
-        public NaturalStoneRevetmentDistanceMaximumWaveElevation GetDistanceMaximumWaveElevation();
+        public NaturalStoneRevetmentDistanceMaximumWaveElevation DistanceMaximumWaveElevation { get; }
 
-        public NaturalStoneRevetmentNormativeWidthOfWaveImpact GetNormativeWidthOfWaveImpact();
+        public NaturalStoneRevetmentNormativeWidthOfWaveImpact NormativeWidthOfWaveImpact { get; }
 
-        public NaturalStoneRevetmentWaveAngleImpact GetWaveAngleImpact();
+        public NaturalStoneRevetmentWaveAngleImpact WaveAngleImpact { get; }
 
-        public bool Validate(
-            IReadOnlyList<ITimeDependentInput> timeDependentInputs,
-            IProfileData profileData)
+        public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                      IProfileData profileData)
+        {
+            return base.Validate(timeDependentInputItems, profileData);
+        }
 
-        public LocationDependentOutput GetLocationDependentOutput(
+        public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return base.GetLocationDependentOutput(timeDependentOutputItems);
+        }
 
-        protected void InitializeDerivedLocationDependentInput(
-            IProfileData profileData)
+        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        {
+            base.InitializeDerivedLocationDependentInput(profileData);
+        }
 
-        protected TimeDependentOutput CalculateTimeDependentOutput(
-            double initialDamage,
-            ITimeDependentInput timeDependentInput,
-            IProfileData profileData)override;override;override;override;
+        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
+                                                                            ITimeDependentInput timeDependentInput,
+                                                                            IProfileData profileData)
+        {
+            throw new NotImplementedException();
+        }
 
-        private double CalculateOuterSlope(
-            double waterLevel,
-            double waveHeightHm0,
-            IProfileData profileData);
+        private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
+        {
+            throw new NotImplementedException();
+        }
 
-        private bool CalculateLoadingRevetment(
-            double depthMaximumWaveLoad,
-            double surfSimilarityParameter,
-            double waterLevel,
-            double waveHeightHm0);
+        private bool CalculateLoadingRevetment(double depthMaximumWaveLoad, double surfSimilarityParameter,
+                                               double waterLevel, double waveHeightHm0)
+        {
+            throw new NotImplementedException();
+        }
 
-        private double CalculateHydraulicLoad(
-            double surfSimilarityParameter,
-            double waveHeightHm0);
+        private double CalculateHydraulicLoad(double surfSimilarityParameter, double waveHeightHm0)
+        {
+            throw new NotImplementedException();
+        }
 
-        private int CalculateTimeOfFailure(
-            double failureNumber,
-            double wavePeriodTm10,
-            double beginTime);
+        private int CalculateTimeOfFailure(double failureNumber, double wavePeriodTm10, double beginTime)
+        {
+            throw new NotImplementedException();
+        }
 
         private NaturalStoneRevetmentTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage,
-            double damage,
-            int? timeOfFailure);
+            double incrementDamage, double damage, int? timeOfFailure)
+        {
+            throw new NotImplementedException();
+        }
+
+        private class NaturalStoneRevetmentTimeDependentOutputConstructionProperties {}
     }
 }
