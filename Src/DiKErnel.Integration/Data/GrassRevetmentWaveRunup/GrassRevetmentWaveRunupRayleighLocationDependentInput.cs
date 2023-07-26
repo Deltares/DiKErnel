@@ -40,16 +40,16 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public double GetFrontVelocityCu();
 
     public bool Validate(
-                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
-                Core::IProfileData& profileData) override;
+                vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
+                IProfileData& profileData) override;
 
-    public unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
-                vector<unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
+    public unique_ptr<LocationDependentOutput> GetLocationDependentOutput(
+                vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems) override;
 
-    protected unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
-                Core::ITimeDependentInput& timeDependentInput,
-                Core::IProfileData& profileData) override;
+                ITimeDependentInput& timeDependentInput,
+                IProfileData& profileData) override;
 
             private int _fixedNumberOfWaves;
             private double _frontVelocityCu;

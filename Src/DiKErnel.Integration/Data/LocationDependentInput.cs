@@ -18,16 +18,16 @@
 
 namespace DiKErnel.Integration.Data
 {
-    internal class LocationDependentInput : Core::ILocationDependentInput
+    internal class LocationDependentInput : ILocationDependentInput
     {
     public bool Validate(
-                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
-                Core::IProfileData& profileData) override;
+                vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
+                IProfileData& profileData) override;
 
-    public unique_ptr<Core::TimeDependentOutput> Calculate(
+    public unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
-                Core::ITimeDependentInput& timeDependentInput,
-                Core::IProfileData& profileData) override;
+                ITimeDependentInput& timeDependentInput,
+                IProfileData& profileData) override;
 
     public double GetX() override;
 
@@ -43,12 +43,12 @@ namespace DiKErnel.Integration.Data
                 double failureNumber);
 
     protected virtual void InitializeDerivedLocationDependentInput(
-                Core::IProfileData& profileData);
+                IProfileData& profileData);
 
-    protected virtual unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected virtual unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
-                Core::ITimeDependentInput& timeDependentInput,
-                Core::IProfileData& profileData) = 0;
+                ITimeDependentInput& timeDependentInput,
+                IProfileData& profileData) = 0;
 
             private double _x;
             private double _initialDamage;

@@ -18,23 +18,23 @@
 
 namespace DiKErnel.Integration.Data
 {
-    internal class CalculationInput : Core::ICalculationInput
+    internal class CalculationInput : ICalculationInput
     {
         public void CalculationInput(
-                unique_ptr<Core::IProfileData> profileData,
-                vector<unique_ptr<Core::ILocationDependentInput>> locationDependentInputItems,
-                vector<unique_ptr<Core::ITimeDependentInput>> timeDependentInputItems);
+                unique_ptr<IProfileData> profileData,
+                vector<unique_ptr<ILocationDependentInput>> locationDependentInputItems,
+                vector<unique_ptr<ITimeDependentInput>> timeDependentInputItems);
 
-    public Core::IProfileData& GetProfileData() override;
+    public IProfileData& GetProfileData() override;
 
-    public vector<reference_wrapper<Core::ILocationDependentInput>>& GetLocationDependentInputItems() override;
+    public vector<reference_wrapper<ILocationDependentInput>>& GetLocationDependentInputItems() override;
 
-    public vector<reference_wrapper<Core::ITimeDependentInput>>& GetTimeDependentInputItems() override;
+    public vector<reference_wrapper<ITimeDependentInput>>& GetTimeDependentInputItems() override;
 
-            private unique_ptr<Core::IProfileData> _profileData;
-            private vector<unique_ptr<Core::ILocationDependentInput>> _locationDependentInputItems;
-            private vector<reference_wrapper<Core::ILocationDependentInput>> _locationDependentInputItemReferences;
-            private vector<unique_ptr<Core::ITimeDependentInput>> _timeDependentInputItems;
-            private vector<reference_wrapper<Core::ITimeDependentInput>> _timeDependentInputItemReferences;
+            private unique_ptr<IProfileData> _profileData;
+            private vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems;
+            private vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences;
+            private vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems;
+            private vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences;
     }
 }

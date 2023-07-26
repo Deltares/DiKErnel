@@ -18,11 +18,11 @@
 
 namespace DiKErnel.Integration.Data
 {
-    internal class ProfileData : Core::IProfileData
+    internal class ProfileData : IProfileData
     {
         public void ProfileData(
-                vector<unique_ptr<Core::ProfileSegment>> profileSegments,
-                vector<unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
+                vector<unique_ptr<ProfileSegment>> profileSegments,
+                vector<unique_ptr<CharacteristicPoint>> characteristicPoints);
 
     public bool Validate() override;
 
@@ -32,17 +32,17 @@ namespace DiKErnel.Integration.Data
     public double InterpolationHorizontalPosition(
                 double verticalHeight) override;
 
-    public Core::ProfileSegment* GetProfileSegment(
+    public ProfileSegment* GetProfileSegment(
                 double horizontalPosition) override;
 
-    public vector<reference_wrapper<Core::ProfileSegment>>& GetProfileSegments() override;
+    public vector<reference_wrapper<ProfileSegment>>& GetProfileSegments() override;
 
-    public vector<reference_wrapper<Core::CharacteristicPoint>>& GetCharacteristicPoints() override;
+    public vector<reference_wrapper<CharacteristicPoint>>& GetCharacteristicPoints() override;
 
-            private vector<reference_wrapper<Core::ProfilePoint>> _profilePointReferences;
-            private vector<unique_ptr<Core::ProfileSegment>> _profileSegments;
-            private vector<reference_wrapper<Core::ProfileSegment>> _profileSegmentReferences;
-            private vector<unique_ptr<Core::CharacteristicPoint>> _characteristicPoints;
-            private vector<reference_wrapper<Core::CharacteristicPoint>> _characteristicPointReferences;
+            private vector<reference_wrapper<ProfilePoint>> _profilePointReferences;
+            private vector<unique_ptr<ProfileSegment>> _profileSegments;
+            private vector<reference_wrapper<ProfileSegment>> _profileSegmentReferences;
+            private vector<unique_ptr<CharacteristicPoint>> _characteristicPoints;
+            private vector<reference_wrapper<CharacteristicPoint>> _characteristicPointReferences;
     }
 }

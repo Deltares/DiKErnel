@@ -37,8 +37,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact();
 
     public bool Validate(
-                vector<reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
-                Core::IProfileData& profileData) override;
+                vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
+                IProfileData& profileData) override;
 
         protected void GrassRevetmentWaveRunupLocationDependentInput(
                 double x,
@@ -53,10 +53,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
-    protected unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
+    protected unique_ptr<TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
-                Core::ITimeDependentInput& timeDependentInput,
-                Core::IProfileData& profileData) override = 0;
+                ITimeDependentInput& timeDependentInput,
+                IProfileData& profileData) override = 0;
 
             private double _outerSlope;
             private double _criticalCumulativeOverload;
