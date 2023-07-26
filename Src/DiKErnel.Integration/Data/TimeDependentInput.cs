@@ -29,25 +29,18 @@ namespace DiKErnel.Integration.Data
                 double wavePeriodTm10,
                 double waveAngle);
 
-            [[nodiscard]]
             bool Validate() const override;
 
-            [[nodiscard]]
             int GetBeginTime() const override;
 
-            [[nodiscard]]
             int GetEndTime() const override;
 
-            [[nodiscard]]
             double GetWaterLevel() const override;
 
-            [[nodiscard]]
             double GetWaveHeightHm0() const override;
 
-            [[nodiscard]]
             double GetWavePeriodTm10() const override;
 
-            [[nodiscard]]
             double GetWaveAngle() const override;
 
         private:

@@ -38,48 +38,34 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 std::vector<std::pair<double, double>> depthFactors,
                 std::vector<std::pair<double, double>> impactFactors);
 
-            [[nodiscard]]
             double GetFailureTension() const;
 
-            [[nodiscard]]
             double GetDensityOfWater() const;
 
-            [[nodiscard]]
             double GetSoilElasticity() const;
 
-            [[nodiscard]]
             AsphaltRevetmentWaveImpactLayer& GetUpperLayer() const;
 
-            [[nodiscard]]
             AsphaltRevetmentWaveImpactLayer* GetSubLayer() const;
 
-            [[nodiscard]]
             double GetAverageNumberOfWavesCtm() const;
 
-            [[nodiscard]]
             AsphaltRevetmentWaveImpactFatigue& GetFatigue() const;
 
-            [[nodiscard]]
             double GetImpactNumberC() const;
 
-            [[nodiscard]]
             double GetStiffnessRelationNu() const;
 
-            [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetWidthFactors() const;
 
-            [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetDepthFactors() const;
 
-            [[nodiscard]]
             const std::vector<std::pair<double, double>>& GetImpactFactors() const;
 
-            [[nodiscard]]
             bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
@@ -87,7 +73,6 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -114,12 +99,10 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             double _averageNumberOfWaves = std::numeric_limits<double>::infinity();
             double _maximumPeakStress = std::numeric_limits<double>::infinity();
 
-            [[nodiscard]]
             FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
                 double waterLevel,
                 double waveHeightHm0) const;
 
-            [[nodiscard]]
             std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,

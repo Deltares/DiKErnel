@@ -35,39 +35,28 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
                 std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
-            [[nodiscard]]
             double GetRelativeDensity() const;
 
-            [[nodiscard]]
             double GetThicknessTopLayer() const;
 
-            [[nodiscard]]
             NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads() const;
 
-            [[nodiscard]]
             NaturalStoneRevetmentSlope& GetSlope() const;
 
-            [[nodiscard]]
             NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading() const;
 
-            [[nodiscard]]
             NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading() const;
 
-            [[nodiscard]]
             NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation() const;
 
-            [[nodiscard]]
             NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
 
-            [[nodiscard]]
             NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
 
-            [[nodiscard]]
             bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
@@ -75,7 +64,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -115,31 +103,26 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             double _referenceTimeDegradation = std::numeric_limits<double>::infinity();
             double _referenceDegradation = std::numeric_limits<double>::infinity();
 
-            [[nodiscard]]
             double CalculateOuterSlope(
                 double waterLevel,
                 double waveHeightHm0,
                 const Core::IProfileData& profileData);
 
-            [[nodiscard]]
             bool CalculateLoadingRevetment(
                 double depthMaximumWaveLoad,
                 double surfSimilarityParameter,
                 double waterLevel,
                 double waveHeightHm0);
 
-            [[nodiscard]]
             double CalculateHydraulicLoad(
                 double surfSimilarityParameter,
                 double waveHeightHm0) const;
 
-            [[nodiscard]]
             int CalculateTimeOfFailure(
                 double failureNumber,
                 double wavePeriodTm10,
                 double beginTime) const;
 
-            [[nodiscard]]
             std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,

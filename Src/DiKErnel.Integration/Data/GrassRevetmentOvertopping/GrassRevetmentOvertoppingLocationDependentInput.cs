@@ -35,39 +35,28 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
                 std::unique_ptr<double> enforcedDikeHeight);
 
-            [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
 
-            [[nodiscard]]
             double GetCriticalFrontVelocity() const;
 
-            [[nodiscard]]
             double GetIncreasedLoadTransitionAlphaM() const;
 
-            [[nodiscard]]
             double GetReducedStrengthTransitionAlphaS() const;
 
-            [[nodiscard]]
             double GetAverageNumberOfWavesCtm() const;
 
-            [[nodiscard]]
             int GetFixedNumberOfWaves() const;
 
-            [[nodiscard]]
             double GetFrontVelocityCwo() const;
 
-            [[nodiscard]]
             GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GetLocationDependentAccelerationAlphaA() const;
 
-            [[nodiscard]]
             const double* GetEnforcedDikeHeight() const;
 
-            [[nodiscard]]
             bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
@@ -75,7 +64,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -115,24 +103,20 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 const std::pair<double, double>& outerCrest,
                 const std::pair<double, double>& innerCrest);
 
-            [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double waveDirection) const;
 
-            [[nodiscard]]
             double CalculateCumulativeOverload(
                 double averageNumberOfWaves) const;
 
-            [[nodiscard]]
             double CalculateDikeHeight(
                 const std::pair<double, double>& outerCrest,
                 const std::vector<std::reference_wrapper<Core::ProfileSegment>>& profileSegments,
                 double locationHeight) const;
 
-            [[nodiscard]]
             std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,

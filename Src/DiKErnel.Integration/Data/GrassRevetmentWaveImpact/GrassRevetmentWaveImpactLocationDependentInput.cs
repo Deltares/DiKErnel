@@ -32,30 +32,22 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
-            [[nodiscard]]
             GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
 
-            [[nodiscard]]
             double GetMinimumWaveHeightTemax() const;
 
-            [[nodiscard]]
             double GetMaximumWaveHeightTemin() const;
 
-            [[nodiscard]]
             GrassRevetmentWaveImpactTimeLine& GetTimeLine() const;
 
-            [[nodiscard]]
             double GetUpperLimitLoadingAul() const;
 
-            [[nodiscard]]
             double GetLowerLimitLoadingAll() const;
 
-            [[nodiscard]]
             bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
@@ -63,7 +55,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -85,12 +76,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
             double _waveAngleImpact = std::numeric_limits<double>::infinity();
             double _waveHeightImpact = std::numeric_limits<double>::infinity();
 
-            [[nodiscard]]
             bool CalculateLoadingRevetment(
                 double waterLevel,
                 double waveHeightHm0);
 
-            [[nodiscard]]
             std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,

@@ -21,7 +21,6 @@ namespace DiKErnel.Integration.Data
     class LocationDependentInput : public Core::ILocationDependentInput
     {
         public:
-            [[nodiscard]]
             bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
@@ -31,16 +30,12 @@ namespace DiKErnel.Integration.Data
                 const Core::ITimeDependentInput& timeDependentInput,
                 const Core::IProfileData& profileData) override;
 
-            [[nodiscard]]
             double GetX() const override;
 
-            [[nodiscard]]
             double GetInitialDamage() const override;
 
-            [[nodiscard]]
             double GetFailureNumber() const override;
 
-            [[nodiscard]]
             double GetZ() const override;
 
         protected:
@@ -52,7 +47,6 @@ namespace DiKErnel.Integration.Data
             virtual void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData);
 
-            [[nodiscard]]
             virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,

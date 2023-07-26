@@ -26,13 +26,10 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double lowerLimitBll,
                 double lowerLimitCll);
 
-            [[nodiscard]]
             double GetLowerLimitAll() const;
 
-            [[nodiscard]]
             double GetLowerLimitBll() const;
 
-            [[nodiscard]]
             double GetLowerLimitCll() const;
 
         private:

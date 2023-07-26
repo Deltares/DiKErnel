@@ -21,31 +21,22 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     class GrassRevetmentWaveRunupLocationDependentInput : public LocationDependentInput
     {
         public:
-            [[nodiscard]]
             double GetOuterSlope() const;
 
-            [[nodiscard]]
             double GetCriticalCumulativeOverload() const;
 
-            [[nodiscard]]
             double GetCriticalFrontVelocity() const;
 
-            [[nodiscard]]
             double GetIncreasedLoadTransitionAlphaM() const;
 
-            [[nodiscard]]
             double GetReducedStrengthTransitionAlphaS() const;
 
-            [[nodiscard]]
             double GetAverageNumberOfWavesCtm() const;
 
-            [[nodiscard]]
             GrassRevetmentWaveRunupRepresentative2P& GetRepresentative2P() const;
 
-            [[nodiscard]]
             GrassRevetmentWaveRunupWaveAngleImpact& GetWaveAngleImpact() const;
 
-            [[nodiscard]]
             bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
@@ -64,7 +55,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 std::unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
                 std::unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
 
-            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,

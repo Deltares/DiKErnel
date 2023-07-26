@@ -36,23 +36,18 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
 
-            [[nodiscard]]
             int GetFixedNumberOfWaves() const;
 
-            [[nodiscard]]
             double GetFrontVelocityCu() const;
 
-            [[nodiscard]]
             bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
         protected:
-            [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -67,16 +62,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
 
-            [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
                 double surfSimilarityParameter,
                 double waveHeightHm0) const;
 
-            [[nodiscard]]
             double CalculateCumulativeOverload(
                 double averageNumberOfWaves) const;
 
-            [[nodiscard]]
             std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,

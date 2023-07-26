@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             explicit NaturalStoneRevetmentWaveAngleImpact(
                 double betamax);
 
-            [[nodiscard]]
             double GetBetamax() const;
 
         private:

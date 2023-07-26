@@ -25,10 +25,8 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 double alpha,
                 double beta);
 
-            [[nodiscard]]
             double GetAlpha() const;
 
-            [[nodiscard]]
             double GetBeta() const;
 
         private:

@@ -25,10 +25,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double normativeWidthOfWaveImpactAwi,
                 double normativeWidthOfWaveImpactBwi);
 
-            [[nodiscard]]
             double GetNormativeWidthOfWaveImpactAwi() const;
 
-            [[nodiscard]]
             double GetNormativeWidthOfWaveImpactBwi() const;
 
         private:
