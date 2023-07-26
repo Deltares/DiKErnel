@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     class NaturalStoneRevetmentLocationDependentInput : public LocationDependentInput
     {
-        public:
-            explicit NaturalStoneRevetmentLocationDependentInput(
+        public void NaturalStoneRevetmentLocationDependentInput(
                 double x,
                 double initialDamage,
                 double failureNumber,

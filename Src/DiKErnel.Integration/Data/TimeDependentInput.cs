@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data
 {
     class TimeDependentInput : public Core::ITimeDependentInput
     {
-        public:
-            explicit TimeDependentInput(
+        public void TimeDependentInput(
                 int beginTime,
                 int endTime,
                 double waterLevel,

@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     class NaturalStoneRevetmentWaveAngleImpact
     {
-        public:
-            explicit NaturalStoneRevetmentWaveAngleImpact(
+        public void NaturalStoneRevetmentWaveAngleImpact(
                 double betamax);
 
             double GetBetamax() const;

@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     class NaturalStoneRevetmentNormativeWidthOfWaveImpact
     {
-        public:
-            explicit NaturalStoneRevetmentNormativeWidthOfWaveImpact(
+        public void NaturalStoneRevetmentNormativeWidthOfWaveImpact(
                 double normativeWidthOfWaveImpactAwi,
                 double normativeWidthOfWaveImpactBwi);
 

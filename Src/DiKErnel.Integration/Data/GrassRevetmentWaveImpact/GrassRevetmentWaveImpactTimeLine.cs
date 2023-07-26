@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 {
     class GrassRevetmentWaveImpactTimeLine
     {
-        public:
-            explicit GrassRevetmentWaveImpactTimeLine(
+        public void GrassRevetmentWaveImpactTimeLine(
                 double timeLineAgwi,
                 double timeLineBgwi,
                 double timeLineCgwi);

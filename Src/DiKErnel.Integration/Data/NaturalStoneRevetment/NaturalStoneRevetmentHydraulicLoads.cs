@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     class NaturalStoneRevetmentHydraulicLoads
     {
-        public:
-            explicit NaturalStoneRevetmentHydraulicLoads(
+        public void NaturalStoneRevetmentHydraulicLoads(
                 double hydraulicLoadAp,
                 double hydraulicLoadBp,
                 double hydraulicLoadCp,

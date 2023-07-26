@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     class GrassRevetmentWaveRunupWaveAngleImpact
     {
-        public:
-            explicit GrassRevetmentWaveRunupWaveAngleImpact(
+        public void GrassRevetmentWaveRunupWaveAngleImpact(
                 double abeta,
                 double betamax);
 

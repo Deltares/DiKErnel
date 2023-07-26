@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     class NaturalStoneRevetmentUpperLimitLoading
     {
-        public:
-            explicit NaturalStoneRevetmentUpperLimitLoading(
+        public void NaturalStoneRevetmentUpperLimitLoading(
                 double upperLimitAul,
                 double upperLimitBul,
                 double upperLimitCul);

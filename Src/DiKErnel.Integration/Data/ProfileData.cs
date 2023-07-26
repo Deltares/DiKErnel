@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data
 {
     class ProfileData : public Core::IProfileData
     {
-        public:
-            explicit ProfileData(
+        public void ProfileData(
                 std::vector<std::unique_ptr<Core::ProfileSegment>> profileSegments,
                 std::vector<std::unique_ptr<Core::CharacteristicPoint>> characteristicPoints);
 

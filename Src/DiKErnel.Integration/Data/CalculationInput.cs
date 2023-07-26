@@ -20,8 +20,7 @@ namespace DiKErnel.Integration.Data
 {
     class CalculationInput : public Core::ICalculationInput
     {
-        public:
-            explicit CalculationInput(
+        public void CalculationInput(
                 std::unique_ptr<Core::IProfileData> profileData,
                 std::vector<std::unique_ptr<Core::ILocationDependentInput>> locationDependentInputItems,
                 std::vector<std::unique_ptr<Core::ITimeDependentInput>> timeDependentInputItems);
