@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
@@ -23,13 +24,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
     {
-        private int _fixedNumberOfWaves;
-        private double _frontVelocityCu;
-
-        private double _verticalDistanceWaterLevelElevation = double.PositiveInfinity;
-        private double _waveAngleImpact = double.PositiveInfinity;
-        private double _representativeWaveRunup2P = double.PositiveInfinity;
-        private double _cumulativeOverload = double.PositiveInfinity;
+        private double verticalDistanceWaterLevelElevation = double.PositiveInfinity;
+        private double waveAngleImpact = double.PositiveInfinity;
+        private double representativeWaveRunup2P = double.PositiveInfinity;
+        private double cumulativeOverload = double.PositiveInfinity;
 
         public GrassRevetmentWaveRunupRayleighLocationDependentInput(double x, double initialDamage,
                                                                      double failureNumber, double outerSlope,
@@ -43,34 +41,51 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                                      int fixedNumberOfWaves, double frontVelocityCu)
             : base(x, initialDamage, failureNumber, outerSlope, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
-                   representative2P, waveAngleImpact) {}
+                   representative2P, waveAngleImpact)
+        {
+            FixedNumberOfWaves = fixedNumberOfWaves;
+            FrontVelocityCu = frontVelocityCu;
+        }
 
-        public int GetFixedNumberOfWaves();
+        public int FixedNumberOfWaves { get; }
 
-        public double GetFrontVelocityCu();
+        public double FrontVelocityCu { get; }
 
-        public bool Validate(
-            IReadOnlyList<ITimeDependentInput> timeDependentInputs,
-            IProfileData profileData)
+        public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                      IProfileData profileData)
+        {
+            return base.Validate(timeDependentInputItems, profileData);
+        }
 
-        public LocationDependentOutput GetLocationDependentOutput(
+        public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return base.GetLocationDependentOutput(timeDependentOutputItems);
+        }
 
-        protected TimeDependentOutput CalculateTimeDependentOutput(
-            double initialDamage,
-            ITimeDependentInput timeDependentInput,
-            IProfileData profileData)override;override;override;
+        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
+                                                                            ITimeDependentInput timeDependentInput,
+                                                                            IProfileData profileData)
+        {
+            throw new NotImplementedException();
+        }
 
-        private double CalculateRepresentativeWaveRunup2P(
-            double surfSimilarityParameter,
-            double waveHeightHm0);
+        private double CalculateRepresentativeWaveRunup2P(double surfSimilarityParameter, double waveHeightHm0)
+        {
+            throw new NotImplementedException();
+        }
 
-        private double CalculateCumulativeOverload(
-            double averageNumberOfWaves);
+        private double CalculateCumulativeOverload(double averageNumberOfWaves)
+        {
+            throw new NotImplementedException();
+        }
 
         private GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage,
-            double damage,
-            int? timeOfFailure);
+            double incrementDamage, double damage, int? timeOfFailure)
+        {
+            throw new NotImplementedException();
+        }
+
+        private class GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties {}
     }
 }
