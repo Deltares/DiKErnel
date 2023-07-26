@@ -33,9 +33,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 AsphaltRevetmentWaveImpactFatigue fatigue,
                 double impactNumberC,
                 double stiffnessRelationNu,
-                vector<pair<double, double>> widthFactors,
-                vector<pair<double, double>> depthFactors,
-                vector<pair<double, double>> impactFactors);
+                IReadOnlyList<(double, double)> widthFactors,
+                IReadOnlyList<(double, double)> depthFactors,
+                IReadOnlyList<(double, double)> impactFactors);
 
     public double GetFailureTension();
 
@@ -55,11 +55,11 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 
     public double GetStiffnessRelationNu();
 
-    public vector<pair<double, double>>& GetWidthFactors();
+    public IReadOnlyList<(double, double)>& GetWidthFactors();
 
-    public vector<pair<double, double>>& GetDepthFactors();
+    public IReadOnlyList<(double, double)>& GetDepthFactors();
 
-    public vector<pair<double, double>>& GetImpactFactors();
+    public IReadOnlyList<(double, double)>& GetImpactFactors();
 
     public bool Validate(
                 vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
@@ -85,9 +85,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             private AsphaltRevetmentWaveImpactFatigue _fatigue;
             private double _impactNumberC;
             private double _stiffnessRelationNu;
-            private vector<pair<double, double>> _widthFactors;
-            private vector<pair<double, double>> _depthFactors;
-            private vector<pair<double, double>> _impactFactors;
+            private IReadOnlyList<(double, double)> _widthFactors;
+            private IReadOnlyList<(double, double)> _depthFactors;
+            private IReadOnlyList<(double, double)> _impactFactors;
             private double _outerSlope = numeric_limits<double>::infinity();
             private double _logFailureTension = numeric_limits<double>::infinity();
             private double _computationalThickness = numeric_limits<double>::infinity();
