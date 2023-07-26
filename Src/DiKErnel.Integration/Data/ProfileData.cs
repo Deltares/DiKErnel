@@ -21,8 +21,8 @@ namespace DiKErnel.Integration.Data
     internal class ProfileData : IProfileData
     {
         public void ProfileData(
-                vector<unique_ptr<ProfileSegment>> profileSegments,
-                vector<unique_ptr<CharacteristicPoint>> characteristicPoints);
+                vector<ProfileSegment> profileSegments,
+                vector<CharacteristicPoint> characteristicPoints);
 
     public bool Validate() override;
 
@@ -40,9 +40,9 @@ namespace DiKErnel.Integration.Data
     public vector<reference_wrapper<CharacteristicPoint>>& GetCharacteristicPoints() override;
 
             private vector<reference_wrapper<ProfilePoint>> _profilePointReferences;
-            private vector<unique_ptr<ProfileSegment>> _profileSegments;
+            private vector<ProfileSegment> _profileSegments;
             private vector<reference_wrapper<ProfileSegment>> _profileSegmentReferences;
-            private vector<unique_ptr<CharacteristicPoint>> _characteristicPoints;
+            private vector<CharacteristicPoint> _characteristicPoints;
             private vector<reference_wrapper<CharacteristicPoint>> _characteristicPointReferences;
     }
 }

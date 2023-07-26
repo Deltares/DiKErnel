@@ -24,10 +24,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double x,
                 double initialDamage,
                 double failureNumber,
-                unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> waveAngleImpact,
+                GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact,
                 double minimumWaveHeightTemax,
                 double maximumWaveHeightTemin,
-                unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine,
+                GrassRevetmentWaveImpactTimeLine timeLine,
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
@@ -58,10 +58,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 ITimeDependentInput& timeDependentInput,
                 IProfileData& profileData) override;
 
-            private unique_ptr<GrassRevetmentWaveImpactWaveAngleImpact> _waveAngleImpactInput;
+            private GrassRevetmentWaveImpactWaveAngleImpact _waveAngleImpactInput;
             private double _minimumWaveHeightTemax;
             private double _maximumWaveHeightTemin;
-            private unique_ptr<GrassRevetmentWaveImpactTimeLine> _timeLine;
+            private GrassRevetmentWaveImpactTimeLine _timeLine;
             private double _upperLimitLoadingAul;
             private double _lowerLimitLoadingAll;
 
@@ -77,7 +77,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double waterLevel,
                 double waveHeightHm0);
 
-    private unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
                 int? timeOfFailure);

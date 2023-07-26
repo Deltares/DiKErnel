@@ -30,8 +30,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
-                unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
-                unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact,
+                GrassRevetmentWaveRunupRepresentative2P representative2P,
+                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact,
                 int fixedNumberOfWaves,
                 double frontVelocityCu);
 
@@ -66,7 +66,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     private double CalculateCumulativeOverload(
                 double averageNumberOfWaves);
 
-    private unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
                 int? timeOfFailure);

@@ -21,9 +21,9 @@ namespace DiKErnel.Integration.Data
     internal class CalculationInput : ICalculationInput
     {
         public void CalculationInput(
-                unique_ptr<IProfileData> profileData,
-                vector<unique_ptr<ILocationDependentInput>> locationDependentInputItems,
-                vector<unique_ptr<ITimeDependentInput>> timeDependentInputItems);
+                IProfileData profileData,
+                vector<ILocationDependentInput> locationDependentInputItems,
+                vector<ITimeDependentInput> timeDependentInputItems);
 
     public IProfileData& GetProfileData() override;
 
@@ -31,10 +31,10 @@ namespace DiKErnel.Integration.Data
 
     public vector<reference_wrapper<ITimeDependentInput>>& GetTimeDependentInputItems() override;
 
-            private unique_ptr<IProfileData> _profileData;
-            private vector<unique_ptr<ILocationDependentInput>> _locationDependentInputItems;
+            private IProfileData _profileData;
+            private vector<ILocationDependentInput> _locationDependentInputItems;
             private vector<reference_wrapper<ILocationDependentInput>> _locationDependentInputItemReferences;
-            private vector<unique_ptr<ITimeDependentInput>> _timeDependentInputItems;
+            private vector<ITimeDependentInput> _timeDependentInputItems;
             private vector<reference_wrapper<ITimeDependentInput>> _timeDependentInputItemReferences;
     }
 }

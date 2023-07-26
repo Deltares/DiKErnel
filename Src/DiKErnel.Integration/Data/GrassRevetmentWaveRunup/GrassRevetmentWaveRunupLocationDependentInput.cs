@@ -50,8 +50,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 double increasedLoadTransitionAlphaM,
                 double reducedStrengthTransitionAlphaS,
                 double averageNumberOfWavesCtm,
-                unique_ptr<GrassRevetmentWaveRunupRepresentative2P> representative2P,
-                unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> waveAngleImpact);
+                GrassRevetmentWaveRunupRepresentative2P representative2P,
+                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact);
 
     protected TimeDependentOutput CalculateTimeDependentOutput(
                 double initialDamage,
@@ -64,7 +64,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             private double _increasedLoadTransitionAlphaM;
             private double _reducedStrengthTransitionAlphaS;
             private double _averageNumberOfWavesCtm;
-            private unique_ptr<GrassRevetmentWaveRunupRepresentative2P> _representative2P;
-            private unique_ptr<GrassRevetmentWaveRunupWaveAngleImpact> _waveAngleImpactInput;
+            private GrassRevetmentWaveRunupRepresentative2P _representative2P;
+            private GrassRevetmentWaveRunupWaveAngleImpact _waveAngleImpactInput;
     }
 }

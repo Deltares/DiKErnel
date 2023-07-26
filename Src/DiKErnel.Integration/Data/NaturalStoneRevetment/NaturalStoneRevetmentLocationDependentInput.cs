@@ -26,13 +26,13 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double failureNumber,
                 double relativeDensity,
                 double thicknessTopLayer,
-                unique_ptr<NaturalStoneRevetmentHydraulicLoads> hydraulicLoads,
-                unique_ptr<NaturalStoneRevetmentSlope> slope,
-                unique_ptr<NaturalStoneRevetmentUpperLimitLoading> upperLimitLoading,
-                unique_ptr<NaturalStoneRevetmentLowerLimitLoading> lowerLimitLoading,
-                unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> distanceMaximumWaveElevation,
-                unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
-                unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
+                NaturalStoneRevetmentHydraulicLoads hydraulicLoads,
+                NaturalStoneRevetmentSlope slope,
+                NaturalStoneRevetmentUpperLimitLoading upperLimitLoading,
+                NaturalStoneRevetmentLowerLimitLoading lowerLimitLoading,
+                NaturalStoneRevetmentDistanceMaximumWaveElevation distanceMaximumWaveElevation,
+                NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
+                NaturalStoneRevetmentWaveAngleImpact waveAngleImpact);
 
     public double GetRelativeDensity();
 
@@ -69,17 +69,17 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
             private double _relativeDensity;
             private double _thicknessTopLayer;
-            private unique_ptr<NaturalStoneRevetmentHydraulicLoads> _hydraulicLoadsInput;
-            private unique_ptr<NaturalStoneRevetmentSlope> _slopeInput;
-            private unique_ptr<NaturalStoneRevetmentUpperLimitLoading> _upperLimitLoadingInput;
-            private unique_ptr<NaturalStoneRevetmentLowerLimitLoading> _lowerLimitLoadingInput;
-            private unique_ptr<NaturalStoneRevetmentDistanceMaximumWaveElevation> _distanceMaximumWaveElevationInput;
-            private unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> _normativeWidthOfWaveImpactInput;
-            private unique_ptr<NaturalStoneRevetmentWaveAngleImpact> _waveAngleImpactInput;
+            private NaturalStoneRevetmentHydraulicLoads _hydraulicLoadsInput;
+            private NaturalStoneRevetmentSlope _slopeInput;
+            private NaturalStoneRevetmentUpperLimitLoading _upperLimitLoadingInput;
+            private NaturalStoneRevetmentLowerLimitLoading _lowerLimitLoadingInput;
+            private NaturalStoneRevetmentDistanceMaximumWaveElevation _distanceMaximumWaveElevationInput;
+            private NaturalStoneRevetmentNormativeWidthOfWaveImpact _normativeWidthOfWaveImpactInput;
+            private NaturalStoneRevetmentWaveAngleImpact _waveAngleImpactInput;
             private double _outerToeHeight = numeric_limits<double>::infinity();
             private double _outerCrestHeight = numeric_limits<double>::infinity();
-            private unique_ptr<pair<double, double>> _notchOuterBerm = nullptr;
-            private unique_ptr<pair<double, double>> _crestOuterBerm = nullptr;
+            private pair<double, double>? _notchOuterBerm = nullptr;
+            private pair<double, double>? _crestOuterBerm = nullptr;
 
             private double _resistance = numeric_limits<double>::infinity();
             private double _slopeLowerPosition = numeric_limits<double>::infinity();
@@ -120,7 +120,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double wavePeriodTm10,
                 double beginTime);
 
-    private unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+    private NaturalStoneRevetmentTimeDependentOutputConstructionProperties CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
                 int? timeOfFailure);
