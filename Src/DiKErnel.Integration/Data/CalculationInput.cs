@@ -16,25 +16,26 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+
 namespace DiKErnel.Integration.Data
 {
     internal class CalculationInput : ICalculationInput
     {
-        public CalculationInput(
-                IProfileData profileData,
-                IReadOnlyList<ILocationDependentInput> locationDependentInputItems,
-                IReadOnlyList<ITimeDependentInput> timeDependentInputItems) {}
+        public CalculationInput(IProfileData profileData,
+                                IReadOnlyList<ILocationDependentInput> locationDependentInputItems,
+                                IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
+        {
+            ProfileData = profileData;
+            LocationDependentInputItems = locationDependentInputItems;
+            TimeDependentInputItems = timeDependentInputItems;
+        }
 
-    public IProfileData GetProfileData() override;
+        public IProfileData ProfileData { get; }
 
-    public IReadOnlyList<ILocationDependentInput> GetLocationDependentInputItems() override;
+        public IReadOnlyList<ILocationDependentInput> LocationDependentInputItems { get; }
 
-    public IReadOnlyList<ITimeDependentInput> GetTimeDependentInputItems() override;
-
-            private IProfileData _profileData;
-            private IReadOnlyList<ILocationDependentInput> _locationDependentInputItems;
-            private IReadOnlyList<ILocationDependentInput> _locationDependentInputItemReferences;
-            private IReadOnlyList<ITimeDependentInput> _timeDependentInputItems;
-            private IReadOnlyList<ITimeDependentInput> _timeDependentInputItemReferences;
+        public IReadOnlyList<ITimeDependentInput> TimeDependentInputItems { get; }
     }
 }
