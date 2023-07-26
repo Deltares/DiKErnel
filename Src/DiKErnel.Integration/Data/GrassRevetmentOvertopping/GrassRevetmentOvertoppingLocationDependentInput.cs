@@ -34,29 +34,29 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 std::unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
                 std::unique_ptr<double> enforcedDikeHeight);
 
-            double GetCriticalCumulativeOverload() const;
+    public double GetCriticalCumulativeOverload() const;
 
-            double GetCriticalFrontVelocity() const;
+    public double GetCriticalFrontVelocity() const;
 
-            double GetIncreasedLoadTransitionAlphaM() const;
+    public double GetIncreasedLoadTransitionAlphaM() const;
 
-            double GetReducedStrengthTransitionAlphaS() const;
+    public double GetReducedStrengthTransitionAlphaS() const;
 
-            double GetAverageNumberOfWavesCtm() const;
+    public double GetAverageNumberOfWavesCtm() const;
 
-            int GetFixedNumberOfWaves() const;
+    public int GetFixedNumberOfWaves() const;
 
-            double GetFrontVelocityCwo() const;
+    public double GetFrontVelocityCwo() const;
 
-            GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GetLocationDependentAccelerationAlphaA() const;
+    public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA& GetLocationDependentAccelerationAlphaA() const;
 
-            const double* GetEnforcedDikeHeight() const;
+    public const double* GetEnforcedDikeHeight() const;
 
-            bool Validate(
+    public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
         protected:

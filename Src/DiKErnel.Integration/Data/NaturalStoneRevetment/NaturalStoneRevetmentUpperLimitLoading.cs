@@ -25,11 +25,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 double upperLimitBul,
                 double upperLimitCul);
 
-            double GetUpperLimitAul() const;
+        public double GetUpperLimitAul() const;
 
-            double GetUpperLimitBul() const;
+        public double GetUpperLimitBul() const;
 
-            double GetUpperLimitCul() const;
+        public double GetUpperLimitCul() const;
 
         private:
             double _upperLimitAul;

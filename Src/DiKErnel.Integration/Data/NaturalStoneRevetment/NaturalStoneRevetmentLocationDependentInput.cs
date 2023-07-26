@@ -34,29 +34,29 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 std::unique_ptr<NaturalStoneRevetmentNormativeWidthOfWaveImpact> normativeWidthOfWaveImpact,
                 std::unique_ptr<NaturalStoneRevetmentWaveAngleImpact> waveAngleImpact);
 
-            double GetRelativeDensity() const;
+    public double GetRelativeDensity() const;
 
-            double GetThicknessTopLayer() const;
+    public double GetThicknessTopLayer() const;
 
-            NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads() const;
+    public NaturalStoneRevetmentHydraulicLoads& GetHydraulicLoads() const;
 
-            NaturalStoneRevetmentSlope& GetSlope() const;
+    public NaturalStoneRevetmentSlope& GetSlope() const;
 
-            NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading() const;
+    public NaturalStoneRevetmentUpperLimitLoading& GetUpperLimitLoading() const;
 
-            NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading() const;
+    public NaturalStoneRevetmentLowerLimitLoading& GetLowerLimitLoading() const;
 
-            NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation() const;
+    public NaturalStoneRevetmentDistanceMaximumWaveElevation& GetDistanceMaximumWaveElevation() const;
 
-            NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
+    public NaturalStoneRevetmentNormativeWidthOfWaveImpact& GetNormativeWidthOfWaveImpact() const;
 
-            NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
+    public NaturalStoneRevetmentWaveAngleImpact& GetWaveAngleImpact() const;
 
-            bool Validate(
+    public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
         protected:

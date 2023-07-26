@@ -31,23 +31,23 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double upperLimitLoadingAul,
                 double lowerLimitLoadingAll);
 
-            GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
+    public GrassRevetmentWaveImpactWaveAngleImpact& GetWaveAngleImpact() const;
 
-            double GetMinimumWaveHeightTemax() const;
+    public double GetMinimumWaveHeightTemax() const;
 
-            double GetMaximumWaveHeightTemin() const;
+    public double GetMaximumWaveHeightTemin() const;
 
-            GrassRevetmentWaveImpactTimeLine& GetTimeLine() const;
+    public GrassRevetmentWaveImpactTimeLine& GetTimeLine() const;
 
-            double GetUpperLimitLoadingAul() const;
+    public double GetUpperLimitLoadingAul() const;
 
-            double GetLowerLimitLoadingAll() const;
+    public double GetLowerLimitLoadingAll() const;
 
-            bool Validate(
+    public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
         protected:

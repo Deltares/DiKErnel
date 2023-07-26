@@ -37,35 +37,35 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 std::vector<std::pair<double, double>> depthFactors,
                 std::vector<std::pair<double, double>> impactFactors);
 
-            double GetFailureTension() const;
+    public double GetFailureTension() const;
 
-            double GetDensityOfWater() const;
+    public double GetDensityOfWater() const;
 
-            double GetSoilElasticity() const;
+    public double GetSoilElasticity() const;
 
-            AsphaltRevetmentWaveImpactLayer& GetUpperLayer() const;
+    public AsphaltRevetmentWaveImpactLayer& GetUpperLayer() const;
 
-            AsphaltRevetmentWaveImpactLayer* GetSubLayer() const;
+    public AsphaltRevetmentWaveImpactLayer* GetSubLayer() const;
 
-            double GetAverageNumberOfWavesCtm() const;
+    public double GetAverageNumberOfWavesCtm() const;
 
-            AsphaltRevetmentWaveImpactFatigue& GetFatigue() const;
+    public AsphaltRevetmentWaveImpactFatigue& GetFatigue() const;
 
-            double GetImpactNumberC() const;
+    public double GetImpactNumberC() const;
 
-            double GetStiffnessRelationNu() const;
+    public double GetStiffnessRelationNu() const;
 
-            const std::vector<std::pair<double, double>>& GetWidthFactors() const;
+    public const std::vector<std::pair<double, double>>& GetWidthFactors() const;
 
-            const std::vector<std::pair<double, double>>& GetDepthFactors() const;
+    public const std::vector<std::pair<double, double>>& GetDepthFactors() const;
 
-            const std::vector<std::pair<double, double>>& GetImpactFactors() const;
+    public const std::vector<std::pair<double, double>>& GetImpactFactors() const;
 
-            bool Validate(
+    public bool Validate(
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
-            std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
+    public std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
         protected:

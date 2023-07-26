@@ -25,11 +25,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 double timeLineBgwi,
                 double timeLineCgwi);
 
-            double GetTimeLineAgwi() const;
+        public double GetTimeLineAgwi() const;
 
-            double GetTimeLineBgwi() const;
+        public double GetTimeLineBgwi() const;
 
-            double GetTimeLineCgwi() const;
+        public double GetTimeLineCgwi() const;
 
         private:
             const double _timeLineAgwi;
