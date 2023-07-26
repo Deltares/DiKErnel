@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
-    class GrassRevetmentWaveRunupRayleighLocationDependentInput : public GrassRevetmentWaveRunupLocationDependentInput
+    internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : public GrassRevetmentWaveRunupLocationDependentInput
     {
         public void GrassRevetmentWaveRunupRayleighLocationDependentInput(
                 double x,

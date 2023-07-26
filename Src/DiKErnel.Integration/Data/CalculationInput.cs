@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data
 {
-    class CalculationInput : public Core::ICalculationInput
+    internal class CalculationInput : public Core::ICalculationInput
     {
         public void CalculationInput(
                 std::unique_ptr<Core::IProfileData> profileData,

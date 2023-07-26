@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
-    class AsphaltRevetmentWaveImpactLocationDependentInput : public LocationDependentInput
+    internal class AsphaltRevetmentWaveImpactLocationDependentInput : public LocationDependentInput
     {
         public void AsphaltRevetmentWaveImpactLocationDependentInput(
                 double x,

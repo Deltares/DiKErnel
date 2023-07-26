@@ -18,5 +18,5 @@
 
 namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
-    class NaturalStoneRevetmentHydraulicLoads {};
+    internal class NaturalStoneRevetmentHydraulicLoads {};
 }

@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data
 {
-    class TimeDependentInput : public Core::ITimeDependentInput
+    internal class TimeDependentInput : public Core::ITimeDependentInput
     {
         public void TimeDependentInput(
                 int beginTime,

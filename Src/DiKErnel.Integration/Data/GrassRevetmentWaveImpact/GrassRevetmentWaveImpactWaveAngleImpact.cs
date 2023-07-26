@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 {
-    class GrassRevetmentWaveImpactWaveAngleImpact
+    internal class GrassRevetmentWaveImpactWaveAngleImpact
     {
         public void GrassRevetmentWaveImpactWaveAngleImpact(
                 double waveAngleImpactNwa,
