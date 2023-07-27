@@ -16,11 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using DiKErnel.Integration.Data.NaturalStoneRevetment;
+
 namespace DiKErnel.Integration.Factories
 {
     internal static class NaturalStoneRevetmentLocationDependentInputFactory
     {
         public static NaturalStoneRevetmentLocationDependentInput CreateLocationDependentInput(
-                const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
-    };
+            NaturalStoneRevetmentLocationConstructionProperties constructionProperties)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal class NaturalStoneRevetmentLocationConstructionProperties {} // TODO: Remove
+    }
 }

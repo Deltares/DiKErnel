@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class TimeDependentInputFactoryData
+    internal class TimeDependentInputFactoryData
     {
         public TimeDependentInputFactoryData(
                 int beginTime,

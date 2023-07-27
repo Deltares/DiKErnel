@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class ProfileDataFactorySegment
+    internal class ProfileDataFactorySegment
     {
         public  ProfileDataFactorySegment(
                 double startPointX,

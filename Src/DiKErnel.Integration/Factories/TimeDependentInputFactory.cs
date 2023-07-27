@@ -16,11 +16,17 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+
 namespace DiKErnel.Integration.Factories
 {
     internal static class TimeDependentInputFactory
     {
-        public static vector<ITimeDependentInput> Create(
-                const vector<TimeDependentInputFactoryData>& timeStepDataItems);
+        public static IReadOnlyList<ITimeDependentInput> Create(
+                IReadOnlyList<TimeDependentInputFactoryData> timeStepDataItems)
+        {
+            throw new System.NotImplementedException();
+        }
     };
 }
