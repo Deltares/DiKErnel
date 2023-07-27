@@ -18,10 +18,14 @@
 
 namespace DiKErnel.Cli
 {
-    public enum ArgumentType
+    internal enum ExitCodes
     {
-        Optional,
-        Required,
-        WithValue
+        Success = 0,
+        ArgumentsInvalid = 1,
+        CalculationInputDataResultInvalid = 2,
+        CalculationInputInvalid = 3,
+        CalculatorResultInvalid = 4,
+        WriteOutputResultInvalid = 5,
+        UnhandledError = 6
     }
 }
