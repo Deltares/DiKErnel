@@ -16,11 +16,16 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
+
 namespace DiKErnel.Integration.Factories
 {
     internal static class AsphaltRevetmentWaveImpactDefaultsFactory
     {
-        
-        public static IAsphaltRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults();
-    };
+        public static IAsphaltRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
