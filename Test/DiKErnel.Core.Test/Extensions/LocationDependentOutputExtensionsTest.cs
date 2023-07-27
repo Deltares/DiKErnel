@@ -70,10 +70,19 @@ namespace DiKErnel.Core.Test.Extensions
             // Given
             int? timeOfFailureInLastTimeStep = withTimeOfFailure ? Random.Next() : (int?) null;
 
+            var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties1.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties1.Damage = Random.NextDouble();
+
+            var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties2.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties2.Damage = Random.NextDouble();
+            timeDependentOutputConstructionProperties2.TimeOfFailure = timeOfFailureInLastTimeStep;
+
             var timeDependentOutputItems = new List<TimeDependentOutput>
             {
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), Random.NextDouble(), null),
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), Random.NextDouble(), timeOfFailureInLastTimeStep)
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
             };
 
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
