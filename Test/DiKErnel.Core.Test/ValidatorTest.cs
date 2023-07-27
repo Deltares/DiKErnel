@@ -104,7 +104,6 @@ namespace DiKErnel.Core.Test
         {
             // Setup
             const string exceptionMessage = "Exception message";
-            const string validationMessage = "Validation message";
 
             var profileData = Substitute.For<IProfileData>();
             profileData.Validate().Returns(true);
