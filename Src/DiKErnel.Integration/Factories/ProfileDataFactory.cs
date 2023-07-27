@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.Integration.Data;
 
 namespace DiKErnel.Integration.Factories
@@ -28,13 +29,32 @@ namespace DiKErnel.Integration.Factories
         public static ProfileData Create(IReadOnlyList<ProfileDataFactorySegment> profileSegments,
                                          IReadOnlyList<ProfileDataFactoryPoint> profilePoints)
         {
-            throw new NotImplementedException();
+            IReadOnlyList<ProfileSegment> segments = CreateProfileSegments(profileSegments);
+
+            return new ProfileData(segments, CreateCharacteristicPoints(profilePoints, segments));
         }
 
         private static IReadOnlyList<ProfileSegment> CreateProfileSegments(
             IReadOnlyList<ProfileDataFactorySegment> profileSegments)
         {
-            throw new NotImplementedException();
+            var segments = new List<ProfileSegment>();
+
+            ProfilePoint segmentStartPoint = null;
+
+            foreach (ProfileDataFactorySegment profileSegment in profileSegments)
+            {
+                segmentStartPoint ??= new ProfilePoint(profileSegment.StartPointX, profileSegment.StartPointZ);
+
+                var segmentEndPoint = new ProfilePoint(profileSegment.EndPointX, profileSegment.EndPointZ);
+
+                double roughnessCoefficient = profileSegment.RoughnessCoefficient ?? ProfileSegmentDefaults.RoughnessCoefficient;
+
+                segments.Add(new ProfileSegment(segmentStartPoint, segmentEndPoint, roughnessCoefficient));
+
+                segmentStartPoint = segmentEndPoint;
+            }
+
+            return segments;
         }
 
         private static IReadOnlyList<CharacteristicPoint> CreateCharacteristicPoints(

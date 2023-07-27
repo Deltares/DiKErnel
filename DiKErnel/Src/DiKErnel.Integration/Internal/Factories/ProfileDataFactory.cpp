@@ -31,42 +31,6 @@ namespace DiKErnel::Integration
     using namespace std;
     using namespace Util;
 
-    unique_ptr<ProfileData> ProfileDataFactory::Create(
-        const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
-        const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints)
-    {
-        auto segments = CreateProfileSegments(profileSegments);
-        auto characteristicPoints = CreateCharacteristicPoints(profilePoints, segments);
-
-        return make_unique<ProfileData>(move(segments), move(characteristicPoints));
-    }
-
-    vector<unique_ptr<ProfileSegment>> ProfileDataFactory::CreateProfileSegments(
-        const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments)
-    {
-        vector<unique_ptr<ProfileSegment>> segments;
-
-        shared_ptr<ProfilePoint> segmentStartPoint = nullptr;
-        for (const auto& profileSegmentReference : profileSegments)
-        {
-            const auto& profileSegment = profileSegmentReference.get();
-
-            if (segmentStartPoint == nullptr)
-            {
-                segmentStartPoint = make_shared<ProfilePoint>(profileSegment.GetStartPointX(), profileSegment.GetStartPointZ());
-            }
-
-            auto segmentEndPoint = make_shared<ProfilePoint>(profileSegment.GetEndPointX(), profileSegment.GetEndPointZ());
-            segments.push_back(make_unique<ProfileSegment>(segmentStartPoint, segmentEndPoint,
-                                                           InputHelper::GetValue(
-                                                               profileSegment.GetRoughnessCoefficient(),
-                                                               ProfileSegmentDefaults::GetRoughnessCoefficient())));
-            segmentStartPoint = segmentEndPoint;
-        }
-
-        return segments;
-    }
-
     vector<unique_ptr<CharacteristicPoint>> ProfileDataFactory::CreateCharacteristicPoints(
         const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints,
         const vector<unique_ptr<ProfileSegment>>& profileSegments)
