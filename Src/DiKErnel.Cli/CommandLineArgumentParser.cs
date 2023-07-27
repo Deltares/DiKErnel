@@ -39,6 +39,7 @@ namespace DiKErnel.Cli
         public bool ArgumentsAreValid { get; private set; } = true;
 
         public string LogOutputFilePath => readArguments[logOutputFilePath];
+        
         public string JsonInputFilePath => readArguments[inputFilePathKey];
 
         public string JsonOutputFilePath => readArguments[outputFilePathKey];
@@ -51,7 +52,7 @@ namespace DiKErnel.Cli
                                          ? readArguments[outputLevelKey]
                                          : "schade";
 
-        public string HelpMessage => "\n"
+        public static string HelpMessage => "\n"
                                      + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening met DiKErnel\n"
                                      + "\n"
                                      + "Verplichte argumenten:\n"
