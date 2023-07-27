@@ -28,7 +28,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         }
 
         public double DistanceMaximumWaveElevationAsmax { get; }
-        
+
         public double DistanceMaximumWaveElevationBsmax { get; }
     }
 }

@@ -24,11 +24,11 @@ namespace DiKErnel.Integration.Factories
     internal static class GrassRevetmentCumulativeOverloadDefaultsFactory
     {
         public static IGrassRevetmentCumulativeOverloadTopLayerDefaults CreateTopLayerDefaults(
-                GrassRevetmentTopLayerType topLayerType)
+            GrassRevetmentTopLayerType topLayerType)
         {
             throw new NotImplementedException();
         }
 
         internal class GrassRevetmentTopLayerType {} // TODO: Remove
-    };
+    }
 }

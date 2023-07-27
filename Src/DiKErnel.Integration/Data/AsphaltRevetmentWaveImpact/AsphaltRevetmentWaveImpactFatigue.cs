@@ -27,7 +27,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         }
 
         public double Alpha { get; }
-        
+
         public double Beta { get; }
     }
 }
