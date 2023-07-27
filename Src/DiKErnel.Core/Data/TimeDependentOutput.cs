@@ -16,6 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Exceptions;
+
 namespace DiKErnel.Core.Data
 {
     /// <summary>
@@ -26,14 +28,16 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="incrementDamage">The increment of damage.</param>
-        /// <param name="damage">The damage.</param>
-        /// <param name="timeOfFailure">The time of failure.</param>
-        protected TimeDependentOutput(double incrementDamage, double damage, int? timeOfFailure = null)
+        /// <param name="constructionProperties">The construction properties.</param>
+        /// <exception cref="InvalidTimeDependentOutputException">Thrown when mandatory
+        /// properties are <c>null</c>.</exception>
+        protected TimeDependentOutput(TimeDependentOutputConstructionProperties constructionProperties)
         {
-            IncrementDamage = incrementDamage;
-            Damage = damage;
-            TimeOfFailure = timeOfFailure;
+            IncrementDamage = constructionProperties.IncrementDamage
+                              ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.IncrementDamage));
+            Damage = constructionProperties.Damage
+                     ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.Damage));
+            TimeOfFailure = constructionProperties.TimeOfFailure;
         }
 
         /// <summary>
