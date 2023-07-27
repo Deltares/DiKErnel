@@ -16,11 +16,12 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.Integration.Data;
+using DiKErnel.Util.Helpers;
 
 namespace DiKErnel.Integration.Factories
 {
@@ -61,13 +62,26 @@ namespace DiKErnel.Integration.Factories
             IReadOnlyList<ProfileDataFactoryPoint> profilePoints,
             IReadOnlyList<ProfileSegment> profileSegments)
         {
-            throw new NotImplementedException();
+            return profilePoints.Select(profilePoint => new CharacteristicPoint(
+                                            GetMatchingPointOnSegment(profilePoint, profileSegments),
+                                            profilePoint.CharacteristicPointType))
+                                .ToList();
         }
 
-        private static ProfilePoint GetMatchingPointOnSegment(ProfileDataFactoryPoint profilePointData,
+        private static ProfilePoint GetMatchingPointOnSegment(ProfileDataFactoryPoint profilePoint,
                                                               IReadOnlyList<ProfileSegment> segments)
         {
-            throw new NotImplementedException();
+            foreach (ProfileSegment segment in segments)
+            {
+                ProfilePoint segmentStartPoint = segment.StartPoint;
+
+                if (NumericsHelper.AreEqual(profilePoint.X, segmentStartPoint.X))
+                {
+                    return segmentStartPoint;
+                }
+            }
+
+            return segments[segments.Count - 1].EndPoint;
         }
     }
 }
