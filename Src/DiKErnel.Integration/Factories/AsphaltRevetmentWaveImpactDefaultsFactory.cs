@@ -21,7 +21,6 @@ namespace DiKErnel.Integration.Factories
     class AsphaltRevetmentWaveImpactDefaultsFactory
     {
         public:
-            [[nodiscard]]
             static std::unique_ptr<DomainLibrary::IAsphaltRevetmentWaveImpactTopLayerDefaults> CreateTopLayerDefaults();
     };
 }

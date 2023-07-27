@@ -21,7 +21,6 @@ namespace DiKErnel.Integration.Factories
     class NaturalStoneRevetmentDefaultsFactory
     {
         public:
-            [[nodiscard]]
             static std::unique_ptr<DomainLibrary::INaturalStoneRevetmentTopLayerDefaults> CreateTopLayerDefaults();
     };
 }

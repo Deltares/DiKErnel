@@ -25,10 +25,8 @@ namespace DiKErnel.Integration.Factories
                 double x,
                 Core::CharacteristicPointType characteristicPointType);
 
-            [[nodiscard]]
             double GetX() const;
 
-            [[nodiscard]]
             Core::CharacteristicPointType GetCharacteristicPoint() const;
 
         private:

@@ -29,22 +29,16 @@ namespace DiKErnel.Integration.Factories
                 double wavePeriodTm10,
                 double waveAngle);
 
-            [[nodiscard]]
             int GetBeginTime() const;
 
-            [[nodiscard]]
             int GetEndTime() const;
 
-            [[nodiscard]]
             double GetWaterLevel() const;
 
-            [[nodiscard]]
             double GetWaveHeightHm0() const;
 
-            [[nodiscard]]
             double GetWavePeriodTm10() const;
 
-            [[nodiscard]]
             double GetWaveAngle() const;
 
         private:

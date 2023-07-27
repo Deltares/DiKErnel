@@ -28,19 +28,14 @@ namespace DiKErnel.Integration.Factories
                 double endPointZ,
                 std::unique_ptr<double> roughnessCoefficient);
 
-            [[nodiscard]]
             double GetStartPointX() const;
 
-            [[nodiscard]]
             double GetStartPointZ() const;
 
-            [[nodiscard]]
             double GetEndPointX() const;
 
-            [[nodiscard]]
             double GetEndPointZ() const;
 
-            [[nodiscard]]
             const double* GetRoughnessCoefficient() const;
 
         private:

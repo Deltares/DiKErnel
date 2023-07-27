@@ -21,7 +21,6 @@ namespace DiKErnel.Integration.Factories
     class GrassRevetmentWaveImpactDefaultsFactory
     {
         public:
-            [[nodiscard]]
             static std::unique_ptr<DomainLibrary::IGrassRevetmentWaveImpactTopLayerDefaults> CreateTopLayerDefaults(
                 GrassRevetmentTopLayerType topLayerType);
     };
