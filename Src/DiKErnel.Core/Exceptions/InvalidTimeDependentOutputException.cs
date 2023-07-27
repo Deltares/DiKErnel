@@ -28,7 +28,7 @@ namespace DiKErnel.Core.Exceptions
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="message">The message of the exception.</param>
-        public InvalidTimeDependentOutputException(string message) : base(message) {}
+        /// <param name="propertyName">The name of the property that is invalid.</param>
+        public InvalidTimeDependentOutputException(string propertyName) : base($"{propertyName} must be set.") {}
     }
 }

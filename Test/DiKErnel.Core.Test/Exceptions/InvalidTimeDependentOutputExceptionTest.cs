@@ -30,14 +30,14 @@ namespace DiKErnel.Core.Test.Exceptions
         public void ConstructorExpectedValues()
         {
             // Setup
-            string message = Random.NextString();
+            string propertyName = Random.NextString();
 
             // Call
-            var exception = new InvalidTimeDependentOutputException(message);
+            var exception = new InvalidTimeDependentOutputException(propertyName);
 
             // Assert
             Assert.IsInstanceOf<Exception>(exception);
-            Assert.AreEqual(message, exception.Message);
+            Assert.AreEqual($"{propertyName} must be set.", exception.Message);
         }
     }
 }
