@@ -97,19 +97,20 @@ namespace DiKErnel.Cli
                                             + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl\n"
                                             + "\n";
 
-        private static bool ReadArguments(string[] args)
+        private static bool ReadArguments(IReadOnlyList<string> args)
         {
-            for (var i = 0; i < args.Length; i++)
+            for (var i = 0; i < args.Count; i++)
             {
                 if (args[i].StartsWith("--", StringComparison.InvariantCulture))
                 {
                     string key = args[i][2..];
                     var value = "";
+
                     if (argumentOptions.ContainsKey(key))
                     {
                         if (argumentOptions[key].Contains(ArgumentType.WithValue))
                         {
-                            if (i + 1 >= args.Length)
+                            if (i + 1 >= args.Count)
                             {
                                 return false; // Value missing
                             }
