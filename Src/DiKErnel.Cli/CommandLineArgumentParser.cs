@@ -25,15 +25,15 @@ namespace DiKErnel.Cli
 {
     public class CommandLineArgumentParser
     {
-        private static readonly string inputFilePathKey = "invoerbestand";
-        private static readonly string outputFilePathKey = "uitvoerbestand";
-        private static readonly string outputLevelKey = "uitvoerniveau";
-        private static readonly string noMetaInformationKey = "niet-schrijven-meta-informatie";
-        private static readonly string noJsonFormatValidationKey = "niet-valideren-json-formaat";
+        private const string inputFilePathKey = "invoerbestand";
+        private const string outputFilePathKey = "uitvoerbestand";
+        private const string outputLevelKey = "uitvoerniveau";
+        private const string noMetaInformationKey = "niet-schrijven-meta-informatie";
+        private const string noJsonFormatValidationKey = "niet-valideren-json-formaat";
 
         private static readonly Dictionary<string, string> readArguments = new Dictionary<string, string>();
 
-        private static IReadOnlyDictionary<string, IEnumerable<ArgumentType>> argumentOptions = new Dictionary<string, IEnumerable<ArgumentType>>
+        private static readonly IReadOnlyDictionary<string, IEnumerable<ArgumentType>> argumentOptions = new Dictionary<string, IEnumerable<ArgumentType>>
         {
             {inputFilePathKey, new []{ArgumentType.Required, ArgumentType.WithValue}},
             {outputFilePathKey, new []{ArgumentType.Required, ArgumentType.WithValue}},
@@ -57,49 +57,47 @@ namespace DiKErnel.Cli
 
         public string LogOutputFilePath { get; private set; }
 
-        public string JsonInputFilePath => readArguments[inputFilePathKey];
+        public static string JsonInputFilePath => readArguments[inputFilePathKey];
 
-        public string JsonOutputFilePath => readArguments[outputFilePathKey];
+        public static string JsonOutputFilePath => readArguments[outputFilePathKey];
 
-        public bool WriteMetaData => !readArguments.ContainsKey(noMetaInformationKey);
+        public static bool WriteMetaData => !readArguments.ContainsKey(noMetaInformationKey);
 
-        public bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
+        public static bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
 
-        public string OutputLevel => readArguments.ContainsKey(outputLevelKey)
-                                         ? readArguments[outputLevelKey]
-                                         : "schade";
+        public static string OutputLevel => readArguments.TryGetValue(outputLevelKey, out string value) ? value : "schade";
 
         public static string HelpMessage => "\n"
-                                     + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening met DiKErnel\n"
-                                     + "\n"
-                                     + "Verplichte argumenten:\n"
-                                     + "----------------------\n"
-                                     + "--invoerbestand <pad_naar_invoerbestand>\n"
-                                     + "  = Het pad van het invoerbestand\n"
-                                     + "--uitvoerbestand <pad_naar_uitvoerbestand>\n"
-                                     + "  = Het pad van het uitvoerbestand\n"
-                                     + "    -> Dit bepaalt ook de locatie van het eventuele logbestand\n"
-                                     + "\n"
-                                     + "Optionele argumenten:\n"
-                                     + "---------------------\n"
-                                     + "--uitvoerniveau <niveau>\n"
-                                     + "  = Maat voor de hoeveelheid uitvoer die wordt weggeschreven\n"
-                                     + "    -> Opties voor <niveau>: falen, schade, fysica\n"
-                                     + "    -> Standaardwaarde: schade\n"
-                                     + "--niet-schrijven-meta-informatie\n"
-                                     + "  = Schakelt het schrijven van meta-informatie uit\n"
-                                     + "--niet-valideren-json-formaat\n"
-                                     + "  = Schakelt het valideren van het Json-formaat uit\n"
-                                     + "\n"
-                                     + "Voorbeeld:\n"
-                                     + "----------\n"
-                                     + "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json --uitvoerniveau fysica "
-                                     + "--niet-schrijven-meta-informatie --niet-valideren-json-formaat\n"
-                                     + "\n"
-                                     + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl\n"
-                                     + "\n";
+                                            + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening met DiKErnel\n"
+                                            + "\n"
+                                            + "Verplichte argumenten:\n"
+                                            + "----------------------\n"
+                                            + "--invoerbestand <pad_naar_invoerbestand>\n"
+                                            + "  = Het pad van het invoerbestand\n"
+                                            + "--uitvoerbestand <pad_naar_uitvoerbestand>\n"
+                                            + "  = Het pad van het uitvoerbestand\n"
+                                            + "    -> Dit bepaalt ook de locatie van het eventuele logbestand\n"
+                                            + "\n"
+                                            + "Optionele argumenten:\n"
+                                            + "---------------------\n"
+                                            + "--uitvoerniveau <niveau>\n"
+                                            + "  = Maat voor de hoeveelheid uitvoer die wordt weggeschreven\n"
+                                            + "    -> Opties voor <niveau>: falen, schade, fysica\n"
+                                            + "    -> Standaardwaarde: schade\n"
+                                            + "--niet-schrijven-meta-informatie\n"
+                                            + "  = Schakelt het schrijven van meta-informatie uit\n"
+                                            + "--niet-valideren-json-formaat\n"
+                                            + "  = Schakelt het valideren van het Json-formaat uit\n"
+                                            + "\n"
+                                            + "Voorbeeld:\n"
+                                            + "----------\n"
+                                            + "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json --uitvoerniveau fysica "
+                                            + "--niet-schrijven-meta-informatie --niet-valideren-json-formaat\n"
+                                            + "\n"
+                                            + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl\n"
+                                            + "\n";
 
-        private bool ReadArguments(string[] args)
+        private static bool ReadArguments(string[] args)
         {
             for (var i = 0; i < args.Length; i++)
             {
@@ -135,7 +133,7 @@ namespace DiKErnel.Cli
             return true;
         }
 
-        private bool ValidateReadArguments()
+        private static bool ValidateReadArguments()
         {
             bool requiredArgumentsArePresent = argumentOptions.Where(ao => ao.Value.Contains(ArgumentType.Required))
                                                               .Select(aoWithRequiredType =>
@@ -153,14 +151,14 @@ namespace DiKErnel.Cli
             return Path.GetExtension(filePathArgument) == ".json";
         }
 
-        private bool OutputLevelHasValidValue()
+        private static bool OutputLevelHasValidValue()
         {
             string outputLevel = OutputLevel;
 
             return outputLevel == "falen" || outputLevel == "schade" || outputLevel == "fysica";
         }
 
-        private string CreateLogOutputFilePath()
+        private static string CreateLogOutputFilePath()
         {
             string outputFilePath = JsonOutputFilePath;
             string outputDirectory = Path.GetDirectoryName(outputFilePath);

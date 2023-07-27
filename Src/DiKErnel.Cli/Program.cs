@@ -30,7 +30,7 @@ using DiKErnel.Util;
 
 namespace DiKErnel.Cli
 {
-    public class DiKernelConsole
+    public static class DiKernelConsole
     {
         private static string logOutputFilePath;
 
@@ -46,8 +46,8 @@ namespace DiKErnel.Cli
                     return (int) ExitCodes.ArgumentsInvalid;
                 }
 
-                string jsonInputFilePath = parser.JsonInputFilePath;
-                string jsonOutputFilePath = parser.JsonOutputFilePath;
+                string jsonInputFilePath = CommandLineArgumentParser.JsonInputFilePath;
+                string jsonOutputFilePath = CommandLineArgumentParser.JsonOutputFilePath;
                 logOutputFilePath = parser.LogOutputFilePath;
 
                 RemoveFileWhenExists(jsonOutputFilePath);
@@ -102,7 +102,7 @@ namespace DiKErnel.Cli
 
         static DataResult<ICalculationInput> ValidateAndReadInput(string jsonInputFilePath, CommandLineArgumentParser parser)
         {
-            if (parser.ValidateJsonFormat)
+            if (CommandLineArgumentParser.ValidateJsonFormat)
             {
                 bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
 
@@ -147,14 +147,15 @@ namespace DiKErnel.Cli
         {
             var metaDataItems = new Dictionary<string, object>();
 
-            if (parser.WriteMetaData)
+            if (CommandLineArgumentParser.WriteMetaData)
             {
                 metaDataItems["versie"] = ApplicationHelper.ApplicationVersionString;
                 metaDataItems["besturingssysteem"] = ApplicationHelper.OperatingSystemName;
                 metaDataItems["tijdstipBerekening"] = ApplicationHelper.FormattedDateTimeString;
                 metaDataItems["tijdsduurBerekening"] = stopwatch.ElapsedMilliseconds;
             }
-
+            
+            throw new NotImplementedException("implement this when the outputcomposer is done");
             //this part is dependent on the outputcomposer, which is dependent on the integration project
             //
             // var outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
@@ -166,7 +167,6 @@ namespace DiKErnel.Cli
             // WriteToLogFile(outputComposerResult.Events);
             //
             // return outputComposerResult.Succesful;
-            return true;
         }
 
         private static JsonOutputType ConvertOutputType(string outputTypeString)
@@ -203,7 +203,6 @@ namespace DiKErnel.Cli
                 EventType.Error => "Error",
                 _ => throw new NotSupportedException("Unsupported EventType")
             };
-            return null;
         }
 
         private static void CloseApplicationAfterUnhandledError()
