@@ -33,6 +33,11 @@ namespace DiKErnel.Integration.Data
         }
 
         /// <summary>
+        /// Gets the x coordinate.
+        /// </summary>
+        public double X { get; }
+
+        /// <summary>
         /// Gets or sets the initial damage.
         /// </summary>
         public double? InitialDamage { get; set; }
@@ -41,10 +46,5 @@ namespace DiKErnel.Integration.Data
         /// Gets or sets the failure number.
         /// </summary>
         public double? FailureNumber { get; set; }
-
-        /// <summary>
-        /// Gets the x coordinate.
-        /// </summary>
-        public double X { get; }
     }
 }
