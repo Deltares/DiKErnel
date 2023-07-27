@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Factories
     internal class GrassRevetmentOvertoppingLocationDependentInputFactory
     {
         public:
-            static unique_ptr<GrassRevetmentOvertoppingLocationDependentInput> CreateLocationDependentInput(
+            static GrassRevetmentOvertoppingLocationDependentInput CreateLocationDependentInput(
                 const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties);
     };
 }

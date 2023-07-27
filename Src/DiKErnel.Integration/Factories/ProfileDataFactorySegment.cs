@@ -26,7 +26,7 @@ namespace DiKErnel.Integration.Factories
                 double startPointZ,
                 double endPointX,
                 double endPointZ,
-                unique_ptr<double> roughnessCoefficient);
+                double? roughnessCoefficient);
 
             double GetStartPointX() const;
 
@@ -43,6 +43,6 @@ namespace DiKErnel.Integration.Factories
             double _startPointZ;
             double _endPointX;
             double _endPointZ;
-            unique_ptr<double> _roughnessCoefficient;
+            double? _roughnessCoefficient;
     };
 }

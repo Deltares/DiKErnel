@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Factories
     internal class GrassRevetmentWaveImpactDefaultsFactory
     {
         public:
-            static unique_ptr<IGrassRevetmentWaveImpactTopLayerDefaults> CreateTopLayerDefaults(
+            static IGrassRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults(
                 GrassRevetmentTopLayerType topLayerType);
     };
 }
