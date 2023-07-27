@@ -16,10 +16,13 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using System.Reflection;
 using DiKErnel.Core.Data;
-using DiKErnel.TestUtil;
+using DiKErnel.Core.Exceptions;
 using NSubstitute;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Core.Test.Data
 {
@@ -27,15 +30,20 @@ namespace DiKErnel.Core.Test.Data
     public class TimeDependentOutputTest
     {
         [Test]
-        public void Constructor_WithTimeOfFailure_ExpectedValues()
+        public void Constructor_ConstructionPropertiesWithValuesSet_ExpectedValues()
         {
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
             int timeOfFailure = Random.Next();
 
+            var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
+            constructionProperties.IncrementDamage = incrementDamage;
+            constructionProperties.Damage = damage;
+            constructionProperties.TimeOfFailure = timeOfFailure;
+
             // Call
-            var timeDependentOutput = Substitute.For<TimeDependentOutput>(incrementDamage, damage, timeOfFailure);
+            var timeDependentOutput = Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
             Assert.AreEqual(incrementDamage, timeDependentOutput.IncrementDamage);
@@ -44,14 +52,52 @@ namespace DiKErnel.Core.Test.Data
         }
 
         [Test]
-        public void Constructor_WithoutTimeOfFailure_ExpectedValues()
+        public void Constructor_IncrementDamageNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
+            constructionProperties.Damage = Random.NextDouble();
+            constructionProperties.TimeOfFailure = Random.Next();
+
+            // Call
+            void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
+
+            // Assert
+            Exception exception = Assert.Throws<TargetInvocationException>(Call)?.InnerException as InvalidTimeDependentOutputException;
+            Assert.IsNotNull(exception);
+            Assert.AreEqual("IncrementDamage must be set.", exception.Message);
+        }
+
+        [Test]
+        public void Constructor_DamageNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
+            constructionProperties.IncrementDamage = Random.NextDouble();
+            constructionProperties.TimeOfFailure = Random.Next();
+
+            // Call
+            void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
+
+            // Assert
+            Exception exception = Assert.Throws<TargetInvocationException>(Call)?.InnerException as InvalidTimeDependentOutputException;
+            Assert.IsNotNull(exception);
+            Assert.AreEqual("Damage must be set.", exception.Message);
+        }
+
+        [Test]
+        public void Constructor_TimeOfFailureNull_ExpectedValues()
         {
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
 
+            var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
+            constructionProperties.IncrementDamage = incrementDamage;
+            constructionProperties.Damage = damage;
+
             // Call
-            var timeDependentOutput = Substitute.For<TimeDependentOutput>(incrementDamage, damage, null);
+            var timeDependentOutput = Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
             Assert.AreEqual(incrementDamage, timeDependentOutput.IncrementDamage);
