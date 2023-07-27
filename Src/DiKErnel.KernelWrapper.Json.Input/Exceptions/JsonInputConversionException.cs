@@ -29,14 +29,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Exceptions
         /// Creates a new instance.
         /// </summary>
         /// <param name="message">The message of the exception.</param>
-        public JsonInputConversionException(string message)
-        {
-            Message = message;
-        }
-
-        /// <summary>
-        /// Gets the message of the exception.
-        /// </summary>
-        public override string Message { get; }
+        public JsonInputConversionException(string message) : base(message) {}
     }
 }
