@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    class TimeDependentInputFactoryData
+    internal class TimeDependentInputFactoryData
     {
         public:
             explicit TimeDependentInputFactoryData(

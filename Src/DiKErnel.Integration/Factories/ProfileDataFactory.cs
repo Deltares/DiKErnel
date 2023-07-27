@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    class ProfileDataFactory
+    internal class ProfileDataFactory
     {
         public:
             static std::unique_ptr<ProfileData> Create(

@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    class GrassRevetmentCumulativeOverloadDefaultsFactory
+    internal class GrassRevetmentCumulativeOverloadDefaultsFactory
     {
         public:
             static std::unique_ptr<DomainLibrary::IGrassRevetmentCumulativeOverloadTopLayerDefaults> CreateTopLayerDefaults(

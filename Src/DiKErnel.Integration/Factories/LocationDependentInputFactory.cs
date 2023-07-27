@@ -18,9 +18,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    class RevetmentLocationConstructionPropertiesBase;
-
-    class LocationDependentInputFactory
+    internal class LocationDependentInputFactory
     {
         public:
             static std::vector<std::unique_ptr<Core::ILocationDependentInput>> Create(

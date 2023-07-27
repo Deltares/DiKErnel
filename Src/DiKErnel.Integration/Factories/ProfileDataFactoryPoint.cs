@@ -18,7 +18,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    class ProfileDataFactoryPoint
+    internal class ProfileDataFactoryPoint
     {
         public:
             explicit ProfileDataFactoryPoint(
