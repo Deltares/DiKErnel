@@ -37,11 +37,10 @@ namespace DiKErnel.Integration.Factories
 
         public const double* GetRoughnessCoefficient() const;
 
-        private:
-            double _startPointX;
-            double _startPointZ;
-            double _endPointX;
-            double _endPointZ;
-            double? _roughnessCoefficient;
+        private double _startPointX;
+        private double _startPointZ;
+        private double _endPointX;
+        private double _endPointZ;
+        private double? _roughnessCoefficient;
     };
 }

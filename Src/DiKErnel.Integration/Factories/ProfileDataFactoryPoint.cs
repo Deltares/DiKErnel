@@ -28,8 +28,7 @@ namespace DiKErnel.Integration.Factories
 
         public CharacteristicPointType GetCharacteristicPoint() const;
 
-        private:
-            double _x;
-            CharacteristicPointType _characteristicPointType;
+        private double _x;
+        private CharacteristicPointType _characteristicPointType;
     };
 }

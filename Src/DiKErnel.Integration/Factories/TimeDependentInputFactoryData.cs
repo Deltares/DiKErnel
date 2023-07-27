@@ -40,12 +40,11 @@ namespace DiKErnel.Integration.Factories
 
         public double GetWaveAngle() const;
 
-        private:
-            int _beginTime;
-            int _endTime;
-            double _waterLevel;
-            double _waveHeightHm0;
-            double _wavePeriodTm10;
-            double _waveAngle;
+        private int _beginTime;
+        private int _endTime;
+        private double _waterLevel;
+        private double _waveHeightHm0;
+        private double _wavePeriodTm10;
+        private double _waveAngle;
     };
 }
