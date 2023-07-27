@@ -16,19 +16,20 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+
 namespace DiKErnel.Integration.Factories
 {
     internal class ProfileDataFactoryPoint
     {
-        public  ProfileDataFactoryPoint(
-                double x,
-                CharacteristicPointType characteristicPointType);
+        public ProfileDataFactoryPoint(double x, CharacteristicPointType characteristicPointType)
+        {
+            X = x;
+            CharacteristicPointType = characteristicPointType;
+        }
 
-        public double GetX() const;
+        public double X { get; }
 
-        public CharacteristicPointType GetCharacteristicPoint() const;
-
-        private double _x;
-        private CharacteristicPointType _characteristicPointType;
-    };
+        public CharacteristicPointType CharacteristicPointType { get; }
+    }
 }

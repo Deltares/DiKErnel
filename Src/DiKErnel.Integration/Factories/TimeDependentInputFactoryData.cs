@@ -20,31 +20,27 @@ namespace DiKErnel.Integration.Factories
 {
     internal class TimeDependentInputFactoryData
     {
-        public TimeDependentInputFactoryData(
-                int beginTime,
-                int endTime,
-                double waterLevel,
-                double waveHeightHm0,
-                double wavePeriodTm10,
-                double waveAngle);
+        public TimeDependentInputFactoryData(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
+                                             double wavePeriodTm10, double waveAngle)
+        {
+            BeginTime = beginTime;
+            EndTime = endTime;
+            WaterLevel = waterLevel;
+            WaveHeightHm0 = waveHeightHm0;
+            WavePeriodTm10 = wavePeriodTm10;
+            WaveAngle = waveAngle;
+        }
 
-        public int GetBeginTime() const;
+        public int BeginTime { get; }
 
-        public int GetEndTime() const;
+        public int EndTime { get; }
 
-        public double GetWaterLevel() const;
+        public double WaterLevel { get; }
 
-        public double GetWaveHeightHm0() const;
+        public double WaveHeightHm0 { get; }
 
-        public double GetWavePeriodTm10() const;
+        public double WavePeriodTm10 { get; }
 
-        public double GetWaveAngle() const;
-
-        private int _beginTime;
-        private int _endTime;
-        private double _waterLevel;
-        private double _waveHeightHm0;
-        private double _wavePeriodTm10;
-        private double _waveAngle;
-    };
+        public double WaveAngle { get; }
+    }
 }
