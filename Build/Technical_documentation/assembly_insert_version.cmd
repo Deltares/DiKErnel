@@ -12,8 +12,8 @@ IF %argcount%==0 (
     ECHO "usage: replace SVNREV text with revision number, SVNROOT with repository"
     ECHO "versionFile: path of file containing the version info"
 	ECHO "path: execute at specific location"
-    ECHO "[optional] infile: file to read, defaults to Riskeer.doxyfile"
-    ECHO "[optional] outfile: file to create, defaults to Riskeer.doxygen"
+    ECHO "[optional] infile: file to read, defaults to DiKErnel.doxyfile"
+    ECHO "[optional] outfile: file to create, defaults to DiKErnel.doxygen"
     GOTO EOF
 )
 
@@ -23,8 +23,8 @@ IF %argcount%==1 (
     ECHO "setting default in and out files."
 	SET VERSIONPATH=..\
 	SET VERSIONFILE=GlobalAssembly.cs
-    SET INTEXTFILE=Riskeer.doxyfile
-    SET OUTTEXTFILE=Riskeer.doxygen
+    SET INTEXTFILE=DiKErnel.doxyfile
+    SET OUTTEXTFILE=DiKErnel.doxygen
 ) ELSE (
     ECHO "setting custom in and out files."
     SET VERSIONPATH=%1
