@@ -18,10 +18,9 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class LocationDependentInputFactory
+    internal static class LocationDependentInputFactory
     {
-        public:
-            static vector<ILocationDependentInput> Create(
+        public static vector<ILocationDependentInput> Create(
                 const vector<RevetmentLocationConstructionPropertiesBase>& locationConstructionPropertiesItems);
     };
 }

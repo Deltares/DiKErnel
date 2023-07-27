@@ -18,9 +18,8 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class NaturalStoneRevetmentDefaultsFactory
+    internal static class NaturalStoneRevetmentDefaultsFactory
     {
-        public:
-            static INaturalStoneRevetmentTopLayerDefaults CreateTopLayerDefaults();
+        public static INaturalStoneRevetmentTopLayerDefaults CreateTopLayerDefaults();
     };
 }

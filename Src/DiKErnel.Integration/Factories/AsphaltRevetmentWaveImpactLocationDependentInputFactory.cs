@@ -18,10 +18,9 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class AsphaltRevetmentWaveImpactLocationDependentInputFactory
+    internal static class AsphaltRevetmentWaveImpactLocationDependentInputFactory
     {
-        public:
-            static AsphaltRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
+        public static AsphaltRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
                 const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
     };
 }

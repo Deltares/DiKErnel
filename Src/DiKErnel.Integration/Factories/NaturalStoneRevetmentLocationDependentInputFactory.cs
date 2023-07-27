@@ -18,10 +18,9 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class NaturalStoneRevetmentLocationDependentInputFactory
+    internal static class NaturalStoneRevetmentLocationDependentInputFactory
     {
-        public:
-            static NaturalStoneRevetmentLocationDependentInput CreateLocationDependentInput(
+        public static NaturalStoneRevetmentLocationDependentInput CreateLocationDependentInput(
                 const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
     };
 }

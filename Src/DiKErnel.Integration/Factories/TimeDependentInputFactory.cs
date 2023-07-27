@@ -18,10 +18,9 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class TimeDependentInputFactory
+    internal static class TimeDependentInputFactory
     {
-        public:
-            static vector<ITimeDependentInput> Create(
+        public static vector<ITimeDependentInput> Create(
                 const vector<TimeDependentInputFactoryData>& timeStepDataItems);
     };
 }

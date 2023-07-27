@@ -18,16 +18,15 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class ProfileDataFactoryPoint
+    internal static class ProfileDataFactoryPoint
     {
-        public:
-            explicit ProfileDataFactoryPoint(
+        public  ProfileDataFactoryPoint(
                 double x,
                 CharacteristicPointType characteristicPointType);
 
-            double GetX() const;
+        public double GetX() const;
 
-            CharacteristicPointType GetCharacteristicPoint() const;
+        public CharacteristicPointType GetCharacteristicPoint() const;
 
         private:
             double _x;

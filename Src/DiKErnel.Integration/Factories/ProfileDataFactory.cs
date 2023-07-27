@@ -18,10 +18,9 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class ProfileDataFactory
+    internal static class ProfileDataFactory
     {
-        public:
-            static ProfileData Create(
+        public static ProfileData Create(
                 const vector<ProfileDataFactorySegment>& profileSegments,
                 const vector<ProfileDataFactoryPoint>& profilePoints);
 

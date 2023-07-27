@@ -18,10 +18,9 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class GrassRevetmentWaveImpactDefaultsFactory
+    internal static class GrassRevetmentWaveImpactDefaultsFactory
     {
-        public:
-            static IGrassRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults(
+        public static IGrassRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults(
                 GrassRevetmentTopLayerType topLayerType);
     };
 }

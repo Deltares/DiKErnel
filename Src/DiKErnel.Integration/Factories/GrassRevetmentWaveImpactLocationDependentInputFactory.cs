@@ -18,10 +18,9 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class GrassRevetmentWaveImpactLocationDependentInputFactory
+    internal static class GrassRevetmentWaveImpactLocationDependentInputFactory
     {
-        public:
-            static GrassRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
+        public static GrassRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
                 const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
     };
 }

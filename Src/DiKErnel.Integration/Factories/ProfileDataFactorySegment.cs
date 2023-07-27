@@ -18,25 +18,24 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class ProfileDataFactorySegment
+    internal static class ProfileDataFactorySegment
     {
-        public:
-            explicit ProfileDataFactorySegment(
+        public  ProfileDataFactorySegment(
                 double startPointX,
                 double startPointZ,
                 double endPointX,
                 double endPointZ,
                 double? roughnessCoefficient);
 
-            double GetStartPointX() const;
+        public double GetStartPointX() const;
 
-            double GetStartPointZ() const;
+        public double GetStartPointZ() const;
 
-            double GetEndPointX() const;
+        public double GetEndPointX() const;
 
-            double GetEndPointZ() const;
+        public double GetEndPointZ() const;
 
-            const double* GetRoughnessCoefficient() const;
+        public const double* GetRoughnessCoefficient() const;
 
         private:
             double _startPointX;
