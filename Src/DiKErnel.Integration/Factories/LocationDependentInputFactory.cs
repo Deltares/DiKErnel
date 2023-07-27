@@ -16,11 +16,20 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+
 namespace DiKErnel.Integration.Factories
 {
     internal static class LocationDependentInputFactory
     {
-        public static vector<ILocationDependentInput> Create(
-                const vector<RevetmentLocationConstructionPropertiesBase>& locationConstructionPropertiesItems);
-    };
+        public static IReadOnlyList<ILocationDependentInput> Create(
+            IReadOnlyList<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal class RevetmentLocationConstructionPropertiesBase {} // TODO: Remove
+    }
 }

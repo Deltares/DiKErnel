@@ -16,11 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+
 namespace DiKErnel.Integration.Factories
 {
     internal static class GrassRevetmentWaveRunupRayleighLocationDependentInputFactory
     {
         public static GrassRevetmentWaveRunupRayleighLocationDependentInput CreateLocationDependentInput(
-                const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties);
-    };
+            GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal class GrassRevetmentWaveRunupRayleighLocationConstructionProperties {} // TODO: Remove
+    }
 }
