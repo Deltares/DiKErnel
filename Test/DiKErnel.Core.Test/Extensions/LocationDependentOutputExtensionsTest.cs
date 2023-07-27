@@ -35,10 +35,18 @@ namespace DiKErnel.Core.Test.Extensions
             double damage1 = Random.NextDouble();
             double damage2 = Random.NextDouble();
 
+            var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties1.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties1.Damage = damage1;
+
+            var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties2.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties2.Damage = damage2;
+
             var timeDependentOutputItems = new List<TimeDependentOutput>
             {
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage1, null),
-                Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage2, null)
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
             };
 
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
