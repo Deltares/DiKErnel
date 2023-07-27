@@ -16,24 +16,38 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data;
+
 namespace DiKErnel.Integration.Factories
 {
     internal static class ProfileDataFactory
     {
-        public static ProfileData Create(
-                const vector<ProfileDataFactorySegment>& profileSegments,
-                const vector<ProfileDataFactoryPoint>& profilePoints);
+        public static ProfileData Create(IReadOnlyList<ProfileDataFactorySegment> profileSegments,
+                                         IReadOnlyList<ProfileDataFactoryPoint> profilePoints)
+        {
+            throw new NotImplementedException();
+        }
 
-        
-                private    static vector<ProfileSegment> CreateProfileSegments(
-                const vector<ProfileDataFactorySegment>& profileSegments);
+        private static IReadOnlyList<ProfileSegment> CreateProfileSegments(
+            IReadOnlyList<ProfileDataFactorySegment> profileSegments)
+        {
+            throw new NotImplementedException();
+        }
 
-                private            static vector<CharacteristicPoint> CreateCharacteristicPoints(
-                const vector<ProfileDataFactoryPoint>& profilePoints,
-                const vector<ProfileSegment>& profileSegments);
+        private static IReadOnlyList<CharacteristicPoint> CreateCharacteristicPoints(
+            IReadOnlyList<ProfileDataFactoryPoint> profilePoints,
+            IReadOnlyList<ProfileSegment> profileSegments)
+        {
+            throw new NotImplementedException();
+        }
 
-                private            static const ProfilePoint& GetMatchingPointOnSegment(
-                const ProfileDataFactoryPoint& profilePointData,
-                const vector<ProfileSegment>& segments);
-    };
+        private static ProfilePoint GetMatchingPointOnSegment(ProfileDataFactoryPoint profilePointData,
+                                                              IReadOnlyList<ProfileSegment> segments)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
