@@ -30,26 +30,26 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets or sets the log failure tension.
         /// </summary>
-        double? LogFailureTension { get; set; }
+        public double? LogFailureTension { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum peak stress.
         /// </summary>
-        double? MaximumPeakStress { get; set; }
+        public double? MaximumPeakStress { get; set; }
 
         /// <summary>
         /// Gets or sets the stiffness relation.
         /// </summary>
-        double? StiffnessRelation { get; set; }
+        public double? StiffnessRelation { get; set; }
 
         /// <summary>
         /// Gets or sets the computational thickness.
         /// </summary>
-        double? ComputationalThickness { get; set; }
+        public double? ComputationalThickness { get; set; }
 
         /// <summary>
         /// Gets or sets the equivalent elastic modulus.
         /// </summary>
-        double? EquivalentElasticModulus { get; set; }
+        public double? EquivalentElasticModulus { get; set; }
     }
 }
