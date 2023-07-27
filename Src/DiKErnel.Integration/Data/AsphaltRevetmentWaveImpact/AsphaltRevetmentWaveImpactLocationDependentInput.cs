@@ -121,7 +121,5 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         {
             throw new NotImplementedException();
         }
-
-        private class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties {} // TODO: Remove
     }
 }
