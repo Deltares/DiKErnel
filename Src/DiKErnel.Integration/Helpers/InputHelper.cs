@@ -18,5 +18,11 @@
 
 namespace DiKErnel.Integration.Helpers
 {
-    internal class InputHelper {}
+    internal class InputHelper
+    {
+        public static T GetValue<T>(T value, T defaultValue)
+        {
+            return value ?? defaultValue;
+        }
+    }
 }
