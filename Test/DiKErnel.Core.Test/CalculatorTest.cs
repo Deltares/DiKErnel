@@ -272,7 +272,13 @@ namespace DiKErnel.Core.Test
 
                 Thread.Sleep(10);
 
-                return Substitute.For<TimeDependentOutput>(Random.NextDouble(), damage, timeOfFailure);
+                var timeDependentOutputConstructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
+
+                timeDependentOutputConstructionProperties.IncrementDamage = Random.NextDouble();
+                timeDependentOutputConstructionProperties.Damage = damage;
+                timeDependentOutputConstructionProperties.TimeOfFailure = timeOfFailure;
+
+                return Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties);
             }
 
             public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
