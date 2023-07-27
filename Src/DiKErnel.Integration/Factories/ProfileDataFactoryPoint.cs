@@ -23,14 +23,14 @@ namespace DiKErnel.Integration.Factories
         public:
             explicit ProfileDataFactoryPoint(
                 double x,
-                Core::CharacteristicPointType characteristicPointType);
+                CharacteristicPointType characteristicPointType);
 
             double GetX() const;
 
-            Core::CharacteristicPointType GetCharacteristicPoint() const;
+            CharacteristicPointType GetCharacteristicPoint() const;
 
         private:
             double _x;
-            Core::CharacteristicPointType _characteristicPointType;
+            CharacteristicPointType _characteristicPointType;
     };
 }

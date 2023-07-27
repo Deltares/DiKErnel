@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Factories
     internal class NaturalStoneRevetmentLocationDependentInputFactory
     {
         public:
-            static std::unique_ptr<NaturalStoneRevetmentLocationDependentInput> CreateLocationDependentInput(
+            static unique_ptr<NaturalStoneRevetmentLocationDependentInput> CreateLocationDependentInput(
                 const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties);
     };
 }

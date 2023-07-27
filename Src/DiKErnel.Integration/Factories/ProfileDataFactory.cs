@@ -21,20 +21,20 @@ namespace DiKErnel.Integration.Factories
     internal class ProfileDataFactory
     {
         public:
-            static std::unique_ptr<ProfileData> Create(
-                const std::vector<std::reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
-                const std::vector<std::reference_wrapper<ProfileDataFactoryPoint>>& profilePoints);
+            static unique_ptr<ProfileData> Create(
+                const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
+                const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints);
 
         private:
-            static std::vector<std::unique_ptr<Core::ProfileSegment>> CreateProfileSegments(
-                const std::vector<std::reference_wrapper<ProfileDataFactorySegment>>& profileSegments);
+            static vector<unique_ptr<ProfileSegment>> CreateProfileSegments(
+                const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments);
 
-            static std::vector<std::unique_ptr<Core::CharacteristicPoint>> CreateCharacteristicPoints(
-                const std::vector<std::reference_wrapper<ProfileDataFactoryPoint>>& profilePoints,
-                const std::vector<std::unique_ptr<Core::ProfileSegment>>& profileSegments);
+            static vector<unique_ptr<CharacteristicPoint>> CreateCharacteristicPoints(
+                const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints,
+                const vector<unique_ptr<ProfileSegment>>& profileSegments);
 
-            static const Core::ProfilePoint& GetMatchingPointOnSegment(
+            static const ProfilePoint& GetMatchingPointOnSegment(
                 const ProfileDataFactoryPoint& profilePointData,
-                const std::vector<std::unique_ptr<Core::ProfileSegment>>& segments);
+                const vector<unique_ptr<ProfileSegment>>& segments);
     };
 }

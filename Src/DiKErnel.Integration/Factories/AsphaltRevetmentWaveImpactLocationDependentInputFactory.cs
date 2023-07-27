@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Factories
     internal class AsphaltRevetmentWaveImpactLocationDependentInputFactory
     {
         public:
-            static std::unique_ptr<AsphaltRevetmentWaveImpactLocationDependentInput> CreateLocationDependentInput(
+            static unique_ptr<AsphaltRevetmentWaveImpactLocationDependentInput> CreateLocationDependentInput(
                 const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
     };
 }

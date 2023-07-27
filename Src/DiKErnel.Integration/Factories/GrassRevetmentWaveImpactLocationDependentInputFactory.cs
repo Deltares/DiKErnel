@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Factories
     internal class GrassRevetmentWaveImpactLocationDependentInputFactory
     {
         public:
-            static std::unique_ptr<GrassRevetmentWaveImpactLocationDependentInput> CreateLocationDependentInput(
+            static unique_ptr<GrassRevetmentWaveImpactLocationDependentInput> CreateLocationDependentInput(
                 const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties);
     };
 }

@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Factories
     internal class TimeDependentInputFactory
     {
         public:
-            static std::vector<std::unique_ptr<Core::ITimeDependentInput>> Create(
-                const std::vector<std::reference_wrapper<TimeDependentInputFactoryData>>& timeStepDataItems);
+            static vector<unique_ptr<ITimeDependentInput>> Create(
+                const vector<reference_wrapper<TimeDependentInputFactoryData>>& timeStepDataItems);
     };
 }
