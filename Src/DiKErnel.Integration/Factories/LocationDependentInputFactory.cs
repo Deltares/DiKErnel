@@ -22,6 +22,6 @@ namespace DiKErnel.Integration.Factories
     {
         public:
             static vector<ILocationDependentInput> Create(
-                const vector<reference_wrapper<RevetmentLocationConstructionPropertiesBase>>& locationConstructionPropertiesItems);
+                const vector<RevetmentLocationConstructionPropertiesBase>& locationConstructionPropertiesItems);
     };
 }

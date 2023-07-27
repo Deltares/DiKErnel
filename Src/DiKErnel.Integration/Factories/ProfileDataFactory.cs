@@ -22,15 +22,15 @@ namespace DiKErnel.Integration.Factories
     {
         public:
             static ProfileData Create(
-                const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments,
-                const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints);
+                const vector<ProfileDataFactorySegment>& profileSegments,
+                const vector<ProfileDataFactoryPoint>& profilePoints);
 
         private:
             static vector<ProfileSegment> CreateProfileSegments(
-                const vector<reference_wrapper<ProfileDataFactorySegment>>& profileSegments);
+                const vector<ProfileDataFactorySegment>& profileSegments);
 
             static vector<CharacteristicPoint> CreateCharacteristicPoints(
-                const vector<reference_wrapper<ProfileDataFactoryPoint>>& profilePoints,
+                const vector<ProfileDataFactoryPoint>& profilePoints,
                 const vector<ProfileSegment>& profileSegments);
 
             static const ProfilePoint& GetMatchingPointOnSegment(

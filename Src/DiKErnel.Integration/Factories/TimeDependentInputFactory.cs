@@ -22,6 +22,6 @@ namespace DiKErnel.Integration.Factories
     {
         public:
             static vector<ITimeDependentInput> Create(
-                const vector<reference_wrapper<TimeDependentInputFactoryData>>& timeStepDataItems);
+                const vector<TimeDependentInputFactoryData>& timeStepDataItems);
     };
 }
