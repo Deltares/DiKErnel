@@ -28,7 +28,9 @@ namespace DiKErnel.External.Overtopping
     /// </summary>
     public static class OvertoppingAdapter
     {
-        private const int bufferCapacity = 3072;
+        private const int bufferSize = 256;
+        private const int nrOfMessages = 12;
+        private const int bufferCapacity = bufferSize * nrOfMessages;
         private const string dikesOvertoppingDllName = "dllDikesOvertopping.dll";
 
         private static readonly char[] languageCode =
@@ -94,12 +96,12 @@ namespace DiKErnel.External.Overtopping
 
             var success = false;
             int verbosity = -1;
-            var messageBuffer = new char[bufferCapacity];
-            var logFileName = new char[bufferCapacity];
+            var messageBuffer = new char[bufferSize];
+            var logFileName = new char[bufferSize];
 
             SetLanguage(languageCode, languageCode.Length);
             calculateQo(ref load, ref geometry, ref dikeHeight, ref modelFactors, ref result, ref success, messageBuffer,
-                        ref verbosity, logFileName, bufferCapacity, bufferCapacity);
+                        ref verbosity, logFileName, bufferSize, bufferSize);
 
             return result.Z2;
         }
