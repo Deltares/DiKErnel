@@ -32,11 +32,14 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             : base(constructionProperties)
         {
             LogFailureTension = constructionProperties.IncrementDamage
-                                ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.LogFailureTension));
+                                ?? throw new InvalidTimeDependentOutputException(
+                                    nameof(constructionProperties.LogFailureTension));
             MaximumPeakStress = constructionProperties.MaximumPeakStress
-                                ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.MaximumPeakStress));
+                                ?? throw new InvalidTimeDependentOutputException(
+                                    nameof(constructionProperties.MaximumPeakStress));
             StiffnessRelation = constructionProperties.StiffnessRelation
-                                ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.StiffnessRelation));
+                                ?? throw new InvalidTimeDependentOutputException(
+                                    nameof(constructionProperties.StiffnessRelation));
             ComputationalThickness = constructionProperties.ComputationalThickness
                                      ?? throw new InvalidTimeDependentOutputException(
                                          nameof(constructionProperties.ComputationalThickness));
