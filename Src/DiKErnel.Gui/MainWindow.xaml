@@ -23,7 +23,6 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DiKErnel.Gui"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
         ResizeMode="NoResize"
@@ -33,17 +32,20 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
     <Canvas
         Width="1024"
         Height="768">
+
         <!-- Background -->
         <Rectangle
             Width="1024"
             Height="768"
             Fill="#e6e6e6"/>
+
         <!-- logo -->
         <svgc:SvgViewbox 
             Margin="25,25"
             Width="110"
             Height="110"
             Source="/Resources/logo.svg"/>
+
         <!-- Application info keys -->
         <Grid 
             Margin="165,25"
@@ -60,6 +62,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             <TextBlock Text="Bedrijf" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
             <TextBlock Text="Contact" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
         </Grid>
+
         <!-- Application info values -->
         <Grid 
             Margin="254,25"
@@ -78,6 +81,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                 <Hyperlink NavigateUri="mailto:dikernel@deltares.nl">dikernel@deltares.nl</Hyperlink>
             </TextBlock>  
         </Grid>
+
         <!-- Disclaimer -->
         <Grid
             Margin="400,25"
@@ -98,16 +102,19 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                 deze versie beschikbaar wordt gesteld.
             </TextBlock>
         </Grid>
+
         <!-- Separator -->
         <Separator
             Margin="25,160"
             Width="974"
             />
+
         <!-- input label -->
         <TextBlock
             Margin="25,185"
             FontWeight="DemiBold"
             Text="Invoerbestand"/>
+
         <!-- input textbox -->
         <Grid
             Margin="25,209"
@@ -134,6 +141,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             Margin="25,259"
             FontWeight="DemiBold"
             Text="Uitvoerbestand"/>
+
         <!-- output textbox -->
         <Grid
             Margin="25,283"
@@ -163,6 +171,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             Click="OnInputFileOpenButtonClicked">
             ...
         </Button>
+
         <!-- Output file dialog button -->
         <Button
             Margin="406,283"
@@ -171,6 +180,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             Click="OnOutputFileOpenButtonClicked">
             ...
         </Button>
+
         <!-- Start button -->
         <Button
             Margin="933,283"
@@ -180,6 +190,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             Click="OnStartButtonClicked">
             Start
         </Button>
+
         <!-- Erase button -->
         <Button
             Margin="920,711"
@@ -188,6 +199,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             Click="OnEraseButtonClicked">
             Wissen
         </Button>
+
         <!-- Copy button -->
         <Button
             Margin="745,711"
@@ -196,24 +208,28 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             Click="OnCopyButtonClicked">
             Kopieer naar klembord
         </Button>
+
         <!-- Output listview -->
         <ListView
             Margin="25,340"
             Height="346"
             Width="974"
             />
+
         <!-- Options Label -->
         <TextBlock
             Margin="471,185"
             FontWeight="DemiBold">
             Opties
         </TextBlock>
+
         <!-- Output level label -->
         <TextBlock
             Margin="471,259"
             FontWeight="DemiBold">
             Uitvoerniveau
         </TextBlock>
+
         <!-- Checkbox grid -->
         <Grid
             Margin="471,209"
@@ -234,6 +250,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                 Schrijven meta-informatie
             </CheckBox>
         </Grid>
+
         <!-- Output level grid -->
         <Grid
             Margin="471,283"
