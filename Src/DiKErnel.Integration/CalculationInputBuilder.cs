@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
@@ -28,6 +29,7 @@ using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
 using DiKErnel.Integration.Data.NaturalStoneRevetment;
 using DiKErnel.Integration.Factories;
 using DiKErnel.Util;
+using DiKErnel.Util.Helpers;
 
 namespace DiKErnel.Integration
 {
@@ -198,19 +200,88 @@ namespace DiKErnel.Integration
 
         private bool ValidateProfileSegments()
         {
-            throw new NotImplementedException();
+            if (profileSegmentDataItems.Count == 0)
+            {
+                RegisterValidationError("At least 1 profile segment is required.");
+                return false;
+            }
+
+            ProfileDataFactorySegment previousSegment = null;
+
+            foreach (ProfileDataFactorySegment profileSegmentDataItem in profileSegmentDataItems)
+            {
+                if (previousSegment != null)
+                {
+                    double previousSegmentEndPointX = previousSegment.EndPointX;
+                    double previousSegmentEndPointZ = previousSegment.EndPointZ;
+                    double currentSegmentStartPointX = profileSegmentDataItem.StartPointX;
+                    double currentSegmentStartPointZ = profileSegmentDataItem.StartPointZ;
+
+                    if (!NumericsHelper.AreEqual(previousSegmentEndPointX, currentSegmentStartPointX)
+                        || !NumericsHelper.AreEqual(previousSegmentEndPointZ, currentSegmentStartPointZ))
+                    {
+                        RegisterValidationError(
+                            $"The start point of the profile segment ({NumericsHelper.ToString(currentSegmentStartPointX)}, " +
+                            $"{NumericsHelper.ToString(currentSegmentStartPointZ)}) must be equal to the end point of " +
+                            $"the previous profile segment ({NumericsHelper.ToString(previousSegmentEndPointX)}, " +
+                            $"{NumericsHelper.ToString(previousSegmentEndPointZ)}).");
+
+                        return false;
+                    }
+                }
+
+                previousSegment = profileSegmentDataItem;
+            }
+
+            return true;
         }
 
         private bool ValidateCharacteristicPoints(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
                                                   ProfileDataFactoryPoint innerToe)
         {
-            throw new NotImplementedException();
+            ProfileDataFactoryPoint crestOuterBerm =
+                GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.CrestOuterBerm);
+            ProfileDataFactoryPoint notchOuterBerm =
+                GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.NotchOuterBerm);
+            ProfileDataFactoryPoint innerCrest =
+                GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.InnerCrest);
+
+            return ValidateCharacteristicPoint(outerToe, "outer toe", true)
+                   && ValidateCharacteristicPoint(crestOuterBerm, "crest outer berm", false)
+                   && ValidateCharacteristicPoint(notchOuterBerm, "notch outer berm", false)
+                   && ValidateCharacteristicPoint(outerCrest, "outer crest", true)
+                   && ValidateCharacteristicPoint(innerCrest, "inner crest", grassOvertoppingLocationAdded)
+                   && ValidateCharacteristicPoint(innerToe, "inner toe", grassOvertoppingLocationAdded);
         }
 
         private bool ValidateCharacteristicPoint(ProfileDataFactoryPoint characteristicPoint,
-                                                 string characteristicPointName, bool isRequired = true)
+                                                 string characteristicPointName, bool isRequired)
         {
-            throw new NotImplementedException();
+            if (characteristicPoint == null)
+            {
+                if (!isRequired)
+                {
+                    return true;
+                }
+
+                RegisterValidationError("The " + characteristicPointName + " is required.");
+                return false;
+            }
+
+            double characteristicPointX = characteristicPoint.X;
+
+            if (profileSegmentDataItems.Any(profileSegment => NumericsHelper.AreEqual(profileSegment.StartPointX, characteristicPointX)))
+            {
+                return true;
+            }
+
+            if (NumericsHelper.AreEqual(profileSegmentDataItems.Last().EndPointX, characteristicPointX))
+            {
+                return true;
+            }
+
+            RegisterValidationError("The " + characteristicPointName + " must be on a start or end point of a profile segment.");
+            return false;
         }
 
         private ProfileDataFactoryPoint GetProfilePointDataItemForCharacteristicPointType(
