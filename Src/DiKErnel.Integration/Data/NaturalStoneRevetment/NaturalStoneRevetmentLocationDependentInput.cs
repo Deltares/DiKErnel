@@ -137,7 +137,5 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         {
             throw new NotImplementedException();
         }
-
-        private class NaturalStoneRevetmentTimeDependentOutputConstructionProperties {} // TODO: Remove
     }
 }

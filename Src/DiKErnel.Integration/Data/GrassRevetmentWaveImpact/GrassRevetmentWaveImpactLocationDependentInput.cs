@@ -95,7 +95,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         {
             throw new NotImplementedException();
         }
-
-        private class GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties {} // TODO: Remove
     }
 }

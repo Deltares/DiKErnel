@@ -137,7 +137,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         {
             throw new NotImplementedException();
         }
-
-        private class GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties {} // TODO: Remove
     }
 }

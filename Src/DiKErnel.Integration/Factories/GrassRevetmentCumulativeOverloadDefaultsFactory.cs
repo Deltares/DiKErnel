@@ -18,6 +18,7 @@
 
 using System;
 using DiKErnel.DomainLibrary.Defaults.GrassRevetment;
+using DiKErnel.Integration.Data.GrassRevetment;
 
 namespace DiKErnel.Integration.Factories
 {
@@ -28,7 +29,5 @@ namespace DiKErnel.Integration.Factories
         {
             throw new NotImplementedException();
         }
-
-        internal class GrassRevetmentTopLayerType {} // TODO: Remove
     }
 }

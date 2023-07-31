@@ -28,7 +28,5 @@ namespace DiKErnel.Integration.Factories
         {
             throw new NotImplementedException();
         }
-
-        internal class GrassRevetmentWaveImpactLocationConstructionProperties {} // TODO: Remove
     }
 }

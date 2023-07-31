@@ -85,7 +85,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         {
             throw new NotImplementedException();
         }
-
-        private class GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties {} // TODO: Remove
     }
 }

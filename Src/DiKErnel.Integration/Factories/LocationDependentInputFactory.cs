@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data;
 
 namespace DiKErnel.Integration.Factories
 {
@@ -29,7 +30,5 @@ namespace DiKErnel.Integration.Factories
         {
             throw new NotImplementedException();
         }
-
-        internal class RevetmentLocationConstructionPropertiesBase {} // TODO: Remove
     }
 }
