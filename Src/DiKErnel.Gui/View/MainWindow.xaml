@@ -18,7 +18,7 @@ All names, logos, and references to "Deltares" are registered trademarks of Stic
 Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 -->
 
-<Window x:Class="DiKErnel.Gui.MainWindow"
+<Window x:Class="DiKErnel.Gui.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -57,7 +57,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>  
-                <TextBlock Text="Appplicatie" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
+            <TextBlock Text="Appplicatie" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
             <TextBlock Text="Versie" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
             <TextBlock Text="Bedrijf" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
             <TextBlock Text="Contact" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />

@@ -19,40 +19,38 @@
 using System;
 using System.Windows;
 using System.Windows.Media;
-using DiKErnel.Application;
+using DiKErnel.Gui.ViewModel;
 using Microsoft.Win32;
 
-namespace DiKErnel.Gui
+namespace DiKErnel.Gui.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        string fileDialogFilter = "Json files (*.json)|*.json|All files (*.*)|*.*";
+        private MainWindowViewModel MainWindowViewModel { get; set; }
+
         public MainWindow()
         {
+            MainWindowViewModel = new MainWindowViewModel();
+            DataContext = MainWindowViewModel;
             InitializeComponent();
-            DataContext = this;
-
-            VersionNumber = ApplicationHelper.ApplicationVersionString;
-            InputFilePath = "Invoerbestand.json";
-            OutputFilePath = "Uitvoerbestand.json";
         }
-
-        public string VersionNumber { get; private set; }
-
-        public string InputFilePath { get; private set; }
-
-        public string OutputFilePath { get; private set; }
 
         private void OnInputFileOpenButtonClicked(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = fileDialogFilter
+            };
             if (openFileDialog.ShowDialog() == true)
             {
-                InputFilePath = openFileDialog.FileName;
-                InputTextBlock.Text = InputFilePath;
+                MainWindowViewModel.InputFilePath = openFileDialog.FileName;
+                InputTextBlock.Text = openFileDialog.FileName;
                 InputTextBlock.Foreground = Brushes.Black;
+
                 //this is to make sure that the rightmost part of text is visible in the textBlock when text is updated.
                 InputTextBlock.HorizontalAlignment = HorizontalAlignment.Right;
             }
@@ -60,12 +58,18 @@ namespace DiKErnel.Gui
 
         private void OnOutputFileOpenButtonClicked(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new SaveFileDialog
+            {
+                Filter = fileDialogFilter,
+                CheckFileExists = false
+            };
+
             if (openFileDialog.ShowDialog() == true)
             {
-                OutputFilePath = openFileDialog.FileName;
-                OutputTextBlock.Text = OutputFilePath;
+                MainWindowViewModel.OutputFilePath = openFileDialog.FileName;
+                OutputTextBlock.Text = openFileDialog.FileName;
                 OutputTextBlock.Foreground = Brushes.Black;
+
                 //this is to make sure that the rightmost part of text is visible in the textBlock when text is updated.
                 OutputTextBlock.HorizontalAlignment = HorizontalAlignment.Right;
             }
