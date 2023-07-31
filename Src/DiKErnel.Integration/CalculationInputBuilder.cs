@@ -39,9 +39,11 @@ namespace DiKErnel.Integration
     /// </summary>
     public class CalculationInputBuilder
     {
-        private readonly List<ProfileDataFactoryPoint> profilePointDataItems = new List<ProfileDataFactoryPoint>();
-        private readonly List<TimeDependentInputFactoryData> timeStepDataItems = new List<TimeDependentInputFactoryData>();
-        private readonly List<ProfileDataFactorySegment> profileSegmentDataItems = new List<ProfileDataFactorySegment>();
+        private readonly List<ProfileDataFactoryPoint> profileDataFactoryPoints = new List<ProfileDataFactoryPoint>();
+        private readonly List<ProfileDataFactorySegment> profileDataFactorySegments = new List<ProfileDataFactorySegment>();
+
+        private readonly List<TimeDependentInputFactoryData> timeDependentInputFactoryDataItems =
+            new List<TimeDependentInputFactoryData>();
 
         private readonly List<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems =
             new List<RevetmentLocationConstructionPropertiesBase>();
@@ -53,13 +55,13 @@ namespace DiKErnel.Integration
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="characteristicPointType">The characteristic point type.</param>
-        public void AddDikeProfilePointData(double x, CharacteristicPointType characteristicPointType)
+        public void AddDikeProfilePoint(double x, CharacteristicPointType characteristicPointType)
         {
-            profilePointDataItems.Add(new ProfileDataFactoryPoint(x, characteristicPointType));
+            profileDataFactoryPoints.Add(new ProfileDataFactoryPoint(x, characteristicPointType));
         }
 
         /// <summary>
-        /// Adds a new dike profile segment.
+        /// Adds a dike profile segment.
         /// </summary>
         /// <param name="startPointX">The x coordinate for the start profile point.</param>
         /// <param name="startPointZ">The z coordinate for the start profile point.</param>
@@ -71,7 +73,7 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
-        /// Adds a new dike profile segment.
+        /// Adds a dike profile segment.
         /// </summary>
         /// <param name="startPointX">The x coordinate for the start profile point.</param>
         /// <param name="startPointZ">The z coordinate for the start profile point.</param>
@@ -96,8 +98,9 @@ namespace DiKErnel.Integration
         public void AddTimeStep(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
                                 double wavePeriodTm10, double waveAngle)
         {
-            timeStepDataItems.Add(new TimeDependentInputFactoryData(beginTime, endTime, waterLevel, waveHeightHm0,
-                                                                    wavePeriodTm10, waveAngle));
+            timeDependentInputFactoryDataItems.Add(new TimeDependentInputFactoryData(beginTime, endTime, waterLevel,
+                                                                                     waveHeightHm0, wavePeriodTm10,
+                                                                                     waveAngle));
         }
 
         /// <summary>
@@ -120,6 +123,7 @@ namespace DiKErnel.Integration
             GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
+
             grassOvertoppingLocationAdded = true;
         }
 
@@ -166,20 +170,22 @@ namespace DiKErnel.Integration
                 return new DataResult<ICalculationInput>(EventRegistry.Flush());
             }
 
-            ProfileData profileData = ProfileDataFactory.Create(profileSegmentDataItems, profilePointDataItems);
-            IReadOnlyList<ILocationDependentInput> locations =
+            ProfileData profileData = ProfileDataFactory.Create(profileDataFactorySegments, profileDataFactoryPoints);
+            IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 LocationDependentInputFactory.Create(locationConstructionPropertiesItems);
-            IReadOnlyList<ITimeDependentInput> timeSteps = TimeDependentInputFactory.Create(timeStepDataItems);
+            IReadOnlyList<ITimeDependentInput> timeDependentInputItems =
+                TimeDependentInputFactory.Create(timeDependentInputFactoryDataItems);
 
-            return new DataResult<ICalculationInput>(new CalculationInput(profileData, locations, timeSteps),
+            return new DataResult<ICalculationInput>(new CalculationInput(profileData, locationDependentInputItems,
+                                                                          timeDependentInputItems),
                                                      EventRegistry.Flush());
         }
 
         private void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
                                            double? roughnessCoefficient)
         {
-            profileSegmentDataItems.Add(new ProfileDataFactorySegment(startPointX, startPointZ, endPointX, endPointZ,
-                                                                      roughnessCoefficient));
+            profileDataFactorySegments.Add(new ProfileDataFactorySegment(startPointX, startPointZ, endPointX, endPointZ,
+                                                                         roughnessCoefficient));
         }
 
         private void AddLocation(RevetmentLocationConstructionPropertiesBase constructionProperties)
@@ -189,9 +195,12 @@ namespace DiKErnel.Integration
 
         private bool CanBuildValidCalculationInput()
         {
-            ProfileDataFactoryPoint outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.OuterToe);
-            ProfileDataFactoryPoint outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.OuterCrest);
-            ProfileDataFactoryPoint innerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.InnerToe);
+            ProfileDataFactoryPoint outerToe =
+                GetProfileDataFactoryPointForCharacteristicPointType(CharacteristicPointType.OuterToe);
+            ProfileDataFactoryPoint outerCrest =
+                GetProfileDataFactoryPointForCharacteristicPointType(CharacteristicPointType.OuterCrest);
+            ProfileDataFactoryPoint innerToe =
+                GetProfileDataFactoryPointForCharacteristicPointType(CharacteristicPointType.InnerToe);
 
             return ValidateProfileSegments()
                    && ValidateCharacteristicPoints(outerToe, outerCrest, innerToe)
@@ -201,7 +210,7 @@ namespace DiKErnel.Integration
 
         private bool ValidateProfileSegments()
         {
-            if (profileSegmentDataItems.Count == 0)
+            if (!profileDataFactorySegments.Any())
             {
                 RegisterValidationError("At least 1 profile segment is required.");
                 return false;
@@ -209,29 +218,30 @@ namespace DiKErnel.Integration
 
             ProfileDataFactorySegment previousSegment = null;
 
-            foreach (ProfileDataFactorySegment profileSegmentDataItem in profileSegmentDataItems)
+            foreach (ProfileDataFactorySegment currentSegment in profileDataFactorySegments)
             {
                 if (previousSegment != null)
                 {
                     double previousSegmentEndPointX = previousSegment.EndPointX;
                     double previousSegmentEndPointZ = previousSegment.EndPointZ;
-                    double currentSegmentStartPointX = profileSegmentDataItem.StartPointX;
-                    double currentSegmentStartPointZ = profileSegmentDataItem.StartPointZ;
+                    double currentSegmentStartPointX = currentSegment.StartPointX;
+                    double currentSegmentStartPointZ = currentSegment.StartPointZ;
 
                     if (!NumericsHelper.AreEqual(previousSegmentEndPointX, currentSegmentStartPointX)
                         || !NumericsHelper.AreEqual(previousSegmentEndPointZ, currentSegmentStartPointZ))
                     {
                         RegisterValidationError(
-                            $"The start point of the profile segment ({NumericsHelper.ToString(currentSegmentStartPointX)}, " +
-                            $"{NumericsHelper.ToString(currentSegmentStartPointZ)}) must be equal to the end point of " +
-                            $"the previous profile segment ({NumericsHelper.ToString(previousSegmentEndPointX)}, " +
+                            "The start point of the profile segment " +
+                            $"({NumericsHelper.ToString(currentSegmentStartPointX)}, " +
+                            $"{NumericsHelper.ToString(currentSegmentStartPointZ)}) must be equal to the end point " +
+                            $"of the previous profile segment ({NumericsHelper.ToString(previousSegmentEndPointX)}, " +
                             $"{NumericsHelper.ToString(previousSegmentEndPointZ)}).");
 
                         return false;
                     }
                 }
 
-                previousSegment = profileSegmentDataItem;
+                previousSegment = currentSegment;
             }
 
             return true;
@@ -241,11 +251,11 @@ namespace DiKErnel.Integration
                                                   ProfileDataFactoryPoint innerToe)
         {
             ProfileDataFactoryPoint crestOuterBerm =
-                GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.CrestOuterBerm);
+                GetProfileDataFactoryPointForCharacteristicPointType(CharacteristicPointType.CrestOuterBerm);
             ProfileDataFactoryPoint notchOuterBerm =
-                GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.NotchOuterBerm);
+                GetProfileDataFactoryPointForCharacteristicPointType(CharacteristicPointType.NotchOuterBerm);
             ProfileDataFactoryPoint innerCrest =
-                GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.InnerCrest);
+                GetProfileDataFactoryPointForCharacteristicPointType(CharacteristicPointType.InnerCrest);
 
             return ValidateCharacteristicPoint(outerToe, "outer toe", true)
                    && ValidateCharacteristicPoint(crestOuterBerm, "crest outer berm", false)
@@ -265,37 +275,37 @@ namespace DiKErnel.Integration
                     return true;
                 }
 
-                RegisterValidationError("The " + characteristicPointName + " is required.");
+                RegisterValidationError($"The {characteristicPointName} is required.");
                 return false;
             }
 
-            double characteristicPointX = characteristicPoint.X;
-
-            if (profileSegmentDataItems.Any(profileSegment => NumericsHelper.AreEqual(profileSegment.StartPointX, characteristicPointX)))
+            if (profileDataFactorySegments.Any(profileSegment => NumericsHelper.AreEqual(profileSegment.StartPointX,
+                                                                                         characteristicPoint.X)))
             {
                 return true;
             }
 
-            if (NumericsHelper.AreEqual(profileSegmentDataItems.Last().EndPointX, characteristicPointX))
+            if (NumericsHelper.AreEqual(profileDataFactorySegments.Last().EndPointX, characteristicPoint.X))
             {
                 return true;
             }
 
-            RegisterValidationError("The " + characteristicPointName + " must be on a start or end point of a profile segment.");
+            RegisterValidationError($"The {characteristicPointName} must be on a start or end point of a profile " +
+                                    "segment.");
             return false;
         }
 
-        private ProfileDataFactoryPoint GetProfilePointDataItemForCharacteristicPointType(
+        private ProfileDataFactoryPoint GetProfileDataFactoryPointForCharacteristicPointType(
             CharacteristicPointType characteristicPointType)
         {
-            return profilePointDataItems
-                .FirstOrDefault(profilePoint => profilePoint.CharacteristicPointType == characteristicPointType);
+            return profileDataFactoryPoints.FirstOrDefault(
+                profileDataFactoryPoint => profileDataFactoryPoint.CharacteristicPointType == characteristicPointType);
         }
 
         private bool ValidateLocations(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
                                        ProfileDataFactoryPoint innerToe)
         {
-            if (locationConstructionPropertiesItems.Count == 0)
+            if (!locationConstructionPropertiesItems.Any())
             {
                 RegisterValidationError("At least 1 location is required.");
                 return false;
@@ -464,7 +474,7 @@ namespace DiKErnel.Integration
             var zValuesProfile = new List<double>();
             var roughnessCoefficients = new List<double>();
 
-            foreach (ProfileDataFactorySegment profileSegment in profileSegmentDataItems)
+            foreach (ProfileDataFactorySegment profileSegment in profileDataFactorySegments)
             {
                 double startPointX = profileSegment.StartPointX;
                 if (startPointX >= outerToe.X && startPointX < outerCrest.X)
@@ -518,19 +528,20 @@ namespace DiKErnel.Integration
 
         private bool ValidateTimeSteps()
         {
-            if (timeStepDataItems.Count == 0)
+            if (!timeDependentInputFactoryDataItems.Any())
             {
                 RegisterValidationError("At least 1 time step is required.");
                 return false;
             }
 
-            TimeDependentInputFactoryData previousTimeStep = null;
-            foreach (TimeDependentInputFactoryData timeStepDataItem in timeStepDataItems)
+            TimeDependentInputFactoryData previousTimeDependentInput = null;
+            
+            foreach (TimeDependentInputFactoryData currentTimeDependentInput in timeDependentInputFactoryDataItems)
             {
-                int currentTimeStepBeginTime = timeStepDataItem.BeginTime;
-                if (previousTimeStep != null)
+                int currentTimeStepBeginTime = currentTimeDependentInput.BeginTime;
+                if (previousTimeDependentInput != null)
                 {
-                    int previousTimeStepEndTime = previousTimeStep.EndTime;
+                    int previousTimeStepEndTime = previousTimeDependentInput.EndTime;
                     if (previousTimeStepEndTime != currentTimeStepBeginTime)
                     {
                         RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must be " +
@@ -540,7 +551,7 @@ namespace DiKErnel.Integration
                     }
                 }
 
-                int currentTimeStepEndTime = timeStepDataItem.EndTime;
+                int currentTimeStepEndTime = currentTimeDependentInput.EndTime;
                 if (currentTimeStepBeginTime >= currentTimeStepEndTime)
                 {
                     RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must be " +
@@ -548,7 +559,7 @@ namespace DiKErnel.Integration
                     return false;
                 }
 
-                previousTimeStep = timeStepDataItem;
+                previousTimeDependentInput = currentTimeDependentInput;
             }
 
             return true;
