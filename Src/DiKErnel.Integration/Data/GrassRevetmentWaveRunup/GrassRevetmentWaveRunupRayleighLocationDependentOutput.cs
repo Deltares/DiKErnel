@@ -19,32 +19,26 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     /// <summary>
-    /// Location dependent output of an asphalt revetment wave impact location.
+    /// Location dependent output of a grass revetment wave run-up location for the Rayleigh
+    /// protocol.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactLocationDependentOutput : LocationDependentOutput
+    public class GrassRevetmentWaveRunupRayleighLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
-        /// <param name="outerSlope">The calculated outer slope.</param>
-        public AsphaltRevetmentWaveImpactLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double outerSlope)
+        public GrassRevetmentWaveRunupRayleighLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
             : base(timeDependentOutputItems)
         {
             Z = z;
-            OuterSlope = outerSlope;
         }
 
         /// <summary>
         /// Gets the calculated z.
         /// </summary>
         public double Z { get; }
-
-        /// <summary>
-        /// Gets the calculated outer slope.
-        /// </summary>
-        public double OuterSlope { get; }
     }
 }

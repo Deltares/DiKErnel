@@ -19,32 +19,16 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
     /// <summary>
-    /// Location dependent output of an asphalt revetment wave impact location.
+    /// Location dependent output of a grass revetment overtopping location.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactLocationDependentOutput : LocationDependentOutput
+    public class GrassRevetmentOvertoppingLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
-        /// <param name="z">The calculated z.</param>
-        /// <param name="outerSlope">The calculated outer slope.</param>
-        public AsphaltRevetmentWaveImpactLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double outerSlope)
-            : base(timeDependentOutputItems)
-        {
-            Z = z;
-            OuterSlope = outerSlope;
-        }
-
-        /// <summary>
-        /// Gets the calculated z.
-        /// </summary>
-        public double Z { get; }
-
-        /// <summary>
-        /// Gets the calculated outer slope.
-        /// </summary>
-        public double OuterSlope { get; }
+        public GrassRevetmentOvertoppingLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+            : base(timeDependentOutputItems) {}
     }
 }
