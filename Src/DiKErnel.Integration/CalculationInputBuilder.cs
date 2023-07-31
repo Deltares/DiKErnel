@@ -36,18 +36,24 @@ namespace DiKErnel.Integration
     /// </summary>
     public class CalculationInputBuilder
     {
-        private IReadOnlyList<ProfileDataFactoryPoint> profilePointDataItems;
-        private IReadOnlyList<ProfileDataFactorySegment> profileSegmentDataItems;
-        private IReadOnlyList<TimeDependentInputFactoryData> timeStepDataItems;
-        private IReadOnlyList<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems;
-        private bool grassOvertoppingLocationAdded = false;
+        private readonly List<ProfileDataFactoryPoint> profilePointDataItems = new List<ProfileDataFactoryPoint>();
+        private readonly List<TimeDependentInputFactoryData> timeStepDataItems = new List<TimeDependentInputFactoryData>();
+        private readonly List<ProfileDataFactorySegment> profileSegmentDataItems = new List<ProfileDataFactorySegment>();
+
+        private readonly List<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems =
+            new List<RevetmentLocationConstructionPropertiesBase>();
+
+        private bool grassOvertoppingLocationAdded;
 
         /// <summary>
         /// Adds a dike profile point.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="characteristicPointType">The characteristic point type.</param>
-        public void AddDikeProfilePointData(double x, CharacteristicPointType characteristicPointType) {}
+        public void AddDikeProfilePointData(double x, CharacteristicPointType characteristicPointType)
+        {
+            profilePointDataItems.Add(new ProfileDataFactoryPoint(x, characteristicPointType));
+        }
 
         /// <summary>
         /// Adds a new dike profile segment.
@@ -56,7 +62,10 @@ namespace DiKErnel.Integration
         /// <param name="startPointZ">The z coordinate for the start profile point.</param>
         /// <param name="endPointX">The x coordinate for the end profile point.</param>
         /// <param name="endPointZ">The z coordinate for the end profile point.</param>
-        public void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ) {}
+        public void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ)
+        {
+            AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, null);
+        }
 
         /// <summary>
         /// Adds a new dike profile segment.
@@ -67,7 +76,10 @@ namespace DiKErnel.Integration
         /// <param name="endPointZ">The z coordinate for the end profile point.</param>
         /// <param name="roughnessCoefficient">The roughness coefficient.</param>
         public void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
-                                          double roughnessCoefficient) {}
+                                          double roughnessCoefficient)
+        {
+            AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, (double?) roughnessCoefficient);
+        }
 
         /// <summary>
         /// Adds a time step.
@@ -79,7 +91,11 @@ namespace DiKErnel.Integration
         /// <param name="wavePeriodTm10">The wave period.</param>
         /// <param name="waveAngle">The wave angle.</param>
         public void AddTimeStep(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
-                                double wavePeriodTm10, double waveAngle) {}
+                                double wavePeriodTm10, double waveAngle)
+        {
+            timeStepDataItems.Add(new TimeDependentInputFactoryData(beginTime, endTime, waterLevel, waveHeightHm0,
+                                                                    wavePeriodTm10, waveAngle));
+        }
 
         /// <summary>
         /// Adds an asphalt wave impact location.
@@ -87,7 +103,10 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the asphalt wave
         /// impact location dependent input.</param>
         public void AddAsphaltWaveImpactLocation(
-            AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties) {}
+            AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties)
+        {
+            AddLocation(constructionProperties);
+        }
 
         /// <summary>
         /// Adds a grass overtopping location.
@@ -95,7 +114,11 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the grass
         /// overtopping location dependent input.</param>
         public void AddGrassOvertoppingLocation(
-            GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties) {}
+            GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties)
+        {
+            AddLocation(constructionProperties);
+            grassOvertoppingLocationAdded = true;
+        }
 
         /// <summary>
         /// Adds a grass wave impact location.
@@ -103,7 +126,10 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the grass wave
         /// impact location dependent input.</param>
         public void AddGrassWaveImpactLocation(
-            GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties) {}
+            GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties)
+        {
+            AddLocation(constructionProperties);
+        }
 
         /// <summary>
         /// Adds a grass wave run-up location with Rayleigh protocol.
@@ -111,14 +137,20 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the grass wave
         /// run-up Rayleigh location dependent input.</param>
         public void AddGrassWaveRunupRayleighLocation(
-            GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties) {}
+            GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties)
+        {
+            AddLocation(constructionProperties);
+        }
 
         /// <summary>
         /// Adds a natural stone location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the natural
         /// stone location dependent input.</param>
-        public void AddNaturalStoneLocation(NaturalStoneRevetmentLocationConstructionProperties constructionProperties) {}
+        public void AddNaturalStoneLocation(NaturalStoneRevetmentLocationConstructionProperties constructionProperties)
+        {
+            AddLocation(constructionProperties);
+        }
 
         /// <summary>
         /// Builds the calculation input.
@@ -126,17 +158,42 @@ namespace DiKErnel.Integration
         /// <returns>The result with the created calculation input.</returns>
         public DataResult<ICalculationInput> Build()
         {
-            throw new NotImplementedException();
+            if (!CanBuildValidCalculationInput())
+            {
+                return new DataResult<ICalculationInput>(EventRegistry.Flush());
+            }
+
+            ProfileData profileData = ProfileDataFactory.Create(profileSegmentDataItems, profilePointDataItems);
+            IReadOnlyList<ILocationDependentInput> locations =
+                LocationDependentInputFactory.Create(locationConstructionPropertiesItems);
+            IReadOnlyList<ITimeDependentInput> timeSteps = TimeDependentInputFactory.Create(timeStepDataItems);
+
+            return new DataResult<ICalculationInput>(new CalculationInput(profileData, locations, timeSteps),
+                                                     EventRegistry.Flush());
         }
 
         private void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
-                                           double? roughnessCoefficient) {}
+                                           double? roughnessCoefficient)
+        {
+            profileSegmentDataItems.Add(new ProfileDataFactorySegment(startPointX, startPointZ, endPointX, endPointZ,
+                                                                      roughnessCoefficient));
+        }
 
-        private void AddLocation(RevetmentLocationConstructionPropertiesBase constructionProperties) {}
+        private void AddLocation(RevetmentLocationConstructionPropertiesBase constructionProperties)
+        {
+            locationConstructionPropertiesItems.Add(constructionProperties);
+        }
 
         private bool CanBuildValidCalculationInput()
         {
-            throw new NotImplementedException();
+            ProfileDataFactoryPoint outerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.OuterToe);
+            ProfileDataFactoryPoint outerCrest = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.OuterCrest);
+            ProfileDataFactoryPoint innerToe = GetProfilePointDataItemForCharacteristicPointType(CharacteristicPointType.InnerToe);
+
+            return ValidateProfileSegments()
+                   && ValidateCharacteristicPoints(outerToe, outerCrest, innerToe)
+                   && ValidateLocations(outerToe, outerCrest, innerToe)
+                   && ValidateTimeSteps();
         }
 
         private bool ValidateProfileSegments()
