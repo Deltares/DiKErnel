@@ -16,6 +16,18 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data;
+using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassRevetment;
+using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.Integration.Factories;
+using DiKErnel.Util;
+
 namespace DiKErnel.Integration
 {
     /// <summary>
@@ -28,9 +40,7 @@ namespace DiKErnel.Integration
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="characteristicPointType">The characteristic point type.</param>
-        public void AddDikeProfilePointData(
-            double x,
-            Core::CharacteristicPointType characteristicPointType)
+        public void AddDikeProfilePointData(double x, CharacteristicPointType characteristicPointType)
         {
             
         }
@@ -42,11 +52,7 @@ namespace DiKErnel.Integration
         /// <param name="startPointZ">The z coordinate for the start profile point.</param>
         /// <param name="endPointX">The x coordinate for the end profile point.</param>
         /// <param name="endPointZ">The z coordinate for the end profile point.</param>
-        public void AddDikeProfileSegment(
-            double startPointX,
-            double startPointZ,
-            double endPointX,
-            double endPointZ)
+        public void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ)
         {
             
         }
@@ -59,12 +65,8 @@ namespace DiKErnel.Integration
         /// <param name="endPointX">The x coordinate for the end profile point.</param>
         /// <param name="endPointZ">The z coordinate for the end profile point.</param>
         /// <param name="roughnessCoefficient">The roughness coefficient.</param>
-        public void AddDikeProfileSegment(
-            double startPointX,
-            double startPointZ,
-            double endPointX,
-            double endPointZ,
-            double roughnessCoefficient)
+        public void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
+                                          double roughnessCoefficient)
         {
             
         }
@@ -78,13 +80,8 @@ namespace DiKErnel.Integration
         /// <param name="waveHeightHm0">The wave height.</param>
         /// <param name="wavePeriodTm10">The wave period.</param>
         /// <param name="waveAngle">The wave angle.</param>
-        public void AddTimeStep(
-            int beginTime,
-            int endTime,
-            double waterLevel,
-            double waveHeightHm0,
-            double wavePeriodTm10,
-            double waveAngle)
+        public void AddTimeStep(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
+                                double wavePeriodTm10, double waveAngle)
         {
             
         }
@@ -95,7 +92,7 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the asphalt wave
         /// impact location dependent input.</param>
         public void AddAsphaltWaveImpactLocation(
-            std::unique_ptr<AsphaltRevetmentWaveImpactLocationConstructionProperties> constructionProperties)
+            AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties)
         {
             
         }
@@ -106,7 +103,7 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the grass
         /// overtopping location dependent input.</param>
         public void AddGrassOvertoppingLocation(
-            std::unique_ptr<GrassRevetmentOvertoppingLocationConstructionProperties> constructionProperties)
+            GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties)
         {
             
         }
@@ -117,7 +114,7 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the grass wave
         /// impact location dependent input.</param>
         public void AddGrassWaveImpactLocation(
-            std::unique_ptr<GrassRevetmentWaveImpactLocationConstructionProperties> constructionProperties)
+            GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties)
         {
             
         }
@@ -128,7 +125,7 @@ namespace DiKErnel.Integration
         /// <param name="constructionProperties">The properties to construct the grass wave
         /// run-up Rayleigh location dependent input.</param>
         public void AddGrassWaveRunupRayleighLocation(
-            std::unique_ptr<GrassRevetmentWaveRunupRayleighLocationConstructionProperties> constructionProperties)
+            GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties)
         {
             
         }
@@ -139,8 +136,7 @@ namespace DiKErnel.Integration
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the natural
         /// stone location dependent input.</param>
-        public void AddNaturalStoneLocation(
-            std::unique_ptr<NaturalStoneRevetmentLocationConstructionProperties> constructionProperties)
+        public void AddNaturalStoneLocation(NaturalStoneRevetmentLocationConstructionProperties constructionProperties)
         {
             
         }
@@ -149,23 +145,18 @@ namespace DiKErnel.Integration
         /// Builds the calculation input.
         /// </summary>
         /// <returns>The result with the created calculation input.</returns>
-        public std::unique_ptr<Util::DataResult<Core::ICalculationInput>> Build()
+        public DataResult<ICalculationInput> Build()
         {
             
         }
 
-        private void AddDikeProfileSegment(
-            double startPointX,
-            double startPointZ,
-            double endPointX,
-            double endPointZ,
-            std::unique_ptr<double> roughnessCoefficient)
+        private void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
+                                           double? roughnessCoefficient)
         {
             
         }
 
-        private void AddLocation(
-            std::unique_ptr<RevetmentLocationConstructionPropertiesBase> constructionProperties)
+        private void AddLocation(RevetmentLocationConstructionPropertiesBase constructionProperties)
         {
             
         }
@@ -181,87 +172,87 @@ namespace DiKErnel.Integration
         }
 
             private bool ValidateCharacteristicPoints(
-                const ProfileDataFactoryPoint* outerToe,
-                const ProfileDataFactoryPoint* outerCrest,
-                const ProfileDataFactoryPoint* innerToe)
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest,
+                ProfileDataFactoryPoint innerToe)
                 {
                     
                 }
 
             private bool ValidateCharacteristicPoint(
-                const ProfileDataFactoryPoint* characteristicPoint,
-                const std::string& characteristicPointName,
+                ProfileDataFactoryPoint characteristicPoint,
+                string characteristicPointName,
                 bool isRequired = true)
                 {
                     
                 }
 
-                private ProfileDataFactoryPoint* GetProfilePointDataItemForCharacteristicPointType(
-                    Core::CharacteristicPointType characteristicPointType)
+                private ProfileDataFactoryPoint GetProfilePointDataItemForCharacteristicPointType(
+                    CharacteristicPointType characteristicPointType)
                 {
                     
                 }
 
             private bool ValidateLocations(
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest,
-                const ProfileDataFactoryPoint* innerToe)
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest,
+                ProfileDataFactoryPoint innerToe)
                 {
                     
                 }
 
             private bool ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
-                const AsphaltRevetmentWaveImpactLocationConstructionProperties& constructionProperties,
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest)
+                AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties,
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest)
                 {
                     
                 }
 
             private bool ValidateGrassRevetmentOvertoppingLocationConstructionProperties(
-                const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties,
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest,
-                const ProfileDataFactoryPoint& innerToe)
+                GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties,
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest,
+                ProfileDataFactoryPoint innerToe)
                 {
                     
                 }
 
             private bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
-                const GrassRevetmentWaveImpactLocationConstructionProperties& constructionProperties,
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest)
+                GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties,
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest)
                 {
                     
                 }
 
             private bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                const GrassRevetmentWaveRunupRayleighLocationConstructionProperties& constructionProperties,
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest)
+                GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties,
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest)
                 {
                     
                 }
 
             private bool ValidateNaturalStoneRevetmentLocationConstructionProperties(
-                const NaturalStoneRevetmentLocationConstructionProperties& constructionProperties,
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest)
+                NaturalStoneRevetmentLocationConstructionProperties constructionProperties,
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest)
                 {
                     
                 }
 
             private bool ValidateLocationOnOuterSlope(
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest,
+                ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest,
                 double locationX)
                 {
                     
                 }
 
             private bool ValidateLocationOnCrestOrInnerSlope(
-                const ProfileDataFactoryPoint& outerCrest,
-                const ProfileDataFactoryPoint& innerToe,
+                ProfileDataFactoryPoint outerCrest,
+                ProfileDataFactoryPoint innerToe,
                 double locationX)
                 {
                     
@@ -289,9 +280,9 @@ namespace DiKErnel.Integration
                 }
 
             private bool ValidateOvertoppingLocationSpecificProperties(
-                const GrassRevetmentOvertoppingLocationConstructionProperties& constructionProperties,
-                const ProfileDataFactoryPoint& outerToe,
-                const ProfileDataFactoryPoint& outerCrest)
+                GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties,
+            ProfileDataFactoryPoint outerToe,
+                ProfileDataFactoryPoint outerCrest)
                 {
                     
                 }
@@ -308,7 +299,7 @@ namespace DiKErnel.Integration
              *          overtopping adapter.
              */
             private static double GetOvertoppingDikeHeight(
-                const double* locationDikeHeight,
+                double? locationDikeHeight,
                 double outerCrestZCoordinate)
                 {
                     
@@ -320,20 +311,16 @@ namespace DiKErnel.Integration
                 }
 
             private void RegisterValidationError(
-                const std::string& message)
+                const string message)
                 {
                     
                 }
 
-            private std::vector<std::unique_ptr<ProfileDataFactoryPoint>> _profilePointDataItems;
-            private std::vector<std::reference_wrapper<ProfileDataFactoryPoint>> _profilePointDataItemReferences;
-            private std::vector<std::unique_ptr<ProfileDataFactorySegment>> _profileSegmentDataItems;
-            private std::vector<std::reference_wrapper<ProfileDataFactorySegment>> _profileSegmentDataItemReferences;
-            private std::vector<std::unique_ptr<TimeDependentInputFactoryData>> _timeStepDataItems;
-            private std::vector<std::reference_wrapper<TimeDependentInputFactoryData>> _timeStepDataItemReferences;
-            private std::vector<std::unique_ptr<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItems;
-            private std::vector<std::reference_wrapper<RevetmentLocationConstructionPropertiesBase>> _locationConstructionPropertiesItemReferences;
-            private bool _grassOvertoppingLocationAdded = false;
+            private IReadOnlyList<ProfileDataFactoryPoint> profilePointDataItems;
+            private IReadOnlyList<ProfileDataFactorySegment> profileSegmentDataItems;
+            private IReadOnlyList<TimeDependentInputFactoryData> timeStepDataItems;
+            private IReadOnlyList<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems;
+            private bool grassOvertoppingLocationAdded = false;
 
     }
 }
