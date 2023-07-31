@@ -16,10 +16,11 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Defaults;
+using DiKErnel.External.Overtopping;
 using DiKErnel.Integration.Data;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetment;
@@ -287,90 +288,218 @@ namespace DiKErnel.Integration
         private ProfileDataFactoryPoint GetProfilePointDataItemForCharacteristicPointType(
             CharacteristicPointType characteristicPointType)
         {
-            throw new NotImplementedException();
+            return profilePointDataItems
+                .FirstOrDefault(profilePoint => profilePoint.CharacteristicPointType == characteristicPointType);
         }
 
         private bool ValidateLocations(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
                                        ProfileDataFactoryPoint innerToe)
         {
-            throw new NotImplementedException();
+            if (locationConstructionPropertiesItems.Count == 0)
+            {
+                RegisterValidationError("At least 1 location is required.");
+                return false;
+            }
+
+            foreach (RevetmentLocationConstructionPropertiesBase location in locationConstructionPropertiesItems)
+            {
+                if (location is AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties
+                    && !ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(asphaltWaveImpactLocationConstructionProperties,
+                                                                                         outerToe, outerCrest))
+                {
+                    return false;
+                }
+
+                if (location is GrassRevetmentOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties
+                    && !ValidateGrassRevetmentOvertoppingLocationConstructionProperties(grassOvertoppingLocationConstructionProperties,
+                                                                                        outerToe, outerCrest, innerToe))
+                {
+                    return false;
+                }
+
+                if (location is GrassRevetmentWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
+                    && !ValidateGrassRevetmentWaveImpactLocationConstructionProperties(grassWaveImpactLocationConstructionProperties,
+                                                                                       outerToe, outerCrest))
+                {
+                    return false;
+                }
+
+                if (location is GrassRevetmentWaveRunupRayleighLocationConstructionProperties rayleighLocationConstructionProperties
+                    && !ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(rayleighLocationConstructionProperties,
+                        outerToe, outerCrest))
+                {
+                    return false;
+                }
+
+                if (location is NaturalStoneRevetmentLocationConstructionProperties naturalStoneLocationConstructionProperties
+                    && !ValidateNaturalStoneRevetmentLocationConstructionProperties(naturalStoneLocationConstructionProperties,
+                                                                                    outerToe, outerCrest))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private bool ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
             AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            throw new NotImplementedException();
+            double locationX = constructionProperties.X;
+
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
+                   && ValidateAsphaltRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
         }
 
         private bool ValidateGrassRevetmentOvertoppingLocationConstructionProperties(
             GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
         {
-            throw new NotImplementedException();
+            double locationX = constructionProperties.X;
+
+            return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, locationX)
+                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, locationX)
+                   && ValidateOvertoppingLocationSpecificProperties(constructionProperties, outerToe, outerCrest);
         }
 
         private bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
             GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            throw new NotImplementedException();
+            double locationX = constructionProperties.X;
+
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
+                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
         }
 
         private bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
             GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            throw new NotImplementedException();
+            double locationX = constructionProperties.X;
+
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
+                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
         }
 
         private bool ValidateNaturalStoneRevetmentLocationConstructionProperties(
             NaturalStoneRevetmentLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            throw new NotImplementedException();
+            double locationX = constructionProperties.X;
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
+                   && ValidateNaturalStoneRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
         }
 
         private bool ValidateLocationOnOuterSlope(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
                                                   double locationX)
         {
-            throw new NotImplementedException();
+            if (locationX <= outerToe.X || locationX >= outerCrest.X)
+            {
+                RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} must be " +
+                                        "between the outer toe and outer crest.");
+                return false;
+            }
+
+            return true;
         }
 
         private bool ValidateLocationOnCrestOrInnerSlope(ProfileDataFactoryPoint outerCrest,
-                                                         ProfileDataFactoryPoint innerToe,
-                                                         double locationX)
+                                                         ProfileDataFactoryPoint innerToe, double locationX)
         {
-            throw new NotImplementedException();
+            if (locationX < outerCrest.X || locationX > innerToe.X)
+            {
+                RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} must be on or " +
+                                        "between the outer crest and inner toe.");
+                return false;
+            }
+
+            return true;
         }
 
-        private bool ValidateAsphaltRevetmentTopLayerType(
-            AsphaltRevetmentTopLayerType topLayerType,
-            double locationX)
+        private bool ValidateAsphaltRevetmentTopLayerType(AsphaltRevetmentTopLayerType topLayerType, double locationX)
         {
-            throw new NotImplementedException();
+            if (topLayerType != AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete)
+            {
+                RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
+                                        "invalid top layer type.");
+                return false;
+            }
+
+            return true;
         }
 
-        private bool ValidateGrassRevetmentTopLayerType(
-            GrassRevetmentTopLayerType topLayerType,
-            double locationX)
+        private bool ValidateGrassRevetmentTopLayerType(GrassRevetmentTopLayerType topLayerType, double locationX)
         {
-            throw new NotImplementedException();
+            if (topLayerType != GrassRevetmentTopLayerType.ClosedSod
+                && topLayerType != GrassRevetmentTopLayerType.OpenSod)
+            {
+                RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
+                                        "invalid top layer type.");
+                return false;
+            }
+
+            return true;
         }
 
-        private bool ValidateNaturalStoneRevetmentTopLayerType(
-            NaturalStoneRevetmentTopLayerType topLayerType,
-            double locationX)
+        private bool ValidateNaturalStoneRevetmentTopLayerType(NaturalStoneRevetmentTopLayerType topLayerType,
+                                                               double locationX)
         {
-            throw new NotImplementedException();
+            if (topLayerType != NaturalStoneRevetmentTopLayerType.NordicStone)
+            {
+                RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
+                                        "invalid top layer type.");
+                return false;
+            }
+
+            return true;
         }
 
         private bool ValidateOvertoppingLocationSpecificProperties(
             GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties,
-            ProfileDataFactoryPoint outerToe,
-            ProfileDataFactoryPoint outerCrest)
+            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            throw new NotImplementedException();
+            var xValuesProfile = new List<double>();
+            var zValuesProfile = new List<double>();
+            var roughnessCoefficients = new List<double>();
+
+            foreach (ProfileDataFactorySegment profileSegment in profileSegmentDataItems)
+            {
+                double startPointX = profileSegment.StartPointX;
+                if (startPointX >= outerToe.X && startPointX < outerCrest.X)
+                {
+                    xValuesProfile.Add(startPointX);
+                    zValuesProfile.Add(profileSegment.StartPointZ);
+                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient
+                                              ?? ProfileSegmentDefaults.RoughnessCoefficient);
+
+                    double endPointX = profileSegment.EndPointX;
+                    if (NumericsHelper.AreEqual(endPointX, outerCrest.X))
+                    {
+                        xValuesProfile.Add(endPointX);
+                        zValuesProfile.Add(profileSegment.EndPointZ);
+                    }
+                }
+            }
+
+            double outerCrestZ = zValuesProfile.Last();
+            double dikeHeight = GetOvertoppingDikeHeight(constructionProperties.DikeHeight, outerCrestZ);
+
+            IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xValuesProfile.ToArray(),
+                                                                         zValuesProfile.ToArray(),
+                                                                         roughnessCoefficients.ToArray(), dikeHeight);
+            if (messages.Count != 0)
+            {
+                foreach (string message in messages)
+                {
+                    RegisterValidationError(message);
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -384,14 +513,50 @@ namespace DiKErnel.Integration
         /// overtopping adapter.</remarks>
         private static double GetOvertoppingDikeHeight(double? locationDikeHeight, double outerCrestZCoordinate)
         {
-            throw new NotImplementedException();
+            return locationDikeHeight ?? outerCrestZCoordinate;
         }
 
         private bool ValidateTimeSteps()
         {
-            throw new NotImplementedException();
+            if (timeStepDataItems.Count == 0)
+            {
+                RegisterValidationError("At least 1 time step is required.");
+                return false;
+            }
+
+            TimeDependentInputFactoryData previousTimeStep = null;
+            foreach (TimeDependentInputFactoryData timeStepDataItem in timeStepDataItems)
+            {
+                int currentTimeStepBeginTime = timeStepDataItem.BeginTime;
+                if (previousTimeStep != null)
+                {
+                    int previousTimeStepEndTime = previousTimeStep.EndTime;
+                    if (previousTimeStepEndTime != currentTimeStepBeginTime)
+                    {
+                        RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must be " +
+                                                "equal to the end time of the previous time step " +
+                                                $"({previousTimeStepEndTime}).");
+                        return false;
+                    }
+                }
+
+                int currentTimeStepEndTime = timeStepDataItem.EndTime;
+                if (currentTimeStepBeginTime >= currentTimeStepEndTime)
+                {
+                    RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must be " +
+                                            $"smaller than the end time of the time step ({currentTimeStepEndTime}).");
+                    return false;
+                }
+
+                previousTimeStep = timeStepDataItem;
+            }
+
+            return true;
         }
 
-        private void RegisterValidationError(string message) {}
+        private static void RegisterValidationError(string message)
+        {
+            EventRegistry.Register(new Event(message, EventType.Error));
+        }
     }
 }
