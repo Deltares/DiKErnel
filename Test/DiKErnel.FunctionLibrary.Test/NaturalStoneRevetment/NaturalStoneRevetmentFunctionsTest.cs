@@ -360,7 +360,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                                                                                     waveHeightHm0, slopeUpperLevelAus);
 
             // Assert
-            Assert.AreEqual(5.425, slopeUpperLevel);
+            AssertHelper.AreEqual(5.425, slopeUpperLevel);
         }
 
         [Test]
@@ -438,7 +438,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                 slopeAngle);
 
             // Assert
-            Assert.AreEqual(0.38425846631481392, depthMaximumWaveLoad);
+            AssertHelper.AreEqual(0.38425846631481, depthMaximumWaveLoad);
         }
 
         [Test]
