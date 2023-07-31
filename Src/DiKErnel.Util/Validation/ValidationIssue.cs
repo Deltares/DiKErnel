@@ -30,14 +30,14 @@ namespace DiKErnel.Util.Validation
         /// <param name="message">The message.</param>
         public ValidationIssue(ValidationIssueType validationIssueType, string message)
         {
-            IssueType = validationIssueType;
+            ValidationIssueType = validationIssueType;
             Message = message;
         }
 
         /// <summary>
         /// Gets the validation issue type.
         /// </summary>
-        public ValidationIssueType IssueType { get; }
+        public ValidationIssueType ValidationIssueType { get; }
 
         /// <summary>
         /// Gets the message.

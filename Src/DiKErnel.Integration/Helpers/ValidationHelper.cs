@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Helpers
 
         private static bool RegisterValidationIssue(ValidationIssue validationIssue)
         {
-            ValidationIssueType validationIssueType = validationIssue.IssueType;
+            ValidationIssueType validationIssueType = validationIssue.ValidationIssueType;
 
             EventRegistry.Register(new Event(validationIssue.Message, ConvertValidationIssueType(validationIssueType)));
 
