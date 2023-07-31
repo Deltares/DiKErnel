@@ -311,99 +311,77 @@ namespace DiKErnel.Integration
                 return false;
             }
 
-            foreach (RevetmentLocationConstructionPropertiesBase location in locationConstructionPropertiesItems)
+            foreach (RevetmentLocationConstructionPropertiesBase locationConstructionProperties in locationConstructionPropertiesItems)
             {
-                if (location is AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties
-                    && !ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(asphaltWaveImpactLocationConstructionProperties,
-                                                                                         outerToe, outerCrest))
+                switch (locationConstructionProperties)
                 {
-                    return false;
-                }
-
-                if (location is GrassRevetmentOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties
-                    && !ValidateGrassRevetmentOvertoppingLocationConstructionProperties(grassOvertoppingLocationConstructionProperties,
-                                                                                        outerToe, outerCrest, innerToe))
-                {
-                    return false;
-                }
-
-                if (location is GrassRevetmentWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
-                    && !ValidateGrassRevetmentWaveImpactLocationConstructionProperties(grassWaveImpactLocationConstructionProperties,
-                                                                                       outerToe, outerCrest))
-                {
-                    return false;
-                }
-
-                if (location is GrassRevetmentWaveRunupRayleighLocationConstructionProperties rayleighLocationConstructionProperties
-                    && !ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(rayleighLocationConstructionProperties,
-                        outerToe, outerCrest))
-                {
-                    return false;
-                }
-
-                if (location is NaturalStoneRevetmentLocationConstructionProperties naturalStoneLocationConstructionProperties
-                    && !ValidateNaturalStoneRevetmentLocationConstructionProperties(naturalStoneLocationConstructionProperties,
-                                                                                    outerToe, outerCrest))
-                {
-                    return false;
+                    case AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties
+                        when !ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
+                                 asphaltWaveImpactLocationConstructionProperties, outerToe, outerCrest):
+                    case GrassRevetmentOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties
+                        when !ValidateGrassRevetmentOvertoppingLocationConstructionProperties(
+                                 grassOvertoppingLocationConstructionProperties, outerToe, outerCrest, innerToe):
+                    case GrassRevetmentWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
+                        when !ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
+                                 grassWaveImpactLocationConstructionProperties, outerToe, outerCrest):
+                    case GrassRevetmentWaveRunupRayleighLocationConstructionProperties rayleighLocationConstructionProperties
+                        when !ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                                 rayleighLocationConstructionProperties, outerToe, outerCrest):
+                    case NaturalStoneRevetmentLocationConstructionProperties naturalStoneLocationConstructionProperties
+                        when !ValidateNaturalStoneRevetmentLocationConstructionProperties(
+                                 naturalStoneLocationConstructionProperties, outerToe, outerCrest):
+                        return false;
                 }
             }
 
             return true;
         }
 
-        private bool ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
+        private static bool ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
             AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            double locationX = constructionProperties.X;
-
-            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
-                   && ValidateAsphaltRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
+                   && ValidateAsphaltRevetmentTopLayerType(constructionProperties.TopLayerType,
+                                                           constructionProperties.X);
         }
 
         private bool ValidateGrassRevetmentOvertoppingLocationConstructionProperties(
             GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
         {
-            double locationX = constructionProperties.X;
-
-            return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, locationX)
-                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, locationX)
+            return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
+                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
                    && ValidateOvertoppingLocationSpecificProperties(constructionProperties, outerToe, outerCrest);
         }
 
-        private bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
+        private static bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
             GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            double locationX = constructionProperties.X;
-
-            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
-                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
+                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
         }
 
-        private bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+        private static bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
             GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            double locationX = constructionProperties.X;
-
-            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
-                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
+                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
         }
 
-        private bool ValidateNaturalStoneRevetmentLocationConstructionProperties(
+        private static bool ValidateNaturalStoneRevetmentLocationConstructionProperties(
             NaturalStoneRevetmentLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
-            double locationX = constructionProperties.X;
-            return ValidateLocationOnOuterSlope(outerToe, outerCrest, locationX)
-                   && ValidateNaturalStoneRevetmentTopLayerType(constructionProperties.TopLayerType, locationX);
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
+                   && ValidateNaturalStoneRevetmentTopLayerType(constructionProperties.TopLayerType,
+                                                                constructionProperties.X);
         }
 
-        private bool ValidateLocationOnOuterSlope(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
-                                                  double locationX)
+        private static bool ValidateLocationOnOuterSlope(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
+                                                         double locationX)
         {
             if (locationX <= outerToe.X || locationX >= outerCrest.X)
             {
@@ -415,8 +393,8 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private bool ValidateLocationOnCrestOrInnerSlope(ProfileDataFactoryPoint outerCrest,
-                                                         ProfileDataFactoryPoint innerToe, double locationX)
+        private static bool ValidateLocationOnCrestOrInnerSlope(ProfileDataFactoryPoint outerCrest,
+                                                                ProfileDataFactoryPoint innerToe, double locationX)
         {
             if (locationX < outerCrest.X || locationX > innerToe.X)
             {
@@ -428,7 +406,7 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private bool ValidateAsphaltRevetmentTopLayerType(AsphaltRevetmentTopLayerType topLayerType, double locationX)
+        private static bool ValidateAsphaltRevetmentTopLayerType(AsphaltRevetmentTopLayerType topLayerType, double locationX)
         {
             if (topLayerType != AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete)
             {
@@ -440,7 +418,7 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private bool ValidateGrassRevetmentTopLayerType(GrassRevetmentTopLayerType topLayerType, double locationX)
+        private static bool ValidateGrassRevetmentTopLayerType(GrassRevetmentTopLayerType topLayerType, double locationX)
         {
             if (topLayerType != GrassRevetmentTopLayerType.ClosedSod
                 && topLayerType != GrassRevetmentTopLayerType.OpenSod)
@@ -453,8 +431,8 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private bool ValidateNaturalStoneRevetmentTopLayerType(NaturalStoneRevetmentTopLayerType topLayerType,
-                                                               double locationX)
+        private static bool ValidateNaturalStoneRevetmentTopLayerType(NaturalStoneRevetmentTopLayerType topLayerType,
+                                                                      double locationX)
         {
             if (topLayerType != NaturalStoneRevetmentTopLayerType.NordicStone)
             {
@@ -535,7 +513,7 @@ namespace DiKErnel.Integration
             }
 
             TimeDependentInputFactoryData previousTimeDependentInput = null;
-            
+
             foreach (TimeDependentInputFactoryData currentTimeDependentInput in timeDependentInputFactoryDataItems)
             {
                 int currentTimeStepBeginTime = currentTimeDependentInput.BeginTime;
