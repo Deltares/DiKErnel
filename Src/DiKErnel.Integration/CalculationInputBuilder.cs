@@ -380,8 +380,8 @@ namespace DiKErnel.Integration
                                                                 constructionProperties.X);
         }
 
-        private static bool ValidateLocationOnOuterSlope(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
-                                                         double locationX)
+        private static bool ValidateLocationOnOuterSlope(ProfileDataFactoryPoint outerToe,
+                                                         ProfileDataFactoryPoint outerCrest, double locationX)
         {
             if (locationX <= outerToe.X || locationX >= outerCrest.X)
             {
@@ -398,15 +398,16 @@ namespace DiKErnel.Integration
         {
             if (locationX < outerCrest.X || locationX > innerToe.X)
             {
-                RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} must be on or " +
-                                        "between the outer crest and inner toe.");
+                RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} must be on " +
+                                        "or between the outer crest and inner toe.");
                 return false;
             }
 
             return true;
         }
 
-        private static bool ValidateAsphaltRevetmentTopLayerType(AsphaltRevetmentTopLayerType topLayerType, double locationX)
+        private static bool ValidateAsphaltRevetmentTopLayerType(AsphaltRevetmentTopLayerType topLayerType,
+                                                                 double locationX)
         {
             if (topLayerType != AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete)
             {
@@ -418,7 +419,8 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateGrassRevetmentTopLayerType(GrassRevetmentTopLayerType topLayerType, double locationX)
+        private static bool ValidateGrassRevetmentTopLayerType(GrassRevetmentTopLayerType topLayerType,
+                                                               double locationX)
         {
             if (topLayerType != GrassRevetmentTopLayerType.ClosedSod
                 && topLayerType != GrassRevetmentTopLayerType.OpenSod)
@@ -452,21 +454,23 @@ namespace DiKErnel.Integration
             var zValuesProfile = new List<double>();
             var roughnessCoefficients = new List<double>();
 
-            foreach (ProfileDataFactorySegment profileSegment in profileDataFactorySegments)
+            foreach (ProfileDataFactorySegment profileDataFactorySegment in profileDataFactorySegments)
             {
-                double startPointX = profileSegment.StartPointX;
+                double startPointX = profileDataFactorySegment.StartPointX;
+
                 if (startPointX >= outerToe.X && startPointX < outerCrest.X)
                 {
                     xValuesProfile.Add(startPointX);
-                    zValuesProfile.Add(profileSegment.StartPointZ);
-                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient
+                    zValuesProfile.Add(profileDataFactorySegment.StartPointZ);
+                    roughnessCoefficients.Add(profileDataFactorySegment.RoughnessCoefficient
                                               ?? ProfileSegmentDefaults.RoughnessCoefficient);
 
-                    double endPointX = profileSegment.EndPointX;
+                    double endPointX = profileDataFactorySegment.EndPointX;
+
                     if (NumericsHelper.AreEqual(endPointX, outerCrest.X))
                     {
                         xValuesProfile.Add(endPointX);
-                        zValuesProfile.Add(profileSegment.EndPointZ);
+                        zValuesProfile.Add(profileDataFactorySegment.EndPointZ);
                     }
                 }
             }
@@ -477,7 +481,7 @@ namespace DiKErnel.Integration
             IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xValuesProfile.ToArray(),
                                                                          zValuesProfile.ToArray(),
                                                                          roughnessCoefficients.ToArray(), dikeHeight);
-            if (messages.Count != 0)
+            if (messages.Any())
             {
                 foreach (string message in messages)
                 {
@@ -493,7 +497,8 @@ namespace DiKErnel.Integration
         /// <summary>
         /// Gets the location dike height.
         /// </summary>
-        /// <param name="locationDikeHeight">The optional dike height of the location.</param>
+        /// <param name="locationDikeHeight">The optional dike height of the
+        /// location.</param>
         /// <param name="outerCrestZCoordinate">The height of the outer crest.</param>
         /// <returns>The dike height.</returns>
         /// <remarks>In case the dike height of the location is not set, the height of the
@@ -517,19 +522,21 @@ namespace DiKErnel.Integration
             foreach (TimeDependentInputFactoryData currentTimeDependentInput in timeDependentInputFactoryDataItems)
             {
                 int currentTimeStepBeginTime = currentTimeDependentInput.BeginTime;
+
                 if (previousTimeDependentInput != null)
                 {
                     int previousTimeStepEndTime = previousTimeDependentInput.EndTime;
                     if (previousTimeStepEndTime != currentTimeStepBeginTime)
                     {
-                        RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must be " +
-                                                "equal to the end time of the previous time step " +
+                        RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must " +
+                                                "be equal to the end time of the previous time step " +
                                                 $"({previousTimeStepEndTime}).");
                         return false;
                     }
                 }
 
                 int currentTimeStepEndTime = currentTimeDependentInput.EndTime;
+
                 if (currentTimeStepBeginTime >= currentTimeStepEndTime)
                 {
                     RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must be " +
