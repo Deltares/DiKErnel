@@ -5,5 +5,15 @@
         <OutputType>WinExe</OutputType>
         <UseWPF>true</UseWPF>
     </PropertyGroup>
+    <ItemGroup>
+        <None Remove="Resources\logo.svg"/>
+        <Resource Include="Resources\logo.svg"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="SharpVectors" Version="1.8.1"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj"/>
+    </ItemGroup>
 
 </Project>

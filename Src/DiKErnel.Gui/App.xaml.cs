@@ -16,12 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Windows;
-
 namespace DiKErnel.Gui
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application {}
+    public partial class App : System.Windows.Application {}
 }

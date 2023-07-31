@@ -24,6 +24,5 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
              xmlns:local="clr-namespace:DiKErnel.Gui"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+     </Application.Resources>
 </Application>

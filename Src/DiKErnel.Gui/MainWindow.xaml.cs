@@ -16,7 +16,11 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Windows;
+using System.Windows.Media;
+using DiKErnel.Application;
+using Microsoft.Win32;
 
 namespace DiKErnel.Gui
 {
@@ -28,6 +32,58 @@ namespace DiKErnel.Gui
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+
+            VersionNumber = ApplicationHelper.ApplicationVersionString;
+            InputFilePath = "Invoerbestand.json";
+            OutputFilePath = "Uitvoerbestand.json";
+        }
+
+        public string VersionNumber { get; private set; }
+
+        public string InputFilePath { get; private set; }
+
+        public string OutputFilePath { get; private set; }
+
+        private void OnInputFileOpenButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                InputFilePath = openFileDialog.FileName;
+                InputTextBlock.Text = InputFilePath;
+                InputTextBlock.Foreground = Brushes.Black;
+                //this is to make sure that the rightmost part of text is visible in the textBlock when text is updated.
+                InputTextBlock.HorizontalAlignment = HorizontalAlignment.Right;
+            }
+        }
+
+        private void OnOutputFileOpenButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                OutputFilePath = openFileDialog.FileName;
+                OutputTextBlock.Text = OutputFilePath;
+                OutputTextBlock.Foreground = Brushes.Black;
+                //this is to make sure that the rightmost part of text is visible in the textBlock when text is updated.
+                OutputTextBlock.HorizontalAlignment = HorizontalAlignment.Right;
+            }
+        }
+
+        private void OnStartButtonClicked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnEraseButtonClicked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnCopyButtonClicked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
