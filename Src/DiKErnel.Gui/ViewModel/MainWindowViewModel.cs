@@ -1,19 +1,37 @@
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Controls;
 using DiKErnel.Application;
 
 namespace DiKErnel.Gui.ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-    private string outputFilePath;
-    private string inputFilePath;
-    private string versionNumber;
-    
+        private string outputFilePath;
+        private string inputFilePath;
+        private string versionNumber;
+        private ObservableCollection<TextBlock> textBlocks;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public MainWindowViewModel()
         {
             inputFilePath = "Invoerbestand.json";
-            outputFilePath = "Invoerbestand.json";
+            outputFilePath = "Uitvoerbestand.json";
             versionNumber = ApplicationHelper.ApplicationVersionString;
+            TextBlocks = new ObservableCollection<TextBlock>();
+        }
+
+        public ObservableCollection<TextBlock> TextBlocks
+        {
+            get => textBlocks;
+            set
+            {
+                if (Equals(value, textBlocks))
+                    return;
+                textBlocks = value;
+                OnPropertyChanged(nameof(TextBlocks));
+            }
         }
 
         public string VersionNumber
@@ -52,10 +70,9 @@ namespace DiKErnel.Gui.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;  
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }  
+        }
     }
 }

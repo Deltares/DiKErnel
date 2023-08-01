@@ -183,6 +183,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
 
         <!-- Start button -->
         <Button
+            x:Name="StartButton"
             Margin="933,283"
             Padding="20,0"
             Height="32"
@@ -210,13 +211,14 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
         </Button>
 
         <!-- Output listview -->
-        <ListView
-            Margin="25,340"
-            Height="346"
-            Width="974"
-            />
+      <ListView
+        Margin="25,340"
+        Height="346"
+        Width="974"
+        ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}">
+      </ListView> 
 
-        <!-- Options Label -->
+            <!-- Options Label -->
         <TextBlock
             Margin="471,185"
             FontWeight="DemiBold">
@@ -240,15 +242,17 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>  
                 <CheckBox 
-                VerticalAlignment="Center"
-                Grid.Column="0">
+                    x:Name="ValidateJson"
+                    VerticalAlignment="Center"
+                    Grid.Column="0">
                 Valideren Json-formaat
-            </CheckBox>
-            <CheckBox
-                VerticalAlignment="Center"
-                Grid.Column="1">
+                </CheckBox>
+                <CheckBox
+                    x:Name="WriteMetadata"
+                    VerticalAlignment="Center"
+                    Grid.Column="1">
                 Schrijven meta-informatie
-            </CheckBox>
+                </CheckBox>
         </Grid>
 
         <!-- Output level grid -->

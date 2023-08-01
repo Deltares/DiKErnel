@@ -14,6 +14,9 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj" />
+        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj" />
+        <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Input\DiKErnel.KernelWrapper.Json.Input.csproj" />
+        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj" />
     </ItemGroup>
     <ItemGroup>
       <Page Update="View\MainWindow.xaml">
