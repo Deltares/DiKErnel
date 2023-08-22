@@ -20,11 +20,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.GrassRevetment;
 using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetment;
+using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
@@ -220,15 +222,28 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                      : LocationDependentAccelerationAlphaA.ValueAtInnerSlope;
         }
 
-        private static double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
-                                                                 double wavePeriodTm10, double waveDirection)
+        private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
+                                                          double wavePeriodTm10, double waveDirection)
         {
-            throw new NotImplementedException();
+            return GrassRevetmentOvertoppingFunctions.RepresentativeWaveRunup2P(
+                new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
+                                                                   waveDirection, xValuesProfile, zValuesProfile,
+                                                                   roughnessCoefficients, dikeHeight));
         }
 
-        private static double CalculateCumulativeOverload(double averageNumberOfWaves)
+        private double CalculateCumulativeOverload(double averageNumberOfWaves)
         {
-            throw new NotImplementedException();
+            return GrassRevetmentOvertoppingFunctions.CumulativeOverload(
+                new GrassRevetmentOvertoppingCumulativeOverloadInput(averageNumberOfWaves,
+                                                                     representativeWaveRunup2P,
+                                                                     FixedNumberOfWaves,
+                                                                     verticalDistanceWaterLevelElevation,
+                                                                     CriticalFrontVelocity,
+                                                                     IncreasedLoadTransitionAlphaM,
+                                                                     ReducedStrengthTransitionAlphaS,
+                                                                     Constants.GravitationalAcceleration,
+                                                                     accelerationAlphaA,
+                                                                     FrontVelocityCwo));
         }
 
         private static double CalculateDikeHeight((double, double) outerCrest,
