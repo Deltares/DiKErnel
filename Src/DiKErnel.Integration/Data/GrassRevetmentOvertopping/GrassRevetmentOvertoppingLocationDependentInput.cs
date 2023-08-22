@@ -32,9 +32,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
     internal class GrassRevetmentOvertoppingLocationDependentInput : LocationDependentInput
     {
-        private IReadOnlyList<double> xValuesProfile;
-        private IReadOnlyList<double> zValuesProfile;
-        private IReadOnlyList<double> roughnessCoefficients;
+        private readonly List<double> xValuesProfile = new List<double>();
+        private readonly List<double> zValuesProfile = new List<double>();
+        private readonly List<double> roughnessCoefficients = new List<double>();
         private double dikeHeight = double.PositiveInfinity;
         private double accelerationAlphaA = double.PositiveInfinity;
 
@@ -189,21 +189,35 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
-        private static void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
-                                                         IReadOnlyList<ProfileSegment> profileSegments)
+        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
+                                                  IReadOnlyList<ProfileSegment> profileSegments)
         {
-            throw new NotImplementedException();
+            foreach (ProfileSegment profileSegment in profileSegments)
+            {
+                ProfilePoint startPoint = profileSegment.StartPoint;
+
+                if (startPoint.X >= outerToe.Item1 && startPoint.X < outerCrest.Item1)
+                {
+                    xValuesProfile.Add(startPoint.X);
+                    zValuesProfile.Add(startPoint.Z);
+                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient);
+                }
+            }
+
+            xValuesProfile.Add(outerCrest.Item1);
+            zValuesProfile.Add(outerCrest.Item2);
         }
 
-        private static void InitializeDikeHeight((double, double) outerCrest,
-                                                 IReadOnlyList<ProfileSegment> profileSegments)
+        private void InitializeDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments)
         {
-            throw new NotImplementedException();
+            dikeHeight = CalculateDikeHeight(outerCrest, profileSegments, Z);
         }
 
-        private static void InitializeAccelerationAlphaA((double, double) outerCrest, (double, double) innerCrest)
+        private void InitializeAccelerationAlphaA((double, double) outerCrest, (double, double) innerCrest)
         {
-            throw new NotImplementedException();
+            accelerationAlphaA = X >= outerCrest.Item1 && X <= innerCrest.Item1
+                                     ? LocationDependentAccelerationAlphaA.ValueAtCrest
+                                     : LocationDependentAccelerationAlphaA.ValueAtInnerSlope;
         }
 
         private static double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
