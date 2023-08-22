@@ -19,7 +19,11 @@
 using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact;
 using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
@@ -87,7 +91,30 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
         {
-            return base.Validate(timeDependentInputItems, profileData);
+            bool baseValidationSuccessful = base.Validate(timeDependentInputItems, profileData);
+
+            var validationIssues = new List<ValidationIssue>
+            {
+                AsphaltRevetmentWaveImpactValidator.FatigueAlpha(Fatigue.Alpha),
+                AsphaltRevetmentWaveImpactValidator.FatigueBeta(Fatigue.Beta),
+                AsphaltRevetmentWaveImpactValidator.FailureTension(FailureTension),
+                AsphaltRevetmentWaveImpactValidator.ImpactNumberC(ImpactNumberC),
+                AsphaltRevetmentWaveImpactValidator.DensityOfWater(DensityOfWater),
+                AsphaltRevetmentWaveImpactValidator.SoilElasticity(SoilElasticity),
+                AsphaltRevetmentWaveImpactValidator.StiffnessRelationNu(StiffnessRelationNu),
+                AsphaltRevetmentWaveImpactValidator.Thickness(UpperLayer.Thickness),
+                AsphaltRevetmentWaveImpactValidator.ElasticModulus(UpperLayer.ElasticModulus)
+            };
+
+            if (SubLayer != null)
+            {
+                validationIssues.Add(AsphaltRevetmentWaveImpactValidator.Thickness(SubLayer.Thickness));
+                validationIssues.Add(AsphaltRevetmentWaveImpactValidator.ElasticModulus(SubLayer.ElasticModulus));
+            }
+
+            validationIssues.Add(RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm));
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
         public override LocationDependentOutput GetLocationDependentOutput(
