@@ -44,16 +44,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         private double representativeWaveRunup2P = double.PositiveInfinity;
         private double cumulativeOverload = double.PositiveInfinity;
 
-        public GrassRevetmentOvertoppingLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                               double criticalCumulativeOverload,
-                                                               double criticalFrontVelocity,
-                                                               double increasedLoadTransitionAlphaM,
-                                                               double reducedStrengthTransitionAlphaS,
-                                                               double averageNumberOfWavesCtm, int fixedNumberOfWaves,
-                                                               double frontVelocityCwo,
-                                                               GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
-                                                                   locationDependentAccelerationAlphaA,
-                                                               double? enforcedDikeHeight)
+        public GrassRevetmentOvertoppingLocationDependentInput(
+            double x, double initialDamage, double failureNumber, double criticalCumulativeOverload,
+            double criticalFrontVelocity, double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+            double averageNumberOfWavesCtm, int fixedNumberOfWaves, double frontVelocityCwo,
+            GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA,
+            double? enforcedDikeHeight)
             : base(x, initialDamage, failureNumber)
         {
             CriticalCumulativeOverload = criticalCumulativeOverload;
