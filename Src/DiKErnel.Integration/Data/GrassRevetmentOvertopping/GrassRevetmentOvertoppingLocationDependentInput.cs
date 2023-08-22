@@ -246,16 +246,47 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                      FrontVelocityCwo));
         }
 
-        private static double CalculateDikeHeight((double, double) outerCrest,
-                                                  IReadOnlyList<ProfileSegment> profileSegments, double locationHeight)
+        private double CalculateDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments,
+                                           double locationHeight)
         {
-            throw new NotImplementedException();
+            if (EnforcedDikeHeight != null)
+            {
+                return EnforcedDikeHeight.Value;
+            }
+
+            double calculateDikeHeight = locationHeight;
+
+            foreach (ProfileSegment profileSegment in profileSegments)
+            {
+                ProfilePoint startPoint = profileSegment.StartPoint;
+
+                if (startPoint.X >= outerCrest.Item1 && startPoint.X < X)
+                {
+                    calculateDikeHeight = Math.Max(calculateDikeHeight, startPoint.Z);
+                }
+            }
+
+            return calculateDikeHeight;
         }
 
-        private static GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, int? timeOfFailure)
         {
-            throw new NotImplementedException();
+            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
+            };
+
+            if (verticalDistanceWaterLevelElevation >= 0)
+            {
+                constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
+                constructionProperties.CumulativeOverload = cumulativeOverload;
+            }
+
+            return constructionProperties;
         }
     }
 }
