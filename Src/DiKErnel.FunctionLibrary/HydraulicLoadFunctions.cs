@@ -95,7 +95,7 @@ namespace DiKErnel.FunctionLibrary
         /// <param name="z">The z coordinate [m].</param>
         /// <param name="waterLevel">The water level [m].</param>
         /// <returns>The vertical distance of the water elevation [m].</returns>
-        public static double VerticalWaterDistanceWaterLevelElevation(double z, double waterLevel)
+        public static double VerticalDistanceWaterLevelElevation(double z, double waterLevel)
         {
             return z - waterLevel;
         }

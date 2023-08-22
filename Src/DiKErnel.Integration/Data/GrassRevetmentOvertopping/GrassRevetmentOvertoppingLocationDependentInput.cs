@@ -23,6 +23,8 @@ using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.GrassRevetment;
 using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
+using DiKErnel.FunctionLibrary;
+using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
@@ -145,7 +147,46 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            throw new NotImplementedException();
+            var incrementDamage = 0.0;
+            double damage = initialDamage;
+            int? timeOfFailure = null;
+
+            verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
+                dikeHeight, timeDependentInput.WaterLevel);
+
+            if (verticalDistanceWaterLevelElevation >= 0)
+            {
+                int beginTime = timeDependentInput.BeginTime;
+
+                int incrementTime = RevetmentFunctions.IncrementTime(beginTime, timeDependentInput.EndTime);
+                double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
+                                                                                      timeDependentInput.WavePeriodTm10,
+                                                                                      AverageNumberOfWavesCtm);
+                double waveDirection = HydraulicLoadFunctions.WaveDirection(timeDependentInput.WaveAngle);
+
+                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaterLevel,
+                                                                               timeDependentInput.WaveHeightHm0,
+                                                                               timeDependentInput.WavePeriodTm10,
+                                                                               waveDirection);
+
+                cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
+
+                incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
+                                                                          CriticalCumulativeOverload);
+
+                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
+
+                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
+                {
+                    double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
+                        incrementTime, incrementDamage, FailureNumber, initialDamage);
+
+                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+                }
+            }
+
+            return new GrassRevetmentOvertoppingTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
         private static void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
@@ -165,13 +206,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             throw new NotImplementedException();
         }
 
-        private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
-                                                          double wavePeriodTm10, double waveDirection)
+        private static double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
+                                                                 double wavePeriodTm10, double waveDirection)
         {
             throw new NotImplementedException();
         }
 
-        private double CalculateCumulativeOverload(double averageNumberOfWaves)
+        private static double CalculateCumulativeOverload(double averageNumberOfWaves)
         {
             throw new NotImplementedException();
         }
@@ -182,7 +223,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             throw new NotImplementedException();
         }
 
-        private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private static GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, int? timeOfFailure)
         {
             throw new NotImplementedException();

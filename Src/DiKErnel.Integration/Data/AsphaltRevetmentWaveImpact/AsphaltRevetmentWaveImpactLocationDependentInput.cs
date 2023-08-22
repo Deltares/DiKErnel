@@ -142,10 +142,12 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             }
 
             logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(FailureTension);
+
             computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(UpperLayer.Thickness,
                 subLayerThickness,
                 UpperLayer.ElasticModulus,
                 subLayerElasticModulus);
+
             stiffnessRelation = AsphaltRevetmentWaveImpactFunctions.StiffnessRelation(computationalThickness,
                                                                                       subLayerElasticModulus,
                                                                                       SoilElasticity,
@@ -185,6 +187,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
                                                                            timeDependentInput.WavePeriodTm10,
                                                                            AverageNumberOfWavesCtm);
+
             maximumPeakStress = AsphaltRevetmentWaveImpactFunctions.MaximumPeakStress(waveHeightHm0,
                                                                                       Constants.GravitationalAcceleration,
                                                                                       DensityOfWater);

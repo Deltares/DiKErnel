@@ -214,7 +214,7 @@ namespace DiKErnel.FunctionLibrary.Test
 
             // Call
             double verticalDistanceWaterLevelElevation =
-                HydraulicLoadFunctions.VerticalWaterDistanceWaterLevelElevation(z, waterLevel);
+                HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(z, waterLevel);
 
             // Assert
             AssertHelper.AreEqual(1.09, verticalDistanceWaterLevelElevation);
