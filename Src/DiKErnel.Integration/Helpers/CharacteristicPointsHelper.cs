@@ -17,26 +17,31 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
 
 namespace DiKErnel.Integration.Helpers
 {
     internal static class CharacteristicPointsHelper
     {
-        public static (double, double)? GetCoordinatesForType(IReadOnlyList<CharacteristicPoint> characteristicPoints,
-                                                              CharacteristicPointType characteristicPointType)
+        public static (double, double)? TryGetCoordinatesForType(IReadOnlyList<CharacteristicPoint> characteristicPoints,
+                                                                 CharacteristicPointType characteristicPointType)
         {
-            foreach (CharacteristicPoint characteristicPoint in characteristicPoints)
-            {
-                if (characteristicPoint.CharacteristicPointType == characteristicPointType)
-                {
-                    ProfilePoint profilePoint = characteristicPoint.ProfilePoint;
+            ProfilePoint profilePoint = characteristicPoints
+                                        .FirstOrDefault(cp => cp.CharacteristicPointType == characteristicPointType)?
+                                        .ProfilePoint;
 
-                    return (profilePoint.X, profilePoint.Z);
-                }
-            }
+            return profilePoint != null ? (profilePoint.X, profilePoint.Z) : ((double, double)?) null;
+        }
 
-            return null;
+        public static (double, double) GetCoordinatesForType(IReadOnlyList<CharacteristicPoint> characteristicPoints,
+                                                             CharacteristicPointType characteristicPointType)
+        {
+            ProfilePoint profilePoint = characteristicPoints
+                                        .First(cp => cp.CharacteristicPointType == characteristicPointType)
+                                        .ProfilePoint;
+
+            return (profilePoint.X, profilePoint.Z);
         }
     }
 }

@@ -152,10 +152,10 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                                                                                       StiffnessRelationNu);
 
             IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
-            (double, double)? notchOuterBerm = CharacteristicPointsHelper.GetCoordinatesForType(characteristicPoints,
-                CharacteristicPointType.NotchOuterBerm);
-            (double, double)? crestOuterBerm = CharacteristicPointsHelper.GetCoordinatesForType(characteristicPoints,
-                CharacteristicPointType.CrestOuterBerm);
+            (double, double)? notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.NotchOuterBerm);
+            (double, double)? crestOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.CrestOuterBerm);
 
             double horizontalPosition = X;
             if (notchOuterBerm != null && crestOuterBerm != null && horizontalPosition > crestOuterBerm.Value.Item1

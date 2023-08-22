@@ -18,7 +18,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.DomainLibrary.Validators.GrassRevetment;
+using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
@@ -78,18 +84,61 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
         {
-            return base.Validate(timeDependentInputItems, profileData);
+            bool baseValidationSuccessful = base.Validate(timeDependentInputItems, profileData);
+
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+
+            double calculatedDikeHeight = CalculateDikeHeight(outerCrest, profileData.ProfileSegments,
+                                                              profileData.GetVerticalHeight(X));
+
+            var validationIssues = new List<ValidationIssue>();
+
+            if (timeDependentInputItems.Any(timeDependentInput => timeDependentInput.WaterLevel > calculatedDikeHeight))
+            {
+                validationIssues.Add(new ValidationIssue(ValidationIssueType.Warning,
+                                                         "For one or more time steps the water level exceeds the " +
+                                                         "dike height. No damage will be calculated for these " +
+                                                         "time steps."));
+            }
+
+            validationIssues.Add(GrassRevetmentValidator.CriticalCumulativeOverload(CriticalCumulativeOverload));
+            validationIssues.Add(GrassRevetmentValidator.CriticalFrontVelocity(CriticalFrontVelocity));
+            validationIssues.Add(GrassRevetmentOvertoppingValidator.AccelerationAlphaA(
+                                     LocationDependentAccelerationAlphaA.ValueAtCrest));
+            validationIssues.Add(GrassRevetmentOvertoppingValidator.AccelerationAlphaA(
+                                     LocationDependentAccelerationAlphaA.ValueAtInnerSlope));
+            validationIssues.Add(GrassRevetmentValidator.FixedNumberOfWaves(FixedNumberOfWaves));
+            validationIssues.Add(GrassRevetmentOvertoppingValidator.FrontVelocityCwo(FrontVelocityCwo));
+            validationIssues.Add(RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm));
+            validationIssues.Add(GrassRevetmentValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM));
+            validationIssues.Add(GrassRevetmentValidator.ReducedStrengthTransitionAlphaS(
+                                     ReducedStrengthTransitionAlphaS));
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return base.GetLocationDependentOutput(timeDependentOutputItems);
+            return new GrassRevetmentOvertoppingLocationDependentOutput(timeDependentOutputItems);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
+
+            IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
+            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.OuterToe);
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.OuterCrest);
+            (double, double) innerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.InnerCrest);
+
+            InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
+            InitializeDikeHeight(outerCrest, profileData.ProfileSegments);
+            InitializeAccelerationAlphaA(outerCrest, innerCrest);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
@@ -99,18 +148,19 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             throw new NotImplementedException();
         }
 
-        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
-                                                  IReadOnlyList<ProfileSegment> profileSegments)
+        private static void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
+                                                         IReadOnlyList<ProfileSegment> profileSegments)
         {
             throw new NotImplementedException();
         }
 
-        private void InitializeDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments)
+        private static void InitializeDikeHeight((double, double) outerCrest,
+                                                 IReadOnlyList<ProfileSegment> profileSegments)
         {
             throw new NotImplementedException();
         }
 
-        private void InitializeAccelerationAlphaA((double, double) outerCrest, (double, double) innerCrest)
+        private static void InitializeAccelerationAlphaA((double, double) outerCrest, (double, double) innerCrest)
         {
             throw new NotImplementedException();
         }
@@ -126,8 +176,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             throw new NotImplementedException();
         }
 
-        private double CalculateDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments,
-                                           double locationHeight)
+        private static double CalculateDikeHeight((double, double) outerCrest,
+                                                  IReadOnlyList<ProfileSegment> profileSegments, double locationHeight)
         {
             throw new NotImplementedException();
         }
