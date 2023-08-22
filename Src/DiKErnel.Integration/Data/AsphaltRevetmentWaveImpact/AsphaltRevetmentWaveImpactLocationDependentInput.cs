@@ -16,11 +16,12 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact;
+using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
@@ -120,33 +121,117 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return base.GetLocationDependentOutput(timeDependentOutputItems);
+            return new AsphaltRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, outerSlope);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
+
+            double subLayerThickness;
+
+            if (SubLayer != null)
+            {
+                subLayerThickness = SubLayer.Thickness;
+                subLayerElasticModulus = SubLayer.ElasticModulus;
+            }
+            else
+            {
+                subLayerThickness = 0;
+                subLayerElasticModulus = UpperLayer.ElasticModulus;
+            }
+
+            logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(FailureTension);
+            computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(UpperLayer.Thickness,
+                subLayerThickness,
+                UpperLayer.ElasticModulus,
+                subLayerElasticModulus);
+            stiffnessRelation = AsphaltRevetmentWaveImpactFunctions.StiffnessRelation(computationalThickness,
+                                                                                      subLayerElasticModulus,
+                                                                                      SoilElasticity,
+                                                                                      StiffnessRelationNu);
+
+            IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
+            (double, double)? notchOuterBerm = CharacteristicPointsHelper.GetCoordinatesForType(characteristicPoints,
+                CharacteristicPointType.NotchOuterBerm);
+            (double, double)? crestOuterBerm = CharacteristicPointsHelper.GetCoordinatesForType(characteristicPoints,
+                CharacteristicPointType.CrestOuterBerm);
+
+            double horizontalPosition = X;
+            if (notchOuterBerm != null && crestOuterBerm != null && horizontalPosition > crestOuterBerm.Value.Item1
+                && horizontalPosition <= notchOuterBerm.Value.Item1)
+            {
+                horizontalPosition = crestOuterBerm.Value.Item1;
+            }
+
+            ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
+            ProfilePoint profileSegmentStartPoint = profileSegment.StartPoint;
+            ProfilePoint profileSegmentEndPoint = profileSegment.EndPoint;
+
+            outerSlope = AsphaltRevetmentWaveImpactFunctions.OuterSlope(profileSegmentStartPoint.X,
+                                                                        profileSegmentStartPoint.Z,
+                                                                        profileSegmentEndPoint.X,
+                                                                        profileSegmentEndPoint.Z);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            throw new NotImplementedException();
+            int beginTime = timeDependentInput.BeginTime;
+            double waveHeightHm0 = timeDependentInput.WaveHeightHm0;
+            int incrementTime = RevetmentFunctions.IncrementTime(beginTime, timeDependentInput.EndTime);
+
+            averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
+                                                                           timeDependentInput.WavePeriodTm10,
+                                                                           AverageNumberOfWavesCtm);
+            maximumPeakStress = AsphaltRevetmentWaveImpactFunctions.MaximumPeakStress(waveHeightHm0,
+                                                                                      Constants.GravitationalAcceleration,
+                                                                                      DensityOfWater);
+
+            AsphaltRevetmentWaveImpactFunctionsInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel,
+                                                                                        waveHeightHm0);
+            double incrementDamage = AsphaltRevetmentWaveImpactFunctions.IncrementDamage(input);
+            double damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
+
+            int? timeOfFailure = null;
+
+            if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
+            {
+                double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
+                    incrementTime, incrementDamage, FailureNumber, initialDamage);
+                timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+            }
+
+            return new AsphaltRevetmentWaveImpactTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
         private AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(double waterLevel,
                                                                                     double waveHeightHm0)
         {
-            throw new NotImplementedException();
+            return new AsphaltRevetmentWaveImpactFunctionsInput(logFailureTension, averageNumberOfWaves,
+                                                                maximumPeakStress, stiffnessRelation,
+                                                                computationalThickness, outerSlope, WidthFactors,
+                                                                DepthFactors, ImpactFactors, Z, waterLevel,
+                                                                waveHeightHm0, Fatigue.Alpha, Fatigue.Beta,
+                                                                ImpactNumberC);
         }
 
         private AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage,
-            double damage,
-            int? timeOfFailure)
+            double incrementDamage, double damage, int? timeOfFailure)
         {
-            throw new NotImplementedException();
+            return new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                LogFailureTension = logFailureTension,
+                MaximumPeakStress = maximumPeakStress,
+                StiffnessRelation = stiffnessRelation,
+                ComputationalThickness = computationalThickness,
+                EquivalentElasticModulus = subLayerElasticModulus
+            };
         }
     }
 }
