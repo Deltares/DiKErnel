@@ -206,7 +206,33 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
         private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
         {
-            throw new NotImplementedException();
+            slopeUpperLevel = NaturalStoneRevetmentFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
+                                                                             waterLevel, waveHeightHm0,
+                                                                             Slope.UpperLevelAus);
+
+            slopeUpperPosition = profileData.GetHorizontalPosition(slopeUpperLevel);
+
+            slopeLowerLevel = NaturalStoneRevetmentFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
+                                                                             waveHeightHm0, Slope.LowerLevelAls);
+
+            slopeLowerPosition = profileData.GetHorizontalPosition(slopeLowerLevel);
+
+            var outerSlopeInput = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                           slopeUpperPosition, slopeUpperLevel)
+            {
+                OuterToeHeight = outerToeHeight,
+                OuterCrestHeight = outerCrestHeight
+            };
+
+            if (notchOuterBerm != null && crestOuterBerm != null)
+            {
+                outerSlopeInput.NotchOuterBermPosition = notchOuterBerm.Value.Item1;
+                outerSlopeInput.NotchOuterBermHeight = notchOuterBerm.Value.Item2;
+                outerSlopeInput.CrestOuterBermPosition = crestOuterBerm.Value.Item1;
+                outerSlopeInput.CrestOuterBermHeight = crestOuterBerm.Value.Item2;
+            }
+
+            return NaturalStoneRevetmentFunctions.OuterSlope(outerSlopeInput);
         }
 
         private bool CalculateLoadingRevetment(double depthMaximumWaveLoad, double surfSimilarityParameter,
