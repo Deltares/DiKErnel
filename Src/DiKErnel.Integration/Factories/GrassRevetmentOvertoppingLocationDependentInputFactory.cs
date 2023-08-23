@@ -16,7 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
+using DiKErnel.DomainLibrary.Defaults;
+using DiKErnel.DomainLibrary.Defaults.GrassRevetment;
+using DiKErnel.DomainLibrary.Defaults.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 
 namespace DiKErnel.Integration.Factories
@@ -26,7 +28,33 @@ namespace DiKErnel.Integration.Factories
         public static GrassRevetmentOvertoppingLocationDependentInput CreateLocationDependentInput(
             GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties)
         {
-            throw new NotImplementedException();
+            IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
+                GrassRevetmentCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(
+                    constructionProperties.TopLayerType);
+
+            var locationDependentAccelerationAlphaA = new GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA(
+                constructionProperties.AccelerationAlphaAForCrest
+                ?? GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest,
+                constructionProperties.AccelerationAlphaAForInnerSlope
+                ?? GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForInnerSlope);
+
+            return new GrassRevetmentOvertoppingLocationDependentInput(
+                constructionProperties.X,
+                constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
+                constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
+                constructionProperties.CriticalCumulativeOverload ?? topLayerDefaults.CriticalCumulativeOverload,
+                constructionProperties.CriticalFrontVelocity ?? topLayerDefaults.CriticalFrontVelocity,
+                constructionProperties.IncreasedLoadTransitionAlphaM
+                ?? GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM,
+                constructionProperties.ReducedStrengthTransitionAlphaS
+                ?? GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
+                constructionProperties.AverageNumberOfWavesCtm
+                ?? GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
+                constructionProperties.FixedNumberOfWaves
+                ?? GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves,
+                constructionProperties.FrontVelocityCwo ?? GrassRevetmentOvertoppingDefaults.FrontVelocityCwo,
+                locationDependentAccelerationAlphaA,
+                constructionProperties.DikeHeight);
         }
     }
 }
