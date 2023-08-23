@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
@@ -123,7 +122,23 @@ namespace DiKErnel.Integration.Data
 
         public ProfileSegment GetProfileSegment(double horizontalPosition)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < ProfileSegments.Count; i++)
+            {
+                ProfileSegment profileSegment = ProfileSegments[i];
+
+                if (i == 0 && NumericsHelper.AreEqual(profileSegment.StartPoint.X, horizontalPosition))
+                {
+                    return null;
+                }
+
+                if (profileSegment.StartPoint.X <= horizontalPosition
+                    && profileSegment.EndPoint.X >= horizontalPosition)
+                {
+                    return profileSegment;
+                }
+            }
+
+            return null;
         }
     }
 }
