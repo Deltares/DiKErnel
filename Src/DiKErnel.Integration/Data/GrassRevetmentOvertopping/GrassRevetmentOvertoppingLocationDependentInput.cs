@@ -128,13 +128,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 
-            IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
             (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
-                characteristicPoints, CharacteristicPointType.OuterToe);
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
             (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                characteristicPoints, CharacteristicPointType.OuterCrest);
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
             (double, double) innerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                characteristicPoints, CharacteristicPointType.InnerCrest);
+                profileData.CharacteristicPoints, CharacteristicPointType.InnerCrest);
 
             InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
             InitializeDikeHeight(outerCrest, profileData.ProfileSegments);
@@ -154,9 +153,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
             if (verticalDistanceWaterLevelElevation >= 0)
             {
-                int beginTime = timeDependentInput.BeginTime;
-
-                int incrementTime = RevetmentFunctions.IncrementTime(beginTime, timeDependentInput.EndTime);
+                int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
+                                                                     timeDependentInput.EndTime);
                 double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
                                                                                       timeDependentInput.WavePeriodTm10,
                                                                                       AverageNumberOfWavesCtm);
@@ -179,7 +177,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                     double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
                         incrementTime, incrementDamage, FailureNumber, initialDamage);
 
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
+                                                                     timeDependentInput.BeginTime);
                 }
             }
 
@@ -192,12 +191,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         {
             foreach (ProfileSegment profileSegment in profileSegments)
             {
-                ProfilePoint startPoint = profileSegment.StartPoint;
-
-                if (startPoint.X >= outerToe.Item1 && startPoint.X < outerCrest.Item1)
+                if (profileSegment.StartPoint.X >= outerToe.Item1 && profileSegment.StartPoint.X < outerCrest.Item1)
                 {
-                    xValuesProfile.Add(startPoint.X);
-                    zValuesProfile.Add(startPoint.Z);
+                    xValuesProfile.Add(profileSegment.StartPoint.X);
+                    zValuesProfile.Add(profileSegment.StartPoint.Z);
                     roughnessCoefficients.Add(profileSegment.RoughnessCoefficient);
                 }
             }
@@ -254,11 +251,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
             foreach (ProfileSegment profileSegment in profileSegments)
             {
-                ProfilePoint startPoint = profileSegment.StartPoint;
-
-                if (startPoint.X >= outerCrest.Item1 && startPoint.X < X)
+                if (profileSegment.StartPoint.X >= outerCrest.Item1 && profileSegment.StartPoint.X < X)
                 {
-                    calculateDikeHeight = Math.Max(calculateDikeHeight, startPoint.Z);
+                    calculateDikeHeight = Math.Max(calculateDikeHeight, profileSegment.StartPoint.Z);
                 }
             }
 
