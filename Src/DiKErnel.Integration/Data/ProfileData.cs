@@ -18,17 +18,27 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data
 {
     internal class ProfileData : IProfileData
     {
+        private readonly List<ProfilePoint> profilePoints = new List<ProfilePoint>();
+
         public ProfileData(IReadOnlyList<ProfileSegment> profileSegments,
                            IReadOnlyList<CharacteristicPoint> characteristicPoints)
         {
             ProfileSegments = profileSegments;
             CharacteristicPoints = characteristicPoints;
+
+            profilePoints.Add(ProfileSegments[0].StartPoint);
+            profilePoints.AddRange(ProfileSegments.Select(profileSegment => profileSegment.EndPoint));
         }
 
         public IReadOnlyList<ProfileSegment> ProfileSegments { get; }
@@ -37,12 +47,45 @@ namespace DiKErnel.Integration.Data
 
         public bool Validate()
         {
-            throw new NotImplementedException();
+            List<ValidationIssue> validationIssues =
+                ProfileSegments.Select(profileSegment => ProfileValidator.RoughnessCoefficient(
+                                           profileSegment.RoughnessCoefficient))
+                               .ToList();
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
 
         public double GetVerticalHeight(double horizontalPosition)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < profilePoints.Count; i++)
+            {
+                ProfilePoint profilePoint = profilePoints[i];
+                double xCurrentDikeProfilePoint = profilePoint.X;
+                double zCurrentDikeProfilePoint = profilePoint.Z;
+
+                if (NumericsHelper.AreEqual(xCurrentDikeProfilePoint, horizontalPosition))
+                {
+                    return zCurrentDikeProfilePoint;
+                }
+
+                if (xCurrentDikeProfilePoint > horizontalPosition)
+                {
+                    if (i == 0)
+                    {
+                        return double.PositiveInfinity;
+                    }
+
+                    ProfilePoint previousProfilePoint = profilePoints[i - 1];
+                    double xPreviousDikeProfilePoint = previousProfilePoint.X;
+                    double zPreviousDikeProfilePoint = previousProfilePoint.Z;
+
+                    return zPreviousDikeProfilePoint + (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
+                           / (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
+                           * (horizontalPosition - xPreviousDikeProfilePoint);
+                }
+            }
+
+            return double.PositiveInfinity;
         }
 
         public double GetHorizontalPosition(double verticalHeight)
