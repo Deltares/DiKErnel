@@ -16,8 +16,11 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
+using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data
 {
@@ -48,7 +51,14 @@ namespace DiKErnel.Integration.Data
 
         public bool Validate()
         {
-            throw new NotImplementedException();
+            var validationIssues = new List<ValidationIssue>
+            {
+                HydraulicLoadsValidator.WaveHeightHm0(WaveHeightHm0),
+                HydraulicLoadsValidator.WavePeriodTm10(WavePeriodTm10),
+                HydraulicLoadsValidator.WaveAngle(WaveAngle)
+            };
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
     }
 }
