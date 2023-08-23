@@ -16,7 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
+using DiKErnel.DomainLibrary.Defaults;
+using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
 
 namespace DiKErnel.Integration.Factories
@@ -26,7 +27,42 @@ namespace DiKErnel.Integration.Factories
         public static AsphaltRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
             AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties)
         {
-            throw new NotImplementedException();
+            IAsphaltRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
+                AsphaltRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults();
+
+            double elasticModulusUpperLayer = constructionProperties.ElasticModulusUpperLayer;
+            var upperLayer = new AsphaltRevetmentWaveImpactLayer(constructionProperties.ThicknessUpperLayer,
+                                                                 elasticModulusUpperLayer);
+
+            AsphaltRevetmentWaveImpactLayer subLayer = null;
+            double? thicknessSubLayer = constructionProperties.ThicknessSubLayer;
+            double? elasticModulusSubLayer = constructionProperties.ElasticModulusSubLayer;
+
+            if (thicknessSubLayer != null && elasticModulusSubLayer != null)
+            {
+                subLayer = new AsphaltRevetmentWaveImpactLayer(thicknessSubLayer.Value, elasticModulusSubLayer.Value);
+            }
+
+            var fatigue = new AsphaltRevetmentWaveImpactFatigue(
+                constructionProperties.FatigueAlpha ?? topLayerDefaults.FatigueAlpha,
+                constructionProperties.FatigueBeta ?? topLayerDefaults.FatigueBeta);
+
+            return new AsphaltRevetmentWaveImpactLocationDependentInput(
+                constructionProperties.X,
+                constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
+                constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
+                constructionProperties.FailureTension,
+                constructionProperties.DensityOfWater ?? AsphaltRevetmentWaveImpactDefaults.DensityOfWater,
+                constructionProperties.SoilElasticity,
+                upperLayer,
+                subLayer,
+                constructionProperties.AverageNumberOfWavesCtm ?? AsphaltRevetmentWaveImpactDefaults.AverageNumberOfWavesCtm,
+                fatigue,
+                constructionProperties.ImpactNumberC ?? AsphaltRevetmentWaveImpactDefaults.ImpactNumberC,
+                constructionProperties.StiffnessRelationNu ?? topLayerDefaults.StiffnessRelationNu,
+                constructionProperties.WidthFactors ?? AsphaltRevetmentWaveImpactDefaults.WidthFactors,
+                constructionProperties.DepthFactors ?? AsphaltRevetmentWaveImpactDefaults.DepthFactors,
+                constructionProperties.ImpactFactors ?? AsphaltRevetmentWaveImpactDefaults.ImpactFactors);
         }
     }
 }

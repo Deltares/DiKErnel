@@ -16,6 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+
 namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
     /// <summary>
@@ -112,16 +114,16 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Gets or sets the width factors.
         /// </summary>
-        public (double, double)? WidthFactors { get; set; }
+        public IReadOnlyList<(double, double)> WidthFactors { get; set; }
 
         /// <summary>
         /// Gets or sets the depth factors.
         /// </summary>
-        public (double, double)? DepthFactors { get; set; }
+        public IReadOnlyList<(double, double)> DepthFactors { get; set; }
 
         /// <summary>
         /// Gets or sets the impact factors.
         /// </summary>
-        public (double, double)? ImpactFactors { get; set; }
+        public IReadOnlyList<(double, double)> ImpactFactors { get; set; }
     }
 }
