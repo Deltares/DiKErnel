@@ -90,7 +90,35 @@ namespace DiKErnel.Integration.Data
 
         public double GetHorizontalPosition(double verticalHeight)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < profilePoints.Count; i++)
+            {
+                ProfilePoint profilePoint = profilePoints[i];
+                double xCurrentDikeProfilePoint = profilePoint.X;
+                double zCurrentDikeProfilePoint = profilePoint.Z;
+
+                if (NumericsHelper.AreEqual(zCurrentDikeProfilePoint, verticalHeight))
+                {
+                    return xCurrentDikeProfilePoint;
+                }
+
+                if (zCurrentDikeProfilePoint > verticalHeight)
+                {
+                    if (i == 0)
+                    {
+                        return double.PositiveInfinity;
+                    }
+
+                    ProfilePoint previousProfilePoint = profilePoints[i - 1];
+                    double xPreviousDikeProfilePoint = previousProfilePoint.X;
+                    double zPreviousDikeProfilePoint = previousProfilePoint.Z;
+
+                    return xPreviousDikeProfilePoint + (xCurrentDikeProfilePoint - xPreviousDikeProfilePoint)
+                           / (zCurrentDikeProfilePoint - zPreviousDikeProfilePoint)
+                           * (verticalHeight - zPreviousDikeProfilePoint);
+                }
+            }
+
+            return double.PositiveInfinity;
         }
 
         public ProfileSegment GetProfileSegment(double horizontalPosition)
