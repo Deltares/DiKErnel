@@ -16,15 +16,17 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data
 {
     internal abstract class LocationDependentInput : ILocationDependentInput
     {
-        private bool derivedLocationDependentInputInitialized = false;
+        private bool derivedLocationDependentInputInitialized;
 
         protected LocationDependentInput(double x, double initialDamage, double failureNumber)
         {
@@ -36,7 +38,7 @@ namespace DiKErnel.Integration.Data
 
         public double X { get; }
 
-        public double Z { get; }
+        public double Z { get; private set; }
 
         public double InitialDamage { get; }
 
@@ -45,24 +47,34 @@ namespace DiKErnel.Integration.Data
         public virtual bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                      IProfileData profileData)
         {
-            throw new NotImplementedException();
+            var validationIssues = new List<ValidationIssue>
+            {
+                RevetmentValidator.InitialDamage(InitialDamage),
+                RevetmentValidator.FailureNumber(FailureNumber, InitialDamage)
+            };
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
 
         public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput,
                                              IProfileData profileData)
         {
-            throw new NotImplementedException();
+            if (!derivedLocationDependentInputInitialized)
+            {
+                derivedLocationDependentInputInitialized = true;
+
+                InitializeDerivedLocationDependentInput(profileData);
+            }
+
+            return CalculateTimeDependentOutput(initialDamage, timeDependentInput, profileData);
         }
 
-        public virtual LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
 
         protected virtual void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
-            throw new NotImplementedException();
+            Z = profileData.GetVerticalHeight(X);
         }
 
         protected abstract TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
