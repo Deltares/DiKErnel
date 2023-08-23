@@ -18,6 +18,11 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators;
+using DiKErnel.DomainLibrary.Validators.GrassRevetment;
+using DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
@@ -62,7 +67,21 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
         {
-            return base.Validate(timeDependentInputItems, profileData);
+            bool baseValidationSuccessful = base.Validate(timeDependentInputItems, profileData);
+
+            var validationIssues = new List<ValidationIssue>
+            {
+                GrassRevetmentValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
+                GrassRevetmentWaveRunupValidator.RepresentativeWaveRunup2PGammab(Representative2P.Gammab),
+                GrassRevetmentWaveRunupValidator.RepresentativeWaveRunup2PGammaf(Representative2P.Gammaf),
+                GrassRevetmentValidator.CriticalFrontVelocity(CriticalFrontVelocity),
+                GrassRevetmentValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
+                GrassRevetmentValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
+                GrassRevetmentWaveRunupValidator.OuterSlope(OuterSlope),
+                RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm)
+            };
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
     }
 }
