@@ -112,9 +112,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            double waveHeightHm0 = timeDependentInput.WaveHeightHm0;
-
-            loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel, waveHeightHm0);
+            loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel,
+                                                         timeDependentInput.WaveHeightHm0);
 
             var incrementDamage = 0.0;
             double damage = initialDamage;
@@ -122,9 +121,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 
             if (loadingRevetment)
             {
-                int beginTime = timeDependentInput.BeginTime;
-
-                int incrementTime = RevetmentFunctions.IncrementTime(beginTime, timeDependentInput.EndTime);
+                int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
+                                                                     timeDependentInput.EndTime);
 
                 waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(timeDependentInput.WaveAngle,
                                                                                     WaveAngleImpact.WaveAngleImpactNwa,
@@ -134,7 +132,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 waveHeightImpact = GrassRevetmentWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight,
                                                                                       maximumWaveHeight,
                                                                                       waveAngleImpact,
-                                                                                      waveHeightHm0);
+                                                                                      timeDependentInput.WaveHeightHm0);
 
                 double timeLine = GrassRevetmentWaveImpactFunctions.TimeLine(waveHeightImpact, TimeLine.TimeLineAgwi,
                                                                              TimeLine.TimeLineBgwi,
@@ -149,7 +147,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                     double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
                         incrementTime, incrementDamage, FailureNumber, initialDamage);
 
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
+                                                                     timeDependentInput.BeginTime);
                 }
             }
 

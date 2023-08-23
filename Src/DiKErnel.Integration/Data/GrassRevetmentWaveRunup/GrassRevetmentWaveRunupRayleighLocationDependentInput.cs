@@ -91,8 +91,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
             if (verticalDistanceWaterLevelElevation > 0)
             {
-                int beginTime = timeDependentInput.BeginTime;
-                int incrementTime = RevetmentFunctions.IncrementTime(beginTime, timeDependentInput.EndTime);
+                int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
+                                                                     timeDependentInput.EndTime);
 
                 double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
                                                                                       timeDependentInput.WavePeriodTm10,
@@ -122,7 +122,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                         incrementTime, incrementDamage, FailureNumber,
                         initialDamage);
 
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, timeDependentInput.BeginTime);
                 }
             }
 

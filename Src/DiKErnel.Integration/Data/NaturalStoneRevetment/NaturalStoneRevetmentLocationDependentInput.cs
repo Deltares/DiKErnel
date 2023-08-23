@@ -118,16 +118,14 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 
-            IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
-
             outerToeHeight = CharacteristicPointsHelper.GetCoordinatesForType(
-                characteristicPoints, CharacteristicPointType.OuterToe).Item2;
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe).Item2;
             outerCrestHeight = CharacteristicPointsHelper.GetCoordinatesForType(
-                characteristicPoints, CharacteristicPointType.OuterCrest).Item2;
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest).Item2;
             notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
-                characteristicPoints, CharacteristicPointType.NotchOuterBerm);
+                profileData.CharacteristicPoints, CharacteristicPointType.NotchOuterBerm);
             crestOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
-                characteristicPoints, CharacteristicPointType.CrestOuterBerm);
+                profileData.CharacteristicPoints, CharacteristicPointType.CrestOuterBerm);
 
             resistance = NaturalStoneRevetmentFunctions.Resistance(RelativeDensity, ThicknessTopLayer);
         }
@@ -136,33 +134,34 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            double waterLevel = timeDependentInput.WaterLevel;
-            double waveHeightHm0 = timeDependentInput.WaveHeightHm0;
-            double wavePeriodTm10 = timeDependentInput.WavePeriodTm10;
-
-            outerSlope = CalculateOuterSlope(waterLevel, waveHeightHm0, profileData);
+            outerSlope = CalculateOuterSlope(
+                timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0, profileData);
 
             double slopeAngle = HydraulicLoadFunctions.SlopeAngle(outerSlope);
 
             waveSteepnessDeepWater = HydraulicLoadFunctions.WaveSteepnessDeepWater(
-                waveHeightHm0, wavePeriodTm10, Constants.GravitationalAcceleration);
+                timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
+                Constants.GravitationalAcceleration);
 
             distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions.DistanceMaximumWaveElevation(
-                1.0, waveSteepnessDeepWater, waveHeightHm0,
+                1.0, waveSteepnessDeepWater, timeDependentInput.WaveHeightHm0,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax);
 
             surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
-                outerSlope, waveHeightHm0, wavePeriodTm10, Constants.GravitationalAcceleration);
+                outerSlope, timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
+                Constants.GravitationalAcceleration);
 
             normativeWidthWaveImpact = NaturalStoneRevetmentFunctions.NormativeWidthWaveImpact(
-                surfSimilarityParameter, waveHeightHm0, NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactAwi,
+                surfSimilarityParameter, timeDependentInput.WaveHeightHm0,
+                NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactAwi,
                 NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactBwi);
 
             depthMaximumWaveLoad = NaturalStoneRevetmentFunctions.DepthMaximumWaveLoad(
                 distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
 
-            loadingRevetment = CalculateLoadingRevetment(waterLevel, waveHeightHm0);
+            loadingRevetment = CalculateLoadingRevetment(
+                timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0);
 
             var incrementDamage = 0.0;
             double damage = initialDamage;
@@ -170,7 +169,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
             if (loadingRevetment)
             {
-                hydraulicLoad = CalculateHydraulicLoad(waveHeightHm0);
+                hydraulicLoad = CalculateHydraulicLoad(timeDependentInput.WaveHeightHm0);
 
                 waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(
                     timeDependentInput.WaveAngle, WaveAngleImpact.Betamax);
@@ -179,13 +178,13 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                     resistance, hydraulicLoad, waveAngleImpact, initialDamage);
 
                 referenceTimeDegradation = NaturalStoneRevetmentFunctions.ReferenceTimeDegradation(
-                    referenceDegradation, wavePeriodTm10);
+                    referenceDegradation, timeDependentInput.WavePeriodTm10);
 
                 int incrementTime = RevetmentFunctions.IncrementTime(
                     timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
                 double incrementDegradation = NaturalStoneRevetmentFunctions.IncrementDegradation(
-                    referenceTimeDegradation, incrementTime, wavePeriodTm10);
+                    referenceTimeDegradation, incrementTime, timeDependentInput.WavePeriodTm10);
 
                 incrementDamage = NaturalStoneRevetmentFunctions.IncrementDamage(
                     hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
@@ -194,7 +193,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
                 if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
                 {
-                    timeOfFailure = CalculateTimeOfFailure(wavePeriodTm10, timeDependentInput.BeginTime);
+                    timeOfFailure = CalculateTimeOfFailure(timeDependentInput.WavePeriodTm10, timeDependentInput.BeginTime);
                 }
             }
 
