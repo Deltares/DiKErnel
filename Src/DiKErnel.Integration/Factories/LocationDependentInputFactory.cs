@@ -16,10 +16,14 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data;
+using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Data.NaturalStoneRevetment;
 
 namespace DiKErnel.Integration.Factories
 {
@@ -28,7 +32,41 @@ namespace DiKErnel.Integration.Factories
         public static IReadOnlyList<ILocationDependentInput> Create(
             IReadOnlyList<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems)
         {
-            throw new NotImplementedException();
+            var locationDependentInputItems = new List<ILocationDependentInput>();
+
+            foreach (RevetmentLocationConstructionPropertiesBase locationConstructionProperties in locationConstructionPropertiesItems)
+            {
+                switch (locationConstructionProperties)
+                {
+                    case AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties:
+                        locationDependentInputItems.Add(
+                            AsphaltRevetmentWaveImpactLocationDependentInputFactory.CreateLocationDependentInput(
+                                asphaltWaveImpactLocationConstructionProperties));
+                        break;
+                    case GrassRevetmentOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties:
+                        locationDependentInputItems.Add(
+                            GrassRevetmentOvertoppingLocationDependentInputFactory.CreateLocationDependentInput(
+                                grassOvertoppingLocationConstructionProperties));
+                        break;
+                    case GrassRevetmentWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties:
+                        locationDependentInputItems.Add(
+                            GrassRevetmentWaveImpactLocationDependentInputFactory.CreateLocationDependentInput(
+                                grassWaveImpactLocationConstructionProperties));
+                        break;
+                    case GrassRevetmentWaveRunupRayleighLocationConstructionProperties grassWaveRunupRayleighLocationConstructionProperties:
+                        locationDependentInputItems.Add(
+                            GrassRevetmentWaveRunupRayleighLocationDependentInputFactory.CreateLocationDependentInput(
+                                grassWaveRunupRayleighLocationConstructionProperties));
+                        break;
+                    case NaturalStoneRevetmentLocationConstructionProperties naturalStoneLocationConstructionProperties:
+                        locationDependentInputItems.Add(
+                            NaturalStoneRevetmentLocationDependentInputFactory.CreateLocationDependentInput(
+                                naturalStoneLocationConstructionProperties));
+                        break;
+                }
+            }
+
+            return locationDependentInputItems;
         }
     }
 }
