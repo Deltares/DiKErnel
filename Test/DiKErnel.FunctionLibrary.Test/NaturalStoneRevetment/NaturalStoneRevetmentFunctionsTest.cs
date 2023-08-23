@@ -18,6 +18,7 @@
 
 using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
 using DiKErnel.FunctionLibrary.TestUtil;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
@@ -71,8 +72,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double slopeUpperPosition = 30.3;
             const double slopeUpperLevel = 5.425;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel);
+            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                 slopeUpperPosition, slopeUpperLevel,
+                                                                 Random.NextDouble(), Random.NextDouble());
 
             // Call
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
@@ -97,10 +99,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,
@@ -130,10 +130,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,
@@ -163,10 +161,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,
@@ -196,10 +192,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,
@@ -229,10 +223,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,
@@ -262,10 +254,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,
@@ -295,10 +285,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,
@@ -328,10 +316,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             const double crestOuterBermHeight = 3.5;
 
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel)
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight,
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
                 CrestOuterBermPosition = crestOuterBermPosition,

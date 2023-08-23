@@ -33,18 +33,20 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double slopeLowerLevel = Random.NextDouble();
             double slopeUpperPosition = Random.NextDouble();
             double slopeUpperLevel = Random.NextDouble();
+            double outerToeHeight = Random.NextDouble();
+            double outerCrestHeight = Random.NextDouble();
 
             // Call
             var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel);
+                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight);
 
             // Assert
             Assert.AreEqual(slopeLowerPosition, input.SlopeLowerPosition);
             Assert.AreEqual(slopeLowerLevel, input.SlopeLowerLevel);
             Assert.AreEqual(slopeUpperPosition, input.SlopeUpperPosition);
             Assert.AreEqual(slopeUpperLevel, input.SlopeUpperLevel);
-            Assert.AreEqual(0, input.OuterToeHeight);
-            Assert.AreEqual(0, input.OuterCrestHeight);
+            Assert.AreEqual(outerToeHeight, input.OuterToeHeight);
+            Assert.AreEqual(outerCrestHeight, input.OuterCrestHeight);
             Assert.AreEqual(double.PositiveInfinity, input.NotchOuterBermPosition);
             Assert.AreEqual(double.PositiveInfinity, input.NotchOuterBermHeight);
             Assert.AreEqual(double.PositiveInfinity, input.CrestOuterBermPosition);

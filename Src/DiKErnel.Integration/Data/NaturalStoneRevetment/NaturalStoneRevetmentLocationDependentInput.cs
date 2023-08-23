@@ -216,11 +216,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             slopeLowerPosition = profileData.GetHorizontalPosition(slopeLowerLevel);
 
             var outerSlopeInput = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
-                                                                           slopeUpperPosition, slopeUpperLevel)
-            {
-                OuterToeHeight = outerToeHeight,
-                OuterCrestHeight = outerCrestHeight
-            };
+                                                                           slopeUpperPosition, slopeUpperLevel,
+                                                                           outerToeHeight, outerCrestHeight);
 
             if (notchOuterBerm != null && crestOuterBerm != null)
             {
