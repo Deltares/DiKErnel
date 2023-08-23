@@ -52,61 +52,61 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         /// <summary>
         /// Gets or sets the critical cumulative overload.
         /// </summary>
-        public double? SetCriticalCumulativeOverload { get; set; }
+        public double? CriticalCumulativeOverload { get; set; }
 
         /// <summary>
         /// Gets or sets the critical front velocity.
         /// </summary>
-        public double? SetCriticalFrontVelocity { get; set; }
+        public double? CriticalFrontVelocity { get; set; }
 
         /// <summary>
         /// Gets or sets the alpha M coefficient.
         /// </summary>
-        public double? SetIncreasedLoadTransitionAlphaM { get; set; }
+        public double? IncreasedLoadTransitionAlphaM { get; set; }
 
         /// <summary>
         /// Gets or sets the alpha S coefficient.
         /// </summary>
-        public double? SetReducedStrengthTransitionAlphaS { get; set; }
+        public double? ReducedStrengthTransitionAlphaS { get; set; }
 
         /// <summary>
         /// Gets or sets the Ctm coefficient.
         /// </summary>
-        public double? SetAverageNumberOfWavesCtm { get; set; }
+        public double? AverageNumberOfWavesCtm { get; set; }
 
         /// <summary>
         /// Gets or sets the 2P Aru coefficient.
         /// </summary>
-        public double? SetRepresentativeWaveRunup2PAru { get; set; }
+        public double? RepresentativeWaveRunup2PAru { get; set; }
 
         /// <summary>
         /// Gets or sets the 2P Bru coefficient.
         /// </summary>
-        public double? SetRepresentativeWaveRunup2PBru { get; set; }
+        public double? RepresentativeWaveRunup2PBru { get; set; }
 
         /// <summary>
         /// Gets or sets the 2P Cru coefficient.
         /// </summary>
-        public double? SetRepresentativeWaveRunup2PCru { get; set; }
+        public double? RepresentativeWaveRunup2PCru { get; set; }
 
         /// <summary>
         /// Gets or sets the 2P Gammab coefficient.
         /// </summary>
-        public double? SetRepresentativeWaveRunup2PGammab { get; set; }
+        public double? RepresentativeWaveRunup2PGammab { get; set; }
 
         /// <summary>
         /// Gets or sets the 2P Gammaf coefficient.
         /// </summary>
-        public double? SetRepresentativeWaveRunup2PGammaf { get; set; }
+        public double? RepresentativeWaveRunup2PGammaf { get; set; }
 
         /// <summary>
         /// Gets or sets the Abeta coefficient.
         /// </summary>
-        public double? SetWaveAngleImpactAbeta { get; set; }
+        public double? WaveAngleImpactAbeta { get; set; }
 
         /// <summary>
         /// Gets or sets the Betamax coefficient.
         /// </summary>
-        public double? SetWaveAngleImpactBetamax { get; set; }
+        public double? WaveAngleImpactBetamax { get; set; }
     }
 }

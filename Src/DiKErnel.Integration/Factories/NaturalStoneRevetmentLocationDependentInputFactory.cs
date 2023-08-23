@@ -16,7 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
+using DiKErnel.DomainLibrary.Defaults;
+using DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment;
 using DiKErnel.Integration.Data.NaturalStoneRevetment;
 
 namespace DiKErnel.Integration.Factories
@@ -26,7 +27,62 @@ namespace DiKErnel.Integration.Factories
         public static NaturalStoneRevetmentLocationDependentInput CreateLocationDependentInput(
             NaturalStoneRevetmentLocationConstructionProperties constructionProperties)
         {
-            throw new NotImplementedException();
+            INaturalStoneRevetmentTopLayerDefaults topLayerDefaults =
+                NaturalStoneRevetmentDefaultsFactory.CreateTopLayerDefaults();
+
+            var hydraulicLoads = new NaturalStoneRevetmentHydraulicLoads(
+                constructionProperties.HydraulicLoadAp ?? topLayerDefaults.HydraulicLoadAp,
+                constructionProperties.HydraulicLoadBp ?? topLayerDefaults.HydraulicLoadBp,
+                constructionProperties.HydraulicLoadCp ?? topLayerDefaults.HydraulicLoadCp,
+                constructionProperties.HydraulicLoadNp ?? topLayerDefaults.HydraulicLoadNp,
+                constructionProperties.HydraulicLoadAs ?? topLayerDefaults.HydraulicLoadAs,
+                constructionProperties.HydraulicLoadBs ?? topLayerDefaults.HydraulicLoadBs,
+                constructionProperties.HydraulicLoadCs ?? topLayerDefaults.HydraulicLoadCs,
+                constructionProperties.HydraulicLoadNs ?? topLayerDefaults.HydraulicLoadNs,
+                constructionProperties.HydraulicLoadXib ?? topLayerDefaults.HydraulicLoadXib);
+
+            var slope = new NaturalStoneRevetmentSlope(
+                constructionProperties.SlopeUpperLevelAus ?? NaturalStoneRevetmentDefaults.SlopeUpperLevelAus,
+                constructionProperties.SlopeLowerLevelAls ?? NaturalStoneRevetmentDefaults.SlopeLowerLevelAls);
+
+            var upperLimitLoading = new NaturalStoneRevetmentUpperLimitLoading(
+                constructionProperties.UpperLimitLoadingAul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingAul,
+                constructionProperties.UpperLimitLoadingBul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingBul,
+                constructionProperties.UpperLimitLoadingCul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingCul);
+
+            var lowerLimitLoading = new NaturalStoneRevetmentLowerLimitLoading(
+                constructionProperties.LowerLimitLoadingAll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingAll,
+                constructionProperties.LowerLimitLoadingBll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingBll,
+                constructionProperties.LowerLimitLoadingCll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingCll);
+
+            var distanceMaximumWaveElevation = new NaturalStoneRevetmentDistanceMaximumWaveElevation(
+                constructionProperties.DistanceMaximumWaveElevationAsmax
+                ?? NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationAsmax,
+                constructionProperties.DistanceMaximumWaveElevationBsmax
+                ?? NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationBsmax);
+
+            var normativeWidthOfWaveImpact = new NaturalStoneRevetmentNormativeWidthOfWaveImpact(
+                constructionProperties.NormativeWidthOfWaveImpactAwi
+                ?? NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactAwi,
+                constructionProperties.NormativeWidthOfWaveImpactBwi
+                ?? NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactBwi);
+
+            var waveAngleImpact = new NaturalStoneRevetmentWaveAngleImpact(
+                constructionProperties.WaveAngleImpactBetamax ?? NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax);
+
+            return new NaturalStoneRevetmentLocationDependentInput(
+                constructionProperties.X,
+                constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
+                constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
+                constructionProperties.RelativeDensity,
+                constructionProperties.ThicknessTopLayer,
+                hydraulicLoads,
+                slope,
+                upperLimitLoading,
+                lowerLimitLoading,
+                distanceMaximumWaveElevation,
+                normativeWidthOfWaveImpact,
+                waveAngleImpact);
         }
     }
 }
