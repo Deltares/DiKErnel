@@ -16,7 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
+using DiKErnel.DomainLibrary.Defaults;
+using DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
 
 namespace DiKErnel.Integration.Factories
@@ -26,7 +27,29 @@ namespace DiKErnel.Integration.Factories
         public static GrassRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
             GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties)
         {
-            throw new NotImplementedException();
+            IGrassRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
+                GrassRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
+
+            var waveAngleImpact = new GrassRevetmentWaveImpactWaveAngleImpact(
+                constructionProperties.WaveAngleImpactNwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa,
+                constructionProperties.WaveAngleImpactQwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactQwa,
+                constructionProperties.WaveAngleImpactRwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactRwa);
+
+            var timeLine = new GrassRevetmentWaveImpactTimeLine(
+                constructionProperties.TimeLineAgwi ?? topLayerDefaults.TimeLineAgwi,
+                constructionProperties.TimeLineBgwi ?? topLayerDefaults.TimeLineBgwi,
+                constructionProperties.TimeLineCgwi ?? topLayerDefaults.TimeLineCgwi);
+
+            return new GrassRevetmentWaveImpactLocationDependentInput(
+                constructionProperties.X,
+                constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
+                constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
+                waveAngleImpact,
+                constructionProperties.MinimumWaveHeightTemax ?? GrassRevetmentWaveImpactDefaults.MinimumWaveHeightTemax,
+                constructionProperties.MaximumWaveHeightTemin ?? GrassRevetmentWaveImpactDefaults.MaximumWaveHeightTemin,
+                timeLine,
+                constructionProperties.UpperLimitLoadingAul ?? GrassRevetmentWaveImpactDefaults.UpperLimitLoadingAul,
+                constructionProperties.LowerLimitLoadingAll ?? GrassRevetmentWaveImpactDefaults.LowerLimitLoadingAll);
         }
     }
 }
