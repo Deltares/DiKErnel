@@ -19,6 +19,10 @@
 using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment;
+using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
@@ -26,8 +30,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
     {
         private double outerToeHeight = double.PositiveInfinity;
         private double outerCrestHeight = double.PositiveInfinity;
-        private (double, double)? notchOuterBerm = null;
-        private (double, double)? crestOuterBerm = null;
+        private (double, double)? notchOuterBerm;
+        private (double, double)? crestOuterBerm;
         private double resistance = double.PositiveInfinity;
         private double slopeLowerPosition = double.PositiveInfinity;
         private double slopeLowerLevel = double.PositiveInfinity;
@@ -90,18 +94,41 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
         {
-            return base.Validate(timeDependentInputItems, profileData);
+            bool baseValidationSuccessful = base.Validate(timeDependentInputItems, profileData);
+
+            var validationIssues = new List<ValidationIssue>
+            {
+                NaturalStoneRevetmentValidator.RelativeDensity(RelativeDensity),
+                NaturalStoneRevetmentValidator.ThicknessTopLayer(ThicknessTopLayer),
+                NaturalStoneRevetmentValidator.SlopeUpperLevelAus(Slope.UpperLevelAus),
+                NaturalStoneRevetmentValidator.SlopeLowerLevelAls(Slope.LowerLevelAls)
+            };
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return base.GetLocationDependentOutput(timeDependentOutputItems);
+            return new NaturalStoneRevetmentLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
+
+            IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
+
+            outerToeHeight = CharacteristicPointsHelper.GetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.OuterToe).Item2;
+            outerCrestHeight = CharacteristicPointsHelper.GetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.OuterCrest).Item2;
+            notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.NotchOuterBerm);
+            crestOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                characteristicPoints, CharacteristicPointType.CrestOuterBerm);
+
+            resistance = NaturalStoneRevetmentFunctions.Resistance(RelativeDensity, ThicknessTopLayer);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
