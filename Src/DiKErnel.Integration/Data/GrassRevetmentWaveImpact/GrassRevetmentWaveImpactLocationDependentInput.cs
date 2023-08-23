@@ -16,9 +16,13 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact;
+using DiKErnel.FunctionLibrary;
+using DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 {
@@ -28,7 +32,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         private double maximumWaveHeight = double.PositiveInfinity;
         private double lowerLimitLoading = double.PositiveInfinity;
         private double upperLimitLoading = double.PositiveInfinity;
-        private bool loadingRevetment = false;
+        private bool loadingRevetment;
         private double waveAngleImpact = double.PositiveInfinity;
         private double waveHeightImpact = double.PositiveInfinity;
 
@@ -64,36 +68,127 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
         {
-            return base.Validate(timeDependentInputItems, profileData);
+            bool baseValidationSuccessful = base.Validate(timeDependentInputItems, profileData);
+
+            var validationIssues = new List<ValidationIssue>
+            {
+                GrassRevetmentWaveImpactValidator.TimeLineAgwi(TimeLine.TimeLineAgwi, TimeLine.TimeLineCgwi),
+                GrassRevetmentWaveImpactValidator.TimeLineBgwi(TimeLine.TimeLineBgwi),
+                GrassRevetmentWaveImpactValidator.TimeLineCgwi(TimeLine.TimeLineCgwi),
+                GrassRevetmentWaveImpactValidator.MinimumWaveHeightTemax(MinimumWaveHeightTemax),
+                GrassRevetmentWaveImpactValidator.MaximumWaveHeightTemin(MaximumWaveHeightTemin),
+                GrassRevetmentWaveImpactValidator.WaveAngleImpactNwa(WaveAngleImpact.WaveAngleImpactNwa),
+                GrassRevetmentWaveImpactValidator.WaveAngleImpactQwa(WaveAngleImpact.WaveAngleImpactQwa),
+                GrassRevetmentWaveImpactValidator.WaveAngleImpactRwa(WaveAngleImpact.WaveAngleImpactRwa),
+                GrassRevetmentWaveImpactValidator.UpperLimitLoadingAul(UpperLimitLoadingAul, LowerLimitLoadingAll)
+            };
+
+            return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return base.GetLocationDependentOutput(timeDependentOutputItems);
+            return new GrassRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
+
+            double timeLineAgwi = TimeLine.TimeLineAgwi;
+            double timeLineBgwi = TimeLine.TimeLineBgwi;
+            double timeLineCgwi = TimeLine.TimeLineCgwi;
+
+            minimumWaveHeight = GrassRevetmentWaveImpactFunctions.MinimumWaveHeight(timeLineAgwi, timeLineBgwi,
+                                                                                    timeLineCgwi,
+                                                                                    MinimumWaveHeightTemax);
+            maximumWaveHeight = GrassRevetmentWaveImpactFunctions.MaximumWaveHeight(timeLineAgwi, timeLineBgwi,
+                                                                                    timeLineCgwi,
+                                                                                    MaximumWaveHeightTemin);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            throw new NotImplementedException();
+            double waveHeightHm0 = timeDependentInput.WaveHeightHm0;
+
+            loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel, waveHeightHm0);
+
+            var incrementDamage = 0.0;
+            double damage = initialDamage;
+            int? timeOfFailure = null;
+
+            if (loadingRevetment)
+            {
+                int beginTime = timeDependentInput.BeginTime;
+
+                int incrementTime = RevetmentFunctions.IncrementTime(beginTime, timeDependentInput.EndTime);
+
+                waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(timeDependentInput.WaveAngle,
+                                                                                    WaveAngleImpact.WaveAngleImpactNwa,
+                                                                                    WaveAngleImpact.WaveAngleImpactQwa,
+                                                                                    WaveAngleImpact.WaveAngleImpactRwa);
+
+                waveHeightImpact = GrassRevetmentWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight,
+                                                                                      maximumWaveHeight,
+                                                                                      waveAngleImpact,
+                                                                                      waveHeightHm0);
+
+                double timeLine = GrassRevetmentWaveImpactFunctions.TimeLine(waveHeightImpact, TimeLine.TimeLineAgwi,
+                                                                             TimeLine.TimeLineBgwi,
+                                                                             TimeLine.TimeLineCgwi);
+
+                incrementDamage = GrassRevetmentWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
+
+                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
+
+                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
+                {
+                    double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
+                        incrementTime, incrementDamage, FailureNumber, initialDamage);
+
+                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+                }
+            }
+
+            return new GrassRevetmentWaveImpactTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
         private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
         {
-            throw new NotImplementedException();
+            lowerLimitLoading = GrassRevetmentWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0,
+                                                                                    LowerLimitLoadingAll);
+            upperLimitLoading = GrassRevetmentWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0,
+                                                                                    UpperLimitLoadingAul);
+
+            return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }
 
         private GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, int? timeOfFailure)
         {
-            throw new NotImplementedException();
+            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                LoadingRevetment = loadingRevetment,
+                UpperLimitLoading = upperLimitLoading,
+                LowerLimitLoading = lowerLimitLoading
+            };
+
+            if (loadingRevetment)
+            {
+                constructionProperties.MinimumWaveHeight = minimumWaveHeight;
+                constructionProperties.MaximumWaveHeight = maximumWaveHeight;
+                constructionProperties.WaveAngleImpact = waveAngleImpact;
+                constructionProperties.WaveHeightImpact = waveHeightImpact;
+            }
+
+            return constructionProperties;
         }
     }
 }
