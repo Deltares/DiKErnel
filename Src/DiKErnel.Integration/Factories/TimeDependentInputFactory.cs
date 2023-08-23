@@ -16,9 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data;
 
 namespace DiKErnel.Integration.Factories
 {
@@ -27,7 +28,13 @@ namespace DiKErnel.Integration.Factories
         public static IReadOnlyList<ITimeDependentInput> Create(
             IReadOnlyList<TimeDependentInputFactoryData> timeStepDataItems)
         {
-            throw new NotImplementedException();
+            return timeStepDataItems.Select(timeStepDataItem => new TimeDependentInput(timeStepDataItem.BeginTime,
+                                                                                       timeStepDataItem.EndTime,
+                                                                                       timeStepDataItem.WaterLevel,
+                                                                                       timeStepDataItem.WaveHeightHm0,
+                                                                                       timeStepDataItem.WavePeriodTm10,
+                                                                                       timeStepDataItem.WaveAngle))
+                                    .ToList();
         }
     }
 }
