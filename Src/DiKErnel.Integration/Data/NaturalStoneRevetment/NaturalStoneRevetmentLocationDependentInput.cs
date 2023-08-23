@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
@@ -163,8 +162,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             depthMaximumWaveLoad = NaturalStoneRevetmentFunctions.DepthMaximumWaveLoad(
                 distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
 
-            loadingRevetment = CalculateLoadingRevetment(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                         waveHeightHm0);
+            loadingRevetment = CalculateLoadingRevetment(waterLevel, waveHeightHm0);
 
             var incrementDamage = 0.0;
             double damage = initialDamage;
@@ -172,7 +170,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
             if (loadingRevetment)
             {
-                hydraulicLoad = CalculateHydraulicLoad(surfSimilarityParameter, waveHeightHm0);
+                hydraulicLoad = CalculateHydraulicLoad(waveHeightHm0);
 
                 waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(
                     timeDependentInput.WaveAngle, WaveAngleImpact.Betamax);
@@ -235,26 +233,88 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             return NaturalStoneRevetmentFunctions.OuterSlope(outerSlopeInput);
         }
 
-        private bool CalculateLoadingRevetment(double depthMaximumWaveLoad, double surfSimilarityParameter,
-                                               double waterLevel, double waveHeightHm0)
+        private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
         {
-            throw new NotImplementedException();
+            var lowerLimitLoadingInput = new NaturalStoneRevetmentLimitLoadingInput(
+                depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0,
+                LowerLimitLoading.LowerLimitAll, LowerLimitLoading.LowerLimitBll, LowerLimitLoading.LowerLimitCll);
+
+            lowerLimitLoading = NaturalStoneRevetmentFunctions.LowerLimitLoading(lowerLimitLoadingInput);
+
+            var upperLimitLoadingInput = new NaturalStoneRevetmentLimitLoadingInput(
+                depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0,
+                UpperLimitLoading.UpperLimitAul, UpperLimitLoading.UpperLimitBul, UpperLimitLoading.UpperLimitCul);
+
+            upperLimitLoading = NaturalStoneRevetmentFunctions.UpperLimitLoading(upperLimitLoadingInput);
+
+            return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }
 
-        private double CalculateHydraulicLoad(double surfSimilarityParameter, double waveHeightHm0)
+        private double CalculateHydraulicLoad(double waveHeightHm0)
         {
-            throw new NotImplementedException();
+            bool usePlungingBreakers = HydraulicLoads.HydraulicLoadXib >= surfSimilarityParameter;
+
+            return NaturalStoneRevetmentFunctions.HydraulicLoad(
+                new NaturalStoneRevetmentHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0,
+                                                            usePlungingBreakers
+                                                                ? HydraulicLoads.HydraulicLoadAp
+                                                                : HydraulicLoads.HydraulicLoadAs,
+                                                            usePlungingBreakers
+                                                                ? HydraulicLoads.HydraulicLoadBp
+                                                                : HydraulicLoads.HydraulicLoadBs,
+                                                            usePlungingBreakers
+                                                                ? HydraulicLoads.HydraulicLoadCp
+                                                                : HydraulicLoads.HydraulicLoadCs,
+                                                            usePlungingBreakers
+                                                                ? HydraulicLoads.HydraulicLoadNp
+                                                                : HydraulicLoads.HydraulicLoadNs));
         }
 
         private int CalculateTimeOfFailure(double failureNumber, double wavePeriodTm10, double beginTime)
         {
-            throw new NotImplementedException();
+            double referenceFailure = NaturalStoneRevetmentFunctions.ReferenceFailure(
+                resistance, hydraulicLoad, waveAngleImpact, failureNumber);
+            double referenceTimeFailure = NaturalStoneRevetmentFunctions.ReferenceTimeFailure(
+                referenceFailure, wavePeriodTm10);
+            double durationInTimeStepFailure = NaturalStoneRevetmentFunctions.DurationInTimeStepFailure(
+                referenceTimeFailure, referenceTimeDegradation);
+
+            return RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
         }
 
         private NaturalStoneRevetmentTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, int? timeOfFailure)
         {
-            throw new NotImplementedException();
+            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                OuterSlope = outerSlope,
+                SlopeUpperLevel = slopeUpperLevel,
+                SlopeUpperPosition = slopeUpperPosition,
+                SlopeLowerLevel = slopeLowerLevel,
+                SlopeLowerPosition = slopeLowerPosition,
+                LoadingRevetment = loadingRevetment,
+                SurfSimilarityParameter = surfSimilarityParameter,
+                WaveSteepnessDeepWater = waveSteepnessDeepWater,
+                UpperLimitLoading = upperLimitLoading,
+                LowerLimitLoading = lowerLimitLoading,
+                DepthMaximumWaveLoad = depthMaximumWaveLoad,
+                DistanceMaximumWaveElevation = distanceMaximumWaveElevation,
+                NormativeWidthOfWaveImpact = normativeWidthWaveImpact
+            };
+
+            if (loadingRevetment)
+            {
+                constructionProperties.HydraulicLoad = hydraulicLoad;
+                constructionProperties.WaveAngleImpact = waveAngleImpact;
+                constructionProperties.Resistance = resistance;
+                constructionProperties.ReferenceTimeDegradation = referenceTimeDegradation;
+                constructionProperties.ReferenceDegradation = referenceDegradation;
+            }
+
+            return constructionProperties;
         }
     }
 }
