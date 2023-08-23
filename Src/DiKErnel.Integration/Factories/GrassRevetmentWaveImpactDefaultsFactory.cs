@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetment;
 
@@ -27,7 +26,12 @@ namespace DiKErnel.Integration.Factories
         public static IGrassRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults(
             GrassRevetmentTopLayerType topLayerType)
         {
-            throw new NotImplementedException();
+            if (topLayerType == GrassRevetmentTopLayerType.ClosedSod)
+            {
+                return GrassRevetmentWaveImpactClosedSodTopLayerDefaults.Instance;
+            }
+
+            return GrassRevetmentWaveImpactOpenSodTopLayerDefaults.Instance;
         }
     }
 }
