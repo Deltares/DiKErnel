@@ -19,7 +19,9 @@
 using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment;
+using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
@@ -45,7 +47,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         private double depthMaximumWaveLoad = double.PositiveInfinity;
         private double upperLimitLoading = double.PositiveInfinity;
         private double lowerLimitLoading = double.PositiveInfinity;
-        private bool loadingRevetment = false;
+        private bool loadingRevetment;
         private double hydraulicLoad = double.PositiveInfinity;
         private double waveAngleImpact = double.PositiveInfinity;
         private double referenceTimeDegradation = double.PositiveInfinity;
@@ -135,7 +137,71 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            throw new NotImplementedException();
+            double waterLevel = timeDependentInput.WaterLevel;
+            double waveHeightHm0 = timeDependentInput.WaveHeightHm0;
+            double wavePeriodTm10 = timeDependentInput.WavePeriodTm10;
+
+            outerSlope = CalculateOuterSlope(waterLevel, waveHeightHm0, profileData);
+
+            double slopeAngle = HydraulicLoadFunctions.SlopeAngle(outerSlope);
+
+            waveSteepnessDeepWater = HydraulicLoadFunctions.WaveSteepnessDeepWater(
+                waveHeightHm0, wavePeriodTm10, Constants.GravitationalAcceleration);
+
+            distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions.DistanceMaximumWaveElevation(
+                1.0, waveSteepnessDeepWater, waveHeightHm0,
+                DistanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax,
+                DistanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax);
+
+            surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
+                outerSlope, waveHeightHm0, wavePeriodTm10, Constants.GravitationalAcceleration);
+
+            normativeWidthWaveImpact = NaturalStoneRevetmentFunctions.NormativeWidthWaveImpact(
+                surfSimilarityParameter, waveHeightHm0, NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactAwi,
+                NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactBwi);
+
+            depthMaximumWaveLoad = NaturalStoneRevetmentFunctions.DepthMaximumWaveLoad(
+                distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
+
+            loadingRevetment = CalculateLoadingRevetment(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+                                                         waveHeightHm0);
+
+            var incrementDamage = 0.0;
+            double damage = initialDamage;
+            int? timeOfFailure = null;
+
+            if (loadingRevetment)
+            {
+                hydraulicLoad = CalculateHydraulicLoad(surfSimilarityParameter, waveHeightHm0);
+
+                waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(
+                    timeDependentInput.WaveAngle, WaveAngleImpact.Betamax);
+
+                referenceDegradation = NaturalStoneRevetmentFunctions.ReferenceDegradation(
+                    resistance, hydraulicLoad, waveAngleImpact, initialDamage);
+
+                referenceTimeDegradation = NaturalStoneRevetmentFunctions.ReferenceTimeDegradation(
+                    referenceDegradation, wavePeriodTm10);
+
+                int incrementTime = RevetmentFunctions.IncrementTime(
+                    timeDependentInput.BeginTime, timeDependentInput.EndTime);
+
+                double incrementDegradation = NaturalStoneRevetmentFunctions.IncrementDegradation(
+                    referenceTimeDegradation, incrementTime, wavePeriodTm10);
+
+                incrementDamage = NaturalStoneRevetmentFunctions.IncrementDamage(
+                    hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
+
+                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
+
+                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
+                {
+                    timeOfFailure = CalculateTimeOfFailure(FailureNumber, wavePeriodTm10, timeDependentInput.BeginTime);
+                }
+            }
+
+            return new NaturalStoneRevetmentTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
         private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
