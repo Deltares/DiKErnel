@@ -16,7 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
+using DiKErnel.DomainLibrary.Defaults;
+using DiKErnel.DomainLibrary.Defaults.GrassRevetment;
+using DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup;
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
 
 namespace DiKErnel.Integration.Factories
@@ -26,7 +28,45 @@ namespace DiKErnel.Integration.Factories
         public static GrassRevetmentWaveRunupRayleighLocationDependentInput CreateLocationDependentInput(
             GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties)
         {
-            throw new NotImplementedException();
+            IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
+                GrassRevetmentCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(
+                    constructionProperties.TopLayerType);
+
+            var representative2P = new GrassRevetmentWaveRunupRepresentative2P(
+                constructionProperties.RepresentativeWaveRunup2PAru
+                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PAru,
+                constructionProperties.RepresentativeWaveRunup2PBru
+                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PBru,
+                constructionProperties.RepresentativeWaveRunup2PCru
+                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PCru,
+                constructionProperties.RepresentativeWaveRunup2PGammab
+                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammab,
+                constructionProperties.RepresentativeWaveRunup2PGammaf
+                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammaf);
+
+            var waveAngleImpact = new GrassRevetmentWaveRunupWaveAngleImpact(
+                constructionProperties.WaveAngleImpactAbeta
+                ?? GrassRevetmentWaveRunupDefaults.WaveAngleImpactAbeta,
+                constructionProperties.WaveAngleImpactBetamax
+                ?? GrassRevetmentWaveRunupDefaults.WaveAngleImpactBetamax);
+
+            return new GrassRevetmentWaveRunupRayleighLocationDependentInput(
+                constructionProperties.X,
+                constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
+                constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
+                constructionProperties.OuterSlope,
+                constructionProperties.CriticalCumulativeOverload ?? topLayerDefaults.CriticalCumulativeOverload,
+                constructionProperties.CriticalFrontVelocity ?? topLayerDefaults.CriticalFrontVelocity,
+                constructionProperties.IncreasedLoadTransitionAlphaM ??
+                GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM,
+                constructionProperties.ReducedStrengthTransitionAlphaS ??
+                GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
+                constructionProperties.AverageNumberOfWavesCtm
+                ?? GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
+                representative2P,
+                waveAngleImpact,
+                constructionProperties.FixedNumberOfWaves ?? GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves,
+                constructionProperties.FrontVelocityCu ?? GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu);
         }
     }
 }
