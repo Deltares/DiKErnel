@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -23,35 +27,20 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentWaveImpactLocationDependentOutputTest
     {
-       
-
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Setup
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var z = 0.4;
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            double z = Random.NextDouble();
+            var timeDependentOutputItems = new List<TimeDependentOutput>();
 
-        var timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
+            // Call
+            var output = new GrassRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, z);
 
-        TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
-        timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        timeDependentOutputConstructionProperties._damage = make_unique<double>(damage);
-        timeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-
-        timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
-
-        // Call
-        const GrassRevetmentWaveImpactLocationDependentOutput output(move(timeDependentOutputItems), z);
-
-        // Assert
-        Assert.IsInstanceOf<LocationDependentOutput>(&output);
-        ASSERT_EQ(vector{ damage }, output.GetDamages());
-        ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
-        ASSERT_EQ(1, output.GetTimeDependentOutputItems().size());
-        Assert.AreEqual(z, output.GetZ());
-    }
+            // Assert
+            Assert.IsInstanceOf<LocationDependentOutput>(output);
+            Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
+            Assert.AreEqual(z, output.Z);
+        }
     }
 }
