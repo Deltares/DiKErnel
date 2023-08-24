@@ -26,7 +26,8 @@ namespace DiKErnel.Integration.Test.Data.Output
         
     }
 
-    TEST(AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
+    [Test]
+    public void Constructor_ExpectedValues()
     {
         // Call
         const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
@@ -43,17 +44,18 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_EQ(nullptr, constructionProperties._equivalentElasticModulus);
     }
 
-    TEST(AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-        constexpr auto logFailureTension = 0.4;
-        constexpr auto maximumPeakStress = 0.5;
-        constexpr auto stiffnessRelation = 0.6;
-        constexpr auto computationalThickness = 0.7;
-        constexpr auto equivalentElasticModulus = 0.8;
+        var incrementDamage = 0.1;
+        var damage = 0.2;
+        var timeOfFailure = 3;
+        var logFailureTension = 0.4;
+        var maximumPeakStress = 0.5;
+        var stiffnessRelation = 0.6;
+        var computationalThickness = 0.7;
+        var equivalentElasticModulus = 0.8;
 
         // When
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;

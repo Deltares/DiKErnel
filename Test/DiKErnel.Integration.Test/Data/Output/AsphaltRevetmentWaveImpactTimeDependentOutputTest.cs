@@ -30,7 +30,7 @@ namespace DiKErnel.Integration.Test.Data.Output
     {
         static unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
         {
-            auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
+            var constructionProperties = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
             constructionProperties->_incrementDamage = make_unique<double>(0.1);
             constructionProperties->_damage = make_unique<double>(0.2);
             constructionProperties->_timeOfFailure = make_unique<int>(3);
@@ -46,7 +46,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         static void CreateOutputWithConstructionPropertiesWithLogFailureTensionNullPtr()
         {
             // Setup
-            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
             constructionProperties->_logFailureTension = nullptr;
 
             // Call
@@ -56,7 +56,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         static void CreateOutputWithConstructionPropertiesWithMaximumPeakStressNullPtr()
         {
             // Setup
-            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
             constructionProperties->_maximumPeakStress = nullptr;
 
             // Call
@@ -66,7 +66,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         static void CreateOutputWithConstructionPropertiesWithStiffnessRelationNullPtr()
         {
             // Setup
-            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
             constructionProperties->_stiffnessRelation = nullptr;
 
             // Call
@@ -76,7 +76,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         static void CreateOutputWithConstructionPropertiesWithComputationalThicknessNullPtr()
         {
             // Setup
-            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
             constructionProperties->_computationalThickness = nullptr;
 
             // Call
@@ -86,7 +86,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         static void CreateOutputWithConstructionPropertiesWithEquivalentElasticModulusNullPtr()
         {
             // Setup
-            const auto constructionProperties = CreateFullyConfiguredConstructionProperties();
+            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
             constructionProperties->_equivalentElasticModulus = nullptr;
 
             // Call
@@ -94,17 +94,18 @@ namespace DiKErnel.Integration.Test.Data.Output
         }
     };
 
-    TEST_F(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithAllValuesSet_ExpectedValues)
+        [Test]
+    public void Constructor_WithAllValuesSet_ExpectedValues()
     {
         // Setup
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-        constexpr auto logFailureTension = 0.4;
-        constexpr auto maximumPeakStress = 0.5;
-        constexpr auto stiffnessRelation = 0.6;
-        constexpr auto computationalThickness = 0.7;
-        constexpr auto equivalentElasticModulus = 0.8;
+        var incrementDamage = 0.1;
+        var damage = 0.2;
+        var timeOfFailure = 3;
+        var logFailureTension = 0.4;
+        var maximumPeakStress = 0.5;
+        var stiffnessRelation = 0.6;
+        var computationalThickness = 0.7;
+        var equivalentElasticModulus = 0.8;
 
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
@@ -131,16 +132,17 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_DOUBLE_EQ(equivalentElasticModulus, output.GetEquivalentElasticModulus());
     }
 
-    TEST_F(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_WithNullPtrValues_ExpectedValues)
+        [Test]
+    public void Constructor_WithNullPtrValues_ExpectedValues()
     {
         // Setup
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto logFailureTension = 0.3;
-        constexpr auto maximumPeakStress = 0.4;
-        constexpr auto stiffnessRelation = 0.5;
-        constexpr auto computationalThickness = 0.6;
-        constexpr auto equivalentElasticModulus = 0.7;
+        var incrementDamage = 0.1;
+        var damage = 0.2;
+        var logFailureTension = 0.3;
+        var maximumPeakStress = 0.4;
+        var stiffnessRelation = 0.5;
+        var computationalThickness = 0.6;
+        var equivalentElasticModulus = 0.7;
 
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
@@ -167,47 +169,52 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_DOUBLE_EQ(equivalentElasticModulus, output.GetEquivalentElasticModulus());
     }
 
-    TEST_F(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_LogFailureTensionNullPtr_ThrowsInvalidTimeDependentOutputException)
+        [Test]
+    public void Constructor_LogFailureTensionNullPtr_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const auto action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLogFailureTensionNullPtr;
+        const var action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLogFailureTensionNullPtr;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "logFailureTension must be set.");
     }
 
-    TEST_F(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_MaximumPeakStressNullPtr_ThrowsInvalidTimeDependentOutputException)
+        [Test]
+    public void Constructor_MaximumPeakStressNullPtr_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const auto action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithMaximumPeakStressNullPtr;
+        const var action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithMaximumPeakStressNullPtr;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "maximumPeakStress must be set.");
     }
 
-    TEST_F(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_StiffnessRelationNullPtr_ThrowsInvalidTimeDependentOutputException)
+        [Test]
+    public void Constructor_StiffnessRelationNullPtr_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const auto action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithStiffnessRelationNullPtr;
+        const var action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithStiffnessRelationNullPtr;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "stiffnessRelation must be set.");
     }
 
-    TEST_F(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_ComputationalThicknessNullPtr_ThrowsInvalidTimeDependentOutputException)
+        [Test]
+    public void Constructor_ComputationalThicknessNullPtr_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const auto action =
+        const var action =
                 &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithComputationalThicknessNullPtr;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "computationalThickness must be set.");
     }
 
-    TEST_F(AsphaltRevetmentWaveImpactTimeDependentOutputTest, Constructor_EquivalentElasticModulusNullPtr_ThrowsInvalidTimeDependentOutputException)
+        [Test]
+    public void Constructor_EquivalentElasticModulusNullPtr_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const auto action =
+        const var action =
                 &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithEquivalentElasticModulusNullPtr;
 
         // Assert

@@ -26,11 +26,12 @@ namespace DiKErnel.Integration.Test.Data
         
     }
 
-    TEST(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Setup
-        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        constexpr auto x = 0.1;
+        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
+        var x = 0.1;
 
         // Call
         const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
@@ -53,23 +54,24 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(nullptr, constructionProperties.GetLowerLimitLoadingAll());
     }
 
-    TEST(GrassRevetmentWaveImpactLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        constexpr auto x = 0.1;
-        constexpr auto initialDamage = 0.2;
-        constexpr auto failureNumber = 0.3;
-        constexpr auto timeLineAgwi = 0.4;
-        constexpr auto timeLineBgwi = 0.5;
-        constexpr auto timeLineCgwi = 0.6;
-        constexpr auto minimumWaveHeightTemax = 0.7;
-        constexpr auto maximumWaveHeightTemin = 0.8;
-        constexpr auto waveAngleImpactNwa = 0.9;
-        constexpr auto waveAngleImpactQwa = 1.0;
-        constexpr auto waveAngleImpactRwa = 1.1;
-        constexpr auto upperLimitLoadingAul = 1.2;
-        constexpr auto lowerLimitLoadingAll = 1.3;
+        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
+        var x = 0.1;
+        var initialDamage = 0.2;
+        var failureNumber = 0.3;
+        var timeLineAgwi = 0.4;
+        var timeLineBgwi = 0.5;
+        var timeLineCgwi = 0.6;
+        var minimumWaveHeightTemax = 0.7;
+        var maximumWaveHeightTemin = 0.8;
+        var waveAngleImpactNwa = 0.9;
+        var waveAngleImpactQwa = 1.0;
+        var waveAngleImpactRwa = 1.1;
+        var upperLimitLoadingAul = 1.2;
+        var lowerLimitLoadingAll = 1.3;
 
         GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
 

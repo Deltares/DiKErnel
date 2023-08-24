@@ -26,12 +26,13 @@ namespace DiKErnel.Integration.Test.Data
         
     }
 
-    TEST(GrassRevetmentWaveRunupLocationConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Setup
-        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        constexpr auto x = 0.1;
-        constexpr auto outerSlope = 0.2;
+        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
+        var x = 0.1;
+        var outerSlope = 0.2;
 
         // Call
         const GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(x, outerSlope, topLayerType);
@@ -57,26 +58,27 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactBetamax());
     }
 
-    TEST(GrassRevetmentWaveRunupLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        constexpr auto x = 0.1;
-        constexpr auto outerSlope = 0.2;
-        constexpr auto initialDamage = 0.3;
-        constexpr auto failureNumber = 0.4;
-        constexpr auto criticalCumulativeOverload = 0.5;
-        constexpr auto criticalFrontVelocity = 0.6;
-        constexpr auto increasedLoadTransitionAlphaM = 0.7;
-        constexpr auto reducedStrengthTransitionAlphaS = 0.8;
-        constexpr auto averageNumberOfWavesCtm = 0.9;
-        constexpr auto representativeWaveRunup2PAru = 1.0;
-        constexpr auto representativeWaveRunup2PBru = 1.1;
-        constexpr auto representativeWaveRunup2PCru = 1.2;
-        constexpr auto representativeWaveRunup2PGammab = 1.3;
-        constexpr auto representativeWaveRunup2PGammaf = 1.4;
-        constexpr auto waveAngleImpactAbeta = 1.5;
-        constexpr auto waveAngleImpactBetamax = 1.6;
+        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
+        var x = 0.1;
+        var outerSlope = 0.2;
+        var initialDamage = 0.3;
+        var failureNumber = 0.4;
+        var criticalCumulativeOverload = 0.5;
+        var criticalFrontVelocity = 0.6;
+        var increasedLoadTransitionAlphaM = 0.7;
+        var reducedStrengthTransitionAlphaS = 0.8;
+        var averageNumberOfWavesCtm = 0.9;
+        var representativeWaveRunup2PAru = 1.0;
+        var representativeWaveRunup2PBru = 1.1;
+        var representativeWaveRunup2PCru = 1.2;
+        var representativeWaveRunup2PGammab = 1.3;
+        var representativeWaveRunup2PGammaf = 1.4;
+        var waveAngleImpactAbeta = 1.5;
+        var waveAngleImpactBetamax = 1.6;
 
         GrassRevetmentWaveRunupLocationConstructionPropertiesMock constructionProperties(x, outerSlope, topLayerType);
 

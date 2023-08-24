@@ -26,7 +26,8 @@ namespace DiKErnel.Integration.Test.Data.Output
         
     }
 
-    TEST(NaturalStoneRevetmentTimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Call
         const NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
@@ -56,30 +57,31 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_EQ(nullptr, constructionProperties._referenceDegradation);
     }
 
-    TEST(NaturalStoneRevetmentTimeDependentOutputConstructionPropertiesTest, Constructor_WithAllValuesSet_ExpectedValues)
+        [Test]
+    public void Constructor_WithAllValuesSet_ExpectedValues)
     {
         // Given
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-        constexpr auto outerSlope = 0.4;
-        constexpr auto slopeUpperLevel = 0.5;
-        constexpr auto slopeUpperPosition = 0.6;
-        constexpr auto slopeLowerLevel = 0.7;
-        constexpr auto slopeLowerPosition = 0.8;
-        constexpr auto loadingRevetment = true;
-        constexpr auto surfSimilarityParameter = 0.9;
-        constexpr auto waveSteepnessDeepWater = 1.0;
-        constexpr auto upperLimitLoading = 1.1;
-        constexpr auto lowerLimitLoading = 1.2;
-        constexpr auto depthMaximumWaveLoad = 1.3;
-        constexpr auto distanceMaximumWaveElevation = 1.4;
-        constexpr auto normativeWidthOfWaveImpact = 1.5;
-        constexpr auto hydraulicLoad = 1.6;
-        constexpr auto waveAngleImpact = 1.7;
-        constexpr auto resistance = 1.8;
-        constexpr auto referenceTimeDegradation = 1.9;
-        constexpr auto referenceDegradation = 2.0;
+        var incrementDamage = 0.1;
+        var damage = 0.2;
+        var timeOfFailure = 3;
+        var outerSlope = 0.4;
+        var slopeUpperLevel = 0.5;
+        var slopeUpperPosition = 0.6;
+        var slopeLowerLevel = 0.7;
+        var slopeLowerPosition = 0.8;
+        var loadingRevetment = true;
+        var surfSimilarityParameter = 0.9;
+        var waveSteepnessDeepWater = 1.0;
+        var upperLimitLoading = 1.1;
+        var lowerLimitLoading = 1.2;
+        var depthMaximumWaveLoad = 1.3;
+        var distanceMaximumWaveElevation = 1.4;
+        var normativeWidthOfWaveImpact = 1.5;
+        var hydraulicLoad = 1.6;
+        var waveAngleImpact = 1.7;
+        var resistance = 1.8;
+        var referenceTimeDegradation = 1.9;
+        var referenceDegradation = 2.0;
 
         // When
         NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;

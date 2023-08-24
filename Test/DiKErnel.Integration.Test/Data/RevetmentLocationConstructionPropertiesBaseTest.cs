@@ -26,10 +26,11 @@ namespace DiKErnel.Integration.Test.Data
         
     }
 
-    TEST(RevetmentLocationConstructionPropertiesBaseTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Setup
-        constexpr auto x = 0.1;
+        var x = 0.1;
 
         // Call
         const RevetmentLocationConstructionPropertiesMock constructionProperties(x);
@@ -40,12 +41,13 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
     }
 
-    TEST(RevetmentLocationConstructionPropertiesBaseTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto x = 0.1;
-        constexpr auto initialDamage = 0.2;
-        constexpr auto failureNumber = 0.3;
+        var x = 0.1;
+        var initialDamage = 0.2;
+        var failureNumber = 0.3;
 
         RevetmentLocationConstructionPropertiesMock constructionProperties(x);
 

@@ -26,7 +26,8 @@ namespace DiKErnel.Integration.Test.Data.Output
         
     }
 
-    TEST(GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Call
         const GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
@@ -42,17 +43,17 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_EQ(nullptr, constructionProperties._cumulativeOverload);
     }
 
-    TEST(GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionPropertiesTest,
-         GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-        constexpr auto verticalDistanceWaterLevelElevation = 0.4;
-        constexpr auto waveAngleImpact = 0.5;
-        constexpr auto representativeWaveRunup2P = 0.6;
-        constexpr auto cumulativeOverload = 0.7;
+        var incrementDamage = 0.1;
+        var damage = 0.2;
+        var timeOfFailure = 3;
+        var verticalDistanceWaterLevelElevation = 0.4;
+        var waveAngleImpact = 0.5;
+        var representativeWaveRunup2P = 0.6;
+        var cumulativeOverload = 0.7;
 
         // When
         GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;

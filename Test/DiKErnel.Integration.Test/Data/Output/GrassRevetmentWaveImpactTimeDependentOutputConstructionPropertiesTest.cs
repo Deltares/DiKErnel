@@ -26,7 +26,8 @@ namespace DiKErnel.Integration.Test.Data.Output
         
     }
 
-    TEST(GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Call
         const GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
@@ -45,19 +46,20 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_EQ(nullptr, constructionProperties._waveHeightImpact);
     }
 
-    TEST(GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-        constexpr auto loadingRevetment = true;
-        constexpr auto upperLimitLoading = 0.4;
-        constexpr auto lowerLimitLoading = 0.5;
-        constexpr auto minimumWaveHeight = 0.6;
-        constexpr auto maximumWaveHeight = 0.7;
-        constexpr auto waveAngleImpact = 0.8;
-        constexpr auto waveHeightImpact = 0.9;
+        var incrementDamage = 0.1;
+        var damage = 0.2;
+        var timeOfFailure = 3;
+        var loadingRevetment = true;
+        var upperLimitLoading = 0.4;
+        var lowerLimitLoading = 0.5;
+        var minimumWaveHeight = 0.6;
+        var maximumWaveHeight = 0.7;
+        var waveAngleImpact = 0.8;
+        var waveHeightImpact = 0.9;
 
         // When
         GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;

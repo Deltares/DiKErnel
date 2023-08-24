@@ -30,9 +30,9 @@ namespace DiKErnel.Integration.Test.Data
     {
         static unique_ptr<ProfileData> CreateDefaultProfileData()
         {
-            auto pointOne = make_shared<ProfilePoint>(1.0, 1.1);
-            auto pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
-            auto pointThree = make_shared<ProfilePoint>(3.0, 3.3);
+            var pointOne = make_shared<ProfilePoint>(1.0, 1.1);
+            var pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
+            var pointThree = make_shared<ProfilePoint>(3.0, 3.3);
 
             vector<unique_ptr<ProfileSegment>> testDikeProfileSegments;
             testDikeProfileSegments.push_back(make_unique<ProfileSegment>(pointOne, pointTwo, 1.0));
@@ -42,72 +42,78 @@ namespace DiKErnel.Integration.Test.Data
         }
     };
 
-    TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue)
+        [Test]
+    public void InterpolationVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto verticalHeight = profileData->InterpolationVerticalHeight(0.0);
+        const var verticalHeight = profileData->InterpolationVerticalHeight(0.0);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
     }
 
-    TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void InterpolationVerticalHeight_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto verticalHeight = profileData->InterpolationVerticalHeight(1.0);
+        const var verticalHeight = profileData->InterpolationVerticalHeight(1.0);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.1, verticalHeight);
     }
 
-    TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void InterpolationVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto verticalHeight = profileData->InterpolationVerticalHeight(2.0);
+        const var verticalHeight = profileData->InterpolationVerticalHeight(2.0);
 
         // Assert
         ASSERT_DOUBLE_EQ(2.2, verticalHeight);
     }
 
-    TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void InterpolationVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto verticalHeight = profileData->InterpolationVerticalHeight(3.0);
+        const var verticalHeight = profileData->InterpolationVerticalHeight(3.0);
 
         // Assert
         ASSERT_DOUBLE_EQ(3.3, verticalHeight);
     }
 
-    TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue)
+        [Test]
+    public void InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto verticalHeight = profileData->InterpolationVerticalHeight(1.5);
+        const var verticalHeight = profileData->InterpolationVerticalHeight(1.5);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
 
-    TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue)
+        [Test]
+    public void InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue()
     {
         // Setup
-        auto pointOne = make_shared<ProfilePoint>(1.0, 3.3);
-        auto pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
-        auto pointThree = make_shared<ProfilePoint>(3.0, 1.1);
+        var pointOne = make_shared<ProfilePoint>(1.0, 3.3);
+        var pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
+        var pointThree = make_shared<ProfilePoint>(3.0, 1.1);
 
         vector<unique_ptr<ProfileSegment>> testDikeProfileSegmentsWithDescendingHeight;
         testDikeProfileSegmentsWithDescendingHeight.push_back(make_unique<ProfileSegment>(pointOne, pointTwo, 1.0));
@@ -116,127 +122,137 @@ namespace DiKErnel.Integration.Test.Data
         const ProfileData profileData(move(testDikeProfileSegmentsWithDescendingHeight), vector<unique_ptr<CharacteristicPoint>>());
 
         // Call
-        const auto verticalHeight = profileData.InterpolationVerticalHeight(2.5);
+        const var verticalHeight = profileData.InterpolationVerticalHeight(2.5);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.65, verticalHeight);
     }
 
-    TEST_F(ProfileDataTest, InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue)
+        [Test]
+    public void InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto verticalHeight = profileData->InterpolationVerticalHeight(4.0);
+        const var verticalHeight = profileData->InterpolationVerticalHeight(4.0);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
     }
 
-    TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightBelowDikeProfile_ExpectedValue)
+        [Test]
+    public void InterpolationHorizontalPosition_VerticalHeightBelowDikeProfile_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto horizontalPosition = profileData->InterpolationHorizontalPosition(0.0);
+        const var horizontalPosition = profileData->InterpolationHorizontalPosition(0.0);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
     }
 
-    TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightOnFirstDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void InterpolationHorizontalPosition_VerticalHeightOnFirstDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto horizontalPosition = profileData->InterpolationHorizontalPosition(1.1);
+        const var horizontalPosition = profileData->InterpolationHorizontalPosition(1.1);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.0, horizontalPosition);
     }
 
-    TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightOnRandomDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void InterpolationHorizontalPosition_VerticalHeightOnRandomDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto horizontalPosition = profileData->InterpolationHorizontalPosition(2.2);
+        const var horizontalPosition = profileData->InterpolationHorizontalPosition(2.2);
 
         // Assert
         ASSERT_DOUBLE_EQ(2.0, horizontalPosition);
     }
 
-    TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightOnLastDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void InterpolationHorizontalPosition_VerticalHeightOnLastDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto horizontalPosition = profileData->InterpolationHorizontalPosition(3.3);
+        const var horizontalPosition = profileData->InterpolationHorizontalPosition(3.3);
 
         // Assert
         ASSERT_DOUBLE_EQ(3.0, horizontalPosition);
     }
 
-    TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightBetweenProfilePoints_ExpectedValue)
+        [Test]
+    public void InterpolationHorizontalPosition_VerticalHeightBetweenProfilePoints_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto horizontalPosition = profileData->InterpolationHorizontalPosition(1.65);
+        const var horizontalPosition = profileData->InterpolationHorizontalPosition(1.65);
 
         // Assert
         ASSERT_DOUBLE_EQ(1.5, horizontalPosition);
     }
 
-    TEST_F(ProfileDataTest, InterpolationHorizontalPosition_VerticalHeightAboveDikeProfile_ExpectedValue)
+        [Test]
+    public void InterpolationHorizontalPosition_VerticalHeightAboveDikeProfile_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto horizontalPosition = profileData->InterpolationHorizontalPosition(4.0);
+        const var horizontalPosition = profileData->InterpolationHorizontalPosition(4.0);
 
         // Assert
         ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
     }
 
-    TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionLeftOfDikeProfile_ExpectedValue)
+        [Test]
+    public void GetProfileSegment_HorizontalPositionLeftOfDikeProfile_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto profileSegment = profileData->GetProfileSegment(0.0);
+        const var profileSegment = profileData->GetProfileSegment(0.0);
 
         // Assert
         ASSERT_EQ(nullptr, profileSegment);
     }
 
-    TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void GetProfileSegment_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto profileSegment = profileData->GetProfileSegment(1.0);
+        const var profileSegment = profileData->GetProfileSegment(1.0);
 
         // Assert
         ASSERT_EQ(nullptr, profileSegment);
     }
 
-    TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void GetProfileSegment_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto profileSegment = profileData->GetProfileSegment(2.0);
+        const var profileSegment = profileData->GetProfileSegment(2.0);
 
         // Assert
         const auto& startPoint = profileSegment->GetStartPoint();
@@ -247,13 +263,14 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_DOUBLE_EQ(2.2, endPoint.GetZ());
     }
 
-    TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionBetweenDikeProfilePoints_ExpectedValue)
+        [Test]
+    public void GetProfileSegment_HorizontalPositionBetweenDikeProfilePoints_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto profileSegment = profileData->GetProfileSegment(1.5);
+        const var profileSegment = profileData->GetProfileSegment(1.5);
 
         // Assert
         const auto& startPoint = profileSegment->GetStartPoint();
@@ -264,13 +281,14 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_DOUBLE_EQ(2.2, endPoint.GetZ());
     }
 
-    TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue)
+        [Test]
+    public void GetProfileSegment_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto profileSegment = profileData->GetProfileSegment(3.0);
+        const var profileSegment = profileData->GetProfileSegment(3.0);
 
         // Assert
         const auto& startPoint = profileSegment->GetStartPoint();
@@ -281,13 +299,14 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_DOUBLE_EQ(3.3, endPoint.GetZ());
     }
 
-    TEST_F(ProfileDataTest, GetProfileSegment_HorizontalPositionRightOfDikeProfile_ExpectedValue)
+        [Test]
+    public void GetProfileSegment_HorizontalPositionRightOfDikeProfile_ExpectedValue()
     {
         // Setup
-        const auto profileData = CreateDefaultProfileData();
+        const var profileData = CreateDefaultProfileData();
 
         // Call
-        const auto profileSegment = profileData->GetProfileSegment(4.0);
+        const var profileSegment = profileData->GetProfileSegment(4.0);
 
         // Assert
         ASSERT_EQ(nullptr, profileSegment);

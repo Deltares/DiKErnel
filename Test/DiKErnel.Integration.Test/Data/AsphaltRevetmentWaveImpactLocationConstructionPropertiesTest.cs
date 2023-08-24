@@ -26,15 +26,16 @@ namespace DiKErnel.Integration.Test.Data
         
     }
 
-    TEST(AsphaltRevetmentWaveImpactLocationConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Setup
-        constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
-        constexpr auto x = 0.1;
-        constexpr auto failureTension = 0.2;
-        constexpr auto soilElasticity = 0.3;
-        constexpr auto thicknessUpperLayer = 0.4;
-        constexpr auto elasticModulusUpperLayer = 0.5;
+        var topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
+        var x = 0.1;
+        var failureTension = 0.2;
+        var soilElasticity = 0.3;
+        var thicknessUpperLayer = 0.4;
+        var elasticModulusUpperLayer = 0.5;
 
         // Call
         const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
@@ -63,34 +64,35 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(nullptr, constructionProperties.GetImpactFactors());
     }
 
-    TEST(AsphaltRevetmentWaveImpactLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
-        constexpr auto x = 0.1;
-        constexpr auto failureTension = 0.2;
-        constexpr auto soilElasticity = 0.3;
-        constexpr auto thicknessUpperLayer = 0.4;
-        constexpr auto elasticModulusUpperLayer = 0.5;
-        constexpr auto initialDamage = 0.6;
-        constexpr auto failureNumber = 0.7;
-        constexpr auto densityOfWater = 0.8;
-        constexpr auto thicknessSubLayer = 0.9;
-        constexpr auto elasticModulusSubLayer = 1.0;
-        constexpr auto averageNumberOfWavesCtm = 1.1;
-        constexpr auto fatigueAlpha = 1.2;
-        constexpr auto fatigueBeta = 1.3;
-        constexpr auto impactNumberC = 1.4;
-        constexpr auto stiffnessRelationNu = 1.5;
-        const auto widthFactors = vector
+        var topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
+        var x = 0.1;
+        var failureTension = 0.2;
+        var soilElasticity = 0.3;
+        var thicknessUpperLayer = 0.4;
+        var elasticModulusUpperLayer = 0.5;
+        var initialDamage = 0.6;
+        var failureNumber = 0.7;
+        var densityOfWater = 0.8;
+        var thicknessSubLayer = 0.9;
+        var elasticModulusSubLayer = 1.0;
+        var averageNumberOfWavesCtm = 1.1;
+        var fatigueAlpha = 1.2;
+        var fatigueBeta = 1.3;
+        var impactNumberC = 1.4;
+        var stiffnessRelationNu = 1.5;
+        const var widthFactors = vector
         {
             pair(1.6, 1.7)
         };
-        const auto depthFactors = vector
+        const var depthFactors = vector
         {
             pair(1.8, 1.9)
         };
-        const auto impactFactors = vector
+        const var impactFactors = vector
         {
             pair(2.0, 2.1)
         };

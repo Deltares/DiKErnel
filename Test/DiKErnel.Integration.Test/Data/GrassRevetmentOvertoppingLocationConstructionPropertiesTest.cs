@@ -26,11 +26,12 @@ namespace DiKErnel.Integration.Test.Data
         
     }
 
-    TEST(GrassRevetmentOvertoppingLocationConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Setup
-        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        constexpr auto x = 0.1;
+        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
+        var x = 0.1;
 
         // Call
         const GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties(x, topLayerType);
@@ -53,23 +54,24 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(nullptr, constructionProperties.GetDikeHeight());
     }
 
-    TEST(GrassRevetmentOvertoppingLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        constexpr auto x = 0.1;
-        constexpr auto initialDamage = 0.2;
-        constexpr auto failureNumber = 0.3;
-        constexpr auto criticalCumulativeOverload = 0.4;
-        constexpr auto criticalFrontVelocity = 0.5;
-        constexpr auto increasedLoadTransitionAlphaM = 0.6;
-        constexpr auto reducedStrengthTransitionAlphaS = 0.7;
-        constexpr auto averageNumberOfWavesCtm = 0.8;
-        constexpr auto fixedNumberOfWaves = 9;
-        constexpr auto frontVelocityCwo = 1.0;
-        constexpr auto accelerationAlphaAForCrest = 1.1;
-        constexpr auto accelerationAlphaAForInnerSlope = 1.2;
-        constexpr auto dikeHeight = 1.3;
+        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
+        var x = 0.1;
+        var initialDamage = 0.2;
+        var failureNumber = 0.3;
+        var criticalCumulativeOverload = 0.4;
+        var criticalFrontVelocity = 0.5;
+        var increasedLoadTransitionAlphaM = 0.6;
+        var reducedStrengthTransitionAlphaS = 0.7;
+        var averageNumberOfWavesCtm = 0.8;
+        var fixedNumberOfWaves = 9;
+        var frontVelocityCwo = 1.0;
+        var accelerationAlphaAForCrest = 1.1;
+        var accelerationAlphaAForInnerSlope = 1.2;
+        var dikeHeight = 1.3;
 
         GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties(x, topLayerType);
 

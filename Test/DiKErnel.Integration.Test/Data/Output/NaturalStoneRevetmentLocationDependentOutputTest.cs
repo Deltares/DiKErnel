@@ -26,15 +26,16 @@ namespace DiKErnel.Integration.Test.Data.Output
         
     }
 
-    TEST(NaturalStoneRevetmentLocationDependentOutputTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Setup
-        constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
-        constexpr auto z = 0.4;
+        var incrementDamage = 0.1;
+        var damage = 0.2;
+        var timeOfFailure = 3;
+        var z = 0.4;
 
-        auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
+        var timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);

@@ -26,13 +26,14 @@ namespace DiKErnel.Integration.Test.Data
         
     }
 
-    TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, Constructor_ExpectedValues)
+        [Test]
+    public void Constructor_ExpectedValues()
     {
         // Setup
-        constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        constexpr auto x = 0.1;
-        constexpr auto thicknessTopLayer = 0.2;
-        constexpr auto relativeDensity = 0.3;
+        var topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
+        var x = 0.1;
+        var thicknessTopLayer = 0.2;
+        var relativeDensity = 0.3;
 
         // Call
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
@@ -69,37 +70,38 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactBetamax());
     }
 
-    TEST(NaturalStoneRevetmentLocationConstructionPropertiesTest, GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues)
+        [Test]
+    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
     {
         // Given
-        constexpr auto topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        constexpr auto x = 0.1;
-        constexpr auto thicknessTopLayer = 0.2;
-        constexpr auto relativeDensity = 0.3;
-        constexpr auto initialDamage = 0.4;
-        constexpr auto failureNumber = 0.5;
-        constexpr auto hydraulicLoadXib = 0.6;
-        constexpr auto hydraulicLoadAp = 0.7;
-        constexpr auto hydraulicLoadBp = 0.8;
-        constexpr auto hydraulicLoadCp = 0.9;
-        constexpr auto hydraulicLoadNp = 1.0;
-        constexpr auto hydraulicLoadAs = 1.1;
-        constexpr auto hydraulicLoadBs = 1.2;
-        constexpr auto hydraulicLoadCs = 1.3;
-        constexpr auto hydraulicLoadNs = 1.4;
-        constexpr auto slopeUpperLevelAus = 1.5;
-        constexpr auto slopeLowerLevelAls = 1.6;
-        constexpr auto upperLimitLoadingAul = 1.7;
-        constexpr auto upperLimitLoadingBul = 1.8;
-        constexpr auto upperLimitLoadingCul = 1.9;
-        constexpr auto lowerLimitLoadingAll = 2.0;
-        constexpr auto lowerLimitLoadingBll = 2.1;
-        constexpr auto lowerLimitLoadingCll = 2.2;
-        constexpr auto distanceMaximumWaveElevationAsmax = 2.3;
-        constexpr auto distanceMaximumWaveElevationBsmax = 2.4;
-        constexpr auto normativeWidthOfWaveImpactAwi = 2.5;
-        constexpr auto normativeWidthOfWaveImpactBwi = 2.6;
-        constexpr auto waveAngleImpactBetamax = 2.7;
+        var topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
+        var x = 0.1;
+        var thicknessTopLayer = 0.2;
+        var relativeDensity = 0.3;
+        var initialDamage = 0.4;
+        var failureNumber = 0.5;
+        var hydraulicLoadXib = 0.6;
+        var hydraulicLoadAp = 0.7;
+        var hydraulicLoadBp = 0.8;
+        var hydraulicLoadCp = 0.9;
+        var hydraulicLoadNp = 1.0;
+        var hydraulicLoadAs = 1.1;
+        var hydraulicLoadBs = 1.2;
+        var hydraulicLoadCs = 1.3;
+        var hydraulicLoadNs = 1.4;
+        var slopeUpperLevelAus = 1.5;
+        var slopeLowerLevelAls = 1.6;
+        var upperLimitLoadingAul = 1.7;
+        var upperLimitLoadingBul = 1.8;
+        var upperLimitLoadingCul = 1.9;
+        var lowerLimitLoadingAll = 2.0;
+        var lowerLimitLoadingBll = 2.1;
+        var lowerLimitLoadingCll = 2.2;
+        var distanceMaximumWaveElevationAsmax = 2.3;
+        var distanceMaximumWaveElevationBsmax = 2.4;
+        var normativeWidthOfWaveImpactAwi = 2.5;
+        var normativeWidthOfWaveImpactBwi = 2.6;
+        var waveAngleImpactBetamax = 2.7;
 
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
 

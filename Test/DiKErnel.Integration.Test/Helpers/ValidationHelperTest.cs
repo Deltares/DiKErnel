@@ -30,17 +30,18 @@ namespace DiKErnel.Integration.Test.Helpers
     {
         static void RegisterValidationIssueWithInvalidValidationIssueType()
         {
-            auto validationIssues = vector<unique_ptr<ValidationIssue>>();
+            var validationIssues = vector<unique_ptr<ValidationIssue>>();
             validationIssues.emplace_back(make_unique<ValidationIssue>(static_cast<ValidationIssueType>(99), "Message"));
 
             ValidationHelper::RegisterValidationIssues(validationIssues);
         }
     };
 
-    TEST_F(ValidationHelperTest, GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsOutOfRangeException)
+        [Test]
+    public void GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsOutOfRangeException()
     {
         // Given & When
-        const auto action = &RegisterValidationIssueWithInvalidValidationIssueType;
+        const var action = &RegisterValidationIssueWithInvalidValidationIssueType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<out_of_range>(action, "Invalid ValidationIssueType.");
