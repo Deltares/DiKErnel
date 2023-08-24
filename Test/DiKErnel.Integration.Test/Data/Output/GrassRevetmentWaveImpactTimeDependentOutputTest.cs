@@ -27,7 +27,140 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentWaveImpactTimeDependentOutputTest
     {
-        
+        [Test]
+        public void Constructor_WithAllValuesSet_ExpectedValues()
+        {
+            // Setup
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            int timeOfFailure = Random.Next();
+            bool loadingRevetment = Random.NextBoolean();
+            double upperLimitLoading = Random.NextDouble();
+            double lowerLimitLoading = Random.NextDouble();
+            double minimumWaveHeight = Random.NextDouble();
+            double maximumWaveHeight = Random.NextDouble();
+            double waveAngleImpact = Random.NextDouble();
+            double waveHeightImpact = Random.NextDouble();
+
+            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                LoadingRevetment = loadingRevetment,
+                UpperLimitLoading = upperLimitLoading,
+                LowerLimitLoading = lowerLimitLoading,
+                MinimumWaveHeight = minimumWaveHeight,
+                MaximumWaveHeight = maximumWaveHeight,
+                WaveAngleImpact = waveAngleImpact,
+                WaveHeightImpact = waveHeightImpact
+            };
+
+            // Call
+            var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.AreEqual(incrementDamage, output.IncrementDamage);
+            Assert.AreEqual(damage, output.Damage);
+            Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
+            Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
+            Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
+            Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
+            Assert.AreEqual(minimumWaveHeight, output.MinimumWaveHeight);
+            Assert.AreEqual(maximumWaveHeight, output.MaximumWaveHeight);
+            Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
+            Assert.AreEqual(waveHeightImpact, output.WaveHeightImpact);
+        }
+
+        [Test]
+        public void Constructor_WithNullValues_ExpectedValues()
+        {
+            // Setup
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            bool loadingRevetment = Random.NextBoolean();
+            double upperLimitLoading = Random.NextDouble();
+            double lowerLimitLoading = Random.NextDouble();
+
+            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = null,
+                LoadingRevetment = loadingRevetment,
+                UpperLimitLoading = upperLimitLoading,
+                LowerLimitLoading = lowerLimitLoading,
+                MinimumWaveHeight = null,
+                MaximumWaveHeight = null,
+                WaveAngleImpact = null,
+                WaveHeightImpact = null
+            };
+
+            // Call
+            var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.AreEqual(incrementDamage, output.IncrementDamage);
+            Assert.AreEqual(damage, output.Damage);
+            Assert.IsNull(output.TimeOfFailure);
+            Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
+            Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
+            Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
+            Assert.IsNull(output.MinimumWaveHeight);
+            Assert.IsNull(output.MaximumWaveHeight);
+            Assert.IsNull(output.WaveAngleImpact);
+            Assert.IsNull(output.WaveHeightImpact);
+        }
+
+        [Test]
+        public void Constructor_LoadingRevetmentNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.LoadingRevetment = null;
+
+            // Call
+            void Call() => new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "loadingRevetment must be set.");
+        }
+
+        [Test]
+        public void Constructor_UpperLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.UpperLimitLoading = null;
+
+            // Call
+            void Call() => new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "upperLimitLoading must be set.");
+        }
+
+        [Test]
+        public void Constructor_LowerLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.LowerLimitLoading = null;
+
+            // Call
+            void Call() => new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "lowerLimitLoading must be set.");
+        }
 
         private static GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
@@ -45,148 +178,5 @@ namespace DiKErnel.Integration.Test.Data.Output
                 WaveHeightImpact = Random.NextDouble()
             };
         }
-
-        private static GrassRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithLoadingRevetmentNull()
-        {
-            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-            
-            constructionProperties.LoadingRevetment = null;
-
-            return new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        private static GrassRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNull()
-        {
-            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-            
-            constructionProperties.UpperLimitLoading = null;
-
-            return new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        private static GrassRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNull()
-        {
-            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-            
-            constructionProperties.LowerLimitLoading = null;
-
-            return new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        [Test]
-    public void Constructor_WithAllValuesSet_ExpectedValues()
-    {
-        // Setup
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var loadingRevetment = true;
-        var upperLimitLoading = 0.4;
-        var lowerLimitLoading = 0.5;
-        var minimumWaveHeight = 0.6;
-        var maximumWaveHeight = 0.7;
-        var waveAngleImpact = 0.8;
-        var waveHeightImpact = 0.9;
-
-        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties.IncrementDamage = incrementDamage);
-        constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = timeOfFailure);
-        constructionProperties.LoadingRevetment = loadingRevetment);
-        constructionProperties.UpperLimitLoading = upperLimitLoading);
-        constructionProperties.LowerLimitLoading = lowerLimitLoading);
-        constructionProperties.MinimumWaveHeight = minimumWaveHeight);
-        constructionProperties.MaximumWaveHeight = maximumWaveHeight);
-        constructionProperties.WaveAngleImpact = waveAngleImpact);
-        constructionProperties.WaveHeightImpact = waveHeightImpact);
-
-        // Call
-        const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
-
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutput>(&output);
-        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
-        Assert.AreEqual(damage, output.GetDamage());
-        Assert.AreEqual(timeOfFailure, *output.GetTimeOfFailure());
-        Assert.AreEqual(loadingRevetment, output.GetLoadingRevetment());
-        Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
-        Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
-        Assert.AreEqual(minimumWaveHeight, *output.GetMinimumWaveHeight());
-        Assert.AreEqual(maximumWaveHeight, *output.GetMaximumWaveHeight());
-        Assert.AreEqual(waveAngleImpact, *output.GetWaveAngleImpact());
-        Assert.AreEqual(waveHeightImpact, *output.GetWaveHeightImpact());
     }
-
-        [Test]
-    public void Constructor_WithNullValues_ExpectedValues()
-    {
-        // Setup
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var loadingRevetment = false;
-        var upperLimitLoading = 0.3;
-        var lowerLimitLoading = 0.4;
-
-        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties.IncrementDamage = incrementDamage);
-        constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = null;
-        constructionProperties.LoadingRevetment = loadingRevetment);
-        constructionProperties.UpperLimitLoading = upperLimitLoading);
-        constructionProperties.LowerLimitLoading = lowerLimitLoading);
-        constructionProperties.MinimumWaveHeight = null;
-        constructionProperties.MaximumWaveHeight = null;
-        constructionProperties.WaveAngleImpact = null;
-        constructionProperties.WaveHeightImpact = null;
-
-        // Call
-        const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
-
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutput>(&output);
-        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
-        Assert.AreEqual(damage, output.GetDamage());
-        Assert.IsNull(output.GetTimeOfFailure());
-        Assert.AreEqual(loadingRevetment, output.GetLoadingRevetment());
-        Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
-        Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
-        Assert.IsNull(output.GetMinimumWaveHeight());
-        Assert.IsNull(output.GetMaximumWaveHeight());
-        Assert.IsNull(output.GetWaveAngleImpact());
-        Assert.IsNull(output.GetWaveHeightImpact());
-    }
-
-        [Test]
-    public void Constructor_LoadingRevetmentNull_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLoadingRevetmentNull;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "loadingRevetment must be set.");
-    }
-
-        [Test]
-    public void Constructor_UpperLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNull;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "upperLimitLoading must be set.");
-    }
-
-        [Test]
-    public void Constructor_LowerLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNull;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "lowerLimitLoading must be set.");
-    }
-}
 }
