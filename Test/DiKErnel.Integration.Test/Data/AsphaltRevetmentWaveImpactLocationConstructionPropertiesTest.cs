@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Integration.Data;
+using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data
@@ -23,116 +27,115 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class AsphaltRevetmentWaveImpactLocationConstructionPropertiesTest
     {
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+            double failureTension = Random.NextDouble();
+            double soilElasticity = Random.NextDouble();
+            double thicknessUpperLayer = Random.NextDouble();
+            double elasticModulusUpperLayer = Random.NextDouble();
+
+            // Call
+            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+
+            // Assert
+            Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
+            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.AreEqual(failureTension, constructionProperties.FailureTension);
+            Assert.AreEqual(soilElasticity, constructionProperties.SoilElasticity);
+            Assert.AreEqual(thicknessUpperLayer, constructionProperties.ThicknessUpperLayer);
+            Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.ElasticModulusUpperLayer);
+            Assert.IsNull(constructionProperties.InitialDamage);
+            Assert.IsNull(constructionProperties.FailureNumber);
+            Assert.IsNull(constructionProperties.DensityOfWater);
+            Assert.IsNull(constructionProperties.ThicknessSubLayer);
+            Assert.IsNull(constructionProperties.ElasticModulusSubLayer);
+            Assert.IsNull(constructionProperties.AverageNumberOfWavesCtm);
+            Assert.IsNull(constructionProperties.FatigueAlpha);
+            Assert.IsNull(constructionProperties.FatigueBeta);
+            Assert.IsNull(constructionProperties.ImpactNumberC);
+            Assert.IsNull(constructionProperties.StiffnessRelationNu);
+            Assert.IsNull(constructionProperties.WidthFactors);
+            Assert.IsNull(constructionProperties.DepthFactors);
+            Assert.IsNull(constructionProperties.ImpactFactors);
+        }
 
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Setup
-        var topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
-        var x = 0.1;
-        var failureTension = 0.2;
-        var soilElasticity = 0.3;
-        var thicknessUpperLayer = 0.4;
-        var elasticModulusUpperLayer = 0.5;
+        public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+            double failureTension = Random.NextDouble();
+            double soilElasticity = Random.NextDouble();
+            double thicknessUpperLayer = Random.NextDouble();
+            double elasticModulusUpperLayer = Random.NextDouble();
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
+            double densityOfWater = Random.NextDouble();
+            double thicknessSubLayer = Random.NextDouble();
+            double elasticModulusSubLayer = Random.NextDouble();
+            double averageNumberOfWavesCtm = Random.NextDouble();
+            double fatigueAlpha = Random.NextDouble();
+            double fatigueBeta = Random.NextDouble();
+            double impactNumberC = Random.NextDouble();
+            double stiffnessRelationNu = Random.NextDouble();
+            var widthFactors = new List<(double, double)>
+            {
+                (Random.NextDouble(), Random.NextDouble())
+            };
+            var depthFactors = new List<(double, double)>
+            {
+                (Random.NextDouble(), Random.NextDouble())
+            };
+            var impactFactors = new List<(double, double)>
+            {
+                (Random.NextDouble(), Random.NextDouble())
+            };
 
-        // Call
-        const AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
-        // Assert
-        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
-        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(failureTension, constructionProperties.GetFailureTension());
-        Assert.AreEqual(soilElasticity, constructionProperties.GetSoilElasticity());
-        Assert.AreEqual(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
-        Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
-        Assert.IsNull(constructionProperties.GetInitialDamage());
-        Assert.IsNull(constructionProperties.GetFailureNumber());
-        Assert.IsNull(constructionProperties.GetDensityOfWater());
-        Assert.IsNull(constructionProperties.GetThicknessSubLayer());
-        Assert.IsNull(constructionProperties.GetElasticModulusSubLayer());
-        Assert.IsNull(constructionProperties.GetAverageNumberOfWavesCtm());
-        Assert.IsNull(constructionProperties.GetFatigueAlpha());
-        Assert.IsNull(constructionProperties.GetFatigueBeta());
-        Assert.IsNull(constructionProperties.GetImpactNumberC());
-        Assert.IsNull(constructionProperties.GetStiffnessRelationNu());
-        Assert.IsNull(constructionProperties.GetWidthFactors());
-        Assert.IsNull(constructionProperties.GetDepthFactors());
-        Assert.IsNull(constructionProperties.GetImpactFactors());
+            // When
+            constructionProperties.InitialDamage = initialDamage;
+            constructionProperties.FailureNumber = failureNumber;
+            constructionProperties.DensityOfWater = densityOfWater;
+            constructionProperties.ThicknessSubLayer = thicknessSubLayer;
+            constructionProperties.ElasticModulusSubLayer = elasticModulusSubLayer;
+            constructionProperties.AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
+            constructionProperties.FatigueAlpha = fatigueAlpha;
+            constructionProperties.FatigueBeta = fatigueBeta;
+            constructionProperties.ImpactNumberC = impactNumberC;
+            constructionProperties.StiffnessRelationNu = stiffnessRelationNu;
+            constructionProperties.WidthFactors = widthFactors;
+            constructionProperties.DepthFactors = depthFactors;
+            constructionProperties.ImpactFactors = impactFactors;
+
+            // Then
+            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.AreEqual(failureTension, constructionProperties.FailureTension);
+            Assert.AreEqual(soilElasticity, constructionProperties.SoilElasticity);
+            Assert.AreEqual(thicknessUpperLayer, constructionProperties.ThicknessUpperLayer);
+            Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.ElasticModulusUpperLayer);
+            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
+            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
+            Assert.AreEqual(densityOfWater, constructionProperties.DensityOfWater);
+            Assert.AreEqual(thicknessSubLayer, constructionProperties.ThicknessSubLayer);
+            Assert.AreEqual(elasticModulusSubLayer, constructionProperties.ElasticModulusSubLayer);
+            Assert.AreEqual(averageNumberOfWavesCtm, constructionProperties.AverageNumberOfWavesCtm);
+            Assert.AreEqual(fatigueAlpha, constructionProperties.FatigueAlpha);
+            Assert.AreEqual(fatigueBeta, constructionProperties.FatigueBeta);
+            Assert.AreEqual(impactNumberC, constructionProperties.ImpactNumberC);
+            Assert.AreEqual(stiffnessRelationNu, constructionProperties.StiffnessRelationNu);
+            CollectionAssert.AreEqual(widthFactors, constructionProperties.WidthFactors);
+            CollectionAssert.AreEqual(depthFactors, constructionProperties.DepthFactors);
+            CollectionAssert.AreEqual(impactFactors, constructionProperties.ImpactFactors);
+        }
     }
-
-        [Test]
-    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
-    {
-        // Given
-        var topLayerType = AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete;
-        var x = 0.1;
-        var failureTension = 0.2;
-        var soilElasticity = 0.3;
-        var thicknessUpperLayer = 0.4;
-        var elasticModulusUpperLayer = 0.5;
-        var initialDamage = 0.6;
-        var failureNumber = 0.7;
-        var densityOfWater = 0.8;
-        var thicknessSubLayer = 0.9;
-        var elasticModulusSubLayer = 1.0;
-        var averageNumberOfWavesCtm = 1.1;
-        var fatigueAlpha = 1.2;
-        var fatigueBeta = 1.3;
-        var impactNumberC = 1.4;
-        var stiffnessRelationNu = 1.5;
-        const var widthFactors = vector
-        {
-            pair(1.6, 1.7)
-        };
-        const var depthFactors = vector
-        {
-            pair(1.8, 1.9)
-        };
-        const var impactFactors = vector
-        {
-            pair(2.0, 2.1)
-        };
-
-        AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties(
-            x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
-
-        // When
-        constructionProperties.SetInitialDamage(initialDamage));
-        constructionProperties.SetFailureNumber(failureNumber));
-        constructionProperties.SetDensityOfWater(densityOfWater));
-        constructionProperties.SetThicknessSubLayer(thicknessSubLayer));
-        constructionProperties.SetElasticModulusSubLayer(elasticModulusSubLayer));
-        constructionProperties.SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
-        constructionProperties.SetFatigueAlpha(fatigueAlpha));
-        constructionProperties.SetFatigueBeta(fatigueBeta));
-        constructionProperties.SetImpactNumberC(impactNumberC));
-        constructionProperties.SetStiffnessRelationNu(stiffnessRelationNu));
-        constructionProperties.SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
-        constructionProperties.SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
-        constructionProperties.SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
-
-        // Then
-        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(failureTension, constructionProperties.GetFailureTension());
-        Assert.AreEqual(soilElasticity, constructionProperties.GetSoilElasticity());
-        Assert.AreEqual(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
-        Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
-        Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
-        Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());
-        Assert.AreEqual(densityOfWater, constructionProperties.GetDensityOfWater());
-        Assert.AreEqual(thicknessSubLayer, constructionProperties.GetThicknessSubLayer());
-        Assert.AreEqual(elasticModulusSubLayer, constructionProperties.GetElasticModulusSubLayer());
-        Assert.AreEqual(averageNumberOfWavesCtm, constructionProperties.GetAverageNumberOfWavesCtm());
-        Assert.AreEqual(fatigueAlpha, constructionProperties.GetFatigueAlpha());
-        Assert.AreEqual(fatigueBeta, constructionProperties.GetFatigueBeta());
-        Assert.AreEqual(impactNumberC, constructionProperties.GetImpactNumberC());
-        Assert.AreEqual(stiffnessRelationNu, constructionProperties.GetStiffnessRelationNu());
-        ASSERT_EQ(widthFactors, constructionProperties.GetWidthFactors());
-        ASSERT_EQ(depthFactors, constructionProperties.GetDepthFactors());
-        ASSERT_EQ(impactFactors, constructionProperties.GetImpactFactors());
-    }
-}
 }
