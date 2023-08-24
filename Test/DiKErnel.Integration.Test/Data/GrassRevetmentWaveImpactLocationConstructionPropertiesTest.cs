@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Integration.Data;
+using DiKErnel.Integration.Data.GrassRevetment;
+using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data
@@ -23,85 +27,84 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class GrassRevetmentWaveImpactLocationConstructionPropertiesTest
     {
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+
+            // Call
+            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
+
+            // Assert
+            Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
+            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.IsNull(constructionProperties.InitialDamage);
+            Assert.IsNull(constructionProperties.FailureNumber);
+            Assert.IsNull(constructionProperties.TimeLineAgwi);
+            Assert.IsNull(constructionProperties.TimeLineBgwi);
+            Assert.IsNull(constructionProperties.TimeLineCgwi);
+            Assert.IsNull(constructionProperties.MinimumWaveHeightTemax);
+            Assert.IsNull(constructionProperties.MaximumWaveHeightTemin);
+            Assert.IsNull(constructionProperties.WaveAngleImpactNwa);
+            Assert.IsNull(constructionProperties.WaveAngleImpactQwa);
+            Assert.IsNull(constructionProperties.WaveAngleImpactRwa);
+            Assert.IsNull(constructionProperties.UpperLimitLoadingAul);
+            Assert.IsNull(constructionProperties.LowerLimitLoadingAll);
+        }
 
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Setup
-        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        var x = 0.1;
+        public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
+            double timeLineAgwi = Random.NextDouble();
+            double timeLineBgwi = Random.NextDouble();
+            double timeLineCgwi = Random.NextDouble();
+            double minimumWaveHeightTemax = Random.NextDouble();
+            double maximumWaveHeightTemin = Random.NextDouble();
+            double waveAngleImpactNwa = Random.NextDouble();
+            double waveAngleImpactQwa = Random.NextDouble();
+            double waveAngleImpactRwa = Random.NextDouble();
+            double upperLimitLoadingAul = Random.NextDouble();
+            double lowerLimitLoadingAll = Random.NextDouble();
 
-        // Call
-        const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
+            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
 
-        // Assert
-        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
-        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.IsNull(constructionProperties.GetInitialDamage());
-        Assert.IsNull(constructionProperties.GetFailureNumber());
-        Assert.IsNull(constructionProperties.GetTimeLineAgwi());
-        Assert.IsNull(constructionProperties.GetTimeLineBgwi());
-        Assert.IsNull(constructionProperties.GetTimeLineCgwi());
-        Assert.IsNull(constructionProperties.GetMinimumWaveHeightTemax());
-        Assert.IsNull(constructionProperties.GetMaximumWaveHeightTemin());
-        Assert.IsNull(constructionProperties.GetWaveAngleImpactNwa());
-        Assert.IsNull(constructionProperties.GetWaveAngleImpactQwa());
-        Assert.IsNull(constructionProperties.GetWaveAngleImpactRwa());
-        Assert.IsNull(constructionProperties.GetUpperLimitLoadingAul());
-        Assert.IsNull(constructionProperties.GetLowerLimitLoadingAll());
+            // When
+            constructionProperties.InitialDamage = initialDamage;
+            constructionProperties.FailureNumber = failureNumber;
+            constructionProperties.TimeLineAgwi = timeLineAgwi;
+            constructionProperties.TimeLineBgwi = timeLineBgwi;
+            constructionProperties.TimeLineCgwi = timeLineCgwi;
+            constructionProperties.MinimumWaveHeightTemax = minimumWaveHeightTemax;
+            constructionProperties.MaximumWaveHeightTemin = maximumWaveHeightTemin;
+            constructionProperties.WaveAngleImpactNwa = waveAngleImpactNwa;
+            constructionProperties.WaveAngleImpactQwa = waveAngleImpactQwa;
+            constructionProperties.WaveAngleImpactRwa = waveAngleImpactRwa;
+            constructionProperties.UpperLimitLoadingAul = upperLimitLoadingAul;
+            constructionProperties.LowerLimitLoadingAll = lowerLimitLoadingAll;
+
+            // Then
+            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
+            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
+            Assert.AreEqual(timeLineAgwi, constructionProperties.TimeLineAgwi);
+            Assert.AreEqual(timeLineBgwi, constructionProperties.TimeLineBgwi);
+            Assert.AreEqual(timeLineCgwi, constructionProperties.TimeLineCgwi);
+            Assert.AreEqual(minimumWaveHeightTemax, constructionProperties.MinimumWaveHeightTemax);
+            Assert.AreEqual(maximumWaveHeightTemin, constructionProperties.MaximumWaveHeightTemin);
+            Assert.AreEqual(waveAngleImpactNwa, constructionProperties.WaveAngleImpactNwa);
+            Assert.AreEqual(waveAngleImpactQwa, constructionProperties.WaveAngleImpactQwa);
+            Assert.AreEqual(waveAngleImpactRwa, constructionProperties.WaveAngleImpactRwa);
+            Assert.AreEqual(upperLimitLoadingAul, constructionProperties.UpperLimitLoadingAul);
+            Assert.AreEqual(lowerLimitLoadingAll, constructionProperties.LowerLimitLoadingAll);
+        }
     }
-
-        [Test]
-    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
-    {
-        // Given
-        var topLayerType = GrassRevetmentTopLayerType::OpenSod;
-        var x = 0.1;
-        var initialDamage = 0.2;
-        var failureNumber = 0.3;
-        var timeLineAgwi = 0.4;
-        var timeLineBgwi = 0.5;
-        var timeLineCgwi = 0.6;
-        var minimumWaveHeightTemax = 0.7;
-        var maximumWaveHeightTemin = 0.8;
-        var waveAngleImpactNwa = 0.9;
-        var waveAngleImpactQwa = 1.0;
-        var waveAngleImpactRwa = 1.1;
-        var upperLimitLoadingAul = 1.2;
-        var lowerLimitLoadingAll = 1.3;
-
-        GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
-
-        // When
-        constructionProperties.SetInitialDamage(initialDamage));
-        constructionProperties.SetFailureNumber(failureNumber));
-        constructionProperties.SetTimeLineAgwi(timeLineAgwi));
-        constructionProperties.SetTimeLineBgwi(timeLineBgwi));
-        constructionProperties.SetTimeLineCgwi(timeLineCgwi));
-        constructionProperties.SetMinimumWaveHeightTemax(minimumWaveHeightTemax));
-        constructionProperties.SetMaximumWaveHeightTemin(maximumWaveHeightTemin));
-        constructionProperties.SetWaveAngleImpactNwa(waveAngleImpactNwa));
-        constructionProperties.SetWaveAngleImpactQwa(waveAngleImpactQwa));
-        constructionProperties.SetWaveAngleImpactRwa(waveAngleImpactRwa));
-        constructionProperties.SetUpperLimitLoadingAul(upperLimitLoadingAul));
-        constructionProperties.SetLowerLimitLoadingAll(lowerLimitLoadingAll));
-
-        // Then
-        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
-        Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());
-        Assert.AreEqual(timeLineAgwi, constructionProperties.GetTimeLineAgwi());
-        Assert.AreEqual(timeLineBgwi, constructionProperties.GetTimeLineBgwi());
-        Assert.AreEqual(timeLineCgwi, constructionProperties.GetTimeLineCgwi());
-        Assert.AreEqual(minimumWaveHeightTemax, constructionProperties.GetMinimumWaveHeightTemax());
-        Assert.AreEqual(maximumWaveHeightTemin, constructionProperties.GetMaximumWaveHeightTemin());
-        Assert.AreEqual(waveAngleImpactNwa, constructionProperties.GetWaveAngleImpactNwa());
-        Assert.AreEqual(waveAngleImpactQwa, constructionProperties.GetWaveAngleImpactQwa());
-        Assert.AreEqual(waveAngleImpactRwa, constructionProperties.GetWaveAngleImpactRwa());
-        Assert.AreEqual(upperLimitLoadingAul, constructionProperties.GetUpperLimitLoadingAul());
-        Assert.AreEqual(lowerLimitLoadingAll, constructionProperties.GetLowerLimitLoadingAll());
-    }
-}
 }
