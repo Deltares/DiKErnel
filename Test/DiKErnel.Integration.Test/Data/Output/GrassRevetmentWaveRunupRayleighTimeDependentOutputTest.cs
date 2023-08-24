@@ -26,14 +26,14 @@ namespace DiKErnel.Integration.Test.Data.Output
 
     struct GrassRevetmentWaveRunupRayleighTimeDependentOutputTest : Test
     {
-        static void CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNull()
         {
             // Setup
             GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
             constructionProperties.IncrementDamage = 0.1);
             constructionProperties.Damage = 0.2);
             constructionProperties.TimeOfFailure = 3);
-            constructionProperties.VerticalDistanceWaterLevelElevation = nullptr;
+            constructionProperties.VerticalDistanceWaterLevelElevation = null;
             constructionProperties.WaveAngleImpact = 0.4);
             constructionProperties.RepresentativeWaveRunup2P = 0.5);
             constructionProperties.CumulativeOverload = 0.6);

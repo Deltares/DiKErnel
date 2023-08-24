@@ -44,31 +44,31 @@ namespace DiKErnel.Integration.Test.Data.Output
             return constructionProperties;
         }
 
-        static void CreateOutputWithConstructionPropertiesWithLoadingRevetmentNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithLoadingRevetmentNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->LoadingRevetment = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->LoadingRevetment = null;
 
             // Call
             const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->UpperLimitLoading = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->UpperLimitLoading = null;
 
             // Call
             const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->LowerLimitLoading = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->LowerLimitLoading = null;
 
             // Call
             const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
@@ -132,14 +132,14 @@ namespace DiKErnel.Integration.Test.Data.Output
         GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties.IncrementDamage = incrementDamage);
         constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = nullptr;
+        constructionProperties.TimeOfFailure = null;
         constructionProperties.LoadingRevetment = loadingRevetment);
         constructionProperties.UpperLimitLoading = upperLimitLoading);
         constructionProperties.LowerLimitLoading = lowerLimitLoading);
-        constructionProperties.MinimumWaveHeight = nullptr;
-        constructionProperties.MaximumWaveHeight = nullptr;
-        constructionProperties.WaveAngleImpact = nullptr;
-        constructionProperties.WaveHeightImpact = nullptr;
+        constructionProperties.MinimumWaveHeight = null;
+        constructionProperties.MaximumWaveHeight = null;
+        constructionProperties.WaveAngleImpact = null;
+        constructionProperties.WaveHeightImpact = null;
 
         // Call
         const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);

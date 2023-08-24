@@ -54,131 +54,131 @@ namespace DiKErnel.Integration.Test.Data.Output
             return constructionProperties;
         }
 
-        static void CreateOutputWithConstructionPropertiesWithOuterSlopeNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithOuterSlopeNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->OuterSlope = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->OuterSlope = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithSlopeUpperLevelNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithSlopeUpperLevelNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->SlopeUpperLevel = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->SlopeUpperLevel = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithSlopeUpperPositionNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithSlopeUpperPositionNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->SlopeUpperPosition = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->SlopeUpperPosition = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithSlopeLowerLevelNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithSlopeLowerLevelNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->SlopeLowerLevel = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->SlopeLowerLevel = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithSlopeLowerPositionNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithSlopeLowerPositionNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->SlopeLowerPosition = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->SlopeLowerPosition = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithLoadingRevetmentNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithLoadingRevetmentNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->LoadingRevetment = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->LoadingRevetment = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithSurfSimilarityParameterNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithSurfSimilarityParameterNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->SurfSimilarityParameter = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->SurfSimilarityParameter = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithWaveSteepnessDeepWaterNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithWaveSteepnessDeepWaterNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->WaveSteepnessDeepWater = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->WaveSteepnessDeepWater = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->UpperLimitLoading = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->UpperLimitLoading = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->LowerLimitLoading = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->LowerLimitLoading = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithDepthMaximumWaveLoadNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithDepthMaximumWaveLoadNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->DepthMaximumWaveLoad = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->DepthMaximumWaveLoad = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithDistanceMaximumWaveElevationNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithDistanceMaximumWaveElevationNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->DistanceMaximumWaveElevation = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->DistanceMaximumWaveElevation = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithNormativeWidthOfWaveImpactNullPtr()
+        static void CreateOutputWithConstructionPropertiesWithNormativeWidthOfWaveImpactNull()
         {
             // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->NormativeWidthOfWaveImpact = nullptr;
+            var constructionProperties = CreateFullyConfiguredConstructionProperties();
+            constructionProperties->NormativeWidthOfWaveImpact = null;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -285,7 +285,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties.IncrementDamage = incrementDamage);
         constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = nullptr;
+        constructionProperties.TimeOfFailure = null;
         constructionProperties.OuterSlope = outerSlope);
         constructionProperties.SlopeUpperLevel = slopeUpperLevel);
         constructionProperties.SlopeUpperPosition = slopeUpperPosition);
@@ -299,11 +299,11 @@ namespace DiKErnel.Integration.Test.Data.Output
         constructionProperties.DepthMaximumWaveLoad = depthMaximumWaveLoad);
         constructionProperties.DistanceMaximumWaveElevation = distanceMaximumWaveElevation);
         constructionProperties.NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact);
-        constructionProperties.HydraulicLoad = nullptr;
-        constructionProperties.WaveAngleImpact = nullptr;
-        constructionProperties.Resistance = nullptr;
-        constructionProperties.ReferenceTimeDegradation = nullptr;
-        constructionProperties.ReferenceDegradation = nullptr;
+        constructionProperties.HydraulicLoad = null;
+        constructionProperties.WaveAngleImpact = null;
+        constructionProperties.Resistance = null;
+        constructionProperties.ReferenceTimeDegradation = null;
+        constructionProperties.ReferenceDegradation = null;
 
         // Call
         const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);

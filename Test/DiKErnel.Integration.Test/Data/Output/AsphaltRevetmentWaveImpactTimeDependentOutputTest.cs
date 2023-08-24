@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -23,75 +27,71 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class AsphaltRevetmentWaveImpactTimeDependentOutputTest
     {
-        
-
-    struct AsphaltRevetmentWaveImpactTimeDependentOutputTest : Test
-    {
-        static unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
+     
+        private static AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
-            var constructionProperties = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
-            constructionProperties->IncrementDamage = 0.1);
-            constructionProperties->Damage = 0.2);
-            constructionProperties->TimeOfFailure = 3);
-            constructionProperties->_logFailureTension = 0.4);
-            constructionProperties->_maximumPeakStress = 0.5);
-            constructionProperties->_stiffnessRelation = 0.6);
-            constructionProperties->_computationalThickness = 0.7);
-            constructionProperties->_equivalentElasticModulus = 0.8);
-
-            return constructionProperties;
+            return new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = Random.NextDouble(),
+                Damage = Random.NextDouble(),
+                TimeOfFailure = Random.Next(),
+                LogFailureTension = Random.NextDouble(),
+                MaximumPeakStress = Random.NextDouble(),
+                StiffnessRelation = Random.NextDouble(),
+                ComputationalThickness = Random.NextDouble(),
+                EquivalentElasticModulus = Random.NextDouble()
+            };
         }
 
-        static void CreateOutputWithConstructionPropertiesWithLogFailureTensionNullPtr()
+        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithLogFailureTensionNull()
         {
-            // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_logFailureTension = nullptr;
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+            
+            constructionProperties.LogFailureTension = null;
 
-            // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithMaximumPeakStressNullPtr()
+        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithMaximumPeakStressNull()
         {
-            // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_maximumPeakStress = nullptr;
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
 
-            // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            constructionProperties.MaximumPeakStress = null;
+
+            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithStiffnessRelationNullPtr()
+        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithStiffnessRelationNull()
         {
-            // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_stiffnessRelation = nullptr;
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
 
-            // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            constructionProperties.StiffnessRelation = null;
+
+            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithComputationalThicknessNullPtr()
+        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithComputationalThicknessNull()
         {
-            // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_computationalThickness = nullptr;
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
 
-            // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            constructionProperties.ComputationalThickness = null;
+
+            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithEquivalentElasticModulusNullPtr()
+        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithEquivalentElasticModulusNull()
         {
-            // Setup
-            const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_equivalentElasticModulus = nullptr;
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
 
-            // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            constructionProperties.EquivalentElasticModulus = null;
+
+            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
-    };
 
         [Test]
     public void Constructor_WithAllValuesSet_ExpectedValues()
@@ -146,7 +146,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties.IncrementDamage = incrementDamage);
         constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = nullptr;
+        constructionProperties.TimeOfFailure = null;
         constructionProperties._logFailureTension = logFailureTension);
         constructionProperties._maximumPeakStress = maximumPeakStress);
         constructionProperties._stiffnessRelation = stiffnessRelation);
