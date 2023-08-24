@@ -2,4 +2,8 @@
 
     <Import Project="$(SolutionDir)build\Test.targets"/>
 
+    <ItemGroup>
+        <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj"/>
+    </ItemGroup>
+
 </Project>
