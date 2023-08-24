@@ -87,7 +87,7 @@ namespace DiKErnel.Integration.Test
     //     }
     // };
 
-    #pragma region Profile segments
+    #region Profile segments
 
     //     [Test]
     // public void GivenBuilderWithoutDikeProfileSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -260,9 +260,9 @@ namespace DiKErnel.Integration.Test
     //     ASSERT_EQ(&profileSegment1.GetEndPoint(), &profileSegment2.GetStartPoint());
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma region Profile point data
+    #region Profile point data
 
     //     [Test]
     // public void GivenBuilderWithDikeProfilePointDataOuterToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -518,9 +518,9 @@ namespace DiKErnel.Integration.Test
     //     ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), outerCrest, actualCharacteristicPoints.at(1));
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma region Time steps
+    #region Time steps
 
     //     [Test]
     // public void GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -637,9 +637,9 @@ namespace DiKErnel.Integration.Test
     //                                                                  timeDependentInput);
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma region Locations
+    #region Locations
 
     //     [Test]
     // public void GivenBuilderWithoutLocationAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -660,7 +660,7 @@ namespace DiKErnel.Integration.Test
     //     EventAssertHelper::AssertEvent(EventType::Error, "At least 1 location is required.", events.at(0));
     // }
 
-    #pragma region Asphalt wave impact
+    #region Asphalt wave impact
 
     //     [Test]
     // public void GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -893,9 +893,9 @@ namespace DiKErnel.Integration.Test
     //                                                                                 expectedImpactFactors, *locationDependentInput);
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma region Grass overtopping
+    #region Grass overtopping
 
     //     [Test]
     // public void GivenBuilderWithGrassOvertoppingLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -1188,9 +1188,9 @@ namespace DiKErnel.Integration.Test
     //         1.0, 1.4, locationDependentInput->GetLocationDependentAccelerationAlphaA());
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma region Grass wave impact
+    #region Grass wave impact
 
     //     [Test]
     // public void GivenBuilderWithGrassWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -1414,9 +1414,9 @@ namespace DiKErnel.Integration.Test
     //         0.5, *locationDependentInput);
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma region Grass wave run-up Rayleigh
+    #region Grass wave run-up Rayleigh
 
     //     [Test]
     // public void GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -1652,9 +1652,9 @@ namespace DiKErnel.Integration.Test
     //         4.3, 1.1, *locationDependentInput);
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma region Natural stone
+    #region Natural stone
 
     //     [Test]
     // public void GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
@@ -1859,8 +1859,8 @@ namespace DiKErnel.Integration.Test
     //         78, locationDependentInput->GetWaveAngleImpact());
     // }
 
-    #pragma endregion
+    #endregion
 
-    #pragma endregion
+    #endregion
     }
 }
