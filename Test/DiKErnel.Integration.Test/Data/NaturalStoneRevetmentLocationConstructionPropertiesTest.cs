@@ -16,6 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Integration.Data;
+using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data
@@ -24,140 +27,141 @@ namespace DiKErnel.Integration.Test.Data
     public class NaturalStoneRevetmentLocationConstructionPropertiesTest
     {
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Setup
-        var topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        var x = 0.1;
-        var thicknessTopLayer = 0.2;
-        var relativeDensity = 0.3;
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            var topLayerType = Random.NextEnumValue<NaturalStoneRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+            double thicknessTopLayer = Random.NextDouble();
+            double relativeDensity = Random.NextDouble();
 
-        // Call
-        const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
+            // Call
+            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+                x, topLayerType, thicknessTopLayer, relativeDensity);
 
-        // Assert
-        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
-        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
-        Assert.AreEqual(relativeDensity, constructionProperties.GetRelativeDensity());
-        Assert.IsNull(constructionProperties.GetInitialDamage());
-        Assert.IsNull(constructionProperties.GetFailureNumber());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadXib());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadAp());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadBp());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadCp());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadNp());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadAs());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadBs());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadCs());
-        Assert.IsNull(constructionProperties.GetHydraulicLoadNs());
-        Assert.IsNull(constructionProperties.GetSlopeUpperLevelAus());
-        Assert.IsNull(constructionProperties.GetSlopeLowerLevelAls());
-        Assert.IsNull(constructionProperties.GetUpperLimitLoadingAul());
-        Assert.IsNull(constructionProperties.GetUpperLimitLoadingBul());
-        Assert.IsNull(constructionProperties.GetUpperLimitLoadingCul());
-        Assert.IsNull(constructionProperties.GetLowerLimitLoadingAll());
-        Assert.IsNull(constructionProperties.GetLowerLimitLoadingBll());
-        Assert.IsNull(constructionProperties.GetLowerLimitLoadingCll());
-        Assert.IsNull(constructionProperties.GetDistanceMaximumWaveElevationAsmax());
-        Assert.IsNull(constructionProperties.GetDistanceMaximumWaveElevationBsmax());
-        Assert.IsNull(constructionProperties.GetNormativeWidthOfWaveImpactAwi());
-        Assert.IsNull(constructionProperties.GetNormativeWidthOfWaveImpactBwi());
-        Assert.IsNull(constructionProperties.GetWaveAngleImpactBetamax());
-    }
+            // Assert
+            Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
+            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.AreEqual(thicknessTopLayer, constructionProperties.ThicknessTopLayer);
+            Assert.AreEqual(relativeDensity, constructionProperties.RelativeDensity);
+            Assert.IsNull(constructionProperties.InitialDamage);
+            Assert.IsNull(constructionProperties.FailureNumber);
+            Assert.IsNull(constructionProperties.HydraulicLoadXib);
+            Assert.IsNull(constructionProperties.HydraulicLoadAp);
+            Assert.IsNull(constructionProperties.HydraulicLoadBp);
+            Assert.IsNull(constructionProperties.HydraulicLoadCp);
+            Assert.IsNull(constructionProperties.HydraulicLoadNp);
+            Assert.IsNull(constructionProperties.HydraulicLoadAs);
+            Assert.IsNull(constructionProperties.HydraulicLoadBs);
+            Assert.IsNull(constructionProperties.HydraulicLoadCs);
+            Assert.IsNull(constructionProperties.HydraulicLoadNs);
+            Assert.IsNull(constructionProperties.SlopeUpperLevelAus);
+            Assert.IsNull(constructionProperties.SlopeLowerLevelAls);
+            Assert.IsNull(constructionProperties.UpperLimitLoadingAul);
+            Assert.IsNull(constructionProperties.UpperLimitLoadingBul);
+            Assert.IsNull(constructionProperties.UpperLimitLoadingCul);
+            Assert.IsNull(constructionProperties.LowerLimitLoadingAll);
+            Assert.IsNull(constructionProperties.LowerLimitLoadingBll);
+            Assert.IsNull(constructionProperties.LowerLimitLoadingCll);
+            Assert.IsNull(constructionProperties.DistanceMaximumWaveElevationAsmax);
+            Assert.IsNull(constructionProperties.DistanceMaximumWaveElevationBsmax);
+            Assert.IsNull(constructionProperties.NormativeWidthOfWaveImpactAwi);
+            Assert.IsNull(constructionProperties.NormativeWidthOfWaveImpactBwi);
+            Assert.IsNull(constructionProperties.WaveAngleImpactBetamax);
+        }
 
         [Test]
-    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
-    {
-        // Given
-        var topLayerType = NaturalStoneRevetmentTopLayerType::NordicStone;
-        var x = 0.1;
-        var thicknessTopLayer = 0.2;
-        var relativeDensity = 0.3;
-        var initialDamage = 0.4;
-        var failureNumber = 0.5;
-        var hydraulicLoadXib = 0.6;
-        var hydraulicLoadAp = 0.7;
-        var hydraulicLoadBp = 0.8;
-        var hydraulicLoadCp = 0.9;
-        var hydraulicLoadNp = 1.0;
-        var hydraulicLoadAs = 1.1;
-        var hydraulicLoadBs = 1.2;
-        var hydraulicLoadCs = 1.3;
-        var hydraulicLoadNs = 1.4;
-        var slopeUpperLevelAus = 1.5;
-        var slopeLowerLevelAls = 1.6;
-        var upperLimitLoadingAul = 1.7;
-        var upperLimitLoadingBul = 1.8;
-        var upperLimitLoadingCul = 1.9;
-        var lowerLimitLoadingAll = 2.0;
-        var lowerLimitLoadingBll = 2.1;
-        var lowerLimitLoadingCll = 2.2;
-        var distanceMaximumWaveElevationAsmax = 2.3;
-        var distanceMaximumWaveElevationBsmax = 2.4;
-        var normativeWidthOfWaveImpactAwi = 2.5;
-        var normativeWidthOfWaveImpactBwi = 2.6;
-        var waveAngleImpactBetamax = 2.7;
+        public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<NaturalStoneRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+            double thicknessTopLayer = Random.NextDouble();
+            double relativeDensity = Random.NextDouble();
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
+            double hydraulicLoadXib = Random.NextDouble();
+            double hydraulicLoadAp = Random.NextDouble();
+            double hydraulicLoadBp = Random.NextDouble();
+            double hydraulicLoadCp = Random.NextDouble();
+            double hydraulicLoadNp = Random.NextDouble();
+            double hydraulicLoadAs = Random.NextDouble();
+            double hydraulicLoadBs = Random.NextDouble();
+            double hydraulicLoadCs = Random.NextDouble();
+            double hydraulicLoadNs = Random.NextDouble();
+            double slopeUpperLevelAus = Random.NextDouble();
+            double slopeLowerLevelAls = Random.NextDouble();
+            double upperLimitLoadingAul = Random.NextDouble();
+            double upperLimitLoadingBul = Random.NextDouble();
+            double upperLimitLoadingCul = Random.NextDouble();
+            double lowerLimitLoadingAll = Random.NextDouble();
+            double lowerLimitLoadingBll = Random.NextDouble();
+            double lowerLimitLoadingCll = Random.NextDouble();
+            double distanceMaximumWaveElevationAsmax = Random.NextDouble();
+            double distanceMaximumWaveElevationBsmax = Random.NextDouble();
+            double normativeWidthOfWaveImpactAwi = Random.NextDouble();
+            double normativeWidthOfWaveImpactBwi = Random.NextDouble();
+            double waveAngleImpactBetamax = Random.NextDouble();
 
-        NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
+            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+                x, topLayerType, thicknessTopLayer, relativeDensity);
 
-        // When
-        constructionProperties.SetInitialDamage(initialDamage));
-        constructionProperties.SetFailureNumber(failureNumber));
-        constructionProperties.SetHydraulicLoadXib(hydraulicLoadXib));
-        constructionProperties.SetHydraulicLoadAp(hydraulicLoadAp));
-        constructionProperties.SetHydraulicLoadBp(hydraulicLoadBp));
-        constructionProperties.SetHydraulicLoadCp(hydraulicLoadCp));
-        constructionProperties.SetHydraulicLoadNp(hydraulicLoadNp));
-        constructionProperties.SetHydraulicLoadAs(hydraulicLoadAs));
-        constructionProperties.SetHydraulicLoadBs(hydraulicLoadBs));
-        constructionProperties.SetHydraulicLoadCs(hydraulicLoadCs));
-        constructionProperties.SetHydraulicLoadNs(hydraulicLoadNs));
-        constructionProperties.SetSlopeUpperLevelAus(slopeUpperLevelAus));
-        constructionProperties.SetSlopeLowerLevelAls(slopeLowerLevelAls));
-        constructionProperties.SetUpperLimitLoadingAul(upperLimitLoadingAul));
-        constructionProperties.SetUpperLimitLoadingBul(upperLimitLoadingBul));
-        constructionProperties.SetUpperLimitLoadingCul(upperLimitLoadingCul));
-        constructionProperties.SetLowerLimitLoadingAll(lowerLimitLoadingAll));
-        constructionProperties.SetLowerLimitLoadingBll(lowerLimitLoadingBll));
-        constructionProperties.SetLowerLimitLoadingCll(lowerLimitLoadingCll));
-        constructionProperties.SetDistanceMaximumWaveElevationAsmax(distanceMaximumWaveElevationAsmax));
-        constructionProperties.SetDistanceMaximumWaveElevationBsmax(distanceMaximumWaveElevationBsmax));
-        constructionProperties.SetNormativeWidthOfWaveImpactAwi(normativeWidthOfWaveImpactAwi));
-        constructionProperties.SetNormativeWidthOfWaveImpactBwi(normativeWidthOfWaveImpactBwi));
-        constructionProperties.SetWaveAngleImpactBetamax(waveAngleImpactBetamax));
+            // When
+            constructionProperties.InitialDamage = initialDamage;
+            constructionProperties.FailureNumber = failureNumber;
+            constructionProperties.HydraulicLoadXib = hydraulicLoadXib;
+            constructionProperties.HydraulicLoadAp = hydraulicLoadAp;
+            constructionProperties.HydraulicLoadBp = hydraulicLoadBp;
+            constructionProperties.HydraulicLoadCp = hydraulicLoadCp;
+            constructionProperties.HydraulicLoadNp = hydraulicLoadNp;
+            constructionProperties.HydraulicLoadAs = hydraulicLoadAs;
+            constructionProperties.HydraulicLoadBs = hydraulicLoadBs;
+            constructionProperties.HydraulicLoadCs = hydraulicLoadCs;
+            constructionProperties.HydraulicLoadNs = hydraulicLoadNs;
+            constructionProperties.SlopeUpperLevelAus = slopeUpperLevelAus;
+            constructionProperties.SlopeLowerLevelAls = slopeLowerLevelAls;
+            constructionProperties.UpperLimitLoadingAul = upperLimitLoadingAul;
+            constructionProperties.UpperLimitLoadingBul = upperLimitLoadingBul;
+            constructionProperties.UpperLimitLoadingCul = upperLimitLoadingCul;
+            constructionProperties.LowerLimitLoadingAll = lowerLimitLoadingAll;
+            constructionProperties.LowerLimitLoadingBll = lowerLimitLoadingBll;
+            constructionProperties.LowerLimitLoadingCll = lowerLimitLoadingCll;
+            constructionProperties.DistanceMaximumWaveElevationAsmax = distanceMaximumWaveElevationAsmax;
+            constructionProperties.DistanceMaximumWaveElevationBsmax = distanceMaximumWaveElevationBsmax;
+            constructionProperties.NormativeWidthOfWaveImpactAwi = normativeWidthOfWaveImpactAwi;
+            constructionProperties.NormativeWidthOfWaveImpactBwi = normativeWidthOfWaveImpactBwi;
+            constructionProperties.WaveAngleImpactBetamax = waveAngleImpactBetamax;
 
-        // Then
-        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
-        Assert.AreEqual(relativeDensity, constructionProperties.GetRelativeDensity());
-        Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
-        Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());
-        Assert.AreEqual(hydraulicLoadXib, constructionProperties.GetHydraulicLoadXib());
-        Assert.AreEqual(hydraulicLoadAp, constructionProperties.GetHydraulicLoadAp());
-        Assert.AreEqual(hydraulicLoadBp, constructionProperties.GetHydraulicLoadBp());
-        Assert.AreEqual(hydraulicLoadCp, constructionProperties.GetHydraulicLoadCp());
-        Assert.AreEqual(hydraulicLoadNp, constructionProperties.GetHydraulicLoadNp());
-        Assert.AreEqual(hydraulicLoadAs, constructionProperties.GetHydraulicLoadAs());
-        Assert.AreEqual(hydraulicLoadBs, constructionProperties.GetHydraulicLoadBs());
-        Assert.AreEqual(hydraulicLoadCs, constructionProperties.GetHydraulicLoadCs());
-        Assert.AreEqual(hydraulicLoadNs, constructionProperties.GetHydraulicLoadNs());
-        Assert.AreEqual(slopeUpperLevelAus, constructionProperties.GetSlopeUpperLevelAus());
-        Assert.AreEqual(slopeLowerLevelAls, constructionProperties.GetSlopeLowerLevelAls());
-        Assert.AreEqual(upperLimitLoadingAul, constructionProperties.GetUpperLimitLoadingAul());
-        Assert.AreEqual(upperLimitLoadingBul, constructionProperties.GetUpperLimitLoadingBul());
-        Assert.AreEqual(upperLimitLoadingCul, constructionProperties.GetUpperLimitLoadingCul());
-        Assert.AreEqual(lowerLimitLoadingAll, constructionProperties.GetLowerLimitLoadingAll());
-        Assert.AreEqual(lowerLimitLoadingBll, constructionProperties.GetLowerLimitLoadingBll());
-        Assert.AreEqual(lowerLimitLoadingCll, constructionProperties.GetLowerLimitLoadingCll());
-        Assert.AreEqual(distanceMaximumWaveElevationAsmax, constructionProperties.GetDistanceMaximumWaveElevationAsmax());
-        Assert.AreEqual(distanceMaximumWaveElevationBsmax, constructionProperties.GetDistanceMaximumWaveElevationBsmax());
-        Assert.AreEqual(normativeWidthOfWaveImpactAwi, constructionProperties.GetNormativeWidthOfWaveImpactAwi());
-        Assert.AreEqual(normativeWidthOfWaveImpactBwi, constructionProperties.GetNormativeWidthOfWaveImpactBwi());
-        Assert.AreEqual(waveAngleImpactBetamax, constructionProperties.GetWaveAngleImpactBetamax());
+            // Then
+            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.AreEqual(thicknessTopLayer, constructionProperties.ThicknessTopLayer);
+            Assert.AreEqual(relativeDensity, constructionProperties.RelativeDensity);
+            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
+            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
+            Assert.AreEqual(hydraulicLoadXib, constructionProperties.HydraulicLoadXib);
+            Assert.AreEqual(hydraulicLoadAp, constructionProperties.HydraulicLoadAp);
+            Assert.AreEqual(hydraulicLoadBp, constructionProperties.HydraulicLoadBp);
+            Assert.AreEqual(hydraulicLoadCp, constructionProperties.HydraulicLoadCp);
+            Assert.AreEqual(hydraulicLoadNp, constructionProperties.HydraulicLoadNp);
+            Assert.AreEqual(hydraulicLoadAs, constructionProperties.HydraulicLoadAs);
+            Assert.AreEqual(hydraulicLoadBs, constructionProperties.HydraulicLoadBs);
+            Assert.AreEqual(hydraulicLoadCs, constructionProperties.HydraulicLoadCs);
+            Assert.AreEqual(hydraulicLoadNs, constructionProperties.HydraulicLoadNs);
+            Assert.AreEqual(slopeUpperLevelAus, constructionProperties.SlopeUpperLevelAus);
+            Assert.AreEqual(slopeLowerLevelAls, constructionProperties.SlopeLowerLevelAls);
+            Assert.AreEqual(upperLimitLoadingAul, constructionProperties.UpperLimitLoadingAul);
+            Assert.AreEqual(upperLimitLoadingBul, constructionProperties.UpperLimitLoadingBul);
+            Assert.AreEqual(upperLimitLoadingCul, constructionProperties.UpperLimitLoadingCul);
+            Assert.AreEqual(lowerLimitLoadingAll, constructionProperties.LowerLimitLoadingAll);
+            Assert.AreEqual(lowerLimitLoadingBll, constructionProperties.LowerLimitLoadingBll);
+            Assert.AreEqual(lowerLimitLoadingCll, constructionProperties.LowerLimitLoadingCll);
+            Assert.AreEqual(distanceMaximumWaveElevationAsmax, constructionProperties.DistanceMaximumWaveElevationAsmax);
+            Assert.AreEqual(distanceMaximumWaveElevationBsmax, constructionProperties.DistanceMaximumWaveElevationBsmax);
+            Assert.AreEqual(normativeWidthOfWaveImpactAwi, constructionProperties.NormativeWidthOfWaveImpactAwi);
+            Assert.AreEqual(normativeWidthOfWaveImpactBwi, constructionProperties.NormativeWidthOfWaveImpactBwi);
+            Assert.AreEqual(waveAngleImpactBetamax, constructionProperties.WaveAngleImpactBetamax);
+        }
     }
-}
-
 }
