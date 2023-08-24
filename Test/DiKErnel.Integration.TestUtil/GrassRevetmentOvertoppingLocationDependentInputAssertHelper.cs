@@ -17,30 +17,62 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassRevetmentOvertoppingLocationDependentInputAssertHelper
     {
         public static void AssertGeneralProperties(double x, double? dikeHeight,
-                                                   GrassRevetmentOvertoppingLocationDependentInput locationDependentInput) {}
+                                                   GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(x, locationDependentInput.X);
+
+            if (!dikeHeight.HasValue)
+            {
+                Assert.IsNull(locationDependentInput.EnforcedDikeHeight);
+            }
+            else
+            {
+                Assert.AreEqual(dikeHeight, locationDependentInput.EnforcedDikeHeight);
+            }
+        }
 
         public static void AssertCumulativeOverload(double criticalCumulativeOverload, int fixedNumberOfWaves,
-                                                    GrassRevetmentOvertoppingLocationDependentInput locationDependentInput) {}
+                                                    GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(criticalCumulativeOverload, locationDependentInput.CriticalCumulativeOverload);
+            Assert.AreEqual(fixedNumberOfWaves, locationDependentInput.FixedNumberOfWaves);
+        }
 
         public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCwo,
-                                               GrassRevetmentOvertoppingLocationDependentInput locationDependentInput) {}
+                                               GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(criticalFrontVelocity, locationDependentInput.CriticalFrontVelocity);
+            Assert.AreEqual(frontVelocityCwo, locationDependentInput.FrontVelocityCwo);
+        }
 
         public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
                                                  double reducedStrengthTransitionAlphaS,
-                                                 GrassRevetmentOvertoppingLocationDependentInput locationDependentInput) {}
+                                                 GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(increasedLoadTransitionAlphaM, locationDependentInput.IncreasedLoadTransitionAlphaM);
+            Assert.AreEqual(reducedStrengthTransitionAlphaS, locationDependentInput.ReducedStrengthTransitionAlphaS);
+        }
 
         public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
-                                                      GrassRevetmentOvertoppingLocationDependentInput locationDependentInput) {}
+                                                      GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
+        }
 
         public static void AssertAccelerationAlphaA(double accelerationAlphaAForCrest,
                                                     double accelerationAlphaAForInnerSlope,
                                                     GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
-                                                        locationDependentAccelerationAlphaA) {}
+                                                        locationDependentAccelerationAlphaA)
+        {
+            Assert.AreEqual(accelerationAlphaAForCrest, locationDependentAccelerationAlphaA.ValueAtCrest);
+            Assert.AreEqual(accelerationAlphaAForInnerSlope, locationDependentAccelerationAlphaA.ValueAtInnerSlope);
+        }
     }
 }

@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
@@ -25,7 +26,11 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertGeneralProperties(
             double x,
             double outerSlope,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput) {}
+            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(x, locationDependentInput.X);
+            Assert.AreEqual(outerSlope, locationDependentInput.OuterSlope);
+        }
 
         public static void AssertRepresentative2P(
             double representative2PAru,
@@ -33,28 +38,52 @@ namespace DiKErnel.Integration.TestUtil
             double representative2PCru,
             double gammab,
             double gammaf,
-            GrassRevetmentWaveRunupRepresentative2P representative2P) {}
+            GrassRevetmentWaveRunupRepresentative2P representative2P)
+        {
+            Assert.AreEqual(representative2PAru, representative2P.Representative2PAru);
+            Assert.AreEqual(representative2PBru, representative2P.Representative2PBru);
+            Assert.AreEqual(representative2PCru, representative2P.Representative2PCru);
+            Assert.AreEqual(gammab, representative2P.Gammab);
+            Assert.AreEqual(gammaf, representative2P.Gammaf);
+        }
 
         public static void AssertWaveAngleImpact(
             double abeta,
             double betamax,
-            GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact) {}
+            GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact)
+        {
+            Assert.AreEqual(abeta, waveAngleImpact.Abeta);
+            Assert.AreEqual(betamax, waveAngleImpact.Betamax);
+        }
 
         public static void AssertCumulativeOverload(
             double criticalCumulativeOverload,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput) {}
+            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(criticalCumulativeOverload, locationDependentInput.CriticalCumulativeOverload);
+        }
 
         public static void AssertFrontVelocity(
             double criticalFrontVelocity,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput) {}
+            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(criticalFrontVelocity, locationDependentInput.CriticalFrontVelocity);
+        }
 
         public static void AssertTransitionAlpha(
             double increasedLoadTransitionAlphaM,
             double reducedStrengthTransitionAlphaS,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput) {}
+            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(increasedLoadTransitionAlphaM, locationDependentInput.IncreasedLoadTransitionAlphaM);
+            Assert.AreEqual(reducedStrengthTransitionAlphaS, locationDependentInput.ReducedStrengthTransitionAlphaS);
+        }
 
         public static void AssertAverageNumberOfWaves(
             double averageNumberOfWavesCtm,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput) {}
+            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
+        }
     }
 }

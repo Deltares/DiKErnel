@@ -17,31 +17,57 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassRevetmentWaveImpactLocationDependentInputAssertHelper
     {
         public static void AssertGeneralProperties(double x,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput) {}
+                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(x, locationDependentInput.X);
+        }
 
         public static void AssertMinimumWaveHeight(double minimumWaveHeightTemax,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput) {}
+                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(minimumWaveHeightTemax, locationDependentInput.MinimumWaveHeightTemax);
+        }
 
         public static void AssertMaximumWaveHeight(double maximumWaveHeightTemin,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput) {}
+                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(maximumWaveHeightTemin, locationDependentInput.MaximumWaveHeightTemin);
+        }
 
         public static void AssertWaveAngleImpact(double waveAngleImpactNwa, double waveAngleImpactQwa,
                                                  double waveAngleImpactRwa,
-                                                 GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact) {}
+                                                 GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact)
+        {
+            Assert.AreEqual(waveAngleImpactNwa, waveAngleImpact.WaveAngleImpactNwa);
+            Assert.AreEqual(waveAngleImpactQwa, waveAngleImpact.WaveAngleImpactQwa);
+            Assert.AreEqual(waveAngleImpactRwa, waveAngleImpact.WaveAngleImpactRwa);
+        }
 
         public static void AssertTimeLine(double timeLineAgwi, double timeLineBgwi, double timeLineCgwi,
-                                          GrassRevetmentWaveImpactTimeLine timeLine) {}
+                                          GrassRevetmentWaveImpactTimeLine timeLine)
+        {
+            Assert.AreEqual(timeLineAgwi, timeLine.TimeLineAgwi);
+            Assert.AreEqual(timeLineBgwi, timeLine.TimeLineBgwi);
+            Assert.AreEqual(timeLineCgwi, timeLine.TimeLineCgwi);
+        }
 
         public static void AssertUpperLimitLoading(double upperLimitLoadingAul,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput) {}
+                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(upperLimitLoadingAul, locationDependentInput.UpperLimitLoadingAul);
+        }
 
         public static void AssertLowerLimitLoading(double lowerLimitLoadingAll,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput) {}
+                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(lowerLimitLoadingAll, locationDependentInput.LowerLimitLoadingAll);
+        }
     }
 }

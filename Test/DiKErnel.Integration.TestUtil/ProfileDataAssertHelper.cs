@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Core.Data;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
@@ -25,7 +26,11 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertProfilePoint(
             double expectedX,
             double expectedZ,
-            ProfilePoint actualProfilePoint) {}
+            ProfilePoint actualProfilePoint)
+        {
+            Assert.AreEqual(expectedX, actualProfilePoint.X);
+            Assert.AreEqual(expectedZ, actualProfilePoint.Z);
+        }
 
         public static void AssertProfileSegment(
             double expectedStartPointX,
@@ -33,11 +38,20 @@ namespace DiKErnel.Integration.TestUtil
             double expectedEndPointX,
             double expectedEndPointZ,
             double expectedRoughnessCoefficient,
-            ProfileSegment actualProfileSegment) {}
+            ProfileSegment actualProfileSegment)
+        {
+            AssertProfilePoint(expectedStartPointX, expectedStartPointZ, actualProfileSegment.StartPoint);
+            AssertProfilePoint(expectedEndPointX, expectedEndPointZ, actualProfileSegment.EndPoint);
+            Assert.AreEqual(expectedRoughnessCoefficient, actualProfileSegment.RoughnessCoefficient);
+        }
 
         public static void AssertCharacteristicPoint(
             ProfilePoint expectedProfilePoint,
             CharacteristicPointType expectedCharacteristicPointType,
-            CharacteristicPoint actualCharacteristicPoint) {}
+            CharacteristicPoint actualCharacteristicPoint)
+        {
+            Assert.AreSame(expectedProfilePoint, actualCharacteristicPoint.ProfilePoint);
+            Assert.AreEqual(expectedCharacteristicPointType, actualCharacteristicPoint.CharacteristicPointType);
+        }
     }
 }

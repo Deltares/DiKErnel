@@ -17,14 +17,17 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Integration.Data;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
     internal static class LocationDependentInputAssertHelper
     {
-        public static void AssertDamageProperties(
-            double initialDamage,
-            double failureNumber,
-            LocationDependentInput locationDependentInput) {}
+        public static void AssertDamageProperties(double initialDamage, double failureNumber,
+                                                  LocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(initialDamage, locationDependentInput.InitialDamage);
+            Assert.AreEqual(failureNumber, locationDependentInput.FailureNumber);
+        }
     }
 }

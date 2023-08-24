@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Core.Data;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
@@ -29,6 +30,14 @@ namespace DiKErnel.Integration.TestUtil
             double expectedWaveHeightHm0,
             double expectedWavePeriodTm10,
             double expectedWaveAngle,
-            ITimeDependentInput actualTimeDependentInput) {}
+            ITimeDependentInput actualTimeDependentInput)
+        {
+            Assert.AreEqual(expectedBeginTime, actualTimeDependentInput.BeginTime);
+            Assert.AreEqual(expectedEndTime, actualTimeDependentInput.EndTime);
+            Assert.AreEqual(expectedWaterLevel, actualTimeDependentInput.WaterLevel);
+            Assert.AreEqual(expectedWaveHeightHm0, actualTimeDependentInput.WaveHeightHm0);
+            Assert.AreEqual(expectedWavePeriodTm10, actualTimeDependentInput.WavePeriodTm10);
+            Assert.AreEqual(expectedWaveAngle, actualTimeDependentInput.WaveAngle);
+        }
     }
 }

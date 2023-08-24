@@ -18,6 +18,7 @@
 
 using System.Collections.Generic;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
@@ -26,15 +27,37 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertGeneralProperties(double x, double failureTension, double densityOfWater,
                                                    double soilElasticity, double averageNumberOfWavesCtm,
                                                    double impactNumberC, double stiffnessRelationNu,
-                                                   AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput) {}
+                                                   AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput)
+        {
+            Assert.AreEqual(x, locationDependentInput.X);
+            Assert.AreEqual(failureTension, locationDependentInput.FailureTension);
+            Assert.AreEqual(densityOfWater, locationDependentInput.DensityOfWater);
+            Assert.AreEqual(soilElasticity, locationDependentInput.SoilElasticity);
+            Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
+            Assert.AreEqual(impactNumberC, locationDependentInput.ImpactNumberC);
+            Assert.AreEqual(stiffnessRelationNu, locationDependentInput.StiffnessRelationNu);
+        }
 
-        public static void AssertLayer(double thickness, double elasticModulus, AsphaltRevetmentWaveImpactLayer layer) {}
+        public static void AssertLayer(double thickness, double elasticModulus, AsphaltRevetmentWaveImpactLayer layer)
+        {
+            Assert.AreEqual(thickness, layer.Thickness);
+            Assert.AreEqual(elasticModulus, layer.ElasticModulus);
+        }
 
-        public static void AssertFatigue(double alpha, double beta, AsphaltRevetmentWaveImpactFatigue fatigue) {}
+        public static void AssertFatigue(double alpha, double beta, AsphaltRevetmentWaveImpactFatigue fatigue)
+        {
+            Assert.AreEqual(alpha, fatigue.Alpha);
+            Assert.AreEqual(beta, fatigue.Beta);
+        }
 
         public static void AssertFactors(IReadOnlyList<(double, double)> widthFactors,
                                          IReadOnlyList<(double, double)> depthFactors,
                                          IReadOnlyList<(double, double)> impactFactors,
-                                         AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput) {}
+                                         AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput)
+        {
+            CollectionAssert.AreEqual(widthFactors, locationDependentInput.WidthFactors);
+            CollectionAssert.AreEqual(depthFactors, locationDependentInput.DepthFactors);
+            CollectionAssert.AreEqual(impactFactors, locationDependentInput.ImpactFactors);
+        }
     }
 }

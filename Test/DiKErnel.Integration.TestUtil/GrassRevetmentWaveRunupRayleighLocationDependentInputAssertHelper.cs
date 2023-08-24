@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
@@ -25,11 +26,23 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertCumulativeOverload(
             double criticalCumulativeOverload,
             int fixedNumberOfWaves,
-            GrassRevetmentWaveRunupRayleighLocationDependentInput locationDependentInput) {}
+            GrassRevetmentWaveRunupRayleighLocationDependentInput locationDependentInput)
+        {
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, locationDependentInput);
+
+            Assert.AreEqual(fixedNumberOfWaves, locationDependentInput.FixedNumberOfWaves);
+        }
 
         public static void AssertFrontVelocity(
             double criticalFrontVelocity,
             double frontVelocityCu,
-            GrassRevetmentWaveRunupRayleighLocationDependentInput locationDependentInput) {}
+            GrassRevetmentWaveRunupRayleighLocationDependentInput locationDependentInput)
+        {
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
+                criticalFrontVelocity, locationDependentInput);
+
+            Assert.AreEqual(frontVelocityCu, locationDependentInput.FrontVelocityCu);
+        }
     }
 }
