@@ -16,6 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -23,110 +26,111 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class NaturalStoneRevetmentTimeDependentOutputConstructionPropertiesTest
     {
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Call
+            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties();
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.IsNull(constructionProperties.IncrementDamage);
+            Assert.IsNull(constructionProperties.Damage);
+            Assert.IsNull(constructionProperties.TimeOfFailure);
+            Assert.IsNull(constructionProperties.OuterSlope);
+            Assert.IsNull(constructionProperties.SlopeUpperLevel);
+            Assert.IsNull(constructionProperties.SlopeUpperPosition);
+            Assert.IsNull(constructionProperties.SlopeLowerLevel);
+            Assert.IsNull(constructionProperties.SlopeLowerPosition);
+            Assert.IsNull(constructionProperties.LoadingRevetment);
+            Assert.IsNull(constructionProperties.SurfSimilarityParameter);
+            Assert.IsNull(constructionProperties.WaveSteepnessDeepWater);
+            Assert.IsNull(constructionProperties.UpperLimitLoading);
+            Assert.IsNull(constructionProperties.LowerLimitLoading);
+            Assert.IsNull(constructionProperties.DepthMaximumWaveLoad);
+            Assert.IsNull(constructionProperties.DistanceMaximumWaveElevation);
+            Assert.IsNull(constructionProperties.NormativeWidthOfWaveImpact);
+            Assert.IsNull(constructionProperties.HydraulicLoad);
+            Assert.IsNull(constructionProperties.WaveAngleImpact);
+            Assert.IsNull(constructionProperties.Resistance);
+            Assert.IsNull(constructionProperties.ReferenceTimeDegradation);
+            Assert.IsNull(constructionProperties.ReferenceDegradation);
+        }
 
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Call
-        const NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
+        public void Constructor_WithAllValuesSet_ExpectedValues()
+        {
+            // Given
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            int timeOfFailure = Random.Next();
+            double outerSlope = Random.NextDouble();
+            double slopeUpperLevel = Random.NextDouble();
+            double slopeUpperPosition = Random.NextDouble();
+            double slopeLowerLevel = Random.NextDouble();
+            double slopeLowerPosition = Random.NextDouble();
+            bool loadingRevetment = Random.NextBoolean();
+            double surfSimilarityParameter = Random.NextDouble();
+            double waveSteepnessDeepWater = Random.NextDouble();
+            double upperLimitLoading = Random.NextDouble();
+            double lowerLimitLoading = Random.NextDouble();
+            double depthMaximumWaveLoad = Random.NextDouble();
+            double distanceMaximumWaveElevation = Random.NextDouble();
+            double normativeWidthOfWaveImpact = Random.NextDouble();
+            double hydraulicLoad = Random.NextDouble();
+            double waveAngleImpact = Random.NextDouble();
+            double resistance = Random.NextDouble();
+            double referenceTimeDegradation = Random.NextDouble();
+            double referenceDegradation = Random.NextDouble();
 
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
-        Assert.IsNull(constructionProperties.IncrementDamage);
-        Assert.IsNull(constructionProperties.Damage);
-        Assert.IsNull(constructionProperties.TimeOfFailure);
-        Assert.IsNull(constructionProperties._outerSlope);
-        Assert.IsNull(constructionProperties._slopeUpperLevel);
-        Assert.IsNull(constructionProperties._slopeUpperPosition);
-        Assert.IsNull(constructionProperties._slopeLowerLevel);
-        Assert.IsNull(constructionProperties._slopeLowerPosition);
-        Assert.IsNull(constructionProperties.LoadingRevetment);
-        Assert.IsNull(constructionProperties._surfSimilarityParameter);
-        Assert.IsNull(constructionProperties._waveSteepnessDeepWater);
-        Assert.IsNull(constructionProperties.UpperLimitLoading);
-        Assert.IsNull(constructionProperties.LowerLimitLoading);
-        Assert.IsNull(constructionProperties._depthMaximumWaveLoad);
-        Assert.IsNull(constructionProperties._distanceMaximumWaveElevation);
-        Assert.IsNull(constructionProperties._normativeWidthOfWaveImpact);
-        Assert.IsNull(constructionProperties._hydraulicLoad);
-        Assert.IsNull(constructionProperties.WaveAngleImpact);
-        Assert.IsNull(constructionProperties._resistance);
-        Assert.IsNull(constructionProperties._referenceTimeDegradation);
-        Assert.IsNull(constructionProperties._referenceDegradation);
+            // When
+            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                OuterSlope = outerSlope,
+                SlopeUpperLevel = slopeUpperLevel,
+                SlopeUpperPosition = slopeUpperPosition,
+                SlopeLowerLevel = slopeLowerLevel,
+                SlopeLowerPosition = slopeLowerPosition,
+                LoadingRevetment = loadingRevetment,
+                SurfSimilarityParameter = surfSimilarityParameter,
+                WaveSteepnessDeepWater = waveSteepnessDeepWater,
+                UpperLimitLoading = upperLimitLoading,
+                LowerLimitLoading = lowerLimitLoading,
+                DepthMaximumWaveLoad = depthMaximumWaveLoad,
+                DistanceMaximumWaveElevation = distanceMaximumWaveElevation,
+                NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact,
+                HydraulicLoad = hydraulicLoad,
+                WaveAngleImpact = waveAngleImpact,
+                Resistance = resistance,
+                ReferenceTimeDegradation = referenceTimeDegradation,
+                ReferenceDegradation = referenceDegradation
+            };
+
+            // Then
+            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
+            Assert.AreEqual(damage, constructionProperties.Damage);
+            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
+            Assert.AreEqual(outerSlope, constructionProperties.OuterSlope);
+            Assert.AreEqual(slopeUpperLevel, constructionProperties.SlopeUpperLevel);
+            Assert.AreEqual(slopeUpperPosition, constructionProperties.SlopeUpperPosition);
+            Assert.AreEqual(slopeLowerLevel, constructionProperties.SlopeLowerLevel);
+            Assert.AreEqual(slopeLowerPosition, constructionProperties.SlopeLowerPosition);
+            Assert.AreEqual(loadingRevetment, constructionProperties.LoadingRevetment);
+            Assert.AreEqual(surfSimilarityParameter, constructionProperties.SurfSimilarityParameter);
+            Assert.AreEqual(waveSteepnessDeepWater, constructionProperties.WaveSteepnessDeepWater);
+            Assert.AreEqual(upperLimitLoading, constructionProperties.UpperLimitLoading);
+            Assert.AreEqual(lowerLimitLoading, constructionProperties.LowerLimitLoading);
+            Assert.AreEqual(depthMaximumWaveLoad, constructionProperties.DepthMaximumWaveLoad);
+            Assert.AreEqual(distanceMaximumWaveElevation, constructionProperties.DistanceMaximumWaveElevation);
+            Assert.AreEqual(normativeWidthOfWaveImpact, constructionProperties.NormativeWidthOfWaveImpact);
+            Assert.AreEqual(hydraulicLoad, constructionProperties.HydraulicLoad);
+            Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
+            Assert.AreEqual(resistance, constructionProperties.Resistance);
+            Assert.AreEqual(referenceTimeDegradation, constructionProperties.ReferenceTimeDegradation);
+            Assert.AreEqual(referenceDegradation, constructionProperties.ReferenceDegradation);
+        }
     }
-
-        [Test]
-    public void Constructor_WithAllValuesSet_ExpectedValues)
-    {
-        // Given
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var outerSlope = 0.4;
-        var slopeUpperLevel = 0.5;
-        var slopeUpperPosition = 0.6;
-        var slopeLowerLevel = 0.7;
-        var slopeLowerPosition = 0.8;
-        var loadingRevetment = true;
-        var surfSimilarityParameter = 0.9;
-        var waveSteepnessDeepWater = 1.0;
-        var upperLimitLoading = 1.1;
-        var lowerLimitLoading = 1.2;
-        var depthMaximumWaveLoad = 1.3;
-        var distanceMaximumWaveElevation = 1.4;
-        var normativeWidthOfWaveImpact = 1.5;
-        var hydraulicLoad = 1.6;
-        var waveAngleImpact = 1.7;
-        var resistance = 1.8;
-        var referenceTimeDegradation = 1.9;
-        var referenceDegradation = 2.0;
-
-        // When
-        NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties.IncrementDamage = incrementDamage);
-        constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = timeOfFailure);
-        constructionProperties._outerSlope = outerSlope);
-        constructionProperties._slopeUpperLevel = slopeUpperLevel);
-        constructionProperties._slopeUpperPosition = slopeUpperPosition);
-        constructionProperties._slopeLowerLevel = slopeLowerLevel);
-        constructionProperties._slopeLowerPosition = slopeLowerPosition);
-        constructionProperties.LoadingRevetment = loadingRevetment);
-        constructionProperties._surfSimilarityParameter = surfSimilarityParameter);
-        constructionProperties._waveSteepnessDeepWater = waveSteepnessDeepWater);
-        constructionProperties.UpperLimitLoading = upperLimitLoading);
-        constructionProperties.LowerLimitLoading = lowerLimitLoading);
-        constructionProperties._depthMaximumWaveLoad = depthMaximumWaveLoad);
-        constructionProperties._distanceMaximumWaveElevation = distanceMaximumWaveElevation);
-        constructionProperties._normativeWidthOfWaveImpact = normativeWidthOfWaveImpact);
-        constructionProperties._hydraulicLoad = hydraulicLoad);
-        constructionProperties.WaveAngleImpact = waveAngleImpact);
-        constructionProperties._resistance = resistance);
-        constructionProperties._referenceTimeDegradation = referenceTimeDegradation);
-        constructionProperties._referenceDegradation = referenceDegradation);
-
-        // Then
-        Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
-        Assert.AreEqual(damage, constructionProperties.Damage);
-        Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
-        Assert.AreEqual(outerSlope, constructionProperties._outerSlope);
-        Assert.AreEqual(slopeUpperLevel, constructionProperties._slopeUpperLevel);
-        Assert.AreEqual(slopeUpperPosition, constructionProperties._slopeUpperPosition);
-        Assert.AreEqual(slopeLowerLevel, constructionProperties._slopeLowerLevel);
-        Assert.AreEqual(slopeLowerPosition, constructionProperties._slopeLowerPosition);
-        Assert.AreEqual(loadingRevetment, constructionProperties.LoadingRevetment);
-        Assert.AreEqual(surfSimilarityParameter, constructionProperties._surfSimilarityParameter);
-        Assert.AreEqual(waveSteepnessDeepWater, constructionProperties._waveSteepnessDeepWater);
-        Assert.AreEqual(upperLimitLoading, constructionProperties.UpperLimitLoading);
-        Assert.AreEqual(lowerLimitLoading, constructionProperties.LowerLimitLoading);
-        Assert.AreEqual(depthMaximumWaveLoad, constructionProperties._depthMaximumWaveLoad);
-        Assert.AreEqual(distanceMaximumWaveElevation, constructionProperties._distanceMaximumWaveElevation);
-        Assert.AreEqual(normativeWidthOfWaveImpact, constructionProperties._normativeWidthOfWaveImpact);
-        Assert.AreEqual(hydraulicLoad, constructionProperties._hydraulicLoad);
-        Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
-        Assert.AreEqual(resistance, constructionProperties._resistance);
-        Assert.AreEqual(referenceTimeDegradation, constructionProperties._referenceTimeDegradation);
-        Assert.AreEqual(referenceDegradation, constructionProperties._referenceDegradation);
-    }
-}
 }

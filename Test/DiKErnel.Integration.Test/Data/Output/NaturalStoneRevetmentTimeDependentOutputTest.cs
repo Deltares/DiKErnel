@@ -32,24 +32,24 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties->IncrementDamage = 0.1);
             constructionProperties->Damage = 0.2);
             constructionProperties->TimeOfFailure = 3);
-            constructionProperties->_outerSlope = 0.4);
-            constructionProperties->_slopeUpperLevel = 0.5);
-            constructionProperties->_slopeUpperPosition = 0.6);
-            constructionProperties->_slopeLowerLevel = 0.7);
-            constructionProperties->_slopeLowerPosition = 0.8);
+            constructionProperties->OuterSlope = 0.4);
+            constructionProperties->SlopeUpperLevel = 0.5);
+            constructionProperties->SlopeUpperPosition = 0.6);
+            constructionProperties->SlopeLowerLevel = 0.7);
+            constructionProperties->SlopeLowerPosition = 0.8);
             constructionProperties->LoadingRevetment = true);
-            constructionProperties->_surfSimilarityParameter = 0.9);
-            constructionProperties->_waveSteepnessDeepWater = 1.0);
+            constructionProperties->SurfSimilarityParameter = 0.9);
+            constructionProperties->WaveSteepnessDeepWater = 1.0);
             constructionProperties->UpperLimitLoading = 1.1);
             constructionProperties->LowerLimitLoading = 1.2);
-            constructionProperties->_depthMaximumWaveLoad = 1.3);
-            constructionProperties->_distanceMaximumWaveElevation = 1.4);
-            constructionProperties->_normativeWidthOfWaveImpact = 1.5);
-            constructionProperties->_hydraulicLoad = 1.6);
+            constructionProperties->DepthMaximumWaveLoad = 1.3);
+            constructionProperties->DistanceMaximumWaveElevation = 1.4);
+            constructionProperties->NormativeWidthOfWaveImpact = 1.5);
+            constructionProperties->HydraulicLoad = 1.6);
             constructionProperties->WaveAngleImpact = 1.7);
-            constructionProperties->_resistance = 1.8);
-            constructionProperties->_referenceTimeDegradation = 1.9);
-            constructionProperties->_referenceDegradation = 2.0);
+            constructionProperties->Resistance = 1.8);
+            constructionProperties->ReferenceTimeDegradation = 1.9);
+            constructionProperties->ReferenceDegradation = 2.0);
 
             return constructionProperties;
         }
@@ -58,7 +58,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_outerSlope = nullptr;
+            constructionProperties->OuterSlope = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -68,7 +68,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_slopeUpperLevel = nullptr;
+            constructionProperties->SlopeUpperLevel = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -78,7 +78,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_slopeUpperPosition = nullptr;
+            constructionProperties->SlopeUpperPosition = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -88,7 +88,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_slopeLowerLevel = nullptr;
+            constructionProperties->SlopeLowerLevel = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_slopeLowerPosition = nullptr;
+            constructionProperties->SlopeLowerPosition = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -118,7 +118,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_surfSimilarityParameter = nullptr;
+            constructionProperties->SurfSimilarityParameter = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -128,7 +128,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_waveSteepnessDeepWater = nullptr;
+            constructionProperties->WaveSteepnessDeepWater = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -158,7 +158,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_depthMaximumWaveLoad = nullptr;
+            constructionProperties->DepthMaximumWaveLoad = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -168,7 +168,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_distanceMaximumWaveElevation = nullptr;
+            constructionProperties->DistanceMaximumWaveElevation = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -178,7 +178,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_normativeWidthOfWaveImpact = nullptr;
+            constructionProperties->NormativeWidthOfWaveImpact = nullptr;
 
             // Call
             const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -215,24 +215,24 @@ namespace DiKErnel.Integration.Test.Data.Output
         constructionProperties.IncrementDamage = incrementDamage);
         constructionProperties.Damage = damage);
         constructionProperties.TimeOfFailure = timeOfFailure);
-        constructionProperties._outerSlope = outerSlope);
-        constructionProperties._slopeUpperLevel = slopeUpperLevel);
-        constructionProperties._slopeUpperPosition = slopeUpperPosition);
-        constructionProperties._slopeLowerLevel = slopeLowerLevel);
-        constructionProperties._slopeLowerPosition = slopeLowerPosition);
+        constructionProperties.OuterSlope = outerSlope);
+        constructionProperties.SlopeUpperLevel = slopeUpperLevel);
+        constructionProperties.SlopeUpperPosition = slopeUpperPosition);
+        constructionProperties.SlopeLowerLevel = slopeLowerLevel);
+        constructionProperties.SlopeLowerPosition = slopeLowerPosition);
         constructionProperties.LoadingRevetment = loadingRevetment);
-        constructionProperties._surfSimilarityParameter = surfSimilarityParameter);
-        constructionProperties._waveSteepnessDeepWater = waveSteepnessDeepWater);
+        constructionProperties.SurfSimilarityParameter = surfSimilarityParameter);
+        constructionProperties.WaveSteepnessDeepWater = waveSteepnessDeepWater);
         constructionProperties.UpperLimitLoading = upperLimitLoading);
         constructionProperties.LowerLimitLoading = lowerLimitLoading);
-        constructionProperties._depthMaximumWaveLoad = depthMaximumWaveLoad);
-        constructionProperties._distanceMaximumWaveElevation = distanceMaximumWaveElevation);
-        constructionProperties._normativeWidthOfWaveImpact = normativeWidthOfWaveImpact);
-        constructionProperties._hydraulicLoad = hydraulicLoad);
+        constructionProperties.DepthMaximumWaveLoad = depthMaximumWaveLoad);
+        constructionProperties.DistanceMaximumWaveElevation = distanceMaximumWaveElevation);
+        constructionProperties.NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact);
+        constructionProperties.HydraulicLoad = hydraulicLoad);
         constructionProperties.WaveAngleImpact = waveAngleImpact);
-        constructionProperties._resistance = resistance);
-        constructionProperties._referenceTimeDegradation = referenceTimeDegradation);
-        constructionProperties._referenceDegradation = referenceDegradation);
+        constructionProperties.Resistance = resistance);
+        constructionProperties.ReferenceTimeDegradation = referenceTimeDegradation);
+        constructionProperties.ReferenceDegradation = referenceDegradation);
 
         // Call
         const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
@@ -286,24 +286,24 @@ namespace DiKErnel.Integration.Test.Data.Output
         constructionProperties.IncrementDamage = incrementDamage);
         constructionProperties.Damage = damage);
         constructionProperties.TimeOfFailure = nullptr;
-        constructionProperties._outerSlope = outerSlope);
-        constructionProperties._slopeUpperLevel = slopeUpperLevel);
-        constructionProperties._slopeUpperPosition = slopeUpperPosition);
-        constructionProperties._slopeLowerLevel = slopeLowerLevel);
-        constructionProperties._slopeLowerPosition = slopeLowerPosition);
+        constructionProperties.OuterSlope = outerSlope);
+        constructionProperties.SlopeUpperLevel = slopeUpperLevel);
+        constructionProperties.SlopeUpperPosition = slopeUpperPosition);
+        constructionProperties.SlopeLowerLevel = slopeLowerLevel);
+        constructionProperties.SlopeLowerPosition = slopeLowerPosition);
         constructionProperties.LoadingRevetment = loadingRevetment);
-        constructionProperties._surfSimilarityParameter = surfSimilarityParameter);
-        constructionProperties._waveSteepnessDeepWater = waveSteepnessDeepWater);
+        constructionProperties.SurfSimilarityParameter = surfSimilarityParameter);
+        constructionProperties.WaveSteepnessDeepWater = waveSteepnessDeepWater);
         constructionProperties.UpperLimitLoading = upperLimitLoading);
         constructionProperties.LowerLimitLoading = lowerLimitLoading);
-        constructionProperties._depthMaximumWaveLoad = depthMaximumWaveLoad);
-        constructionProperties._distanceMaximumWaveElevation = distanceMaximumWaveElevation);
-        constructionProperties._normativeWidthOfWaveImpact = normativeWidthOfWaveImpact);
-        constructionProperties._hydraulicLoad = nullptr;
+        constructionProperties.DepthMaximumWaveLoad = depthMaximumWaveLoad);
+        constructionProperties.DistanceMaximumWaveElevation = distanceMaximumWaveElevation);
+        constructionProperties.NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact);
+        constructionProperties.HydraulicLoad = nullptr;
         constructionProperties.WaveAngleImpact = nullptr;
-        constructionProperties._resistance = nullptr;
-        constructionProperties._referenceTimeDegradation = nullptr;
-        constructionProperties._referenceDegradation = nullptr;
+        constructionProperties.Resistance = nullptr;
+        constructionProperties.ReferenceTimeDegradation = nullptr;
+        constructionProperties.ReferenceDegradation = nullptr;
 
         // Call
         const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
