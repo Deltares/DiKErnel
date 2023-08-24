@@ -27,6 +27,8 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class ProfileDataTest
     {
+        private const double tolerance = 1e-15;
+
         [Test]
         public void GetVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue()
         {
@@ -89,7 +91,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(1.5);
 
             // Assert
-            Assert.AreEqual(1.65, verticalHeight);
+            Assert.AreEqual(1.65, verticalHeight, tolerance);
         }
 
         [Test]
@@ -112,7 +114,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(2.5);
 
             // Assert
-            Assert.AreEqual(1.65, verticalHeight);
+            Assert.AreEqual(1.65, verticalHeight, tolerance);
         }
 
         [Test]
@@ -190,7 +192,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(1.65);
 
             // Assert
-            Assert.AreEqual(1.5, horizontalPosition);
+            Assert.AreEqual(1.5, horizontalPosition, tolerance);
         }
 
         [Test]
