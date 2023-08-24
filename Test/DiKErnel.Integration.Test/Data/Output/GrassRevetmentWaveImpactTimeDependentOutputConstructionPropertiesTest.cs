@@ -16,8 +16,16 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using NUnit.Framework;
+
 namespace DiKErnel.Integration.Test.Data.Output
 {
+    [TestFixture]
+    public class GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest
+    {
+        
+    }
+
     TEST(GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest, Constructor_ExpectedValues)
     {
         // Call
