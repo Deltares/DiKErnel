@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data
 
         // Assert
         Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
-        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
+        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.IsNull(constructionProperties.GetInitialDamage());
         Assert.IsNull(constructionProperties.GetFailureNumber());
@@ -88,7 +88,7 @@ namespace DiKErnel.Integration.Test.Data
         constructionProperties.SetLowerLimitLoadingAll(lowerLimitLoadingAll));
 
         // Then
-        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
+        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
         Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());

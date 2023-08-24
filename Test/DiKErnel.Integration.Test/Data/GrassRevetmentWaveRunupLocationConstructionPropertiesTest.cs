@@ -37,7 +37,7 @@ namespace DiKErnel.Integration.Test.Data
 
         // Assert
         Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
-        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
+        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.AreEqual(outerSlope, constructionProperties.GetOuterSlope());
         Assert.IsNull(constructionProperties.GetInitialDamage());
@@ -97,7 +97,7 @@ namespace DiKErnel.Integration.Test.Data
         constructionProperties.SetWaveAngleImpactBetamax(waveAngleImpactBetamax));
 
         // Then
-        ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
+        Assert.AreEqual(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.AreEqual(outerSlope, constructionProperties.GetOuterSlope());
         Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
