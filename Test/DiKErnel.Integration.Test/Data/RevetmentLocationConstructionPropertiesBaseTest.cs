@@ -16,6 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Integration.Data;
+using DiKErnel.TestUtil;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data
@@ -23,41 +26,39 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class RevetmentLocationConstructionPropertiesBaseTest
     {
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            double x = Random.NextDouble();
+
+            // Call
+            var constructionProperties = Substitute.For<RevetmentLocationConstructionPropertiesBase>(x);
+
+            // Assert
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.IsNull(constructionProperties.InitialDamage);
+            Assert.IsNull(constructionProperties.FailureNumber);
+        }
 
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Setup
-        var x = 0.1;
+        public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
+        {
+            // Given
+            double x = Random.NextDouble();
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
 
-        // Call
-        const RevetmentLocationConstructionPropertiesMock constructionProperties(x);
+            var constructionProperties = Substitute.For<RevetmentLocationConstructionPropertiesBase>(x);
 
-        // Assert
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.IsNull(constructionProperties.GetInitialDamage());
-        Assert.IsNull(constructionProperties.GetFailureNumber());
+            // When
+            constructionProperties.InitialDamage = initialDamage;
+            constructionProperties.FailureNumber = failureNumber;
+
+            // Then
+            Assert.AreEqual(x, constructionProperties.X);
+            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
+            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
+        }
     }
-
-        [Test]
-    public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
-    {
-        // Given
-        var x = 0.1;
-        var initialDamage = 0.2;
-        var failureNumber = 0.3;
-
-        RevetmentLocationConstructionPropertiesMock constructionProperties(x);
-
-        // When
-        constructionProperties.SetInitialDamage(initialDamage));
-        constructionProperties.SetFailureNumber(failureNumber));
-
-        // Then
-        Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
-        Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());
-    }
-}
-
 }
