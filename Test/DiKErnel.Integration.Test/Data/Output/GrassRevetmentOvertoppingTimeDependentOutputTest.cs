@@ -27,9 +27,73 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentOvertoppingTimeDependentOutputTest
     {
-        private static GrassRevetmentOvertoppingTimeDependentOutput CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNull()
+        [Test]
+        public void Constructor_WithAllValuesSet_ExpectedValues()
         {
-            return new GrassRevetmentOvertoppingTimeDependentOutput(new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            // Setup
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            int timeOfFailure = Random.Next();
+            double verticalDistanceWaterLevelElevation = Random.NextDouble();
+            double representativeWaveRunup2P = Random.NextDouble();
+            double cumulativeOverload = Random.NextDouble();
+
+            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
+                RepresentativeWaveRunup2P = representativeWaveRunup2P,
+                CumulativeOverload = cumulativeOverload
+            };
+
+            // Call
+            var output = new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.AreEqual(incrementDamage, output.IncrementDamage);
+            Assert.AreEqual(damage, output.Damage);
+            Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
+            Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
+            Assert.AreEqual(representativeWaveRunup2P, output.RepresentativeWaveRunup2P);
+            Assert.AreEqual(cumulativeOverload, output.CumulativeOverload);
+        }
+
+        [Test]
+        public void Constructor_WithNullValues_ExpectedValues()
+        {
+            // Setup
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            double verticalDistanceWaterLevelElevation = Random.NextDouble();
+
+            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
+            };
+
+            // Call
+            var output = new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.AreEqual(incrementDamage, output.IncrementDamage);
+            Assert.AreEqual(damage, output.Damage);
+            Assert.IsNull(output.TimeOfFailure);
+            Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
+            Assert.IsNull(output.RepresentativeWaveRunup2P);
+            Assert.IsNull(output.CumulativeOverload);
+        }
+
+        [Test]
+        public void ConstructorVerticalDistanceWaterLevelElevationNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
@@ -37,78 +101,13 @@ namespace DiKErnel.Integration.Test.Data.Output
                 VerticalDistanceWaterLevelElevation = null,
                 RepresentativeWaveRunup2P = Random.NextDouble(),
                 CumulativeOverload = Random.NextDouble()
-            });
+            };
+
+            // Call
+            void Call() => new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "verticalDistanceWaterLevelElevation must be set.");
         }
-
-        [Test]
-    public void Constructor_WithAllValuesSet_ExpectedValues()
-    {
-        // Setup
-        double incrementDamage = Random.NextDouble();
-        double damage = Random.NextDouble();
-        int timeOfFailure = Random.Next();
-        double verticalDistanceWaterLevelElevation = Random.NextDouble();
-        double representativeWaveRunup2P = Random.NextDouble();
-        double cumulativeOverload = Random.NextDouble();
-
-        var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
-        {
-            IncrementDamage = incrementDamage,
-            Damage = damage,
-            TimeOfFailure = timeOfFailure,
-            VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
-            RepresentativeWaveRunup2P = representativeWaveRunup2P,
-            CumulativeOverload = cumulativeOverload
-        };
-
-        // Call
-        const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
-
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutput>(&output);
-        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
-        Assert.AreEqual(damage, output.GetDamage());
-        Assert.AreEqual(timeOfFailure, *output.GetTimeOfFailure());
-        Assert.AreEqual(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
-        Assert.AreEqual(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
-        Assert.AreEqual(cumulativeOverload, *output.GetCumulativeOverload());
     }
-
-        [Test]
-    public void Constructor_WithNullPtrValues_ExpectedValues()
-    {
-        // Setup
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var verticalDistanceWaterLevelElevation = 0.3;
-
-        GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties.IncrementDamage = incrementDamage);
-        constructionProperties.Damage = damage);
-        constructionProperties.VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation);
-
-        // Call
-        const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
-
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutput>(&output);
-        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
-        Assert.AreEqual(damage, output.GetDamage());
-        Assert.IsNull(output.GetTimeOfFailure());
-        Assert.AreEqual(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
-        Assert.IsNull(output.GetRepresentativeWaveRunup2P());
-        Assert.IsNull(output.GetCumulativeOverload());
-    }
-
-    [Test]
-    public void ConstructorVerticalDistanceWaterLevelElevationNullPtr_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action =
-                &GrassRevetmentOvertoppingTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNullPtr;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "verticalDistanceWaterLevelElevation must be set.");
-    }
-}
 }

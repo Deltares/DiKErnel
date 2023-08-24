@@ -78,7 +78,7 @@ namespace DiKErnel.Integration.Test.Data.Output
     }
 
         [Test]
-    public void Constructor_WithNullPtrValues_ExpectedValues()
+    public void Constructor_WithNullValues_ExpectedValues()
     {
         // Setup
         var incrementDamage = 0.1;
@@ -105,11 +105,11 @@ namespace DiKErnel.Integration.Test.Data.Output
     }
 
         [Test]
-    public void Constructor_VerticalDistanceWaterLevelElevationNullPtr_ThrowsInvalidTimeDependentOutputException()
+    public void Constructor_VerticalDistanceWaterLevelElevationNull_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
         const var action =
-                &GrassRevetmentWaveRunupRayleighTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNullPtr;
+                &GrassRevetmentWaveRunupRayleighTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNull;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "verticalDistanceWaterLevelElevation must be set.");

@@ -121,7 +121,7 @@ namespace DiKErnel.Integration.Test.Data.Output
     }
 
         [Test]
-    public void Constructor_WithNullPtrValues_ExpectedValues()
+    public void Constructor_WithNullValues_ExpectedValues()
     {
         // Setup
         var incrementDamage = 0.1;
@@ -160,30 +160,30 @@ namespace DiKErnel.Integration.Test.Data.Output
     }
 
         [Test]
-    public void Constructor_LoadingRevetmentNullPtr_ThrowsInvalidTimeDependentOutputException()
+    public void Constructor_LoadingRevetmentNull_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLoadingRevetmentNullPtr;
+        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLoadingRevetmentNull;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "loadingRevetment must be set.");
     }
 
         [Test]
-    public void Constructor_UpperLimitLoadingNullPtr_ThrowsInvalidTimeDependentOutputException()
+    public void Constructor_UpperLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNullPtr;
+        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNull;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "upperLimitLoading must be set.");
     }
 
         [Test]
-    public void Constructor_LowerLimitLoadingNullPtr_ThrowsInvalidTimeDependentOutputException()
+    public void Constructor_LowerLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
-        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr;
+        const var action = &GrassRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNull;
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "lowerLimitLoading must be set.");

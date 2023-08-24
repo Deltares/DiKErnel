@@ -27,7 +27,165 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class AsphaltRevetmentWaveImpactTimeDependentOutputTest
     {
-     
+        [Test]
+        public void Constructor_WithAllValuesSet_ExpectedValues()
+        {
+            // Setup
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            int timeOfFailure = Random.Next();
+            double logFailureTension = Random.NextDouble();
+            double maximumPeakStress = Random.NextDouble();
+            double stiffnessRelation = Random.NextDouble();
+            double computationalThickness = Random.NextDouble();
+            double equivalentElasticModulus = Random.NextDouble();
+
+            var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                LogFailureTension = logFailureTension,
+                MaximumPeakStress = maximumPeakStress,
+                StiffnessRelation = stiffnessRelation,
+                ComputationalThickness = computationalThickness,
+                EquivalentElasticModulus = equivalentElasticModulus
+            };
+
+            // Call
+            var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.AreEqual(incrementDamage, output.IncrementDamage);
+            Assert.AreEqual(damage, output.Damage);
+            Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
+            Assert.AreEqual(logFailureTension, output.LogFailureTension);
+            Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
+            Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
+            Assert.AreEqual(computationalThickness, output.ComputationalThickness);
+            Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
+        }
+
+        [Test]
+        public void Constructor_WithNullValues_ExpectedValues()
+        {
+            // Setup
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            double logFailureTension = Random.NextDouble();
+            double maximumPeakStress = Random.NextDouble();
+            double stiffnessRelation = Random.NextDouble();
+            double computationalThickness = Random.NextDouble();
+            double equivalentElasticModulus = Random.NextDouble();
+
+            var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = null,
+                LogFailureTension = logFailureTension,
+                MaximumPeakStress = maximumPeakStress,
+                StiffnessRelation = stiffnessRelation,
+                ComputationalThickness = computationalThickness,
+                EquivalentElasticModulus = equivalentElasticModulus
+            };
+
+            // Call
+            var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.AreEqual(incrementDamage, output.IncrementDamage);
+            Assert.AreEqual(damage, output.Damage);
+            Assert.IsNull(output.TimeOfFailure);
+            Assert.AreEqual(logFailureTension, output.LogFailureTension);
+            Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
+            Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
+            Assert.AreEqual(computationalThickness, output.ComputationalThickness);
+            Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
+        }
+
+        [Test]
+        public void Constructor_LogFailureTensionNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.LogFailureTension = null;
+
+            // Call
+            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "logFailureTension must be set.");
+        }
+
+        [Test]
+        public void Constructor_MaximumPeakStressNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.MaximumPeakStress = null;
+
+            // Call
+            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "maximumPeakStress must be set.");
+        }
+
+        [Test]
+        public void Constructor_StiffnessRelationNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.StiffnessRelation = null;
+
+            // Call
+            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "stiffnessRelation must be set.");
+        }
+
+        [Test]
+        public void Constructor_ComputationalThicknessNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.ComputationalThickness = null;
+
+            // Call
+            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "computationalThickness must be set.");
+        }
+
+        [Test]
+        public void Constructor_EquivalentElasticModulusNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.EquivalentElasticModulus = null;
+
+            // Call
+            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "equivalentElasticModulus must be set.");
+        }
+
         private static AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
             return new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
@@ -42,182 +200,5 @@ namespace DiKErnel.Integration.Test.Data.Output
                 EquivalentElasticModulus = Random.NextDouble()
             };
         }
-
-        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithLogFailureTensionNull()
-        {
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-            
-            constructionProperties.LogFailureTension = null;
-
-            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithMaximumPeakStressNull()
-        {
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.MaximumPeakStress = null;
-
-            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithStiffnessRelationNull()
-        {
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.StiffnessRelation = null;
-
-            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithComputationalThicknessNull()
-        {
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.ComputationalThickness = null;
-
-            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        private static AsphaltRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithEquivalentElasticModulusNull()
-        {
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.EquivalentElasticModulus = null;
-
-            return new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-        }
-
-        [Test]
-    public void Constructor_WithAllValuesSet_ExpectedValues()
-    {
-        // Setup
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var logFailureTension = 0.4;
-        var maximumPeakStress = 0.5;
-        var stiffnessRelation = 0.6;
-        var computationalThickness = 0.7;
-        var equivalentElasticModulus = 0.8;
-
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties.IncrementDamage = incrementDamage);
-        constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = timeOfFailure);
-        constructionProperties._logFailureTension = logFailureTension);
-        constructionProperties._maximumPeakStress = maximumPeakStress);
-        constructionProperties._stiffnessRelation = stiffnessRelation);
-        constructionProperties._computationalThickness = computationalThickness);
-        constructionProperties._equivalentElasticModulus = equivalentElasticModulus);
-
-        // Call
-        const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
-
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutput>(&output);
-        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
-        Assert.AreEqual(damage, output.GetDamage());
-        Assert.AreEqual(timeOfFailure, *output.GetTimeOfFailure());
-        Assert.AreEqual(logFailureTension, output.GetLogFailureTension());
-        Assert.AreEqual(maximumPeakStress, output.GetMaximumPeakStress());
-        Assert.AreEqual(stiffnessRelation, output.GetStiffnessRelation());
-        Assert.AreEqual(computationalThickness, output.GetComputationalThickness());
-        Assert.AreEqual(equivalentElasticModulus, output.GetEquivalentElasticModulus());
     }
-
-        [Test]
-    public void Constructor_WithNullPtrValues_ExpectedValues()
-    {
-        // Setup
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var logFailureTension = 0.3;
-        var maximumPeakStress = 0.4;
-        var stiffnessRelation = 0.5;
-        var computationalThickness = 0.6;
-        var equivalentElasticModulus = 0.7;
-
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties.IncrementDamage = incrementDamage);
-        constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = null;
-        constructionProperties._logFailureTension = logFailureTension);
-        constructionProperties._maximumPeakStress = maximumPeakStress);
-        constructionProperties._stiffnessRelation = stiffnessRelation);
-        constructionProperties._computationalThickness = computationalThickness);
-        constructionProperties._equivalentElasticModulus = equivalentElasticModulus);
-
-        // Call
-        const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
-
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutput>(&output);
-        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
-        Assert.AreEqual(damage, output.GetDamage());
-        Assert.IsNull(output.GetTimeOfFailure());
-        Assert.AreEqual(logFailureTension, output.GetLogFailureTension());
-        Assert.AreEqual(maximumPeakStress, output.GetMaximumPeakStress());
-        Assert.AreEqual(stiffnessRelation, output.GetStiffnessRelation());
-        Assert.AreEqual(computationalThickness, output.GetComputationalThickness());
-        Assert.AreEqual(equivalentElasticModulus, output.GetEquivalentElasticModulus());
-    }
-
-        [Test]
-    public void Constructor_LogFailureTensionNullPtr_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithLogFailureTensionNullPtr;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "logFailureTension must be set.");
-    }
-
-        [Test]
-    public void Constructor_MaximumPeakStressNullPtr_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithMaximumPeakStressNullPtr;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "maximumPeakStress must be set.");
-    }
-
-        [Test]
-    public void Constructor_StiffnessRelationNullPtr_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action = &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithStiffnessRelationNullPtr;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "stiffnessRelation must be set.");
-    }
-
-        [Test]
-    public void Constructor_ComputationalThicknessNullPtr_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action =
-                &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithComputationalThicknessNullPtr;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "computationalThickness must be set.");
-    }
-
-        [Test]
-    public void Constructor_EquivalentElasticModulusNullPtr_ThrowsInvalidTimeDependentOutputException()
-    {
-        // Setup & Call
-        const var action =
-                &AsphaltRevetmentWaveImpactTimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithEquivalentElasticModulusNullPtr;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "equivalentElasticModulus must be set.");
-    }    }
-
 }
