@@ -837,7 +837,7 @@ namespace DiKErnel.Integration.Test
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
                                                                                   locationDependentInput->GetUpperLayer());
 
-        ASSERT_EQ(nullptr, locationDependentInput->GetSubLayer());
+        Assert.IsNull(locationDependentInput->GetSubLayer());
 
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(0.42, 4.76,
                                                                                     locationDependentInput->GetFatigue());

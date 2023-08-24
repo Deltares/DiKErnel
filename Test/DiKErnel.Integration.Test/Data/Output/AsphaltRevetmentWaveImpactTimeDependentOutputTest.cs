@@ -160,7 +160,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(nullptr, output.GetTimeOfFailure());
+        Assert.IsNull(output.GetTimeOfFailure());
         Assert.AreEqual(logFailureTension, output.GetLogFailureTension());
         Assert.AreEqual(maximumPeakStress, output.GetMaximumPeakStress());
         Assert.AreEqual(stiffnessRelation, output.GetStiffnessRelation());

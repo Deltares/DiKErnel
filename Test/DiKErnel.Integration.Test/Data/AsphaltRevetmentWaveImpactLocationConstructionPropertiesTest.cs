@@ -47,19 +47,19 @@ namespace DiKErnel.Integration.Test.Data
         Assert.AreEqual(soilElasticity, constructionProperties.GetSoilElasticity());
         Assert.AreEqual(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
         Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
-        ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
-        ASSERT_EQ(nullptr, constructionProperties.GetDensityOfWater());
-        ASSERT_EQ(nullptr, constructionProperties.GetThicknessSubLayer());
-        ASSERT_EQ(nullptr, constructionProperties.GetElasticModulusSubLayer());
-        ASSERT_EQ(nullptr, constructionProperties.GetAverageNumberOfWavesCtm());
-        ASSERT_EQ(nullptr, constructionProperties.GetFatigueAlpha());
-        ASSERT_EQ(nullptr, constructionProperties.GetFatigueBeta());
-        ASSERT_EQ(nullptr, constructionProperties.GetImpactNumberC());
-        ASSERT_EQ(nullptr, constructionProperties.GetStiffnessRelationNu());
-        ASSERT_EQ(nullptr, constructionProperties.GetWidthFactors());
-        ASSERT_EQ(nullptr, constructionProperties.GetDepthFactors());
-        ASSERT_EQ(nullptr, constructionProperties.GetImpactFactors());
+        Assert.IsNull(constructionProperties.GetInitialDamage());
+        Assert.IsNull(constructionProperties.GetFailureNumber());
+        Assert.IsNull(constructionProperties.GetDensityOfWater());
+        Assert.IsNull(constructionProperties.GetThicknessSubLayer());
+        Assert.IsNull(constructionProperties.GetElasticModulusSubLayer());
+        Assert.IsNull(constructionProperties.GetAverageNumberOfWavesCtm());
+        Assert.IsNull(constructionProperties.GetFatigueAlpha());
+        Assert.IsNull(constructionProperties.GetFatigueBeta());
+        Assert.IsNull(constructionProperties.GetImpactNumberC());
+        Assert.IsNull(constructionProperties.GetStiffnessRelationNu());
+        Assert.IsNull(constructionProperties.GetWidthFactors());
+        Assert.IsNull(constructionProperties.GetDepthFactors());
+        Assert.IsNull(constructionProperties.GetImpactFactors());
     }
 
         [Test]

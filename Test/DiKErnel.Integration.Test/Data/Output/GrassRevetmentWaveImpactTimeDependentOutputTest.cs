@@ -148,14 +148,14 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(nullptr, output.GetTimeOfFailure());
+        Assert.IsNull(output.GetTimeOfFailure());
         ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
         Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
         Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
-        ASSERT_EQ(nullptr, output.GetMinimumWaveHeight());
-        ASSERT_EQ(nullptr, output.GetMaximumWaveHeight());
-        ASSERT_EQ(nullptr, output.GetWaveAngleImpact());
-        ASSERT_EQ(nullptr, output.GetWaveHeightImpact());
+        Assert.IsNull(output.GetMinimumWaveHeight());
+        Assert.IsNull(output.GetMaximumWaveHeight());
+        Assert.IsNull(output.GetWaveAngleImpact());
+        Assert.IsNull(output.GetWaveHeightImpact());
     }
 
         [Test]

@@ -40,22 +40,22 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.AreEqual(outerSlope, constructionProperties.GetOuterSlope());
-        ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
-        ASSERT_EQ(nullptr, constructionProperties.GetCriticalCumulativeOverload());
-        ASSERT_EQ(nullptr, constructionProperties.GetCriticalFrontVelocity());
-        ASSERT_EQ(nullptr, constructionProperties.GetIncreasedLoadTransitionAlphaM());
-        ASSERT_EQ(nullptr, constructionProperties.GetReducedStrengthTransitionAlphaS());
-        ASSERT_EQ(nullptr, constructionProperties.GetAverageNumberOfWavesCtm());
-        ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PAru());
-        ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PBru());
-        ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PCru());
-        ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PGammab());
-        ASSERT_EQ(nullptr, constructionProperties.GetRepresentativeWaveRunup2PGammaf());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactAbeta());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactBetamax());
-        ASSERT_EQ(nullptr, constructionProperties.GetFixedNumberOfWaves());
-        ASSERT_EQ(nullptr, constructionProperties.GetFrontVelocityCu());
+        Assert.IsNull(constructionProperties.GetInitialDamage());
+        Assert.IsNull(constructionProperties.GetFailureNumber());
+        Assert.IsNull(constructionProperties.GetCriticalCumulativeOverload());
+        Assert.IsNull(constructionProperties.GetCriticalFrontVelocity());
+        Assert.IsNull(constructionProperties.GetIncreasedLoadTransitionAlphaM());
+        Assert.IsNull(constructionProperties.GetReducedStrengthTransitionAlphaS());
+        Assert.IsNull(constructionProperties.GetAverageNumberOfWavesCtm());
+        Assert.IsNull(constructionProperties.GetRepresentativeWaveRunup2PAru());
+        Assert.IsNull(constructionProperties.GetRepresentativeWaveRunup2PBru());
+        Assert.IsNull(constructionProperties.GetRepresentativeWaveRunup2PCru());
+        Assert.IsNull(constructionProperties.GetRepresentativeWaveRunup2PGammab());
+        Assert.IsNull(constructionProperties.GetRepresentativeWaveRunup2PGammaf());
+        Assert.IsNull(constructionProperties.GetWaveAngleImpactAbeta());
+        Assert.IsNull(constructionProperties.GetWaveAngleImpactBetamax());
+        Assert.IsNull(constructionProperties.GetFixedNumberOfWaves());
+        Assert.IsNull(constructionProperties.GetFrontVelocityCu());
     }
 
         [Test]

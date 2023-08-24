@@ -32,27 +32,27 @@ namespace DiKErnel.Integration.Test.Data.Output
 
         // Assert
         Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._damage);
-        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
-        ASSERT_EQ(nullptr, constructionProperties._outerSlope);
-        ASSERT_EQ(nullptr, constructionProperties._slopeUpperLevel);
-        ASSERT_EQ(nullptr, constructionProperties._slopeUpperPosition);
-        ASSERT_EQ(nullptr, constructionProperties._slopeLowerLevel);
-        ASSERT_EQ(nullptr, constructionProperties._slopeLowerPosition);
-        ASSERT_EQ(nullptr, constructionProperties._loadingRevetment);
-        ASSERT_EQ(nullptr, constructionProperties._surfSimilarityParameter);
-        ASSERT_EQ(nullptr, constructionProperties._waveSteepnessDeepWater);
-        ASSERT_EQ(nullptr, constructionProperties._upperLimitLoading);
-        ASSERT_EQ(nullptr, constructionProperties._lowerLimitLoading);
-        ASSERT_EQ(nullptr, constructionProperties._depthMaximumWaveLoad);
-        ASSERT_EQ(nullptr, constructionProperties._distanceMaximumWaveElevation);
-        ASSERT_EQ(nullptr, constructionProperties._normativeWidthOfWaveImpact);
-        ASSERT_EQ(nullptr, constructionProperties._hydraulicLoad);
-        ASSERT_EQ(nullptr, constructionProperties._waveAngleImpact);
-        ASSERT_EQ(nullptr, constructionProperties._resistance);
-        ASSERT_EQ(nullptr, constructionProperties._referenceTimeDegradation);
-        ASSERT_EQ(nullptr, constructionProperties._referenceDegradation);
+        Assert.IsNull(constructionProperties._incrementDamage);
+        Assert.IsNull(constructionProperties._damage);
+        Assert.IsNull(constructionProperties._timeOfFailure);
+        Assert.IsNull(constructionProperties._outerSlope);
+        Assert.IsNull(constructionProperties._slopeUpperLevel);
+        Assert.IsNull(constructionProperties._slopeUpperPosition);
+        Assert.IsNull(constructionProperties._slopeLowerLevel);
+        Assert.IsNull(constructionProperties._slopeLowerPosition);
+        Assert.IsNull(constructionProperties._loadingRevetment);
+        Assert.IsNull(constructionProperties._surfSimilarityParameter);
+        Assert.IsNull(constructionProperties._waveSteepnessDeepWater);
+        Assert.IsNull(constructionProperties._upperLimitLoading);
+        Assert.IsNull(constructionProperties._lowerLimitLoading);
+        Assert.IsNull(constructionProperties._depthMaximumWaveLoad);
+        Assert.IsNull(constructionProperties._distanceMaximumWaveElevation);
+        Assert.IsNull(constructionProperties._normativeWidthOfWaveImpact);
+        Assert.IsNull(constructionProperties._hydraulicLoad);
+        Assert.IsNull(constructionProperties._waveAngleImpact);
+        Assert.IsNull(constructionProperties._resistance);
+        Assert.IsNull(constructionProperties._referenceTimeDegradation);
+        Assert.IsNull(constructionProperties._referenceDegradation);
     }
 
         [Test]

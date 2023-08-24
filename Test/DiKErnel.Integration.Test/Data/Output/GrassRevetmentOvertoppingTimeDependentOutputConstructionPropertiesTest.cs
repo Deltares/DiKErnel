@@ -32,12 +32,12 @@ namespace DiKErnel.Integration.Test.Data.Output
 
         // Assert
         Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._damage);
-        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
-        ASSERT_EQ(nullptr, constructionProperties._verticalDistanceWaterLevelElevation);
-        ASSERT_EQ(nullptr, constructionProperties._representativeWaveRunup2P);
-        ASSERT_EQ(nullptr, constructionProperties._cumulativeOverload);
+        Assert.IsNull(constructionProperties._incrementDamage);
+        Assert.IsNull(constructionProperties._damage);
+        Assert.IsNull(constructionProperties._timeOfFailure);
+        Assert.IsNull(constructionProperties._verticalDistanceWaterLevelElevation);
+        Assert.IsNull(constructionProperties._representativeWaveRunup2P);
+        Assert.IsNull(constructionProperties._cumulativeOverload);
     }
 
         [Test]

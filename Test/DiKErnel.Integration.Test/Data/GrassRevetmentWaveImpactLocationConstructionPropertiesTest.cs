@@ -38,18 +38,18 @@ namespace DiKErnel.Integration.Test.Data
         Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
-        ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
-        ASSERT_EQ(nullptr, constructionProperties.GetTimeLineAgwi());
-        ASSERT_EQ(nullptr, constructionProperties.GetTimeLineBgwi());
-        ASSERT_EQ(nullptr, constructionProperties.GetTimeLineCgwi());
-        ASSERT_EQ(nullptr, constructionProperties.GetMinimumWaveHeightTemax());
-        ASSERT_EQ(nullptr, constructionProperties.GetMaximumWaveHeightTemin());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactNwa());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactQwa());
-        ASSERT_EQ(nullptr, constructionProperties.GetWaveAngleImpactRwa());
-        ASSERT_EQ(nullptr, constructionProperties.GetUpperLimitLoadingAul());
-        ASSERT_EQ(nullptr, constructionProperties.GetLowerLimitLoadingAll());
+        Assert.IsNull(constructionProperties.GetInitialDamage());
+        Assert.IsNull(constructionProperties.GetFailureNumber());
+        Assert.IsNull(constructionProperties.GetTimeLineAgwi());
+        Assert.IsNull(constructionProperties.GetTimeLineBgwi());
+        Assert.IsNull(constructionProperties.GetTimeLineCgwi());
+        Assert.IsNull(constructionProperties.GetMinimumWaveHeightTemax());
+        Assert.IsNull(constructionProperties.GetMaximumWaveHeightTemin());
+        Assert.IsNull(constructionProperties.GetWaveAngleImpactNwa());
+        Assert.IsNull(constructionProperties.GetWaveAngleImpactQwa());
+        Assert.IsNull(constructionProperties.GetWaveAngleImpactRwa());
+        Assert.IsNull(constructionProperties.GetUpperLimitLoadingAul());
+        Assert.IsNull(constructionProperties.GetLowerLimitLoadingAll());
     }
 
         [Test]

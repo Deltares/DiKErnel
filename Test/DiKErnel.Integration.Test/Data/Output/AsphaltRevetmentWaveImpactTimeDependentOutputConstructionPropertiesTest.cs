@@ -16,6 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -23,60 +26,60 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest
     {
-        
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Call
+            var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties();
 
-    [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Call
-        const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._damage);
-        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
-        ASSERT_EQ(nullptr, constructionProperties._logFailureTension);
-        ASSERT_EQ(nullptr, constructionProperties._maximumPeakStress);
-        ASSERT_EQ(nullptr, constructionProperties._stiffnessRelation);
-        ASSERT_EQ(nullptr, constructionProperties._computationalThickness);
-        ASSERT_EQ(nullptr, constructionProperties._equivalentElasticModulus);
-    }
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.IsNull(constructionProperties.IncrementDamage);
+            Assert.IsNull(constructionProperties.Damage);
+            Assert.IsNull(constructionProperties.TimeOfFailure);
+            Assert.IsNull(constructionProperties.LogFailureTension);
+            Assert.IsNull(constructionProperties.MaximumPeakStress);
+            Assert.IsNull(constructionProperties.StiffnessRelation);
+            Assert.IsNull(constructionProperties.ComputationalThickness);
+            Assert.IsNull(constructionProperties.EquivalentElasticModulus);
+        }
 
         [Test]
-    public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
-    {
-        // Given
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var logFailureTension = 0.4;
-        var maximumPeakStress = 0.5;
-        var stiffnessRelation = 0.6;
-        var computationalThickness = 0.7;
-        var equivalentElasticModulus = 0.8;
+        public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
+        {
+            // Given
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            int timeOfFailure = Random.Next();
+            double logFailureTension = Random.NextDouble();
+            double maximumPeakStress = Random.NextDouble();
+            double stiffnessRelation = Random.NextDouble();
+            double computationalThickness = Random.NextDouble();
+            double equivalentElasticModulus = Random.NextDouble();
 
-        // When
-        AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._logFailureTension = make_unique<double>(logFailureTension);
-        constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
-        constructionProperties._stiffnessRelation = make_unique<double>(stiffnessRelation);
-        constructionProperties._computationalThickness = make_unique<double>(computationalThickness);
-        constructionProperties._equivalentElasticModulus = make_unique<double>(equivalentElasticModulus);
+            // When
+            var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                LogFailureTension = logFailureTension,
+                MaximumPeakStress = maximumPeakStress,
+                StiffnessRelation = stiffnessRelation,
+                ComputationalThickness = computationalThickness,
+                EquivalentElasticModulus = equivalentElasticModulus
+            };
 
-        // Then
-        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
-        Assert.AreEqual(damage, *constructionProperties._damage);
-        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
-        Assert.AreEqual(logFailureTension, *constructionProperties._logFailureTension);
-        Assert.AreEqual(maximumPeakStress, *constructionProperties._maximumPeakStress);
-        Assert.AreEqual(stiffnessRelation, *constructionProperties._stiffnessRelation);
-        Assert.AreEqual(computationalThickness, *constructionProperties._computationalThickness);
-        Assert.AreEqual(equivalentElasticModulus, *constructionProperties._equivalentElasticModulus);
-    }
+            // Then
+            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
+            Assert.AreEqual(damage, constructionProperties.Damage);
+            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
+            Assert.AreEqual(logFailureTension, constructionProperties.LogFailureTension);
+            Assert.AreEqual(maximumPeakStress, constructionProperties.MaximumPeakStress);
+            Assert.AreEqual(stiffnessRelation, constructionProperties.StiffnessRelation);
+            Assert.AreEqual(computationalThickness, constructionProperties.ComputationalThickness);
+            Assert.AreEqual(equivalentElasticModulus, constructionProperties.EquivalentElasticModulus);
+        }
     }
 }

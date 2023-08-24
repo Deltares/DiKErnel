@@ -312,7 +312,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(nullptr, output.GetTimeOfFailure());
+        Assert.IsNull(output.GetTimeOfFailure());
         Assert.AreEqual(outerSlope, output.GetOuterSlope());
         Assert.AreEqual(slopeUpperLevel, output.GetSlopeUpperLevel());
         Assert.AreEqual(slopeUpperPosition, output.GetSlopeUpperPosition());
@@ -326,11 +326,11 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.AreEqual(depthMaximumWaveLoad, output.GetDepthMaximumWaveLoad());
         Assert.AreEqual(distanceMaximumWaveElevation, output.GetDistanceMaximumWaveElevation());
         Assert.AreEqual(normativeWidthOfWaveImpact, output.GetNormativeWidthOfWaveImpact());
-        ASSERT_EQ(nullptr, output.GetHydraulicLoad());
-        ASSERT_EQ(nullptr, output.GetWaveAngleImpact());
-        ASSERT_EQ(nullptr, output.GetResistance());
-        ASSERT_EQ(nullptr, output.GetReferenceTimeDegradation());
-        ASSERT_EQ(nullptr, output.GetReferenceDegradation());
+        Assert.IsNull(output.GetHydraulicLoad());
+        Assert.IsNull(output.GetWaveAngleImpact());
+        Assert.IsNull(output.GetResistance());
+        Assert.IsNull(output.GetReferenceTimeDegradation());
+        Assert.IsNull(output.GetReferenceDegradation());
     }
 
         [Test]

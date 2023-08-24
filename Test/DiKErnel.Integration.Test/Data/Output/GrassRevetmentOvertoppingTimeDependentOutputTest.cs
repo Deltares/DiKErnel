@@ -94,10 +94,10 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(nullptr, output.GetTimeOfFailure());
+        Assert.IsNull(output.GetTimeOfFailure());
         Assert.AreEqual(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
-        ASSERT_EQ(nullptr, output.GetRepresentativeWaveRunup2P());
-        ASSERT_EQ(nullptr, output.GetCumulativeOverload());
+        Assert.IsNull(output.GetRepresentativeWaveRunup2P());
+        Assert.IsNull(output.GetCumulativeOverload());
     }
 
     [Test]

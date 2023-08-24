@@ -38,18 +38,18 @@ namespace DiKErnel.Integration.Test.Data
         Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
-        ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
-        ASSERT_EQ(nullptr, constructionProperties.GetCriticalCumulativeOverload());
-        ASSERT_EQ(nullptr, constructionProperties.GetCriticalFrontVelocity());
-        ASSERT_EQ(nullptr, constructionProperties.GetIncreasedLoadTransitionAlphaM());
-        ASSERT_EQ(nullptr, constructionProperties.GetReducedStrengthTransitionAlphaS());
-        ASSERT_EQ(nullptr, constructionProperties.GetAverageNumberOfWavesCtm());
-        ASSERT_EQ(nullptr, constructionProperties.GetFixedNumberOfWaves());
-        ASSERT_EQ(nullptr, constructionProperties.GetFrontVelocityCwo());
-        ASSERT_EQ(nullptr, constructionProperties.GetAccelerationAlphaAForCrest());
-        ASSERT_EQ(nullptr, constructionProperties.GetAccelerationAlphaAForInnerSlope());
-        ASSERT_EQ(nullptr, constructionProperties.GetDikeHeight());
+        Assert.IsNull(constructionProperties.GetInitialDamage());
+        Assert.IsNull(constructionProperties.GetFailureNumber());
+        Assert.IsNull(constructionProperties.GetCriticalCumulativeOverload());
+        Assert.IsNull(constructionProperties.GetCriticalFrontVelocity());
+        Assert.IsNull(constructionProperties.GetIncreasedLoadTransitionAlphaM());
+        Assert.IsNull(constructionProperties.GetReducedStrengthTransitionAlphaS());
+        Assert.IsNull(constructionProperties.GetAverageNumberOfWavesCtm());
+        Assert.IsNull(constructionProperties.GetFixedNumberOfWaves());
+        Assert.IsNull(constructionProperties.GetFrontVelocityCwo());
+        Assert.IsNull(constructionProperties.GetAccelerationAlphaAForCrest());
+        Assert.IsNull(constructionProperties.GetAccelerationAlphaAForInnerSlope());
+        Assert.IsNull(constructionProperties.GetDikeHeight());
     }
 
         [Test]

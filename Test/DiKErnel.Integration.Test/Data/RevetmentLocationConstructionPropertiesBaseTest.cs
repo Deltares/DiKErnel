@@ -35,8 +35,8 @@ namespace DiKErnel.Integration.Test.Data
 
         // Assert
         Assert.AreEqual(x, constructionProperties.GetX());
-        ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
-        ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
+        Assert.IsNull(constructionProperties.GetInitialDamage());
+        Assert.IsNull(constructionProperties.GetFailureNumber());
     }
 
         [Test]

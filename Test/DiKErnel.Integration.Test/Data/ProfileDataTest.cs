@@ -227,7 +227,7 @@ namespace DiKErnel.Integration.Test.Data
         const var profileSegment = profileData->GetProfileSegment(0.0);
 
         // Assert
-        ASSERT_EQ(nullptr, profileSegment);
+        Assert.IsNull(profileSegment);
     }
 
         [Test]
@@ -240,7 +240,7 @@ namespace DiKErnel.Integration.Test.Data
         const var profileSegment = profileData->GetProfileSegment(1.0);
 
         // Assert
-        ASSERT_EQ(nullptr, profileSegment);
+        Assert.IsNull(profileSegment);
     }
 
         [Test]
@@ -307,7 +307,7 @@ namespace DiKErnel.Integration.Test.Data
         const var profileSegment = profileData->GetProfileSegment(4.0);
 
         // Assert
-        ASSERT_EQ(nullptr, profileSegment);
+        Assert.IsNull(profileSegment);
     }
 }
 
