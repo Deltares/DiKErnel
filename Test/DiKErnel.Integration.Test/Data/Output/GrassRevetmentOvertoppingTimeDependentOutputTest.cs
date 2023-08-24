@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -23,43 +27,39 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentOvertoppingTimeDependentOutputTest
     {
-
-    struct GrassRevetmentOvertoppingTimeDependentOutputTest : Test
-    {
-        static void CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNull()
+        private static GrassRevetmentOvertoppingTimeDependentOutput CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNull()
         {
-            // Setup
-            GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
-            constructionProperties.IncrementDamage = 0.1);
-            constructionProperties.Damage = 0.2);
-            constructionProperties.TimeOfFailure = 3);
-            constructionProperties.VerticalDistanceWaterLevelElevation = null;
-            constructionProperties.RepresentativeWaveRunup2P = 0.4);
-            constructionProperties.CumulativeOverload = 0.5);
-
-            // Call
-            const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
+            return new GrassRevetmentOvertoppingTimeDependentOutput(new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = Random.NextDouble(),
+                Damage = Random.NextDouble(),
+                TimeOfFailure = Random.Next(),
+                VerticalDistanceWaterLevelElevation = null,
+                RepresentativeWaveRunup2P = Random.NextDouble(),
+                CumulativeOverload = Random.NextDouble()
+            });
         }
-    };
 
-    [Test]
+        [Test]
     public void Constructor_WithAllValuesSet_ExpectedValues()
     {
         // Setup
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var verticalDistanceWaterLevelElevation = 0.4;
-        var representativeWaveRunup2P = 0.5;
-        var cumulativeOverload = 0.6;
+        double incrementDamage = Random.NextDouble();
+        double damage = Random.NextDouble();
+        int timeOfFailure = Random.Next();
+        double verticalDistanceWaterLevelElevation = Random.NextDouble();
+        double representativeWaveRunup2P = Random.NextDouble();
+        double cumulativeOverload = Random.NextDouble();
 
-        GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties.IncrementDamage = incrementDamage);
-        constructionProperties.Damage = damage);
-        constructionProperties.TimeOfFailure = timeOfFailure);
-        constructionProperties.VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation);
-        constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P);
-        constructionProperties.CumulativeOverload = cumulativeOverload);
+        var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+        {
+            IncrementDamage = incrementDamage,
+            Damage = damage,
+            TimeOfFailure = timeOfFailure,
+            VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
+            RepresentativeWaveRunup2P = representativeWaveRunup2P,
+            CumulativeOverload = cumulativeOverload
+        };
 
         // Call
         const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);

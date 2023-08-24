@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -24,24 +28,19 @@ namespace DiKErnel.Integration.Test.Data.Output
     public class GrassRevetmentWaveRunupRayleighTimeDependentOutputTest
     {
 
-    struct GrassRevetmentWaveRunupRayleighTimeDependentOutputTest : Test
-    {
-        static void CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNull()
+        private static GrassRevetmentWaveRunupRayleighTimeDependentOutput CreateOutputWithConstructionPropertiesWithVerticalDistanceWaterLevelElevationNull()
         {
-            // Setup
-            GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
-            constructionProperties.IncrementDamage = 0.1);
-            constructionProperties.Damage = 0.2);
-            constructionProperties.TimeOfFailure = 3);
-            constructionProperties.VerticalDistanceWaterLevelElevation = null;
-            constructionProperties.WaveAngleImpact = 0.4);
-            constructionProperties.RepresentativeWaveRunup2P = 0.5);
-            constructionProperties.CumulativeOverload = 0.6);
-
-            // Call
-            const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(constructionProperties);
+            return new GrassRevetmentWaveRunupRayleighTimeDependentOutput(new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = Random.NextDouble(),
+                Damage = Random.NextDouble(),
+                TimeOfFailure = Random.Next(),
+                VerticalDistanceWaterLevelElevation = null,
+                WaveAngleImpact = Random.NextDouble(),
+                RepresentativeWaveRunup2P = Random.NextDouble(),
+                CumulativeOverload = Random.NextDouble()
+            });
         }
-    };
 
         [Test]
     public void Constructor_WithAllValuesSet_ExpectedValues()

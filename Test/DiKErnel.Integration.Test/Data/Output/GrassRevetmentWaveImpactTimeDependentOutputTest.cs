@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -25,55 +29,52 @@ namespace DiKErnel.Integration.Test.Data.Output
     {
         
 
-    struct GrassRevetmentWaveImpactTimeDependentOutputTest : Test
-    {
-        static unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
+        private static GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
-            var constructionProperties = make_unique<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
-            constructionProperties->IncrementDamage = 0.1);
-            constructionProperties->Damage = 0.2);
-            constructionProperties->TimeOfFailure = 3);
-            constructionProperties->LoadingRevetment = true);
-            constructionProperties->UpperLimitLoading = 0.4);
-            constructionProperties->LowerLimitLoading = 0.5);
-            constructionProperties->MinimumWaveHeight = 0.6);
-            constructionProperties->MaximumWaveHeight = 0.7);
-            constructionProperties->WaveAngleImpact = 0.8);
-            constructionProperties->WaveHeightImpact = 0.9);
-
-            return constructionProperties;
+            return new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = Random.NextDouble(),
+                Damage = Random.NextDouble(),
+                TimeOfFailure = Random.Next(),
+                LoadingRevetment = Random.NextBoolean(),
+                UpperLimitLoading = Random.NextDouble(),
+                LowerLimitLoading = Random.NextDouble(),
+                MinimumWaveHeight = Random.NextDouble(),
+                MaximumWaveHeight = Random.NextDouble(),
+                WaveAngleImpact = Random.NextDouble(),
+                WaveHeightImpact = Random.NextDouble()
+            };
         }
 
-        static void CreateOutputWithConstructionPropertiesWithLoadingRevetmentNull()
+        private static GrassRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithLoadingRevetmentNull()
         {
-            // Setup
-            var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->LoadingRevetment = null;
+            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+            
+            constructionProperties.LoadingRevetment = null;
 
-            // Call
-            const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            return new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNull()
+        private static GrassRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNull()
         {
-            // Setup
-            var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->UpperLimitLoading = null;
+            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+            
+            constructionProperties.UpperLimitLoading = null;
 
-            // Call
-            const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            return new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
 
-        static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNull()
+        private static GrassRevetmentWaveImpactTimeDependentOutput CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNull()
         {
-            // Setup
-            var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->LowerLimitLoading = null;
+            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+            
+            constructionProperties.LowerLimitLoading = null;
 
-            // Call
-            const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
+            return new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
         }
-    };
 
         [Test]
     public void Constructor_WithAllValuesSet_ExpectedValues()

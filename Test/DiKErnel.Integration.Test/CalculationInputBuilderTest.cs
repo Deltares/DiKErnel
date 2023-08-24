@@ -747,19 +747,19 @@ namespace DiKErnel.Integration.Test
         var constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
             x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
-        constructionProperties->SetInitialDamage(initialDamage));
-        constructionProperties->SetFailureNumber(failureNumber));
-        constructionProperties->SetDensityOfWater(densityOfWater));
-        constructionProperties->SetThicknessSubLayer(thicknessSubLayer));
-        constructionProperties->SetElasticModulusSubLayer(elasticModulusSubLayer));
-        constructionProperties->SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
-        constructionProperties->SetFatigueAlpha(fatigueAlpha));
-        constructionProperties->SetFatigueBeta(fatigueBeta));
-        constructionProperties->SetImpactNumberC(impactNumberC));
-        constructionProperties->SetStiffnessRelationNu(stiffnessRelationNu));
-        constructionProperties->SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
-        constructionProperties->SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
-        constructionProperties->SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
+        constructionProperties.SetInitialDamage(initialDamage));
+        constructionProperties.SetFailureNumber(failureNumber));
+        constructionProperties.SetDensityOfWater(densityOfWater));
+        constructionProperties.SetThicknessSubLayer(thicknessSubLayer));
+        constructionProperties.SetElasticModulusSubLayer(elasticModulusSubLayer));
+        constructionProperties.SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
+        constructionProperties.SetFatigueAlpha(fatigueAlpha));
+        constructionProperties.SetFatigueBeta(fatigueBeta));
+        constructionProperties.SetImpactNumberC(impactNumberC));
+        constructionProperties.SetStiffnessRelationNu(stiffnessRelationNu));
+        constructionProperties.SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
+        constructionProperties.SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
+        constructionProperties.SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
@@ -1030,18 +1030,18 @@ namespace DiKErnel.Integration.Test
         var dikeHeight = 1.3;
 
         var constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
-        constructionProperties->SetInitialDamage(initialDamage));
-        constructionProperties->SetFailureNumber(failureNumber));
-        constructionProperties->SetCriticalCumulativeOverload(criticalCumulativeOverload));
-        constructionProperties->SetCriticalFrontVelocity(criticalFrontVelocity));
-        constructionProperties->SetIncreasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM));
-        constructionProperties->SetReducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS));
-        constructionProperties->SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
-        constructionProperties->SetFixedNumberOfWaves(fixedNumberOfWaves));
-        constructionProperties->SetFrontVelocityCwo(frontVelocityCwo));
-        constructionProperties->SetAccelerationAlphaAForCrest(accelerationAlphaAForCrest));
-        constructionProperties->SetAccelerationAlphaAForInnerSlope(accelerationAlphaAForInnerSlope));
-        constructionProperties->SetDikeHeight(dikeHeight));
+        constructionProperties.SetInitialDamage(initialDamage));
+        constructionProperties.SetFailureNumber(failureNumber));
+        constructionProperties.SetCriticalCumulativeOverload(criticalCumulativeOverload));
+        constructionProperties.SetCriticalFrontVelocity(criticalFrontVelocity));
+        constructionProperties.SetIncreasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM));
+        constructionProperties.SetReducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS));
+        constructionProperties.SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
+        constructionProperties.SetFixedNumberOfWaves(fixedNumberOfWaves));
+        constructionProperties.SetFrontVelocityCwo(frontVelocityCwo));
+        constructionProperties.SetAccelerationAlphaAForCrest(accelerationAlphaAForCrest));
+        constructionProperties.SetAccelerationAlphaAForInnerSlope(accelerationAlphaAForInnerSlope));
+        constructionProperties.SetDikeHeight(dikeHeight));
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
@@ -1259,18 +1259,18 @@ namespace DiKErnel.Integration.Test
         var lowerLimitLoadingAll = 1.3;
 
         var constructionProperties = make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(x, topLayerType);
-        constructionProperties->SetInitialDamage(initialDamage));
-        constructionProperties->SetFailureNumber(failureNumber));
-        constructionProperties->SetTimeLineAgwi(timeLineAgwi));
-        constructionProperties->SetTimeLineBgwi(timeLineBgwi));
-        constructionProperties->SetTimeLineCgwi(timeLineCgwi));
-        constructionProperties->SetMinimumWaveHeightTemax(minimumWaveHeightTemax));
-        constructionProperties->SetMaximumWaveHeightTemin(maximumWaveHeightTemin));
-        constructionProperties->SetWaveAngleImpactNwa(waveAngleImpactNwa));
-        constructionProperties->SetWaveAngleImpactQwa(waveAngleImpactQwa));
-        constructionProperties->SetWaveAngleImpactRwa(waveAngleImpactRwa));
-        constructionProperties->SetUpperLimitLoadingAul(upperLimitLoadingAul));
-        constructionProperties->SetLowerLimitLoadingAll(lowerLimitLoadingAll));
+        constructionProperties.SetInitialDamage(initialDamage));
+        constructionProperties.SetFailureNumber(failureNumber));
+        constructionProperties.SetTimeLineAgwi(timeLineAgwi));
+        constructionProperties.SetTimeLineBgwi(timeLineBgwi));
+        constructionProperties.SetTimeLineCgwi(timeLineCgwi));
+        constructionProperties.SetMinimumWaveHeightTemax(minimumWaveHeightTemax));
+        constructionProperties.SetMaximumWaveHeightTemin(maximumWaveHeightTemin));
+        constructionProperties.SetWaveAngleImpactNwa(waveAngleImpactNwa));
+        constructionProperties.SetWaveAngleImpactQwa(waveAngleImpactQwa));
+        constructionProperties.SetWaveAngleImpactRwa(waveAngleImpactRwa));
+        constructionProperties.SetUpperLimitLoadingAul(upperLimitLoadingAul));
+        constructionProperties.SetLowerLimitLoadingAll(lowerLimitLoadingAll));
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
@@ -1490,22 +1490,22 @@ namespace DiKErnel.Integration.Test
         var frontVelocityCu = 1.8;
 
         var constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(x, outerSlope, topLayerType);
-        constructionProperties->SetInitialDamage(initialDamage));
-        constructionProperties->SetFailureNumber(failureNumber));
-        constructionProperties->SetCriticalCumulativeOverload(criticalCumulativeOverload));
-        constructionProperties->SetCriticalFrontVelocity(criticalFrontVelocity));
-        constructionProperties->SetIncreasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM));
-        constructionProperties->SetReducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS));
-        constructionProperties->SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
-        constructionProperties->SetRepresentativeWaveRunup2PAru(representativeWaveRunup2PAru));
-        constructionProperties->SetRepresentativeWaveRunup2PBru(representativeWaveRunup2PBru));
-        constructionProperties->SetRepresentativeWaveRunup2PCru(representativeWaveRunup2PCru));
-        constructionProperties->SetRepresentativeWaveRunup2PGammab(representativeWaveRunup2PGammab));
-        constructionProperties->SetRepresentativeWaveRunup2PGammaf(representativeWaveRunup2PGammaf));
-        constructionProperties->SetWaveAngleImpactAbeta(waveAngleImpactAbeta));
-        constructionProperties->SetWaveAngleImpactBetamax(waveAngleImpactBetamax));
-        constructionProperties->SetFixedNumberOfWaves(fixedNumberOfWaves));
-        constructionProperties->SetFrontVelocityCu(frontVelocityCu));
+        constructionProperties.SetInitialDamage(initialDamage));
+        constructionProperties.SetFailureNumber(failureNumber));
+        constructionProperties.SetCriticalCumulativeOverload(criticalCumulativeOverload));
+        constructionProperties.SetCriticalFrontVelocity(criticalFrontVelocity));
+        constructionProperties.SetIncreasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM));
+        constructionProperties.SetReducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS));
+        constructionProperties.SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
+        constructionProperties.SetRepresentativeWaveRunup2PAru(representativeWaveRunup2PAru));
+        constructionProperties.SetRepresentativeWaveRunup2PBru(representativeWaveRunup2PBru));
+        constructionProperties.SetRepresentativeWaveRunup2PCru(representativeWaveRunup2PCru));
+        constructionProperties.SetRepresentativeWaveRunup2PGammab(representativeWaveRunup2PGammab));
+        constructionProperties.SetRepresentativeWaveRunup2PGammaf(representativeWaveRunup2PGammaf));
+        constructionProperties.SetWaveAngleImpactAbeta(waveAngleImpactAbeta));
+        constructionProperties.SetWaveAngleImpactBetamax(waveAngleImpactBetamax));
+        constructionProperties.SetFixedNumberOfWaves(fixedNumberOfWaves));
+        constructionProperties.SetFrontVelocityCu(frontVelocityCu));
 
         CalculationInputBuilder builder;
         AddDefaultProfileAndTimeStep(builder);
