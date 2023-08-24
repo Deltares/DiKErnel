@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using System.Collections.Generic;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Helpers
@@ -23,27 +27,20 @@ namespace DiKErnel.Integration.Test.Helpers
     [TestFixture]
     public class ValidationHelperTest
     {
-        
-
-    struct ValidationHelperTest : Test
-    {
-        static void RegisterValidationIssueWithInvalidValidationIssueType()
-        {
-            var validationIssues = vector<unique_ptr<ValidationIssue>>();
-            validationIssues.emplace_back(make_unique<ValidationIssue>(static_cast<ValidationIssueType>(99), "Message"));
-
-            ValidationHelper::RegisterValidationIssues(validationIssues);
-        }
-    };
-
         [Test]
-    public void GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsOutOfRangeException()
-    {
-        // Given & When
-        var action = &RegisterValidationIssueWithInvalidValidationIssueType;
+        public void GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsNotSupportedException()
+        {
+            // Given
+            var validationIssue = new ValidationIssue((ValidationIssueType) 99, "Message");
 
-        // Then
-        AssertHelper::AssertThrowsWithMessage<out_of_range>(action, "Invalid ValidationIssueType.");
-    }
+            // When
+            void Call() => ValidationHelper.RegisterValidationIssues(new List<ValidationIssue>
+            {
+                validationIssue
+            });
+
+            // Then
+            Assert.Throws<NotSupportedException>(Call, "Unsupported ValidationIssueType.");
+        }
     }
 }

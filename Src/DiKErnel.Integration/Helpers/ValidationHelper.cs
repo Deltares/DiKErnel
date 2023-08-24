@@ -52,7 +52,7 @@ namespace DiKErnel.Integration.Helpers
             {
                 ValidationIssueType.Warning => EventType.Warning,
                 ValidationIssueType.Error => EventType.Error,
-                _ => throw new NotSupportedException("Invalid ValidationIssueType.")
+                _ => throw new NotSupportedException("Unsupported ValidationIssueType.")
             };
         }
     }
