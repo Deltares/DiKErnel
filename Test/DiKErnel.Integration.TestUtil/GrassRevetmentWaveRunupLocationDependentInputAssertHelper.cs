@@ -23,22 +23,16 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassRevetmentWaveRunupLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(
-            double x,
-            double outerSlope,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        public static void AssertGeneralProperties(double x, double outerSlope,
+                                                   GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
             Assert.AreEqual(x, locationDependentInput.X);
             Assert.AreEqual(outerSlope, locationDependentInput.OuterSlope);
         }
 
-        public static void AssertRepresentative2P(
-            double representative2PAru,
-            double representative2PBru,
-            double representative2PCru,
-            double gammab,
-            double gammaf,
-            GrassRevetmentWaveRunupRepresentative2P representative2P)
+        public static void AssertRepresentative2P(double representative2PAru, double representative2PBru,
+                                                  double representative2PCru, double gammab, double gammaf,
+                                                  GrassRevetmentWaveRunupRepresentative2P representative2P)
         {
             Assert.AreEqual(representative2PAru, representative2P.Representative2PAru);
             Assert.AreEqual(representative2PBru, representative2P.Representative2PBru);
@@ -47,41 +41,35 @@ namespace DiKErnel.Integration.TestUtil
             Assert.AreEqual(gammaf, representative2P.Gammaf);
         }
 
-        public static void AssertWaveAngleImpact(
-            double abeta,
-            double betamax,
-            GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact)
+        public static void AssertWaveAngleImpact(double abeta, double betamax,
+                                                 GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact)
         {
             Assert.AreEqual(abeta, waveAngleImpact.Abeta);
             Assert.AreEqual(betamax, waveAngleImpact.Betamax);
         }
 
-        public static void AssertCumulativeOverload(
-            double criticalCumulativeOverload,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        public static void AssertCumulativeOverload(double criticalCumulativeOverload,
+                                                    GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
             Assert.AreEqual(criticalCumulativeOverload, locationDependentInput.CriticalCumulativeOverload);
         }
 
-        public static void AssertFrontVelocity(
-            double criticalFrontVelocity,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        public static void AssertFrontVelocity(double criticalFrontVelocity,
+                                               GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
             Assert.AreEqual(criticalFrontVelocity, locationDependentInput.CriticalFrontVelocity);
         }
 
-        public static void AssertTransitionAlpha(
-            double increasedLoadTransitionAlphaM,
-            double reducedStrengthTransitionAlphaS,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
+                                                 double reducedStrengthTransitionAlphaS,
+                                                 GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
             Assert.AreEqual(increasedLoadTransitionAlphaM, locationDependentInput.IncreasedLoadTransitionAlphaM);
             Assert.AreEqual(reducedStrengthTransitionAlphaS, locationDependentInput.ReducedStrengthTransitionAlphaS);
         }
 
-        public static void AssertAverageNumberOfWaves(
-            double averageNumberOfWavesCtm,
-            GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+        public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
+                                                      GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
             Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
         }

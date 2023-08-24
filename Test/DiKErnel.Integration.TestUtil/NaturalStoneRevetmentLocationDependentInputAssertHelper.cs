@@ -23,28 +23,18 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class NaturalStoneRevetmentLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(
-            double x,
-            double relativeDensity,
-            double thicknessTopLayer,
-            NaturalStoneRevetmentLocationDependentInput locationDependentInput)
+        public static void AssertGeneralProperties(double x, double relativeDensity, double thicknessTopLayer,
+                                                   NaturalStoneRevetmentLocationDependentInput locationDependentInput)
         {
             Assert.AreEqual(x, locationDependentInput.X);
             Assert.AreEqual(relativeDensity, locationDependentInput.RelativeDensity);
             Assert.AreEqual(thicknessTopLayer, locationDependentInput.ThicknessTopLayer);
         }
 
-        public static void AssertHydraulicLoads(
-            double hydraulicLoadAp,
-            double hydraulicLoadBp,
-            double hydraulicLoadCp,
-            double hydraulicLoadNp,
-            double hydraulicLoadAs,
-            double hydraulicLoadBs,
-            double hydraulicLoadCs,
-            double hydraulicLoadNs,
-            double hydraulicLoadXib,
-            NaturalStoneRevetmentHydraulicLoads hydraulicLoads)
+        public static void AssertHydraulicLoads(double hydraulicLoadAp, double hydraulicLoadBp, double hydraulicLoadCp,
+                                                double hydraulicLoadNp, double hydraulicLoadAs, double hydraulicLoadBs,
+                                                double hydraulicLoadCs, double hydraulicLoadNs, double hydraulicLoadXib,
+                                                NaturalStoneRevetmentHydraulicLoads hydraulicLoads)
         {
             Assert.AreEqual(hydraulicLoadAp, hydraulicLoads.HydraulicLoadAp);
             Assert.AreEqual(hydraulicLoadBp, hydraulicLoads.HydraulicLoadBp);
@@ -57,31 +47,25 @@ namespace DiKErnel.Integration.TestUtil
             Assert.AreEqual(hydraulicLoadXib, hydraulicLoads.HydraulicLoadXib);
         }
 
-        public static void AssertSlope(
-            double slopeUpperLevelAus,
-            double slopeLowerLevelAls,
-            NaturalStoneRevetmentSlope slope)
+        public static void AssertSlope(double slopeUpperLevelAus, double slopeLowerLevelAls,
+                                       NaturalStoneRevetmentSlope slope)
         {
             Assert.AreEqual(slopeUpperLevelAus, slope.UpperLevelAus);
             Assert.AreEqual(slopeLowerLevelAls, slope.LowerLevelAls);
         }
 
-        public static void AssertUpperLimitLoading(
-            double upperLimitLoadingAul,
-            double upperLimitLoadingBul,
-            double upperLimitLoadingCul,
-            NaturalStoneRevetmentUpperLimitLoading upperLimitLoading)
+        public static void AssertUpperLimitLoading(double upperLimitLoadingAul, double upperLimitLoadingBul,
+                                                   double upperLimitLoadingCul,
+                                                   NaturalStoneRevetmentUpperLimitLoading upperLimitLoading)
         {
             Assert.AreEqual(upperLimitLoadingAul, upperLimitLoading.UpperLimitAul);
             Assert.AreEqual(upperLimitLoadingBul, upperLimitLoading.UpperLimitBul);
             Assert.AreEqual(upperLimitLoadingCul, upperLimitLoading.UpperLimitCul);
         }
 
-        public static void AssertLowerLimitLoading(
-            double lowerLimitLoadingAll,
-            double lowerLimitLoadingBll,
-            double lowerLimitLoadingCll,
-            NaturalStoneRevetmentLowerLimitLoading lowerLimitLoading)
+        public static void AssertLowerLimitLoading(double lowerLimitLoadingAll, double lowerLimitLoadingBll,
+                                                   double lowerLimitLoadingCll,
+                                                   NaturalStoneRevetmentLowerLimitLoading lowerLimitLoading)
         {
             Assert.AreEqual(lowerLimitLoadingAll, lowerLimitLoading.LowerLimitAll);
             Assert.AreEqual(lowerLimitLoadingBll, lowerLimitLoading.LowerLimitBll);
@@ -89,26 +73,25 @@ namespace DiKErnel.Integration.TestUtil
         }
 
         public static void AssertDistanceMaximumWaveElevation(
-            double distanceMaximumWaveElevationAsmax,
-            double distanceMaximumWaveElevationBsmax,
+            double distanceMaximumWaveElevationAsmax, double distanceMaximumWaveElevationBsmax,
             NaturalStoneRevetmentDistanceMaximumWaveElevation distanceMaximumWaveElevation)
         {
-            Assert.AreEqual(distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax);
-            Assert.AreEqual(distanceMaximumWaveElevationBsmax, distanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax);
+            Assert.AreEqual(distanceMaximumWaveElevationAsmax,
+                            distanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax);
+            Assert.AreEqual(distanceMaximumWaveElevationBsmax,
+                            distanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax);
         }
 
-        public static void AssertNormativeWidthOfWaveImpact(
-            double normativeWidthOfWaveImpactAwi,
-            double normativeWidthOfWaveImpactBwi,
-            NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact)
+        public static void AssertNormativeWidthOfWaveImpact(double normativeWidthOfWaveImpactAwi,
+                                                            double normativeWidthOfWaveImpactBwi,
+                                                            NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact)
         {
             Assert.AreEqual(normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpact.NormativeWidthOfWaveImpactAwi);
             Assert.AreEqual(normativeWidthOfWaveImpactBwi, normativeWidthOfWaveImpact.NormativeWidthOfWaveImpactBwi);
         }
 
-        public static void AssertWaveAngleImpact(
-            double waveAngleImpactBetamax,
-            NaturalStoneRevetmentWaveAngleImpact waveAngleImpact)
+        public static void AssertWaveAngleImpact(double waveAngleImpactBetamax,
+                                                 NaturalStoneRevetmentWaveAngleImpact waveAngleImpact)
         {
             Assert.AreEqual(waveAngleImpactBetamax, waveAngleImpact.Betamax);
         }

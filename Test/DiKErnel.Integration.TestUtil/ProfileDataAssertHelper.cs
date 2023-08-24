@@ -23,32 +23,25 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class ProfileDataAssertHelper
     {
-        public static void AssertProfilePoint(
-            double expectedX,
-            double expectedZ,
-            ProfilePoint actualProfilePoint)
+        public static void AssertProfilePoint(double expectedX, double expectedZ, ProfilePoint actualProfilePoint)
         {
             Assert.AreEqual(expectedX, actualProfilePoint.X);
             Assert.AreEqual(expectedZ, actualProfilePoint.Z);
         }
 
-        public static void AssertProfileSegment(
-            double expectedStartPointX,
-            double expectedStartPointZ,
-            double expectedEndPointX,
-            double expectedEndPointZ,
-            double expectedRoughnessCoefficient,
-            ProfileSegment actualProfileSegment)
+        public static void AssertProfileSegment(double expectedStartPointX, double expectedStartPointZ,
+                                                double expectedEndPointX, double expectedEndPointZ,
+                                                double expectedRoughnessCoefficient,
+                                                ProfileSegment actualProfileSegment)
         {
             AssertProfilePoint(expectedStartPointX, expectedStartPointZ, actualProfileSegment.StartPoint);
             AssertProfilePoint(expectedEndPointX, expectedEndPointZ, actualProfileSegment.EndPoint);
             Assert.AreEqual(expectedRoughnessCoefficient, actualProfileSegment.RoughnessCoefficient);
         }
 
-        public static void AssertCharacteristicPoint(
-            ProfilePoint expectedProfilePoint,
-            CharacteristicPointType expectedCharacteristicPointType,
-            CharacteristicPoint actualCharacteristicPoint)
+        public static void AssertCharacteristicPoint(ProfilePoint expectedProfilePoint,
+                                                     CharacteristicPointType expectedCharacteristicPointType,
+                                                     CharacteristicPoint actualCharacteristicPoint)
         {
             Assert.AreSame(expectedProfilePoint, actualCharacteristicPoint.ProfilePoint);
             Assert.AreEqual(expectedCharacteristicPointType, actualCharacteristicPoint.CharacteristicPointType);

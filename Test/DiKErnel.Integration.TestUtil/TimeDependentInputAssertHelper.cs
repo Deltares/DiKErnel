@@ -23,14 +23,10 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class TimeDependentInputAssertHelper
     {
-        public static void AssertTimeDependentInputItem(
-            int expectedBeginTime,
-            int expectedEndTime,
-            double expectedWaterLevel,
-            double expectedWaveHeightHm0,
-            double expectedWavePeriodTm10,
-            double expectedWaveAngle,
-            ITimeDependentInput actualTimeDependentInput)
+        public static void AssertTimeDependentInputItem(int expectedBeginTime, int expectedEndTime,
+                                                        double expectedWaterLevel, double expectedWaveHeightHm0,
+                                                        double expectedWavePeriodTm10, double expectedWaveAngle,
+                                                        ITimeDependentInput actualTimeDependentInput)
         {
             Assert.AreEqual(expectedBeginTime, actualTimeDependentInput.BeginTime);
             Assert.AreEqual(expectedEndTime, actualTimeDependentInput.EndTime);

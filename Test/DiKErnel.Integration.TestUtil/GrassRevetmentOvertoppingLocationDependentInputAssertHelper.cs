@@ -66,10 +66,9 @@ namespace DiKErnel.Integration.TestUtil
             Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
         }
 
-        public static void AssertAccelerationAlphaA(double accelerationAlphaAForCrest,
-                                                    double accelerationAlphaAForInnerSlope,
-                                                    GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
-                                                        locationDependentAccelerationAlphaA)
+        public static void AssertAccelerationAlphaA(
+            double accelerationAlphaAForCrest, double accelerationAlphaAForInnerSlope,
+            GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA)
         {
             Assert.AreEqual(accelerationAlphaAForCrest, locationDependentAccelerationAlphaA.ValueAtCrest);
             Assert.AreEqual(accelerationAlphaAForInnerSlope, locationDependentAccelerationAlphaA.ValueAtInnerSlope);
