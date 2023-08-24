@@ -1,37 +1,23 @@
-// Copyright (C) Stichting Deltares 2022. All rights reserved.
+// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
-// DiKErnel is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, version 3.
+// DiKErnel is free software: you can redistribute it and/or modify it under the terms of the
+// GNU Lesser General Public License as published by the Free Software Foundation, either
+// version 3 of the License, or (at your option) any later version.
 // 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU Lesser General Public License for more details.
+// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+// without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
+// You should have received a copy of the GNU Lesser General Public License along with this
+// program. If not, see <http://www.gnu.org/licenses/>.
 //
-// All names, logos, and references to "Deltares" are registered trademarks of
-// Stichting Deltares and remain full property of Stichting Deltares at all times.
-// All rights reserved.
+// All names, logos, and references to "Deltares" are registered trademarks of Stichting
+// Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-#include <gtest/gtest.h>
-
-#include "AssertHelper.h"
-#include "GrassRevetmentWaveImpactTimeDependentOutput.h"
-#include "InvalidTimeDependentOutputException.h"
-#include "TimeDependentOutput.h"
-
-namespace DiKErnel::Integration::Test
+namespace DiKErnel.Integration.Test.Data.Output
 {
-    using namespace Core;
-    using namespace std;
-    using namespace testing;
-    using namespace TestUtil;
-
     struct GrassRevetmentWaveImpactTimeDependentOutputTest : Test
     {
         static unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
