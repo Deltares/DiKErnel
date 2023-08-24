@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class RevetmentLocationConstructionPropertiesBaseTest
     {
-        
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -60,4 +58,6 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
         ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
     }
+}
+
 }

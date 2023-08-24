@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentOvertoppingTimeDependentOutputTest
     {
-        
-    }
 
     struct GrassRevetmentOvertoppingTimeDependentOutputTest : Test
     {
@@ -112,4 +110,5 @@ namespace DiKErnel.Integration.Test.Data.Output
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "verticalDistanceWaterLevelElevation must be set.");
     }
+}
 }

@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class AsphaltRevetmentWaveImpactLocationConstructionPropertiesTest
     {
-        
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -136,4 +134,5 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(depthFactors, *constructionProperties.GetDepthFactors());
         ASSERT_EQ(impactFactors, *constructionProperties.GetImpactFactors());
     }
+}
 }

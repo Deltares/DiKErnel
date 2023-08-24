@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class GrassRevetmentWaveRunupLocationConstructionPropertiesTest
     {
-        
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -117,4 +115,6 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_DOUBLE_EQ(waveAngleImpactAbeta, *constructionProperties.GetWaveAngleImpactAbeta());
         ASSERT_DOUBLE_EQ(waveAngleImpactBetamax, *constructionProperties.GetWaveAngleImpactBetamax());
     }
+}
+
 }

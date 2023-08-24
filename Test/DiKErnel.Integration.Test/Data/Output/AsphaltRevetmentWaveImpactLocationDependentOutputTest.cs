@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     public class AsphaltRevetmentWaveImpactLocationDependentOutputTest
     {
         
-    }
     
     [Test]
     public void Constructor_ExpectedValues()
@@ -55,5 +54,6 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_EQ(1, output.GetTimeDependentOutputItems().size());
         ASSERT_DOUBLE_EQ(z, output.GetZ());
         ASSERT_DOUBLE_EQ(outerSlope, output.GetOuterSlope());
+    }
     }
 }

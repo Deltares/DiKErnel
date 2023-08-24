@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class GrassRevetmentOvertoppingLocationConstructionPropertiesTest
     {
-        
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -105,4 +103,5 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_DOUBLE_EQ(accelerationAlphaAForInnerSlope, *constructionProperties.GetAccelerationAlphaAForInnerSlope());
         ASSERT_DOUBLE_EQ(dikeHeight, *constructionProperties.GetDikeHeight());
     }
+}
 }

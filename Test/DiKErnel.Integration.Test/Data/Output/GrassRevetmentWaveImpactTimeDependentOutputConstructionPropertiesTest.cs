@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     public class GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest
     {
         
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -86,4 +85,5 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties._waveAngleImpact);
         ASSERT_DOUBLE_EQ(waveHeightImpact, *constructionProperties._waveHeightImpact);
     }
+}
 }

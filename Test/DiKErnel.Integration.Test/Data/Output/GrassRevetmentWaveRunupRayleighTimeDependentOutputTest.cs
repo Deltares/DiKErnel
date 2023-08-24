@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentWaveRunupRayleighTimeDependentOutputTest
     {
-        
-    }
 
     struct GrassRevetmentWaveRunupRayleighTimeDependentOutputTest : Test
     {
@@ -117,4 +115,5 @@ namespace DiKErnel.Integration.Test.Data.Output
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "verticalDistanceWaterLevelElevation must be set.");
     }
+}
 }

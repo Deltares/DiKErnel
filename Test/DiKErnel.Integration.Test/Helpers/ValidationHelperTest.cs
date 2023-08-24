@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Test.Helpers
     public class ValidationHelperTest
     {
         
-    }
 
     struct ValidationHelperTest : Test
     {
@@ -45,5 +44,6 @@ namespace DiKErnel.Integration.Test.Helpers
 
         // Then
         AssertHelper::AssertThrowsWithMessage<out_of_range>(action, "Invalid ValidationIssueType.");
+    }
     }
 }

@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     public class AsphaltRevetmentWaveImpactTimeDependentOutputTest
     {
         
-    }
 
     struct AsphaltRevetmentWaveImpactTimeDependentOutputTest : Test
     {
@@ -219,5 +218,6 @@ namespace DiKErnel.Integration.Test.Data.Output
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "equivalentElasticModulus must be set.");
-    }
+    }    }
+
 }

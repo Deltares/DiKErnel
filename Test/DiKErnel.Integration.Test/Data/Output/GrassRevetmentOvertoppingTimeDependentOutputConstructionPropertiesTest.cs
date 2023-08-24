@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentOvertoppingTimeDependentOutputConstructionPropertiesTest
     {
-        
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -70,4 +68,5 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_DOUBLE_EQ(representativeWaveRunup2P, *constructionProperties._representativeWaveRunup2P);
         ASSERT_DOUBLE_EQ(cumulativeOverload, *constructionProperties._cumulativeOverload);
     }
+}
 }

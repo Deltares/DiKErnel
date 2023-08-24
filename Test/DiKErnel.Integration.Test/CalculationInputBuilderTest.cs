@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Test
     public class CalculationInputBuilderTest
     {
         
-    }
 
     struct CalculationInputBuilderTest : Test
     {
@@ -1865,4 +1864,5 @@ namespace DiKErnel.Integration.Test
     #pragma endregion
 
     #pragma endregion
+    }
 }

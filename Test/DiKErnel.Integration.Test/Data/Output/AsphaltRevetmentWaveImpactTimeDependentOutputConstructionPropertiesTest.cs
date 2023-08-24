@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     public class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest
     {
         
-    }
 
     [Test]
     public void Constructor_ExpectedValues()
@@ -78,5 +77,6 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_DOUBLE_EQ(stiffnessRelation, *constructionProperties._stiffnessRelation);
         ASSERT_DOUBLE_EQ(computationalThickness, *constructionProperties._computationalThickness);
         ASSERT_DOUBLE_EQ(equivalentElasticModulus, *constructionProperties._equivalentElasticModulus);
+    }
     }
 }

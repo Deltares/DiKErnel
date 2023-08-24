@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class NaturalStoneRevetmentTimeDependentOutputConstructionPropertiesTest
     {
-        
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -130,4 +128,5 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_DOUBLE_EQ(referenceTimeDegradation, *constructionProperties._referenceTimeDegradation);
         ASSERT_DOUBLE_EQ(referenceDegradation, *constructionProperties._referenceDegradation);
     }
+}
 }

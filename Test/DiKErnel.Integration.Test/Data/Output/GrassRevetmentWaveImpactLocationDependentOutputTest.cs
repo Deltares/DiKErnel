@@ -23,8 +23,7 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentWaveImpactLocationDependentOutputTest
     {
-        
-    }
+       
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -53,5 +52,6 @@ namespace DiKErnel.Integration.Test.Data.Output
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_EQ(1, output.GetTimeDependentOutputItems().size());
         ASSERT_DOUBLE_EQ(z, output.GetZ());
+    }
     }
 }

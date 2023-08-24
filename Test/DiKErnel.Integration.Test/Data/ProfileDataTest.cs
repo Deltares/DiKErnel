@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class ProfileDataTest
     {
-        
-    }
 
     struct ProfileDataTest : Test
     {
@@ -311,4 +309,6 @@ namespace DiKErnel.Integration.Test.Data
         // Assert
         ASSERT_EQ(nullptr, profileSegment);
     }
+}
+
 }

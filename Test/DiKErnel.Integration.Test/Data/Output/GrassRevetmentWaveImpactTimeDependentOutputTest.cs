@@ -24,7 +24,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     public class GrassRevetmentWaveImpactTimeDependentOutputTest
     {
         
-    }
 
     struct GrassRevetmentWaveImpactTimeDependentOutputTest : Test
     {
@@ -188,4 +187,5 @@ namespace DiKErnel.Integration.Test.Data.Output
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "lowerLimitLoading must be set.");
     }
+}
 }

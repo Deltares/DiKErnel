@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class GrassRevetmentWaveRunupRayleighLocationConstructionPropertiesTest
     {
-        
-    }
 
         [Test]
     public void Constructor_ExpectedValues()
@@ -125,4 +123,5 @@ namespace DiKErnel.Integration.Test.Data
         ASSERT_EQ(fixedNumberOfWaves, *constructionProperties.GetFixedNumberOfWaves());
         ASSERT_DOUBLE_EQ(frontVelocityCu, *constructionProperties.GetFrontVelocityCu());
     }
+}
 }

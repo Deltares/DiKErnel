@@ -23,8 +23,6 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class NaturalStoneRevetmentTimeDependentOutputTest
     {
-        
-    }
 
     struct NaturalStoneRevetmentTimeDependentOutputTest : Test
     {
@@ -446,4 +444,6 @@ namespace DiKErnel.Integration.Test.Data.Output
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "normativeWidthOfWaveImpact must be set.");
     }
+}
+
 }
