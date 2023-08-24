@@ -16,6 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data
@@ -23,292 +27,285 @@ namespace DiKErnel.Integration.Test.Data
     [TestFixture]
     public class ProfileDataTest
     {
-
-    struct ProfileDataTest : Test
-    {
-        static unique_ptr<ProfileData> CreateDefaultProfileData()
+        [Test]
+        public void GetVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue()
         {
-            var pointOne = make_shared<ProfilePoint>(1.0, 1.1);
-            var pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
-            var pointThree = make_shared<ProfilePoint>(3.0, 3.3);
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-            vector<unique_ptr<ProfileSegment>> testDikeProfileSegments;
-            testDikeProfileSegments.push_back(make_unique<ProfileSegment>(pointOne, pointTwo, 1.0));
-            testDikeProfileSegments.push_back(make_unique<ProfileSegment>(pointTwo, pointThree, 1.0));
+            // Call
+            double verticalHeight = profileData.GetVerticalHeight(0.0);
 
-            return make_unique<ProfileData>(move(testDikeProfileSegments), vector<unique_ptr<CharacteristicPoint>>());
+            // Assert
+            Assert.AreEqual(double.PositiveInfinity, verticalHeight);
         }
-    };
 
         [Test]
-    public void InterpolationVerticalHeight_HorizontalPositionLeftOfDikeProfile_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetVerticalHeight_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var verticalHeight = profileData->InterpolationVerticalHeight(0.0);
+            // Call
+            double verticalHeight = profileData.GetVerticalHeight(1.0);
 
-        // Assert
-        Assert.AreEqual(numeric_limits<double>::infinity(), verticalHeight);
-    }
-
-        [Test]
-    public void InterpolationVerticalHeight_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
-
-        // Call
-        const var verticalHeight = profileData->InterpolationVerticalHeight(1.0);
-
-        // Assert
-        Assert.AreEqual(1.1, verticalHeight);
-    }
+            // Assert
+            Assert.AreEqual(1.1, verticalHeight);
+        }
 
         [Test]
-    public void InterpolationVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetVerticalHeight_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var verticalHeight = profileData->InterpolationVerticalHeight(2.0);
+            // Call
+            double verticalHeight = profileData.GetVerticalHeight(2.0);
 
-        // Assert
-        Assert.AreEqual(2.2, verticalHeight);
-    }
-
-        [Test]
-    public void InterpolationVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
-
-        // Call
-        const var verticalHeight = profileData->InterpolationVerticalHeight(3.0);
-
-        // Assert
-        Assert.AreEqual(3.3, verticalHeight);
-    }
+            // Assert
+            Assert.AreEqual(2.2, verticalHeight);
+        }
 
         [Test]
-    public void InterpolationVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetVerticalHeight_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var verticalHeight = profileData->InterpolationVerticalHeight(1.5);
+            // Call
+            double verticalHeight = profileData.GetVerticalHeight(3.0);
 
-        // Assert
-        Assert.AreEqual(1.65, verticalHeight);
-    }
-
-        [Test]
-    public void InterpolationVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue()
-    {
-        // Setup
-        var pointOne = make_shared<ProfilePoint>(1.0, 3.3);
-        var pointTwo = make_shared<ProfilePoint>(2.0, 2.2);
-        var pointThree = make_shared<ProfilePoint>(3.0, 1.1);
-
-        vector<unique_ptr<ProfileSegment>> testDikeProfileSegmentsWithDescendingHeight;
-        testDikeProfileSegmentsWithDescendingHeight.push_back(make_unique<ProfileSegment>(pointOne, pointTwo, 1.0));
-        testDikeProfileSegmentsWithDescendingHeight.push_back(make_unique<ProfileSegment>(pointTwo, pointThree, 1.0));
-
-        const ProfileData profileData(move(testDikeProfileSegmentsWithDescendingHeight), vector<unique_ptr<CharacteristicPoint>>());
-
-        // Call
-        const var verticalHeight = profileData.InterpolationVerticalHeight(2.5);
-
-        // Assert
-        Assert.AreEqual(1.65, verticalHeight);
-    }
+            // Assert
+            Assert.AreEqual(3.3, verticalHeight);
+        }
 
         [Test]
-    public void InterpolationVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetVerticalHeight_HorizontalPositionBetweenAscendingDikeProfilePoints_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var verticalHeight = profileData->InterpolationVerticalHeight(4.0);
+            // Call
+            double verticalHeight = profileData.GetVerticalHeight(1.5);
 
-        // Assert
-        Assert.AreEqual(numeric_limits<double>::infinity(), verticalHeight);
-    }
-
-        [Test]
-    public void InterpolationHorizontalPosition_VerticalHeightBelowDikeProfile_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
-
-        // Call
-        const var horizontalPosition = profileData->InterpolationHorizontalPosition(0.0);
-
-        // Assert
-        Assert.AreEqual(numeric_limits<double>::infinity(), horizontalPosition);
-    }
+            // Assert
+            Assert.AreEqual(1.65, verticalHeight);
+        }
 
         [Test]
-    public void InterpolationHorizontalPosition_VerticalHeightOnFirstDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue()
+        {
+            // Setup
+            var profilePoint1 = new ProfilePoint(1.0, 3.3);
+            var profilePoint2 = new ProfilePoint(2.0, 2.2);
+            var profilePoint3 = new ProfilePoint(3.0, 1.1);
 
-        // Call
-        const var horizontalPosition = profileData->InterpolationHorizontalPosition(1.1);
+            var profileSegmentsWithDescendingHeight = new List<ProfileSegment>
+            {
+                new ProfileSegment(profilePoint1, profilePoint2, Random.NextDouble()),
+                new ProfileSegment(profilePoint2, profilePoint3, Random.NextDouble())
+            };
 
-        // Assert
-        Assert.AreEqual(1.0, horizontalPosition);
-    }
+            var profileData = new ProfileData(profileSegmentsWithDescendingHeight, new List<CharacteristicPoint>());
 
-        [Test]
-    public void InterpolationHorizontalPosition_VerticalHeightOnRandomDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+            // Call
+            double verticalHeight = profileData.GetVerticalHeight(2.5);
 
-        // Call
-        const var horizontalPosition = profileData->InterpolationHorizontalPosition(2.2);
-
-        // Assert
-        Assert.AreEqual(2.0, horizontalPosition);
-    }
+            // Assert
+            Assert.AreEqual(1.65, verticalHeight);
+        }
 
         [Test]
-    public void InterpolationHorizontalPosition_VerticalHeightOnLastDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetVerticalHeight_HorizontalPositionRightOfDikeProfile_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var horizontalPosition = profileData->InterpolationHorizontalPosition(3.3);
+            // Call
+            double verticalHeight = profileData.GetVerticalHeight(4.0);
 
-        // Assert
-        Assert.AreEqual(3.0, horizontalPosition);
-    }
-
-        [Test]
-    public void InterpolationHorizontalPosition_VerticalHeightBetweenProfilePoints_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
-
-        // Call
-        const var horizontalPosition = profileData->InterpolationHorizontalPosition(1.65);
-
-        // Assert
-        Assert.AreEqual(1.5, horizontalPosition);
-    }
+            // Assert
+            Assert.AreEqual(double.PositiveInfinity, verticalHeight);
+        }
 
         [Test]
-    public void InterpolationHorizontalPosition_VerticalHeightAboveDikeProfile_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetHorizontalPosition_VerticalHeightBelowDikeProfile_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var horizontalPosition = profileData->InterpolationHorizontalPosition(4.0);
+            // Call
+            double horizontalPosition = profileData.GetHorizontalPosition(0.0);
 
-        // Assert
-        Assert.AreEqual(numeric_limits<double>::infinity(), horizontalPosition);
-    }
-
-        [Test]
-    public void GetProfileSegment_HorizontalPositionLeftOfDikeProfile_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
-
-        // Call
-        const var profileSegment = profileData->GetProfileSegment(0.0);
-
-        // Assert
-        Assert.IsNull(profileSegment);
-    }
+            // Assert
+            Assert.AreEqual(double.PositiveInfinity, horizontalPosition);
+        }
 
         [Test]
-    public void GetProfileSegment_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetHorizontalPosition_VerticalHeightOnFirstDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var profileSegment = profileData->GetProfileSegment(1.0);
+            // Call
+            double horizontalPosition = profileData.GetHorizontalPosition(1.1);
 
-        // Assert
-        Assert.IsNull(profileSegment);
-    }
-
-        [Test]
-    public void GetProfileSegment_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
-
-        // Call
-        const var profileSegment = profileData->GetProfileSegment(2.0);
-
-        // Assert
-        const auto& startPoint = profileSegment->GetStartPoint();
-        const auto& endPoint = profileSegment->GetEndPoint();
-        Assert.AreEqual(1.0, startPoint.GetX());
-        Assert.AreEqual(1.1, startPoint.GetZ());
-        Assert.AreEqual(2.0, endPoint.GetX());
-        Assert.AreEqual(2.2, endPoint.GetZ());
-    }
+            // Assert
+            Assert.AreEqual(1.0, horizontalPosition);
+        }
 
         [Test]
-    public void GetProfileSegment_HorizontalPositionBetweenDikeProfilePoints_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetHorizontalPosition_VerticalHeightOnRandomDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var profileSegment = profileData->GetProfileSegment(1.5);
+            // Call
+            double horizontalPosition = profileData.GetHorizontalPosition(2.2);
 
-        // Assert
-        const auto& startPoint = profileSegment->GetStartPoint();
-        const auto& endPoint = profileSegment->GetEndPoint();
-        Assert.AreEqual(1.0, startPoint.GetX());
-        Assert.AreEqual(1.1, startPoint.GetZ());
-        Assert.AreEqual(2.0, endPoint.GetX());
-        Assert.AreEqual(2.2, endPoint.GetZ());
-    }
+            // Assert
+            Assert.AreEqual(2.0, horizontalPosition);
+        }
 
         [Test]
-    public void GetProfileSegment_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetHorizontalPosition_VerticalHeightOnLastDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var profileSegment = profileData->GetProfileSegment(3.0);
+            // Call
+            double horizontalPosition = profileData.GetHorizontalPosition(3.3);
 
-        // Assert
-        const auto& startPoint = profileSegment->GetStartPoint();
-        const auto& endPoint = profileSegment->GetEndPoint();
-        Assert.AreEqual(2.0, startPoint.GetX());
-        Assert.AreEqual(2.2, startPoint.GetZ());
-        Assert.AreEqual(3.0, endPoint.GetX());
-        Assert.AreEqual(3.3, endPoint.GetZ());
-    }
+            // Assert
+            Assert.AreEqual(3.0, horizontalPosition);
+        }
 
         [Test]
-    public void GetProfileSegment_HorizontalPositionRightOfDikeProfile_ExpectedValue()
-    {
-        // Setup
-        const var profileData = CreateDefaultProfileData();
+        public void GetHorizontalPosition_VerticalHeightBetweenProfilePoints_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
 
-        // Call
-        const var profileSegment = profileData->GetProfileSegment(4.0);
+            // Call
+            double horizontalPosition = profileData.GetHorizontalPosition(1.65);
 
-        // Assert
-        Assert.IsNull(profileSegment);
+            // Assert
+            Assert.AreEqual(1.5, horizontalPosition);
+        }
+
+        [Test]
+        public void GetHorizontalPosition_VerticalHeightAboveDikeProfile_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
+
+            // Call
+            double horizontalPosition = profileData.GetHorizontalPosition(4.0);
+
+            // Assert
+            Assert.AreEqual(double.PositiveInfinity, horizontalPosition);
+        }
+
+        [Test]
+        public void GetProfileSegment_HorizontalPositionLeftOfDikeProfile_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
+
+            // Call
+            ProfileSegment profileSegment = profileData.GetProfileSegment(0.0);
+
+            // Assert
+            Assert.IsNull(profileSegment);
+        }
+
+        [Test]
+        public void GetProfileSegment_HorizontalPositionOnFirstDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
+
+            // Call
+            ProfileSegment profileSegment = profileData.GetProfileSegment(1.0);
+
+            // Assert
+            Assert.IsNull(profileSegment);
+        }
+
+        [Test]
+        public void GetProfileSegment_HorizontalPositionOnRandomDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
+
+            // Call
+            ProfileSegment profileSegment = profileData.GetProfileSegment(2.0);
+
+            // Assert
+            Assert.AreEqual(1.0, profileSegment.StartPoint.X);
+            Assert.AreEqual(1.1, profileSegment.StartPoint.Z);
+            Assert.AreEqual(2.0, profileSegment.EndPoint.X);
+            Assert.AreEqual(2.2, profileSegment.EndPoint.Z);
+        }
+
+        [Test]
+        public void GetProfileSegment_HorizontalPositionBetweenDikeProfilePoints_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
+
+            // Call
+            ProfileSegment profileSegment = profileData.GetProfileSegment(1.5);
+
+            // Assert
+            Assert.AreEqual(1.0, profileSegment.StartPoint.X);
+            Assert.AreEqual(1.1, profileSegment.StartPoint.Z);
+            Assert.AreEqual(2.0, profileSegment.EndPoint.X);
+            Assert.AreEqual(2.2, profileSegment.EndPoint.Z);
+        }
+
+        [Test]
+        public void GetProfileSegment_HorizontalPositionOnLastDikeProfilePoint_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
+
+            // Call
+            ProfileSegment profileSegment = profileData.GetProfileSegment(3.0);
+
+            // Assert
+            Assert.AreEqual(2.0, profileSegment.StartPoint.X);
+            Assert.AreEqual(2.2, profileSegment.StartPoint.Z);
+            Assert.AreEqual(3.0, profileSegment.EndPoint.X);
+            Assert.AreEqual(3.3, profileSegment.EndPoint.Z);
+        }
+
+        [Test]
+        public void GetProfileSegment_HorizontalPositionRightOfDikeProfile_ExpectedValue()
+        {
+            // Setup
+            ProfileData profileData = CreateDefaultProfileData();
+
+            // Call
+            ProfileSegment profileSegment = profileData.GetProfileSegment(4.0);
+
+            // Assert
+            Assert.IsNull(profileSegment);
+        }
+
+        private static ProfileData CreateDefaultProfileData()
+        {
+            var profilePoint1 = new ProfilePoint(1.0, 1.1);
+            var profilePoint2 = new ProfilePoint(2.0, 2.2);
+            var profilePoint3 = new ProfilePoint(3.0, 3.3);
+
+            var profileSegments = new List<ProfileSegment>
+            {
+                new ProfileSegment(profilePoint1, profilePoint2, Random.NextDouble()),
+                new ProfileSegment(profilePoint2, profilePoint3, Random.NextDouble())
+            };
+
+            return new ProfileData(profileSegments, new List<CharacteristicPoint>());
+        }
     }
-}
-
 }

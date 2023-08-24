@@ -40,7 +40,7 @@ namespace DiKErnel.Integration.Test.Helpers
     public void GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsOutOfRangeException()
     {
         // Given & When
-        const var action = &RegisterValidationIssueWithInvalidValidationIssueType;
+        var action = &RegisterValidationIssueWithInvalidValidationIssueType;
 
         // Then
         AssertHelper::AssertThrowsWithMessage<out_of_range>(action, "Invalid ValidationIssueType.");

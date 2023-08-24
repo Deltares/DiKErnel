@@ -77,7 +77,7 @@ namespace DiKErnel.Integration.Test
             addLocation(builder);
 
             // When
-            const var result = builder.Build();
+            var result = builder.Build();
 
             // Then
             ASSERT_FALSE(result->GetSuccessful());
@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Test
         const CalculationInputBuilder builder;
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -118,7 +118,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfileSegment(20.01, 30, 30, 40);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -141,7 +141,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfileSegment(20, 30.01, 30, 40);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -173,7 +173,7 @@ namespace DiKErnel.Integration.Test
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -205,7 +205,7 @@ namespace DiKErnel.Integration.Test
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -241,7 +241,7 @@ namespace DiKErnel.Integration.Test
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -275,7 +275,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(10.01, CharacteristicPointType::OuterToe);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -296,7 +296,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(10.01, CharacteristicPointType::CrestOuterBerm);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -318,7 +318,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(10.01, CharacteristicPointType::NotchOuterBerm);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -340,7 +340,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(10.01, CharacteristicPointType::OuterCrest);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -362,7 +362,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(20.01, CharacteristicPointType::InnerCrest);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -384,7 +384,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(20.01, CharacteristicPointType::InnerToe);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -404,7 +404,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterCrest);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -424,7 +424,7 @@ namespace DiKErnel.Integration.Test
         builder.AddDikeProfilePointData(10, CharacteristicPointType::OuterToe);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -450,7 +450,7 @@ namespace DiKErnel.Integration.Test
             make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -476,7 +476,7 @@ namespace DiKErnel.Integration.Test
             make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -503,7 +503,7 @@ namespace DiKErnel.Integration.Test
         builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -536,7 +536,7 @@ namespace DiKErnel.Integration.Test
             make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType::ClosedSod));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -561,7 +561,7 @@ namespace DiKErnel.Integration.Test
         builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -588,7 +588,7 @@ namespace DiKErnel.Integration.Test
         builder.AddTimeStep(2, 1, 0.3, 0.4, 0.5, 0.6);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -625,7 +625,7 @@ namespace DiKErnel.Integration.Test
         builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -651,7 +651,7 @@ namespace DiKErnel.Integration.Test
         AddDefaultProfileAndTimeStep(builder);
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -701,7 +701,7 @@ namespace DiKErnel.Integration.Test
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -731,15 +731,15 @@ namespace DiKErnel.Integration.Test
         var fatigueBeta = 1.3;
         var impactNumberC = 1.4;
         var stiffnessRelationNu = 1.5;
-        const var widthFactors = vector
+        var widthFactors = vector
         {
             pair(1.6, 1.7)
         };
-        const var depthFactors = vector
+        var depthFactors = vector
         {
             pair(1.8, 1.9)
         };
-        const var impactFactors = vector
+        var impactFactors = vector
         {
             pair(2.0, 2.1)
         };
@@ -766,7 +766,7 @@ namespace DiKErnel.Integration.Test
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -816,7 +816,7 @@ namespace DiKErnel.Integration.Test
         builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -842,7 +842,7 @@ namespace DiKErnel.Integration.Test
         AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(0.42, 4.76,
                                                                                     locationDependentInput->GetFatigue());
 
-        const var expectedWidthFactors = vector
+        var expectedWidthFactors = vector
         {
             pair(0.1, 0.0392),
             pair(0.2, 0.0738),
@@ -861,7 +861,7 @@ namespace DiKErnel.Integration.Test
             pair(1.5, 0.0105)
         };
 
-        const var expectedDepthFactors = vector
+        var expectedDepthFactors = vector
         {
             pair(-1.0, 0.0244),
             pair(-0.875, 0.0544),
@@ -876,7 +876,7 @@ namespace DiKErnel.Integration.Test
             pair(0.250, 0.0169)
         };
 
-        const var expectedImpactFactors = vector
+        var expectedImpactFactors = vector
         {
             pair(2.0, 0.039),
             pair(2.4, 0.1),
@@ -927,7 +927,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -963,7 +963,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -998,7 +998,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -1052,7 +1052,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1104,7 +1104,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1156,7 +1156,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassOvertoppingLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1228,7 +1228,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -1277,7 +1277,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1328,7 +1328,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1379,7 +1379,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveImpactLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1454,7 +1454,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -1512,7 +1512,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1565,7 +1565,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1617,7 +1617,7 @@ namespace DiKErnel.Integration.Test
         builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1692,7 +1692,7 @@ namespace DiKErnel.Integration.Test
         builder.AddNaturalStoneLocation(move(constructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_FALSE(result->GetSuccessful());
@@ -1768,7 +1768,7 @@ namespace DiKErnel.Integration.Test
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
@@ -1828,7 +1828,7 @@ namespace DiKErnel.Integration.Test
         builder.AddNaturalStoneLocation(move(naturalStoneConstructionProperties));
 
         // When
-        const var result = builder.Build();
+        var result = builder.Build();
 
         // Then
         ASSERT_TRUE(result->GetSuccessful());
