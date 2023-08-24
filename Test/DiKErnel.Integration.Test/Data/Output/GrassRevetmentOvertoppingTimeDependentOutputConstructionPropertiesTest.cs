@@ -16,6 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -23,50 +26,52 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentOvertoppingTimeDependentOutputConstructionPropertiesTest
     {
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Call
+            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties();
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.IsNull(constructionProperties.IncrementDamage);
+            Assert.IsNull(constructionProperties.Damage);
+            Assert.IsNull(constructionProperties.TimeOfFailure);
+            Assert.IsNull(constructionProperties.VerticalDistanceWaterLevelElevation);
+            Assert.IsNull(constructionProperties.RepresentativeWaveRunup2P);
+            Assert.IsNull(constructionProperties.CumulativeOverload);
+        }
 
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Call
-        const GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
+        public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
+        {
+            // Given
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            int timeOfFailure = Random.Next();
+            double verticalDistanceWaterLevelElevation = Random.NextDouble();
+            double representativeWaveRunup2P = Random.NextDouble();
+            double cumulativeOverload = Random.NextDouble();
 
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        Assert.IsNull(constructionProperties._incrementDamage);
-        Assert.IsNull(constructionProperties._damage);
-        Assert.IsNull(constructionProperties._timeOfFailure);
-        Assert.IsNull(constructionProperties._verticalDistanceWaterLevelElevation);
-        Assert.IsNull(constructionProperties._representativeWaveRunup2P);
-        Assert.IsNull(constructionProperties._cumulativeOverload);
+            // When
+            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
+                RepresentativeWaveRunup2P = representativeWaveRunup2P,
+                CumulativeOverload = cumulativeOverload
+            };
+
+            // Then
+            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
+            Assert.AreEqual(damage, constructionProperties.Damage);
+            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
+            Assert.AreEqual(verticalDistanceWaterLevelElevation,
+                            constructionProperties.VerticalDistanceWaterLevelElevation);
+            Assert.AreEqual(representativeWaveRunup2P, constructionProperties.RepresentativeWaveRunup2P);
+            Assert.AreEqual(cumulativeOverload, constructionProperties.CumulativeOverload);
+        }
     }
-
-        [Test]
-    public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
-    {
-        // Given
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var verticalDistanceWaterLevelElevation = 0.4;
-        var representativeWaveRunup2P = 0.5;
-        var cumulativeOverload = 0.6;
-
-        // When
-        GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
-        constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
-        constructionProperties._cumulativeOverload = make_unique<double>(cumulativeOverload);
-
-        // Then
-        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
-        Assert.AreEqual(damage, *constructionProperties._damage);
-        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
-        Assert.AreEqual(verticalDistanceWaterLevelElevation, *constructionProperties._verticalDistanceWaterLevelElevation);
-        Assert.AreEqual(representativeWaveRunup2P, *constructionProperties._representativeWaveRunup2P);
-        Assert.AreEqual(cumulativeOverload, *constructionProperties._cumulativeOverload);
-    }
-}
 }

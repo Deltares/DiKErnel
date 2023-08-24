@@ -30,14 +30,14 @@ namespace DiKErnel.Integration.Test.Data.Output
         static unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
         {
             var constructionProperties = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
-            constructionProperties->_incrementDamage = make_unique<double>(0.1);
-            constructionProperties->_damage = make_unique<double>(0.2);
-            constructionProperties->_timeOfFailure = make_unique<int>(3);
-            constructionProperties->_logFailureTension = make_unique<double>(0.4);
-            constructionProperties->_maximumPeakStress = make_unique<double>(0.5);
-            constructionProperties->_stiffnessRelation = make_unique<double>(0.6);
-            constructionProperties->_computationalThickness = make_unique<double>(0.7);
-            constructionProperties->_equivalentElasticModulus = make_unique<double>(0.8);
+            constructionProperties->IncrementDamage = 0.1);
+            constructionProperties->Damage = 0.2);
+            constructionProperties->TimeOfFailure = 3);
+            constructionProperties->_logFailureTension = 0.4);
+            constructionProperties->_maximumPeakStress = 0.5);
+            constructionProperties->_stiffnessRelation = 0.6);
+            constructionProperties->_computationalThickness = 0.7);
+            constructionProperties->_equivalentElasticModulus = 0.8);
 
             return constructionProperties;
         }
@@ -49,7 +49,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties->_logFailureTension = nullptr;
 
             // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
         static void CreateOutputWithConstructionPropertiesWithMaximumPeakStressNullPtr()
@@ -59,7 +59,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties->_maximumPeakStress = nullptr;
 
             // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
         static void CreateOutputWithConstructionPropertiesWithStiffnessRelationNullPtr()
@@ -69,7 +69,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties->_stiffnessRelation = nullptr;
 
             // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
         static void CreateOutputWithConstructionPropertiesWithComputationalThicknessNullPtr()
@@ -79,7 +79,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties->_computationalThickness = nullptr;
 
             // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
         static void CreateOutputWithConstructionPropertiesWithEquivalentElasticModulusNullPtr()
@@ -89,7 +89,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties->_equivalentElasticModulus = nullptr;
 
             // Call
-            const AsphaltRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
     };
 
@@ -107,14 +107,14 @@ namespace DiKErnel.Integration.Test.Data.Output
         var equivalentElasticModulus = 0.8;
 
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._logFailureTension = make_unique<double>(logFailureTension);
-        constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
-        constructionProperties._stiffnessRelation = make_unique<double>(stiffnessRelation);
-        constructionProperties._computationalThickness = make_unique<double>(computationalThickness);
-        constructionProperties._equivalentElasticModulus = make_unique<double>(equivalentElasticModulus);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.TimeOfFailure = timeOfFailure);
+        constructionProperties._logFailureTension = logFailureTension);
+        constructionProperties._maximumPeakStress = maximumPeakStress);
+        constructionProperties._stiffnessRelation = stiffnessRelation);
+        constructionProperties._computationalThickness = computationalThickness);
+        constructionProperties._equivalentElasticModulus = equivalentElasticModulus);
 
         // Call
         const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
@@ -123,7 +123,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
+        Assert.AreEqual(timeOfFailure, *output.GetTimeOfFailure());
         Assert.AreEqual(logFailureTension, output.GetLogFailureTension());
         Assert.AreEqual(maximumPeakStress, output.GetMaximumPeakStress());
         Assert.AreEqual(stiffnessRelation, output.GetStiffnessRelation());
@@ -144,14 +144,14 @@ namespace DiKErnel.Integration.Test.Data.Output
         var equivalentElasticModulus = 0.7;
 
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = nullptr;
-        constructionProperties._logFailureTension = make_unique<double>(logFailureTension);
-        constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
-        constructionProperties._stiffnessRelation = make_unique<double>(stiffnessRelation);
-        constructionProperties._computationalThickness = make_unique<double>(computationalThickness);
-        constructionProperties._equivalentElasticModulus = make_unique<double>(equivalentElasticModulus);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.TimeOfFailure = nullptr;
+        constructionProperties._logFailureTension = logFailureTension);
+        constructionProperties._maximumPeakStress = maximumPeakStress);
+        constructionProperties._stiffnessRelation = stiffnessRelation);
+        constructionProperties._computationalThickness = computationalThickness);
+        constructionProperties._equivalentElasticModulus = equivalentElasticModulus);
 
         // Call
         const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);

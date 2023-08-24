@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.Test.Data
         const GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties(x, topLayerType);
 
         // Assert
-        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
+        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.IsNull(constructionProperties.GetInitialDamage());
@@ -74,34 +74,34 @@ namespace DiKErnel.Integration.Test.Data
         GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties(x, topLayerType);
 
         // When
-        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetCriticalCumulativeOverload(make_unique<double>(criticalCumulativeOverload));
-        constructionProperties.SetCriticalFrontVelocity(make_unique<double>(criticalFrontVelocity));
-        constructionProperties.SetIncreasedLoadTransitionAlphaM(make_unique<double>(increasedLoadTransitionAlphaM));
-        constructionProperties.SetReducedStrengthTransitionAlphaS(make_unique<double>(reducedStrengthTransitionAlphaS));
-        constructionProperties.SetAverageNumberOfWavesCtm(make_unique<double>(averageNumberOfWavesCtm));
-        constructionProperties.SetFixedNumberOfWaves(make_unique<int>(fixedNumberOfWaves));
-        constructionProperties.SetFrontVelocityCwo(make_unique<double>(frontVelocityCwo));
-        constructionProperties.SetAccelerationAlphaAForCrest(make_unique<double>(accelerationAlphaAForCrest));
-        constructionProperties.SetAccelerationAlphaAForInnerSlope(make_unique<double>(accelerationAlphaAForInnerSlope));
-        constructionProperties.SetDikeHeight(make_unique<double>(dikeHeight));
+        constructionProperties.SetInitialDamage(initialDamage));
+        constructionProperties.SetFailureNumber(failureNumber));
+        constructionProperties.SetCriticalCumulativeOverload(criticalCumulativeOverload));
+        constructionProperties.SetCriticalFrontVelocity(criticalFrontVelocity));
+        constructionProperties.SetIncreasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM));
+        constructionProperties.SetReducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS));
+        constructionProperties.SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
+        constructionProperties.SetFixedNumberOfWaves(fixedNumberOfWaves));
+        constructionProperties.SetFrontVelocityCwo(frontVelocityCwo));
+        constructionProperties.SetAccelerationAlphaAForCrest(accelerationAlphaAForCrest));
+        constructionProperties.SetAccelerationAlphaAForInnerSlope(accelerationAlphaAForInnerSlope));
+        constructionProperties.SetDikeHeight(dikeHeight));
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(initialDamage, *constructionProperties.GetInitialDamage());
-        Assert.AreEqual(failureNumber, *constructionProperties.GetFailureNumber());
-        Assert.AreEqual(criticalCumulativeOverload, *constructionProperties.GetCriticalCumulativeOverload());
-        Assert.AreEqual(criticalFrontVelocity, *constructionProperties.GetCriticalFrontVelocity());
-        Assert.AreEqual(increasedLoadTransitionAlphaM, *constructionProperties.GetIncreasedLoadTransitionAlphaM());
-        Assert.AreEqual(reducedStrengthTransitionAlphaS, *constructionProperties.GetReducedStrengthTransitionAlphaS());
-        Assert.AreEqual(averageNumberOfWavesCtm, *constructionProperties.GetAverageNumberOfWavesCtm());
-        Assert.AreEqual(fixedNumberOfWaves, *constructionProperties.GetFixedNumberOfWaves());
-        Assert.AreEqual(frontVelocityCwo, *constructionProperties.GetFrontVelocityCwo());
-        Assert.AreEqual(accelerationAlphaAForCrest, *constructionProperties.GetAccelerationAlphaAForCrest());
-        Assert.AreEqual(accelerationAlphaAForInnerSlope, *constructionProperties.GetAccelerationAlphaAForInnerSlope());
-        Assert.AreEqual(dikeHeight, *constructionProperties.GetDikeHeight());
+        Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
+        Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());
+        Assert.AreEqual(criticalCumulativeOverload, constructionProperties.GetCriticalCumulativeOverload());
+        Assert.AreEqual(criticalFrontVelocity, constructionProperties.GetCriticalFrontVelocity());
+        Assert.AreEqual(increasedLoadTransitionAlphaM, constructionProperties.GetIncreasedLoadTransitionAlphaM());
+        Assert.AreEqual(reducedStrengthTransitionAlphaS, constructionProperties.GetReducedStrengthTransitionAlphaS());
+        Assert.AreEqual(averageNumberOfWavesCtm, constructionProperties.GetAverageNumberOfWavesCtm());
+        Assert.AreEqual(fixedNumberOfWaves, constructionProperties.GetFixedNumberOfWaves());
+        Assert.AreEqual(frontVelocityCwo, constructionProperties.GetFrontVelocityCwo());
+        Assert.AreEqual(accelerationAlphaAForCrest, constructionProperties.GetAccelerationAlphaAForCrest());
+        Assert.AreEqual(accelerationAlphaAForInnerSlope, constructionProperties.GetAccelerationAlphaAForInnerSlope());
+        Assert.AreEqual(dikeHeight, constructionProperties.GetDikeHeight());
     }
 }
 }

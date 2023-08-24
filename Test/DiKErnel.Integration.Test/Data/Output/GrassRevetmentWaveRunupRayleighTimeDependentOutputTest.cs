@@ -30,13 +30,13 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
-            constructionProperties._incrementDamage = make_unique<double>(0.1);
-            constructionProperties._damage = make_unique<double>(0.2);
-            constructionProperties._timeOfFailure = make_unique<int>(3);
-            constructionProperties._verticalDistanceWaterLevelElevation = nullptr;
-            constructionProperties._waveAngleImpact = make_unique<double>(0.4);
-            constructionProperties._representativeWaveRunup2P = make_unique<double>(0.5);
-            constructionProperties._cumulativeOverload = make_unique<double>(0.6);
+            constructionProperties.IncrementDamage = 0.1);
+            constructionProperties.Damage = 0.2);
+            constructionProperties.TimeOfFailure = 3);
+            constructionProperties.VerticalDistanceWaterLevelElevation = nullptr;
+            constructionProperties.WaveAngleImpact = 0.4);
+            constructionProperties.RepresentativeWaveRunup2P = 0.5);
+            constructionProperties.CumulativeOverload = 0.6);
 
             // Call
             const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(constructionProperties);
@@ -56,13 +56,13 @@ namespace DiKErnel.Integration.Test.Data.Output
         var cumulativeOverload = 0.7;
 
         GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
-        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
-        constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
-        constructionProperties._cumulativeOverload = make_unique<double>(cumulativeOverload);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.TimeOfFailure = timeOfFailure);
+        constructionProperties.VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation);
+        constructionProperties.WaveAngleImpact = waveAngleImpact);
+        constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P);
+        constructionProperties.CumulativeOverload = cumulativeOverload);
 
         // Call
         const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(constructionProperties);
@@ -71,7 +71,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
+        Assert.AreEqual(timeOfFailure, *output.GetTimeOfFailure());
         Assert.AreEqual(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
         Assert.AreEqual(waveAngleImpact, *output.GetWaveAngleImpact());
         Assert.AreEqual(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
@@ -87,9 +87,9 @@ namespace DiKErnel.Integration.Test.Data.Output
         var verticalDistanceWaterLevelElevation = 0.3;
 
         GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation);
 
         // Call
         const GrassRevetmentWaveRunupRayleighTimeDependentOutput output(constructionProperties);

@@ -50,13 +50,13 @@ namespace DiKErnel.Integration.Test.Data
         RevetmentLocationConstructionPropertiesMock constructionProperties(x);
 
         // When
-        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
+        constructionProperties.SetInitialDamage(initialDamage));
+        constructionProperties.SetFailureNumber(failureNumber));
 
         // Then
         Assert.AreEqual(x, constructionProperties.GetX());
-        Assert.AreEqual(initialDamage, *constructionProperties.GetInitialDamage());
-        Assert.AreEqual(failureNumber, *constructionProperties.GetFailureNumber());
+        Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
+        Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());
     }
 }
 

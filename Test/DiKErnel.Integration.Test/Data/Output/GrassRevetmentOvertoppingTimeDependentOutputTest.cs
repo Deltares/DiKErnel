@@ -30,12 +30,12 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
-            constructionProperties._incrementDamage = make_unique<double>(0.1);
-            constructionProperties._damage = make_unique<double>(0.2);
-            constructionProperties._timeOfFailure = make_unique<int>(3);
-            constructionProperties._verticalDistanceWaterLevelElevation = nullptr;
-            constructionProperties._representativeWaveRunup2P = make_unique<double>(0.4);
-            constructionProperties._cumulativeOverload = make_unique<double>(0.5);
+            constructionProperties.IncrementDamage = 0.1);
+            constructionProperties.Damage = 0.2);
+            constructionProperties.TimeOfFailure = 3);
+            constructionProperties.VerticalDistanceWaterLevelElevation = nullptr;
+            constructionProperties.RepresentativeWaveRunup2P = 0.4);
+            constructionProperties.CumulativeOverload = 0.5);
 
             // Call
             const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
@@ -54,12 +54,12 @@ namespace DiKErnel.Integration.Test.Data.Output
         var cumulativeOverload = 0.6;
 
         GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
-        constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
-        constructionProperties._cumulativeOverload = make_unique<double>(cumulativeOverload);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.TimeOfFailure = timeOfFailure);
+        constructionProperties.VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation);
+        constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P);
+        constructionProperties.CumulativeOverload = cumulativeOverload);
 
         // Call
         const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
@@ -68,7 +68,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
+        Assert.AreEqual(timeOfFailure, *output.GetTimeOfFailure());
         Assert.AreEqual(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
         Assert.AreEqual(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
         Assert.AreEqual(cumulativeOverload, *output.GetCumulativeOverload());
@@ -83,9 +83,9 @@ namespace DiKErnel.Integration.Test.Data.Output
         var verticalDistanceWaterLevelElevation = 0.3;
 
         GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation);
 
         // Call
         const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
@@ -101,7 +101,7 @@ namespace DiKErnel.Integration.Test.Data.Output
     }
 
     [Test]
-    public void Constructor_VerticalDistanceWaterLevelElevationNullPtr_ThrowsInvalidTimeDependentOutputException()
+    public void ConstructorVerticalDistanceWaterLevelElevationNullPtr_ThrowsInvalidTimeDependentOutputException()
     {
         // Setup & Call
         const var action =

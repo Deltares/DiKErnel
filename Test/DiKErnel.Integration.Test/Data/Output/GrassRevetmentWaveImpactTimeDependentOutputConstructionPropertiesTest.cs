@@ -16,6 +16,9 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -23,67 +26,67 @@ namespace DiKErnel.Integration.Test.Data.Output
     [TestFixture]
     public class GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest
     {
-        
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Call
+            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties();
+
+            // Assert
+            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.IsNull(constructionProperties.IncrementDamage);
+            Assert.IsNull(constructionProperties.Damage);
+            Assert.IsNull(constructionProperties.TimeOfFailure);
+            Assert.IsNull(constructionProperties.LoadingRevetment);
+            Assert.IsNull(constructionProperties.UpperLimitLoading);
+            Assert.IsNull(constructionProperties.LowerLimitLoading);
+            Assert.IsNull(constructionProperties.MinimumWaveHeight);
+            Assert.IsNull(constructionProperties.MaximumWaveHeight);
+            Assert.IsNull(constructionProperties.WaveAngleImpact);
+            Assert.IsNull(constructionProperties.WaveHeightImpact);
+        }
 
         [Test]
-    public void Constructor_ExpectedValues()
-    {
-        // Call
-        const GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
+        public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
+        {
+            // Given
+            double incrementDamage = Random.NextDouble();
+            double damage = Random.NextDouble();
+            int timeOfFailure = Random.Next();
+            bool loadingRevetment = Random.NextBoolean();
+            double upperLimitLoading = Random.NextDouble();
+            double lowerLimitLoading = Random.NextDouble();
+            double minimumWaveHeight = Random.NextDouble();
+            double maximumWaveHeight = Random.NextDouble();
+            double waveAngleImpact = Random.NextDouble();
+            double waveHeightImpact = Random.NextDouble();
 
-        // Assert
-        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        Assert.IsNull(constructionProperties._incrementDamage);
-        Assert.IsNull(constructionProperties._damage);
-        Assert.IsNull(constructionProperties._timeOfFailure);
-        Assert.IsNull(constructionProperties._loadingRevetment);
-        Assert.IsNull(constructionProperties._upperLimitLoading);
-        Assert.IsNull(constructionProperties._lowerLimitLoading);
-        Assert.IsNull(constructionProperties._minimumWaveHeight);
-        Assert.IsNull(constructionProperties._maximumWaveHeight);
-        Assert.IsNull(constructionProperties._waveAngleImpact);
-        Assert.IsNull(constructionProperties._waveHeightImpact);
+            // When
+            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                LoadingRevetment = loadingRevetment,
+                UpperLimitLoading = upperLimitLoading,
+                LowerLimitLoading = lowerLimitLoading,
+                MinimumWaveHeight = minimumWaveHeight,
+                MaximumWaveHeight = maximumWaveHeight,
+                WaveAngleImpact = waveAngleImpact,
+                WaveHeightImpact = waveHeightImpact
+            };
+
+            // Then
+            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
+            Assert.AreEqual(damage, constructionProperties.Damage);
+            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
+            Assert.AreEqual(loadingRevetment, constructionProperties.LoadingRevetment);
+            Assert.AreEqual(upperLimitLoading, constructionProperties.UpperLimitLoading);
+            Assert.AreEqual(lowerLimitLoading, constructionProperties.LowerLimitLoading);
+            Assert.AreEqual(minimumWaveHeight, constructionProperties.MinimumWaveHeight);
+            Assert.AreEqual(maximumWaveHeight, constructionProperties.MaximumWaveHeight);
+            Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
+            Assert.AreEqual(waveHeightImpact, constructionProperties.WaveHeightImpact);
+        }
     }
-
-        [Test]
-    public void GivenConstructionProperties_WhenAllValuesSet_ThenExpectedValues()
-    {
-        // Given
-        var incrementDamage = 0.1;
-        var damage = 0.2;
-        var timeOfFailure = 3;
-        var loadingRevetment = true;
-        var upperLimitLoading = 0.4;
-        var lowerLimitLoading = 0.5;
-        var minimumWaveHeight = 0.6;
-        var maximumWaveHeight = 0.7;
-        var waveAngleImpact = 0.8;
-        var waveHeightImpact = 0.9;
-
-        // When
-        GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
-        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
-        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
-        constructionProperties._minimumWaveHeight = make_unique<double>(minimumWaveHeight);
-        constructionProperties._maximumWaveHeight = make_unique<double>(maximumWaveHeight);
-        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
-        constructionProperties._waveHeightImpact = make_unique<double>(waveHeightImpact);
-
-        // Then
-        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
-        Assert.AreEqual(damage, *constructionProperties._damage);
-        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
-        ASSERT_EQ(loadingRevetment, *constructionProperties._loadingRevetment);
-        Assert.AreEqual(upperLimitLoading, *constructionProperties._upperLimitLoading);
-        Assert.AreEqual(lowerLimitLoading, *constructionProperties._lowerLimitLoading);
-        Assert.AreEqual(minimumWaveHeight, *constructionProperties._minimumWaveHeight);
-        Assert.AreEqual(maximumWaveHeight, *constructionProperties._maximumWaveHeight);
-        Assert.AreEqual(waveAngleImpact, *constructionProperties._waveAngleImpact);
-        Assert.AreEqual(waveHeightImpact, *constructionProperties._waveHeightImpact);
-    }
-}
 }

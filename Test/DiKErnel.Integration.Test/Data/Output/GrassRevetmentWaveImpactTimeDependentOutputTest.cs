@@ -30,16 +30,16 @@ namespace DiKErnel.Integration.Test.Data.Output
         static unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateFullyConfiguredConstructionProperties()
         {
             var constructionProperties = make_unique<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
-            constructionProperties->_incrementDamage = make_unique<double>(0.1);
-            constructionProperties->_damage = make_unique<double>(0.2);
-            constructionProperties->_timeOfFailure = make_unique<int>(3);
-            constructionProperties->_loadingRevetment = make_unique<bool>(true);
-            constructionProperties->_upperLimitLoading = make_unique<double>(0.4);
-            constructionProperties->_lowerLimitLoading = make_unique<double>(0.5);
-            constructionProperties->_minimumWaveHeight = make_unique<double>(0.6);
-            constructionProperties->_maximumWaveHeight = make_unique<double>(0.7);
-            constructionProperties->_waveAngleImpact = make_unique<double>(0.8);
-            constructionProperties->_waveHeightImpact = make_unique<double>(0.9);
+            constructionProperties->IncrementDamage = 0.1);
+            constructionProperties->Damage = 0.2);
+            constructionProperties->TimeOfFailure = 3);
+            constructionProperties->LoadingRevetment = true);
+            constructionProperties->UpperLimitLoading = 0.4);
+            constructionProperties->LowerLimitLoading = 0.5);
+            constructionProperties->MinimumWaveHeight = 0.6);
+            constructionProperties->MaximumWaveHeight = 0.7);
+            constructionProperties->WaveAngleImpact = 0.8);
+            constructionProperties->WaveHeightImpact = 0.9);
 
             return constructionProperties;
         }
@@ -48,30 +48,30 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_loadingRevetment = nullptr;
+            constructionProperties->LoadingRevetment = nullptr;
 
             // Call
-            const GrassRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
         static void CreateOutputWithConstructionPropertiesWithUpperLimitLoadingNullPtr()
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_upperLimitLoading = nullptr;
+            constructionProperties->UpperLimitLoading = nullptr;
 
             // Call
-            const GrassRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
 
         static void CreateOutputWithConstructionPropertiesWithLowerLimitLoadingNullPtr()
         {
             // Setup
             const var constructionProperties = CreateFullyConfiguredConstructionProperties();
-            constructionProperties->_lowerLimitLoading = nullptr;
+            constructionProperties->LowerLimitLoading = nullptr;
 
             // Call
-            const GrassRevetmentWaveImpactTimeDependentOutput output(*constructionProperties);
+            const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
         }
     };
 
@@ -91,16 +91,16 @@ namespace DiKErnel.Integration.Test.Data.Output
         var waveHeightImpact = 0.9;
 
         GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
-        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
-        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
-        constructionProperties._minimumWaveHeight = make_unique<double>(minimumWaveHeight);
-        constructionProperties._maximumWaveHeight = make_unique<double>(maximumWaveHeight);
-        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
-        constructionProperties._waveHeightImpact = make_unique<double>(waveHeightImpact);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.TimeOfFailure = timeOfFailure);
+        constructionProperties.LoadingRevetment = loadingRevetment);
+        constructionProperties.UpperLimitLoading = upperLimitLoading);
+        constructionProperties.LowerLimitLoading = lowerLimitLoading);
+        constructionProperties.MinimumWaveHeight = minimumWaveHeight);
+        constructionProperties.MaximumWaveHeight = maximumWaveHeight);
+        constructionProperties.WaveAngleImpact = waveAngleImpact);
+        constructionProperties.WaveHeightImpact = waveHeightImpact);
 
         // Call
         const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
@@ -109,8 +109,8 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.IsInstanceOf<TimeDependentOutput>(&output);
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
-        ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
-        ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
+        Assert.AreEqual(timeOfFailure, *output.GetTimeOfFailure());
+        Assert.AreEqual(loadingRevetment, output.GetLoadingRevetment());
         Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
         Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
         Assert.AreEqual(minimumWaveHeight, *output.GetMinimumWaveHeight());
@@ -130,16 +130,16 @@ namespace DiKErnel.Integration.Test.Data.Output
         var lowerLimitLoading = 0.4;
 
         GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = nullptr;
-        constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
-        constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
-        constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
-        constructionProperties._minimumWaveHeight = nullptr;
-        constructionProperties._maximumWaveHeight = nullptr;
-        constructionProperties._waveAngleImpact = nullptr;
-        constructionProperties._waveHeightImpact = nullptr;
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.TimeOfFailure = nullptr;
+        constructionProperties.LoadingRevetment = loadingRevetment);
+        constructionProperties.UpperLimitLoading = upperLimitLoading);
+        constructionProperties.LowerLimitLoading = lowerLimitLoading);
+        constructionProperties.MinimumWaveHeight = nullptr;
+        constructionProperties.MaximumWaveHeight = nullptr;
+        constructionProperties.WaveAngleImpact = nullptr;
+        constructionProperties.WaveHeightImpact = nullptr;
 
         // Call
         const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
@@ -149,7 +149,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
         Assert.AreEqual(damage, output.GetDamage());
         Assert.IsNull(output.GetTimeOfFailure());
-        ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
+        Assert.AreEqual(loadingRevetment, output.GetLoadingRevetment());
         Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
         Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
         Assert.IsNull(output.GetMinimumWaveHeight());

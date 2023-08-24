@@ -30,14 +30,14 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
 
         // Assert
-        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        Assert.IsNull(constructionProperties._incrementDamage);
-        Assert.IsNull(constructionProperties._damage);
-        Assert.IsNull(constructionProperties._timeOfFailure);
-        Assert.IsNull(constructionProperties._verticalDistanceWaterLevelElevation);
-        Assert.IsNull(constructionProperties._waveAngleImpact);
-        Assert.IsNull(constructionProperties._representativeWaveRunup2P);
-        Assert.IsNull(constructionProperties._cumulativeOverload);
+        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+        Assert.IsNull(constructionProperties.IncrementDamage);
+        Assert.IsNull(constructionProperties.Damage);
+        Assert.IsNull(constructionProperties.TimeOfFailure);
+        Assert.IsNull(constructionProperties.VerticalDistanceWaterLevelElevation);
+        Assert.IsNull(constructionProperties.WaveAngleImpact);
+        Assert.IsNull(constructionProperties.RepresentativeWaveRunup2P);
+        Assert.IsNull(constructionProperties.CumulativeOverload);
     }
 
         [Test]
@@ -54,22 +54,22 @@ namespace DiKErnel.Integration.Test.Data.Output
 
         // When
         GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
-        constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
-        constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
-        constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
-        constructionProperties._cumulativeOverload = make_unique<double>(cumulativeOverload);
+        constructionProperties.IncrementDamage = incrementDamage);
+        constructionProperties.Damage = damage);
+        constructionProperties.TimeOfFailure = timeOfFailure);
+        constructionProperties.VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation);
+        constructionProperties.WaveAngleImpact = waveAngleImpact);
+        constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P);
+        constructionProperties.CumulativeOverload = cumulativeOverload);
 
         // Then
-        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
-        Assert.AreEqual(damage, *constructionProperties._damage);
-        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
-        Assert.AreEqual(verticalDistanceWaterLevelElevation, *constructionProperties._verticalDistanceWaterLevelElevation);
-        Assert.AreEqual(waveAngleImpact, *constructionProperties._waveAngleImpact);
-        Assert.AreEqual(representativeWaveRunup2P, *constructionProperties._representativeWaveRunup2P);
-        Assert.AreEqual(cumulativeOverload, *constructionProperties._cumulativeOverload);
+        Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
+        Assert.AreEqual(damage, constructionProperties.Damage);
+        Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
+        Assert.AreEqual(verticalDistanceWaterLevelElevation, constructionProperties.VerticalDistanceWaterLevelElevation);
+        Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
+        Assert.AreEqual(representativeWaveRunup2P, constructionProperties.RepresentativeWaveRunup2P);
+        Assert.AreEqual(cumulativeOverload, constructionProperties.CumulativeOverload);
     }
 }
 }

@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data
         const NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
 
         // Assert
-        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
+        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.AreEqual(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
@@ -103,60 +103,60 @@ namespace DiKErnel.Integration.Test.Data
         NaturalStoneRevetmentLocationConstructionProperties constructionProperties(x, topLayerType, thicknessTopLayer, relativeDensity);
 
         // When
-        constructionProperties.SetInitialDamage(make_unique<double>(initialDamage));
-        constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
-        constructionProperties.SetHydraulicLoadXib(make_unique<double>(hydraulicLoadXib));
-        constructionProperties.SetHydraulicLoadAp(make_unique<double>(hydraulicLoadAp));
-        constructionProperties.SetHydraulicLoadBp(make_unique<double>(hydraulicLoadBp));
-        constructionProperties.SetHydraulicLoadCp(make_unique<double>(hydraulicLoadCp));
-        constructionProperties.SetHydraulicLoadNp(make_unique<double>(hydraulicLoadNp));
-        constructionProperties.SetHydraulicLoadAs(make_unique<double>(hydraulicLoadAs));
-        constructionProperties.SetHydraulicLoadBs(make_unique<double>(hydraulicLoadBs));
-        constructionProperties.SetHydraulicLoadCs(make_unique<double>(hydraulicLoadCs));
-        constructionProperties.SetHydraulicLoadNs(make_unique<double>(hydraulicLoadNs));
-        constructionProperties.SetSlopeUpperLevelAus(make_unique<double>(slopeUpperLevelAus));
-        constructionProperties.SetSlopeLowerLevelAls(make_unique<double>(slopeLowerLevelAls));
-        constructionProperties.SetUpperLimitLoadingAul(make_unique<double>(upperLimitLoadingAul));
-        constructionProperties.SetUpperLimitLoadingBul(make_unique<double>(upperLimitLoadingBul));
-        constructionProperties.SetUpperLimitLoadingCul(make_unique<double>(upperLimitLoadingCul));
-        constructionProperties.SetLowerLimitLoadingAll(make_unique<double>(lowerLimitLoadingAll));
-        constructionProperties.SetLowerLimitLoadingBll(make_unique<double>(lowerLimitLoadingBll));
-        constructionProperties.SetLowerLimitLoadingCll(make_unique<double>(lowerLimitLoadingCll));
-        constructionProperties.SetDistanceMaximumWaveElevationAsmax(make_unique<double>(distanceMaximumWaveElevationAsmax));
-        constructionProperties.SetDistanceMaximumWaveElevationBsmax(make_unique<double>(distanceMaximumWaveElevationBsmax));
-        constructionProperties.SetNormativeWidthOfWaveImpactAwi(make_unique<double>(normativeWidthOfWaveImpactAwi));
-        constructionProperties.SetNormativeWidthOfWaveImpactBwi(make_unique<double>(normativeWidthOfWaveImpactBwi));
-        constructionProperties.SetWaveAngleImpactBetamax(make_unique<double>(waveAngleImpactBetamax));
+        constructionProperties.SetInitialDamage(initialDamage));
+        constructionProperties.SetFailureNumber(failureNumber));
+        constructionProperties.SetHydraulicLoadXib(hydraulicLoadXib));
+        constructionProperties.SetHydraulicLoadAp(hydraulicLoadAp));
+        constructionProperties.SetHydraulicLoadBp(hydraulicLoadBp));
+        constructionProperties.SetHydraulicLoadCp(hydraulicLoadCp));
+        constructionProperties.SetHydraulicLoadNp(hydraulicLoadNp));
+        constructionProperties.SetHydraulicLoadAs(hydraulicLoadAs));
+        constructionProperties.SetHydraulicLoadBs(hydraulicLoadBs));
+        constructionProperties.SetHydraulicLoadCs(hydraulicLoadCs));
+        constructionProperties.SetHydraulicLoadNs(hydraulicLoadNs));
+        constructionProperties.SetSlopeUpperLevelAus(slopeUpperLevelAus));
+        constructionProperties.SetSlopeLowerLevelAls(slopeLowerLevelAls));
+        constructionProperties.SetUpperLimitLoadingAul(upperLimitLoadingAul));
+        constructionProperties.SetUpperLimitLoadingBul(upperLimitLoadingBul));
+        constructionProperties.SetUpperLimitLoadingCul(upperLimitLoadingCul));
+        constructionProperties.SetLowerLimitLoadingAll(lowerLimitLoadingAll));
+        constructionProperties.SetLowerLimitLoadingBll(lowerLimitLoadingBll));
+        constructionProperties.SetLowerLimitLoadingCll(lowerLimitLoadingCll));
+        constructionProperties.SetDistanceMaximumWaveElevationAsmax(distanceMaximumWaveElevationAsmax));
+        constructionProperties.SetDistanceMaximumWaveElevationBsmax(distanceMaximumWaveElevationBsmax));
+        constructionProperties.SetNormativeWidthOfWaveImpactAwi(normativeWidthOfWaveImpactAwi));
+        constructionProperties.SetNormativeWidthOfWaveImpactBwi(normativeWidthOfWaveImpactBwi));
+        constructionProperties.SetWaveAngleImpactBetamax(waveAngleImpactBetamax));
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
         Assert.AreEqual(x, constructionProperties.GetX());
         Assert.AreEqual(thicknessTopLayer, constructionProperties.GetThicknessTopLayer());
         Assert.AreEqual(relativeDensity, constructionProperties.GetRelativeDensity());
-        Assert.AreEqual(initialDamage, *constructionProperties.GetInitialDamage());
-        Assert.AreEqual(failureNumber, *constructionProperties.GetFailureNumber());
-        Assert.AreEqual(hydraulicLoadXib, *constructionProperties.GetHydraulicLoadXib());
-        Assert.AreEqual(hydraulicLoadAp, *constructionProperties.GetHydraulicLoadAp());
-        Assert.AreEqual(hydraulicLoadBp, *constructionProperties.GetHydraulicLoadBp());
-        Assert.AreEqual(hydraulicLoadCp, *constructionProperties.GetHydraulicLoadCp());
-        Assert.AreEqual(hydraulicLoadNp, *constructionProperties.GetHydraulicLoadNp());
-        Assert.AreEqual(hydraulicLoadAs, *constructionProperties.GetHydraulicLoadAs());
-        Assert.AreEqual(hydraulicLoadBs, *constructionProperties.GetHydraulicLoadBs());
-        Assert.AreEqual(hydraulicLoadCs, *constructionProperties.GetHydraulicLoadCs());
-        Assert.AreEqual(hydraulicLoadNs, *constructionProperties.GetHydraulicLoadNs());
-        Assert.AreEqual(slopeUpperLevelAus, *constructionProperties.GetSlopeUpperLevelAus());
-        Assert.AreEqual(slopeLowerLevelAls, *constructionProperties.GetSlopeLowerLevelAls());
-        Assert.AreEqual(upperLimitLoadingAul, *constructionProperties.GetUpperLimitLoadingAul());
-        Assert.AreEqual(upperLimitLoadingBul, *constructionProperties.GetUpperLimitLoadingBul());
-        Assert.AreEqual(upperLimitLoadingCul, *constructionProperties.GetUpperLimitLoadingCul());
-        Assert.AreEqual(lowerLimitLoadingAll, *constructionProperties.GetLowerLimitLoadingAll());
-        Assert.AreEqual(lowerLimitLoadingBll, *constructionProperties.GetLowerLimitLoadingBll());
-        Assert.AreEqual(lowerLimitLoadingCll, *constructionProperties.GetLowerLimitLoadingCll());
-        Assert.AreEqual(distanceMaximumWaveElevationAsmax, *constructionProperties.GetDistanceMaximumWaveElevationAsmax());
-        Assert.AreEqual(distanceMaximumWaveElevationBsmax, *constructionProperties.GetDistanceMaximumWaveElevationBsmax());
-        Assert.AreEqual(normativeWidthOfWaveImpactAwi, *constructionProperties.GetNormativeWidthOfWaveImpactAwi());
-        Assert.AreEqual(normativeWidthOfWaveImpactBwi, *constructionProperties.GetNormativeWidthOfWaveImpactBwi());
-        Assert.AreEqual(waveAngleImpactBetamax, *constructionProperties.GetWaveAngleImpactBetamax());
+        Assert.AreEqual(initialDamage, constructionProperties.GetInitialDamage());
+        Assert.AreEqual(failureNumber, constructionProperties.GetFailureNumber());
+        Assert.AreEqual(hydraulicLoadXib, constructionProperties.GetHydraulicLoadXib());
+        Assert.AreEqual(hydraulicLoadAp, constructionProperties.GetHydraulicLoadAp());
+        Assert.AreEqual(hydraulicLoadBp, constructionProperties.GetHydraulicLoadBp());
+        Assert.AreEqual(hydraulicLoadCp, constructionProperties.GetHydraulicLoadCp());
+        Assert.AreEqual(hydraulicLoadNp, constructionProperties.GetHydraulicLoadNp());
+        Assert.AreEqual(hydraulicLoadAs, constructionProperties.GetHydraulicLoadAs());
+        Assert.AreEqual(hydraulicLoadBs, constructionProperties.GetHydraulicLoadBs());
+        Assert.AreEqual(hydraulicLoadCs, constructionProperties.GetHydraulicLoadCs());
+        Assert.AreEqual(hydraulicLoadNs, constructionProperties.GetHydraulicLoadNs());
+        Assert.AreEqual(slopeUpperLevelAus, constructionProperties.GetSlopeUpperLevelAus());
+        Assert.AreEqual(slopeLowerLevelAls, constructionProperties.GetSlopeLowerLevelAls());
+        Assert.AreEqual(upperLimitLoadingAul, constructionProperties.GetUpperLimitLoadingAul());
+        Assert.AreEqual(upperLimitLoadingBul, constructionProperties.GetUpperLimitLoadingBul());
+        Assert.AreEqual(upperLimitLoadingCul, constructionProperties.GetUpperLimitLoadingCul());
+        Assert.AreEqual(lowerLimitLoadingAll, constructionProperties.GetLowerLimitLoadingAll());
+        Assert.AreEqual(lowerLimitLoadingBll, constructionProperties.GetLowerLimitLoadingBll());
+        Assert.AreEqual(lowerLimitLoadingCll, constructionProperties.GetLowerLimitLoadingCll());
+        Assert.AreEqual(distanceMaximumWaveElevationAsmax, constructionProperties.GetDistanceMaximumWaveElevationAsmax());
+        Assert.AreEqual(distanceMaximumWaveElevationBsmax, constructionProperties.GetDistanceMaximumWaveElevationBsmax());
+        Assert.AreEqual(normativeWidthOfWaveImpactAwi, constructionProperties.GetNormativeWidthOfWaveImpactAwi());
+        Assert.AreEqual(normativeWidthOfWaveImpactBwi, constructionProperties.GetNormativeWidthOfWaveImpactBwi());
+        Assert.AreEqual(waveAngleImpactBetamax, constructionProperties.GetWaveAngleImpactBetamax());
     }
 }
 
