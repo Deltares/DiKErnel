@@ -36,10 +36,10 @@ namespace DiKErnel.Integration.Test.Data
         const GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties(x, outerSlope, topLayerType);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<GrassRevetmentWaveRunupLocationConstructionProperties>(&constructionProperties);
+        Assert.IsInstanceOf<GrassRevetmentWaveRunupLocationConstructionProperties>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
+        Assert.AreEqual(x, constructionProperties.GetX());
+        Assert.AreEqual(outerSlope, constructionProperties.GetOuterSlope());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
         ASSERT_EQ(nullptr, constructionProperties.GetCriticalCumulativeOverload());
@@ -104,24 +104,24 @@ namespace DiKErnel.Integration.Test.Data
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(outerSlope, constructionProperties.GetOuterSlope());
-        ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
-        ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
-        ASSERT_DOUBLE_EQ(criticalCumulativeOverload, *constructionProperties.GetCriticalCumulativeOverload());
-        ASSERT_DOUBLE_EQ(criticalFrontVelocity, *constructionProperties.GetCriticalFrontVelocity());
-        ASSERT_DOUBLE_EQ(increasedLoadTransitionAlphaM, *constructionProperties.GetIncreasedLoadTransitionAlphaM());
-        ASSERT_DOUBLE_EQ(reducedStrengthTransitionAlphaS, *constructionProperties.GetReducedStrengthTransitionAlphaS());
-        ASSERT_DOUBLE_EQ(averageNumberOfWavesCtm, *constructionProperties.GetAverageNumberOfWavesCtm());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2PAru, *constructionProperties.GetRepresentativeWaveRunup2PAru());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2PBru, *constructionProperties.GetRepresentativeWaveRunup2PBru());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2PCru, *constructionProperties.GetRepresentativeWaveRunup2PCru());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2PGammab, *constructionProperties.GetRepresentativeWaveRunup2PGammab());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2PGammaf, *constructionProperties.GetRepresentativeWaveRunup2PGammaf());
-        ASSERT_DOUBLE_EQ(waveAngleImpactAbeta, *constructionProperties.GetWaveAngleImpactAbeta());
-        ASSERT_DOUBLE_EQ(waveAngleImpactBetamax, *constructionProperties.GetWaveAngleImpactBetamax());
+        Assert.AreEqual(x, constructionProperties.GetX());
+        Assert.AreEqual(outerSlope, constructionProperties.GetOuterSlope());
+        Assert.AreEqual(initialDamage, *constructionProperties.GetInitialDamage());
+        Assert.AreEqual(failureNumber, *constructionProperties.GetFailureNumber());
+        Assert.AreEqual(criticalCumulativeOverload, *constructionProperties.GetCriticalCumulativeOverload());
+        Assert.AreEqual(criticalFrontVelocity, *constructionProperties.GetCriticalFrontVelocity());
+        Assert.AreEqual(increasedLoadTransitionAlphaM, *constructionProperties.GetIncreasedLoadTransitionAlphaM());
+        Assert.AreEqual(reducedStrengthTransitionAlphaS, *constructionProperties.GetReducedStrengthTransitionAlphaS());
+        Assert.AreEqual(averageNumberOfWavesCtm, *constructionProperties.GetAverageNumberOfWavesCtm());
+        Assert.AreEqual(representativeWaveRunup2PAru, *constructionProperties.GetRepresentativeWaveRunup2PAru());
+        Assert.AreEqual(representativeWaveRunup2PBru, *constructionProperties.GetRepresentativeWaveRunup2PBru());
+        Assert.AreEqual(representativeWaveRunup2PCru, *constructionProperties.GetRepresentativeWaveRunup2PCru());
+        Assert.AreEqual(representativeWaveRunup2PGammab, *constructionProperties.GetRepresentativeWaveRunup2PGammab());
+        Assert.AreEqual(representativeWaveRunup2PGammaf, *constructionProperties.GetRepresentativeWaveRunup2PGammaf());
+        Assert.AreEqual(waveAngleImpactAbeta, *constructionProperties.GetWaveAngleImpactAbeta());
+        Assert.AreEqual(waveAngleImpactBetamax, *constructionProperties.GetWaveAngleImpactBetamax());
         ASSERT_EQ(fixedNumberOfWaves, *constructionProperties.GetFixedNumberOfWaves());
-        ASSERT_DOUBLE_EQ(frontVelocityCu, *constructionProperties.GetFrontVelocityCu());
+        Assert.AreEqual(frontVelocityCu, *constructionProperties.GetFrontVelocityCu());
     }
 }
 }

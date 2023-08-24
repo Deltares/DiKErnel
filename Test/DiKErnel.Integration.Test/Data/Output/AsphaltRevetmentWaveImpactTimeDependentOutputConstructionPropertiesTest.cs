@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         const AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
+        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
         ASSERT_EQ(nullptr, constructionProperties._damage);
         ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
@@ -68,15 +68,15 @@ namespace DiKErnel.Integration.Test.Data.Output
         constructionProperties._equivalentElasticModulus = make_unique<double>(equivalentElasticModulus);
 
         // Then
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
-        ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
+        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
+        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
+        Assert.AreEqual(damage, *constructionProperties._damage);
         ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
-        ASSERT_DOUBLE_EQ(logFailureTension, *constructionProperties._logFailureTension);
-        ASSERT_DOUBLE_EQ(maximumPeakStress, *constructionProperties._maximumPeakStress);
-        ASSERT_DOUBLE_EQ(stiffnessRelation, *constructionProperties._stiffnessRelation);
-        ASSERT_DOUBLE_EQ(computationalThickness, *constructionProperties._computationalThickness);
-        ASSERT_DOUBLE_EQ(equivalentElasticModulus, *constructionProperties._equivalentElasticModulus);
+        Assert.AreEqual(logFailureTension, *constructionProperties._logFailureTension);
+        Assert.AreEqual(maximumPeakStress, *constructionProperties._maximumPeakStress);
+        Assert.AreEqual(stiffnessRelation, *constructionProperties._stiffnessRelation);
+        Assert.AreEqual(computationalThickness, *constructionProperties._computationalThickness);
+        Assert.AreEqual(equivalentElasticModulus, *constructionProperties._equivalentElasticModulus);
     }
     }
 }

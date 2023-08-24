@@ -31,7 +31,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         const NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
+        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
         ASSERT_EQ(nullptr, constructionProperties._damage);
         ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
@@ -106,27 +106,27 @@ namespace DiKErnel.Integration.Test.Data.Output
         constructionProperties._referenceDegradation = make_unique<double>(referenceDegradation);
 
         // Then
-        ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
+        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
+        Assert.AreEqual(damage, *constructionProperties._damage);
         ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
-        ASSERT_DOUBLE_EQ(outerSlope, *constructionProperties._outerSlope);
-        ASSERT_DOUBLE_EQ(slopeUpperLevel, *constructionProperties._slopeUpperLevel);
-        ASSERT_DOUBLE_EQ(slopeUpperPosition, *constructionProperties._slopeUpperPosition);
-        ASSERT_DOUBLE_EQ(slopeLowerLevel, *constructionProperties._slopeLowerLevel);
-        ASSERT_DOUBLE_EQ(slopeLowerPosition, *constructionProperties._slopeLowerPosition);
+        Assert.AreEqual(outerSlope, *constructionProperties._outerSlope);
+        Assert.AreEqual(slopeUpperLevel, *constructionProperties._slopeUpperLevel);
+        Assert.AreEqual(slopeUpperPosition, *constructionProperties._slopeUpperPosition);
+        Assert.AreEqual(slopeLowerLevel, *constructionProperties._slopeLowerLevel);
+        Assert.AreEqual(slopeLowerPosition, *constructionProperties._slopeLowerPosition);
         ASSERT_EQ(loadingRevetment, *constructionProperties._loadingRevetment);
-        ASSERT_DOUBLE_EQ(surfSimilarityParameter, *constructionProperties._surfSimilarityParameter);
-        ASSERT_DOUBLE_EQ(waveSteepnessDeepWater, *constructionProperties._waveSteepnessDeepWater);
-        ASSERT_DOUBLE_EQ(upperLimitLoading, *constructionProperties._upperLimitLoading);
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, *constructionProperties._lowerLimitLoading);
-        ASSERT_DOUBLE_EQ(depthMaximumWaveLoad, *constructionProperties._depthMaximumWaveLoad);
-        ASSERT_DOUBLE_EQ(distanceMaximumWaveElevation, *constructionProperties._distanceMaximumWaveElevation);
-        ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpact, *constructionProperties._normativeWidthOfWaveImpact);
-        ASSERT_DOUBLE_EQ(hydraulicLoad, *constructionProperties._hydraulicLoad);
-        ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties._waveAngleImpact);
-        ASSERT_DOUBLE_EQ(resistance, *constructionProperties._resistance);
-        ASSERT_DOUBLE_EQ(referenceTimeDegradation, *constructionProperties._referenceTimeDegradation);
-        ASSERT_DOUBLE_EQ(referenceDegradation, *constructionProperties._referenceDegradation);
+        Assert.AreEqual(surfSimilarityParameter, *constructionProperties._surfSimilarityParameter);
+        Assert.AreEqual(waveSteepnessDeepWater, *constructionProperties._waveSteepnessDeepWater);
+        Assert.AreEqual(upperLimitLoading, *constructionProperties._upperLimitLoading);
+        Assert.AreEqual(lowerLimitLoading, *constructionProperties._lowerLimitLoading);
+        Assert.AreEqual(depthMaximumWaveLoad, *constructionProperties._depthMaximumWaveLoad);
+        Assert.AreEqual(distanceMaximumWaveElevation, *constructionProperties._distanceMaximumWaveElevation);
+        Assert.AreEqual(normativeWidthOfWaveImpact, *constructionProperties._normativeWidthOfWaveImpact);
+        Assert.AreEqual(hydraulicLoad, *constructionProperties._hydraulicLoad);
+        Assert.AreEqual(waveAngleImpact, *constructionProperties._waveAngleImpact);
+        Assert.AreEqual(resistance, *constructionProperties._resistance);
+        Assert.AreEqual(referenceTimeDegradation, *constructionProperties._referenceTimeDegradation);
+        Assert.AreEqual(referenceDegradation, *constructionProperties._referenceDegradation);
     }
 }
 }

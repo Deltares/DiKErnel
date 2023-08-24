@@ -238,28 +238,28 @@ namespace DiKErnel.Integration.Test.Data.Output
         const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(outerSlope, output.GetOuterSlope());
-        ASSERT_DOUBLE_EQ(slopeUpperLevel, output.GetSlopeUpperLevel());
-        ASSERT_DOUBLE_EQ(slopeUpperPosition, output.GetSlopeUpperPosition());
-        ASSERT_DOUBLE_EQ(slopeLowerLevel, output.GetSlopeLowerLevel());
-        ASSERT_DOUBLE_EQ(slopeLowerPosition, output.GetSlopeLowerPosition());
+        Assert.AreEqual(outerSlope, output.GetOuterSlope());
+        Assert.AreEqual(slopeUpperLevel, output.GetSlopeUpperLevel());
+        Assert.AreEqual(slopeUpperPosition, output.GetSlopeUpperPosition());
+        Assert.AreEqual(slopeLowerLevel, output.GetSlopeLowerLevel());
+        Assert.AreEqual(slopeLowerPosition, output.GetSlopeLowerPosition());
         ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
-        ASSERT_DOUBLE_EQ(surfSimilarityParameter, output.GetSurfSimilarityParameter());
-        ASSERT_DOUBLE_EQ(waveSteepnessDeepWater, output.GetWaveSteepnessDeepWater());
-        ASSERT_DOUBLE_EQ(upperLimitLoading, output.GetUpperLimitLoading());
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, output.GetLowerLimitLoading());
-        ASSERT_DOUBLE_EQ(depthMaximumWaveLoad, output.GetDepthMaximumWaveLoad());
-        ASSERT_DOUBLE_EQ(distanceMaximumWaveElevation, output.GetDistanceMaximumWaveElevation());
-        ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpact, output.GetNormativeWidthOfWaveImpact());
-        ASSERT_DOUBLE_EQ(hydraulicLoad, *output.GetHydraulicLoad());
-        ASSERT_DOUBLE_EQ(waveAngleImpact, *output.GetWaveAngleImpact());
-        ASSERT_DOUBLE_EQ(resistance, *output.GetResistance());
-        ASSERT_DOUBLE_EQ(referenceTimeDegradation, *output.GetReferenceTimeDegradation());
-        ASSERT_DOUBLE_EQ(referenceDegradation, *output.GetReferenceDegradation());
+        Assert.AreEqual(surfSimilarityParameter, output.GetSurfSimilarityParameter());
+        Assert.AreEqual(waveSteepnessDeepWater, output.GetWaveSteepnessDeepWater());
+        Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
+        Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
+        Assert.AreEqual(depthMaximumWaveLoad, output.GetDepthMaximumWaveLoad());
+        Assert.AreEqual(distanceMaximumWaveElevation, output.GetDistanceMaximumWaveElevation());
+        Assert.AreEqual(normativeWidthOfWaveImpact, output.GetNormativeWidthOfWaveImpact());
+        Assert.AreEqual(hydraulicLoad, *output.GetHydraulicLoad());
+        Assert.AreEqual(waveAngleImpact, *output.GetWaveAngleImpact());
+        Assert.AreEqual(resistance, *output.GetResistance());
+        Assert.AreEqual(referenceTimeDegradation, *output.GetReferenceTimeDegradation());
+        Assert.AreEqual(referenceDegradation, *output.GetReferenceDegradation());
     }
 
         [Test]
@@ -309,23 +309,23 @@ namespace DiKErnel.Integration.Test.Data.Output
         const NaturalStoneRevetmentTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(outerSlope, output.GetOuterSlope());
-        ASSERT_DOUBLE_EQ(slopeUpperLevel, output.GetSlopeUpperLevel());
-        ASSERT_DOUBLE_EQ(slopeUpperPosition, output.GetSlopeUpperPosition());
-        ASSERT_DOUBLE_EQ(slopeLowerLevel, output.GetSlopeLowerLevel());
-        ASSERT_DOUBLE_EQ(slopeLowerPosition, output.GetSlopeLowerPosition());
+        Assert.AreEqual(outerSlope, output.GetOuterSlope());
+        Assert.AreEqual(slopeUpperLevel, output.GetSlopeUpperLevel());
+        Assert.AreEqual(slopeUpperPosition, output.GetSlopeUpperPosition());
+        Assert.AreEqual(slopeLowerLevel, output.GetSlopeLowerLevel());
+        Assert.AreEqual(slopeLowerPosition, output.GetSlopeLowerPosition());
         ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
-        ASSERT_DOUBLE_EQ(surfSimilarityParameter, output.GetSurfSimilarityParameter());
-        ASSERT_DOUBLE_EQ(waveSteepnessDeepWater, output.GetWaveSteepnessDeepWater());
-        ASSERT_DOUBLE_EQ(upperLimitLoading, output.GetUpperLimitLoading());
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, output.GetLowerLimitLoading());
-        ASSERT_DOUBLE_EQ(depthMaximumWaveLoad, output.GetDepthMaximumWaveLoad());
-        ASSERT_DOUBLE_EQ(distanceMaximumWaveElevation, output.GetDistanceMaximumWaveElevation());
-        ASSERT_DOUBLE_EQ(normativeWidthOfWaveImpact, output.GetNormativeWidthOfWaveImpact());
+        Assert.AreEqual(surfSimilarityParameter, output.GetSurfSimilarityParameter());
+        Assert.AreEqual(waveSteepnessDeepWater, output.GetWaveSteepnessDeepWater());
+        Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
+        Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
+        Assert.AreEqual(depthMaximumWaveLoad, output.GetDepthMaximumWaveLoad());
+        Assert.AreEqual(distanceMaximumWaveElevation, output.GetDistanceMaximumWaveElevation());
+        Assert.AreEqual(normativeWidthOfWaveImpact, output.GetNormativeWidthOfWaveImpact());
         ASSERT_EQ(nullptr, output.GetHydraulicLoad());
         ASSERT_EQ(nullptr, output.GetWaveAngleImpact());
         ASSERT_EQ(nullptr, output.GetResistance());

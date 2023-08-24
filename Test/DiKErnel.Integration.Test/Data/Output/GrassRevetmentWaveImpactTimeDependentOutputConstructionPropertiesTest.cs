@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
+        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
         ASSERT_EQ(nullptr, constructionProperties._damage);
         ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
@@ -74,16 +74,16 @@ namespace DiKErnel.Integration.Test.Data.Output
         constructionProperties._waveHeightImpact = make_unique<double>(waveHeightImpact);
 
         // Then
-        ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
+        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
+        Assert.AreEqual(damage, *constructionProperties._damage);
         ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
         ASSERT_EQ(loadingRevetment, *constructionProperties._loadingRevetment);
-        ASSERT_DOUBLE_EQ(upperLimitLoading, *constructionProperties._upperLimitLoading);
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, *constructionProperties._lowerLimitLoading);
-        ASSERT_DOUBLE_EQ(minimumWaveHeight, *constructionProperties._minimumWaveHeight);
-        ASSERT_DOUBLE_EQ(maximumWaveHeight, *constructionProperties._maximumWaveHeight);
-        ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties._waveAngleImpact);
-        ASSERT_DOUBLE_EQ(waveHeightImpact, *constructionProperties._waveHeightImpact);
+        Assert.AreEqual(upperLimitLoading, *constructionProperties._upperLimitLoading);
+        Assert.AreEqual(lowerLimitLoading, *constructionProperties._lowerLimitLoading);
+        Assert.AreEqual(minimumWaveHeight, *constructionProperties._minimumWaveHeight);
+        Assert.AreEqual(maximumWaveHeight, *constructionProperties._maximumWaveHeight);
+        Assert.AreEqual(waveAngleImpact, *constructionProperties._waveAngleImpact);
+        Assert.AreEqual(waveHeightImpact, *constructionProperties._waveHeightImpact);
     }
 }
 }

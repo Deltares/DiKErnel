@@ -47,11 +47,11 @@ namespace DiKErnel.Integration.Test.Data.Output
         const NaturalStoneRevetmentLocationDependentOutput output(move(timeDependentOutputItems), z);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<LocationDependentOutput>(&output);
+        Assert.IsInstanceOf<LocationDependentOutput>(&output);
         ASSERT_EQ(vector{ damage }, output.GetDamages());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_EQ(1, output.GetTimeDependentOutputItems().size());
-        ASSERT_DOUBLE_EQ(z, output.GetZ());
+        Assert.AreEqual(z, output.GetZ());
     }
     }
 }

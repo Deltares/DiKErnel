@@ -46,7 +46,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentOvertoppingLocationDependentOutput output(move(timeDependentOutputItems));
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<LocationDependentOutput>(&output);
+        Assert.IsInstanceOf<LocationDependentOutput>(&output);
         ASSERT_EQ(vector{ damage }, output.GetDamages());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_EQ(1, output.GetTimeDependentOutputItems().size());

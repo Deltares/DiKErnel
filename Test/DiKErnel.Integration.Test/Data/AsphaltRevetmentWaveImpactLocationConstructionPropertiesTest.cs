@@ -40,13 +40,13 @@ namespace DiKErnel.Integration.Test.Data
             x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
+        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(failureTension, constructionProperties.GetFailureTension());
-        ASSERT_DOUBLE_EQ(soilElasticity, constructionProperties.GetSoilElasticity());
-        ASSERT_DOUBLE_EQ(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
-        ASSERT_DOUBLE_EQ(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
+        Assert.AreEqual(x, constructionProperties.GetX());
+        Assert.AreEqual(failureTension, constructionProperties.GetFailureTension());
+        Assert.AreEqual(soilElasticity, constructionProperties.GetSoilElasticity());
+        Assert.AreEqual(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
+        Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
         ASSERT_EQ(nullptr, constructionProperties.GetDensityOfWater());
@@ -115,21 +115,21 @@ namespace DiKErnel.Integration.Test.Data
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(failureTension, constructionProperties.GetFailureTension());
-        ASSERT_DOUBLE_EQ(soilElasticity, constructionProperties.GetSoilElasticity());
-        ASSERT_DOUBLE_EQ(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
-        ASSERT_DOUBLE_EQ(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
-        ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
-        ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
-        ASSERT_DOUBLE_EQ(densityOfWater, *constructionProperties.GetDensityOfWater());
-        ASSERT_DOUBLE_EQ(thicknessSubLayer, *constructionProperties.GetThicknessSubLayer());
-        ASSERT_DOUBLE_EQ(elasticModulusSubLayer, *constructionProperties.GetElasticModulusSubLayer());
-        ASSERT_DOUBLE_EQ(averageNumberOfWavesCtm, *constructionProperties.GetAverageNumberOfWavesCtm());
-        ASSERT_DOUBLE_EQ(fatigueAlpha, *constructionProperties.GetFatigueAlpha());
-        ASSERT_DOUBLE_EQ(fatigueBeta, *constructionProperties.GetFatigueBeta());
-        ASSERT_DOUBLE_EQ(impactNumberC, *constructionProperties.GetImpactNumberC());
-        ASSERT_DOUBLE_EQ(stiffnessRelationNu, *constructionProperties.GetStiffnessRelationNu());
+        Assert.AreEqual(x, constructionProperties.GetX());
+        Assert.AreEqual(failureTension, constructionProperties.GetFailureTension());
+        Assert.AreEqual(soilElasticity, constructionProperties.GetSoilElasticity());
+        Assert.AreEqual(thicknessUpperLayer, constructionProperties.GetThicknessUpperLayer());
+        Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.GetElasticModulusUpperLayer());
+        Assert.AreEqual(initialDamage, *constructionProperties.GetInitialDamage());
+        Assert.AreEqual(failureNumber, *constructionProperties.GetFailureNumber());
+        Assert.AreEqual(densityOfWater, *constructionProperties.GetDensityOfWater());
+        Assert.AreEqual(thicknessSubLayer, *constructionProperties.GetThicknessSubLayer());
+        Assert.AreEqual(elasticModulusSubLayer, *constructionProperties.GetElasticModulusSubLayer());
+        Assert.AreEqual(averageNumberOfWavesCtm, *constructionProperties.GetAverageNumberOfWavesCtm());
+        Assert.AreEqual(fatigueAlpha, *constructionProperties.GetFatigueAlpha());
+        Assert.AreEqual(fatigueBeta, *constructionProperties.GetFatigueBeta());
+        Assert.AreEqual(impactNumberC, *constructionProperties.GetImpactNumberC());
+        Assert.AreEqual(stiffnessRelationNu, *constructionProperties.GetStiffnessRelationNu());
         ASSERT_EQ(widthFactors, *constructionProperties.GetWidthFactors());
         ASSERT_EQ(depthFactors, *constructionProperties.GetDepthFactors());
         ASSERT_EQ(impactFactors, *constructionProperties.GetImpactFactors());

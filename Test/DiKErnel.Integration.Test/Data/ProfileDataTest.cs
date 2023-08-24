@@ -50,7 +50,7 @@ namespace DiKErnel.Integration.Test.Data
         const var verticalHeight = profileData->InterpolationVerticalHeight(0.0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
+        Assert.AreEqual(numeric_limits<double>::infinity(), verticalHeight);
     }
 
         [Test]
@@ -63,7 +63,7 @@ namespace DiKErnel.Integration.Test.Data
         const var verticalHeight = profileData->InterpolationVerticalHeight(1.0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.1, verticalHeight);
+        Assert.AreEqual(1.1, verticalHeight);
     }
 
         [Test]
@@ -76,7 +76,7 @@ namespace DiKErnel.Integration.Test.Data
         const var verticalHeight = profileData->InterpolationVerticalHeight(2.0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(2.2, verticalHeight);
+        Assert.AreEqual(2.2, verticalHeight);
     }
 
         [Test]
@@ -89,7 +89,7 @@ namespace DiKErnel.Integration.Test.Data
         const var verticalHeight = profileData->InterpolationVerticalHeight(3.0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(3.3, verticalHeight);
+        Assert.AreEqual(3.3, verticalHeight);
     }
 
         [Test]
@@ -102,7 +102,7 @@ namespace DiKErnel.Integration.Test.Data
         const var verticalHeight = profileData->InterpolationVerticalHeight(1.5);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.65, verticalHeight);
+        Assert.AreEqual(1.65, verticalHeight);
     }
 
         [Test]
@@ -123,7 +123,7 @@ namespace DiKErnel.Integration.Test.Data
         const var verticalHeight = profileData.InterpolationVerticalHeight(2.5);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.65, verticalHeight);
+        Assert.AreEqual(1.65, verticalHeight);
     }
 
         [Test]
@@ -136,7 +136,7 @@ namespace DiKErnel.Integration.Test.Data
         const var verticalHeight = profileData->InterpolationVerticalHeight(4.0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), verticalHeight);
+        Assert.AreEqual(numeric_limits<double>::infinity(), verticalHeight);
     }
 
         [Test]
@@ -149,7 +149,7 @@ namespace DiKErnel.Integration.Test.Data
         const var horizontalPosition = profileData->InterpolationHorizontalPosition(0.0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
+        Assert.AreEqual(numeric_limits<double>::infinity(), horizontalPosition);
     }
 
         [Test]
@@ -162,7 +162,7 @@ namespace DiKErnel.Integration.Test.Data
         const var horizontalPosition = profileData->InterpolationHorizontalPosition(1.1);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.0, horizontalPosition);
+        Assert.AreEqual(1.0, horizontalPosition);
     }
 
         [Test]
@@ -175,7 +175,7 @@ namespace DiKErnel.Integration.Test.Data
         const var horizontalPosition = profileData->InterpolationHorizontalPosition(2.2);
 
         // Assert
-        ASSERT_DOUBLE_EQ(2.0, horizontalPosition);
+        Assert.AreEqual(2.0, horizontalPosition);
     }
 
         [Test]
@@ -188,7 +188,7 @@ namespace DiKErnel.Integration.Test.Data
         const var horizontalPosition = profileData->InterpolationHorizontalPosition(3.3);
 
         // Assert
-        ASSERT_DOUBLE_EQ(3.0, horizontalPosition);
+        Assert.AreEqual(3.0, horizontalPosition);
     }
 
         [Test]
@@ -201,7 +201,7 @@ namespace DiKErnel.Integration.Test.Data
         const var horizontalPosition = profileData->InterpolationHorizontalPosition(1.65);
 
         // Assert
-        ASSERT_DOUBLE_EQ(1.5, horizontalPosition);
+        Assert.AreEqual(1.5, horizontalPosition);
     }
 
         [Test]
@@ -214,7 +214,7 @@ namespace DiKErnel.Integration.Test.Data
         const var horizontalPosition = profileData->InterpolationHorizontalPosition(4.0);
 
         // Assert
-        ASSERT_DOUBLE_EQ(numeric_limits<double>::infinity(), horizontalPosition);
+        Assert.AreEqual(numeric_limits<double>::infinity(), horizontalPosition);
     }
 
         [Test]
@@ -255,10 +255,10 @@ namespace DiKErnel.Integration.Test.Data
         // Assert
         const auto& startPoint = profileSegment->GetStartPoint();
         const auto& endPoint = profileSegment->GetEndPoint();
-        ASSERT_DOUBLE_EQ(1.0, startPoint.GetX());
-        ASSERT_DOUBLE_EQ(1.1, startPoint.GetZ());
-        ASSERT_DOUBLE_EQ(2.0, endPoint.GetX());
-        ASSERT_DOUBLE_EQ(2.2, endPoint.GetZ());
+        Assert.AreEqual(1.0, startPoint.GetX());
+        Assert.AreEqual(1.1, startPoint.GetZ());
+        Assert.AreEqual(2.0, endPoint.GetX());
+        Assert.AreEqual(2.2, endPoint.GetZ());
     }
 
         [Test]
@@ -273,10 +273,10 @@ namespace DiKErnel.Integration.Test.Data
         // Assert
         const auto& startPoint = profileSegment->GetStartPoint();
         const auto& endPoint = profileSegment->GetEndPoint();
-        ASSERT_DOUBLE_EQ(1.0, startPoint.GetX());
-        ASSERT_DOUBLE_EQ(1.1, startPoint.GetZ());
-        ASSERT_DOUBLE_EQ(2.0, endPoint.GetX());
-        ASSERT_DOUBLE_EQ(2.2, endPoint.GetZ());
+        Assert.AreEqual(1.0, startPoint.GetX());
+        Assert.AreEqual(1.1, startPoint.GetZ());
+        Assert.AreEqual(2.0, endPoint.GetX());
+        Assert.AreEqual(2.2, endPoint.GetZ());
     }
 
         [Test]
@@ -291,10 +291,10 @@ namespace DiKErnel.Integration.Test.Data
         // Assert
         const auto& startPoint = profileSegment->GetStartPoint();
         const auto& endPoint = profileSegment->GetEndPoint();
-        ASSERT_DOUBLE_EQ(2.0, startPoint.GetX());
-        ASSERT_DOUBLE_EQ(2.2, startPoint.GetZ());
-        ASSERT_DOUBLE_EQ(3.0, endPoint.GetX());
-        ASSERT_DOUBLE_EQ(3.3, endPoint.GetZ());
+        Assert.AreEqual(2.0, startPoint.GetX());
+        Assert.AreEqual(2.2, startPoint.GetZ());
+        Assert.AreEqual(3.0, endPoint.GetX());
+        Assert.AreEqual(3.3, endPoint.GetZ());
     }
 
         [Test]

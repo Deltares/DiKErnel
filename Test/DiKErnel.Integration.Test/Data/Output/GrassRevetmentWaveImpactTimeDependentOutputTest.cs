@@ -106,17 +106,17 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
-        ASSERT_DOUBLE_EQ(upperLimitLoading, output.GetUpperLimitLoading());
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, output.GetLowerLimitLoading());
-        ASSERT_DOUBLE_EQ(minimumWaveHeight, *output.GetMinimumWaveHeight());
-        ASSERT_DOUBLE_EQ(maximumWaveHeight, *output.GetMaximumWaveHeight());
-        ASSERT_DOUBLE_EQ(waveAngleImpact, *output.GetWaveAngleImpact());
-        ASSERT_DOUBLE_EQ(waveHeightImpact, *output.GetWaveHeightImpact());
+        Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
+        Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
+        Assert.AreEqual(minimumWaveHeight, *output.GetMinimumWaveHeight());
+        Assert.AreEqual(maximumWaveHeight, *output.GetMaximumWaveHeight());
+        Assert.AreEqual(waveAngleImpact, *output.GetWaveAngleImpact());
+        Assert.AreEqual(waveHeightImpact, *output.GetWaveHeightImpact());
     }
 
         [Test]
@@ -145,13 +145,13 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
         ASSERT_EQ(loadingRevetment, output.GetLoadingRevetment());
-        ASSERT_DOUBLE_EQ(upperLimitLoading, output.GetUpperLimitLoading());
-        ASSERT_DOUBLE_EQ(lowerLimitLoading, output.GetLowerLimitLoading());
+        Assert.AreEqual(upperLimitLoading, output.GetUpperLimitLoading());
+        Assert.AreEqual(lowerLimitLoading, output.GetLowerLimitLoading());
         ASSERT_EQ(nullptr, output.GetMinimumWaveHeight());
         ASSERT_EQ(nullptr, output.GetMaximumWaveHeight());
         ASSERT_EQ(nullptr, output.GetWaveAngleImpact());

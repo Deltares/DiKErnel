@@ -120,15 +120,15 @@ namespace DiKErnel.Integration.Test.Data.Output
         const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(logFailureTension, output.GetLogFailureTension());
-        ASSERT_DOUBLE_EQ(maximumPeakStress, output.GetMaximumPeakStress());
-        ASSERT_DOUBLE_EQ(stiffnessRelation, output.GetStiffnessRelation());
-        ASSERT_DOUBLE_EQ(computationalThickness, output.GetComputationalThickness());
-        ASSERT_DOUBLE_EQ(equivalentElasticModulus, output.GetEquivalentElasticModulus());
+        Assert.AreEqual(logFailureTension, output.GetLogFailureTension());
+        Assert.AreEqual(maximumPeakStress, output.GetMaximumPeakStress());
+        Assert.AreEqual(stiffnessRelation, output.GetStiffnessRelation());
+        Assert.AreEqual(computationalThickness, output.GetComputationalThickness());
+        Assert.AreEqual(equivalentElasticModulus, output.GetEquivalentElasticModulus());
     }
 
         [Test]
@@ -157,15 +157,15 @@ namespace DiKErnel.Integration.Test.Data.Output
         const AsphaltRevetmentWaveImpactTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(logFailureTension, output.GetLogFailureTension());
-        ASSERT_DOUBLE_EQ(maximumPeakStress, output.GetMaximumPeakStress());
-        ASSERT_DOUBLE_EQ(stiffnessRelation, output.GetStiffnessRelation());
-        ASSERT_DOUBLE_EQ(computationalThickness, output.GetComputationalThickness());
-        ASSERT_DOUBLE_EQ(equivalentElasticModulus, output.GetEquivalentElasticModulus());
+        Assert.AreEqual(logFailureTension, output.GetLogFailureTension());
+        Assert.AreEqual(maximumPeakStress, output.GetMaximumPeakStress());
+        Assert.AreEqual(stiffnessRelation, output.GetStiffnessRelation());
+        Assert.AreEqual(computationalThickness, output.GetComputationalThickness());
+        Assert.AreEqual(equivalentElasticModulus, output.GetEquivalentElasticModulus());
     }
 
         [Test]

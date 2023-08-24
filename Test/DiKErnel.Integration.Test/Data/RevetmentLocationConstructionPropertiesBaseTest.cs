@@ -34,7 +34,7 @@ namespace DiKErnel.Integration.Test.Data
         const RevetmentLocationConstructionPropertiesMock constructionProperties(x);
 
         // Assert
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
+        Assert.AreEqual(x, constructionProperties.GetX());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
     }
@@ -54,9 +54,9 @@ namespace DiKErnel.Integration.Test.Data
         constructionProperties.SetFailureNumber(make_unique<double>(failureNumber));
 
         // Then
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
-        ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
+        Assert.AreEqual(x, constructionProperties.GetX());
+        Assert.AreEqual(initialDamage, *constructionProperties.GetInitialDamage());
+        Assert.AreEqual(failureNumber, *constructionProperties.GetFailureNumber());
     }
 }
 

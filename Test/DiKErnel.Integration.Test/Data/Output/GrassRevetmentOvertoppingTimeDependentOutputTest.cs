@@ -65,13 +65,13 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
-        ASSERT_DOUBLE_EQ(cumulativeOverload, *output.GetCumulativeOverload());
+        Assert.AreEqual(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
+        Assert.AreEqual(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
+        Assert.AreEqual(cumulativeOverload, *output.GetCumulativeOverload());
     }
 
         [Test]
@@ -91,11 +91,11 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentOvertoppingTimeDependentOutput output(constructionProperties);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
-        ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
+        Assert.IsInstanceOf<TimeDependentOutput>(&output);
+        Assert.AreEqual(incrementDamage, output.GetIncrementDamage());
+        Assert.AreEqual(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
-        ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
+        Assert.AreEqual(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
         ASSERT_EQ(nullptr, output.GetRepresentativeWaveRunup2P());
         ASSERT_EQ(nullptr, output.GetCumulativeOverload());
     }

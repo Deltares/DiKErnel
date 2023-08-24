@@ -35,9 +35,9 @@ namespace DiKErnel.Integration.Test.Data
         const GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties(x, topLayerType);
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
+        Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(&constructionProperties);
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
+        Assert.AreEqual(x, constructionProperties.GetX());
         ASSERT_EQ(nullptr, constructionProperties.GetInitialDamage());
         ASSERT_EQ(nullptr, constructionProperties.GetFailureNumber());
         ASSERT_EQ(nullptr, constructionProperties.GetTimeLineAgwi());
@@ -89,19 +89,19 @@ namespace DiKErnel.Integration.Test.Data
 
         // Then
         ASSERT_EQ(topLayerType, constructionProperties.GetTopLayerType());
-        ASSERT_DOUBLE_EQ(x, constructionProperties.GetX());
-        ASSERT_DOUBLE_EQ(initialDamage, *constructionProperties.GetInitialDamage());
-        ASSERT_DOUBLE_EQ(failureNumber, *constructionProperties.GetFailureNumber());
-        ASSERT_DOUBLE_EQ(timeLineAgwi, *constructionProperties.GetTimeLineAgwi());
-        ASSERT_DOUBLE_EQ(timeLineBgwi, *constructionProperties.GetTimeLineBgwi());
-        ASSERT_DOUBLE_EQ(timeLineCgwi, *constructionProperties.GetTimeLineCgwi());
-        ASSERT_DOUBLE_EQ(minimumWaveHeightTemax, *constructionProperties.GetMinimumWaveHeightTemax());
-        ASSERT_DOUBLE_EQ(maximumWaveHeightTemin, *constructionProperties.GetMaximumWaveHeightTemin());
-        ASSERT_DOUBLE_EQ(waveAngleImpactNwa, *constructionProperties.GetWaveAngleImpactNwa());
-        ASSERT_DOUBLE_EQ(waveAngleImpactQwa, *constructionProperties.GetWaveAngleImpactQwa());
-        ASSERT_DOUBLE_EQ(waveAngleImpactRwa, *constructionProperties.GetWaveAngleImpactRwa());
-        ASSERT_DOUBLE_EQ(upperLimitLoadingAul, *constructionProperties.GetUpperLimitLoadingAul());
-        ASSERT_DOUBLE_EQ(lowerLimitLoadingAll, *constructionProperties.GetLowerLimitLoadingAll());
+        Assert.AreEqual(x, constructionProperties.GetX());
+        Assert.AreEqual(initialDamage, *constructionProperties.GetInitialDamage());
+        Assert.AreEqual(failureNumber, *constructionProperties.GetFailureNumber());
+        Assert.AreEqual(timeLineAgwi, *constructionProperties.GetTimeLineAgwi());
+        Assert.AreEqual(timeLineBgwi, *constructionProperties.GetTimeLineBgwi());
+        Assert.AreEqual(timeLineCgwi, *constructionProperties.GetTimeLineCgwi());
+        Assert.AreEqual(minimumWaveHeightTemax, *constructionProperties.GetMinimumWaveHeightTemax());
+        Assert.AreEqual(maximumWaveHeightTemin, *constructionProperties.GetMaximumWaveHeightTemin());
+        Assert.AreEqual(waveAngleImpactNwa, *constructionProperties.GetWaveAngleImpactNwa());
+        Assert.AreEqual(waveAngleImpactQwa, *constructionProperties.GetWaveAngleImpactQwa());
+        Assert.AreEqual(waveAngleImpactRwa, *constructionProperties.GetWaveAngleImpactRwa());
+        Assert.AreEqual(upperLimitLoadingAul, *constructionProperties.GetUpperLimitLoadingAul());
+        Assert.AreEqual(lowerLimitLoadingAll, *constructionProperties.GetLowerLimitLoadingAll());
     }
 }
 }

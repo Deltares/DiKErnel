@@ -30,7 +30,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         const GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
 
         // Assert
-        AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
+        Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
         ASSERT_EQ(nullptr, constructionProperties._damage);
         ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
@@ -63,13 +63,13 @@ namespace DiKErnel.Integration.Test.Data.Output
         constructionProperties._cumulativeOverload = make_unique<double>(cumulativeOverload);
 
         // Then
-        ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
+        Assert.AreEqual(incrementDamage, *constructionProperties._incrementDamage);
+        Assert.AreEqual(damage, *constructionProperties._damage);
         ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
-        ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, *constructionProperties._verticalDistanceWaterLevelElevation);
-        ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties._waveAngleImpact);
-        ASSERT_DOUBLE_EQ(representativeWaveRunup2P, *constructionProperties._representativeWaveRunup2P);
-        ASSERT_DOUBLE_EQ(cumulativeOverload, *constructionProperties._cumulativeOverload);
+        Assert.AreEqual(verticalDistanceWaterLevelElevation, *constructionProperties._verticalDistanceWaterLevelElevation);
+        Assert.AreEqual(waveAngleImpact, *constructionProperties._waveAngleImpact);
+        Assert.AreEqual(representativeWaveRunup2P, *constructionProperties._representativeWaveRunup2P);
+        Assert.AreEqual(cumulativeOverload, *constructionProperties._cumulativeOverload);
     }
 }
 }
