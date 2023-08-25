@@ -19,6 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data.GrassRevetment;
+using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.TestUtil;
 using DiKErnel.TestUtil;
@@ -30,6 +31,15 @@ namespace DiKErnel.Integration.Test
     [TestFixture]
     public class CalculationInputBuilderTest
     {
+        private static void AssertResultWithSuccessfulFalseAndErrorEvent(SimpleResult result, string message)
+        {
+            Assert.IsFalse(result.Successful);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.AreEqual(1, events.Count);
+            Assert.AreEqual(EventType.Error, events[0].Type);
+            Assert.AreEqual(message, events[0].Message);
+        }
         // struct CalculationInputBuilderTest : Test
         // {
         //     static void AddDefaultProfileAndTimeStep(
@@ -66,7 +76,7 @@ namespace DiKErnel.Integration.Test
         //                 builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
         //                 builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
         //                 builder.AddGrassOvertoppingLocation(
-        //                     make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(locationX, GrassRevetmentTopLayerType.ClosedSod));
+        //                     new GrassRevetmentOvertoppingLocationConstructionProperties(locationX, GrassRevetmentTopLayerType.ClosedSod));
         //             },
         //             "The location with position " + locationXString + " must be on or between the outer crest and inner toe.");
         //     }
@@ -106,12 +116,7 @@ namespace DiKErnel.Integration.Test
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
-            Assert.IsFalse(result.Successful);
-
-            IReadOnlyList<Event> events = result.Events;
-            Assert.AreEqual(1, events.Count);
-            Assert.AreEqual(EventType.Error, events[0].Type);
-            Assert.AreEqual("At least 1 profile segment is required.", events[0].Message);
+            AssertResultWithSuccessfulFalseAndErrorEvent(result, "At least 1 profile segment is required.");
         }
 
         [Test]
@@ -127,13 +132,9 @@ namespace DiKErnel.Integration.Test
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
-            Assert.IsFalse(result.Successful);
-
-            IReadOnlyList<Event> events = result.Events;
-            Assert.AreEqual(1, events.Count);
-            Assert.AreEqual(EventType.Error, events[0].Type);
-            Assert.AreEqual("The start point of the profile segment (20.01, 30) must be equal to the end point of " +
-                            "the previous profile segment (20, 30).", events[0].Message);
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The start point of the profile segment (20.01, 30) must be equal to the end point of the " +
+                        "previous profile segment (20, 30).");
         }
 
         [Test]
@@ -149,13 +150,9 @@ namespace DiKErnel.Integration.Test
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
-            Assert.IsFalse(result.Successful);
-
-            IReadOnlyList<Event> events = result.Events;
-            Assert.AreEqual(1, events.Count);
-            Assert.AreEqual(EventType.Error, events[0].Type);
-            Assert.AreEqual("The start point of the profile segment (20, 30.01) must be equal to the end point of " +
-                            "the previous profile segment (20, 30).", events[0].Message);
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The start point of the profile segment (20, 30.01) must be equal to the end point of the " +
+                        "previous profile segment (20, 30).");
         }
 
         [Test]
@@ -266,259 +263,222 @@ namespace DiKErnel.Integration.Test
 
         #region Profile point data
 
-        //     [Test]
-        // public void GivenBuilderWithDikeProfilePointDataOuterToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 20, 30);
-        //     builder.AddDikeProfilePoint(10.01, CharacteristicPointType.OuterToe);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The outer toe must be on a start or end point of a profile segment.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithDikeProfilePointDataCrestOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 20, 30);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(10.01, CharacteristicPointType.CrestOuterBerm);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The crest outer berm must be on a start or end point of a profile segment.",
-        //                                    events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithDikeProfilePointDataNotchOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 20, 30);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(10.01, CharacteristicPointType.NotchOuterBerm);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The notch outer berm must be on a start or end point of a profile segment.",
-        //                                    events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithDikeProfilePointDataOuterCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 20, 30);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(10.01, CharacteristicPointType.OuterCrest);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The outer crest must be on a start or end point of a profile segment.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithDikeProfilePointDataInnerCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 20, 30);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
-        //     builder.AddDikeProfilePoint(20.01, CharacteristicPointType.InnerCrest);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The inner crest must be on a start or end point of a profile segment.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithDikeProfilePointDataInnerToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 20, 30);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
-        //     builder.AddDikeProfilePoint(20.01, CharacteristicPointType.InnerToe);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The inner toe must be on a start or end point of a profile segment.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 10, 30);
-        //     builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The outer toe is required.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 10, 30);
-        //     builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The outer crest is required.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var startPointX = 10;
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-        //     builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterCrest);
-        //     builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.InnerCrest);
-        //     builder.AddGrassOvertoppingLocation(
-        //         make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The inner toe is required.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var startPointX = 10;
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, startPointX, 30);
-        //     builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterCrest);
-        //     builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.InnerToe);
-        //     builder.AddGrassOvertoppingLocation(
-        //         make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The inner crest is required.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput()
-        // {
-        //     // Given
-        //     var outerToe = CharacteristicPointType.OuterToe;
-        //     var outerCrest = CharacteristicPointType.OuterCrest;
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(10, 20, 20, 30);
-        //     builder.AddDikeProfilePoint(10, outerToe);
-        //     builder.AddDikeProfilePoint(20, outerCrest);
-        //     builder.AddGrassWaveImpactLocation(
-        //         new GrassRevetmentWaveImpactLocationConstructionProperties(10.1, GrassRevetmentTopLayerType.ClosedSod));
-        //     builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsTrue(result.Successful);
-        //
-        //     var calculationInput = *result->GetData();
-        //     var actualProfileData = calculationInput.GetProfileData();
-        //     var actualProfileSegments = actualProfileData.GetProfileSegments();
-        //     var actualCharacteristicPoints = actualProfileData.GetCharacteristicPoints();
-        //     ASSERT_EQ(1, actualProfileSegments.size());
-        //     ASSERT_EQ(2, actualCharacteristicPoints.size());
-        //
-        //     var actualSegment = actualProfileSegments.at(0).get();
-        //     ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetStartPoint(), outerToe, actualCharacteristicPoints.at(0));
-        //     ProfileDataAssertHelper::AssertCharacteristicPoint(actualSegment.GetEndPoint(), outerCrest, actualCharacteristicPoints.at(1));
-        // }
+        [Test]
+        public void
+            GivenBuilderWithDikeProfilePointDataOuterToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 20, 30);
+            builder.AddDikeProfilePoint(10.01, CharacteristicPointType.OuterToe);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The outer toe must be on a start or end point of a profile segment.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithDikeProfilePointDataCrestOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 20, 30);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10.01, CharacteristicPointType.CrestOuterBerm);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The crest outer berm must be on a start or end point of a profile segment.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithDikeProfilePointDataNotchOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 20, 30);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10.01, CharacteristicPointType.NotchOuterBerm);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The notch outer berm must be on a start or end point of a profile segment.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithDikeProfilePointDataOuterCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 20, 30);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10.01, CharacteristicPointType.OuterCrest);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The outer crest must be on a start or end point of a profile segment.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithDikeProfilePointDataInnerCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 20, 30);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(20.01, CharacteristicPointType.InnerCrest);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The inner crest must be on a start or end point of a profile segment.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithDikeProfilePointDataInnerToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 20, 30);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(20.01, CharacteristicPointType.InnerToe);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The inner toe must be on a start or end point of a profile segment.");
+        }
+
+        [Test]
+        public void GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 10, 30);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(result, "The outer toe is required.");
+        }
+
+        [Test]
+        public void GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 10, 30);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(result, "The outer crest is required.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const int startPointX = 10;
+
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, startPointX, 30);
+            builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.InnerCrest);
+            builder.AddGrassOvertoppingLocation(new GrassRevetmentOvertoppingLocationConstructionProperties(
+                                                    0.1, GrassRevetmentTopLayerType.ClosedSod));
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(result, "The inner toe is required.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const int startPointX = 10;
+
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, startPointX, 30);
+            builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.InnerToe);
+            builder.AddGrassOvertoppingLocation(new GrassRevetmentOvertoppingLocationConstructionProperties(
+                                                    0.1, GrassRevetmentTopLayerType.ClosedSod));
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(result, "The inner crest is required.");
+        }
+
+        [Test]
+        public void GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const CharacteristicPointType outerToe = CharacteristicPointType.OuterToe;
+            const CharacteristicPointType outerCrest = CharacteristicPointType.OuterCrest;
+
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(10, 20, 20, 30);
+            builder.AddDikeProfilePoint(10, outerToe);
+            builder.AddDikeProfilePoint(20, outerCrest);
+            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+                                                   10.1, GrassRevetmentTopLayerType.ClosedSod));
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            IProfileData actualProfileData = result.Data.ProfileData;
+            IReadOnlyList<ProfileSegment> actualProfileSegments = actualProfileData.ProfileSegments;
+            IReadOnlyList<CharacteristicPoint> actualCharacteristicPoints = actualProfileData.CharacteristicPoints;
+            Assert.AreEqual(1, actualProfileSegments.Count);
+            Assert.AreEqual(2, actualCharacteristicPoints.Count);
+
+            ProfileSegment actualSegment = actualProfileSegments[0];
+            ProfileDataAssertHelper.AssertCharacteristicPoint(actualSegment.StartPoint, outerToe,
+                                                              actualCharacteristicPoints[0]);
+            ProfileDataAssertHelper.AssertCharacteristicPoint(actualSegment.EndPoint, outerCrest,
+                                                              actualCharacteristicPoints[1]);
+        }
 
         #endregion
 
@@ -916,7 +876,7 @@ namespace DiKErnel.Integration.Test
         // {
         //     // Given
         //     var topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-        //     var constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
+        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
@@ -943,7 +903,7 @@ namespace DiKErnel.Integration.Test
         // {
         //     // Given
         //     var topLayerType = GrassRevetmentTopLayerType.OpenSod;
-        //     var constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
+        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
         //
         //     var outerToeX = 0;
         //     var outerCrestX = 30;
@@ -979,7 +939,7 @@ namespace DiKErnel.Integration.Test
         // {
         //     // Given
         //     var topLayerType = GrassRevetmentTopLayerType.OpenSod;
-        //     var constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(45, topLayerType);
+        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
         //
         //     var outerToeX = 0;
         //     var outerCrestX = 30;
@@ -1029,7 +989,7 @@ namespace DiKErnel.Integration.Test
         //     var accelerationAlphaAForInnerSlope = 1.2;
         //     var dikeHeight = 1.3;
         //
-        //     var constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
+        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
         //     constructionProperties.SetInitialDamage(initialDamage));
         //     constructionProperties.SetFailureNumber(failureNumber));
         //     constructionProperties.SetCriticalCumulativeOverload(criticalCumulativeOverload));
@@ -1093,7 +1053,7 @@ namespace DiKErnel.Integration.Test
         //     var topLayerType = GrassRevetmentTopLayerType.ClosedSod;
         //     var x = 45;
         //
-        //     var constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
+        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
@@ -1145,7 +1105,7 @@ namespace DiKErnel.Integration.Test
         //     var topLayerType = GrassRevetmentTopLayerType.OpenSod;
         //     var x = 45;
         //
-        //     var constructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(x, topLayerType);
+        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
