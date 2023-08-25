@@ -12,6 +12,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Src\DiKErnel.Core\DiKErnel.Core.csproj" />
       <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj" />
+      <ProjectReference Include="..\DiKErnel.Integration.TestUtil\DiKErnel.Integration.TestUtil.csproj" />
       <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj" />
     </ItemGroup>
 
