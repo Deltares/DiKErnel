@@ -23,6 +23,8 @@ using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Data.NaturalStoneRevetment;
 using DiKErnel.Integration.TestUtil;
 using DiKErnel.Util;
 using NUnit.Framework;
@@ -55,26 +57,44 @@ namespace DiKErnel.Integration.Test
         }
 
         private static void GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-            Action<CalculationInputBuilder> addLocation, string locationX)
+            Action<CalculationInputBuilder> addLocationAction, double locationX)
         {
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                addLocation, "The location with position " + locationX + " must be between the outer toe and " +
-                             "outer crest.");
+                addLocationAction, "The location with position " + locationX + " must be between the outer toe and " +
+                                   "outer crest.");
         }
 
         private static void GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-            Action<CalculationInputBuilder> addLocation, string expectedMessage)
+            Action<CalculationInputBuilder> addLocationAction, string expectedMessage)
         {
             // Given
             var builder = new CalculationInputBuilder();
             AddDefaultProfileAndTimeStep(builder);
-            addLocation(builder);
+            addLocationAction(builder);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(result, expectedMessage);
+        }
+
+        private static void GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+            double locationX)
+        {
+            GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddDikeProfileSegment(10, 20, 30, 40);
+                    builder.AddDikeProfileSegment(30, 40, 50, 60);
+                    builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+                    builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+                    builder.AddGrassOvertoppingLocation(new GrassRevetmentOvertoppingLocationConstructionProperties(
+                                                            locationX,
+                                                            Random.NextEnumValue<GrassRevetmentTopLayerType>()));
+                },
+                "The location with position " + locationX + " must be on or between the outer crest and " +
+                "inner toe.");
         }
 
         #region Locations
@@ -98,25 +118,29 @@ namespace DiKErnel.Integration.Test
         [Test]
         public void GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
+            const double locationX = 0;
+
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
                     builder.AddAsphaltWaveImpactLocation(
                         new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                            0, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
-                }, "0");
+                            locationX, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
+                }, locationX);
         }
 
         [Test]
         public void GivenBuilderWithAsphaltWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
+            const double locationX = 10;
+
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
                     builder.AddAsphaltWaveImpactLocation(
                         new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                            10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
-                }, "10");
+                            locationX, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 0.2, 0.3, 0.4, 0.5));
+                }, locationX);
         }
 
         //     [Test]
@@ -330,18 +354,19 @@ namespace DiKErnel.Integration.Test
 
         #region Grass overtopping
 
-        //     [Test]
-        // public void GivenBuilderWithGrassOvertoppingLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9, "9.9");
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithGrassOvertoppingLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1, "50.1");
-        // }
-        //
+        [Test]
+        public void GivenBuilderWithGrassOvertoppingLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassOvertoppingLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
+        }
+
         //     [Test]
         // public void GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         // {
@@ -625,28 +650,34 @@ namespace DiKErnel.Integration.Test
 
         #region Grass wave impact
 
-        //     [Test]
-        // public void GivenBuilderWithGrassWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
-        //     CalculationInputBuilder& builder)
-        //         {
-        //             builder.AddGrassWaveImpactLocation(
-        //                 new GrassRevetmentWaveImpactLocationConstructionProperties(0, GrassRevetmentTopLayerType.ClosedSod));
-        //         }, "0");
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithGrassWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
-        //     CalculationInputBuilder& builder)
-        //         {
-        //             builder.AddGrassWaveImpactLocation(
-        //                 new GrassRevetmentWaveImpactLocationConstructionProperties(10, GrassRevetmentTopLayerType.ClosedSod));
-        //         }, "10");
-        // }
-        //
+        [Test]
+        public void GivenBuilderWithGrassWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 0;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveImpactLocation(
+                        new GrassRevetmentWaveImpactLocationConstructionProperties(
+                            locationX, GrassRevetmentTopLayerType.ClosedSod));
+                }, locationX);
+        }
+
+        [Test]
+        public void GivenBuilderWithGrassWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 10;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveImpactLocation(
+                        new GrassRevetmentWaveImpactLocationConstructionProperties(
+                            locationX, GrassRevetmentTopLayerType.ClosedSod));
+                }, locationX);
+        }
+
         //     [Test]
         // public void GivenBuilderWithGrassWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         // {
@@ -851,28 +882,34 @@ namespace DiKErnel.Integration.Test
 
         #region Grass wave run-up Rayleigh
 
-        //     [Test]
-        // public void GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
-        //     CalculationInputBuilder& builder)
-        //         {
-        //             builder.AddGrassWaveRunupRayleighLocation(
-        //                 make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(0, 0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //         }, "0");
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
-        //     CalculationInputBuilder& builder)
-        //         {
-        //             builder.AddGrassWaveRunupRayleighLocation(
-        //                 make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(10, 0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //         }, "10");
-        // }
-        //
+        [Test]
+        public void GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 0;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveRunupRayleighLocation(
+                        new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                            locationX, 0.1, GrassRevetmentTopLayerType.ClosedSod));
+                }, locationX);
+        }
+
+        [Test]
+        public void GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 10;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveRunupRayleighLocation(
+                        new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                            locationX, 0.1, GrassRevetmentTopLayerType.ClosedSod));
+                }, locationX);
+        }
+
         //     [Test]
         // public void GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         // {
@@ -1089,28 +1126,34 @@ namespace DiKErnel.Integration.Test
 
         #region Natural stone
 
-        //     [Test]
-        // public void GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
-        //     CalculationInputBuilder& builder)
-        //         {
-        //             builder.AddNaturalStoneLocation(
-        //                 make_unique<NaturalStoneRevetmentLocationConstructionProperties>(0, NaturalStoneRevetmentTopLayerType.NordicStone, 0.1, 0.2));
-        //         }, "0");
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithNaturalStoneLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent([](
-        //     CalculationInputBuilder& builder)
-        //         {
-        //             builder.AddNaturalStoneLocation(
-        //                 make_unique<NaturalStoneRevetmentLocationConstructionProperties>(10, NaturalStoneRevetmentTopLayerType.NordicStone, 0.1, 0.2));
-        //         }, "10");
-        // }
-        //
+        [Test]
+        public void GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 0;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddNaturalStoneLocation(
+                        new NaturalStoneRevetmentLocationConstructionProperties(
+                            locationX, NaturalStoneRevetmentTopLayerType.NordicStone, 0.1, 0.2));
+                }, locationX);
+        }
+
+        [Test]
+        public void GivenBuilderWithNaturalStoneLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 10;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddNaturalStoneLocation(
+                        new NaturalStoneRevetmentLocationConstructionProperties(
+                            locationX, NaturalStoneRevetmentTopLayerType.NordicStone, 0.1, 0.2));
+                }, locationX);
+        }
+
         //     [Test]
         // public void GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         // {
@@ -1295,48 +1338,6 @@ namespace DiKErnel.Integration.Test
         #endregion
 
         #endregion
-
-        //
-        //     static void GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-        //         const double locationX,
-        //         const string& locationXString)
-        //     {
-        //         GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-        //             [locationX](
-        //         CalculationInputBuilder& builder)
-        //             {
-        //                 builder.AddDikeProfileSegment(10, 20, 30, 40);
-        //                 builder.AddDikeProfileSegment(30, 40, 50, 60);
-        //                 builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-        //                 builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-        //                 builder.AddGrassOvertoppingLocation(
-        //                     new GrassRevetmentOvertoppingLocationConstructionProperties(locationX, GrassRevetmentTopLayerType.ClosedSod));
-        //             },
-        //             "The location with position " + locationXString + " must be on or between the outer crest and inner toe.");
-        //     }
-        //
-        //     template <typename T>
-        //     static void GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-        //         const T& addLocation,
-        //         const string& expectedMessage)
-        //     {
-        //         // Given
-        //         var builder = new CalculationInputBuilder();
-        //         AddDefaultProfileAndTimeStep(builder);
-        //         addLocation(builder);
-        //
-        //         // When
-        //         DataResult<ICalculationInput> result = builder.Build();
-        //
-        //         // Then
-        //         Assert.IsFalse(result.Successful);
-        //
-        //         var events = result->GetEvents();
-        //         ASSERT_EQ(1, events.size());
-        //
-        //         EventAssertHelper::AssertEvent(EventType::Error, expectedMessage, events.at(0));
-        //     }
-        // };
 
         #region Profile segments
 
