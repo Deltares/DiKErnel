@@ -484,120 +484,101 @@ namespace DiKErnel.Integration.Test
 
         #region Time steps
 
-        //     [Test]
-        // public void GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 10, 20);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
-        //     builder.AddGrassWaveImpactLocation(
-        //         new GrassRevetmentWaveImpactLocationConstructionProperties(0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "At least 1 time step is required.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithNonSuccessiveTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 10, 20);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
-        //     builder.AddGrassWaveImpactLocation(
-        //         new GrassRevetmentWaveImpactLocationConstructionProperties(0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //     builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-        //     builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(
-        //         EventType::Error,
-        //         "The begin time of the time step (3) must be equal to the end time of the previous time step (2).",
-        //         events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithTimeStepWithInvalidBeginAndEndTimeAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(0, 10, 10, 20);
-        //     builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
-        //     builder.AddGrassWaveImpactLocation(
-        //         new GrassRevetmentWaveImpactLocationConstructionProperties(0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //     builder.AddTimeStep(2, 1, 0.3, 0.4, 0.5, 0.6);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(
-        //         EventType::Error,
-        //         "The begin time of the time step (2) must be smaller than the end time of the time step (1).",
-        //         events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
-        // {
-        //     // Given
-        //     var beginTime = 1;
-        //     var endTime = 2;
-        //     var waterLevel = 0.3;
-        //     var waveHeightHm0 = 0.4;
-        //     var wavePeriodTm10 = 0.5;
-        //     var waveAngle = 0.6;
-        //
-        //     var startPointX = 0;
-        //     var endPointX = 10;
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
-        //     builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
-        //     builder.AddGrassWaveImpactLocation(
-        //         new GrassRevetmentWaveImpactLocationConstructionProperties(0.1, GrassRevetmentTopLayerType.ClosedSod));
-        //     builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsTrue(result.Successful);
-        //
-        //     var calculationInput = *result->GetData();
-        //     var actualTimeDependentInputItems = calculationInput.GetTimeDependentInputItems();
-        //     ASSERT_EQ(1, actualTimeDependentInputItems.size());
-        //     var timeDependentInput = actualTimeDependentInputItems.at(0).get();
-        //
-        //     TimeDependentInputAssertHelper::AssertTimeDependentInputItem(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle,
-        //                                                                  timeDependentInput);
-        // }
+        [Test]
+        public void GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 10, 20);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
+            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(result, "At least 1 time step is required.");
+        }
+
+        [Test]
+        public void GivenBuilderWithNonSuccessiveTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 10, 20);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
+            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+            builder.AddTimeStep(3, 4, 0.3, 0.4, 0.5, 0.6);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The begin time of the time step (3) must be equal to the end time of the previous time " +
+                        "step (2).");
+        }
+
+        [Test]
+        public void GivenBuilderWithTimeStepWithInvalidBeginAndEndTimeAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 10, 20);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
+            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
+            builder.AddTimeStep(2, 1, 0.3, 0.4, 0.5, 0.6);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndErrorEvent(
+                result, "The begin time of the time step (2) must be smaller than the end time of the time step (1).");
+        }
+
+        [Test]
+        public void GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const int beginTime = 1;
+            const int endTime = 2;
+            const double waterLevel = 0.3;
+            const double waveHeightHm0 = 0.4;
+            const double wavePeriodTm10 = 0.5;
+            const double waveAngle = 0.6;
+
+            const double startPointX = 0;
+            const double endPointX = 10;
+
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
+            builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
+            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
+            builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            IReadOnlyList<ITimeDependentInput> actualTimeDependentInputItems = result.Data.TimeDependentInputItems;
+            Assert.AreEqual(1, actualTimeDependentInputItems.Count);
+
+            TimeDependentInputAssertHelper.AssertTimeDependentInputItem(beginTime, endTime, waterLevel, waveHeightHm0,
+                                                                        wavePeriodTm10, waveAngle,
+                                                                        actualTimeDependentInputItems[0]);
+        }
 
         #endregion
 
