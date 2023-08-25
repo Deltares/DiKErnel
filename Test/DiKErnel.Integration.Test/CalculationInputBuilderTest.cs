@@ -144,212 +144,211 @@ namespace DiKErnel.Integration.Test
                 }, locationX);
         }
 
-        //     [Test]
-        // public void GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var topLayerType = static_cast<AsphaltRevetmentTopLayerType>(99);
-        //     var constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-        //         0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
-        // {
-        //     var topLayerType = AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete;
-        //     var x = 0.1;
-        //     var failureTension = 0.2;
-        //     var soilElasticity = 0.3;
-        //     var thicknessUpperLayer = 0.4;
-        //     var elasticModulusUpperLayer = 0.5;
-        //     var initialDamage = 0.6;
-        //     var failureNumber = 0.7;
-        //     var densityOfWater = 0.8;
-        //     var thicknessSubLayer = 0.9;
-        //     var elasticModulusSubLayer = 1.0;
-        //     var averageNumberOfWavesCtm = 1.1;
-        //     var fatigueAlpha = 1.2;
-        //     var fatigueBeta = 1.3;
-        //     var impactNumberC = 1.4;
-        //     var stiffnessRelationNu = 1.5;
-        //     var widthFactors = vector
-        //     {
-        //         pair(1.6, 1.7)
-        //     };
-        //     var depthFactors = vector
-        //     {
-        //         pair(1.8, 1.9)
-        //     };
-        //     var impactFactors = vector
-        //     {
-        //         pair(2.0, 2.1)
-        //     };
-        //
-        //     var constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-        //         x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
-        //
-        //     constructionProperties.SetInitialDamage(initialDamage));
-        //     constructionProperties.SetFailureNumber(failureNumber));
-        //     constructionProperties.SetDensityOfWater(densityOfWater));
-        //     constructionProperties.SetThicknessSubLayer(thicknessSubLayer));
-        //     constructionProperties.SetElasticModulusSubLayer(elasticModulusSubLayer));
-        //     constructionProperties.SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
-        //     constructionProperties.SetFatigueAlpha(fatigueAlpha));
-        //     constructionProperties.SetFatigueBeta(fatigueBeta));
-        //     constructionProperties.SetImpactNumberC(impactNumberC));
-        //     constructionProperties.SetStiffnessRelationNu(stiffnessRelationNu));
-        //     constructionProperties.SetWidthFactors(make_unique<vector<pair<double, double>>>(widthFactors));
-        //     constructionProperties.SetDepthFactors(make_unique<vector<pair<double, double>>>(depthFactors));
-        //     constructionProperties.SetImpactFactors(make_unique<vector<pair<double, double>>>(impactFactors));
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsTrue(result.Successful);
-        //
-        //     var calculationInput = *result->GetData();
-        //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
-        //
-        //     const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
-        //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, failureTension, densityOfWater, soilElasticity, averageNumberOfWavesCtm,
-        //         impactNumberC, stiffnessRelationNu, *locationDependentInput);
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
-        //                                                                               locationDependentInput->GetUpperLayer());
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessSubLayer, elasticModulusSubLayer,
-        //                                                                               *locationDependentInput->GetSubLayer());
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(fatigueAlpha, fatigueBeta,
-        //                                                                                 locationDependentInput->GetFatigue());
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(widthFactors, depthFactors, impactFactors,
-        //                                                                                 *locationDependentInput);
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
-        // {
-        //     var topLayerType = AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete;
-        //     var x = 0.1;
-        //     var failureTension = 0.2;
-        //     var soilElasticity = 0.3;
-        //     var thicknessUpperLayer = 0.4;
-        //     var elasticModulusUpperLayer = 0.5;
-        //
-        //     var constructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-        //         x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddAsphaltWaveImpactLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsTrue(result.Successful);
-        //
-        //     var calculationInput = *result->GetData();
-        //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
-        //
-        //     const auto* locationDependentInput = dynamic_cast<AsphaltRevetmentWaveImpactLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
-        //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, failureTension, 1025, soilElasticity, 1, 1, 0.35, *locationDependentInput);
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLayer(thicknessUpperLayer, elasticModulusUpperLayer,
-        //                                                                               locationDependentInput->GetUpperLayer());
-        //
-        //     Assert.IsNull(locationDependentInput->GetSubLayer());
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFatigue(0.42, 4.76,
-        //                                                                                 locationDependentInput->GetFatigue());
-        //
-        //     var expectedWidthFactors = vector
-        //     {
-        //         pair(0.1, 0.0392),
-        //         pair(0.2, 0.0738),
-        //         pair(0.3, 0.1002),
-        //         pair(0.4, 0.1162),
-        //         pair(0.5, 0.1213),
-        //         pair(0.6, 0.1168),
-        //         pair(0.7, 0.1051),
-        //         pair(0.8, 0.0890),
-        //         pair(0.9, 0.0712),
-        //         pair(1.0, 0.0541),
-        //         pair(1.1, 0.0391),
-        //         pair(1.2, 0.0269),
-        //         pair(1.3, 0.0216),
-        //         pair(1.4, 0.0150),
-        //         pair(1.5, 0.0105)
-        //     };
-        //
-        //     var expectedDepthFactors = vector
-        //     {
-        //         pair(-1.0, 0.0244),
-        //         pair(-0.875, 0.0544),
-        //         pair(-0.750, 0.0938),
-        //         pair(-0.625, 0.1407),
-        //         pair(-0.500, 0.1801),
-        //         pair(-0.375, 0.1632),
-        //         pair(-0.250, 0.1426),
-        //         pair(-0.125, 0.0994),
-        //         pair(0.0, 0.06),
-        //         pair(0.125, 0.0244),
-        //         pair(0.250, 0.0169)
-        //     };
-        //
-        //     var expectedImpactFactors = vector
-        //     {
-        //         pair(2.0, 0.039),
-        //         pair(2.4, 0.1),
-        //         pair(2.8, 0.18),
-        //         pair(3.2, 0.235),
-        //         pair(3.6, 0.2),
-        //         pair(4.0, 0.13),
-        //         pair(4.4, 0.08),
-        //         pair(4.8, 0.02),
-        //         pair(5.2, 0.01),
-        //         pair(5.6, 0.005),
-        //         pair(6.0, 0.001)
-        //     };
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper::AssertFactors(expectedWidthFactors, expectedDepthFactors,
-        //                                                                                 expectedImpactFactors, *locationDependentInput);
-        // }
+        [Test]
+        public void
+            GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const AsphaltRevetmentTopLayerType topLayerType = (AsphaltRevetmentTopLayerType) 99;
+            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
+
+            var builder = new CalculationInputBuilder();
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddAsphaltWaveImpactLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndEvent(
+                result, "The location with position 0.1 has an invalid top layer type.");
+        }
+
+        [Test]
+        public void GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+            double failureTension = Random.NextDouble();
+            double soilElasticity = Random.NextDouble();
+            double thicknessUpperLayer = Random.NextDouble();
+            double elasticModulusUpperLayer = Random.NextDouble();
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
+            double densityOfWater = Random.NextDouble();
+            double thicknessSubLayer = Random.NextDouble();
+            double elasticModulusSubLayer = Random.NextDouble();
+            double averageNumberOfWavesCtm = Random.NextDouble();
+            double fatigueAlpha = Random.NextDouble();
+            double fatigueBeta = Random.NextDouble();
+            double impactNumberC = Random.NextDouble();
+            double stiffnessRelationNu = Random.NextDouble();
+            var widthFactors = new List<(double, double)>
+            {
+                (Random.NextDouble(), Random.NextDouble())
+            };
+            var depthFactors = new List<(double, double)>
+            {
+                (Random.NextDouble(), Random.NextDouble())
+            };
+            var impactFactors = new List<(double, double)>
+            {
+                (Random.NextDouble(), Random.NextDouble())
+            };
+
+            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer)
+            {
+                InitialDamage = initialDamage,
+                FailureNumber = failureNumber,
+                DensityOfWater = densityOfWater,
+                ThicknessSubLayer = thicknessSubLayer,
+                ElasticModulusSubLayer = elasticModulusSubLayer,
+                AverageNumberOfWavesCtm = averageNumberOfWavesCtm,
+                FatigueAlpha = fatigueAlpha,
+                FatigueBeta = fatigueBeta,
+                ImpactNumberC = impactNumberC,
+                StiffnessRelationNu = stiffnessRelationNu,
+                WidthFactors = widthFactors,
+                DepthFactors = depthFactors,
+                ImpactFactors = impactFactors
+            };
+
+            var builder = new CalculationInputBuilder();
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddAsphaltWaveImpactLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.AreEqual(1, actualLocationDependentInputItems.Count);
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as AsphaltRevetmentWaveImpactLocationDependentInput;
+            Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                initialDamage, failureNumber, locationDependentInput);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+                x, failureTension, densityOfWater, soilElasticity, averageNumberOfWavesCtm,
+                impactNumberC, stiffnessRelationNu, locationDependentInput);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+                thicknessUpperLayer, elasticModulusUpperLayer, locationDependentInput.UpperLayer);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+                thicknessSubLayer, elasticModulusSubLayer, locationDependentInput.SubLayer);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
+                fatigueAlpha, fatigueBeta, locationDependentInput.Fatigue);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
+                widthFactors, depthFactors, impactFactors, locationDependentInput);
+        }
+
+        [Test]
+        public void GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
+            double x = Random.NextDouble();
+            double failureTension = Random.NextDouble();
+            double soilElasticity = Random.NextDouble();
+            double thicknessUpperLayer = Random.NextDouble();
+            double elasticModulusUpperLayer = Random.NextDouble();
+
+            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+
+            var builder = new CalculationInputBuilder();
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddAsphaltWaveImpactLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.AreEqual(1, actualLocationDependentInputItems.Count);
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as AsphaltRevetmentWaveImpactLocationDependentInput;
+            Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+                x, failureTension, 1025, soilElasticity, 1, 1, 0.35, locationDependentInput);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+                thicknessUpperLayer, elasticModulusUpperLayer, locationDependentInput.UpperLayer);
+
+            Assert.IsNull(locationDependentInput.SubLayer);
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
+                0.42, 4.76, locationDependentInput.Fatigue);
+
+            var expectedWidthFactors = new List<(double, double)>
+            {
+                (0.1, 0.0392),
+                (0.2, 0.0738),
+                (0.3, 0.1002),
+                (0.4, 0.1162),
+                (0.5, 0.1213),
+                (0.6, 0.1168),
+                (0.7, 0.1051),
+                (0.8, 0.0890),
+                (0.9, 0.0712),
+                (1.0, 0.0541),
+                (1.1, 0.0391),
+                (1.2, 0.0269),
+                (1.3, 0.0216),
+                (1.4, 0.0150),
+                (1.5, 0.0105)
+            };
+
+            var expectedDepthFactors = new List<(double, double)>
+            {
+                (-1.0, 0.0244),
+                (-0.875, 0.0544),
+                (-0.750, 0.0938),
+                (-0.625, 0.1407),
+                (-0.500, 0.1801),
+                (-0.375, 0.1632),
+                (-0.250, 0.1426),
+                (-0.125, 0.0994),
+                (0.0, 0.06),
+                (0.125, 0.0244),
+                (0.250, 0.0169)
+            };
+
+            var expectedImpactFactors = new List<(double, double)>
+            {
+                (2.0, 0.039),
+                (2.4, 0.1),
+                (2.8, 0.18),
+                (3.2, 0.235),
+                (3.6, 0.2),
+                (4.0, 0.13),
+                (4.4, 0.08),
+                (4.8, 0.02),
+                (5.2, 0.01),
+                (5.6, 0.005),
+                (6.0, 0.001)
+            };
+
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
+                expectedWidthFactors, expectedDepthFactors, expectedImpactFactors, locationDependentInput);
+        }
 
         #endregion
 
@@ -392,7 +391,7 @@ namespace DiKErnel.Integration.Test
         //     var events = result->GetEvents();
         //     ASSERT_EQ(1, events.size());
         //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The location with position 45 has an invalid top layer type.", events.at(0));
+        //     EventAssertHelper.AssertEvent(EventType.Error, "The location with position 45 has an invalid top layer type.", events.at(0));
         // }
         //
         //     [Test]
@@ -428,7 +427,7 @@ namespace DiKErnel.Integration.Test
         //     var events = result->GetEvents();
         //     ASSERT_EQ(1, events.size());
         //
-        //     EventAssertHelper::AssertEventWithNonEmptyMessage(EventType::Error, events.at(0));
+        //     EventAssertHelper.AssertEventWithNonEmptyMessage(EventType.Error, events.at(0));
         // }
         //
         //     [Test]
@@ -463,8 +462,8 @@ namespace DiKErnel.Integration.Test
         //     var events = result->GetEvents();
         //     ASSERT_EQ(2, events.size());
         //
-        //     EventAssertHelper::AssertEventWithNonEmptyMessage(EventType::Error, events.at(0));
-        //     EventAssertHelper::AssertEventWithNonEmptyMessage(EventType::Error, events.at(1));
+        //     EventAssertHelper.AssertEventWithNonEmptyMessage(EventType.Error, events.at(0));
+        //     EventAssertHelper.AssertEventWithNonEmptyMessage(EventType.Error, events.at(1));
         // }
         //
         //     [Test]
@@ -522,25 +521,25 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, &dikeHeight, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, &dikeHeight, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //         increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+        //         increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //         averageNumberOfWavesCtm, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+        //         averageNumberOfWavesCtm, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //         criticalCumulativeOverload, fixedNumberOfWaves, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+        //         criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //         criticalFrontVelocity, frontVelocityCwo, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+        //         criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
-        //         accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput->GetLocationDependentAccelerationAlphaA());
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+        //         accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput.LocationDependentAccelerationAlphaA());
         // }
         //
         //     [Test]
@@ -574,25 +573,25 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, nullptr, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, nullptr, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //         1, 1, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+        //         1, 1, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //         0.92, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+        //         0.92, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //         7000, 10000, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+        //         7000, 10000, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //         6.6, 1.45, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+        //         6.6, 1.45, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
-        //         1.0, 1.4, locationDependentInput->GetLocationDependentAccelerationAlphaA());
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+        //         1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA());
         // }
         //
         //     [Test]
@@ -626,25 +625,25 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, nullptr, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, nullptr, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //         1, 1, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+        //         1, 1, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //         0.92, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+        //         0.92, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //         7000, 10000, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+        //         7000, 10000, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //         4.3, 1.45, *locationDependentInput);
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+        //         4.3, 1.45, locationDependentInput);
         //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper::AssertAccelerationAlphaA(
-        //         1.0, 1.4, locationDependentInput->GetLocationDependentAccelerationAlphaA());
+        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+        //         1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA());
         // }
 
         #endregion
@@ -699,7 +698,7 @@ namespace DiKErnel.Integration.Test
         //     var events = result->GetEvents();
         //     ASSERT_EQ(1, events.size());
         //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
+        //     EventAssertHelper.AssertEvent(EventType.Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
         // }
         //
         //     [Test]
@@ -753,28 +752,28 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
-        //         minimumWaveHeightTemax, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+        //         minimumWaveHeightTemax, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
-        //         maximumWaveHeightTemin, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+        //         maximumWaveHeightTemin, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         waveAngleImpactNwa, waveAngleImpactQwa, waveAngleImpactRwa, locationDependentInput->GetWaveAngleImpact());
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         waveAngleImpactNwa, waveAngleImpactQwa, waveAngleImpactRwa, locationDependentInput.WaveAngleImpact());
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
-        //         timeLineAgwi, timeLineBgwi, timeLineCgwi, locationDependentInput->GetTimeLine());
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+        //         timeLineAgwi, timeLineBgwi, timeLineCgwi, locationDependentInput.TimeLine());
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
-        //         upperLimitLoadingAul, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+        //         upperLimitLoadingAul, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
-        //         lowerLimitLoadingAll, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+        //         lowerLimitLoadingAll, locationDependentInput);
         // }
         //
         //     [Test]
@@ -804,28 +803,28 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
-        //         3600000, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+        //         3600000, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
-        //         3.6, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+        //         3.6, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         2.0 / 3.0, 0.35, 10, locationDependentInput->GetWaveAngleImpact());
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         2.0 / 3.0, 0.35, 10, locationDependentInput.WaveAngleImpact());
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
-        //         1, -0.000009722, 0.25, locationDependentInput->GetTimeLine());
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+        //         1, -0.000009722, 0.25, locationDependentInput.TimeLine());
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
-        //         0, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+        //         0, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
-        //         0.5, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+        //         0.5, locationDependentInput);
         // }
         //
         //     [Test]
@@ -855,28 +854,28 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMinimumWaveHeight(
-        //         3600000, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+        //         3600000, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertMaximumWaveHeight(
-        //         3.6, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+        //         3.6, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         2.0 / 3.0, 0.35, 10, locationDependentInput->GetWaveAngleImpact());
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         2.0 / 3.0, 0.35, 10, locationDependentInput.WaveAngleImpact());
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertTimeLine(
-        //         0.8, -0.00001944, 0.25, locationDependentInput->GetTimeLine());
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+        //         0.8, -0.00001944, 0.25, locationDependentInput.TimeLine());
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertUpperLimitLoading(
-        //         0, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+        //         0, locationDependentInput);
         //
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper::AssertLowerLimitLoading(
-        //         0.5, *locationDependentInput);
+        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+        //         0.5, locationDependentInput);
         // }
 
         #endregion
@@ -931,7 +930,7 @@ namespace DiKErnel.Integration.Test
         //     var events = result->GetEvents();
         //     ASSERT_EQ(1, events.size());
         //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
+        //     EventAssertHelper.AssertEvent(EventType.Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
         // }
         //
         //     [Test]
@@ -994,29 +993,29 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, outerSlope, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, outerSlope, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
         //         representativeWaveRunup2PAru, representativeWaveRunup2PBru, representativeWaveRunup2PCru,
-        //         representativeWaveRunup2PGammab, representativeWaveRunup2PGammaf, locationDependentInput->GetRepresentative2P());
+        //         representativeWaveRunup2PGammab, representativeWaveRunup2PGammaf, locationDependentInput.Representative2P());
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         waveAngleImpactAbeta, waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         waveAngleImpactAbeta, waveAngleImpactBetamax, locationDependentInput.WaveAngleImpact());
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //         increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
+        //         increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //         averageNumberOfWavesCtm, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+        //         averageNumberOfWavesCtm, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //         criticalCumulativeOverload, fixedNumberOfWaves, *locationDependentInput);
+        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+        //         criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //         criticalFrontVelocity, frontVelocityCu, *locationDependentInput);
+        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+        //         criticalFrontVelocity, frontVelocityCu, locationDependentInput);
         // }
         //
         //     [Test]
@@ -1047,28 +1046,28 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, outerSlope, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, outerSlope, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-        //         1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
+        //         1.65, 4, 1.5, 1, 1, locationDependentInput.Representative2P());
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         0.0022, 80, locationDependentInput->GetWaveAngleImpact());
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         0.0022, 80, locationDependentInput.WaveAngleImpact());
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //         1, 1, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
+        //         1, 1, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //         0.92, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+        //         0.92, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //         7000, 10000, *locationDependentInput);
+        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+        //         7000, 10000, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //         6.6, 1.1, *locationDependentInput);
+        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+        //         6.6, 1.1, locationDependentInput);
         // }
         //
         //     [Test]
@@ -1099,28 +1098,28 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, outerSlope, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, outerSlope, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertRepresentative2P(
-        //         1.65, 4, 1.5, 1, 1, locationDependentInput->GetRepresentative2P());
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
+        //         1.65, 4, 1.5, 1, 1, locationDependentInput.Representative2P());
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         0.0022, 80, locationDependentInput->GetWaveAngleImpact());
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         0.0022, 80, locationDependentInput.WaveAngleImpact());
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertTransitionAlpha(
-        //         1, 1, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
+        //         1, 1, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper::AssertAverageNumberOfWaves(
-        //         0.92, *locationDependentInput);
+        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+        //         0.92, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertCumulativeOverload(
-        //         7000, 10000, *locationDependentInput);
+        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+        //         7000, 10000, locationDependentInput);
         //
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper::AssertFrontVelocity(
-        //         4.3, 1.1, *locationDependentInput);
+        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+        //         4.3, 1.1, locationDependentInput);
         // }
 
         #endregion
@@ -1175,7 +1174,7 @@ namespace DiKErnel.Integration.Test
         //     var events = result->GetEvents();
         //     ASSERT_EQ(1, events.size());
         //
-        //     EventAssertHelper::AssertEvent(EventType::Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
+        //     EventAssertHelper.AssertEvent(EventType.Error, "The location with position 0.1 has an invalid top layer type.", events.at(0));
         // }
         //
         //     [Test]
@@ -1256,34 +1255,34 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(initialDamage, failureNumber, *locationDependentInput);
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, relativeDensity, thicknessTopLayer, *locationDependentInput);
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, relativeDensity, thicknessTopLayer, locationDependentInput);
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
         //         hydraulicLoadAp, hydraulicLoadBp, hydraulicLoadCp, hydraulicLoadNp, hydraulicLoadAs, hydraulicLoadBs,
-        //         hydraulicLoadCs, hydraulicLoadNs, hydraulicLoadXib, locationDependentInput->GetHydraulicLoads());
+        //         hydraulicLoadCs, hydraulicLoadNs, hydraulicLoadXib, locationDependentInput.HydraulicLoads());
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
-        //         slopeUpperLevelAus, slopeLowerLevelAls, locationDependentInput->GetSlope());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
+        //         slopeUpperLevelAus, slopeLowerLevelAls, locationDependentInput.Slope());
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
-        //         upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul, locationDependentInput->GetUpperLimitLoading());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+        //         upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul, locationDependentInput.UpperLimitLoading());
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
-        //         lowerLimitLoadingAll, lowerLimitLoadingBll, lowerLimitLoadingCll, locationDependentInput->GetLowerLimitLoading());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+        //         lowerLimitLoadingAll, lowerLimitLoadingBll, lowerLimitLoadingCll, locationDependentInput.LowerLimitLoading());
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
         //         distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevationBsmax,
-        //         locationDependentInput->GetDistanceMaximumWaveElevation());
+        //         locationDependentInput.DistanceMaximumWaveElevation());
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
         //         normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi,
-        //         locationDependentInput->GetNormativeWidthOfWaveImpact());
+        //         locationDependentInput.NormativeWidthOfWaveImpact());
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         waveAngleImpactBetamax, locationDependentInput->GetWaveAngleImpact());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         waveAngleImpactBetamax, locationDependentInput.WaveAngleImpact());
         // }
         //
         //     [Test]
@@ -1316,24 +1315,24 @@ namespace DiKErnel.Integration.Test
         //         &actualLocationDependentInputItems.at(0).get());
         //     ASSERT_TRUE(locationDependentInput != nullptr);
         //
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertGeneralProperties(
-        //         x, relativeDensity, thicknessTopLayer, *locationDependentInput);
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
+        //         x, relativeDensity, thicknessTopLayer, locationDependentInput);
         //
-        //     LocationDependentInputAssertHelper::AssertDamageProperties(0, 1, *locationDependentInput);
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertHydraulicLoads(
-        //         4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput->GetHydraulicLoads());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertSlope(
-        //         0.05, 1.5, locationDependentInput->GetSlope());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertUpperLimitLoading(
-        //         0.1, 0.6, 4, locationDependentInput->GetUpperLimitLoading());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertLowerLimitLoading(
-        //         0.1, 0.2, 4, locationDependentInput->GetLowerLimitLoading());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertDistanceMaximumWaveElevation(
-        //         0.42, 0.9, locationDependentInput->GetDistanceMaximumWaveElevation());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertNormativeWidthOfWaveImpact(
-        //         0.96, 0.11, locationDependentInput->GetNormativeWidthOfWaveImpact());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper::AssertWaveAngleImpact(
-        //         78, locationDependentInput->GetWaveAngleImpact());
+        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
+        //         4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput.HydraulicLoads());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
+        //         0.05, 1.5, locationDependentInput.Slope());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+        //         0.1, 0.6, 4, locationDependentInput.UpperLimitLoading());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+        //         0.1, 0.2, 4, locationDependentInput.LowerLimitLoading());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
+        //         0.42, 0.9, locationDependentInput.DistanceMaximumWaveElevation());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
+        //         0.96, 0.11, locationDependentInput.NormativeWidthOfWaveImpact());
+        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+        //         78, locationDependentInput.WaveAngleImpact());
         // }
 
         #endregion
