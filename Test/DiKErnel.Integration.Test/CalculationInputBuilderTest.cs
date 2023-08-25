@@ -169,7 +169,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
-            double x = Random.NextDouble();
+            const double x = 5;
             double failureTension = Random.NextDouble();
             double soilElasticity = Random.NextDouble();
             double thicknessUpperLayer = Random.NextDouble();
@@ -254,10 +254,11 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithNotFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void
+            GivenBuilderWithNotFullyConfiguredHydraulicAsphaltConcreteAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
-            var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
-            double x = Random.NextDouble();
+            const AsphaltRevetmentTopLayerType topLayerType = AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete;
+            const double x = 5;
             double failureTension = Random.NextDouble();
             double soilElasticity = Random.NextDouble();
             double thicknessUpperLayer = Random.NextDouble();
@@ -367,284 +368,287 @@ namespace DiKErnel.Integration.Test
             GivenGrassOvertoppingLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
         }
 
-        //     [Test]
-        // public void GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var topLayerType = static_cast<GrassRevetmentTopLayerType>(99);
-        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddDikeProfileSegment(10, 20, 30, 40);
-        //     builder.AddDikeProfileSegment(30, 40, 50, 60);
-        //     builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-        //     builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-        //     builder.AddGrassOvertoppingLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper.AssertEvent(EventType.Error, "The location with position 45 has an invalid top layer type.", events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithGrassOvertoppingLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var topLayerType = GrassRevetmentTopLayerType.OpenSod;
-        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
-        //
-        //     var outerToeX = 0;
-        //     var outerCrestX = 30;
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-        //
-        //     builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
-        //     builder.AddDikeProfileSegment(10, 20, 20, 20);
-        //     builder.AddDikeProfileSegment(20, 20, outerCrestX, 10);
-        //     builder.AddDikeProfileSegment(30, 10, 40, 40);
-        //     builder.AddDikeProfileSegment(40, 40, 50, 60);
-        //     builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(outerCrestX, CharacteristicPointType.OuterCrest);
-        //     builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-        //     builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-        //     builder.AddGrassOvertoppingLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(1, events.size());
-        //
-        //     EventAssertHelper.AssertEventWithNonEmptyMessage(EventType.Error, events.at(0));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithGrassOvertoppingLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var topLayerType = GrassRevetmentTopLayerType.OpenSod;
-        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
-        //
-        //     var outerToeX = 0;
-        //     var outerCrestX = 30;
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-        //
-        //     builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
-        //     builder.AddDikeProfileSegment(10, 20, outerCrestX, 25, 1.1);
-        //     builder.AddDikeProfileSegment(30, 25, 40, 40);
-        //     builder.AddDikeProfileSegment(40, 40, 50, 60);
-        //     builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
-        //     builder.AddDikeProfilePoint(outerCrestX, CharacteristicPointType.OuterCrest);
-        //     builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-        //     builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-        //     builder.AddGrassOvertoppingLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsFalse(result.Successful);
-        //
-        //     var events = result->GetEvents();
-        //     ASSERT_EQ(2, events.size());
-        //
-        //     EventAssertHelper.AssertEventWithNonEmptyMessage(EventType.Error, events.at(0));
-        //     EventAssertHelper.AssertEventWithNonEmptyMessage(EventType.Error, events.at(1));
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
-        // {
-        //     // Given
-        //     var topLayerType = GrassRevetmentTopLayerType.OpenSod;
-        //     var x = 45;
-        //     var initialDamage = 0.2;
-        //     var failureNumber = 0.3;
-        //     var criticalCumulativeOverload = 0.4;
-        //     var criticalFrontVelocity = 0.5;
-        //     var increasedLoadTransitionAlphaM = 0.6;
-        //     var reducedStrengthTransitionAlphaS = 0.7;
-        //     var averageNumberOfWavesCtm = 0.8;
-        //     var fixedNumberOfWaves = 9;
-        //     var frontVelocityCwo = 1.0;
-        //     var accelerationAlphaAForCrest = 1.1;
-        //     var accelerationAlphaAForInnerSlope = 1.2;
-        //     var dikeHeight = 1.3;
-        //
-        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
-        //     constructionProperties.SetInitialDamage(initialDamage));
-        //     constructionProperties.SetFailureNumber(failureNumber));
-        //     constructionProperties.SetCriticalCumulativeOverload(criticalCumulativeOverload));
-        //     constructionProperties.SetCriticalFrontVelocity(criticalFrontVelocity));
-        //     constructionProperties.SetIncreasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM));
-        //     constructionProperties.SetReducedStrengthTransitionAlphaS(reducedStrengthTransitionAlphaS));
-        //     constructionProperties.SetAverageNumberOfWavesCtm(averageNumberOfWavesCtm));
-        //     constructionProperties.SetFixedNumberOfWaves(fixedNumberOfWaves));
-        //     constructionProperties.SetFrontVelocityCwo(frontVelocityCwo));
-        //     constructionProperties.SetAccelerationAlphaAForCrest(accelerationAlphaAForCrest));
-        //     constructionProperties.SetAccelerationAlphaAForInnerSlope(accelerationAlphaAForInnerSlope));
-        //     constructionProperties.SetDikeHeight(dikeHeight));
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddDikeProfileSegment(10, 20, 30, 40);
-        //     builder.AddDikeProfileSegment(30, 40, 50, 60);
-        //     builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-        //     builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-        //     builder.AddGrassOvertoppingLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsTrue(result.Successful);
-        //
-        //     var calculationInput = *result->GetData();
-        //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
-        //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         x, &dikeHeight, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-        //         increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-        //         averageNumberOfWavesCtm, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-        //         criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-        //         criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-        //         accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput.LocationDependentAccelerationAlphaA());
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
-        // {
-        //     // Given
-        //     var topLayerType = GrassRevetmentTopLayerType.ClosedSod;
-        //     var x = 45;
-        //
-        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddDikeProfileSegment(10, 20, 30, 40);
-        //     builder.AddDikeProfileSegment(30, 40, 50, 60);
-        //     builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-        //     builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-        //     builder.AddGrassOvertoppingLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsTrue(result.Successful);
-        //
-        //     var calculationInput = *result->GetData();
-        //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
-        //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         x, nullptr, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-        //         1, 1, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-        //         0.92, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-        //         7000, 10000, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-        //         6.6, 1.45, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-        //         1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA());
-        // }
-        //
-        //     [Test]
-        // public void GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
-        // {
-        //     // Given
-        //     var topLayerType = GrassRevetmentTopLayerType.OpenSod;
-        //     var x = 45;
-        //
-        //     var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
-        //
-        //     var builder = new CalculationInputBuilder();
-        //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddDikeProfileSegment(10, 20, 30, 40);
-        //     builder.AddDikeProfileSegment(30, 40, 50, 60);
-        //     builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-        //     builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-        //     builder.AddGrassOvertoppingLocation(move(constructionProperties));
-        //
-        //     // When
-        //     DataResult<ICalculationInput> result = builder.Build();
-        //
-        //     // Then
-        //     Assert.IsTrue(result.Successful);
-        //
-        //     var calculationInput = *result->GetData();
-        //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
-        //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
-        //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentOvertoppingLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         x, nullptr, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-        //         1, 1, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-        //         0.92, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-        //         7000, 10000, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-        //         4.3, 1.45, locationDependentInput);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-        //         1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA());
-        // }
+        [Test]
+        public void GivenBuilderWithGrassOvertoppingLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const GrassRevetmentTopLayerType topLayerType = (GrassRevetmentTopLayerType) 99;
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
+
+            var builder = new CalculationInputBuilder();
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, 30, 40);
+            builder.AddDikeProfileSegment(30, 40, 50, 60);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+            builder.AddGrassOvertoppingLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndEvent(
+                result, "The location with position 45 has an invalid top layer type.");
+        }
+
+        [Test]
+        public void GivenBuilderWithGrassOvertoppingLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
+
+            const double outerToeX = 0;
+            const double outerCrestX = 30;
+
+            var builder = new CalculationInputBuilder();
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
+            builder.AddDikeProfileSegment(10, 20, 20, 20);
+            builder.AddDikeProfileSegment(20, 20, outerCrestX, 10);
+            builder.AddDikeProfileSegment(30, 10, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, 50, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(outerCrestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+            builder.AddGrassOvertoppingLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsFalse(result.Successful);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.AreEqual(1, events.Count);
+            Assert.AreEqual(EventType.Error, events[0].Type);
+            Assert.IsNotEmpty(events[0].Message);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassOvertoppingLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
+
+            const double outerToeX = 0;
+            const double outerCrestX = 30;
+
+            var builder = new CalculationInputBuilder();
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
+            builder.AddDikeProfileSegment(10, 20, outerCrestX, 25, 1.1);
+            builder.AddDikeProfileSegment(30, 25, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, 50, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(outerCrestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+            builder.AddGrassOvertoppingLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsFalse(result.Successful);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.AreEqual(2, events.Count);
+            Assert.AreEqual(EventType.Error, events[0].Type);
+            Assert.IsNotEmpty(events[0].Message);
+            Assert.AreEqual(EventType.Error, events[1].Type);
+            Assert.IsNotEmpty(events[1].Message);
+        }
+
+        [Test]
+        public void GivenBuilderWithFullyConfiguredGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            const double x = 45;
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
+            double criticalCumulativeOverload = Random.NextDouble();
+            double criticalFrontVelocity = Random.NextDouble();
+            double increasedLoadTransitionAlphaM = Random.NextDouble();
+            double reducedStrengthTransitionAlphaS = Random.NextDouble();
+            double averageNumberOfWavesCtm = Random.NextDouble();
+            int fixedNumberOfWaves = Random.Next();
+            double frontVelocityCwo = Random.NextDouble();
+            double accelerationAlphaAForCrest = Random.NextDouble();
+            double accelerationAlphaAForInnerSlope = Random.NextDouble();
+            double dikeHeight = Random.NextDouble();
+
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType)
+            {
+                InitialDamage = initialDamage,
+                FailureNumber = failureNumber,
+                CriticalCumulativeOverload = criticalCumulativeOverload,
+                CriticalFrontVelocity = criticalFrontVelocity,
+                IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM,
+                ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS,
+                AverageNumberOfWavesCtm = averageNumberOfWavesCtm,
+                FixedNumberOfWaves = fixedNumberOfWaves,
+                FrontVelocityCwo = frontVelocityCwo,
+                AccelerationAlphaAForCrest = accelerationAlphaAForCrest,
+                AccelerationAlphaAForInnerSlope = accelerationAlphaAForInnerSlope,
+                DikeHeight = dikeHeight
+            };
+
+            var builder = new CalculationInputBuilder();
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, 30, 40);
+            builder.AddDikeProfileSegment(30, 40, 50, 60);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+            builder.AddGrassOvertoppingLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.AreEqual(1, actualLocationDependentInputItems.Count);
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassRevetmentOvertoppingLocationDependentInput;
+            Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                initialDamage, failureNumber, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+                x, dikeHeight, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                averageNumberOfWavesCtm, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+                criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope,
+                locationDependentInput.LocationDependentAccelerationAlphaA);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.ClosedSod;
+            const double x = 45;
+
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
+
+            var builder = new CalculationInputBuilder();
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, 30, 40);
+            builder.AddDikeProfileSegment(30, 40, 50, 60);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+            builder.AddGrassOvertoppingLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.AreEqual(1, actualLocationDependentInputItems.Count);
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassRevetmentOvertoppingLocationDependentInput;
+            Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+                x, null, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+                6.6, 1.45, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA);
+        }
+
+        [Test]
+        public void GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.OpenSod;
+            const double x = 45;
+
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
+
+            var builder = new CalculationInputBuilder();
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, 30, 40);
+            builder.AddDikeProfileSegment(30, 40, 50, 60);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+            builder.AddGrassOvertoppingLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.AreEqual(1, actualLocationDependentInputItems.Count);
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassRevetmentOvertoppingLocationDependentInput;
+            Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+                x, null, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+                4.3, 1.45, locationDependentInput);
+
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA);
+        }
 
         #endregion
 
@@ -687,7 +691,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveImpactLocation(move(constructionProperties));
+        //     builder.AddGrassWaveImpactLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -736,7 +740,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveImpactLocation(move(constructionProperties));
+        //     builder.AddGrassWaveImpactLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -744,13 +748,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
         //
@@ -787,7 +791,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveImpactLocation(move(constructionProperties));
+        //     builder.AddGrassWaveImpactLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -795,13 +799,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
@@ -838,7 +842,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveImpactLocation(move(constructionProperties));
+        //     builder.AddGrassWaveImpactLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -846,13 +850,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<GrassRevetmentWaveImpactLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
@@ -919,7 +923,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+        //     builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -977,7 +981,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+        //     builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -985,13 +989,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
         //
@@ -1030,7 +1034,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+        //     builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -1038,13 +1042,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
@@ -1082,7 +1086,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+        //     builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -1090,13 +1094,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<GrassRevetmentWaveRunupRayleighLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
         //
@@ -1163,7 +1167,7 @@ namespace DiKErnel.Integration.Test
         //
         //     var builder = new CalculationInputBuilder();
         //     AddDefaultProfileAndTimeStep(builder);
-        //     builder.AddNaturalStoneLocation(move(constructionProperties));
+        //     builder.AddNaturalStoneLocation(constructionProperties);
         //
         //     // When
         //     DataResult<ICalculationInput> result = builder.Build();
@@ -1247,13 +1251,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     LocationDependentInputAssertHelper.AssertDamageProperties(initialDamage, failureNumber, locationDependentInput);
         //
@@ -1307,13 +1311,13 @@ namespace DiKErnel.Integration.Test
         //     // Then
         //     Assert.IsTrue(result.Successful);
         //
-        //     var calculationInput = *result->GetData();
+        //     ICalculationInput calculationInput = result.Data;
         //     var actualLocationDependentInputItems = calculationInput.GetLocationDependentInputItems();
         //     ASSERT_EQ(1, actualLocationDependentInputItems.size());
         //
-        //     const auto* locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
-        //         &actualLocationDependentInputItems.at(0).get());
-        //     ASSERT_TRUE(locationDependentInput != nullptr);
+        //     var locationDependentInput = dynamic_cast<NaturalStoneRevetmentLocationDependentInput*>(
+        //         actualLocationDependentInputItems[0] as);
+        //     Assert.IsNotNull(locationDependentInput);;
         //
         //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
         //         x, relativeDensity, thicknessTopLayer, locationDependentInput);
