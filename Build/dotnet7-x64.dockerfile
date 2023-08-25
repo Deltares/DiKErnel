@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0-windowsservercore-ltsc2019
+FROM mcr.microsoft.com/dotnet/sdk:7.0-windowsservercore-ltsc2022
 
 # Set powershell as default shell
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
