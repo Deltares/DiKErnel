@@ -27,6 +27,7 @@ using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
 using DiKErnel.Integration.Data.NaturalStoneRevetment;
 using DiKErnel.Integration.TestUtil;
 using DiKErnel.Util;
+using DiKErnel.Util.Helpers;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;
 
@@ -60,8 +61,8 @@ namespace DiKErnel.Integration.Test
             Action<CalculationInputBuilder> addLocationAction, double locationX)
         {
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                addLocationAction, "The location with position " + locationX + " must be between the outer toe and " +
-                                   "outer crest.");
+                addLocationAction, "The location with position " + NumericsHelper.ToString(locationX) + " must be " +
+                                   "between the outer toe and outer crest.");
         }
 
         private static void GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
@@ -93,8 +94,8 @@ namespace DiKErnel.Integration.Test
                                                             locationX,
                                                             Random.NextEnumValue<GrassRevetmentTopLayerType>()));
                 },
-                "The location with position " + locationX + " must be on or between the outer crest and " +
-                "inner toe.");
+                "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
+                "outer crest and inner toe.");
         }
 
         #region Locations
