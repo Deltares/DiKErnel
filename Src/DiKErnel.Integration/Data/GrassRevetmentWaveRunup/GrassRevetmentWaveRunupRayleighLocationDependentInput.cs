@@ -122,7 +122,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                         incrementTime, incrementDamage, FailureNumber,
                         initialDamage);
 
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, timeDependentInput.BeginTime);
+                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
+                                                                     timeDependentInput.BeginTime);
                 }
             }
 

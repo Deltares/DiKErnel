@@ -48,7 +48,8 @@ namespace DiKErnel.Integration.Factories
 
                 var segmentEndPoint = new ProfilePoint(profileSegment.EndPointX, profileSegment.EndPointZ);
 
-                double roughnessCoefficient = profileSegment.RoughnessCoefficient ?? ProfileSegmentDefaults.RoughnessCoefficient;
+                double roughnessCoefficient = profileSegment.RoughnessCoefficient
+                                              ?? ProfileSegmentDefaults.RoughnessCoefficient;
 
                 segments.Add(new ProfileSegment(segmentStartPoint, segmentEndPoint, roughnessCoefficient));
 
