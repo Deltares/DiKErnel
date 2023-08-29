@@ -711,6 +711,8 @@ namespace DiKErnel.Integration.Test
                                              as AsphaltRevetmentWaveImpactLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
@@ -762,6 +764,8 @@ namespace DiKErnel.Integration.Test
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as AsphaltRevetmentWaveImpactLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
@@ -1000,6 +1004,8 @@ namespace DiKErnel.Integration.Test
                                              as GrassRevetmentOvertoppingLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
@@ -1055,6 +1061,8 @@ namespace DiKErnel.Integration.Test
                                              as GrassRevetmentOvertoppingLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
@@ -1106,6 +1114,8 @@ namespace DiKErnel.Integration.Test
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentOvertoppingLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
@@ -1232,6 +1242,8 @@ namespace DiKErnel.Integration.Test
                                              as GrassRevetmentWaveImpactLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
@@ -1285,6 +1297,8 @@ namespace DiKErnel.Integration.Test
                                              as GrassRevetmentWaveImpactLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
             GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
@@ -1335,6 +1349,8 @@ namespace DiKErnel.Integration.Test
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveImpactLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
@@ -1476,6 +1492,8 @@ namespace DiKErnel.Integration.Test
                                              as GrassRevetmentWaveRunupRayleighLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
@@ -1533,6 +1551,8 @@ namespace DiKErnel.Integration.Test
                                              as GrassRevetmentWaveRunupRayleighLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
@@ -1586,6 +1606,8 @@ namespace DiKErnel.Integration.Test
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveRunupRayleighLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
@@ -1743,6 +1765,8 @@ namespace DiKErnel.Integration.Test
                                              as NaturalStoneRevetmentLocationDependentInput;
             Assert.IsNotNull(locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
@@ -1809,19 +1833,28 @@ namespace DiKErnel.Integration.Test
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
                 x, relativeDensity, thicknessTopLayer, locationDependentInput);
 
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
                 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput.HydraulicLoads);
+
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
                 0.05, 1.5, locationDependentInput.Slope);
+
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 0.1, 0.6, 4, locationDependentInput.UpperLimitLoading);
+
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 0.1, 0.2, 4, locationDependentInput.LowerLimitLoading);
+
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
                 0.42, 0.9, locationDependentInput.DistanceMaximumWaveElevation);
+
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
                 0.96, 0.11, locationDependentInput.NormativeWidthOfWaveImpact);
+
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 78, locationDependentInput.WaveAngleImpact);
         }
