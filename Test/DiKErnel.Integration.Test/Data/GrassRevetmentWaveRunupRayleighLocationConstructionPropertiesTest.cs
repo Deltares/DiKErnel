@@ -35,7 +35,8 @@ namespace DiKErnel.Integration.Test.Data
             double outerSlope = Random.NextDouble();
 
             // Call
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(x, outerSlope, topLayerType);
+            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                x, outerSlope, topLayerType);
 
             // Assert
             Assert.IsInstanceOf<GrassRevetmentWaveRunupLocationConstructionProperties>(constructionProperties);
@@ -84,7 +85,8 @@ namespace DiKErnel.Integration.Test.Data
             int fixedNumberOfWaves = Random.Next();
             double frontVelocityCu = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(x, outerSlope, topLayerType);
+            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                x, outerSlope, topLayerType);
 
             // When
             constructionProperties.InitialDamage = initialDamage;
