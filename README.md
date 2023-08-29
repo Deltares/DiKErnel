@@ -4,19 +4,19 @@
 ## Contents of Repository
 
 **Build**\
-Files for deploying specific parts of the development environment (static code analysis, documentation, etc.).
+Files for deploying specific parts of the development environment (e.g. static code analysis).
 
 **Deployment**\
-Files for deploying versioned instances of DiKErnel on different platforms (currently only Windows).
+Dependencies required when deploying instances of DiKErnel on different platforms (currently only Windows).
 
 **Design**\
 UML diagrams that elaborate on the architecture of DiKErnel.
 
-**Development**\
-Files for deploying different IDEs (currently only Visual Studio).
+**Src**\
+The source code files of DiKErnel.
 
-**DiKErnel**\
-The actual source files and test code of DiKErnel.
+**Test**\
+The test code files of DiKErnel.
 
 **LICENCE**\
 The terms under which DiKErnel can be redistributed and/or modified.
@@ -26,22 +26,11 @@ A listing of the terms that are shipped with the third party components used by 
 
 ## Build
 
-### Requirements
-- CMake 3.23 or higher
-- A C++20 compatible compiler
+### Requirements for building
+- Microsoft Visual Studio 2022 (build tools)
+- .NET7 SDK
 
-### Requirements to build the Gui
-- Qt6.3
-- Set an environment variable with the name "QT6DIR64" and the path to the Qt installation\
-![EnvironmentVariableQt](https://user-images.githubusercontent.com/5822688/172304265-6e3120aa-2d8e-4805-9e9b-506f59bb4ea4.png)
-- Add the lib and bin folder to the Path variable\
-![PathVariableQt](https://user-images.githubusercontent.com/5822688/172304423-d277c0ac-366f-4e4b-9d95-672e8731446a.png)
+### Requirements for running
+- .NET7 runtime
+- Microsoft Visual C++ Redistributable 2022
 
-### IDE
-To use an IDE, such as Visual Studio:
-
-```powershell
-cmake -S .\DiKErnel\ -B .\Development\VisualStudio\ -G "Visual Studio 17 2022" -A x64
-cmake --build .\Development\VisualStudio\ --target install
-cmake --open .\Development\VisualStudio\
-```
