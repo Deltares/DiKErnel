@@ -39,7 +39,7 @@ namespace DiKErnel.Integration
     /// </summary>
     public class CalculationInputBuilder
     {
-        private readonly List<ProfileDataFactoryPoint> profileDataFactoryPoints = 
+        private readonly List<ProfileDataFactoryPoint> profileDataFactoryPoints =
             new List<ProfileDataFactoryPoint>();
 
         private readonly List<ProfileDataFactorySegment> profileDataFactorySegments =
