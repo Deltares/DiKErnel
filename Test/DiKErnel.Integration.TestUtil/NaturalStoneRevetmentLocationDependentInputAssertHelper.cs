@@ -23,10 +23,9 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class NaturalStoneRevetmentLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(double x, double relativeDensity, double thicknessTopLayer,
+        public static void AssertGeneralProperties(double relativeDensity, double thicknessTopLayer,
                                                    NaturalStoneRevetmentLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(x, locationDependentInput.X);
             Assert.AreEqual(relativeDensity, locationDependentInput.RelativeDensity);
             Assert.AreEqual(thicknessTopLayer, locationDependentInput.ThicknessTopLayer);
         }

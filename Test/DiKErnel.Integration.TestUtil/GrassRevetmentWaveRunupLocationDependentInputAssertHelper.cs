@@ -23,10 +23,9 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassRevetmentWaveRunupLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(double x, double outerSlope,
+        public static void AssertGeneralProperties(double outerSlope,
                                                    GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(x, locationDependentInput.X);
             Assert.AreEqual(outerSlope, locationDependentInput.OuterSlope);
         }
 

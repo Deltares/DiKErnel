@@ -23,11 +23,9 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassRevetmentOvertoppingLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(double x, double? dikeHeight,
+        public static void AssertGeneralProperties(double? dikeHeight,
                                                    GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(x, locationDependentInput.X);
-
             if (!dikeHeight.HasValue)
             {
                 Assert.IsNull(locationDependentInput.EnforcedDikeHeight);

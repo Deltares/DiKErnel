@@ -23,12 +23,6 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassRevetmentWaveImpactLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(double x,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
-        {
-            Assert.AreEqual(x, locationDependentInput.X);
-        }
-
         public static void AssertMinimumWaveHeight(double minimumWaveHeightTemax,
                                                    GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
