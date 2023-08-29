@@ -401,7 +401,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            const int startPointX = 10;
+            const double startPointX = 10;
 
             var builder = new CalculationInputBuilder();
             builder.AddDikeProfileSegment(0, 10, startPointX, 30);
@@ -423,7 +423,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithGrassOvertoppingLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            const int startPointX = 10;
+            const double startPointX = 10;
 
             var builder = new CalculationInputBuilder();
             builder.AddDikeProfileSegment(0, 10, startPointX, 30);
@@ -1184,7 +1184,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
-            const int x = 5;
+            const double x = 5;
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();
             double timeLineAgwi = Random.NextDouble();
@@ -1263,7 +1263,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.ClosedSod;
-            const int x = 5;
+            const double x = 5;
 
             var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
 
@@ -1314,7 +1314,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.OpenSod;
-            const int x = 5;
+            const double x = 5;
 
             var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
 
@@ -1418,7 +1418,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
-            const int x = 5;
+            const double x = 5;
             double outerSlope = Random.NextDouble();
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();
@@ -1509,7 +1509,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.ClosedSod;
-            const int x = 5;
+            const double x = 5;
             double outerSlope = Random.NextDouble();
 
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
@@ -1563,7 +1563,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.OpenSod;
-            const int x = 5;
+            const double x = 5;
             double outerSlope = Random.NextDouble();
 
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
@@ -1668,7 +1668,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             var topLayerType = Random.NextEnumValue<NaturalStoneRevetmentTopLayerType>();
-            const int x = 5;
+            const double x = 5;
             double thicknessTopLayer = Random.NextDouble();
             double relativeDensity = Random.NextDouble();
             double initialDamage = Random.NextDouble();
@@ -1697,31 +1697,33 @@ namespace DiKErnel.Integration.Test
             double waveAngleImpactBetamax = Random.NextDouble();
 
             var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
-                x, topLayerType, thicknessTopLayer, relativeDensity);
-            constructionProperties.InitialDamage = initialDamage;
-            constructionProperties.FailureNumber = failureNumber;
-            constructionProperties.HydraulicLoadXib = hydraulicLoadXib;
-            constructionProperties.HydraulicLoadAp = hydraulicLoadAp;
-            constructionProperties.HydraulicLoadBp = hydraulicLoadBp;
-            constructionProperties.HydraulicLoadCp = hydraulicLoadCp;
-            constructionProperties.HydraulicLoadNp = hydraulicLoadNp;
-            constructionProperties.HydraulicLoadAs = hydraulicLoadAs;
-            constructionProperties.HydraulicLoadBs = hydraulicLoadBs;
-            constructionProperties.HydraulicLoadCs = hydraulicLoadCs;
-            constructionProperties.HydraulicLoadNs = hydraulicLoadNs;
-            constructionProperties.SlopeUpperLevelAus = slopeUpperLevelAus;
-            constructionProperties.SlopeLowerLevelAls = slopeLowerLevelAls;
-            constructionProperties.UpperLimitLoadingAul = upperLimitLoadingAul;
-            constructionProperties.UpperLimitLoadingBul = upperLimitLoadingBul;
-            constructionProperties.UpperLimitLoadingCul = upperLimitLoadingCul;
-            constructionProperties.LowerLimitLoadingAll = lowerLimitLoadingAll;
-            constructionProperties.LowerLimitLoadingBll = lowerLimitLoadingBll;
-            constructionProperties.LowerLimitLoadingCll = lowerLimitLoadingCll;
-            constructionProperties.DistanceMaximumWaveElevationAsmax = distanceMaximumWaveElevationAsmax;
-            constructionProperties.DistanceMaximumWaveElevationBsmax = distanceMaximumWaveElevationBsmax;
-            constructionProperties.NormativeWidthOfWaveImpactAwi = normativeWidthOfWaveImpactAwi;
-            constructionProperties.NormativeWidthOfWaveImpactBwi = normativeWidthOfWaveImpactBwi;
-            constructionProperties.WaveAngleImpactBetamax = waveAngleImpactBetamax;
+                x, topLayerType, thicknessTopLayer, relativeDensity)
+            {
+                InitialDamage = initialDamage,
+                FailureNumber = failureNumber,
+                HydraulicLoadXib = hydraulicLoadXib,
+                HydraulicLoadAp = hydraulicLoadAp,
+                HydraulicLoadBp = hydraulicLoadBp,
+                HydraulicLoadCp = hydraulicLoadCp,
+                HydraulicLoadNp = hydraulicLoadNp,
+                HydraulicLoadAs = hydraulicLoadAs,
+                HydraulicLoadBs = hydraulicLoadBs,
+                HydraulicLoadCs = hydraulicLoadCs,
+                HydraulicLoadNs = hydraulicLoadNs,
+                SlopeUpperLevelAus = slopeUpperLevelAus,
+                SlopeLowerLevelAls = slopeLowerLevelAls,
+                UpperLimitLoadingAul = upperLimitLoadingAul,
+                UpperLimitLoadingBul = upperLimitLoadingBul,
+                UpperLimitLoadingCul = upperLimitLoadingCul,
+                LowerLimitLoadingAll = lowerLimitLoadingAll,
+                LowerLimitLoadingBll = lowerLimitLoadingBll,
+                LowerLimitLoadingCll = lowerLimitLoadingCll,
+                DistanceMaximumWaveElevationAsmax = distanceMaximumWaveElevationAsmax,
+                DistanceMaximumWaveElevationBsmax = distanceMaximumWaveElevationBsmax,
+                NormativeWidthOfWaveImpactAwi = normativeWidthOfWaveImpactAwi,
+                NormativeWidthOfWaveImpactBwi = normativeWidthOfWaveImpactBwi,
+                WaveAngleImpactBetamax = waveAngleImpactBetamax
+            };
 
             var builder = new CalculationInputBuilder();
             AddDefaultProfileAndTimeStep(builder);
@@ -1779,7 +1781,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const NaturalStoneRevetmentTopLayerType topLayerType = NaturalStoneRevetmentTopLayerType.NordicStone;
-            const int x = 5;
+            const double x = 5;
             double thicknessTopLayer = Random.NextDouble();
             double relativeDensity = Random.NextDouble();
 
