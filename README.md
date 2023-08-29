@@ -4,19 +4,19 @@
 ## Contents of Repository
 
 **Build**\
-Files for deploying specific parts of the development environment (static code analysis, documentation, etc.).
+Files for deploying specific parts of the development environment (e.g. static code analysis).
 
 **Deployment**\
-Files for deploying versioned instances of DiKErnel on different platforms (currently only Windows).
+Dependencies required when deploying instances of DiKErnel on different platforms (currently only Windows).
 
 **Design**\
 UML diagrams that elaborate on the architecture of DiKErnel.
 
-**Development**\
-Files for deploying different IDEs (currently only Visual Studio).
+**Src**\
+The source code files of DiKErnel.
 
-**DiKErnel**\
-The actual source files and test code of DiKErnel.
+**Test**\
+The test code files of DiKErnel.
 
 **LICENCE**\
 The terms under which DiKErnel can be redistributed and/or modified.
