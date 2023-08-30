@@ -108,13 +108,92 @@ namespace DiKErnel.KernelWrapper.Json.Input
             }
         }
 
-        private static void AdaptHydraulicData(JsonInputData jsonInputData, CalculationInputBuilder builder) {}
+        private static void AdaptHydraulicData(JsonInputData jsonInputData, CalculationInputBuilder builder)
+        {
+            JsonInputHydraulicData hydraulicData = jsonInputData.HydraulicData;
 
-        private static void AdaptLocations(JsonInputData jsonInputData, CalculationInputBuilder builder) {}
+            IReadOnlyList<double> waterLevels = hydraulicData.WaterLevels;
+            IReadOnlyList<double> waveHeightsHm0 = hydraulicData.WaveHeightsHm0;
+            IReadOnlyList<double> wavePeriodsTm10 = hydraulicData.WavePeriodsTm10;
+            IReadOnlyList<double> waveAngles = hydraulicData.WaveAngles;
 
-        private static T GetCalculationDefinition<T>(
-            Dictionary<JsonInputCalculationType, JsonInputCalculationData> calculationDefinitions,
-            JsonInputCalculationType calculationType) where T : class
+            IReadOnlyList<int> times = jsonInputData.Times;
+
+            for (var i = 0; i < times.Count - 1; i++)
+            {
+                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeightsHm0[i], wavePeriodsTm10[i],
+                                    waveAngles[i]);
+            }
+        }
+
+        private static void AdaptLocations(JsonInputData jsonInputData, CalculationInputBuilder builder)
+        {
+            IReadOnlyList<JsonInputLocationData> locationDataItems = jsonInputData.LocationData;
+            IReadOnlyList<JsonInputCalculationData> calculationDataItems = jsonInputData.CalculationDefinitionData;
+
+            foreach (JsonInputLocationData locationData in locationDataItems)
+            {
+                switch (locationData)
+                {
+                    case JsonInputAsphaltWaveImpactLocationData asphaltWaveImpactLocationData:
+                    {
+                        builder.AddAsphaltWaveImpactLocation(
+                            CreateAsphaltWaveImpactConstructionProperties(
+                                asphaltWaveImpactLocationData,
+                                GetCalculationDefinition<JsonInputAsphaltWaveImpactCalculationData>(
+                                    calculationDataItems, JsonInputCalculationType.AsphaltWaveImpact)));
+                        break;
+                    }
+                    case JsonInputGrassOvertoppingLocationData grassOvertoppingLocationData:
+                    {
+                        builder.AddGrassOvertoppingLocation(
+                            CreateGrassOvertoppingConstructionProperties(
+                                grassOvertoppingLocationData,
+                                GetCalculationDefinition<JsonInputGrassOvertoppingCalculationData>(
+                                    calculationDataItems, JsonInputCalculationType.GrassOvertopping)));
+                        break;
+                    }
+                    case JsonInputGrassWaveImpactLocationData grassWaveImpactLocationData:
+                    {
+                        builder.AddGrassWaveImpactLocation(
+                            CreateGrassWaveImpactConstructionProperties(
+                                grassWaveImpactLocationData,
+                                GetCalculationDefinition<JsonInputGrassWaveImpactCalculationData>(
+                                    calculationDataItems, JsonInputCalculationType.GrassWaveImpact)));
+                        break;
+                    }
+                    case JsonInputGrassWaveRunupLocationData grassWaveRunupLocationData:
+                    {
+                        GrassRevetmentWaveRunupLocationConstructionProperties constructionProperties =
+                            CreateGrassWaveRunupConstructionProperties(
+                                grassWaveRunupLocationData,
+                                GetCalculationDefinition<JsonInputGrassWaveRunupCalculationData>(
+                                    calculationDataItems, JsonInputCalculationType.GrassWaveRunup));
+
+                        if (constructionProperties is
+                            GrassRevetmentWaveRunupRayleighLocationConstructionProperties rayleighConstructionProperties)
+                        {
+                            builder.AddGrassWaveRunupRayleighLocation(rayleighConstructionProperties);
+                        }
+
+                        break;
+                    }
+                    case JsonInputNaturalStoneLocationData naturalStoneLocationData:
+                    {
+                        builder.AddNaturalStoneLocation(
+                            CreateNaturalStoneConstructionProperties(
+                                naturalStoneLocationData,
+                                GetCalculationDefinition<JsonInputNaturalStoneCalculationData>(
+                                    calculationDataItems, JsonInputCalculationType.NaturalStone)));
+                        break;
+                    }
+                }
+            }
+        }
+
+        private static T GetCalculationDefinition<T>(IReadOnlyList<JsonInputCalculationData> calculationDataItems,
+                                                     JsonInputCalculationType calculationType)
+            where T : class
         {
             return null;
         }
