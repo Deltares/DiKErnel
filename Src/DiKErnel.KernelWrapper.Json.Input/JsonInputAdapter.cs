@@ -40,10 +40,73 @@ namespace DiKErnel.KernelWrapper.Json.Input
     {
         public static DataResult<ICalculationInput> AdaptJsonInputData(JsonInputData jsonInputData)
         {
-            return null;
+            var builder = new CalculationInputBuilder();
+
+            AdaptDikeProfile(jsonInputData, builder);
+            AdaptHydraulicData(jsonInputData, builder);
+            AdaptLocations(jsonInputData, builder);
+
+            return builder.Build();
         }
 
-        private static void AdaptDikeProfile(JsonInputData jsonInputData, CalculationInputBuilder builder) {}
+        private static void AdaptDikeProfile(JsonInputData jsonInputData, CalculationInputBuilder builder)
+        {
+            JsonInputDikeProfileData dikeProfileData = jsonInputData.DikeProfileData;
+
+            IReadOnlyList<double> xLocations = dikeProfileData.XLocations;
+            IReadOnlyList<double> zLocations = dikeProfileData.ZLocations;
+            IReadOnlyList<double> roughnessCoefficients = dikeProfileData.RoughnessCoefficients;
+
+            for (var i = 0; i < xLocations.Count - 1; i++)
+            {
+                double startPointX = xLocations[i];
+                double startPointZ = zLocations[i];
+                double endPointX = xLocations[i + 1];
+                double endPointZ = zLocations[i + 1];
+
+                if (roughnessCoefficients != null)
+                {
+                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ,
+                                                  roughnessCoefficients[i]);
+                }
+                else
+                {
+                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
+                }
+            }
+
+            if (dikeProfileData.OuterToe.HasValue)
+            {
+                builder.AddDikeProfilePoint(dikeProfileData.OuterToe.Value, CharacteristicPointType.OuterToe);
+            }
+
+            if (dikeProfileData.CrestOuterBerm.HasValue)
+            {
+                builder.AddDikeProfilePoint(dikeProfileData.CrestOuterBerm.Value,
+                                            CharacteristicPointType.CrestOuterBerm);
+            }
+
+            if (dikeProfileData.NotchOuterBerm.HasValue)
+            {
+                builder.AddDikeProfilePoint(dikeProfileData.NotchOuterBerm.Value,
+                                            CharacteristicPointType.NotchOuterBerm);
+            }
+
+            if (dikeProfileData.OuterCrest.HasValue)
+            {
+                builder.AddDikeProfilePoint(dikeProfileData.OuterCrest.Value, CharacteristicPointType.OuterCrest);
+            }
+
+            if (dikeProfileData.InnerCrest.HasValue)
+            {
+                builder.AddDikeProfilePoint(dikeProfileData.InnerCrest.Value, CharacteristicPointType.InnerCrest);
+            }
+
+            if (dikeProfileData.InnerToe.HasValue)
+            {
+                builder.AddDikeProfilePoint(dikeProfileData.InnerToe.Value, CharacteristicPointType.InnerToe);
+            }
+        }
 
         private static void AdaptHydraulicData(JsonInputData jsonInputData, CalculationInputBuilder builder) {}
 
