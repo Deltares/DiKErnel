@@ -21,10 +21,15 @@
 #include "CalculationTestBase.h"
 
 #include "AssertHelper.h"
+#include <iostream>
+#include <fstream>
+
+#include "TestDefaults.h"
 
 namespace DiKErnel::System::Test
 {
     using namespace Core;
+    using namespace std;
     using namespace TestUtil;
 
     void CalculationTestBase::AssertOutput(
@@ -55,5 +60,24 @@ namespace DiKErnel::System::Test
             ASSERT_NE(nullptr, actualTimeOfFailure);
             ASSERT_EQ(*expectedTimeOfFailure, *actualTimeOfFailure);
         }
+    }
+
+    void CalculationTestBase::PerformTest(
+        const std::unique_ptr<Util::DataResult<Core::ICalculationInput>>& calculationInput)
+    {
+       const auto startTime = std::chrono::high_resolution_clock::now();
+
+        for (auto i = 0; i < TestDefaults::GetNumberOfTestRuns(); ++i)
+        {
+            Calculator calculator(*calculationInput->GetData());
+            calculator.WaitForCompletion();
+        }
+
+       const auto endTime = std::chrono::high_resolution_clock::now();
+
+        /* Getting number of milliseconds as a double. */
+       const std::chrono::duration<double, std::milli> ms_double = endTime - startTime;
+
+       std::cout << ms_double.count() / TestDefaults::GetNumberOfTestRuns() << " ms per calculation for total " << TestDefaults::GetNumberOfTestRuns() << " iterations" << "\n";
     }
 }

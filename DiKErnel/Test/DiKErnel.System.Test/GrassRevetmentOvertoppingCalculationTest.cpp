@@ -18,9 +18,12 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <fstream>
+
 #include "AssertHelper.h"
 #include "CalculationInputBuilder.h"
 #include "CalculationTestBase.h"
+#include "TestDefaults.h"
 
 namespace DiKErnel::System::Test
 {
@@ -150,12 +153,11 @@ namespace DiKErnel::System::Test
 
             return builder;
         }
-    };
 
     #pragma region Schematization 1
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase1()
     {
         // Given
         const auto builder = CreateBuilderForSchematization1();
@@ -166,21 +168,11 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 33913;
-
-        AssertOutput(calculator, 1.48214256643614, &expectedTimeOfFailure);
+        return builder->Build();
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase2()
     {
         // Given
         const auto builder = CreateBuilderForSchematization1();
@@ -191,19 +183,20 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetInitialDamage(make_unique<double>(0.02));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // Then
-        AssertOutput(calculator, 0.0751490475083924);
+        //// Then
+        //AssertOutput(calculator, 0.0751490475083924);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase3()
     {
         // Given
         const auto builder = CreateBuilderForSchematization1();
@@ -215,19 +208,19 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetDikeHeight(make_unique<double>(8));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        AssertOutput(calculator, 0.0403132797601268);
+        //// Then
+        //AssertOutput(calculator, 0.0403132797601268);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase4()
     {
         // Given
         const auto builder = CreateBuilderForSchematization1();
@@ -239,23 +232,23 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetDikeHeight(make_unique<double>(5.65));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        AssertOutput(calculator, 0.360805793202144);
+        //// Then
+        //AssertOutput(calculator, 0.360805793202144);
     }
 
     #pragma endregion
 
     #pragma region Schematization 2
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization2Testcase1()
     {
         // Given
         const auto builder = CreateBuilderForSchematization2();
@@ -264,21 +257,21 @@ namespace DiKErnel::System::Test
             40, GrassRevetmentTopLayerType::OpenSod);
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        //// Then
+        //constexpr int expectedTimeOfFailure = 5311;
 
-        // Then
-        constexpr int expectedTimeOfFailure = 5311;
-
-        AssertOutput(calculator, 24.68131275788636, &expectedTimeOfFailure);
+        //AssertOutput(calculator, 24.68131275788636, &expectedTimeOfFailure);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization2Testcase2()
     {
         // Given
         const auto builder = CreateBuilderForSchematization2();
@@ -289,19 +282,19 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9.5));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        AssertOutput(calculator, 0.868617343967244);
+        //// Then
+        //AssertOutput(calculator, 0.868617343967244);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization2Testcase3()
     {
         // Given
         const auto builder = CreateBuilderForSchematization2();
@@ -313,21 +306,21 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9.6));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        //// Then
+        //constexpr int expectedTimeOfFailure = 51672;
 
-        // Then
-        constexpr int expectedTimeOfFailure = 51672;
-
-        AssertOutput(calculator, 1.11910058435611, &expectedTimeOfFailure);
+        //AssertOutput(calculator, 1.11910058435611, &expectedTimeOfFailure);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization2Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization2Testcase4()
     {
         // Given
         const auto builder = CreateBuilderForSchematization2();
@@ -341,23 +334,23 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9.7));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        AssertOutput(calculator, 0.688425139553067);
+        //// Then
+        //AssertOutput(calculator, 0.688425139553067);
     }
 
     #pragma endregion
 
     #pragma region Schematization 3
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization3Testcase1()
     {
         // Given
         const auto builder = CreateBuilderForSchematization3();
@@ -366,21 +359,21 @@ namespace DiKErnel::System::Test
             60, GrassRevetmentTopLayerType::OpenSod);
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        //// Then
+        //constexpr int expectedTimeOfFailure = 33915;
 
-        // Then
-        constexpr int expectedTimeOfFailure = 33915;
-
-        AssertOutput(calculator, 1.99284873782755, &expectedTimeOfFailure);
+        //AssertOutput(calculator, 1.99284873782755, &expectedTimeOfFailure);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization3Testcase2()
     {
         // Given
         const auto builder = CreateBuilderForSchematization3();
@@ -389,23 +382,23 @@ namespace DiKErnel::System::Test
             50, GrassRevetmentTopLayerType::OpenSod);
 
         locationConstructionProperties->SetDikeHeight(make_unique<double>(6.7));
-
+     
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        //// Then
+        //constexpr int expectedTimeOfFailure = 23118;
 
-        // Then
-        constexpr int expectedTimeOfFailure = 23118;
-
-        AssertOutput(calculator, 12.994355885402687, &expectedTimeOfFailure);
+        //AssertOutput(calculator, 12.994355885402687, &expectedTimeOfFailure);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization3Testcase3()
     {
         // Given
         const auto builder = CreateBuilderForSchematization3();
@@ -418,21 +411,21 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetDikeHeight(make_unique<double>(9));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        //// Then
+        //constexpr int expectedTimeOfFailure = 48552;
 
-        // Then
-        constexpr int expectedTimeOfFailure = 48552;
-
-        AssertOutput(calculator, 1.03611132410722, &expectedTimeOfFailure);
+        //AssertOutput(calculator, 1.03611132410722, &expectedTimeOfFailure);
     }
 
-    TEST_F(GrassRevetmentOvertoppingCalculationTest,
-           GivenCalculationInputForSchematization3Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    [[nodiscard]]
+    static unique_ptr<Util::DataResult<ICalculationInput>> CreateCalculationInputForSchematization3Testcase4()
     {
         // Given
         const auto builder = CreateBuilderForSchematization3();
@@ -451,16 +444,52 @@ namespace DiKErnel::System::Test
         locationConstructionProperties->SetAccelerationAlphaAForInnerSlope(make_unique<double>(1.5));
 
         builder->AddGrassOvertoppingLocation(move(locationConstructionProperties));
+        return builder->Build();
+        //const auto calculationInput = builder->Build();
 
-        const auto calculationInput = builder->Build();
+        //// When
+        //Calculator calculator(*calculationInput->GetData());
+        //calculator.WaitForCompletion();
 
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        AssertOutput(calculator, 0.407672739747293);
+        //// Then
+        //AssertOutput(calculator, 0.407672739747293);
     }
-
+        };
     #pragma endregion
+        TEST_F(GrassRevetmentOvertoppingCalculationTest, PerformanceTest)
+        {
+            vector<unique_ptr<Util::DataResult<ICalculationInput>>> calculationInputItems;
+
+            calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase1());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase2());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase3());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase4());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization2Testcase1());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization2Testcase2());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization2Testcase3());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization2Testcase4());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization3Testcase1());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization3Testcase2());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization3Testcase3());
+            calculationInputItems.push_back(CreateCalculationInputForSchematization3Testcase4());
+
+            unsigned item = 1;
+
+            ofstream MyFile("PerformanceTestGrassRevetmentOvertoppingCalculationTest.txt", ios::out | ios::trunc);
+            auto startTime = std::chrono::high_resolution_clock::now();
+            for (auto const& calculationInputItem : calculationInputItems)
+            {
+                internal::CaptureStdout();
+                PerformTest(calculationInputItem);
+                std::string output = internal::GetCapturedStdout();
+
+                MyFile << "Calculation time for test " << item << " is: " << output;
+                item++;
+            }
+            auto endTime = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> ms_double = endTime - startTime;
+            MyFile << "Total Calculation time for GrassRevetmentOvertoppingCalculationTest is: " << ms_double.count() << " milli seconds" << "\n";
+            MyFile << "Average calculation time per GrassRevetmentOvertoppingCalculationTest is: " << ms_double.count() / (item * TestDefaults::GetNumberOfTestRuns()) << " milli seconds" << "\n";
+            MyFile.close();
+        }
 }

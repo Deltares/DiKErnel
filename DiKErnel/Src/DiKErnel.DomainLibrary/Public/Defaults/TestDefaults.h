@@ -20,21 +20,12 @@
 
 #pragma once
 
-#include <gtest/gtest.h>
-
-#include "Calculator.h"
-
 namespace DiKErnel::System::Test
 {
-    struct CalculationTestBase : testing::Test
+    class TestDefaults
     {
-        static void AssertOutput(
-            const Core::Calculator& calculator,
-            double expectedDamage,
-            const int* expectedTimeOfFailure = nullptr);
-
-        static void PerformTest(
-            const std::unique_ptr<Util::DataResult<Core::ICalculationInput>>& calculationInput
-        );
+        public:
+            [[nodiscard]]
+            static double GetNumberOfTestRuns();
     };
 }

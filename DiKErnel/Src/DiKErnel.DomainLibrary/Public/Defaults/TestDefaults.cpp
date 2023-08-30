@@ -18,23 +18,13 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#pragma once
-
-#include <gtest/gtest.h>
-
-#include "Calculator.h"
+#include "TestDefaults.h"
 
 namespace DiKErnel::System::Test
 {
-    struct CalculationTestBase : testing::Test
+    double TestDefaults::GetNumberOfTestRuns()
     {
-        static void AssertOutput(
-            const Core::Calculator& calculator,
-            double expectedDamage,
-            const int* expectedTimeOfFailure = nullptr);
+        return 1000;
+    }
 
-        static void PerformTest(
-            const std::unique_ptr<Util::DataResult<Core::ICalculationInput>>& calculationInput
-        );
-    };
 }

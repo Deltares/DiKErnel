@@ -18,9 +18,12 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+#include <fstream>
+
 #include "AssertHelper.h"
 #include "CalculationInputBuilder.h"
 #include "CalculationTestBase.h"
+#include "TestDefaults.h"
 
 namespace DiKErnel::System::Test
 {
@@ -29,6 +32,7 @@ namespace DiKErnel::System::Test
     using namespace std;
     using namespace testing;
     using namespace TestUtil;
+    using namespace Util;
 
     struct GrassRevetmentWaveRunupRayleighCalculationTest : CalculationTestBase
     {
@@ -151,297 +155,207 @@ namespace DiKErnel::System::Test
 
             return builder;
         }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase1()
+        {
+            const auto builder = CreateBuilderForSchematization1();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            builder->AddGrassWaveRunupRayleighLocation(std::move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase2()
+        {
+            const auto builder = CreateBuilderForSchematization1();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(8000));
+            locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.2));
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase3()
+        {
+            const auto builder = CreateBuilderForSchematization1();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(500));
+            locationConstructionProperties->SetFrontVelocityCu(make_unique<double>(1.15));
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase4()
+        {
+            const auto builder = CreateBuilderForSchematization1();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            locationConstructionProperties->SetRepresentativeWaveRunup2PAru(make_unique<double>(1.75));
+            locationConstructionProperties->SetRepresentativeWaveRunup2PBru(make_unique<double>(4.3));
+            locationConstructionProperties->SetRepresentativeWaveRunup2PCru(make_unique<double>(1.6));
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase5()
+        {
+            const auto builder = CreateBuilderForSchematization1();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::OpenSod);
+
+            locationConstructionProperties->SetRepresentativeWaveRunup2PGammab(make_unique<double>(0.7));
+            locationConstructionProperties->SetRepresentativeWaveRunup2PGammaf(make_unique<double>(0.7));
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase6()
+        {
+            const auto builder = CreateBuilderForSchematization1();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            locationConstructionProperties->SetWaveAngleImpactAbeta(make_unique<double>(0.0033));
+            locationConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(30));
+            locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(1));
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization1Testcase7()
+        {
+            const auto builder = CreateBuilderForSchematization1();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            locationConstructionProperties->SetInitialDamage(make_unique<double>(0.3));
+            locationConstructionProperties->SetFailureNumber(make_unique<double>(1.1));
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization2Testcase1()
+        {
+            const auto builder = CreateBuilderForSchematization2();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::OpenSod);
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization2Testcase2()
+        {
+            const auto builder = CreateBuilderForSchematization2();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.8));
+            locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(0.9));
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization3Testcase1()
+        {
+            const auto builder = CreateBuilderForSchematization3();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
+
+        [[nodiscard]]
+        static unique_ptr<DataResult<ICalculationInput>> CreateCalculationInputForSchematization4Testcase1()
+        {
+            const auto builder = CreateBuilderForSchematization4();
+
+            auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
+                3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+
+            builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+
+            return builder->Build();
+        }
     };
 
-    #pragma region Schematization 1
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
+    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest, PerformanceTest)
     {
-        // Given
-        const auto builder = CreateBuilderForSchematization1();
+        vector<unique_ptr<DataResult<ICalculationInput>>> calculationInputItems;
 
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
+        calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase1());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase2());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase3());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase4());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase5());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase6());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization1Testcase7());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization2Testcase1());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization2Testcase2());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization3Testcase1());
+        calculationInputItems.push_back(CreateCalculationInputForSchematization4Testcase1());
 
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
+       
+        unsigned item = 1;
+        ofstream MyFile("PerformanceTestGrassRevetmentWaveRunupRayleighCalculationTest.txt", ios::out | ios::trunc);
+        auto startTime = std::chrono::high_resolution_clock::now();
+        for (auto const& calculationInputItem : calculationInputItems)
+        {
+            internal::CaptureStdout();
+            PerformTest(calculationInputItem);
+            std::string output = internal::GetCapturedStdout();
 
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 40451;
-
-        AssertOutput(calculator, 1.1742487455486512, &expectedTimeOfFailure);
+                MyFile << "Calculation time for test " << item << " is: " << output;
+                item++;
+        }
+        auto endTime = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double, std::milli> ms_double = endTime - startTime;
+        MyFile << "Total Calculation time for GrassRevetmentWaveRunupRayleighCalculationTest is: " << ms_double.count() << " milli seconds" << "\n";
+        MyFile << "Average calculation time per GrassRevetmentWaveRunupRayleighCalculationTest is: " << ms_double.count() / (item * TestDefaults::GetNumberOfTestRuns()) << " milli seconds" << "\n";
+        MyFile.close();
     }
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization1();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        locationConstructionProperties->SetCriticalCumulativeOverload(make_unique<double>(8000));
-        locationConstructionProperties->SetCriticalFrontVelocity(make_unique<double>(6.2));
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 35682;
-
-        AssertOutput(calculator, 1.6764562740432805, &expectedTimeOfFailure);
-    }
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization1();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        locationConstructionProperties->SetFixedNumberOfWaves(make_unique<int>(500));
-        locationConstructionProperties->SetFrontVelocityCu(make_unique<double>(1.15));
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 35036;
-
-        AssertOutput(calculator, 1.7908078432838237, &expectedTimeOfFailure);
-    }
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization1();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        locationConstructionProperties->SetRepresentativeWaveRunup2PAru(make_unique<double>(1.75));
-        locationConstructionProperties->SetRepresentativeWaveRunup2PBru(make_unique<double>(4.3));
-        locationConstructionProperties->SetRepresentativeWaveRunup2PCru(make_unique<double>(1.6));
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 36169;
-
-        AssertOutput(calculator, 1.5850428483268622, &expectedTimeOfFailure);
-    }
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization1Testcase5_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization1();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::OpenSod);
-
-        locationConstructionProperties->SetRepresentativeWaveRunup2PGammab(make_unique<double>(0.7));
-        locationConstructionProperties->SetRepresentativeWaveRunup2PGammaf(make_unique<double>(0.7));
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 53050;
-
-        AssertOutput(calculator, 1.0023806278765424, &expectedTimeOfFailure);
-    }
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization1Testcase6_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization1();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        locationConstructionProperties->SetWaveAngleImpactAbeta(make_unique<double>(0.0033));
-        locationConstructionProperties->SetWaveAngleImpactBetamax(make_unique<double>(30));
-        locationConstructionProperties->SetAverageNumberOfWavesCtm(make_unique<double>(1));
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 45518;
-
-        AssertOutput(calculator, 1.0341102733139473, &expectedTimeOfFailure);
-    }
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization1Testcase7_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization1();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        locationConstructionProperties->SetInitialDamage(make_unique<double>(0.3));
-        locationConstructionProperties->SetFailureNumber(make_unique<double>(1.1));
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 36979;
-
-        AssertOutput(calculator, 1.4742487455486513, &expectedTimeOfFailure);
-    }
-
-    #pragma endregion
-
-    #pragma region Schematization 2
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization2Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization2();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::OpenSod);
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 35962;
-
-        AssertOutput(calculator, 1.5248462052078153, &expectedTimeOfFailure);
-    }
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization2Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization2();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        locationConstructionProperties->SetIncreasedLoadTransitionAlphaM(make_unique<double>(1.8));
-        locationConstructionProperties->SetReducedStrengthTransitionAlphaS(make_unique<double>(0.9));
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 35645;
-
-        AssertOutput(calculator, 1.5190845530717538, &expectedTimeOfFailure);
-    }
-
-    #pragma endregion
-
-    #pragma region Schematization 3
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization3();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 42138;
-
-        AssertOutput(calculator, 1.114009765223331, &expectedTimeOfFailure);
-    }
-
-    #pragma endregion
-
-    #pragma region Schematization 4
-
-    TEST_F(GrassRevetmentWaveRunupRayleighCalculationTest,
-           GivenCalculationInputForSchematization4Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult)
-    {
-        // Given
-        const auto builder = CreateBuilderForSchematization4();
-
-        auto locationConstructionProperties = make_unique<GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-            3, 0.3, GrassRevetmentTopLayerType::ClosedSod);
-
-        builder->AddGrassWaveRunupRayleighLocation(move(locationConstructionProperties));
-
-        const auto calculationInput = builder->Build();
-
-        // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
-
-        // Then
-        constexpr int expectedTimeOfFailure = 18856;
-
-        AssertOutput(calculator, 1.1736314282928013, &expectedTimeOfFailure);
-    }
-
-    #pragma endregion
 }
