@@ -226,8 +226,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
                 if (topLayerDefinition != null)
                 {
-                    constructionProperties.FatigueAlpha = topLayerDefinition.Fatigue.FatigueAlpha;
-                    constructionProperties.FatigueBeta = topLayerDefinition.Fatigue.FatigueBeta;
+                    constructionProperties.FatigueAlpha = topLayerDefinition.Fatigue?.FatigueAlpha;
+                    constructionProperties.FatigueBeta = topLayerDefinition.Fatigue?.FatigueBeta;
                     constructionProperties.StiffnessRelationNu = topLayerDefinition.StiffnessRelationNu;
                 }
 
@@ -252,12 +252,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static AsphaltRevetmentTopLayerType ConvertTopLayerType(
             JsonInputAsphaltRevetmentTopLayerType topLayerType)
         {
-            if (topLayerType == JsonInputAsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete)
+            return topLayerType switch
             {
-                return AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete;
-            }
-
-            throw new JsonInputConversionException("Cannot convert top layer type.");
+                JsonInputAsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete =>
+                    AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete,
+                _ => throw new JsonInputConversionException("Cannot convert top layer type.")
+            };
         }
 
         private static GrassRevetmentOvertoppingLocationConstructionProperties
@@ -265,7 +265,40 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassOvertoppingLocationData location,
                 JsonInputGrassOvertoppingCalculationData calculationDefinition)
         {
-            return null;
+            JsonInputGrassRevetmentTopLayerType jsonInputTopLayerType = location.TopLayerType;
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
+                location.X, ConvertTopLayerType(jsonInputTopLayerType))
+            {
+                InitialDamage = location.InitialDamage,
+                IncreasedLoadTransitionAlphaM = location.IncreasedLoadTransitionAlphaM,
+                ReducedStrengthTransitionAlphaS = location.ReducedStrengthTransitionAlphaS
+            };
+
+            if (calculationDefinition != null)
+            {
+                constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
+
+                JsonInputGrassCumulativeOverloadTopLayerData topLayerDefinition =
+                    calculationDefinition.TopLayerDefinitionData
+                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+
+                if (topLayerDefinition != null)
+                {
+                    constructionProperties.CriticalCumulativeOverload = topLayerDefinition.CriticalCumulativeOverload;
+                    constructionProperties.CriticalFrontVelocity = topLayerDefinition.CriticalFrontVelocity;
+                }
+
+                constructionProperties.DikeHeight = calculationDefinition.DikeHeight;
+                constructionProperties.AccelerationAlphaAForCrest =
+                    calculationDefinition.AccelerationAlphaAData?.AccelerationAlphaAForCrest;
+                constructionProperties.AccelerationAlphaAForInnerSlope =
+                    calculationDefinition.AccelerationAlphaAData?.AccelerationAlphaAForInnerSlope;
+                constructionProperties.FixedNumberOfWaves = calculationDefinition.FixedNumberOfWaves;
+                constructionProperties.FrontVelocityCwo = calculationDefinition.FrontVelocity;
+                constructionProperties.AverageNumberOfWavesCtm = calculationDefinition.FactorCtm;
+            }
+
+            return constructionProperties;
         }
 
         private static GrassRevetmentWaveImpactLocationConstructionProperties
@@ -273,13 +306,96 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassWaveImpactLocationData location,
                 JsonInputGrassWaveImpactCalculationData calculationDefinition)
         {
-            return null;
+            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
+                location.X, ConvertTopLayerType(location.TopLayerType))
+            {
+                InitialDamage = location.InitialDamage
+            };
+
+            if (calculationDefinition != null)
+            {
+                constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
+
+                JsonInputGrassWaveImpactTopLayerData topLayerDefinition =
+                    calculationDefinition.TopLayerDefinitionData
+                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+
+                if (topLayerDefinition != null)
+                {
+                    constructionProperties.TimeLineAgwi = topLayerDefinition.TimeLine?.TimeLineA;
+                    constructionProperties.TimeLineBgwi = topLayerDefinition.TimeLine?.TimeLineB;
+                    constructionProperties.TimeLineCgwi = topLayerDefinition.TimeLine?.TimeLineC;
+                }
+
+                constructionProperties.MinimumWaveHeightTemax = calculationDefinition.Temax;
+                constructionProperties.MaximumWaveHeightTemin = calculationDefinition.Temin;
+
+                constructionProperties.WaveAngleImpactNwa = calculationDefinition.WaveAngleData?.WaveAngleImpactN;
+                constructionProperties.WaveAngleImpactQwa = calculationDefinition.WaveAngleData?.WaveAngleImpactQ;
+                constructionProperties.WaveAngleImpactRwa = calculationDefinition.WaveAngleData?.WaveAngleImpactR;
+
+                constructionProperties.UpperLimitLoadingAul =
+                    calculationDefinition.LoadingAreaData?.UpperLimit?.LimitLoading;
+                constructionProperties.LowerLimitLoadingAll =
+                    calculationDefinition.LoadingAreaData?.LowerLimit?.LimitLoading;
+            }
+
+            return constructionProperties;
         }
 
         private static GrassRevetmentWaveRunupLocationConstructionProperties CreateGrassWaveRunupConstructionProperties(
             JsonInputGrassWaveRunupLocationData location, JsonInputGrassWaveRunupCalculationData calculationDefinition)
         {
-            return null;
+            if (calculationDefinition?.CalculationProtocolData == null)
+            {
+                throw new JsonInputConversionException("Cannot convert calculation protocol type.");
+            }
+
+            GrassRevetmentWaveRunupLocationConstructionProperties constructionProperties;
+
+            if (calculationDefinition.CalculationProtocolData.CalculationProtocolType ==
+                JsonInputGrassWaveRunupCalculationProtocolType.RayleighDiscrete)
+            {
+                constructionProperties =
+                    CreateGrassWaveRunupRayleighConstructionProperties(
+                        location, calculationDefinition.CalculationProtocolData);
+            }
+            else
+            {
+                throw new JsonInputConversionException("Cannot convert calculation protocol type.");
+            }
+
+            constructionProperties.InitialDamage = location.InitialDamage;
+            constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
+
+            constructionProperties.IncreasedLoadTransitionAlphaM = location.IncreasedLoadTransitionAlphaM;
+            constructionProperties.ReducedStrengthTransitionAlphaS = location.ReducedStrengthTransitionAlphaS;
+            constructionProperties.RepresentativeWaveRunup2PGammab = location.RepresentativeWaveRunup2PGammaB;
+            constructionProperties.RepresentativeWaveRunup2PGammaf = location.RepresentativeWaveRunup2PGammaF;
+
+            constructionProperties.AverageNumberOfWavesCtm = calculationDefinition.FactorCtm;
+            constructionProperties.RepresentativeWaveRunup2PAru =
+                calculationDefinition.JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData?.RepresentativeWaveRunup2Pa;
+            constructionProperties.RepresentativeWaveRunup2PBru =
+                calculationDefinition.JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData?.RepresentativeWaveRunup2Pb;
+            constructionProperties.RepresentativeWaveRunup2PCru =
+                calculationDefinition.JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData?.RepresentativeWaveRunup2Pc;
+            constructionProperties.WaveAngleImpactAbeta =
+                calculationDefinition.JsonInputGrassWaveRunupCalculationImpactAngleData?.WaveAngleImpactABeta;
+            constructionProperties.WaveAngleImpactBetamax =
+                calculationDefinition.JsonInputGrassWaveRunupCalculationImpactAngleData?.WaveAngleImpactBetaMax;
+
+            JsonInputGrassCumulativeOverloadTopLayerData topLayerDefinition =
+                calculationDefinition.TopLayerDefinitionData
+                                     .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+
+            if (topLayerDefinition != null)
+            {
+                constructionProperties.CriticalCumulativeOverload = topLayerDefinition.CriticalCumulativeOverload;
+                constructionProperties.CriticalFrontVelocity = topLayerDefinition.CriticalFrontVelocity;
+            }
+
+            return constructionProperties;
         }
 
         private static GrassRevetmentWaveRunupRayleighLocationConstructionProperties
@@ -287,24 +403,99 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassWaveRunupLocationData location,
                 JsonInputGrassWaveRunupCalculationProtocolData calculationProtocol)
         {
-            return null;
+            return new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                location.X, location.OuterSlope, ConvertTopLayerType(location.TopLayerType))
+            {
+                FixedNumberOfWaves = calculationProtocol.FixedNumberOfWaves,
+                FrontVelocityCu = calculationProtocol.FrontVelocity
+            };
         }
 
         private static GrassRevetmentTopLayerType ConvertTopLayerType(JsonInputGrassRevetmentTopLayerType topLayerType)
         {
-            return GrassRevetmentTopLayerType.ClosedSod;
+            return topLayerType switch
+            {
+                JsonInputGrassRevetmentTopLayerType.OpenSod => GrassRevetmentTopLayerType.OpenSod,
+                JsonInputGrassRevetmentTopLayerType.ClosedSod => GrassRevetmentTopLayerType.ClosedSod,
+                _ => throw new JsonInputConversionException("Cannot convert top layer type.")
+            };
         }
 
         private static NaturalStoneRevetmentLocationConstructionProperties CreateNaturalStoneConstructionProperties(
             JsonInputNaturalStoneLocationData location, JsonInputNaturalStoneCalculationData calculationDefinition)
         {
-            return null;
+            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+                location.X, ConvertTopLayerType(location.TopLayerType), location.ThicknessTopLayer,
+                location.RelativeDensity)
+            {
+                InitialDamage = location.InitialDamage
+            };
+
+            if (calculationDefinition != null)
+            {
+                constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
+
+                JsonInputNaturalStoneTopLayerData topLayerDefinition =
+                    calculationDefinition.TopLayerDefinitionData
+                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+
+                if (topLayerDefinition != null)
+                {
+                    constructionProperties.HydraulicLoadAp =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.A;
+                    constructionProperties.HydraulicLoadBp =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.B;
+                    constructionProperties.HydraulicLoadCp =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.C;
+                    constructionProperties.HydraulicLoadNp =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.N;
+                    constructionProperties.HydraulicLoadAs =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.A;
+                    constructionProperties.HydraulicLoadBs =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.B;
+                    constructionProperties.HydraulicLoadCs =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.C;
+                    constructionProperties.HydraulicLoadNs =
+                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.N;
+                    constructionProperties.HydraulicLoadXib = topLayerDefinition.Stability?.StabilityXib;
+                }
+
+                constructionProperties.SlopeUpperLevelAus = calculationDefinition.Slope?.SlopeUpperLevel;
+                constructionProperties.SlopeLowerLevelAls = calculationDefinition.Slope?.SlopeLowerLevel;
+
+                constructionProperties.UpperLimitLoadingAul = calculationDefinition.LoadingArea?.UpperLimitLoading?.A;
+                constructionProperties.UpperLimitLoadingBul = calculationDefinition.LoadingArea?.UpperLimitLoading?.B;
+                constructionProperties.UpperLimitLoadingCul = calculationDefinition.LoadingArea?.UpperLimitLoading?.C;
+
+                constructionProperties.LowerLimitLoadingAll = calculationDefinition.LoadingArea?.LowerLimitLoading?.A;
+                constructionProperties.LowerLimitLoadingBll = calculationDefinition.LoadingArea?.LowerLimitLoading?.B;
+                constructionProperties.LowerLimitLoadingCll = calculationDefinition.LoadingArea?.LowerLimitLoading?.C;
+
+                constructionProperties.DistanceMaximumWaveElevationAsmax =
+                    calculationDefinition.DistanceMaximumWaveElevation?.DistanceMaximumWaveElevationA;
+                constructionProperties.DistanceMaximumWaveElevationBsmax =
+                    calculationDefinition.DistanceMaximumWaveElevation?.DistanceMaximumWaveElevationB;
+
+                constructionProperties.NormativeWidthOfWaveImpactAwi =
+                    calculationDefinition.NormativeWidthOfWaveImpact?.NormativeWidthOfWaveImpactA;
+                constructionProperties.NormativeWidthOfWaveImpactBwi =
+                    calculationDefinition.NormativeWidthOfWaveImpact?.NormativeWidthOfWaveImpactB;
+
+                constructionProperties.WaveAngleImpactBetamax =
+                    calculationDefinition.WaveAngleImpact?.WaveAngleImpactBetaMax;
+            }
+
+            return constructionProperties;
         }
 
         private static NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
             JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
         {
-            return NaturalStoneRevetmentTopLayerType.NordicStone;
+            return topLayerType switch
+            {
+                JsonInputNaturalStoneRevetmentTopLayerType.NordicStone => NaturalStoneRevetmentTopLayerType.NordicStone,
+                _ => throw new JsonInputConversionException("Cannot convert top layer type.")
+            };
         }
     }
 }
