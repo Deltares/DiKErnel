@@ -110,7 +110,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 }
             }
 
-            return new DataResult<ICalculationInput>(null, EventRegistry.Flush());
+            return new DataResult<ICalculationInput>(EventRegistry.Flush());
         }
     }
 }
