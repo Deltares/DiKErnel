@@ -20,11 +20,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters;
+using DiKErnel.KernelWrapper.Json.Input.Properties;
 using DiKErnel.Util;
 using DiKErnel.Util.Validation;
 using Newtonsoft.Json;
@@ -45,8 +45,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         /// </summary>
         static JsonInputComposer()
         {
-            using Stream validatorSchemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(
-                "DiKErnel.KernelWrapper.Json.Input.Resources.schema_definition.json");
+            using Stream validatorSchemaStream = new MemoryStream(Resources.SchemaDefinition);
             using var validatorSchemaReader = new StreamReader(validatorSchemaStream);
             schema = JSchema.Parse(validatorSchemaReader.ReadToEnd());
         }
