@@ -205,48 +205,31 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputAsphaltWaveImpactLocationData location,
                 JsonInputAsphaltWaveImpactCalculationData calculationDefinition)
         {
-            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            JsonInputAsphaltWaveImpactTopLayerData topLayerDefinition =
+                calculationDefinition?.TopLayerDefinitionData?
+                    .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+
+            return new AsphaltRevetmentWaveImpactLocationConstructionProperties(
                 location.X, ConvertTopLayerType(location.TopLayerType), location.FailureTension,
                 location.SoilElasticity, location.UpperLayer.ThicknessLayer, location.UpperLayer.ElasticModulusLayer)
             {
                 InitialDamage = location.InitialDamage,
                 ThicknessSubLayer = location.SubLayerData?.ThicknessLayer,
-                ElasticModulusSubLayer = location.SubLayerData?.ElasticModulusLayer
+                ElasticModulusSubLayer = location.SubLayerData?.ElasticModulusLayer,
+                FailureNumber = calculationDefinition?.FailureNumber,
+                DensityOfWater = calculationDefinition?.DensityOfWater,
+                AverageNumberOfWavesCtm = calculationDefinition?.FactorCtm,
+                FatigueAlpha = topLayerDefinition?.Fatigue?.FatigueAlpha,
+                FatigueBeta = topLayerDefinition?.Fatigue?.FatigueBeta,
+                StiffnessRelationNu = topLayerDefinition?.StiffnessRelationNu,
+                ImpactNumberC = calculationDefinition?.ImpactNumberC,
+                WidthFactors = calculationDefinition?.WidthFactors?
+                    .Select(widthFactor => (widthFactor[0], widthFactor[1])).ToList(),
+                DepthFactors = calculationDefinition?.DepthFactors?
+                    .Select(depthFactor => (depthFactor[0], depthFactor[1])).ToList(),
+                ImpactFactors = calculationDefinition?.ImpactFactors?
+                    .Select(impactFactor => (impactFactor[0], impactFactor[1])).ToList()
             };
-
-            if (calculationDefinition != null)
-            {
-                constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
-                constructionProperties.DensityOfWater = calculationDefinition.DensityOfWater;
-                constructionProperties.AverageNumberOfWavesCtm = calculationDefinition.FactorCtm;
-
-                JsonInputAsphaltWaveImpactTopLayerData topLayerDefinition =
-                    calculationDefinition.TopLayerDefinitionData
-                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
-
-                if (topLayerDefinition != null)
-                {
-                    constructionProperties.FatigueAlpha = topLayerDefinition.Fatigue?.FatigueAlpha;
-                    constructionProperties.FatigueBeta = topLayerDefinition.Fatigue?.FatigueBeta;
-                    constructionProperties.StiffnessRelationNu = topLayerDefinition.StiffnessRelationNu;
-                }
-
-                constructionProperties.ImpactNumberC = calculationDefinition.ImpactNumberC;
-
-                constructionProperties.WidthFactors =
-                    calculationDefinition.WidthFactors
-                                         .Select(widthFactor => (widthFactor[0], widthFactor[1])).ToList();
-
-                constructionProperties.DepthFactors =
-                    calculationDefinition.DepthFactors
-                                         .Select(depthFactor => (depthFactor[0], depthFactor[1])).ToList();
-
-                constructionProperties.ImpactFactors =
-                    calculationDefinition.ImpactFactors
-                                         .Select(impactFactor => (impactFactor[0], impactFactor[1])).ToList();
-            }
-
-            return constructionProperties;
         }
 
         private static AsphaltRevetmentTopLayerType ConvertTopLayerType(
@@ -279,8 +262,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
 
                 JsonInputGrassCumulativeOverloadTopLayerData topLayerDefinition =
-                    calculationDefinition.TopLayerDefinitionData
-                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+                    calculationDefinition.TopLayerDefinitionData?
+                        .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
 
                 if (topLayerDefinition != null)
                 {
@@ -317,8 +300,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
 
                 JsonInputGrassWaveImpactTopLayerData topLayerDefinition =
-                    calculationDefinition.TopLayerDefinitionData
-                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+                    calculationDefinition.TopLayerDefinitionData?
+                        .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
 
                 if (topLayerDefinition != null)
                 {
@@ -386,8 +369,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 calculationDefinition.JsonInputGrassWaveRunupCalculationImpactAngleData?.WaveAngleImpactBetaMax;
 
             JsonInputGrassCumulativeOverloadTopLayerData topLayerDefinition =
-                calculationDefinition.TopLayerDefinitionData
-                                     .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+                calculationDefinition.TopLayerDefinitionData?
+                    .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
 
             if (topLayerDefinition != null)
             {
@@ -436,8 +419,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
 
                 JsonInputNaturalStoneTopLayerData topLayerDefinition =
-                    calculationDefinition.TopLayerDefinitionData
-                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+                    calculationDefinition.TopLayerDefinitionData?
+                        .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
 
                 if (topLayerDefinition != null)
                 {
