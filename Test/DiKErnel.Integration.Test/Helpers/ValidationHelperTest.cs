@@ -22,6 +22,7 @@ using DiKErnel.Integration.Helpers;
 using DiKErnel.Util;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Integration.Test.Helpers
 {
@@ -32,8 +33,8 @@ namespace DiKErnel.Integration.Test.Helpers
         public void GivenValidationIssuesOfNonErrorTypes_WhenRegisterValidationIssues_ThenExpectedResult()
         {
             // Given
-            var validationIssue1 = new ValidationIssue(ValidationIssueType.Warning, "Message 1");
-            var validationIssue2 = new ValidationIssue(ValidationIssueType.Warning, "Message 2");
+            var validationIssue1 = new ValidationIssue(ValidationIssueType.Warning, Random.NextString());
+            var validationIssue2 = new ValidationIssue(ValidationIssueType.Warning, Random.NextString());
 
             // When
             bool validationSuccessful = ValidationHelper.RegisterValidationIssues(new List<ValidationIssue>
@@ -57,8 +58,8 @@ namespace DiKErnel.Integration.Test.Helpers
         public void GivenAtLeastOneValidationIssueOfErrorType_WhenRegisterValidationIssues_ThenExpectedResult()
         {
             // Given
-            var validationIssue1 = new ValidationIssue(ValidationIssueType.Warning, "Message 1");
-            var validationIssue2 = new ValidationIssue(ValidationIssueType.Error, "Message 2");
+            var validationIssue1 = new ValidationIssue(ValidationIssueType.Warning, Random.NextString());
+            var validationIssue2 = new ValidationIssue(ValidationIssueType.Error, Random.NextString());
 
             // When
             bool validationSuccessful = ValidationHelper.RegisterValidationIssues(new List<ValidationIssue>

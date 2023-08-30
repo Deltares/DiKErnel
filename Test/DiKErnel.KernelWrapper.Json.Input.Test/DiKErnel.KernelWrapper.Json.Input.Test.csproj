@@ -3,7 +3,14 @@
     <Import Project="$(SolutionDir)build\Test.targets" />
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+      <PackageReference Include="NUnit" Version="3.13.3" />
       <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Src\DiKErnel.KernelWrapper.Json.Input\DiKErnel.KernelWrapper.Json.Input.csproj" />
+      <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj" />
     </ItemGroup>
 
 </Project>
