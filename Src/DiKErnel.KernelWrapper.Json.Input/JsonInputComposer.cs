@@ -22,6 +22,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using DiKErnel.Core.Data;
+using DiKErnel.Integration.Helpers;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters;
 using DiKErnel.Util;
 using DiKErnel.Util.Validation;
@@ -36,6 +38,19 @@ namespace DiKErnel.KernelWrapper.Json.Input
     /// </summary>
     public static class JsonInputComposer
     {
+        private static readonly JSchema schema;
+
+        /// <summary>
+        /// Initializes some static members.
+        /// </summary>
+        static JsonInputComposer()
+        {
+            using Stream validatorSchemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(
+                "DiKErnel.KernelWrapper.Json.Input.Resources.schema_definition.json");
+            using var validatorSchemaReader = new StreamReader(validatorSchemaStream);
+            schema = JSchema.Parse(validatorSchemaReader.ReadToEnd());
+        }
+
         /// <summary>
         /// Performs a Json schema based validation.
         /// </summary>
@@ -44,20 +59,24 @@ namespace DiKErnel.KernelWrapper.Json.Input
         public static bool ValidateJson(string filePath)
         {
             var validationIssues = new List<ValidationIssue>();
+
             if (!File.Exists(filePath))
             {
                 validationIssues.Add(new ValidationIssue(ValidationIssueType.Error, "The provided input file does not exist"));
             }
+            else
+            {
+                JObject jObject = JObject.Parse(File.ReadAllText(filePath));
 
-            JObject jObject = JObject.Parse(File.ReadAllText(filePath));
-            bool valid = jObject.IsValid(GetValidatorSchema("DiKErnel.KernelWrapper.Json.Input.Resources.schema_definition.json"),
-                                         out IList<ValidationError> errors);
-            validationIssues.AddRange(errors.Select(validationError =>
-                                                        new ValidationIssue(ValidationIssueType.Error, validationError.Message)).ToList());
+                if (!jObject.IsValid(schema, out IList<ValidationError> validationErrors))
+                {
+                    validationIssues.AddRange(
+                        validationErrors.Select(e => new ValidationIssue(ValidationIssueType.Error, e.Message))
+                                        .ToList());
+                }
+            }
 
-            // validationhelper is part of integration
-            //return ValidationHelper.RegisterValidationIssues(validationIssues);
-            return valid;
+            return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
 
         /// <summary>
@@ -81,12 +100,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 {
                     JObject jObject = JObject.Parse(File.ReadAllText(filePath));
 
-                    // json input adapter is dependent on the integration project
-
-                    // DataResult<ICalculationInput> calculationInputList =
-                    //     JsonInputAdapter.AdaptJsonInputData(jObject.ToObject<JsonInputData>(jsonSerializer));
-                    // 
-                    // return calculationInputList;
+                    return JsonInputAdapter.AdaptJsonInputData(jObject.ToObject<JsonInputData>(jsonSerializer));
                 }
                 catch (Exception e)
                 {
@@ -97,15 +111,6 @@ namespace DiKErnel.KernelWrapper.Json.Input
             }
 
             return new DataResult<ICalculationInput>(null, EventRegistry.Flush());
-        }
-
-        private static JSchema GetValidatorSchema(string resourceName)
-        {
-            using (Stream validatorSchemaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-            using (var validatorSchemaReader = new StreamReader(validatorSchemaStream))
-            {
-                return JSchema.Parse(validatorSchemaReader.ReadToEnd());
-            }
         }
     }
 }

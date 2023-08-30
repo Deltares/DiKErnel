@@ -23,7 +23,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Helpers
 {
-    internal static class ValidationHelper
+    public static class ValidationHelper
     {
         public static bool RegisterValidationIssues(IReadOnlyList<ValidationIssue> validationIssues)
         {
