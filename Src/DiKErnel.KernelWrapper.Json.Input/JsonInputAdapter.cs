@@ -363,68 +363,47 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static NaturalStoneRevetmentLocationConstructionProperties CreateNaturalStoneConstructionProperties(
             JsonInputNaturalStoneLocationData location, JsonInputNaturalStoneCalculationData calculationDefinition)
         {
-            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            JsonInputNaturalStoneTopLayerData topLayerDefinition =
+                calculationDefinition?.TopLayerDefinitionData?
+                    .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+
+            return new NaturalStoneRevetmentLocationConstructionProperties(
                 location.X, ConvertTopLayerType(location.TopLayerType), location.ThicknessTopLayer,
                 location.RelativeDensity)
             {
-                InitialDamage = location.InitialDamage
+                InitialDamage = location.InitialDamage,
+                FailureNumber = calculationDefinition?.FailureNumber,
+                HydraulicLoadAp =
+                    topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.A,
+                HydraulicLoadBp =
+                    topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.B,
+                HydraulicLoadCp =
+                    topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.C,
+                HydraulicLoadNp =
+                    topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.N,
+                HydraulicLoadAs = topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.A,
+                HydraulicLoadBs = topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.B,
+                HydraulicLoadCs = topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.C,
+                HydraulicLoadNs = topLayerDefinition?.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.N,
+                HydraulicLoadXib = topLayerDefinition?.Stability?.StabilityXib,
+                SlopeUpperLevelAus = calculationDefinition?.Slope?.SlopeUpperLevel,
+                SlopeLowerLevelAls = calculationDefinition?.Slope?.SlopeLowerLevel,
+                UpperLimitLoadingAul = calculationDefinition?.LoadingArea?.UpperLimitLoading?.A,
+                UpperLimitLoadingBul = calculationDefinition?.LoadingArea?.UpperLimitLoading?.B,
+                UpperLimitLoadingCul = calculationDefinition?.LoadingArea?.UpperLimitLoading?.C,
+                LowerLimitLoadingAll = calculationDefinition?.LoadingArea?.LowerLimitLoading?.A,
+                LowerLimitLoadingBll = calculationDefinition?.LoadingArea?.LowerLimitLoading?.B,
+                LowerLimitLoadingCll = calculationDefinition?.LoadingArea?.LowerLimitLoading?.C,
+                DistanceMaximumWaveElevationAsmax =
+                    calculationDefinition?.DistanceMaximumWaveElevation?.DistanceMaximumWaveElevationA,
+                DistanceMaximumWaveElevationBsmax =
+                    calculationDefinition?.DistanceMaximumWaveElevation?.DistanceMaximumWaveElevationB,
+                NormativeWidthOfWaveImpactAwi =
+                    calculationDefinition?.NormativeWidthOfWaveImpact?.NormativeWidthOfWaveImpactA,
+                NormativeWidthOfWaveImpactBwi =
+                    calculationDefinition?.NormativeWidthOfWaveImpact?.NormativeWidthOfWaveImpactB,
+                WaveAngleImpactBetamax = calculationDefinition?.WaveAngleImpact?.WaveAngleImpactBetaMax
             };
-
-            if (calculationDefinition != null)
-            {
-                constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
-
-                JsonInputNaturalStoneTopLayerData topLayerDefinition =
-                    calculationDefinition.TopLayerDefinitionData?
-                        .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
-
-                if (topLayerDefinition != null)
-                {
-                    constructionProperties.HydraulicLoadAp =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.A;
-                    constructionProperties.HydraulicLoadBp =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.B;
-                    constructionProperties.HydraulicLoadCp =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.C;
-                    constructionProperties.HydraulicLoadNp =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData?.N;
-                    constructionProperties.HydraulicLoadAs =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.A;
-                    constructionProperties.HydraulicLoadBs =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.B;
-                    constructionProperties.HydraulicLoadCs =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.C;
-                    constructionProperties.HydraulicLoadNs =
-                        topLayerDefinition.Stability?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData?.N;
-                    constructionProperties.HydraulicLoadXib = topLayerDefinition.Stability?.StabilityXib;
-                }
-
-                constructionProperties.SlopeUpperLevelAus = calculationDefinition.Slope?.SlopeUpperLevel;
-                constructionProperties.SlopeLowerLevelAls = calculationDefinition.Slope?.SlopeLowerLevel;
-
-                constructionProperties.UpperLimitLoadingAul = calculationDefinition.LoadingArea?.UpperLimitLoading?.A;
-                constructionProperties.UpperLimitLoadingBul = calculationDefinition.LoadingArea?.UpperLimitLoading?.B;
-                constructionProperties.UpperLimitLoadingCul = calculationDefinition.LoadingArea?.UpperLimitLoading?.C;
-
-                constructionProperties.LowerLimitLoadingAll = calculationDefinition.LoadingArea?.LowerLimitLoading?.A;
-                constructionProperties.LowerLimitLoadingBll = calculationDefinition.LoadingArea?.LowerLimitLoading?.B;
-                constructionProperties.LowerLimitLoadingCll = calculationDefinition.LoadingArea?.LowerLimitLoading?.C;
-
-                constructionProperties.DistanceMaximumWaveElevationAsmax =
-                    calculationDefinition.DistanceMaximumWaveElevation?.DistanceMaximumWaveElevationA;
-                constructionProperties.DistanceMaximumWaveElevationBsmax =
-                    calculationDefinition.DistanceMaximumWaveElevation?.DistanceMaximumWaveElevationB;
-
-                constructionProperties.NormativeWidthOfWaveImpactAwi =
-                    calculationDefinition.NormativeWidthOfWaveImpact?.NormativeWidthOfWaveImpactA;
-                constructionProperties.NormativeWidthOfWaveImpactBwi =
-                    calculationDefinition.NormativeWidthOfWaveImpact?.NormativeWidthOfWaveImpactB;
-
-                constructionProperties.WaveAngleImpactBetamax =
-                    calculationDefinition.WaveAngleImpact?.WaveAngleImpactBetaMax;
-            }
-
-            return constructionProperties;
         }
 
         private static NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
