@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
@@ -32,6 +33,7 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone;
+using DiKErnel.KernelWrapper.Json.Input.Exceptions;
 using DiKErnel.Util;
 
 namespace DiKErnel.KernelWrapper.Json.Input
@@ -195,7 +197,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                                                      JsonInputCalculationType calculationType)
             where T : class
         {
-            return null;
+            return calculationDataItems.FirstOrDefault(cd => cd.CalculationMethodType == calculationType) as T;
         }
 
         private static AsphaltRevetmentWaveImpactLocationConstructionProperties
@@ -203,13 +205,59 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputAsphaltWaveImpactLocationData location,
                 JsonInputAsphaltWaveImpactCalculationData calculationDefinition)
         {
-            return null;
+            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                location.X, ConvertTopLayerType(location.TopLayerType), location.FailureTension,
+                location.SoilElasticity, location.UpperLayer.ThicknessLayer, location.UpperLayer.ElasticModulusLayer)
+            {
+                InitialDamage = location.InitialDamage,
+                ThicknessSubLayer = location.SubLayerData?.ThicknessLayer,
+                ElasticModulusSubLayer = location.SubLayerData?.ElasticModulusLayer
+            };
+
+            if (calculationDefinition != null)
+            {
+                constructionProperties.FailureNumber = calculationDefinition.FailureNumber;
+                constructionProperties.DensityOfWater = calculationDefinition.DensityOfWater;
+                constructionProperties.AverageNumberOfWavesCtm = calculationDefinition.FactorCtm;
+
+                JsonInputAsphaltWaveImpactTopLayerData topLayerDefinition =
+                    calculationDefinition.TopLayerDefinitionData
+                                         .FirstOrDefault(tldd => tldd.TopLayerType == location.TopLayerType);
+
+                if (topLayerDefinition != null)
+                {
+                    constructionProperties.FatigueAlpha = topLayerDefinition.Fatigue.FatigueAlpha;
+                    constructionProperties.FatigueBeta = topLayerDefinition.Fatigue.FatigueBeta;
+                    constructionProperties.StiffnessRelationNu = topLayerDefinition.StiffnessRelationNu;
+                }
+
+                constructionProperties.ImpactNumberC = calculationDefinition.ImpactNumberC;
+
+                constructionProperties.WidthFactors =
+                    calculationDefinition.WidthFactors
+                                         .Select(widthFactor => (widthFactor[0], widthFactor[1])).ToList();
+
+                constructionProperties.DepthFactors =
+                    calculationDefinition.DepthFactors
+                                         .Select(depthFactor => (depthFactor[0], depthFactor[1])).ToList();
+
+                constructionProperties.ImpactFactors =
+                    calculationDefinition.ImpactFactors
+                                         .Select(impactFactor => (impactFactor[0], impactFactor[1])).ToList();
+            }
+
+            return constructionProperties;
         }
 
         private static AsphaltRevetmentTopLayerType ConvertTopLayerType(
             JsonInputAsphaltRevetmentTopLayerType topLayerType)
         {
-            return AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete;
+            if (topLayerType == JsonInputAsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete)
+            {
+                return AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete;
+            }
+
+            throw new JsonInputConversionException("Cannot convert top layer type.");
         }
 
         private static GrassRevetmentOvertoppingLocationConstructionProperties
