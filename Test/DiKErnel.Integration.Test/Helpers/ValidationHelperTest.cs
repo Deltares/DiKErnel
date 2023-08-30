@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using DiKErnel.Integration.Helpers;
+using DiKErnel.Util;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
@@ -27,6 +28,56 @@ namespace DiKErnel.Integration.Test.Helpers
     [TestFixture]
     public class ValidationHelperTest
     {
+        [Test]
+        public void GivenValidationIssuesOfNonErrorTypes_WhenRegisterValidationIssues_ThenExpectedResult()
+        {
+            // Given
+            var validationIssue1 = new ValidationIssue(ValidationIssueType.Warning, "Message 1");
+            var validationIssue2 = new ValidationIssue(ValidationIssueType.Warning, "Message 2");
+
+            // When
+            bool validationSuccessful = ValidationHelper.RegisterValidationIssues(new List<ValidationIssue>
+            {
+                validationIssue1,
+                validationIssue2
+            });
+
+            // Then
+            Assert.IsTrue(validationSuccessful);
+
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
+            Assert.AreEqual(2, registeredEvents.Count);
+            Assert.AreEqual(EventType.Warning, registeredEvents[0].Type);
+            Assert.AreEqual(validationIssue1.Message, registeredEvents[0].Message);
+            Assert.AreEqual(EventType.Warning, registeredEvents[1].Type);
+            Assert.AreEqual(validationIssue2.Message, registeredEvents[1].Message);
+        }
+
+        [Test]
+        public void GivenAtLeastOneValidationIssueOfErrorType_WhenRegisterValidationIssues_ThenExpectedResult()
+        {
+            // Given
+            var validationIssue1 = new ValidationIssue(ValidationIssueType.Warning, "Message 1");
+            var validationIssue2 = new ValidationIssue(ValidationIssueType.Error, "Message 2");
+
+            // When
+            bool validationSuccessful = ValidationHelper.RegisterValidationIssues(new List<ValidationIssue>
+            {
+                validationIssue1,
+                validationIssue2
+            });
+
+            // Then
+            Assert.IsFalse(validationSuccessful);
+
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
+            Assert.AreEqual(2, registeredEvents.Count);
+            Assert.AreEqual(EventType.Warning, registeredEvents[0].Type);
+            Assert.AreEqual(validationIssue1.Message, registeredEvents[0].Message);
+            Assert.AreEqual(EventType.Error, registeredEvents[1].Type);
+            Assert.AreEqual(validationIssue2.Message, registeredEvents[1].Message);
+        }
+
         [Test]
         public void GivenValidationIssueWithInvalidValidationIssueType_WhenRegisterValidationIssues_ThenThrowsNotSupportedException()
         {

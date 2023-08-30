@@ -23,8 +23,17 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Helpers
 {
+    /// <summary>
+    /// Helper for registering validation issues.
+    /// </summary>
     public static class ValidationHelper
     {
+        /// <summary>
+        /// Registers the provided validation issues.
+        /// </summary>
+        /// <param name="validationIssues">The validation issues to register.</param>
+        /// <returns><c>false</c> when one or more validation issues are of an error type;
+        /// <c>true</c> otherwise.</returns>
         public static bool RegisterValidationIssues(IReadOnlyList<ValidationIssue> validationIssues)
         {
             var overallValidationSuccessful = true;
