@@ -197,7 +197,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                                                      JsonInputCalculationType calculationType)
             where T : class
         {
-            return calculationDataItems.FirstOrDefault(cd => cd.CalculationMethodType == calculationType) as T;
+            return calculationDataItems?.FirstOrDefault(cd => cd.CalculationMethodType == calculationType) as T;
         }
 
         private static AsphaltRevetmentWaveImpactLocationConstructionProperties

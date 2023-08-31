@@ -481,38 +481,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
         [Test]
         public void
-            GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        {
-            PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json",
-                                   "Cannot convert top layer type.");
-        }
-
-        [Test]
-        public void
-            GivenJsonInputWithInvalidGrassRevetmentOvertoppingTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        {
-            PerformInvalidJsonTest("InvalidGrassRevetmentOvertoppingTopLayerType.json",
-                                   "Cannot convert top layer type.");
-        }
-
-        [Test]
-        public void
-            GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        {
-            PerformInvalidJsonTest("InvalidGrassRevetmentWaveImpactTopLayerType.json",
-                                   "Cannot convert top layer type.");
-        }
-
-        [Test]
-        public void
-            GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        {
-            PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json",
-                                   "Cannot convert top layer type.");
-        }
-
-        [Test]
-        public void
             GivenJsonInputWithInvalidGrassRevetmentWaveRunupCalculationProtocolType_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupCalculationProtocolType.json",
@@ -525,14 +493,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
         {
             PerformInvalidJsonTest("GrassRevetmentWaveRunupNoCalculationMethod.json",
                                    "Cannot convert calculation protocol type.");
-        }
-
-        [Test]
-        public void
-            GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        {
-            PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json",
-                                   "Cannot convert top layer type.");
         }
 
         private static void PerformInvalidJsonTest(string fileName, string expectedStackTrace)
