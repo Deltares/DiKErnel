@@ -10,7 +10,20 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Src\DiKErnel.KernelWrapper.Json.Input\DiKErnel.KernelWrapper.Json.Input.csproj" />
+      <ProjectReference Include="..\DiKErnel.Integration.TestUtil\DiKErnel.Integration.TestUtil.csproj" />
       <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="test-data\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="test-data\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="test-data\**" />
     </ItemGroup>
 
 </Project>

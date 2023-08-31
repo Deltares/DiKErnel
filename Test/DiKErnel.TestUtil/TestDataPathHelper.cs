@@ -26,7 +26,7 @@ namespace DiKErnel.TestUtil
     {
         public static string GetTestDataPath(string currentNamespace)
         {
-            var currentDirectory = new DirectoryInfo(Assembly.GetExecutingAssembly().Location);
+            DirectoryInfo currentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory;
 
             while (currentDirectory != null)
             {
