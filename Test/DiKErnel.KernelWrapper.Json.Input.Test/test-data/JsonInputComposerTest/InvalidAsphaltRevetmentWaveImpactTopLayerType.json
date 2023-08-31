@@ -1,0 +1,26 @@
+{
+    "tijdstippen": [],
+    "hydraulischeBelastingen": {
+        "waterstanden": [],
+        "golfhoogtenHm0": [],
+        "golfperiodenTm10": [],
+        "golfhoeken": []
+    },
+    "dijkprofiel": {
+        "posities": [],
+        "hoogten": []
+    },
+    "locaties": [
+        {
+            "positie": 0,
+            "rekenmethode": "asfaltGolfklap",
+            "typeToplaag": "waterbouwAsfaltZonderBeton",
+            "breuksterkteAsfalt": 1.56,
+            "veerconstanteOndergrond": 56,
+            "toplaag": {
+                "dikte": 0.16,
+                "stijfheidsmodulus": 18214
+            }
+        }
+    ]
+}

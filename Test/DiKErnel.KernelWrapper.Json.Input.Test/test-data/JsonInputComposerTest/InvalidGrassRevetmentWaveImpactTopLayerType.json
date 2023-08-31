@@ -1,0 +1,20 @@
+{
+    "tijdstippen": [],
+    "hydraulischeBelastingen": {
+        "waterstanden": [],
+        "golfhoogtenHm0": [],
+        "golfperiodenTm10": [],
+        "golfhoeken": []
+    },
+    "dijkprofiel": {
+        "posities": [],
+        "hoogten": []
+    },
+    "locaties": [
+        {
+            "positie": 0,
+            "rekenmethode": "grasGolfklap",
+            "typeToplaag": "grasHalveZode"
+        }
+    ]
+}
