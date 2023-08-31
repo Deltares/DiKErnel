@@ -35,24 +35,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
     [TestFixture]
     public class JsonInputComposerTest
     {
-        private static void PerformInvalidJsonTest(string fileName, string expectedStackTrace)
-        {
-            // Given
-            string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
-                                           "JsonInputComposerTest", fileName);
-
-            // When
-            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
-
-            // Then
-            Assert.IsFalse(result.Successful);
-
-            Assert.AreEqual(1, result.Events.Count);
-            Assert.AreEqual(EventType.Error, result.Events[0].Type);
-            Assert.AreEqual("An unhandled error occurred while composing calculation data from the Json input. See " +
-                            "stack trace for more information:\n" + expectedStackTrace, result.Events[0].Message);
-        }
-
         [Test]
         public void GivenJsonFileWithAllData_WhenGetInputDataFromJson_ThenReturnsResultWithCalculationInputWithExpectedValues()
         {
@@ -130,7 +112,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             var naturalStoneRevetmentLocationDependentInputItem =
                 locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
             Assert.IsNotNull(naturalStoneRevetmentLocationDependentInputItem);
-
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 11, naturalStoneRevetmentLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -155,7 +136,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             var grassRevetmentWaveImpactLocationDependentInputItem =
                 locationDependentInputItems[1] as GrassRevetmentWaveImpactLocationDependentInput;
             Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem);
-
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 1, grassRevetmentWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -176,7 +156,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             var grassRevetmentWaveRunupRayleighLocationDependentInputItem =
                 locationDependentInputItems[2] as GrassRevetmentWaveRunupRayleighLocationDependentInput;
             Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem);
-
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 64.9, grassRevetmentWaveRunupRayleighLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -199,7 +178,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             var asphaltRevetmentWaveImpactLocationDependentInputItem =
                 locationDependentInputItems[3] as AsphaltRevetmentWaveImpactLocationDependentInput;
             Assert.IsNotNull(asphaltRevetmentWaveImpactLocationDependentInputItem);
-
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 25, asphaltRevetmentWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -212,7 +190,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 0.2, 15000, asphaltRevetmentWaveImpactLocationDependentInputItem.SubLayer);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
                 0.723, 7.2, asphaltRevetmentWaveImpactLocationDependentInputItem.Fatigue);
-
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
                 new List<(double, double)>
                 {
@@ -232,7 +209,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             var grassRevetmentOvertoppingLocationDependentInputItem =
                 locationDependentInputItems[4] as GrassRevetmentOvertoppingLocationDependentInput;
             Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem);
-
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 65, grassRevetmentOvertoppingLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -251,312 +227,332 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 1.8, 4.4, grassRevetmentOvertoppingLocationDependentInputItem.LocationDependentAccelerationAlphaA);
         }
 
-        // [Test]
-        // public void GivenJsonFileWithAllMandatoryData_WhenGetInputDataFromJson_ThenReturnsResultWithCalculationInputWithExpectedValues()
-        // {
-        //     // Given
-        //     var filePath = (TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-        //                            / "InputWithAllMandatoryData.json").string();
-        //
-        //     // When
-        //     var result = JsonInputComposer.GetInputDataFromJson(filePath);
-        //     var calculationInput = result.Data();
-        //
-        //     // Then
-        //     AssertHelper.AssertIsInstanceOf<CalculationInput>(calculationInput);
-        //
-        //     var profileData = calculationInput.ProfileData();
-        //
-        //     var profileSegments = profileData.ProfileSegments();
-        //     ASSERT_EQ(3, profileSegments.Count);
-        //     auto profileSegment1 = profileSegments[0];
-        //     auto profileSegment2 = profileSegments[1];
-        //     auto profileSegment3 = profileSegments[2];
-        //     ProfileDataAssertHelper.AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegment1);
-        //     ProfileDataAssertHelper.AssertProfileSegment(65, 15.7, 75, 15.7, 1, profileSegment2);
-        //     ProfileDataAssertHelper.AssertProfileSegment(75, 15.7, 85, 10, 1, profileSegment3);
-        //
-        //     var characteristicPoints = profileData.CharacteristicPoints();
-        //     ASSERT_EQ(4, characteristicPoints.Count);
-        //
-        //     ProfileDataAssertHelper.AssertCharacteristicPoint(profileSegment1.StartPoint(), CharacteristicPointType.OuterToe,
-        //                                                        characteristicPoints[0));
-        //     ProfileDataAssertHelper.AssertCharacteristicPoint(profileSegment1.EndPoint(), CharacteristicPointType.OuterCrest,
-        //                                                        characteristicPoints[1));
-        //     ProfileDataAssertHelper.AssertCharacteristicPoint(profileSegment3.StartPoint(), CharacteristicPointType.InnerCrest,
-        //                                                        characteristicPoints[2));
-        //     ProfileDataAssertHelper.AssertCharacteristicPoint(profileSegment3.EndPoint(), CharacteristicPointType.InnerToe,
-        //                                                        characteristicPoints[3));
-        //
-        //     var timeDependentInputItems = calculationInput.TimeDependentInputItems();
-        //     ASSERT_EQ(1, timeDependentInputItems.Count);
-        //     TimeDependentInputAssertHelper.AssertTimeDependentInputItem(0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems[0));
-        //
-        //     var locationDependentInputItems = calculationInput.LocationDependentInputItems();
-        //     ASSERT_EQ(8, locationDependentInputItems.Count);
-        //
-        //     var naturalStoneRevetmentLocationDependentInputItem = NaturalStoneRevetmentLocationDependentInput*>(
-        //         &locationDependentInputItems[0]);
-        //     Assert.IsNotNull(naturalStoneRevetmentLocationDependentInputItem);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, naturalStoneRevetmentLocationDependentInputItem);
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         32.79, 1.65, 0.7, naturalStoneRevetmentLocationDependentInputItem);
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
-        //         4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneRevetmentLocationDependentInputItem.HydraulicLoads());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
-        //         0.05, 1.5, naturalStoneRevetmentLocationDependentInputItem.Slope());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-        //         0.1, 0.6, 4, naturalStoneRevetmentLocationDependentInputItem.UpperLimitLoading());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-        //         0.1, 0.2, 4, naturalStoneRevetmentLocationDependentInputItem.LowerLimitLoading());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
-        //         0.42, 0.9, naturalStoneRevetmentLocationDependentInputItem.DistanceMaximumWaveElevation());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
-        //         0.96, 0.11, naturalStoneRevetmentLocationDependentInputItem.NormativeWidthOfWaveImpact());
-        //     NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-        //         78, naturalStoneRevetmentLocationDependentInputItem.WaveAngleImpact());
-        //
-        //     var grassRevetmentWaveImpactLocationDependentInputItem1 = GrassRevetmentWaveImpactLocationDependentInput*>(
-        //         &locationDependentInputItems[1]);
-        //     Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem1);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, grassRevetmentWaveImpactLocationDependentInputItem1);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         38.4, grassRevetmentWaveImpactLocationDependentInputItem1);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
-        //         3600000, grassRevetmentWaveImpactLocationDependentInputItem1);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
-        //         3.6, grassRevetmentWaveImpactLocationDependentInputItem1);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-        //         2.0 / 3.0, 0.35, 10, grassRevetmentWaveImpactLocationDependentInputItem1.WaveAngleImpact());
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
-        //         1, -0.000009722, 0.25, grassRevetmentWaveImpactLocationDependentInputItem1.TimeLine());
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-        //         0, grassRevetmentWaveImpactLocationDependentInputItem1);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-        //         0.5, grassRevetmentWaveImpactLocationDependentInputItem1);
-        //
-        //     var grassRevetmentWaveImpactLocationDependentInputItem2 = GrassRevetmentWaveImpactLocationDependentInput*>(
-        //         &locationDependentInputItems[2]);
-        //     Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem2);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, grassRevetmentWaveImpactLocationDependentInputItem2);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         40, grassRevetmentWaveImpactLocationDependentInputItem2);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
-        //         3600000, grassRevetmentWaveImpactLocationDependentInputItem2);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
-        //         3.6, grassRevetmentWaveImpactLocationDependentInputItem2);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-        //         2.0 / 3.0, 0.35, 10, grassRevetmentWaveImpactLocationDependentInputItem2.WaveAngleImpact());
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
-        //         0.8, -0.00001944, 0.25, grassRevetmentWaveImpactLocationDependentInputItem2.TimeLine());
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-        //         0, grassRevetmentWaveImpactLocationDependentInputItem2);
-        //     GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-        //         0.5, grassRevetmentWaveImpactLocationDependentInputItem2);
-        //
-        //     var grassRevetmentWaveRunupRayleighLocationDependentInputItem1 = dynamic_cast
-        //         <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems[3]);
-        //     Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         50.98, 0.8, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
-        //         1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1.Representative2P());
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-        //         0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem1.WaveAngleImpact());
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
-        //         1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-        //         0.92, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
-        //         7000, 10000, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
-        //         6.6, 1.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
-        //
-        //     var grassRevetmentWaveRunupRayleighLocationDependentInputItem2 = dynamic_cast
-        //         <GrassRevetmentWaveRunupRayleighLocationDependentInput*>(&locationDependentInputItems[4]);
-        //     Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         57.698, 0.9, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
-        //         1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2.Representative2P());
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-        //         0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem2.WaveAngleImpact());
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
-        //         1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        //     GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-        //         0.92, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
-        //         7000, 10000, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        //     GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
-        //         4.3, 1.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
-        //
-        //     var asphaltRevetmentWaveImpactLocationDependentInputItem = dynamic_cast
-        //         <AsphaltRevetmentWaveImpactLocationDependentInput*>(&locationDependentInputItems[5]);
-        //     Assert.IsNotNull(asphaltRevetmentWaveImpactLocationDependentInputItem);
-        //
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, asphaltRevetmentWaveImpactLocationDependentInputItem);
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         39, 1.56, 1025, 56, 1, 1, 0.35, asphaltRevetmentWaveImpactLocationDependentInputItem);
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
-        //         0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem.UpperLayer());
-        //     ASSERT_EQ(nullptr, asphaltRevetmentWaveImpactLocationDependentInputItem.SubLayer());
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
-        //         0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem.Fatigue());
-        //
-        //     var expectedWidthFactors = vector
-        //     {
-        //         pair(0.1, 0.0392),
-        //         pair(0.2, 0.0738),
-        //         pair(0.3, 0.1002),
-        //         pair(0.4, 0.1162),
-        //         pair(0.5, 0.1213),
-        //         pair(0.6, 0.1168),
-        //         pair(0.7, 0.1051),
-        //         pair(0.8, 0.0890),
-        //         pair(0.9, 0.0712),
-        //         pair(1.0, 0.0541),
-        //         pair(1.1, 0.0391),
-        //         pair(1.2, 0.0269),
-        //         pair(1.3, 0.0216),
-        //         pair(1.4, 0.0150),
-        //         pair(1.5, 0.0105)
-        //     }
-        //     ;
-        //
-        //     var expectedDepthFactors = vector
-        //     {
-        //         pair(-1.0, 0.0244),
-        //         pair(-0.875, 0.0544),
-        //         pair(-0.750, 0.0938),
-        //         pair(-0.625, 0.1407),
-        //         pair(-0.500, 0.1801),
-        //         pair(-0.375, 0.1632),
-        //         pair(-0.250, 0.1426),
-        //         pair(-0.125, 0.0994),
-        //         pair(0.0, 0.06),
-        //         pair(0.125, 0.0244),
-        //         pair(0.250, 0.0169)
-        //     }
-        //     ;
-        //
-        //     var expectedImpactFactors = vector
-        //     {
-        //         pair(2.0, 0.039),
-        //         pair(2.4, 0.1),
-        //         pair(2.8, 0.18),
-        //         pair(3.2, 0.235),
-        //         pair(3.6, 0.2),
-        //         pair(4.0, 0.13),
-        //         pair(4.4, 0.08),
-        //         pair(4.8, 0.02),
-        //         pair(5.2, 0.01),
-        //         pair(5.6, 0.005),
-        //         pair(6.0, 0.001)
-        //     }
-        //     ;
-        //
-        //     AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
-        //         expectedWidthFactors, expectedDepthFactors, expectedImpactFactors, asphaltRevetmentWaveImpactLocationDependentInputItem);
-        //
-        //     var grassRevetmentOvertoppingLocationDependentInputItem1 =
-        //         GrassRevetmentOvertoppingLocationDependentInput*>(
-        //             &locationDependentInputItems[6]);
-        //     Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem1);
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, grassRevetmentOvertoppingLocationDependentInputItem1);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         65, nullptr, grassRevetmentOvertoppingLocationDependentInputItem1);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-        //         1, 1, grassRevetmentOvertoppingLocationDependentInputItem1);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-        //         0.92, grassRevetmentOvertoppingLocationDependentInputItem1);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-        //         7000, 10000, grassRevetmentOvertoppingLocationDependentInputItem1);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-        //         6.6, 1.45, grassRevetmentOvertoppingLocationDependentInputItem1);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-        //         1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem1.LocationDependentAccelerationAlphaA());
-        //
-        //     var grassRevetmentOvertoppingLocationDependentInputItem2 =
-        //         GrassRevetmentOvertoppingLocationDependentInput*>(
-        //             &locationDependentInputItems[7]);
-        //     Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem2);
-        //     LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, grassRevetmentOvertoppingLocationDependentInputItem2);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-        //         85, nullptr, grassRevetmentOvertoppingLocationDependentInputItem2);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-        //         1, 1, grassRevetmentOvertoppingLocationDependentInputItem2);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-        //         0.92, grassRevetmentOvertoppingLocationDependentInputItem2);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-        //         7000, 10000, grassRevetmentOvertoppingLocationDependentInputItem2);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-        //         4.3, 1.45, grassRevetmentOvertoppingLocationDependentInputItem2);
-        //
-        //     GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-        //         1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2.LocationDependentAccelerationAlphaA());
-        // }
-        //
-        // [Test]
-        // public void GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
-        // }
-        //
-        // [Test]
-        // public void GivenJsonInputWithInvalidGrassRevetmentOvertoppingTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     PerformInvalidJsonTest("InvalidGrassRevetmentOvertoppingTopLayerType.json", "Cannot convert top layer type.");
-        // }
-        //
-        // [Test]
-        // public void GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     PerformInvalidJsonTest("InvalidGrassRevetmentWaveImpactTopLayerType.json", "Cannot convert top layer type.");
-        // }
-        //
-        // [Test]
-        // public void GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json", "Cannot convert top layer type.");
-        // }
-        //
-        // [Test]
-        // public void GivenJsonInputWithInvalidGrassRevetmentWaveRunupCalculationProtocolType_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupCalculationProtocolType.json",
-        //                            "Cannot convert calculation protocol type.");
-        // }
-        //
-        // [Test]
-        // public void GivenJsonInputWithGrassRevetmentWaveRunupNoCalculationMethod_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     PerformInvalidJsonTest("GrassRevetmentWaveRunupNoCalculationMethod.json", "Cannot convert calculation protocol type.");
-        // }
-        //
-        // [Test]
-        // public void GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json", "Cannot convert top layer type.");
-        // }
-        //
+        [Test]
+        public void GivenJsonFileWithAllMandatoryData_WhenGetInputDataFromJson_ThenReturnsResultWithCalculationInputWithExpectedValues()
+        {
+            // Given
+            string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
+                                           "JsonInputComposerTest", "InputWithAllMandatoryData.json");
+
+            // When
+            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
+            ICalculationInput calculationInput = result.Data;
+
+            // Then
+            Assert.IsInstanceOf<CalculationInput>(calculationInput);
+
+            IProfileData profileData = calculationInput.ProfileData;
+
+            IReadOnlyList<ProfileSegment> profileSegments = profileData.ProfileSegments;
+            Assert.AreEqual(3, profileSegments.Count);
+            ProfileDataAssertHelper.AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegments[0]);
+            ProfileDataAssertHelper.AssertProfileSegment(65, 15.7, 75, 15.7, 1, profileSegments[1]);
+            ProfileDataAssertHelper.AssertProfileSegment(75, 15.7, 85, 10, 1, profileSegments[2]);
+
+            IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
+            Assert.AreEqual(4, characteristicPoints.Count);
+            ProfileDataAssertHelper.AssertCharacteristicPoint(
+                profileSegments[0].StartPoint, CharacteristicPointType.OuterToe, characteristicPoints[0]);
+            ProfileDataAssertHelper.AssertCharacteristicPoint(
+                profileSegments[0].EndPoint, CharacteristicPointType.OuterCrest, characteristicPoints[1]);
+            ProfileDataAssertHelper.AssertCharacteristicPoint(
+                profileSegments[2].StartPoint, CharacteristicPointType.InnerCrest, characteristicPoints[2]);
+            ProfileDataAssertHelper.AssertCharacteristicPoint(
+                profileSegments[2].EndPoint, CharacteristicPointType.InnerToe, characteristicPoints[3]);
+
+            IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
+            Assert.AreEqual(1, timeDependentInputItems.Count);
+            TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
+                0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems[0]);
+
+            IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
+                calculationInput.LocationDependentInputItems;
+            Assert.AreEqual(8, locationDependentInputItems.Count);
+
+            var naturalStoneRevetmentLocationDependentInputItem =
+                locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
+            Assert.IsNotNull(naturalStoneRevetmentLocationDependentInputItem);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                32.79, naturalStoneRevetmentLocationDependentInputItem);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, naturalStoneRevetmentLocationDependentInputItem);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
+                1.65, 0.7, naturalStoneRevetmentLocationDependentInputItem);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
+                4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneRevetmentLocationDependentInputItem.HydraulicLoads);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
+                0.05, 1.5, naturalStoneRevetmentLocationDependentInputItem.Slope);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+                0.1, 0.6, 4, naturalStoneRevetmentLocationDependentInputItem.UpperLimitLoading);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+                0.1, 0.2, 4, naturalStoneRevetmentLocationDependentInputItem.LowerLimitLoading);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
+                0.42, 0.9, naturalStoneRevetmentLocationDependentInputItem.DistanceMaximumWaveElevation);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
+                0.96, 0.11, naturalStoneRevetmentLocationDependentInputItem.NormativeWidthOfWaveImpact);
+            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                78, naturalStoneRevetmentLocationDependentInputItem.WaveAngleImpact);
+
+            var grassRevetmentWaveImpactLocationDependentInputItem1 =
+                locationDependentInputItems[1] as GrassRevetmentWaveImpactLocationDependentInput;
+            Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem1);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                38.4, grassRevetmentWaveImpactLocationDependentInputItem1);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, grassRevetmentWaveImpactLocationDependentInputItem1);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+                3600000, grassRevetmentWaveImpactLocationDependentInputItem1);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+                3.6, grassRevetmentWaveImpactLocationDependentInputItem1);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                2.0 / 3.0, 0.35, 10, grassRevetmentWaveImpactLocationDependentInputItem1.WaveAngleImpact);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+                1, -0.000009722, 0.25, grassRevetmentWaveImpactLocationDependentInputItem1.TimeLine);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+                0, grassRevetmentWaveImpactLocationDependentInputItem1);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+                0.5, grassRevetmentWaveImpactLocationDependentInputItem1);
+
+            var grassRevetmentWaveImpactLocationDependentInputItem2 =
+                locationDependentInputItems[2] as GrassRevetmentWaveImpactLocationDependentInput;
+            Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem2);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                40, grassRevetmentWaveImpactLocationDependentInputItem2);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, grassRevetmentWaveImpactLocationDependentInputItem2);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+                3600000, grassRevetmentWaveImpactLocationDependentInputItem2);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+                3.6, grassRevetmentWaveImpactLocationDependentInputItem2);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                2.0 / 3.0, 0.35, 10, grassRevetmentWaveImpactLocationDependentInputItem2.WaveAngleImpact);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+                0.8, -0.00001944, 0.25, grassRevetmentWaveImpactLocationDependentInputItem2.TimeLine);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+                0, grassRevetmentWaveImpactLocationDependentInputItem2);
+            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+                0.5, grassRevetmentWaveImpactLocationDependentInputItem2);
+
+            var grassRevetmentWaveRunupRayleighLocationDependentInputItem1 =
+                locationDependentInputItems[3] as GrassRevetmentWaveRunupRayleighLocationDependentInput;
+            Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                50.98, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
+                0.8, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
+                1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1.Representative2P);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem1.WaveAngleImpact);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+                6.6, 1.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+
+            var grassRevetmentWaveRunupRayleighLocationDependentInputItem2 =
+                locationDependentInputItems[4] as GrassRevetmentWaveRunupRayleighLocationDependentInput;
+            Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                57.698, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
+                0.9, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
+                1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2.Representative2P);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                0.0022, 80, grassRevetmentWaveRunupRayleighLocationDependentInputItem2.WaveAngleImpact);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+                4.3, 1.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+
+            var asphaltRevetmentWaveImpactLocationDependentInputItem =
+                locationDependentInputItems[5] as AsphaltRevetmentWaveImpactLocationDependentInput;
+            Assert.IsNotNull(asphaltRevetmentWaveImpactLocationDependentInputItem);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                39, asphaltRevetmentWaveImpactLocationDependentInputItem);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, asphaltRevetmentWaveImpactLocationDependentInputItem);
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+                1.56, 1025, 56, 1, 1, 0.35, asphaltRevetmentWaveImpactLocationDependentInputItem);
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+                0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem.UpperLayer);
+            Assert.IsNull(asphaltRevetmentWaveImpactLocationDependentInputItem.SubLayer);
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
+                0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem.Fatigue);
+            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
+                new List<(double, double)>
+                {
+                    (0.1, 0.0392),
+                    (0.2, 0.0738),
+                    (0.3, 0.1002),
+                    (0.4, 0.1162),
+                    (0.5, 0.1213),
+                    (0.6, 0.1168),
+                    (0.7, 0.1051),
+                    (0.8, 0.0890),
+                    (0.9, 0.0712),
+                    (1.0, 0.0541),
+                    (1.1, 0.0391),
+                    (1.2, 0.0269),
+                    (1.3, 0.0216),
+                    (1.4, 0.0150),
+                    (1.5, 0.0105)
+                }, new List<(double, double)>
+                {
+                    (-1.0, 0.0244),
+                    (-0.875, 0.0544),
+                    (-0.750, 0.0938),
+                    (-0.625, 0.1407),
+                    (-0.500, 0.1801),
+                    (-0.375, 0.1632),
+                    (-0.250, 0.1426),
+                    (-0.125, 0.0994),
+                    (0.0, 0.06),
+                    (0.125, 0.0244),
+                    (0.250, 0.0169)
+                }, new List<(double, double)>
+                {
+                    (2.0, 0.039),
+                    (2.4, 0.1),
+                    (2.8, 0.18),
+                    (3.2, 0.235),
+                    (3.6, 0.2),
+                    (4.0, 0.13),
+                    (4.4, 0.08),
+                    (4.8, 0.02),
+                    (5.2, 0.01),
+                    (5.6, 0.005),
+                    (6.0, 0.001)
+                },
+                asphaltRevetmentWaveImpactLocationDependentInputItem);
+
+            var grassRevetmentOvertoppingLocationDependentInputItem1 =
+                locationDependentInputItems[6] as GrassRevetmentOvertoppingLocationDependentInput;
+            Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem1);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                65, grassRevetmentOvertoppingLocationDependentInputItem1);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, grassRevetmentOvertoppingLocationDependentInputItem1);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+                null, grassRevetmentOvertoppingLocationDependentInputItem1);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, grassRevetmentOvertoppingLocationDependentInputItem1);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, grassRevetmentOvertoppingLocationDependentInputItem1);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, grassRevetmentOvertoppingLocationDependentInputItem1);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+                6.6, 1.45, grassRevetmentOvertoppingLocationDependentInputItem1);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem1.LocationDependentAccelerationAlphaA);
+
+            var grassRevetmentOvertoppingLocationDependentInputItem2 =
+                locationDependentInputItems[7] as GrassRevetmentOvertoppingLocationDependentInput;
+            Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem2);
+            LocationDependentInputAssertHelper.AssertLocationProperties(
+                85, grassRevetmentOvertoppingLocationDependentInputItem2);
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                0, 1, grassRevetmentOvertoppingLocationDependentInputItem2);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
+                null, grassRevetmentOvertoppingLocationDependentInputItem2);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, grassRevetmentOvertoppingLocationDependentInputItem2);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, grassRevetmentOvertoppingLocationDependentInputItem2);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, grassRevetmentOvertoppingLocationDependentInputItem2);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
+                4.3, 1.45, grassRevetmentOvertoppingLocationDependentInputItem2);
+            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2.LocationDependentAccelerationAlphaA);
+        }
+
+        [Test]
+        public void
+            GivenJsonInputWithInvalidAsphaltRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            PerformInvalidJsonTest("InvalidAsphaltRevetmentWaveImpactTopLayerType.json",
+                                   "Cannot convert top layer type.");
+        }
+
+        [Test]
+        public void
+            GivenJsonInputWithInvalidGrassRevetmentOvertoppingTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            PerformInvalidJsonTest("InvalidGrassRevetmentOvertoppingTopLayerType.json",
+                                   "Cannot convert top layer type.");
+        }
+
+        [Test]
+        public void
+            GivenJsonInputWithInvalidGrassRevetmentWaveImpactTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            PerformInvalidJsonTest("InvalidGrassRevetmentWaveImpactTopLayerType.json",
+                                   "Cannot convert top layer type.");
+        }
+
+        [Test]
+        public void
+            GivenJsonInputWithInvalidGrassRevetmentWaveRunupRayleighTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupRayleighTopLayerType.json",
+                                   "Cannot convert top layer type.");
+        }
+
+        [Test]
+        public void
+            GivenJsonInputWithInvalidGrassRevetmentWaveRunupCalculationProtocolType_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupCalculationProtocolType.json",
+                                   "Cannot convert calculation protocol type.");
+        }
+
+        [Test]
+        public void
+            GivenJsonInputWithGrassRevetmentWaveRunupNoCalculationMethod_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            PerformInvalidJsonTest("GrassRevetmentWaveRunupNoCalculationMethod.json",
+                                   "Cannot convert calculation protocol type.");
+        }
+
+        [Test]
+        public void
+            GivenJsonInputWithInvalidNaturalStoneRevetmentTypeTopLayer_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            PerformInvalidJsonTest("InvalidNaturalStoneRevetmentTopLayerType.json",
+                                   "Cannot convert top layer type.");
+        }
+
+        private static void PerformInvalidJsonTest(string fileName, string expectedStackTrace)
+        {
+            // Given
+            string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
+                                           "JsonInputComposerTest", fileName);
+
+            // When
+            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
+
+            // Then
+            Assert.IsFalse(result.Successful);
+
+            Assert.AreEqual(1, result.Events.Count);
+            Assert.AreEqual(EventType.Error, result.Events[0].Type);
+            Assert.AreEqual("An unhandled error occurred while composing calculation data from the Json input. See " +
+                            "stack trace for more information:\n" + expectedStackTrace, result.Events[0].Message);
+        }
+
         // [Test]
         // public void GivenNotExistingJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
         // {
