@@ -74,7 +74,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 0.0751490475083924);
+            AssertOutput(calculator, 0.07514904750839);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 0.0403132797601268);
+            AssertOutput(calculator, 0.04031327976012);
         }
 
         [Test]
@@ -124,7 +124,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 0.360805793202144);
+            AssertOutput(calculator, 0.36080579320214);
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 0.868617343967244);
+            AssertOutput(calculator, 0.86861734396724);
         }
 
         [Test]
@@ -221,7 +221,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 0.688425139553067);
+            AssertOutput(calculator, 0.68842513955306);
         }
 
         [Test]
@@ -266,7 +266,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 12.994355885402687, 23118);
+            AssertOutput(calculator, 12.99435588540268, 23118);
         }
 
         [Test]
@@ -324,7 +324,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 0.407672739747293);
+            AssertOutput(calculator, 0.40767273974729);
         }
 
         private static CalculationInputBuilder CreateBuilderForSchematization1()
