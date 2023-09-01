@@ -26,14 +26,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertGeneralProperties(double? dikeHeight,
                                                    GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
         {
-            if (!dikeHeight.HasValue)
-            {
-                Assert.IsNull(locationDependentInput.EnforcedDikeHeight);
-            }
-            else
-            {
-                Assert.AreEqual(dikeHeight, locationDependentInput.EnforcedDikeHeight);
-            }
+            Assert.AreEqual(dikeHeight, locationDependentInput.EnforcedDikeHeight);
         }
 
         public static void AssertCumulativeOverload(double criticalCumulativeOverload, int fixedNumberOfWaves,
