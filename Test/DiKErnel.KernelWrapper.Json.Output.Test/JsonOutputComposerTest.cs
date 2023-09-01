@@ -84,7 +84,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             });
 
             // Call
-            SimpleResult result = JsonOutputComposer.WriteCalculationOutputToJson("", calculationOutput, JsonOutputType.Physics);
+            SimpleResult result = JsonOutputComposer.WriteCalculationOutputToJson(
+                "", calculationOutput, JsonOutputType.Physics);
 
             // Assert
             Assert.IsFalse(result.Successful);
@@ -99,32 +100,36 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
         public void
             WriteCalculationOutputToJson_JsonOutputTypePhysicsWithAllDataAndMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformPhysicsTest("ExpectedPhysicsOutputWithAllDataAndMetaData.json",
-                               CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), true);
+            PerformPhysicsTest(
+                "ExpectedPhysicsOutputWithAllDataAndMetaData.json",
+                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), true);
         }
 
         [Test]
         public void
             WriteCalculationOutputToJson_JsonOutputTypePhysicsWithAllDataAndWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformPhysicsTest("ExpectedPhysicsOutputWithAllDataAndWithoutMetaData.json",
-                               CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), false);
+            PerformPhysicsTest(
+                "ExpectedPhysicsOutputWithAllDataAndWithoutMetaData.json",
+                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), false);
         }
 
         [Test]
         public void
             WriteCalculationOutputToJson_JsonOutputTypePhysicsWithOnlyMandatoryDataAndMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformPhysicsTest("ExpectedPhysicsOutputWithOnlyMandatoryDataAndMetaData.json",
-                               CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), true);
+            PerformPhysicsTest(
+                "ExpectedPhysicsOutputWithOnlyMandatoryDataAndMetaData.json",
+                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), true);
         }
 
         [Test]
         public void
             WriteCalculationOutputToJson_JsonOutputTypePhysicsWithOnlyMandatoryDataAndWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformPhysicsTest("ExpectedPhysicsOutputWithOnlyMandatoryDataAndWithoutMetaData.json",
-                               CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), false);
+            PerformPhysicsTest(
+                "ExpectedPhysicsOutputWithOnlyMandatoryDataAndWithoutMetaData.json",
+                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), false);
         }
 
         [OneTimeTearDown]
@@ -136,53 +141,39 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
         private static void PerformTest(string filename, JsonOutputType outputType, bool withMetaData)
         {
             // Setup
-            var timeDependentOutputConstructionProperties1 = new TimeDependentOutputConstructionProperties
+            var calculationOutput = new CalculationOutput(new List<LocationDependentOutput>
             {
-                IncrementDamage = 0,
-                Damage = 0.15,
-                TimeOfFailure = null
-            };
-
-            var timeDependentOutputConstructionProperties2 = new TimeDependentOutputConstructionProperties
-            {
-                IncrementDamage = 0,
-                Damage = 0.253,
-                TimeOfFailure = 60
-            };
-
-            var location1TimeDependentOutputItems = new List<TimeDependentOutput>
-            {
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
-            };
-
-            var timeDependentOutputConstructionProperties3 = new TimeDependentOutputConstructionProperties
-            {
-                IncrementDamage = 0,
-                Damage = 0.28,
-                TimeOfFailure = null
-            };
-
-            var timeDependentOutputConstructionProperties4 = new TimeDependentOutputConstructionProperties
-            {
-                IncrementDamage = 0,
-                Damage = 0.512,
-                TimeOfFailure = null
-            };
-
-            var location2TimeDependentOutputItems = new List<TimeDependentOutput>
-            {
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties3),
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties4)
-            };
-
-            var locations = new List<LocationDependentOutput>
-            {
-                Substitute.For<LocationDependentOutput>(location1TimeDependentOutputItems),
-                Substitute.For<LocationDependentOutput>(location2TimeDependentOutputItems)
-            };
-
-            var calculationOutput = new CalculationOutput(locations);
+                Substitute.For<LocationDependentOutput>(new List<TimeDependentOutput>
+                {
+                    Substitute.For<TimeDependentOutput>(new TimeDependentOutputConstructionProperties
+                    {
+                        IncrementDamage = 0,
+                        Damage = 0.15,
+                        TimeOfFailure = null
+                    }),
+                    Substitute.For<TimeDependentOutput>(new TimeDependentOutputConstructionProperties
+                    {
+                        IncrementDamage = 0,
+                        Damage = 0.253,
+                        TimeOfFailure = 60
+                    })
+                }),
+                Substitute.For<LocationDependentOutput>(new List<TimeDependentOutput>
+                {
+                    Substitute.For<TimeDependentOutput>(new TimeDependentOutputConstructionProperties
+                    {
+                        IncrementDamage = 0,
+                        Damage = 0.28,
+                        TimeOfFailure = null
+                    }),
+                    Substitute.For<TimeDependentOutput>(new TimeDependentOutputConstructionProperties
+                    {
+                        IncrementDamage = 0,
+                        Damage = 0.512,
+                        TimeOfFailure = null
+                    })
+                })
+            });
 
             Dictionary<string, object> metaDataItems = null;
 
