@@ -67,7 +67,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             ReferenceDegradation = referenceDegradation;
         }
 
-        [JsonProperty(JsonOutputDefinitions.Z)]
+        [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
 
         [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE)]

@@ -39,7 +39,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             CumulativeOverload = cumulativeOverload;
         }
 
-        [JsonProperty(JsonOutputDefinitions.Z)]
+        [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION)]

@@ -42,10 +42,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             EquivalentElasticModulus = equivalentElasticModulus;
         }
 
-        [JsonProperty(JsonOutputDefinitions.Z)]
+        [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
 
-        [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE)]
+        [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE, Order = -2)]
         public double OuterSlope { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LOG_FAILURE_TENSION)]
