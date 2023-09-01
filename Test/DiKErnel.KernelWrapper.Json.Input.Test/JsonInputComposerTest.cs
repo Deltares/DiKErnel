@@ -487,6 +487,77 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                                    "Cannot convert calculation protocol type.");
         }
 
+        [Test]
+        public void GivenNotExistingJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const string filePath = "NotExisting";
+
+            // When
+            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
+
+            // Then
+            Assert.IsFalse(result.Successful);
+
+            Assert.AreEqual(1, result.Events.Count);
+            Assert.AreEqual(EventType.Error, result.Events[0].Type);
+            Assert.AreEqual("The provided input file does not exist", result.Events[0].Message);
+        }
+
+        [Test]
+        public void GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsTrueAndNoEventsRegistered()
+        {
+            // Given
+            string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
+                                           "JsonInputComposerTest", "InputWithAllData.json");
+
+            // When
+            bool result = JsonInputComposer.ValidateJson(filePath);
+
+            // Then
+            Assert.IsTrue(result);
+
+            Assert.AreEqual(0, EventRegistry.Flush().Count);
+        }
+
+        [Test]
+        public void GivenInvalidJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered()
+        {
+            // Given
+            string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
+                                           "JsonInputComposerTest", "InvalidFormat.json");
+
+            // When
+            bool result = JsonInputComposer.ValidateJson(filePath);
+
+            // Then
+            Assert.IsFalse(result);
+
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
+            Assert.AreEqual(1, registeredEvents.Count);
+            Assert.AreEqual(EventType.Error, registeredEvents[0].Type);
+            Assert.AreEqual("Required properties are missing from object: tijdstippen, hydraulischeBelastingen, " +
+                            "dijkprofiel, locaties.", registeredEvents[0].Message);
+        }
+
+        [Test]
+        public void GivenNotExistingJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered()
+        {
+            // Given
+            const string filePath = "NotExisting.json";
+
+            // When
+            bool result = JsonInputComposer.ValidateJson(filePath);
+
+            // Then
+            Assert.IsFalse(result);
+
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
+            Assert.AreEqual(1, registeredEvents.Count);
+            Assert.AreEqual(EventType.Error, registeredEvents[0].Type);
+            Assert.AreEqual("The provided input file does not exist", registeredEvents[0].Message);
+        }
+
         private static void PerformInvalidJsonTest(string fileName, string expectedStackTrace)
         {
             // Given
@@ -504,73 +575,5 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.AreEqual("An unhandled error occurred while composing calculation data from the Json input. See " +
                             "stack trace for more information:\n" + expectedStackTrace, result.Events[0].Message);
         }
-
-        // [Test]
-        // public void GivenNotExistingJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        // {
-        //     // Given
-        //     var filePath = "NotExisting";
-        //
-        //     // When
-        //     var result = JsonInputComposer.GetInputDataFromJson(filePath);
-        //
-        //     // Then
-        //     ASSERT_FALSE(result.Successful());
-        //
-        //     var events = result.Events();
-        //     ASSERT_EQ(1, events.Count);
-        //     EventAssertHelper.AssertEvent(EventType.Error, "The provided input file does not exist", events[0));
-        // }
-        //
-        // [Test]
-        // public void GivenCompleteAndValidJsonInputFile_WhenValidatingJson_ThenReturnsTrueAndNoEventsRegistered()
-        // {
-        //     // Given
-        //     var filePath = (TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-        //                            / "InputWithAllData.json").string();
-        //
-        //     // When
-        //     var result = JsonInputComposer.ValidateJson(filePath);
-        //
-        //     // Then
-        //     ASSERT_TRUE(result);
-        //     ASSERT_EQ(0, EventRegistry.Flush().Count);
-        // }
-        //
-        // [Test]
-        // public void GivenInvalidJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered()
-        // {
-        //     // Given
-        //     var filePath = (TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test") / "JsonInputComposerTest"
-        //                            / "InvalidFormat.json").string();
-        //
-        //     // When
-        //     var result = JsonInputComposer.ValidateJson(filePath);
-        //
-        //     // Then
-        //     ASSERT_FALSE(result);
-        //
-        //     var registeredEvents = EventRegistry.Flush();
-        //     ASSERT_EQ(1, registeredEvents.Count);
-        //     EventAssertHelper.AssertEvent(EventType.Error, "At  of {} - required property 'tijdstippen' not found in object",
-        //                                    registeredEvents[0));
-        // }
-        //
-        // [Test]
-        // public void GivenNotExistingJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered()
-        // {
-        //     // Given
-        //     var filePath = "NotExisting.json";
-        //
-        //     // When
-        //     var result = JsonInputComposer.ValidateJson(filePath);
-        //
-        //     // Then
-        //     ASSERT_FALSE(result);
-        //
-        //     var registeredEvents = EventRegistry.Flush();
-        //     ASSERT_EQ(1, registeredEvents.Count);
-        //     EventAssertHelper.AssertEvent(EventType.Error, "The provided input file does not exist", registeredEvents[0));
-        // }
     }
 }
