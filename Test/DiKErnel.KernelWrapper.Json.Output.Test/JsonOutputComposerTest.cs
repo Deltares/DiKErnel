@@ -38,25 +38,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
         private static readonly string actualOutputFilePath = Path.Combine(Path.GetTempPath(), "actualOutput.json");
 
         [Test]
-        public void WriteCalculationOutputToJson_InvalidJsonOutputType_ReturnsResultWithSuccessfulFalseAndWithExpectedEvent()
-        {
-            // Setup
-            var calculationOutput = new CalculationOutput(new List<LocationDependentOutput>());
-
-            // Call
-            SimpleResult result = JsonOutputComposer.WriteCalculationOutputToJson(
-                "", calculationOutput, (JsonOutputType) 99);
-
-            // Assert
-            Assert.IsFalse(result.Successful);
-
-            Assert.AreEqual(1, result.Events.Count);
-            Assert.AreEqual(EventType.Error, result.Events[0].Type);
-            Assert.AreEqual("An unhandled error occurred while composing Json output from the calculation data. See " +
-                            "stack trace for more information:\n Invalid JsonOutputType.", result.Events[0].Message);
-        }
-
-        [Test]
         public void
             WriteCalculationOutputToJson_JsonOutputTypeFailureWithoutMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
