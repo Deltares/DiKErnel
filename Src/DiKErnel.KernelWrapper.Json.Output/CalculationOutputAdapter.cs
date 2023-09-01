@@ -78,20 +78,137 @@ namespace DiKErnel.KernelWrapper.Json.Output
         private static JsonOutputPhysicsLocationData CreatePhysicsData(
             LocationDependentOutput locationDependentOutput)
         {
-            return locationDependentOutput switch
+            switch (locationDependentOutput)
             {
-                AsphaltRevetmentWaveImpactLocationDependentOutput asphaltRevetmentWaveImpactLocationDependentOutput =>
-                    new JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(),
-                GrassRevetmentOvertoppingLocationDependentOutput grassRevetmentOvertoppingLocationDependentOutput =>
-                    new JsonOutputGrassRevetmentOvertoppingPhysicsLocationData(),
-                GrassRevetmentWaveImpactLocationDependentOutput grassRevetmentWaveImpactLocationDependentOutput =>
-                    new JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(),
-                GrassRevetmentWaveRunupRayleighLocationDependentOutput grassRevetmentWaveRunupRayleighLocationDependentOutput =>
-                    new JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(),
-                NaturalStoneRevetmentLocationDependentOutput naturalStoneRevetmentLocationDependentOutput =>
-                    new JsonOutputNaturalStoneRevetmentPhysicsLocationData(),
-                _ => throw new JsonOutputCreationException("Invalid revetment type.")
-            };
+                case AsphaltRevetmentWaveImpactLocationDependentOutput asphaltRevetmentWaveImpactLocationDependentOutput:
+                {
+                    IEnumerable<AsphaltRevetmentWaveImpactTimeDependentOutput> asphaltRevetmentWaveImpactTimeDependentOutputItems =
+                        locationDependentOutput.TimeDependentOutputItems.Cast<AsphaltRevetmentWaveImpactTimeDependentOutput>().ToList();
+
+                    return new JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(
+                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.IncrementDamage).ToList(),
+                        asphaltRevetmentWaveImpactLocationDependentOutput.Z,
+                        asphaltRevetmentWaveImpactLocationDependentOutput.OuterSlope,
+                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.LogFailureTension).ToList(),
+                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.MaximumPeakStress).ToList(),
+                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.StiffnessRelation).ToList(),
+                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.ComputationalThickness).ToList(),
+                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.EquivalentElasticModulus).ToList());
+                }
+                case GrassRevetmentOvertoppingLocationDependentOutput _:
+                {
+                    IEnumerable<GrassRevetmentOvertoppingTimeDependentOutput> grassRevetmentOvertoppingTimeDependentOutputItems =
+                        locationDependentOutput.TimeDependentOutputItems.Cast<GrassRevetmentOvertoppingTimeDependentOutput>().ToList();
+
+                    return new JsonOutputGrassRevetmentOvertoppingPhysicsLocationData(
+                        grassRevetmentOvertoppingTimeDependentOutputItems
+                            .Select(tdo => tdo.IncrementDamage).ToList(),
+                        grassRevetmentOvertoppingTimeDependentOutputItems
+                            .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
+                        grassRevetmentOvertoppingTimeDependentOutputItems
+                            .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),
+                        grassRevetmentOvertoppingTimeDependentOutputItems
+                            .Select(tdo => tdo.CumulativeOverload).ToList());
+                }
+                case GrassRevetmentWaveImpactLocationDependentOutput grassRevetmentWaveImpactLocationDependentOutput:
+                {
+                    IEnumerable<GrassRevetmentWaveImpactTimeDependentOutput> grassRevetmentWaveImpactTimeDependentOutputItems =
+                        locationDependentOutput.TimeDependentOutputItems.Cast<GrassRevetmentWaveImpactTimeDependentOutput>().ToList();
+
+                    return new JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.IncrementDamage).ToList(),
+                        grassRevetmentWaveImpactLocationDependentOutput.Z,
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.LoadingRevetment).ToList(),
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.UpperLimitLoading).ToList(),
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.LowerLimitLoading).ToList(),
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.MinimumWaveHeight).ToList(),
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.MaximumWaveHeight).ToList(),
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveAngleImpact).ToList(),
+                        grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveHeightImpact).ToList());
+                }
+                case GrassRevetmentWaveRunupRayleighLocationDependentOutput grassRevetmentWaveRunupRayleighLocationDependentOutput:
+                {
+                    IEnumerable<GrassRevetmentWaveRunupRayleighTimeDependentOutput>
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems =
+                            locationDependentOutput.TimeDependentOutputItems.Cast<GrassRevetmentWaveRunupRayleighTimeDependentOutput>()
+                                                   .ToList();
+
+                    return new JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems
+                            .Select(tdo => tdo.IncrementDamage).ToList(),
+                        grassRevetmentWaveRunupRayleighLocationDependentOutput.Z,
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems
+                            .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveAngleImpact).ToList(),
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems
+                            .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems
+                            .Select(tdo => tdo.CumulativeOverload).ToList());
+                }
+                case NaturalStoneRevetmentLocationDependentOutput naturalStoneRevetmentLocationDependentOutput:
+                {
+                    IEnumerable<NaturalStoneRevetmentTimeDependentOutput> naturalStoneRevetmentTimeDependentOutputItems =
+                        locationDependentOutput.TimeDependentOutputItems.Cast<NaturalStoneRevetmentTimeDependentOutput>().ToList();
+
+                    return new JsonOutputNaturalStoneRevetmentPhysicsLocationData(
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.IncrementDamage).ToList(),
+                        naturalStoneRevetmentLocationDependentOutput.Z,
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.OuterSlope).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.SlopeUpperLevel).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.SlopeUpperPosition).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.SlopeLowerLevel).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.SlopeLowerPosition).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.LoadingRevetment).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.SurfSimilarityParameter).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveSteepnessDeepWater).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.UpperLimitLoading).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.LowerLimitLoading).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.DepthMaximumWaveLoad).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.DistanceMaximumWaveElevation).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.NormativeWidthOfWaveImpact).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.HydraulicLoad).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveAngleImpact).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.Resistance).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.ReferenceTimeDegradation).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.ReferenceDegradation).ToList());
+                }
+                default:
+                    throw new JsonOutputCreationException("Invalid revetment type.");
+            }
         }
     }
 }
