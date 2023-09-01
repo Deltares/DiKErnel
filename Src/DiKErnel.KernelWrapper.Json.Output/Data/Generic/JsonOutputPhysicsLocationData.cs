@@ -22,9 +22,9 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
-    internal class JsonOutputPhysicsLocationData
+    internal abstract class JsonOutputPhysicsLocationData
     {
-        public JsonOutputPhysicsLocationData(IReadOnlyList<double> incrementDamage)
+        protected JsonOutputPhysicsLocationData(IReadOnlyList<double> incrementDamage)
         {
             IncrementDamage = incrementDamage;
         }
