@@ -21,7 +21,7 @@ namespace DiKErnel.Core.Data
     /// <summary>
     /// Construction properties to construct time dependent output.
     /// </summary>
-    public abstract class TimeDependentOutputConstructionProperties
+    public class TimeDependentOutputConstructionProperties
     {
         /// <summary>
         /// Gets or sets the increment of damage.

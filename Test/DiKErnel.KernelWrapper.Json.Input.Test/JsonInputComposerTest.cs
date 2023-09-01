@@ -517,7 +517,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             // Then
             Assert.IsTrue(result);
 
-            Assert.AreEqual(0, EventRegistry.Flush().Count);
+            CollectionAssert.IsEmpty(EventRegistry.Flush());
         }
 
         [Test]

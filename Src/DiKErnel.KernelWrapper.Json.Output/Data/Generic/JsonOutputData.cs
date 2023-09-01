@@ -30,10 +30,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             MetaDataItems = metaDataItems;
         }
 
+        [JsonProperty(JsonOutputDefinitions.META_DATA, NullValueHandling = NullValueHandling.Ignore)]
+        public IReadOnlyDictionary<string, object> MetaDataItems { get; }
+
         [JsonProperty(JsonOutputDefinitions.OUTPUT_DATA)]
         public JsonOutputLocationsObject LocationDataItems { get; }
-
-        [JsonProperty(JsonOutputDefinitions.META_DATA)]
-        public IReadOnlyDictionary<string, object> MetaDataItems { get; }
     }
 }

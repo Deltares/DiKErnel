@@ -31,6 +31,10 @@ namespace DiKErnel.KernelWrapper.Json.Output
     /// </summary>
     public static class JsonOutputComposer
     {
+        private const int indentation = 4;
+
+        private static readonly JsonSerializer serializer = new JsonSerializer();
+
         /// <summary>
         /// Writes the output Json based on the given calculation output.
         /// </summary>
@@ -41,17 +45,21 @@ namespace DiKErnel.KernelWrapper.Json.Output
         /// <returns>The result of the operation.</returns>
         public static SimpleResult WriteCalculationOutputToJson(
             string filePath, CalculationOutput calculationOutput, JsonOutputType outputType,
-            IReadOnlyDictionary<string, object> metaDataItems)
+            IReadOnlyDictionary<string, object> metaDataItems = null)
         {
             try
             {
                 JsonOutputData jsonOutput = CalculationOutputAdapter.AdaptCalculationOutput(
                     calculationOutput, outputType, metaDataItems);
 
-                using (StreamWriter file = File.CreateText(filePath))
+                using StreamWriter file = File.CreateText(filePath);
+                using (var jsonTextWriter = new JsonTextWriter(file)
                 {
-                    var serializer = new JsonSerializer();
-                    serializer.Serialize(file, jsonOutput);
+                    Indentation = indentation,
+                    Formatting = Formatting.Indented
+                })
+                {
+                    serializer.Serialize(jsonTextWriter, jsonOutput);
                 }
 
                 return new SimpleResult(true, EventRegistry.Flush());
