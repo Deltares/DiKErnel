@@ -20,7 +20,6 @@ using System.Linq;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
-using DiKErnel.System.TestUtil;
 using DiKErnel.Util;
 using NUnit.Framework;
 
@@ -37,8 +36,9 @@ namespace DiKErnel.System.Test
             Assert.IsTrue(calculatorResult.Successful);
             CollectionAssert.IsEmpty(calculatorResult.Events);
 
-            AssertHelper.AreEqual(expectedDamage,
-                                  calculatorResult.Data.LocationDependentOutputItems[0].GetDamages().Last());
+            Assert.AreEqual(expectedDamage,
+                            calculatorResult.Data.LocationDependentOutputItems[0].GetDamages().Last(),
+                            1e-14);
 
             Assert.AreEqual(expectedTimeOfFailure,
                             calculatorResult.Data.LocationDependentOutputItems[0].GetTimeOfFailure());

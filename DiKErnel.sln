@@ -55,8 +55,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.Util.TestUtil", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.FunctionLibrary.TestUtil", "Test\DiKErnel.FunctionLibrary.TestUtil\DiKErnel.FunctionLibrary.TestUtil.csproj", "{62E9523C-ACCD-4CA5-A830-A76940CB5928}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.System.TestUtil", "Test\DiKErnel.System.TestUtil\DiKErnel.System.TestUtil.csproj", "{6E424817-B38A-48D3-A69D-787A5FF8679D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Coverage|x64 = Coverage|x64
@@ -355,18 +353,6 @@ Global
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928}.Release|x64.Build.0 = Release|x64
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928}.Release|x86.ActiveCfg = Release|x86
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928}.Release|x86.Build.0 = Release|x86
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Coverage|x64.ActiveCfg = Coverage|x64
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Coverage|x64.Build.0 = Coverage|x64
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Coverage|x86.ActiveCfg = Coverage|x86
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Coverage|x86.Build.0 = Coverage|x86
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Debug|x64.ActiveCfg = Debug|x64
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Debug|x64.Build.0 = Debug|x64
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Debug|x86.ActiveCfg = Debug|x86
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Debug|x86.Build.0 = Debug|x86
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Release|x64.ActiveCfg = Release|x64
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Release|x64.Build.0 = Release|x64
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Release|x86.ActiveCfg = Release|x86
-		{6E424817-B38A-48D3-A69D-787A5FF8679D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -396,7 +382,6 @@ Global
 		{A4201006-E643-46E0-948F-7EA7CD96FC2B} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
 		{8D6C2908-8C22-4A53-AE28-5C3C53E629CF} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
-		{6E424817-B38A-48D3-A69D-787A5FF8679D} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9DE8BC8-16B6-49DD-B841-360F52874090}
