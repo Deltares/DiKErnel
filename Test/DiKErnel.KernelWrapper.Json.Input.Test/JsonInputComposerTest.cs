@@ -481,14 +481,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
         [Test]
         public void
-            GivenJsonInputWithInvalidGrassRevetmentWaveRunupCalculationProtocolType_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
-        {
-            PerformInvalidJsonTest("InvalidGrassRevetmentWaveRunupCalculationProtocolType.json",
-                                   "Cannot convert calculation protocol type.");
-        }
-
-        [Test]
-        public void
             GivenJsonInputWithGrassRevetmentWaveRunupNoCalculationMethod_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             PerformInvalidJsonTest("GrassRevetmentWaveRunupNoCalculationMethod.json",

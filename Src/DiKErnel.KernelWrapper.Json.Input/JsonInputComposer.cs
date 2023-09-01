@@ -104,7 +104,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 catch (Exception e)
                 {
                     EventRegistry.Register(new Event("An unhandled error occurred while composing calculation data" +
-                                                     $" from the Json input. See stack trace for more information: {e.Message}",
+                                                     $" from the Json input. See stack trace for more information:\n{e.Message}",
                                                      EventType.Error));
                 }
             }
