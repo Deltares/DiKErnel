@@ -38,10 +38,10 @@ namespace DiKErnel.KernelWrapper.Json.Output
             IReadOnlyDictionary<string, object> metaDataItems)
         {
             return new JsonOutputData(
-                GetJsonOutputLocations(calculationOutput.LocationDependentOutputItems, outputType), metaDataItems);
+                CreateLocations(calculationOutput.LocationDependentOutputItems, outputType), metaDataItems);
         }
 
-        private static JsonOutputLocationsObject GetJsonOutputLocations(
+        private static JsonOutputLocationsObject CreateLocations(
             IReadOnlyList<LocationDependentOutput> locationDependentOutputItems, JsonOutputType outputType)
         {
             return new JsonOutputLocationsObject(
@@ -54,28 +54,28 @@ namespace DiKErnel.KernelWrapper.Json.Output
             LocationDependentOutput locationDependentOutput, JsonOutputType outputType)
         {
             return new JsonOutputLocationData(
-                CreateFailureData(locationDependentOutput),
+                CreateFailureLocationData(locationDependentOutput),
                 outputType == JsonOutputType.Damage || outputType == JsonOutputType.Physics
-                    ? CreateDamageData(locationDependentOutput)
+                    ? CreateDamageLocationData(locationDependentOutput)
                     : null,
                 outputType == JsonOutputType.Physics
-                    ? CreatePhysicsData(locationDependentOutput)
+                    ? CreatePhysicsLocationData(locationDependentOutput)
                     : null);
         }
 
-        private static JsonOutputFailureLocationData CreateFailureData(
+        private static JsonOutputFailureLocationData CreateFailureLocationData(
             LocationDependentOutput locationDependentOutput)
         {
             return new JsonOutputFailureLocationData(locationDependentOutput.GetTimeOfFailure());
         }
 
-        private static JsonOutputDamageLocationData CreateDamageData(
+        private static JsonOutputDamageLocationData CreateDamageLocationData(
             LocationDependentOutput locationDependentOutput)
         {
             return new JsonOutputDamageLocationData(locationDependentOutput.GetDamages());
         }
 
-        private static JsonOutputPhysicsLocationData CreatePhysicsData(
+        private static JsonOutputPhysicsLocationData CreatePhysicsLocationData(
             LocationDependentOutput locationDependentOutput)
         {
             switch (locationDependentOutput)
@@ -83,7 +83,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 case AsphaltRevetmentWaveImpactLocationDependentOutput asphaltRevetmentWaveImpactLocationDependentOutput:
                 {
                     IEnumerable<AsphaltRevetmentWaveImpactTimeDependentOutput> asphaltRevetmentWaveImpactTimeDependentOutputItems =
-                        locationDependentOutput.TimeDependentOutputItems.Cast<AsphaltRevetmentWaveImpactTimeDependentOutput>().ToList();
+                        locationDependentOutput.TimeDependentOutputItems
+                                               .Cast<AsphaltRevetmentWaveImpactTimeDependentOutput>()
+                                               .ToList();
 
                     return new JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
@@ -104,7 +106,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 case GrassRevetmentOvertoppingLocationDependentOutput _:
                 {
                     IEnumerable<GrassRevetmentOvertoppingTimeDependentOutput> grassRevetmentOvertoppingTimeDependentOutputItems =
-                        locationDependentOutput.TimeDependentOutputItems.Cast<GrassRevetmentOvertoppingTimeDependentOutput>().ToList();
+                        locationDependentOutput.TimeDependentOutputItems
+                                               .Cast<GrassRevetmentOvertoppingTimeDependentOutput>()
+                                               .ToList();
 
                     return new JsonOutputGrassRevetmentOvertoppingPhysicsLocationData(
                         grassRevetmentOvertoppingTimeDependentOutputItems
@@ -119,7 +123,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 case GrassRevetmentWaveImpactLocationDependentOutput grassRevetmentWaveImpactLocationDependentOutput:
                 {
                     IEnumerable<GrassRevetmentWaveImpactTimeDependentOutput> grassRevetmentWaveImpactTimeDependentOutputItems =
-                        locationDependentOutput.TimeDependentOutputItems.Cast<GrassRevetmentWaveImpactTimeDependentOutput>().ToList();
+                        locationDependentOutput.TimeDependentOutputItems
+                                               .Cast<GrassRevetmentWaveImpactTimeDependentOutput>()
+                                               .ToList();
 
                     return new JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(
                         grassRevetmentWaveImpactTimeDependentOutputItems
@@ -144,7 +150,8 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 {
                     IEnumerable<GrassRevetmentWaveRunupRayleighTimeDependentOutput>
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems =
-                            locationDependentOutput.TimeDependentOutputItems.Cast<GrassRevetmentWaveRunupRayleighTimeDependentOutput>()
+                            locationDependentOutput.TimeDependentOutputItems
+                                                   .Cast<GrassRevetmentWaveRunupRayleighTimeDependentOutput>()
                                                    .ToList();
 
                     return new JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
@@ -163,7 +170,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 case NaturalStoneRevetmentLocationDependentOutput naturalStoneRevetmentLocationDependentOutput:
                 {
                     IEnumerable<NaturalStoneRevetmentTimeDependentOutput> naturalStoneRevetmentTimeDependentOutputItems =
-                        locationDependentOutput.TimeDependentOutputItems.Cast<NaturalStoneRevetmentTimeDependentOutput>().ToList();
+                        locationDependentOutput.TimeDependentOutputItems
+                                               .Cast<NaturalStoneRevetmentTimeDependentOutput>()
+                                               .ToList();
 
                     return new JsonOutputNaturalStoneRevetmentPhysicsLocationData(
                         naturalStoneRevetmentTimeDependentOutputItems
