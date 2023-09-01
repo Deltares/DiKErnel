@@ -17,18 +17,27 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
+using DiKErnel.KernelWrapper.Json.Output.Exceptions;
+using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
-namespace DiKErnel.KernelWrapper.Json.Output.Exceptions
+namespace DiKErnel.KernelWrapper.Json.Output.Test.Exceptions
 {
-    /// <summary>
-    /// Exception that can be thrown when Json output cannot be converted.
-    /// </summary>
-    public class JsonOutputConversionException : Exception
+    [TestFixture]
+    public class JsonOutputConversionExceptionTest
     {
-        /// <summary>
-        /// Creates a new instance.
-        /// </summary>
-        /// <param name="message">The message of the exception.</param>
-        public JsonOutputConversionException(string message) : base(message) {}
+        [Test]
+        public void Constructor_WithMessage_ExpectedValues()
+        {
+            // Setup
+            string message = Random.NextString();
+
+            // Call
+            var exception = new JsonOutputConversionException(message);
+
+            // Assert
+            Assert.IsInstanceOf<Exception>(exception);
+            Assert.AreEqual(message, exception.Message);
+        }
     }
 }

@@ -216,7 +216,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                             .Select(tdo => tdo.ReferenceDegradation).ToList());
                 }
                 default:
-                    throw new JsonOutputCreationException("Invalid revetment type.");
+                    throw new JsonOutputConversionException("Invalid revetment type.");
             }
         }
     }
