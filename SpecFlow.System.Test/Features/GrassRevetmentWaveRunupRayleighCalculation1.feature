@@ -1,4 +1,4 @@
-﻿Feature: GrassRevetmentWaveImpactCalculation1
+﻿Feature: GrassRevetmentWaveRunupRayleighCalculation1
 
 
 Background:

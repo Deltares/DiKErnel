@@ -1,4 +1,4 @@
-﻿Feature: GrassRevetmentWaveRunupRayleighCalculation3
+﻿Feature: NaturalStoneRevetmentCalculation3
 
 Scenario: GivenCalculationInputForSchematization3Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult
 	Given the following schematisation for time steps:

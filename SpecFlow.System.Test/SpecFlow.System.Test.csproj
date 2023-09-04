@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard20</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>Desenable</ImplicitUsings>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Coverage</Configurations>
+    <AssemblyName>SpecFlow.SystemTest</AssemblyName>
+    <RootNamespace>$(AssemblyName)</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

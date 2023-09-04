@@ -1,4 +1,4 @@
-﻿Feature: GrassRevetmentWaveRunupRayleighCalculation2
+﻿Feature: NaturalStoneRevetmentCalculation2
 
 Background:
 	Given the following schematisation for time steps:

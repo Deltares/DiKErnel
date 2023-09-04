@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlow.System.Test.Features
+namespace SpecFlow.SystemTest.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,8 +20,8 @@ namespace SpecFlow.System.Test.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("GrassRevetmentWaveRunupRayleighCalculation1")]
-    public partial class GrassRevetmentWaveRunupRayleighCalculation1Feature
+    [NUnit.Framework.DescriptionAttribute("NaturalStoneRevetmentCalculation1")]
+    public partial class NaturalStoneRevetmentCalculation1Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SpecFlow.System.Test.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "GrassRevetmentWaveRunupRayleighCalculation1", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "NaturalStoneRevetmentCalculation1", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         

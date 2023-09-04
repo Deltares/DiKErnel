@@ -1,4 +1,4 @@
-namespace SpecFlow.System.Test.StepDefinitions
+namespace SpecFlow.SystemTest.StepDefinitions
 {
     [Binding]
     public sealed class CalculatorStepDefinitions
