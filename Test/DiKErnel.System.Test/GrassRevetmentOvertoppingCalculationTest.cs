@@ -49,8 +49,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 1.48214256643614, 33913);
@@ -73,8 +72,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 0.07514904750839);
@@ -98,8 +96,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 0.04031327976012);
@@ -123,8 +120,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 0.36080579320214);
@@ -144,8 +140,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 24.68131275788636, 5311);
@@ -168,8 +163,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 0.86861734396724);
@@ -193,8 +187,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 1.11910058435611, 51672);
@@ -220,8 +213,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 0.68842513955306);
@@ -241,8 +233,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 1.99284873782755, 33915);
@@ -265,8 +256,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 12.99435588540268, 23118);
@@ -291,8 +281,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 1.03611132410722, 48552);
@@ -323,8 +312,7 @@ namespace DiKErnel.System.Test
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
             // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
+            Calculator calculator = PerformTest(calculationInput.Data);
 
             // Then
             AssertOutput(calculator, 0.40767273974729);

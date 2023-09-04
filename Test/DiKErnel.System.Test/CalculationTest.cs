@@ -19,6 +19,9 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
+using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
@@ -45,6 +48,36 @@ namespace DiKErnel.System.Test
 
             Assert.AreEqual(expectedTimeOfFailure,
                             calculatorResult.Data.LocationDependentOutputItems[0].GetTimeOfFailure());
+        }
+
+        protected static Calculator PerformTest(ICalculationInput calculationInput)
+        {
+            Calculator calculator = null;
+
+            var stopWatch = new Stopwatch();
+
+            stopWatch.Start();
+
+            for (var i = 0; i < 1000; i++)
+            {
+                calculator = new Calculator(calculationInput);
+
+                calculator.WaitForCompletion();
+            }
+
+            stopWatch.Stop();
+
+            TimeSpan timeSpan = stopWatch.Elapsed;
+
+            File.AppendAllLines(Path.Combine(Path.GetTempPath(), "Performance_CSharp.txt"),
+                new[]
+                {
+                    $"{TestContext.CurrentContext.Test.ClassName.Split('.').Last()};" +
+                    $"{TestContext.CurrentContext.Test.Name};" +
+                    $"{Math.Round(timeSpan.TotalMilliseconds)}"
+                });
+
+            return calculator;
         }
     }
 }
