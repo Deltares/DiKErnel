@@ -125,13 +125,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 25720;
 
-        AssertOutput(calculator, 1.129939525442647, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.129939525442647, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -150,13 +151,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 22141;
 
-        AssertOutput(calculator, 1.7241657918426123, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.7241657918426123, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -176,13 +178,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 23511;
 
-        AssertOutput(calculator, 1.5398389850450416, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.5398389850450416, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -218,13 +221,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 25237;
 
-        AssertOutput(calculator, 1.1399846984277664, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.1399846984277664, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -260,13 +264,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 22915;
 
-        AssertOutput(calculator, 1.330223366658833, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.330223366658833, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -302,13 +307,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 23892;
 
-        AssertOutput(calculator, 1.4791211989406279, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.4791211989406279, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -332,13 +338,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 24032;
 
-        AssertOutput(calculator, 1.391297689776666, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.391297689776666, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -359,13 +366,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 15187;
 
-        AssertOutput(calculator, 1.4636931168963618, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.4636931168963618, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -386,13 +394,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 25720;
 
-        AssertOutput(calculator, 1.129939525442647, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.129939525442647, &expectedTimeOfFailure);
     }
 
     #pragma endregion

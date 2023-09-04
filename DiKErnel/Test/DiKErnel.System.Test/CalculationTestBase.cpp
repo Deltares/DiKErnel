@@ -20,11 +20,17 @@
 
 #include "CalculationTestBase.h"
 
+#include <filesystem>
+#include <fstream>
+
 #include "AssertHelper.h"
 
 namespace DiKErnel::System::Test
 {
     using namespace Core;
+    using namespace std;
+    using namespace std::filesystem;
+    using namespace testing;
     using namespace TestUtil;
 
     void CalculationTestBase::AssertOutput(
@@ -55,5 +61,40 @@ namespace DiKErnel::System::Test
             ASSERT_NE(nullptr, actualTimeOfFailure);
             ASSERT_EQ(*expectedTimeOfFailure, *actualTimeOfFailure);
         }
+    }
+
+    unique_ptr<Calculator> CalculationTestBase::PerformTest(
+        const ICalculationInput& calculationInput,
+        const char* testClass,
+        const char* testName)
+    {
+        unique_ptr<Calculator> calculator = nullptr;
+
+        const auto startTime = std::chrono::high_resolution_clock::now();
+
+        for (auto i = 0; i < 10; ++i)
+        {
+            calculator = make_unique<Calculator>(calculationInput);
+
+            calculator->WaitForCompletion();
+        }
+
+        const auto endTime = std::chrono::high_resolution_clock::now();
+
+        const std::chrono::duration<double, std::milli> ms_double = endTime - startTime;
+
+        ofstream outfile;
+
+        const auto filePath = (temp_directory_path() / "Performance_CPlusPlus.txt").string();
+
+        outfile.open(filePath, std::ios_base::app); // append instead of overwrite
+        outfile << testClass;
+        outfile << ";";
+        outfile << testName;
+        outfile << ";";
+        outfile << round(ms_double.count());
+        outfile << "\n";
+
+        return calculator;
     }
 }

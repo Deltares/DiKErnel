@@ -170,13 +170,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 33913;
 
-        AssertOutput(calculator, 1.48214256643614, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.48214256643614, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -195,11 +196,12 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
-        AssertOutput(calculator, 0.0751490475083924);
+        AssertOutput(*calculator, 0.0751490475083924);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -219,11 +221,12 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
-        AssertOutput(calculator, 0.0403132797601268);
+        AssertOutput(*calculator, 0.0403132797601268);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -243,11 +246,12 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
-        AssertOutput(calculator, 0.360805793202144);
+        AssertOutput(*calculator, 0.360805793202144);
     }
 
     #pragma endregion
@@ -268,13 +272,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 5311;
 
-        AssertOutput(calculator, 24.68131275788636, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 24.68131275788636, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -293,11 +298,12 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
-        AssertOutput(calculator, 0.868617343967244);
+        AssertOutput(*calculator, 0.868617343967244);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -317,13 +323,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 51672;
 
-        AssertOutput(calculator, 1.11910058435611, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.11910058435611, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -345,11 +352,12 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
-        AssertOutput(calculator, 0.688425139553067);
+        AssertOutput(*calculator, 0.688425139553067);
     }
 
     #pragma endregion
@@ -370,13 +378,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 33915;
 
-        AssertOutput(calculator, 1.99284873782755, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.99284873782755, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -395,13 +404,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 23118;
 
-        AssertOutput(calculator, 12.994355885402687, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 12.994355885402687, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -422,13 +432,14 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
         constexpr int expectedTimeOfFailure = 48552;
 
-        AssertOutput(calculator, 1.03611132410722, &expectedTimeOfFailure);
+        AssertOutput(*calculator, 1.03611132410722, &expectedTimeOfFailure);
     }
 
     TEST_F(GrassRevetmentOvertoppingCalculationTest,
@@ -455,11 +466,12 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const auto calculator = PerformTest(*calculationInput->GetData(),
+            UnitTest::GetInstance()->current_test_info()->test_suite_name(),
+            UnitTest::GetInstance()->current_test_info()->name());
 
         // Then
-        AssertOutput(calculator, 0.407672739747293);
+        AssertOutput(*calculator, 0.407672739747293);
     }
 
     #pragma endregion

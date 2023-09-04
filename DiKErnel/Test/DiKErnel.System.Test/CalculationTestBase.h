@@ -32,5 +32,10 @@ namespace DiKErnel::System::Test
             const Core::Calculator& calculator,
             double expectedDamage,
             const int* expectedTimeOfFailure = nullptr);
+
+        static std::unique_ptr<Core::Calculator> PerformTest(
+            const Core::ICalculationInput& calculationInput,
+            const char* testClass,
+            const char* testName);
     };
 }
