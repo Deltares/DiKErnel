@@ -42,7 +42,8 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassRevetmentTopLayerType.ClosedSod));
+            builder.AddGrassWaveImpactLocation(
+                new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassRevetmentTopLayerType.ClosedSod));
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -87,7 +88,7 @@ namespace DiKErnel.System.Test
             Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
             Assert.AreEqual(1, validationResult.Events.Count);
             Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("Roughness coefficient should be in range [0.5, 1].", validationResult.Events[0].Message);
+            Assert.AreEqual("Roughness coefficient must be in range [0.5, 1].", validationResult.Events[0].Message);
         }
 
         [Test]
@@ -128,7 +129,8 @@ namespace DiKErnel.System.Test
             Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
             Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.", validationResult.Events[1].Message);
+            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
+                            validationResult.Events[1].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
             Assert.AreEqual("FatigueAlpha must be larger than 0.", validationResult.Events[2].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
@@ -159,21 +161,22 @@ namespace DiKErnel.System.Test
         public void GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassRevetmentTopLayerType.ClosedSod)
-            {
-                InitialDamage = -0.1,
-                FailureNumber = -1,
-                TimeLineAgwi = -2,
-                TimeLineBgwi = 0,
-                TimeLineCgwi = -0.5,
-                MinimumWaveHeightTemax = 8000,
-                MaximumWaveHeightTemin = 11,
-                WaveAngleImpactNwa = 3,
-                WaveAngleImpactQwa = 6,
-                WaveAngleImpactRwa = 0,
-                UpperLimitLoadingAul = 1,
-                LowerLimitLoadingAll = 1
-            };
+            var constructionProperties =
+                new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassRevetmentTopLayerType.ClosedSod)
+                {
+                    InitialDamage = -0.1,
+                    FailureNumber = -1,
+                    TimeLineAgwi = -2,
+                    TimeLineBgwi = 0,
+                    TimeLineCgwi = -0.5,
+                    MinimumWaveHeightTemax = 8000,
+                    MaximumWaveHeightTemin = 11,
+                    WaveAngleImpactNwa = 3,
+                    WaveAngleImpactQwa = 6,
+                    WaveAngleImpactRwa = 0,
+                    UpperLimitLoadingAul = 1,
+                    LowerLimitLoadingAll = 1
+                };
 
             var builder = new CalculationInputBuilder();
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
@@ -195,16 +198,18 @@ namespace DiKErnel.System.Test
             Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
             Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.", validationResult.Events[1].Message);
+            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
+                            validationResult.Events[1].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
             Assert.AreEqual("TimeLineAgwi must be larger than TimeLineCgwi.", validationResult.Events[2].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
             Assert.AreEqual("TimeLineBgwi must be smaller than 0.", validationResult.Events[3].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
             Assert.AreEqual("TimeLineCgwi must be equal to 0 or larger.", validationResult.Events[4].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
-            Assert.AreEqual("MinimumWaveHeightTemax should be in range {1000000, 3600000].", validationResult.Events[5].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[6].Type);
+            Assert.AreEqual(EventType.Warning, validationResult.Events[5].Type);
+            Assert.AreEqual("MinimumWaveHeightTemax should be in range {1000000, 3600000].",
+                            validationResult.Events[5].Message);
+            Assert.AreEqual(EventType.Warning, validationResult.Events[6].Type);
             Assert.AreEqual("MaximumWaveHeightTemin should be in range [3.6, 10}.", validationResult.Events[6].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[7].Type);
             Assert.AreEqual("WaveAngleImpactNwa must be equal to 1 or smaller.", validationResult.Events[7].Message);
@@ -213,7 +218,8 @@ namespace DiKErnel.System.Test
             Assert.AreEqual(EventType.Error, validationResult.Events[9].Type);
             Assert.AreEqual("WaveAngleImpactRwa must be larger than 0.", validationResult.Events[9].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[10].Type);
-            Assert.AreEqual("UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.", validationResult.Events[10].Message);
+            Assert.AreEqual("UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.",
+                            validationResult.Events[10].Message);
         }
 
         [Test]
@@ -221,26 +227,28 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithInvalidGrassRevetmentWaveRunupRayleighLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            auto constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties>(
-                15, 20, GrassRevetmentTopLayerType.ClosedSod);
-            constructionProperties->SetInitialDamage(new double>(-0.1));
-            constructionProperties->SetFailureNumber(new double>(-1));
-            constructionProperties->SetCriticalCumulativeOverload(new double>(-2));
-            constructionProperties->SetRepresentativeWaveRunup2PGammab(new double>(0));
-            constructionProperties->SetRepresentativeWaveRunup2PGammaf(new double>(-0.5));
-            constructionProperties->SetCriticalFrontVelocity(new double>(-1));
-            constructionProperties->SetIncreasedLoadTransitionAlphaM(new double>(-11));
-            constructionProperties->SetReducedStrengthTransitionAlphaS(new double>(-3));
-            constructionProperties->SetAverageNumberOfWavesCtm(new double>(0));
-            constructionProperties->SetFixedNumberOfWaves(new int>(0));
-            constructionProperties->SetFrontVelocityCu(new double>(-1));
+            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                15, 20, GrassRevetmentTopLayerType.ClosedSod)
+            {
+                InitialDamage = -0.1,
+                FailureNumber = -1,
+                CriticalCumulativeOverload = -2,
+                RepresentativeWaveRunup2PGammab = 0,
+                RepresentativeWaveRunup2PGammaf = -0.5,
+                CriticalFrontVelocity = -1,
+                IncreasedLoadTransitionAlphaM = -11,
+                ReducedStrengthTransitionAlphaS = -3,
+                AverageNumberOfWavesCtm = 0,
+                FixedNumberOfWaves = 0,
+                FrontVelocityCu = -1
+            };
 
             var builder = new CalculationInputBuilder();
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveRunupRayleighLocation(move(constructionProperties));
+            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -251,38 +259,57 @@ namespace DiKErnel.System.Test
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
             Assert.AreEqual(12, validationResult.Events.Count);
-            EventAssertHelper.AssertEvent(EventType.Error, "InitialDamage must be equal to 0 or larger.", validationResult.Events[0));
-            EventAssertHelper.AssertEvent(EventType.Error, "FailureNumber must be equal to InitialDamage or larger.", validationResult.Events[1));
-            EventAssertHelper.AssertEvent(EventType.Error, "CriticalCumulativeOverload must be larger than 0.", validationResult.Events[2));
-            EventAssertHelper.AssertEvent(EventType.Error, "RepresentativeWaveRunup2PGammab must be in range [0.6, 1].", validationResult.Events[3));
-            EventAssertHelper.AssertEvent(EventType.Error, "RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].", validationResult.Events[4));
-            EventAssertHelper.AssertEvent(EventType.Error, "CriticalFrontVelocity must be equal to 0 or larger.", validationResult.Events[5));
-            EventAssertHelper.AssertEvent(EventType.Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", validationResult.Events[6));
-            EventAssertHelper.AssertEvent(EventType.Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.", validationResult.Events[7));
-            EventAssertHelper.AssertEvent(EventType.Error, "OuterSlope must be in range {0, 1}.", validationResult.Events[8));
-            EventAssertHelper.AssertEvent(EventType.Error, "AverageNumberOfWavesCtm must be larger than 0.", validationResult.Events[9));
-            EventAssertHelper.AssertEvent(EventType.Error, "FixedNumberOfWaves must be larger than 0.", validationResult.Events[10));
-            EventAssertHelper.AssertEvent(EventType.Error, "FrontVelocityCu must be larger than 0.", validationResult.Events[11));
+            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
+            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
+            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
+                            validationResult.Events[1].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
+            Assert.AreEqual("CriticalCumulativeOverload must be larger than 0.", validationResult.Events[2].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
+            Assert.AreEqual("RepresentativeWaveRunup2PGammab must be in range [0.6, 1].",
+                            validationResult.Events[3].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
+            Assert.AreEqual("RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].",
+                            validationResult.Events[4].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
+            Assert.AreEqual("CriticalFrontVelocity must be equal to 0 or larger.", validationResult.Events[5].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[6].Type);
+            Assert.AreEqual("IncreasedLoadTransitionAlphaM must be equal to 0 or larger.",
+                            validationResult.Events[6].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[7].Type);
+            Assert.AreEqual("ReducedStrengthTransitionAlphaS must be equal to 0 or larger.",
+                            validationResult.Events[7].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[8].Type);
+            Assert.AreEqual("OuterSlope must be in range {0, 1}.", validationResult.Events[8].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[9].Type);
+            Assert.AreEqual("AverageNumberOfWavesCtm must be larger than 0.", validationResult.Events[9].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[10].Type);
+            Assert.AreEqual("FixedNumberOfWaves must be larger than 0.", validationResult.Events[10].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[11].Type);
+            Assert.AreEqual("FrontVelocityCu must be larger than 0.", validationResult.Events[11].Message);
         }
 
         [Test]
         public void GivenCalculationInputWithInvalidGrassRevetmentOvertoppingLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            auto constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties>(
-                25, GrassRevetmentTopLayerType.ClosedSod);
-            constructionProperties->SetDikeHeight(new double>(15));
-            constructionProperties->SetInitialDamage(new double>(-0.1));
-            constructionProperties->SetFailureNumber(new double>(-1));
-            constructionProperties->SetCriticalCumulativeOverload(new double>(-2));
-            constructionProperties->SetCriticalFrontVelocity(new double>(-1));
-            constructionProperties->SetAccelerationAlphaAForCrest(new double>(-0.1));
-            constructionProperties->SetAccelerationAlphaAForInnerSlope(new double>(-0.1));
-            constructionProperties->SetFixedNumberOfWaves(new int>(0));
-            constructionProperties->SetFrontVelocityCwo(new double>(-0.1));
-            constructionProperties->SetAverageNumberOfWavesCtm(new double>(0));
-            constructionProperties->SetIncreasedLoadTransitionAlphaM(new double>(-11));
-            constructionProperties->SetReducedStrengthTransitionAlphaS(new double>(-3));
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
+                25, GrassRevetmentTopLayerType.ClosedSod)
+            {
+                DikeHeight = 15,
+                InitialDamage = -0.1,
+                FailureNumber = -1,
+                CriticalCumulativeOverload = -2,
+                CriticalFrontVelocity = -1,
+                AccelerationAlphaAForCrest = -0.1,
+                AccelerationAlphaAForInnerSlope = -0.1,
+                FixedNumberOfWaves = 0,
+                FrontVelocityCwo = -0.1,
+                AverageNumberOfWavesCtm = 0,
+                IncreasedLoadTransitionAlphaM = -11,
+                ReducedStrengthTransitionAlphaS = -3
+            };
 
             var builder = new CalculationInputBuilder();
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
@@ -304,18 +331,31 @@ namespace DiKErnel.System.Test
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
             Assert.AreEqual(11, validationResult.Events.Count);
-            EventAssertHelper.AssertEvent(EventType.Error, "InitialDamage must be equal to 0 or larger.", validationResult.Events[0));
-            EventAssertHelper.AssertEvent(EventType.Error, "FailureNumber must be equal to InitialDamage or larger.", validationResult.Events[1));
-            EventAssertHelper.AssertEvent(EventType.Error, "CriticalCumulativeOverload must be larger than 0.", validationResult.Events[2));
-            EventAssertHelper.AssertEvent(EventType.Error, "CriticalFrontVelocity must be equal to 0 or larger.", validationResult.Events[3));
-            EventAssertHelper.AssertEvent(EventType.Error, "AccelerationAlphaA must be equal to 0 or larger.", validationResult.Events[4));
-            EventAssertHelper.AssertEvent(EventType.Error, "AccelerationAlphaA must be equal to 0 or larger.", validationResult.Events[5));
-            EventAssertHelper.AssertEvent(EventType.Error, "FixedNumberOfWaves must be larger than 0.", validationResult.Events[6));
-            EventAssertHelper.AssertEvent(EventType.Error, "FrontVelocityCwo must be larger than 0.", validationResult.Events[7));
-            EventAssertHelper.AssertEvent(EventType.Error, "AverageNumberOfWavesCtm must be larger than 0.", validationResult.Events[8));
-            EventAssertHelper.AssertEvent(EventType.Error, "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.", validationResult.Events[9));
-            EventAssertHelper.AssertEvent(EventType.Error, "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.",
-                                           validationResult.Events[10));
+            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
+            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
+            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
+                            validationResult.Events[1].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
+            Assert.AreEqual("CriticalCumulativeOverload must be larger than 0.", validationResult.Events[2].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
+            Assert.AreEqual("CriticalFrontVelocity must be equal to 0 or larger.", validationResult.Events[3].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
+            Assert.AreEqual("AccelerationAlphaA must be equal to 0 or larger.", validationResult.Events[4].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
+            Assert.AreEqual("AccelerationAlphaA must be equal to 0 or larger.", validationResult.Events[5].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[6].Type);
+            Assert.AreEqual("FixedNumberOfWaves must be larger than 0.", validationResult.Events[6].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[7].Type);
+            Assert.AreEqual("FrontVelocityCwo must be larger than 0.", validationResult.Events[7].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[8].Type);
+            Assert.AreEqual("AverageNumberOfWavesCtm must be larger than 0.", validationResult.Events[8].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[9].Type);
+            Assert.AreEqual("IncreasedLoadTransitionAlphaM must be equal to 0 or larger.",
+                            validationResult.Events[9].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[10].Type);
+            Assert.AreEqual("ReducedStrengthTransitionAlphaS must be equal to 0 or larger.",
+                            validationResult.Events[10].Message);
         }
 
         [Test]
@@ -323,12 +363,14 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelHigherThanEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            constexpr auto dikeHeight = 10.0;
-            constexpr auto waterLevel = dikeHeight + 0.1;
+            const double dikeHeight = 10.0;
+            const double waterLevel = dikeHeight + 0.1;
 
-            auto constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties>(
-                25, GrassRevetmentTopLayerType.ClosedSod);
-            constructionProperties->SetDikeHeight(new double>(dikeHeight));
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
+                25, GrassRevetmentTopLayerType.ClosedSod)
+            {
+                DikeHeight = dikeHeight
+            };
 
             var builder = new CalculationInputBuilder();
             builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
@@ -351,10 +393,9 @@ namespace DiKErnel.System.Test
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
             Assert.AreEqual(1, validationResult.Events.Count);
-            EventAssertHelper.AssertEvent(
-                EventType.Warning,
-                "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps.",
-                validationResult.Events[0));
+            Assert.AreEqual(EventType.Warning, validationResult.Events[0].Type);
+            Assert.AreEqual("For one or more time steps the water level exceeds the dike height. No damage will be " +
+                            "calculated for these time steps.", validationResult.Events[0].Message);
         }
 
         [Test]
@@ -362,16 +403,17 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelEqualToEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            constexpr auto dikeHeight = 10.0;
-            constexpr auto waterLevel = dikeHeight;
+            const double dikeHeight = 10.0;
 
-            auto constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties>(
-                25, GrassRevetmentTopLayerType.ClosedSod);
-            constructionProperties->SetDikeHeight(new double>(dikeHeight));
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
+                25, GrassRevetmentTopLayerType.ClosedSod)
+            {
+                DikeHeight = dikeHeight
+            };
 
             var builder = new CalculationInputBuilder();
-            builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
-            builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
+            builder.AddTimeStep(0, 100, dikeHeight, 5, 10, 30);
+            builder.AddTimeStep(100, 150, dikeHeight, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfileSegment(20, 10, 30, 10);
             builder.AddDikeProfileSegment(30, 10, 40, 5);
@@ -389,7 +431,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(0, validationResult->GetEvents().size());
+            Assert.AreEqual(0, validationResult.Events.Count);
         }
 
         [Test]
@@ -397,10 +439,10 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelHigherThanDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            constexpr auto heightOuterCrest = 10.0;
-            constexpr auto waterLevel = heightOuterCrest + 0.1;
+            const double heightOuterCrest = 10.0;
+            const double waterLevel = heightOuterCrest + 0.1;
 
-            auto constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties>(
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
                 25, GrassRevetmentTopLayerType.ClosedSod);
 
             var builder = new CalculationInputBuilder();
@@ -424,10 +466,9 @@ namespace DiKErnel.System.Test
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
             Assert.AreEqual(1, validationResult.Events.Count);
-            EventAssertHelper.AssertEvent(
-                EventType.Warning,
-                "For one or more time steps the water level exceeds the dike height. No damage will be calculated for these time steps.",
-                validationResult.Events[0));
+            Assert.AreEqual(EventType.Warning, validationResult.Events[0].Type);
+            Assert.AreEqual("For one or more time steps the water level exceeds the dike height. No damage will be " +
+                            "calculated for these time steps.", validationResult.Events[0].Message);
         }
 
         [Test]
@@ -435,15 +476,14 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelEqualToDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            constexpr auto heightOuterCrest = 10.0;
-            constexpr auto waterLevel = heightOuterCrest;
+            const double heightOuterCrest = 10.0;
 
-            auto constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
+            var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
                 25, GrassRevetmentTopLayerType.ClosedSod);
 
             var builder = new CalculationInputBuilder();
-            builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
-            builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
+            builder.AddTimeStep(0, 100, heightOuterCrest, 5, 10, 30);
+            builder.AddTimeStep(100, 150, heightOuterCrest, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, heightOuterCrest);
             builder.AddDikeProfileSegment(20, heightOuterCrest, 30, 10);
             builder.AddDikeProfileSegment(30, 10, 40, 5);
@@ -461,11 +501,8 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(0, validationResult->GetEvents().size());
+            Assert.AreEqual(0, validationResult.Events.Count);
         }
-
-        [Test]
-        public void GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult
 
         [Test]
         public void GivenValidCalculationInput_WhenValidating_ThenReturnsExpectedValidationResult()
@@ -482,23 +519,24 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
 
-            auto asphaltRevetmentWaveImpactLocationConstructionProperties =
-                new AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+            var asphaltRevetmentWaveImpactLocationConstructionProperties =
+                new AsphaltRevetmentWaveImpactLocationConstructionProperties(
                     12, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
 
-            auto grassRevetmentWaveImpactLocationConstructionProperties =
-                new GrassRevetmentWaveImpactLocationConstructionProperties>(
+            var grassRevetmentWaveImpactLocationConstructionProperties =
+                new GrassRevetmentWaveImpactLocationConstructionProperties(
                     14, GrassRevetmentTopLayerType.ClosedSod);
 
-            auto grassRevetmentWaveRunupRayleighLocationConstructionProperties = new 
-                    GrassRevetmentWaveRunupRayleighLocationConstructionProperties>
+            var grassRevetmentWaveRunupRayleighLocationConstructionProperties = new
+                GrassRevetmentWaveRunupRayleighLocationConstructionProperties
                 (19, 0.71, GrassRevetmentTopLayerType.ClosedSod);
 
-            auto naturalStoneRevetmentLocationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties>(
-                15, NaturalStoneRevetmentTopLayerType.NordicStone, 0.5, 4.6);
+            var naturalStoneRevetmentLocationConstructionProperties =
+                new NaturalStoneRevetmentLocationConstructionProperties(
+                    15, NaturalStoneRevetmentTopLayerType.NordicStone, 0.5, 4.6);
 
-            auto grassRevetmentOvertoppingLocationConstructionProperties =
-                new GrassRevetmentOvertoppingLocationConstructionProperties>(
+            var grassRevetmentOvertoppingLocationConstructionProperties =
+                new GrassRevetmentOvertoppingLocationConstructionProperties(
                     25, GrassRevetmentTopLayerType.ClosedSod);
 
             builder.AddAsphaltWaveImpactLocation(asphaltRevetmentWaveImpactLocationConstructionProperties);
@@ -515,16 +553,21 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(0, validationResult->GetEvents().size());
-        })
+            Assert.AreEqual(0, validationResult.Events.Count);
+        }
+
+        [Test]
+        public void GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            auto constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties>(
-                15, NaturalStoneRevetmentTopLayerType.NordicStone, 0, 10);
-            constructionProperties->SetInitialDamage(new double>(-0.1));
-            constructionProperties->SetFailureNumber(new double>(-1));
-            constructionProperties->SetSlopeUpperLevelAus(new double>(0.3));
-            constructionProperties->SetSlopeLowerLevelAls(new double>(0));
+            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+                15, NaturalStoneRevetmentTopLayerType.NordicStone, 0, 10)
+            {
+                InitialDamage = -0.1,
+                FailureNumber = -1,
+                SlopeUpperLevelAus = 0.3,
+                SlopeLowerLevelAls = 0
+            };
 
             var builder = new CalculationInputBuilder();
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
@@ -542,12 +585,20 @@ namespace DiKErnel.System.Test
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
             Assert.AreEqual(6, validationResult.Events.Count);
-            EventAssertHelper.AssertEvent(EventType.Error, "InitialDamage must be equal to 0 or larger.", validationResult.Events[0));
-            EventAssertHelper.AssertEvent(EventType.Error, "FailureNumber must be equal to InitialDamage or larger.", validationResult.Events[1));
-            EventAssertHelper.AssertEvent(EventType.Error, "RelativeDensity must be in range {0, 10}.", validationResult.Events[2));
-            EventAssertHelper.AssertEvent(EventType.Error, "ThicknessTopLayer must be in range {0, 1}.", validationResult.Events[3));
-            EventAssertHelper.AssertEvent(EventType.Warning, "SlopeUpperLevelAus should be in range [0.01, 0.2].", validationResult.Events[4));
-            EventAssertHelper.AssertEvent(EventType.Error, "SlopeLowerLevelAls must be larger than 0.", validationResult.Events[5));
+
+            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
+            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
+            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
+                            validationResult.Events[1].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
+            Assert.AreEqual("RelativeDensity must be in range {0, 10}.", validationResult.Events[2].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
+            Assert.AreEqual("ThicknessTopLayer must be in range {0, 1}.", validationResult.Events[3].Message);
+            Assert.AreEqual(EventType.Warning, validationResult.Events[4].Type);
+            Assert.AreEqual("SlopeUpperLevelAus should be in range [0.01, 0.2].", validationResult.Events[4].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
+            Assert.AreEqual("SlopeLowerLevelAls must be larger than 0.", validationResult.Events[5].Message);
         }
     }
 }
