@@ -392,17 +392,17 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     Damage = 1.9,
                     OuterSlope = 2.0,
                     SlopeUpperLevel = 2.1,
-                    SlopeUpperPosition = 2.3,
-                    SlopeLowerLevel = 2.4,
-                    SlopeLowerPosition = 2.5,
+                    SlopeUpperPosition = 2.2,
+                    SlopeLowerLevel = 2.3,
+                    SlopeLowerPosition = 2.4,
                     LoadingRevetment = true,
-                    SurfSimilarityParameter = 2.6,
-                    WaveSteepnessDeepWater = 2.7,
-                    UpperLimitLoading = 2.8,
-                    LowerLimitLoading = 2.9,
-                    DepthMaximumWaveLoad = 3.0,
-                    DistanceMaximumWaveElevation = 3.1,
-                    NormativeWidthOfWaveImpact = 3.2
+                    SurfSimilarityParameter = 2.5,
+                    WaveSteepnessDeepWater = 2.6,
+                    UpperLimitLoading = 2.7,
+                    LowerLimitLoading = 2.8,
+                    DepthMaximumWaveLoad = 2.9,
+                    DistanceMaximumWaveElevation = 3.0,
+                    NormativeWidthOfWaveImpact = 3.1
                 });
 
             return new CalculationOutput(new List<LocationDependentOutput>
@@ -410,7 +410,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
-                }, 3.3, 3.4),
+                }, 3.2, 3.3),
                 new GrassRevetmentOvertoppingLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput
@@ -418,15 +418,15 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
-                }, 3.5),
+                }, 3.4),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighTimeDependentOutput
-                }, 3.6),
+                }, 3.5),
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
                     naturalStoneTimeDependentOutput
-                }, 3.7)
+                }, 3.6)
             });
         }
     }
