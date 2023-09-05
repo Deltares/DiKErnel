@@ -40,6 +40,12 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
     {
         private static readonly string actualOutputFilePath = Path.Combine(Path.GetTempPath(), "actualOutput.json");
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            File.Delete(actualOutputFilePath);
+        }
+
         [Test]
         public void
             WriteCalculationOutputToJson_JsonOutputTypeFailureWithoutMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
@@ -133,12 +139,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             PerformPhysicsTest(
                 "ExpectedPhysicsOutputWithOnlyMandatoryDataAndWithoutMetaData.json",
                 CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), false);
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            File.Delete(actualOutputFilePath);
         }
 
         private static void PerformTest(string filename, JsonOutputType outputType, bool withMetaData)
