@@ -26,15 +26,13 @@ using System.Linq;
 
 namespace DiKErnel.Cli
 {
-    public class CommandLineArgumentParser
+    internal class CommandLineArgumentParser
     {
         private const string inputFilePathKey = "invoerbestand";
         private const string outputFilePathKey = "uitvoerbestand";
         private const string outputLevelKey = "uitvoerniveau";
         private const string noMetaInformationKey = "niet-schrijven-meta-informatie";
         private const string noJsonFormatValidationKey = "niet-valideren-json-formaat";
-
-        private static readonly Dictionary<string, string> readArguments = new Dictionary<string, string>();
 
         private static readonly IReadOnlyDictionary<string, IEnumerable<ArgumentType>> argumentOptions = new Dictionary<string, IEnumerable<ArgumentType>>
         {
@@ -45,7 +43,9 @@ namespace DiKErnel.Cli
             {noJsonFormatValidationKey, new []{ArgumentType.Optional}}
         };
 
-        public CommandLineArgumentParser(string[] args)
+        private readonly Dictionary<string, string> readArguments = new Dictionary<string, string>();
+
+        public CommandLineArgumentParser(IReadOnlyList<string> args)
         {
             if (!ReadArguments(args) || !ValidateReadArguments())
             {
@@ -58,18 +58,18 @@ namespace DiKErnel.Cli
 
         public bool ArgumentsAreValid { get; private set; } = true;
 
+        public string JsonInputFilePath => readArguments[inputFilePathKey];
+
+        public string JsonOutputFilePath => readArguments[outputFilePathKey];
+        
         public string LogOutputFilePath { get; private set; }
+        
+        public string OutputLevel => readArguments.TryGetValue(outputLevelKey, out string value) ? value : "schade";
 
-        public static string JsonInputFilePath => readArguments[inputFilePathKey];
+        public bool WriteMetaData => !readArguments.ContainsKey(noMetaInformationKey);
 
-        public static string JsonOutputFilePath => readArguments[outputFilePathKey];
-
-        public static bool WriteMetaData => !readArguments.ContainsKey(noMetaInformationKey);
-
-        public static bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
-
-        public static string OutputLevel => readArguments.TryGetValue(outputLevelKey, out string value) ? value : "schade";
-
+        public bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
+        
         public static string HelpMessage => "\n"
                                             + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening met DiKErnel\n"
                                             + "\n"
@@ -100,7 +100,7 @@ namespace DiKErnel.Cli
                                             + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl\n"
                                             + "\n";
 
-        private static bool ReadArguments(IReadOnlyList<string> args)
+        private bool ReadArguments(IReadOnlyList<string> args)
         {
             for (var i = 0; i < args.Count; i++)
             {
@@ -137,7 +137,7 @@ namespace DiKErnel.Cli
             return true;
         }
 
-        private static bool ValidateReadArguments()
+        private bool ValidateReadArguments()
         {
             bool requiredArgumentsArePresent = argumentOptions.Where(ao => ao.Value.Contains(ArgumentType.Required))
                                                               .Select(aoWithRequiredType =>
@@ -155,14 +155,14 @@ namespace DiKErnel.Cli
             return Path.GetExtension(filePathArgument) == ".json";
         }
 
-        private static bool OutputLevelHasValidValue()
+        private bool OutputLevelHasValidValue()
         {
             string outputLevel = OutputLevel;
 
             return outputLevel == "falen" || outputLevel == "schade" || outputLevel == "fysica";
         }
 
-        private static string CreateLogOutputFilePath()
+        private string CreateLogOutputFilePath()
         {
             string outputFilePath = JsonOutputFilePath;
             string outputDirectory = Path.GetDirectoryName(outputFilePath);
