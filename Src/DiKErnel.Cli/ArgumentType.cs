@@ -21,7 +21,7 @@
 
 namespace DiKErnel.Cli
 {
-    public enum ArgumentType
+    internal enum ArgumentType
     {
         Optional,
         Required,
