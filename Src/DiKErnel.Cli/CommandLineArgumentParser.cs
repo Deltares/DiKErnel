@@ -34,14 +34,43 @@ namespace DiKErnel.Cli
         private const string noMetaInformationKey = "niet-schrijven-meta-informatie";
         private const string noJsonFormatValidationKey = "niet-valideren-json-formaat";
 
-        private static readonly IReadOnlyDictionary<string, IEnumerable<ArgumentType>> argumentOptions = new Dictionary<string, IEnumerable<ArgumentType>>
-        {
-            {inputFilePathKey, new []{ArgumentType.Required, ArgumentType.WithValue}},
-            {outputFilePathKey, new []{ArgumentType.Required, ArgumentType.WithValue}},
-            {outputLevelKey, new []{ArgumentType.Optional, ArgumentType.WithValue}},
-            {noMetaInformationKey, new []{ArgumentType.Optional}},
-            {noJsonFormatValidationKey, new []{ArgumentType.Optional}}
-        };
+        private static readonly IReadOnlyDictionary<string, IEnumerable<ArgumentType>> argumentOptions =
+            new Dictionary<string, IEnumerable<ArgumentType>>
+            {
+                {
+                    inputFilePathKey, new[]
+                    {
+                        ArgumentType.Required,
+                        ArgumentType.WithValue
+                    }
+                },
+                {
+                    outputFilePathKey, new[]
+                    {
+                        ArgumentType.Required,
+                        ArgumentType.WithValue
+                    }
+                },
+                {
+                    outputLevelKey, new[]
+                    {
+                        ArgumentType.Optional,
+                        ArgumentType.WithValue
+                    }
+                },
+                {
+                    noMetaInformationKey, new[]
+                    {
+                        ArgumentType.Optional
+                    }
+                },
+                {
+                    noJsonFormatValidationKey, new[]
+                    {
+                        ArgumentType.Optional
+                    }
+                }
+            };
 
         private readonly Dictionary<string, string> readArguments = new Dictionary<string, string>();
 
@@ -61,15 +90,15 @@ namespace DiKErnel.Cli
         public string JsonInputFilePath => readArguments[inputFilePathKey];
 
         public string JsonOutputFilePath => readArguments[outputFilePathKey];
-        
+
         public string LogOutputFilePath { get; private set; }
-        
+
         public string OutputLevel => readArguments.TryGetValue(outputLevelKey, out string value) ? value : "schade";
 
         public bool WriteMetaData => !readArguments.ContainsKey(noMetaInformationKey);
 
         public bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
-        
+
         public static string HelpMessage => "\n"
                                             + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening met DiKErnel\n"
                                             + "\n"
