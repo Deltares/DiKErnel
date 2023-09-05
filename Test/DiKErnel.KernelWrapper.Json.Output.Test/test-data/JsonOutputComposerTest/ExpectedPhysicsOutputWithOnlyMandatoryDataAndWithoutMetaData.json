@@ -1,0 +1,202 @@
+{
+    "uitvoerdata": {
+        "locaties": [
+            {
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
+                },
+                "schade": {
+                    "schadegetalPerTijdstap": [
+                        0.2
+                    ]
+                },
+                "fysica": {
+                    "hoogteLocatie": 3.3,
+                    "hellingBuitentalud": 3.4,
+                    "toenameSchade": [
+                        0.1
+                    ],
+                    "logBreukspanning": [
+                        0.3
+                    ],
+                    "maximalePiekdruk": [
+                        0.4
+                    ],
+                    "stijfheidsverhouding": [
+                        0.5
+                    ],
+                    "rekendikte": [
+                        0.6
+                    ],
+                    "equivalenteStijfheidsmodulus": [
+                        0.7
+                    ]
+                }
+            },
+            {
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
+                },
+                "schade": {
+                    "schadegetalPerTijdstap": [
+                        0.9
+                    ]
+                },
+                "fysica": {
+                    "toenameSchade": [
+                        0.8
+                    ],
+                    "verticaleAfstandWaterstandHoogteLocatie": [
+                        1.0
+                    ],
+                    "representatieve2p": [
+                        null
+                    ],
+                    "cumulatieveOverbelasting": [
+                        null
+                    ]
+                }
+            },
+            {
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
+                },
+                "schade": {
+                    "schadegetalPerTijdstap": [
+                        1.2
+                    ]
+                },
+                "fysica": {
+                    "hoogteLocatie": 3.5,
+                    "toenameSchade": [
+                        1.1
+                    ],
+                    "belastingBekleding": [
+                        true
+                    ],
+                    "bovengrensBelasting": [
+                        1.3
+                    ],
+                    "ondergrensBelasting": [
+                        1.4
+                    ],
+                    "maximumGolfhoogte": [
+                        null
+                    ],
+                    "minimumGolfhoogte": [
+                        null
+                    ],
+                    "impactGolfhoek": [
+                        null
+                    ],
+                    "impactGolfhoogte": [
+                        null
+                    ]
+                }
+            },
+            {
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
+                },
+                "schade": {
+                    "schadegetalPerTijdstap": [
+                        1.6
+                    ]
+                },
+                "fysica": {
+                    "hoogteLocatie": 3.6,
+                    "toenameSchade": [
+                        1.5
+                    ],
+                    "verticaleAfstandWaterstandHoogteLocatie": [
+                        1.7
+                    ],
+                    "impactGolfhoek": [
+                        null
+                    ],
+                    "representatieve2p": [
+                        null
+                    ],
+                    "cumulatieveOverbelasting": [
+                        null
+                    ]
+                }
+            },
+            {
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
+                },
+                "schade": {
+                    "schadegetalPerTijdstap": [
+                        1.9
+                    ]
+                },
+                "fysica": {
+                    "hoogteLocatie": 3.7,
+                    "toenameSchade": [
+                        1.8
+                    ],
+                    "hellingBuitentalud": [
+                        2.0
+                    ],
+                    "bovenzijdeHellingvlak": [
+                        2.1
+                    ],
+                    "rechterzijdeHellingvlak": [
+                        2.3
+                    ],
+                    "onderzijdeHellingvlak": [
+                        2.4
+                    ],
+                    "linkerzijdeHellingvlak": [
+                        2.5
+                    ],
+                    "belastingBekleding": [
+                        true
+                    ],
+                    "golfbrekingparameter": [
+                        2.6
+                    ],
+                    "golfsteilheidDiepWater": [
+                        2.7
+                    ],
+                    "bovengrensBelasting": [
+                        2.8
+                    ],
+                    "ondergrensBelasting": [
+                        2.9
+                    ],
+                    "diepteMaximaleGolfbelasting": [
+                        3.0
+                    ],
+                    "afstandMaximaleStijghoogte": [
+                        3.1
+                    ],
+                    "maatgevendeBreedteGolfklap": [
+                        3.2
+                    ],
+                    "hydraulischeBelasting": [
+                        null
+                    ],
+                    "impactGolfhoek": [
+                        null
+                    ],
+                    "sterkteBekleding": [
+                        null
+                    ],
+                    "referentietijdDegradatie": [
+                        null
+                    ],
+                    "referentieDegradatie": [
+                        null
+                    ]
+                }
+            }
+        ]
+    }
+}

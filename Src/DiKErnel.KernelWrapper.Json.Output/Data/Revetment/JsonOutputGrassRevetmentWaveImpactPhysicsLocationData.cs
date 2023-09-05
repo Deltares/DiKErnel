@@ -2,19 +2,22 @@
 //
 // This file is part of DiKErnel.
 //
-// DiKErnel is free software: you can redistribute it and/or modify it under the terms of the
-// GNU Lesser General Public License as published by the Free Software Foundation, either
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
 // version 3 of the License, or (at your option) any later version.
 //
-// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-// without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-// See the GNU Lesser General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU Lesser General Public License along with this
-// program. If not, see <http://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program; if not, see <https://www.gnu.org/licenses/>.
 //
-// All names, logos, and references to "Deltares" are registered trademarks of Stichting
-// Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
+// All names, logos, and references to "Deltares" are registered trademarks of
+// Stichting Deltares and remain full property of Stichting Deltares at all times.
+// All rights reserved.
 
 using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Output.Data.Definitions;
@@ -44,7 +47,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             WaveHeightImpact = waveHeightImpact;
         }
 
-        [JsonProperty(JsonOutputDefinitions.Z)]
+        [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
 
         [JsonProperty(JsonOutputDefinitions.HYDRAULIC_LOAD)]
@@ -56,11 +59,11 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.LOWER_LIMIT_LOADING)]
         public IReadOnlyList<double> LowerLimitLoading { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MINIMUM_WAVE_HEIGHT)]
-        public IReadOnlyList<double?> MinimumWaveHeight { get; }
-
         [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MAXIMUM_WAVE_HEIGHT)]
         public IReadOnlyList<double?> MaximumWaveHeight { get; }
+
+        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MINIMUM_WAVE_HEIGHT)]
+        public IReadOnlyList<double?> MinimumWaveHeight { get; }
 
         [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }

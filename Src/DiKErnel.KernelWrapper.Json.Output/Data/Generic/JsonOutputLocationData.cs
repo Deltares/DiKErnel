@@ -2,19 +2,22 @@
 //
 // This file is part of DiKErnel.
 //
-// DiKErnel is free software: you can redistribute it and/or modify it under the terms of the
-// GNU Lesser General Public License as published by the Free Software Foundation, either
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
 // version 3 of the License, or (at your option) any later version.
 //
-// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-// without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-// See the GNU Lesser General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU Lesser General Public License along with this
-// program. If not, see <http://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program; if not, see <https://www.gnu.org/licenses/>.
 //
-// All names, logos, and references to "Deltares" are registered trademarks of Stichting
-// Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
+// All names, logos, and references to "Deltares" are registered trademarks of
+// Stichting Deltares and remain full property of Stichting Deltares at all times.
+// All rights reserved.
 
 using DiKErnel.KernelWrapper.Json.Output.Data.Definitions;
 using Newtonsoft.Json;
@@ -23,22 +26,22 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputLocationData
     {
-        public JsonOutputLocationData(JsonOutputFailureLocationData failureDataItems,
-                                      JsonOutputDamageLocationData damageDataItems,
-                                      JsonOutputPhysicsLocationData physicsDataItems)
+        public JsonOutputLocationData(JsonOutputFailureLocationData failureData,
+                                      JsonOutputDamageLocationData damageData,
+                                      JsonOutputPhysicsLocationData physicsData)
         {
-            FailureDataItems = failureDataItems;
-            DamageDataItems = damageDataItems;
-            PhysicsDataItems = physicsDataItems;
+            FailureData = failureData;
+            DamageData = damageData;
+            PhysicsData = physicsData;
         }
 
         [JsonProperty(JsonOutputDefinitions.FAILURE)]
-        public JsonOutputFailureLocationData FailureDataItems { get; }
+        public JsonOutputFailureLocationData FailureData { get; }
 
         [JsonProperty(JsonOutputDefinitions.DAMAGE, NullValueHandling = NullValueHandling.Ignore)]
-        public JsonOutputDamageLocationData DamageDataItems { get; }
+        public JsonOutputDamageLocationData DamageData { get; }
 
         [JsonProperty(JsonOutputDefinitions.PHYSICS, NullValueHandling = NullValueHandling.Ignore)]
-        public JsonOutputPhysicsLocationData PhysicsDataItems { get; }
+        public JsonOutputPhysicsLocationData PhysicsData { get; }
     }
 }
