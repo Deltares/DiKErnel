@@ -43,9 +43,6 @@ namespace DiKErnel.KernelWrapper.Json.Input
     {
         private static readonly JSchema schema;
 
-        /// <summary>
-        /// Initializes some static members.
-        /// </summary>
         static JsonInputComposer()
         {
             using Stream validatorSchemaStream = new MemoryStream(Resources.SchemaDefinition);
