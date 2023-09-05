@@ -283,11 +283,10 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassWaveImpactLocationData locationData,
                 JsonInputGrassWaveImpactCalculationData calculationData)
         {
-            JsonInputGrassWaveImpactTopLayerData topLayerData =
+            JsonInputGrassWaveImpactTopLayerTimeLineData timeLineData =
                 calculationData?.TopLayerDefinitionData?
-                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
-            JsonInputGrassWaveImpactTopLayerTimeLineData timeLineData = topLayerData?.TimeLine;
-            JsonInputGrassWaveImpactCalculationImpactWaveAngleData waveAngleData = calculationData?.WaveAngleData;
+                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType)?.TimeLine;
+            JsonInputGrassWaveImpactCalculationImpactWaveAngleData impactWaveAngleData = calculationData?.WaveAngleData;
             JsonInputGrassWaveImpactCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
 
             return new GrassRevetmentWaveImpactLocationConstructionProperties(
@@ -300,9 +299,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 TimeLineCgwi = timeLineData?.TimeLineC,
                 MinimumWaveHeightTemax = calculationData?.Temax,
                 MaximumWaveHeightTemin = calculationData?.Temin,
-                WaveAngleImpactNwa = waveAngleData?.WaveAngleImpactN,
-                WaveAngleImpactQwa = waveAngleData?.WaveAngleImpactQ,
-                WaveAngleImpactRwa = waveAngleData?.WaveAngleImpactR,
+                WaveAngleImpactNwa = impactWaveAngleData?.WaveAngleImpactN,
+                WaveAngleImpactQwa = impactWaveAngleData?.WaveAngleImpactQ,
+                WaveAngleImpactRwa = impactWaveAngleData?.WaveAngleImpactR,
                 UpperLimitLoadingAul = loadingAreaData?.UpperLimit?.LimitLoading,
                 LowerLimitLoadingAll = loadingAreaData?.LowerLimit?.LimitLoading
             };
@@ -322,7 +321,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
             JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData representativeWaveRunupData =
                 calculationData.JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData;
-            JsonInputGrassWaveRunupCalculationImpactAngleData calculationImpactAngleData =
+            JsonInputGrassWaveRunupCalculationImpactAngleData impactAngleData =
                 calculationData.JsonInputGrassWaveRunupCalculationImpactAngleData;
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData.TopLayerDefinitionData?
@@ -341,8 +340,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 representativeWaveRunupData?.RepresentativeWaveRunup2Pb;
             constructionProperties.RepresentativeWaveRunup2PCru =
                 representativeWaveRunupData?.RepresentativeWaveRunup2Pc;
-            constructionProperties.WaveAngleImpactAbeta = calculationImpactAngleData?.WaveAngleImpactABeta;
-            constructionProperties.WaveAngleImpactBetamax = calculationImpactAngleData?.WaveAngleImpactBetaMax;
+            constructionProperties.WaveAngleImpactAbeta = impactAngleData?.WaveAngleImpactABeta;
+            constructionProperties.WaveAngleImpactBetamax = impactAngleData?.WaveAngleImpactBetaMax;
             constructionProperties.CriticalCumulativeOverload = topLayerData?.CriticalCumulativeOverload;
             constructionProperties.CriticalFrontVelocity = topLayerData?.CriticalFrontVelocity;
 
@@ -375,19 +374,18 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static NaturalStoneRevetmentLocationConstructionProperties CreateNaturalStoneConstructionProperties(
             JsonInputNaturalStoneLocationData locationData, JsonInputNaturalStoneCalculationData calculationData)
         {
-            JsonInputNaturalStoneTopLayerData topLayerData =
+            JsonInputNaturalStoneTopLayerNorseStoneStabilityData stabilityData =
                 calculationData?.TopLayerDefinitionData?
-                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
-            JsonInputNaturalStoneTopLayerNorseStoneStabilityData stabilityData = topLayerData?.Stability;
-            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData norseStoneStabilityCoefficientsData =
+                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType)?.Stability;
+            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData plungingData =
                 stabilityData?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData;
-            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData naturalStoneTopLayerNorseStoneSurgingData =
+            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData surgingData =
                 stabilityData?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData;
             JsonInputNaturalStoneCalculationSlopeData slopeData = calculationData?.Slope;
             JsonInputNaturalStoneCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingArea;
             JsonInputNaturalStoneCalculationLimitData upperLimitLoadingData = loadingAreaData?.UpperLimitLoading;
-            JsonInputNaturalStoneCalculationLimitData limitLoadingData = loadingAreaData?.LowerLimitLoading;
-            JsonInputNaturalStoneCalculationMaximumWaveElevationData distanceMaximumWaveElevationData =
+            JsonInputNaturalStoneCalculationLimitData lowerLimitLoadingData = loadingAreaData?.LowerLimitLoading;
+            JsonInputNaturalStoneCalculationMaximumWaveElevationData maximumWaveElevationData =
                 calculationData?.DistanceMaximumWaveElevation;
             JsonInputNaturalStoneCalculationNormativeWidthWaveImpactData normativeWidthWaveImpactData =
                 calculationData?.NormativeWidthOfWaveImpact;
@@ -398,25 +396,25 @@ namespace DiKErnel.KernelWrapper.Json.Input
             {
                 InitialDamage = locationData.InitialDamage,
                 FailureNumber = calculationData?.FailureNumber,
-                HydraulicLoadAp = norseStoneStabilityCoefficientsData?.A,
-                HydraulicLoadBp = norseStoneStabilityCoefficientsData?.B,
-                HydraulicLoadCp = norseStoneStabilityCoefficientsData?.C,
-                HydraulicLoadNp = norseStoneStabilityCoefficientsData?.N,
-                HydraulicLoadAs = naturalStoneTopLayerNorseStoneSurgingData?.A,
-                HydraulicLoadBs = naturalStoneTopLayerNorseStoneSurgingData?.B,
-                HydraulicLoadCs = naturalStoneTopLayerNorseStoneSurgingData?.C,
-                HydraulicLoadNs = naturalStoneTopLayerNorseStoneSurgingData?.N,
+                HydraulicLoadAp = plungingData?.A,
+                HydraulicLoadBp = plungingData?.B,
+                HydraulicLoadCp = plungingData?.C,
+                HydraulicLoadNp = plungingData?.N,
+                HydraulicLoadAs = surgingData?.A,
+                HydraulicLoadBs = surgingData?.B,
+                HydraulicLoadCs = surgingData?.C,
+                HydraulicLoadNs = surgingData?.N,
                 HydraulicLoadXib = stabilityData?.StabilityXib,
                 SlopeUpperLevelAus = slopeData?.SlopeUpperLevel,
                 SlopeLowerLevelAls = slopeData?.SlopeLowerLevel,
                 UpperLimitLoadingAul = upperLimitLoadingData?.A,
                 UpperLimitLoadingBul = upperLimitLoadingData?.B,
                 UpperLimitLoadingCul = upperLimitLoadingData?.C,
-                LowerLimitLoadingAll = limitLoadingData?.A,
-                LowerLimitLoadingBll = limitLoadingData?.B,
-                LowerLimitLoadingCll = limitLoadingData?.C,
-                DistanceMaximumWaveElevationAsmax = distanceMaximumWaveElevationData?.DistanceMaximumWaveElevationA,
-                DistanceMaximumWaveElevationBsmax = distanceMaximumWaveElevationData?.DistanceMaximumWaveElevationB,
+                LowerLimitLoadingAll = lowerLimitLoadingData?.A,
+                LowerLimitLoadingBll = lowerLimitLoadingData?.B,
+                LowerLimitLoadingCll = lowerLimitLoadingData?.C,
+                DistanceMaximumWaveElevationAsmax = maximumWaveElevationData?.DistanceMaximumWaveElevationA,
+                DistanceMaximumWaveElevationBsmax = maximumWaveElevationData?.DistanceMaximumWaveElevationB,
                 NormativeWidthOfWaveImpactAwi = normativeWidthWaveImpactData?.NormativeWidthOfWaveImpactA,
                 NormativeWidthOfWaveImpactBwi = normativeWidthWaveImpactData?.NormativeWidthOfWaveImpactB,
                 WaveAngleImpactBetamax = calculationData?.WaveAngleImpact?.WaveAngleImpactBetaMax
