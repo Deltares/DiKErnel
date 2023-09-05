@@ -193,11 +193,8 @@ namespace DiKErnel.Cli
 
         private string CreateLogOutputFilePath()
         {
-            string outputFilePath = JsonOutputFilePath;
-            string outputDirectory = Path.GetDirectoryName(outputFilePath);
-            string outputFileName = Path.GetFileNameWithoutExtension(outputFilePath);
-
-            return $"{Path.Join(outputDirectory, outputFileName)}.log";
+            return Path.Join(Path.GetDirectoryName(JsonOutputFilePath),
+                             Path.GetFileNameWithoutExtension(JsonOutputFilePath) + ".log");
         }
     }
 }
