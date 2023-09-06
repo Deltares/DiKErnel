@@ -199,7 +199,7 @@ namespace DiKErnel.Cli
 
             foreach (Event e in events)
             {
-                writer.Write($"{GetEventTypeString(e.Type)}: {e.Message}\n");
+                writer.Write($"{GetEventTypeString(e.Type)}: {e.Message}{Environment.NewLine}");
             }
         }
 
