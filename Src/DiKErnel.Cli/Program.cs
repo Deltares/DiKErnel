@@ -33,7 +33,7 @@ using DiKErnel.Util;
 
 namespace DiKErnel.Cli
 {
-    public static class DiKernelConsole
+    public static class Program
     {
         private const string unexpectedErrorMessage = "Er is een onverwachte fout opgetreden. Indien gewenst kunt u " +
                                                       "contact met ons opnemen via dikernel@deltares.nl.";
