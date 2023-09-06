@@ -4,6 +4,9 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
     </PropertyGroup>
+    <PropertyGroup>
+        <NoWarn>CA1031</NoWarn>
+    </PropertyGroup>
     <ItemGroup>
       <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj" />
       <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj" />

@@ -26,7 +26,7 @@ using System.Linq;
 
 namespace DiKErnel.Cli
 {
-    internal class CommandLineArgumentParser
+    internal sealed class CommandLineArgumentParser
     {
         private const string inputFilePathKey = "invoerbestand";
         private const string outputFilePathKey = "uitvoerbestand";
