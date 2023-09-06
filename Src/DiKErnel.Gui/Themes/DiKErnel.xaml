@@ -470,4 +470,8 @@
   <markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" />
   <markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnDisabled" ResourceKey="MahApps.Brushes.SystemControlPageBackgroundBaseLow" />
 
+  <Style TargetType="TextBlock">
+      <Setter Property="FontSize" Value="13"/>
+  </Style>
+
 </ResourceDictionary>

@@ -97,7 +97,8 @@ All rights reserved.
             <TextBlock
                 Margin="10,6 , 10, 6"
                 TextWrapping="Wrap"
-                TextAlignment="Justify">
+                TextAlignment="Justify"
+                FontSize="12">
                 <Bold>Disclaimer:</Bold>
                 De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid. 
                 Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren. 
