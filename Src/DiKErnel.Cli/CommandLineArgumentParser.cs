@@ -99,43 +99,47 @@ namespace DiKErnel.Cli
 
         public bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
 
-        public static string HelpMessage => "\n"
-                                            + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening met DiKErnel\n"
-                                            + "\n"
-                                            + "Verplichte argumenten:\n"
-                                            + "----------------------\n"
-                                            + "--invoerbestand <pad_naar_invoerbestand>\n"
-                                            + "  = Het pad van het invoerbestand\n"
-                                            + "--uitvoerbestand <pad_naar_uitvoerbestand>\n"
-                                            + "  = Het pad van het uitvoerbestand\n"
-                                            + "    -> Dit bepaalt ook de locatie van het eventuele logbestand\n"
-                                            + "\n"
-                                            + "Optionele argumenten:\n"
-                                            + "---------------------\n"
-                                            + "--uitvoerniveau <niveau>\n"
-                                            + "  = Maat voor de hoeveelheid uitvoer die wordt weggeschreven\n"
-                                            + "    -> Opties voor <niveau>: falen, schade, fysica\n"
-                                            + "    -> Standaardwaarde: schade\n"
-                                            + "--niet-schrijven-meta-informatie\n"
-                                            + "  = Schakelt het schrijven van meta-informatie uit\n"
-                                            + "--niet-valideren-json-formaat\n"
-                                            + "  = Schakelt het valideren van het Json-formaat uit\n"
-                                            + "\n"
-                                            + "Voorbeeld:\n"
-                                            + "----------\n"
-                                            + "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json --uitvoerniveau fysica "
-                                            + "--niet-schrijven-meta-informatie --niet-valideren-json-formaat\n"
-                                            + "\n"
-                                            + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl\n"
-                                            + "\n";
+        public static string HelpMessage =>
+            Environment.NewLine + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening " +
+            "met DiKErnel" +
+            Environment.NewLine +
+            Environment.NewLine + "Verplichte argumenten:" +
+            Environment.NewLine + "----------------------" +
+            Environment.NewLine + "--invoerbestand <pad_naar_invoerbestand>" +
+            Environment.NewLine + "  = Het pad van het invoerbestand" +
+            Environment.NewLine + "--uitvoerbestand <pad_naar_uitvoerbestand>" +
+            Environment.NewLine + "  = Het pad van het uitvoerbestand" +
+            Environment.NewLine + "    -> Dit bepaalt ook de locatie van het eventuele logbestand" +
+            Environment.NewLine +
+            Environment.NewLine + "Optionele argumenten:" +
+            Environment.NewLine + "---------------------" +
+            Environment.NewLine + "--uitvoerniveau <niveau>" +
+            Environment.NewLine + "  = Maat voor de hoeveelheid uitvoer die wordt weggeschreven" +
+            Environment.NewLine + "    -> Opties voor <niveau>: falen, schade, fysica" +
+            Environment.NewLine + "    -> Standaardwaarde: schade" +
+            Environment.NewLine + "--niet-schrijven-meta-informatie" +
+            Environment.NewLine + "  = Schakelt het schrijven van meta-informatie uit" +
+            Environment.NewLine + "--niet-valideren-json-formaat" +
+            Environment.NewLine + "  = Schakelt het valideren van het Json-formaat uit" +
+            Environment.NewLine +
+            Environment.NewLine + "Voorbeeld:" +
+            Environment.NewLine + "----------" +
+            Environment.NewLine + "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json " +
+            "--uitvoerniveau fysica --niet-schrijven-meta-informatie --niet-valideren-json-formaat" +
+            Environment.NewLine +
+            Environment.NewLine + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl" +
+            Environment.NewLine +
+            Environment.NewLine;
 
         private bool ReadArguments(IReadOnlyList<string> args)
         {
             for (var i = 0; i < args.Count; i++)
             {
-                if (args[i].StartsWith("--", StringComparison.InvariantCulture))
+                string readKey = args[i];
+
+                if (readKey.StartsWith("--", StringComparison.InvariantCulture))
                 {
-                    string key = args[i][2..];
+                    string key = readKey[2..];
                     var value = "";
 
                     if (argumentOptions.ContainsKey(key))
@@ -147,7 +151,7 @@ namespace DiKErnel.Cli
                                 return false; // Value missing
                             }
 
-                            value = args[++i];
+                            value = args[i++];
                         }
                     }
                     else
@@ -168,10 +172,9 @@ namespace DiKErnel.Cli
 
         private bool ValidateReadArguments()
         {
-            bool requiredArgumentsArePresent = argumentOptions.Where(ao => ao.Value.Contains(ArgumentType.Required))
-                                                              .Select(aoWithRequiredType =>
-                                                                          readArguments.ContainsKey(aoWithRequiredType.Key))
-                                                              .All(aoHasReadArgument => aoHasReadArgument);
+            bool requiredArgumentsArePresent =
+                argumentOptions.Where(argumentOption => argumentOption.Value.Contains(ArgumentType.Required))
+                               .All(requiredArgumentOption => readArguments.ContainsKey(requiredArgumentOption.Key));
 
             return requiredArgumentsArePresent
                    && FilePathArgumentHasValidExtension(JsonInputFilePath)
