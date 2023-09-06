@@ -154,7 +154,7 @@ namespace DiKErnel.Cli
             return calculator.CalculationState != CalculationState.FinishedInError ? calculatorResult : null;
         }
 
-        static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser, long elapsed)
+        private static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser, long elapsed)
         {
             Dictionary<string, object> metaDataItems = null;
 
@@ -195,12 +195,11 @@ namespace DiKErnel.Cli
                 return;
             }
 
-            using (var writer = new StreamWriter(logOutputFilePath, append: true))
+            using var writer = new StreamWriter(logOutputFilePath, true);
+            
+            foreach (Event e in events)
             {
-                foreach (Event inEvent in events)
-                {
-                    writer.Write($"{GetEventTypeString(inEvent.Type)}: {inEvent.Message}\n");
-                }
+                writer.Write($"{GetEventTypeString(e.Type)}: {e.Message}\n");
             }
         }
 
