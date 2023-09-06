@@ -126,7 +126,8 @@ namespace DiKErnel.Cli
                 }
             }
 
-            DataResult<ICalculationInput> inputComposerResult = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
+            DataResult<ICalculationInput> inputComposerResult =
+                JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
 
             WriteToLogFile(inputComposerResult.Events);
 
@@ -154,7 +155,8 @@ namespace DiKErnel.Cli
             return calculator.CalculationState != CalculationState.FinishedInError ? calculatorResult : null;
         }
 
-        private static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser, long elapsed)
+        private static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser,
+                                        long elapsed)
         {
             Dictionary<string, object> metaDataItems = null;
 
