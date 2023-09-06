@@ -44,6 +44,8 @@ namespace DiKErnel.Cli
         {
             try
             {
+                AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
+
                 var parser = new CommandLineArgumentParser(args);
 
                 if (!parser.ArgumentsAreValid)
@@ -218,6 +220,15 @@ namespace DiKErnel.Cli
         private static void CloseApplicationAfterUnhandledError()
         {
             WriteToLogFile(EventRegistry.Flush());
+        }
+
+        private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
+        {
+            EventRegistry.Register(new Event(unexpectedErrorMessage, EventType.Error));
+
+            CloseApplicationAfterUnhandledError();
+
+            Environment.Exit(1);
         }
     }
 }
