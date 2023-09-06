@@ -245,18 +245,18 @@ All rights reserved.
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>  
-                <CheckBox 
+                <mah:ToggleSwitch 
                     x:Name="ValidateJson"
                     VerticalAlignment="Center"
                     Grid.Column="0">
                 Valideren Json-formaat
-                </CheckBox>
-                <CheckBox
+                </mah:ToggleSwitch>
+                <mah:ToggleSwitch
                     x:Name="WriteMetadata"
                     VerticalAlignment="Center"
                     Grid.Column="1">
                 Schrijven meta-informatie
-                </CheckBox>
+                </mah:ToggleSwitch>
         </Grid>
 
         <!-- Output level grid -->

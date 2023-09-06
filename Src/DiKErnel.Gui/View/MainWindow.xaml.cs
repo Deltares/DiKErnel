@@ -190,7 +190,7 @@ namespace DiKErnel.Gui.View
 
         private DataResult<ICalculationInput> ValidateAndReadInput(string jsonInputFilePath)
         {
-            if (ValidateJson.IsChecked == true)
+            if (ValidateJson.IsOn)
             {
                 bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
 
@@ -367,7 +367,7 @@ namespace DiKErnel.Gui.View
         {
             var metaDataItems = new Dictionary<string, object>();
 
-            if (WriteMetadata.IsChecked == true)
+            if (WriteMetadata.IsOn)
             {
                 metaDataItems["versie"] = ApplicationHelper.ApplicationVersionString;
                 metaDataItems["besturingssysteem"] = ApplicationHelper.OperatingSystemName;
