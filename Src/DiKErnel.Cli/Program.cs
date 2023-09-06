@@ -148,7 +148,7 @@ namespace DiKErnel.Cli
             calculator.WaitForCompletion();
 
             DataResult<CalculationOutput> calculatorResult = calculator.Result;
-            
+
             WriteToLogFile(calculatorResult.Events);
 
             return calculator.CalculationState != CalculationState.FinishedInError ? calculatorResult : null;
@@ -172,9 +172,9 @@ namespace DiKErnel.Cli
             SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
                 parser.JsonOutputFilePath, calculationOutput, ConvertOutputType(parser.OutputLevel),
                 metaDataItems);
-            
+
             WriteToLogFile(outputComposerResult.Events);
-            
+
             return outputComposerResult.Successful;
         }
 
@@ -196,7 +196,7 @@ namespace DiKErnel.Cli
             }
 
             using var writer = new StreamWriter(logOutputFilePath, true);
-            
+
             foreach (Event e in events)
             {
                 writer.Write($"{GetEventTypeString(e.Type)}: {e.Message}\n");
