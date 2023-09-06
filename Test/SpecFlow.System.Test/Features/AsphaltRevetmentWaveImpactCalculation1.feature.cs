@@ -229,6 +229,9 @@ this.FeatureBackground();
 #line 31
  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 32
+ testRunner.Then("the ExpectedDamage is 1.12993952544264 in a 25720", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -242,7 +245,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpec" +
                     "tedCalculationResult", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 33
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -269,17 +272,20 @@ this.FeatureBackground();
                             "60",
                             "0.3",
                             "16000"});
-#line 34
+#line 38
  testRunner.Given("the following location construction properties:", ((string)(null)), table5, "Given ");
 #line hidden
-#line 37
+#line 41
  testRunner.And("the location constructionwith has the initial damage of 0.4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
+#line 42
  testRunner.When("I add the asphalt wave impact location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
+#line 43
  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 44
+ testRunner.Then("the ExpectedDamage is 1.72416579184261 in a 22141", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -294,7 +300,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpec" +
                     "tedCalculationResult", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 41
+#line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -313,26 +319,31 @@ this.FeatureBackground();
                             "FailureTension",
                             "SoilElasticity",
                             "ThicknessUpperLayer",
-                            "ElasticModulusUpperLayer",
-                            "ThicknessSubLayer",
-                            "ElasticModulusSubLayer"});
+                            "ElasticModulusUpperLayer"});
                 table6.AddRow(new string[] {
                             "10",
                             "HydraulicAsphaltConcrete",
                             "1.6",
                             "55",
                             "0.15",
-                            "18000",
-                            "0.18",
-                            "15000"});
-#line 42
+                            "18000"});
+#line 47
  testRunner.Given("the following location construction properties:", ((string)(null)), table6, "Given ");
 #line hidden
-#line 47
+#line 50
+ testRunner.And("location construction has the thickness subLaye of 0.18", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 51
+ testRunner.And("location construction has the elastic modulus subLayer of 15000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 52
  testRunner.When("I add the asphalt wave impact location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 48
+#line 53
  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 54
+ testRunner.Then("the ExpectedDamage is 1.53983898504504 in a 23511", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -347,7 +358,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpec" +
                     "tedCalculationResult", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 50
+#line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -374,7 +385,7 @@ this.FeatureBackground();
                             "55",
                             "0.3",
                             "18000"});
-#line 51
+#line 57
  testRunner.Given("the following location construction properties:", ((string)(null)), table7, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -425,13 +436,13 @@ this.FeatureBackground();
                 table8.AddRow(new string[] {
                             "6.0",
                             "0.001"});
-#line 54
+#line 60
  testRunner.And("location construction has the following impact factors:", ((string)(null)), table8, "And ");
 #line hidden
-#line 71
+#line 77
  testRunner.When("I add the asphalt wave impact location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 72
+#line 78
  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -447,7 +458,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GivenCalculationInputForSchematization1Testcase5_WhenCalculating_ThenReturnsExpec" +
                     "tedCalculationResult", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 74
+#line 80
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -474,7 +485,7 @@ this.FeatureBackground();
                             "55",
                             "0.38",
                             "18000"});
-#line 75
+#line 81
  testRunner.Given("the following location construction properties:", ((string)(null)), table9, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -525,13 +536,13 @@ this.FeatureBackground();
                 table10.AddRow(new string[] {
                             "0.27",
                             "0.00009647"});
-#line 78
+#line 84
  testRunner.And("location construction has the following impact factors:", ((string)(null)), table10, "And ");
 #line hidden
-#line 95
+#line 101
  testRunner.When("I add the asphalt wave impact location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 96
+#line 102
  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -547,7 +558,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GivenCalculationInputForSchematization1Testcase6_WhenCalculating_ThenReturnsExpec" +
                     "tedCalculationResult", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 98
+#line 104
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -574,7 +585,7 @@ this.FeatureBackground();
                             "55",
                             "0.45",
                             "18000"});
-#line 99
+#line 105
  testRunner.Given("the following location construction properties:", ((string)(null)), table11, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -625,13 +636,13 @@ this.FeatureBackground();
                 table12.AddRow(new string[] {
                             "2.2",
                             "0.007"});
-#line 102
+#line 108
  testRunner.And("location construction has the following impact factors:", ((string)(null)), table12, "And ");
 #line hidden
-#line 119
+#line 125
  testRunner.When("I add the asphalt wave impact location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 120
+#line 126
  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -647,7 +658,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GivenCalculationInputForSchematization1Testcase7_WhenCalculating_ThenReturnsExpec" +
                     "tedCalculationResult", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 122
+#line 128
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -674,7 +685,7 @@ this.FeatureBackground();
                             "55",
                             "0.35",
                             "18000"});
-#line 123
+#line 129
  testRunner.Given("the following location construction properties:", ((string)(null)), table13, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -691,10 +702,10 @@ this.FeatureBackground();
                             "0.9",
                             "0.95",
                             "1000"});
-#line 126
+#line 132
  testRunner.And("the following Asphalt wave impact location", ((string)(null)), table14, "And ");
 #line hidden
-#line 129
+#line 135
  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }

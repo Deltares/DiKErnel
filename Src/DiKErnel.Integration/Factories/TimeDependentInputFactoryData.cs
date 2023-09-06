@@ -21,7 +21,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class TimeDependentInputFactoryData
+    public class TimeDependentInputFactoryData
     {
         public TimeDependentInputFactoryData(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
                                              double wavePeriodTm10, double waveAngle)

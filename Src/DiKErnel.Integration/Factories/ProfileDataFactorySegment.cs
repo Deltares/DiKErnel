@@ -21,7 +21,7 @@
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class ProfileDataFactorySegment
+    public class ProfileDataFactorySegment
     {
         public ProfileDataFactorySegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
                                          double? roughnessCoefficient)

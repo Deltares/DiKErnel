@@ -23,7 +23,7 @@ using DiKErnel.Core.Data;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal class ProfileDataFactoryPoint
+    public class ProfileDataFactoryPoint
     {
         public ProfileDataFactoryPoint(double x, CharacteristicPointType characteristicPointType)
         {

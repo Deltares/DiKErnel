@@ -30,7 +30,7 @@ namespace DiKErnel.Integration.Data
         /// Creates a new instance.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
-        protected RevetmentLocationConstructionPropertiesBase(double x)
+        public RevetmentLocationConstructionPropertiesBase(double x)
         {
             X = x;
         }

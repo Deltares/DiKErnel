@@ -29,23 +29,29 @@ Scenario: GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenR
 		| 10 | HydraulicAsphaltConcrete     | 1.6            | 55             | 0.4                 | 18000                    |
 	When I add the asphalt wave impact location
 	And I run the calculation
+	Then the ExpectedDamage is 1.12993952544264 in a 25720
+	#Then the results are as follows:
+		#| ExpectedDamage   | ExpectedTimeOfFailure |
+		#| 1.12993952544264 | 25720                 |
 
 Scenario: GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult
 	Given the following location construction properties:
-		| X  | AsphaltRevetmentTopLayerType | FailureTension | SoilElasticity | ThicknessUpperLayer | ElasticModulusUpperLayer |
-		| 10 | HydraulicAsphaltConcrete     | 1.75           | 60             | 0.3                 | 16000                    |
+		| X  | AsphaltRevetmentTopLayerType | FailureTension | SoilElasticity | ThicknessUpperLayer | ElasticModulusUpperLayer | 
+		| 10 | HydraulicAsphaltConcrete     | 1.75           | 60             | 0.3                 | 16000                    | 
 	And the location constructionwith has the initial damage of 0.4
 	When I add the asphalt wave impact location
 	And I run the calculation
+	Then the ExpectedDamage is 1.72416579184261 in a 22141
 
 Scenario: GivenCalculationInputForSchematization1Testcase3_WhenCalculating_ThenReturnsExpectedCalculationResult
 	Given the following location construction properties:
-		| X  | AsphaltRevetmentTopLayerType | FailureTension | SoilElasticity | ThicknessUpperLayer | ElasticModulusUpperLayer | ThicknessSubLayer | ElasticModulusSubLayer |
-		| 10 | HydraulicAsphaltConcrete     | 1.6            | 55             | 0.15                | 18000                    | 0.18              | 15000                  |
-	#And location construction has the thickness subLaye of 0.18
-	#And location construction has the elastic modulus subLayer of 15000
+		| X  | AsphaltRevetmentTopLayerType | FailureTension | SoilElasticity | ThicknessUpperLayer | ElasticModulusUpperLayer | 
+		| 10 | HydraulicAsphaltConcrete     | 1.6            | 55             | 0.15                | 18000                    | 
+	And location construction has the thickness subLaye of 0.18
+	And location construction has the elastic modulus subLayer of 15000
 	When I add the asphalt wave impact location
 	And I run the calculation
+	Then the ExpectedDamage is 1.53983898504504 in a 23511
 
 Scenario: GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult
 	Given the following location construction properties:
