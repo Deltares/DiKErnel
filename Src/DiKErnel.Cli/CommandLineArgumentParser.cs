@@ -114,7 +114,7 @@ namespace DiKErnel.Cli
             Environment.NewLine + "Optionele argumenten:" +
             Environment.NewLine + "---------------------" +
             Environment.NewLine + "--uitvoerniveau <niveau>" +
-            Environment.NewLine + "  = Maat voor de hoeveelheid uitvoer die wordt weggeschreven" +
+            Environment.NewLine + "  = Bepaalt de hoeveelheid uitvoer die wordt weggeschreven" +
             Environment.NewLine + "    -> Opties voor <niveau>: falen, schade, fysica" +
             Environment.NewLine + "    -> Standaardwaarde: schade" +
             Environment.NewLine + "--niet-schrijven-meta-informatie" +
