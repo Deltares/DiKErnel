@@ -32,22 +32,8 @@ All rights reserved.
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.FlatButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DiKErnel.Gui;component/Themes/DiKErnel.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOff" Color="White" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOffPointerOver" Color="White" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOff" Color="LightGray" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOffPointerOver" Color="LightGray" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOff" Color="LightGray" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOffPointerOver" Color="LightGray" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOn" Color="White" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnPointerOver" Color="White" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOn" Color="CornflowerBlue" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.FillOnPointerOver" Color="CornflowerBlue" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOn" Color="CornflowerBlue" />
-            <SolidColorBrush x:Key="MahApps.Brushes.ToggleSwitch.StrokeOnPointerOver" Color="CornflowerBlue" />
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>
