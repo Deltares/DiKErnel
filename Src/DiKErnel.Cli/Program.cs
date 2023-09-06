@@ -35,6 +35,9 @@ namespace DiKErnel.Cli
 {
     public static class DiKernelConsole
     {
+        private const string unexpectedErrorMessage = "Er is een onverwachte fout opgetreden. Indien gewenst kunt u " +
+                                                      "contact met ons opnemen via dikernel@deltares.nl.";
+
         private static string logOutputFilePath;
 
         public static int Main(string[] args)
@@ -45,53 +48,56 @@ namespace DiKErnel.Cli
 
                 if (!parser.ArgumentsAreValid)
                 {
-                    Console.Out.WriteLine(CommandLineArgumentParser.HelpMessage);
-                    return (int) ExitCodes.ArgumentsInvalid;
+                    Console.WriteLine(CommandLineArgumentParser.HelpMessage);
+                    return -1;
                 }
 
-                string jsonInputFilePath = CommandLineArgumentParser.JsonInputFilePath;
-                string jsonOutputFilePath = CommandLineArgumentParser.JsonOutputFilePath;
+                string jsonInputFilePath = parser.JsonInputFilePath;
+                string jsonOutputFilePath = parser.JsonOutputFilePath;
                 logOutputFilePath = parser.LogOutputFilePath;
 
                 RemoveFileWhenExists(jsonOutputFilePath);
                 RemoveFileWhenExists(logOutputFilePath);
 
-                DataResult<ICalculationInput> calculationInputDataResult = ValidateAndReadInput(jsonInputFilePath, parser);
+                DataResult<ICalculationInput> calculationInputDataResult =
+                    ValidateAndReadInput(jsonInputFilePath, parser);
 
                 if (calculationInputDataResult == null)
                 {
-                    return (int) ExitCodes.CalculationInputDataResultInvalid;
+                    return -1;
                 }
 
                 ICalculationInput calculationInput = calculationInputDataResult.Data;
 
                 if (!ValidateCalculationInput(calculationInput))
                 {
-                    return (int) ExitCodes.CalculationInputInvalid;
+                    return -1;
                 }
 
                 var stopwatch = new Stopwatch();
+
                 stopwatch.Start();
 
                 DataResult<CalculationOutput> calculatorResult = Calculate(calculationInput);
 
                 if (calculatorResult == null)
                 {
-                    return (int) ExitCodes.CalculatorResultInvalid;
+                    return -1;
                 }
 
                 stopwatch.Stop();
 
-                bool writeOutputResult = WriteOutput(calculatorResult.Data, parser, stopwatch);
+                bool writeOutputResult = WriteOutput(calculatorResult.Data, parser, stopwatch.ElapsedMilliseconds);
 
-                return !writeOutputResult ? (int) ExitCodes.WriteOutputResultInvalid : (int) ExitCodes.Success;
+                return !writeOutputResult ? -1 : 0;
             }
-            catch (Exception e)
+            catch
             {
-                EventRegistry.Register(new Event(e.Message, EventType.Error));
+                EventRegistry.Register(new Event(unexpectedErrorMessage, EventType.Error));
 
                 CloseApplicationAfterUnhandledError();
-                return (int) ExitCodes.UnhandledError;
+
+                return -1;
             }
         }
 
@@ -103,9 +109,10 @@ namespace DiKErnel.Cli
             }
         }
 
-        static DataResult<ICalculationInput> ValidateAndReadInput(string jsonInputFilePath, CommandLineArgumentParser parser)
+        private static DataResult<ICalculationInput> ValidateAndReadInput(
+            string jsonInputFilePath, CommandLineArgumentParser parser)
         {
-            if (CommandLineArgumentParser.ValidateJsonFormat)
+            if (parser.ValidateJsonFormat)
             {
                 bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
 
@@ -123,7 +130,7 @@ namespace DiKErnel.Cli
 
             WriteToLogFile(inputComposerResult.Events);
 
-            return !inputComposerResult.Successful ? null : inputComposerResult;
+            return inputComposerResult.Successful ? inputComposerResult : null;
         }
 
         private static bool ValidateCalculationInput(ICalculationInput calculationInput)
@@ -141,35 +148,34 @@ namespace DiKErnel.Cli
             calculator.WaitForCompletion();
 
             DataResult<CalculationOutput> calculatorResult = calculator.Result;
+            
             WriteToLogFile(calculatorResult.Events);
 
-            return calculator.CalculationState == CalculationState.FinishedInError ? null : calculatorResult;
+            return calculator.CalculationState != CalculationState.FinishedInError ? calculatorResult : null;
         }
 
-        static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser, Stopwatch stopwatch)
+        static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser, long elapsed)
         {
-            var metaDataItems = new Dictionary<string, object>();
+            Dictionary<string, object> metaDataItems = null;
 
-            if (CommandLineArgumentParser.WriteMetaData)
+            if (parser.WriteMetaData)
             {
-                metaDataItems["versie"] = ApplicationHelper.ApplicationVersionString;
-                metaDataItems["besturingssysteem"] = ApplicationHelper.OperatingSystemName;
-                metaDataItems["tijdstipBerekening"] = ApplicationHelper.FormattedDateTimeString;
-                metaDataItems["tijdsduurBerekening"] = stopwatch.ElapsedMilliseconds;
+                metaDataItems = new Dictionary<string, object>
+                {
+                    ["versie"] = ApplicationHelper.ApplicationVersionString,
+                    ["besturingssysteem"] = ApplicationHelper.OperatingSystemName,
+                    ["tijdstipBerekening"] = ApplicationHelper.FormattedDateTimeString,
+                    ["tijdsduurBerekening"] = elapsed
+                };
             }
+
+            SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
+                parser.JsonOutputFilePath, calculationOutput, ConvertOutputType(parser.OutputLevel),
+                metaDataItems);
             
-            throw new NotImplementedException("implement this when the outputcomposer is done");
-            //this part is dependent on the outputcomposer, which is dependent on the integration project
-            //
-            // var outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
-            //     parser.JsonOutputFilePath,
-            //     calculationOutput,
-            //     ConvertOutputType(parser.OutputLevel),
-            //     metaDataItems);
-            //
-            // WriteToLogFile(outputComposerResult.Events);
-            //
-            // return outputComposerResult.Succesful;
+            WriteToLogFile(outputComposerResult.Events);
+            
+            return outputComposerResult.Successful;
         }
 
         private static JsonOutputType ConvertOutputType(string outputTypeString)
