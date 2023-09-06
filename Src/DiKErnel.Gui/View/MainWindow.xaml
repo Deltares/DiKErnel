@@ -273,23 +273,20 @@ All rights reserved.
             <RadioButton 
                     x:Name="Falen"
                     Grid.Column="0"
-                    GroupName="UitvoerNiveau"
-                    VerticalAlignment="Center">
+                    GroupName="UitvoerNiveau">
                     Falen
                 </RadioButton>
                 <RadioButton 
                     x:Name="Schade" 
                     Grid.Column="1" 
-                    GroupName="UitvoerNiveau" 
-                    VerticalAlignment="Center" 
+                    GroupName="UitvoerNiveau"
                     IsChecked="True">
                     Schade
                 </RadioButton>
                 <RadioButton 
                     x:Name="Fysica" 
                     Grid.Column="2" 
-                    GroupName="UitvoerNiveau" 
-                    VerticalAlignment="Center">
+                    GroupName="UitvoerNiveau">
                     Fysica
                 </RadioButton>
         </Grid>

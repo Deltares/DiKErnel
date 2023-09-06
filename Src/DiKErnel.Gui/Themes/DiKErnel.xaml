@@ -474,4 +474,26 @@
       <Setter Property="FontSize" Value="13"/>
   </Style>
 
+  <Style TargetType="RadioButton" BasedOn="{StaticResource MahApps.Styles.Button.Flat}">
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Style.Triggers>
+          <Trigger Property="IsChecked" Value="True">
+            <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+          </Trigger>
+          <MultiTrigger>
+              <MultiTrigger.Conditions>
+                  <Condition Property="IsMouseOver" Value="True"/>
+                  <Condition Property="IsChecked" Value="True"/>
+              </MultiTrigger.Conditions>
+              <MultiTrigger.Setters>
+                  <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}"/>
+                  <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+              </MultiTrigger.Setters>
+          </MultiTrigger>
+
+      </Style.Triggers>
+  </Style>
+
 </ResourceDictionary>
