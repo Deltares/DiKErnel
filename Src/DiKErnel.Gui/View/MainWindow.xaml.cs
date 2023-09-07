@@ -138,7 +138,7 @@ namespace DiKErnel.Gui.View
             {
                 UseShellExecute = true
             });
-            
+
             e.Handled = true;
         }
 
