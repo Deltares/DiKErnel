@@ -92,7 +92,7 @@ All rights reserved.
 
         <Separator Grid.Row="1" Margin="24, 24, 24, 0" />
 
-        <Grid Grid.Row="2" Margin="24, 24, 24, 12">
+        <Grid Grid.Row="2" Margin="24, 24, 24, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -107,7 +107,7 @@ All rights reserved.
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="DemiBold" Text="Invoerbestand" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 5" FontWeight="DemiBold" Text="Invoerbestand" />
 
                 <Grid Grid.Row="1" Grid.Column="0">
                     <Grid.ColumnDefinitions>
@@ -123,13 +123,13 @@ All rights reserved.
                     </Grid>
 
                     <!-- Input file dialog button -->
-                    <Button Grid.Row="0" Grid.Column="1" Width="32" Height="32" Click="OnInputFileOpenButtonClicked">
+                    <Button Grid.Row="0" Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnInputFileOpenButtonClicked">
                         ...
                     </Button>
 
                 </Grid>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="DemiBold" Text="Uitvoerbestand" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="0, 15, 0, 5" FontWeight="DemiBold" Text="Uitvoerbestand" />
 
                 <Grid Grid.Row="3" Grid.Column="0">
                     <Grid.ColumnDefinitions>
@@ -146,7 +146,7 @@ All rights reserved.
 
 
                     <!-- Output file dialog button -->
-                    <Button Grid.Row="0" Grid.Column="1" Width="32" Height="32" Click="OnOutputFileOpenButtonClicked">
+                    <Button Grid.Row="0" Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnOutputFileOpenButtonClicked">
                         ...
                     </Button>
 
@@ -163,7 +163,7 @@ All rights reserved.
                 </Grid.RowDefinitions>
 
                 <!-- Options Label -->
-                <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="DemiBold">
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 5" FontWeight="DemiBold">
                     Opties
                 </TextBlock>
 
@@ -182,7 +182,7 @@ All rights reserved.
 
 
                 <!-- Output level label -->
-                <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="DemiBold">
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="0, 15, 0, 5" FontWeight="DemiBold">
                     Uitvoerniveau
                 </TextBlock>
 
@@ -215,19 +215,19 @@ All rights reserved.
 
         </Grid>
 
-        <ListView Grid.Row="3" ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}" />
+        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" Margin="24, 12, 24, 24">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Height="32" Click="OnEraseButtonClicked">
+            <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Width="84" Height="32" Click="OnEraseButtonClicked">
                 Wissen
             </Button>
 
-            <Button Grid.Column="0" HorizontalAlignment="Right" Width="200" Height="32" Click="OnCopyButtonClicked">
+            <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0, 0, 12, 0" Width="180" Height="32" Click="OnCopyButtonClicked">
                 Kopieer naar klembord
             </Button>
 
