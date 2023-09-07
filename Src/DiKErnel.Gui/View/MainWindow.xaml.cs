@@ -28,6 +28,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using DiKErnel.Application;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
@@ -129,6 +130,16 @@ namespace DiKErnel.Gui.View
             Clipboard.SetText(
                 string.Join("\n", MainWindowViewModel.TextBlocks.Select(block => block.Text))
             );
+        }
+
+        private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)
+            {
+                UseShellExecute = true
+            });
+            
+            e.Handled = true;
         }
 
         #region Calculate

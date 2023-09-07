@@ -65,7 +65,7 @@ All rights reserved.
             <TextBlock Text="{Binding VersionNumber}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
             <TextBlock Text="Deltares" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
             <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <Hyperlink NavigateUri="mailto:dikernel@deltares.nl">dikernel@deltares.nl</Hyperlink>
+                <Hyperlink NavigateUri="mailto:dikernel@deltares.nl" RequestNavigate="OnRequestNavigate">dikernel@deltares.nl</Hyperlink>
             </TextBlock>
         </Grid>
 

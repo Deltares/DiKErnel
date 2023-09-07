@@ -719,7 +719,18 @@
                     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
                 </MultiTrigger.Setters>
             </MultiTrigger>
-
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type Hyperlink}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
