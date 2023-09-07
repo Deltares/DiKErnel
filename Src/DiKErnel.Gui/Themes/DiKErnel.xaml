@@ -231,7 +231,7 @@
     <SolidColorBrush x:Key="MahApps.HamburgerMenu.Pane.Background" Color="#FF444444" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.HamburgerMenu.Pane.Foreground" Color="#FFFFFFFF" options:Freeze="True" />
 
-    <Color x:Key="MahApps.Colors.SystemAccent">#FFF0A30A</Color>
+    <Color x:Key="MahApps.Colors.SystemAccent">#199CD8</Color>
 
     <Color x:Key="MahApps.Colors.SystemAltHigh">#FFFFFFFF</Color>
     <Color x:Key="MahApps.Colors.SystemAltLow">#33FFFFFF</Color>
