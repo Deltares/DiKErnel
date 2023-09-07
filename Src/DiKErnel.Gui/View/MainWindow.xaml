@@ -220,10 +220,9 @@ All rights reserved.
         Margin="25,340"
         Height="346"
         Width="974"
-        ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}">
-      </ListView> 
+        ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}" />
 
-            <!-- Options Label -->
+        <!-- Options Label -->
         <TextBlock
             Margin="471,185"
             FontWeight="DemiBold">

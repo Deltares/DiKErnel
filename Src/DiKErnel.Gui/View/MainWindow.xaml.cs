@@ -118,7 +118,7 @@ namespace DiKErnel.Gui.View
         {
             EraseLogging();
         }
-        
+
         private void EraseLogging()
         {
             MainWindowViewModel.TextBlocks = new ObservableCollection<TextBlock>();
