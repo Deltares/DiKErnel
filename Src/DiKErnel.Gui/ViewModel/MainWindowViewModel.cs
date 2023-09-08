@@ -44,7 +44,7 @@ namespace DiKErnel.Gui.ViewModel
             versionNumber = ApplicationHelper.ApplicationVersionString;
         }
 
-        public ObservableCollection<TextBlock> TextBlocks { get; set; } = new ObservableCollection<TextBlock>();
+        public ObservableCollection<TextBlock> TextBlocks { get; } = new ObservableCollection<TextBlock>();
 
         public string VersionNumber
         {

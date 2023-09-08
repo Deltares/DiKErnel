@@ -108,8 +108,8 @@ All rights reserved.
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0" Width="375" Height="32" Background="White" BorderThickness="2" BorderBrush="DimGray">
-                        <TextBox x:Name="InputTextBox" Padding="7, 5, 7, 5" Text="{Binding InputFilePath}"
-                                 Foreground="{Binding InputFilePathForeground}"/>
+                        <TextBox Padding="7, 5, 7, 5" Text="{Binding InputFilePath}" Foreground="{Binding InputFilePathForeground}"
+                                 TextChanged="OnFilePathChanged"/>
                     </Border>
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnInputFileOpenButtonClicked">
                         ...
@@ -122,8 +122,8 @@ All rights reserved.
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0" Width="375" Height="32" Background="White" BorderThickness="2" BorderBrush="DimGray">
-                        <TextBox x:Name="OutputTextBox" Padding="7, 5, 7, 5" Text="{Binding OutputFilePath}"
-                                 Foreground="{Binding OutputFilePathForeground}"/>
+                        <TextBox Padding="7, 5, 7, 5" Text="{Binding OutputFilePath}" Foreground="{Binding OutputFilePathForeground}"
+                                 TextChanged="OnFilePathChanged"/>
                     </Border>
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnOutputFileOpenButtonClicked">
                         ...

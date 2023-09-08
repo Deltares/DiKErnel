@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -54,6 +53,16 @@ namespace DiKErnel.Gui.View
             DataContext = mainWindowViewModel;
         }
 
+        private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)
+            {
+                UseShellExecute = true
+            });
+
+            e.Handled = true;
+        }
+
         private void OnInputFileOpenButtonClicked(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
@@ -64,8 +73,6 @@ namespace DiKErnel.Gui.View
             if (openFileDialog.ShowDialog() == true)
             {
                 mainWindowViewModel.InputFilePath = openFileDialog.FileName;
-
-                SetCursorToEnd(InputTextBox);
             }
         }
 
@@ -80,13 +87,14 @@ namespace DiKErnel.Gui.View
             if (openFileDialog.ShowDialog() == true)
             {
                 mainWindowViewModel.OutputFilePath = openFileDialog.FileName;
-
-                SetCursorToEnd(OutputTextBox);
             }
         }
 
-        private static void SetCursorToEnd(TextBox textBox)
+        private void OnFilePathChanged(object sender, TextChangedEventArgs e)
         {
+            var textBox = (TextBox) sender;
+            
+            // Set cursor to end
             textBox.CaretIndex = textBox.Text.Length;
             textBox.Focus();
         }
@@ -96,31 +104,15 @@ namespace DiKErnel.Gui.View
             StartCalculation();
         }
 
-        private void OnEraseButtonClicked(object sender, RoutedEventArgs e)
-        {
-            EraseLogging();
-        }
-
-        private void EraseLogging()
-        {
-            mainWindowViewModel.TextBlocks = new ObservableCollection<TextBlock>();
-        }
-
         private void OnCopyButtonClicked(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(
-                string.Join("\n", mainWindowViewModel.TextBlocks.Select(block => block.Text))
-            );
+                string.Join(Environment.NewLine, mainWindowViewModel.TextBlocks.Select(block => block.Text)));
         }
 
-        private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        private void OnEraseButtonClicked(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)
-            {
-                UseShellExecute = true
-            });
-
-            e.Handled = true;
+            mainWindowViewModel.TextBlocks.Clear();
         }
 
         #region Calculate
