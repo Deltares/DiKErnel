@@ -50,6 +50,8 @@ namespace DiKErnel.Gui.View
 
         public MainWindow()
         {
+            InitializeComponent();
+            
             DataContext = mainWindowViewModel;
         }
 

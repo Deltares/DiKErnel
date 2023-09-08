@@ -168,7 +168,7 @@ All rights reserved.
                 Start
             </Button>
         </Grid>
-        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding TextBlocks, UpdateSourceTrigger=PropertyChanged}"/>
         <Grid Grid.Row="4" Margin="24, 12, 24, 24">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

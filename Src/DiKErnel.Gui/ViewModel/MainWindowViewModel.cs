@@ -28,32 +28,21 @@ namespace DiKErnel.Gui.ViewModel
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
-        private string outputFilePath;
-        private string inputFilePath;
+        private const string exampleInputFilePath = "Invoerbestand.json";
+        private const string exampleOutputFilePath = "Uitvoerbestand.json";
+
         private string versionNumber;
-        private ObservableCollection<TextBlock> textBlocks;
+        private string inputFilePath = exampleInputFilePath;
+        private string outputFilePath = exampleOutputFilePath;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindowViewModel()
         {
-            inputFilePath = "Invoerbestand.json";
-            outputFilePath = "Uitvoerbestand.json";
             versionNumber = ApplicationHelper.ApplicationVersionString;
-            TextBlocks = new ObservableCollection<TextBlock>();
         }
 
-        public ObservableCollection<TextBlock> TextBlocks
-        {
-            get => textBlocks;
-            set
-            {
-                if (Equals(value, textBlocks))
-                    return;
-                textBlocks = value;
-                OnPropertyChanged(nameof(TextBlocks));
-            }
-        }
+        public ObservableCollection<TextBlock> TextBlocks { get; set; } = new ObservableCollection<TextBlock>();
 
         public string VersionNumber
         {
@@ -61,8 +50,12 @@ namespace DiKErnel.Gui.ViewModel
             set
             {
                 if (value == versionNumber)
+                {
                     return;
+                }
+
                 versionNumber = value;
+
                 OnPropertyChanged(nameof(VersionNumber));
             }
         }
@@ -73,8 +66,12 @@ namespace DiKErnel.Gui.ViewModel
             set
             {
                 if (value == inputFilePath)
+                {
                     return;
+                }
+
                 inputFilePath = value;
+
                 OnPropertyChanged(nameof(InputFilePath));
             }
         }
@@ -85,11 +82,17 @@ namespace DiKErnel.Gui.ViewModel
             set
             {
                 if (value == outputFilePath)
+                {
                     return;
+                }
+
                 outputFilePath = value;
+
                 OnPropertyChanged(nameof(OutputFilePath));
             }
         }
+
+        public bool CanCalculate => InputFilePath != exampleInputFilePath && outputFilePath != exampleOutputFilePath;
 
         private void OnPropertyChanged(string propertyName)
         {
