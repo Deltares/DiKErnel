@@ -71,7 +71,7 @@ All rights reserved.
             </Grid>
             <Border Grid.Column="3" BorderThickness="1" BorderBrush="#d3d3d3" Margin="20, 0, 0, 0" Width="600" Height="110">
                 <TextBlock Margin="10, 6, 10, 6" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12">
-                    <Bold>Disclaimer:</Bold>
+                    <Bold>Disclaimer: </Bold>
                     De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid.
                     Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren.
                     DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er
@@ -100,12 +100,9 @@ All rights reserved.
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Width="375" Height="32">
-                        <Rectangle Fill="White"/>
-                        <Border BorderThickness="2" BorderBrush="DimGray"/>
-                        <TextBlock x:Name="InputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0"
-                                   Foreground="DarkGray" Text="{Binding InputFilePath}"/>
-                    </Grid>
+                    <Border Grid.Column="0" Width="375" Height="32" Background="White" BorderThickness="2" BorderBrush="DimGray">
+                        <TextBox x:Name="InputTextBox" Padding="7, 5, 7, 5" Text="{Binding InputFilePath}"/>
+                    </Border>
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnInputFileOpenButtonClicked">
                         ...
                     </Button>
@@ -116,12 +113,9 @@ All rights reserved.
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Width="375" Height="32">
-                        <Rectangle Fill="White"/>
-                        <Border BorderThickness="2" BorderBrush="DimGray"/>
-                        <TextBlock x:Name="OutputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0"
-                                   Foreground="DarkGray" Text="{Binding OutputFilePath}"/>
-                    </Grid>
+                    <Border Grid.Column="0" Width="375" Height="32" Background="White" BorderThickness="2" BorderBrush="DimGray">
+                        <TextBox x:Name="OutputTextBox" Padding="7, 5, 7, 5" Text="{Binding OutputFilePath}"/>
+                    </Border>
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnOutputFileOpenButtonClicked">
                         ...
                     </Button>

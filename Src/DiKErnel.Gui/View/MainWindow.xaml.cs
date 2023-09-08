@@ -70,11 +70,10 @@ namespace DiKErnel.Gui.View
             if (openFileDialog.ShowDialog() == true)
             {
                 MainWindowViewModel.InputFilePath = openFileDialog.FileName;
-                InputTextBlock.Text = openFileDialog.FileName;
-                InputTextBlock.Foreground = Brushes.Black;
+                InputTextBox.Text = openFileDialog.FileName;
+                InputTextBox.Foreground = Brushes.Black;
 
-                //this is to make sure that the rightmost part of text is visible in the textBlock when text is updated.
-                InputTextBlock.HorizontalAlignment = HorizontalAlignment.Right;
+                SetCursorToEnd(InputTextBox);
 
                 CheckToEnableStartButton();
             }
@@ -91,20 +90,25 @@ namespace DiKErnel.Gui.View
             if (openFileDialog.ShowDialog() == true)
             {
                 MainWindowViewModel.OutputFilePath = openFileDialog.FileName;
-                OutputTextBlock.Text = openFileDialog.FileName;
-                OutputTextBlock.Foreground = Brushes.Black;
+                OutputTextBox.Text = openFileDialog.FileName;
+                OutputTextBox.Foreground = Brushes.Black;
 
-                //this is to make sure that the rightmost part of text is visible in the textBlock when text is updated.
-                OutputTextBlock.HorizontalAlignment = HorizontalAlignment.Right;
+                SetCursorToEnd(OutputTextBox);
 
                 CheckToEnableStartButton();
             }
         }
 
+        private static void SetCursorToEnd(TextBox textBox)
+        {
+            textBox.CaretIndex = textBox.Text.Length;
+            textBox.Focus();
+        }
+
         private void CheckToEnableStartButton()
         {
-            if (InputTextBlock.Text != "Invoerbestand.json"
-                && OutputTextBlock.Text != "Uitvoerbestand.json")
+            if (InputTextBox.Text != "Invoerbestand.json"
+                && OutputTextBox.Text != "Uitvoerbestand.json")
             {
                 StartButton.IsEnabled = true;
             }
