@@ -65,9 +65,8 @@ All rights reserved.
                     <Hyperlink NavigateUri="mailto:dikernel@deltares.nl" RequestNavigate="OnRequestNavigate">dikernel@deltares.nl</Hyperlink>
                 </TextBlock>
             </Grid>
-            <Grid Grid.Column="3" Margin="20, 0, 0, 0" Width="600" Height="110">
-                <Border BorderThickness="1" BorderBrush="#d3d3d3"/>
-                <TextBlock Margin="10,6 , 10, 6" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12">
+            <Border Grid.Column="3" BorderThickness="1" BorderBrush="#d3d3d3" Margin="20, 0, 0, 0" Width="600" Height="110">
+                <TextBlock Margin="10, 6, 10, 6" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12">
                     <Bold>Disclaimer:</Bold>
                     De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid.
                     Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren.
@@ -75,7 +74,7 @@ All rights reserved.
                     worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij
                     deze versie beschikbaar wordt gesteld.
                 </TextBlock>
-            </Grid>
+            </Border>
         </Grid>
         <Separator Grid.Row="1" Margin="24, 24, 24, 0"/>
         <Grid Grid.Row="2" Margin="24, 24, 24, 0">
