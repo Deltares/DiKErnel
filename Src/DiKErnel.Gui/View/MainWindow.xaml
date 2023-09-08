@@ -20,65 +20,53 @@ All names, logos, and references to "Deltares" are registered trademarks of
 Stichting Deltares and remain full property of Stichting Deltares at all times.
 All rights reserved.
 -->
-
-<mah:MetroWindow x:Class="DiKErnel.Gui.View.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" mc:Ignorable="d" Title="DiKErnel-gui"
-                 MinWidth="1024" MinHeight="768" Width="1024" Height="768">
-
+<mah:MetroWindow x:Class="DiKErnel.Gui.View.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" mc:Ignorable="d" Title="DiKErnel-gui" MinWidth="1024" MinHeight="768" Width="1024" Height="768">
     <Grid Background="#E6E6E6">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0" Margin="24, 24, 0, 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <svgc:SvgViewbox Grid.Column="0" Width="110" Height="110" Source="/Resources/logo.svg" />
+            <svgc:SvgViewbox Grid.Column="0" Width="110" Height="110" Source="/Resources/logo.svg"/>
             <Grid Column="1" Margin="30, 0, 0, 0" Width="70" Height="110">
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Applicatie" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                           FontWeight="DemiBold" />
-                <TextBlock Text="Versie" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                           FontWeight="DemiBold" />
-                <TextBlock Text="Bedrijf" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                           FontWeight="DemiBold" />
-                <TextBlock Text="Contact" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                           FontWeight="DemiBold" />
+                <TextBlock Text="Applicatie" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                <TextBlock Text="Versie" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                <TextBlock Text="Bedrijf" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                <TextBlock Text="Contact" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
             </Grid>
             <Grid Grid.Column="2" Margin="20, 0, 0, 0" Width="125" Height="110">
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="DiKErnel-gui" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBlock Text="{Binding VersionNumber}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
-                           HorizontalAlignment="Left" />
-                <TextBlock Text="Deltares" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBlock Text="DiKErnel-gui" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="{Binding VersionNumber}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="Deltares" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Hyperlink NavigateUri="mailto:dikernel@deltares.nl" RequestNavigate="OnRequestNavigate">dikernel@deltares.nl</Hyperlink>
                 </TextBlock>
             </Grid>
             <Grid Grid.Column="3" Margin="20, 0, 0, 0" Width="600" Height="110">
-                <Border BorderThickness="1" BorderBrush="#d3d3d3" />
+                <Border BorderThickness="1" BorderBrush="#d3d3d3"/>
                 <TextBlock Margin="10,6 , 10, 6" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12">
                     <Bold>Disclaimer:</Bold>
                     De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid.
@@ -89,88 +77,68 @@ All rights reserved.
                 </TextBlock>
             </Grid>
         </Grid>
-
-        <Separator Grid.Row="1" Margin="24, 24, 24, 0" />
-
+        <Separator Grid.Row="1" Margin="24, 24, 24, 0"/>
         <Grid Grid.Row="2" Margin="24, 24, 24, 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
             <Grid Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 5" FontWeight="DemiBold" Text="Invoerbestand" />
-
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 5" FontWeight="DemiBold" Text="Invoerbestand"/>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
                     <Grid Grid.Row="0" Grid.Column="0" Width="375" Height="32">
-                        <Rectangle Fill="White" />
-                        <Border BorderThickness="2" BorderBrush="DimGray" />
-                        <TextBlock x:Name="InputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0"
-                                   Foreground="DarkGray" Text="{Binding InputFilePath}" />
+                        <Rectangle Fill="White"/>
+                        <Border BorderThickness="2" BorderBrush="DimGray"/>
+                        <TextBlock x:Name="InputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0" Foreground="DarkGray" Text="{Binding InputFilePath}"/>
                     </Grid>
-
                     <!-- Input file dialog button -->
                     <Button Grid.Row="0" Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnInputFileOpenButtonClicked">
                         ...
                     </Button>
-
                 </Grid>
-
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="0, 15, 0, 5" FontWeight="DemiBold" Text="Uitvoerbestand" />
-
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="0, 15, 0, 5" FontWeight="DemiBold" Text="Uitvoerbestand"/>
                 <Grid Grid.Row="3" Grid.Column="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
                     <Grid Grid.Row="0" Grid.Column="0" Width="375" Height="32">
-                        <Rectangle Fill="White" />
-                        <Border BorderThickness="2" BorderBrush="DimGray" />
-                        <TextBlock x:Name="OutputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0"
-                                   Foreground="DarkGray" Text="{Binding OutputFilePath}" />
+                        <Rectangle Fill="White"/>
+                        <Border BorderThickness="2" BorderBrush="DimGray"/>
+                        <TextBlock x:Name="OutputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0" Foreground="DarkGray" Text="{Binding OutputFilePath}"/>
                     </Grid>
-
-
                     <!-- Output file dialog button -->
                     <Button Grid.Row="0" Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnOutputFileOpenButtonClicked">
                         ...
                     </Button>
-
                 </Grid>
-
             </Grid>
-
             <Grid Column="1" Margin="32, 0, 0, 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
                 <!-- Options Label -->
                 <TextBlock Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 5" FontWeight="DemiBold">
                     Opties
                 </TextBlock>
-
                 <Grid Grid.Row="1" Grid.Column="0" Width="413" Height="32">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <mah:ToggleSwitch x:Name="ValidateJson" VerticalAlignment="Center" Grid.Column="0">
                         Valideren Json-formaat
@@ -179,19 +147,16 @@ All rights reserved.
                         Schrijven meta-informatie
                     </mah:ToggleSwitch>
                 </Grid>
-
-
                 <!-- Output level label -->
                 <TextBlock Grid.Row="2" Grid.Column="0" Margin="0, 15, 0, 5" FontWeight="DemiBold">
                     Uitvoerniveau
                 </TextBlock>
-
                 <!-- Output level grid -->
                 <Grid Grid.Row="3" Grid.Column="0" Width="413" Height="32">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <RadioButton x:Name="Falen" Grid.Column="0" GroupName="UitvoerNiveau">
                         Falen
@@ -203,35 +168,24 @@ All rights reserved.
                         Fysica
                     </RadioButton>
                 </Grid>
-
             </Grid>
-
             <!-- Start button -->
-            <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="StartButton" Width="65"
-                    Height="32" IsEnabled="False" Click="OnStartButtonClicked">
+            <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="StartButton" Width="65" Height="32" IsEnabled="False" Click="OnStartButtonClicked">
                 Start
             </Button>
-
-
         </Grid>
-
-        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}" />
-
+        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding StringList, UpdateSourceTrigger=PropertyChanged}"/>
         <Grid Grid.Row="4" Margin="24, 12, 24, 24">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-
             <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Width="84" Height="32" Click="OnEraseButtonClicked">
                 Wissen
             </Button>
-
             <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0, 0, 12, 0" Width="180" Height="32" Click="OnCopyButtonClicked">
                 Kopieer naar klembord
             </Button>
-
-
         </Grid>
     </Grid>
 </mah:MetroWindow>
