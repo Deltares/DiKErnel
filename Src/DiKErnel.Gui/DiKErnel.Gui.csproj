@@ -4,6 +4,7 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
     </PropertyGroup>
     <ItemGroup>
         <None Remove="Resources\logo.svg" />
