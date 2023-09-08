@@ -50,7 +50,7 @@ namespace DiKErnel.Gui.View
         public MainWindow()
         {
             InitializeComponent();
-            
+
             DataContext = mainWindowViewModel;
         }
 
@@ -66,8 +66,6 @@ namespace DiKErnel.Gui.View
                 mainWindowViewModel.InputFilePath = openFileDialog.FileName;
 
                 SetCursorToEnd(InputTextBox);
-
-                CheckToEnableStartButton();
             }
         }
 
@@ -84,8 +82,6 @@ namespace DiKErnel.Gui.View
                 mainWindowViewModel.OutputFilePath = openFileDialog.FileName;
 
                 SetCursorToEnd(OutputTextBox);
-
-                CheckToEnableStartButton();
             }
         }
 
@@ -93,15 +89,6 @@ namespace DiKErnel.Gui.View
         {
             textBox.CaretIndex = textBox.Text.Length;
             textBox.Focus();
-        }
-
-        private void CheckToEnableStartButton()
-        {
-            if (InputTextBox.Text != "Invoerbestand.json"
-                && OutputTextBox.Text != "Uitvoerbestand.json")
-            {
-                StartButton.IsEnabled = true;
-            }
         }
 
         private void OnStartButtonClicked(object sender, RoutedEventArgs e)
@@ -380,19 +367,8 @@ namespace DiKErnel.Gui.View
                 metaDataItems["tijdsduurBerekening"] = elapsed.Elapsed.Seconds;
             }
 
-            var outputLevel = JsonOutputType.Failure;
-
-            if (Schade.IsChecked == true)
-            {
-                outputLevel = JsonOutputType.Damage;
-            }
-            else if (Fysica.IsChecked == true)
-            {
-                outputLevel = JsonOutputType.Physics;
-            }
-
             SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
-                mainWindowViewModel.OutputFilePath, calculationOutput, outputLevel, metaDataItems);
+                mainWindowViewModel.OutputFilePath, calculationOutput, mainWindowViewModel.OutputType, metaDataItems);
 
             CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult.Events);
 

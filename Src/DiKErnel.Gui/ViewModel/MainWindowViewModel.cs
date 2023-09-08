@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Media;
 using DiKErnel.Application;
+using DiKErnel.KernelWrapper.Json.Output;
 
 namespace DiKErnel.Gui.ViewModel
 {
@@ -75,6 +76,7 @@ namespace DiKErnel.Gui.ViewModel
 
                 OnPropertyChanged(nameof(InputFilePath));
                 OnPropertyChanged(nameof(InputFilePathForeground));
+                OnPropertyChanged(nameof(CanCalculate));
             }
         }
 
@@ -94,10 +96,13 @@ namespace DiKErnel.Gui.ViewModel
 
                 OnPropertyChanged(nameof(OutputFilePath));
                 OnPropertyChanged(nameof(OutputFilePathForeground));
+                OnPropertyChanged(nameof(CanCalculate));
             }
         }
 
         public SolidColorBrush OutputFilePathForeground => OutputFilePath == exampleOutputFilePath ? Brushes.DarkGray : Brushes.Black;
+
+        public JsonOutputType OutputType { get; set; } = JsonOutputType.Damage;
 
         public bool CanCalculate => InputFilePath != exampleInputFilePath && outputFilePath != exampleOutputFilePath;
 
