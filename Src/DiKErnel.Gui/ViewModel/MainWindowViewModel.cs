@@ -26,7 +26,7 @@ using DiKErnel.Application;
 
 namespace DiKErnel.Gui.ViewModel
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    internal class MainWindowViewModel : INotifyPropertyChanged
     {
         private string outputFilePath;
         private string inputFilePath;

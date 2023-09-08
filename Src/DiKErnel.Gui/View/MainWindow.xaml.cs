@@ -34,32 +34,24 @@ using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Gui.ViewModel;
 using DiKErnel.KernelWrapper.Json.Input;
+using DiKErnel.KernelWrapper.Json.Output;
 using DiKErnel.Util;
 using Microsoft.Win32;
 
 namespace DiKErnel.Gui.View
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         private const string fileDialogFilter = "Json files (*.json)|*.json|All files (*.*)|*.*";
-        private readonly Dictionary<string, IEnumerable<string>> warningMessageCache;
-        private readonly Dictionary<string, IEnumerable<string>> errorMessageCache;
+
+        private readonly MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+        private readonly Dictionary<string, IEnumerable<string>> errorMessageCache = new Dictionary<string, IEnumerable<string>>();
+        private readonly Dictionary<string, IEnumerable<string>> warningMessageCache = new Dictionary<string, IEnumerable<string>>();
 
         public MainWindow()
         {
-            warningMessageCache = new Dictionary<string, IEnumerable<string>>();
-            errorMessageCache = new Dictionary<string, IEnumerable<string>>();
-
-            MainWindowViewModel = new MainWindowViewModel();
-            DataContext = MainWindowViewModel;
-
-            InitializeComponent();
+            DataContext = mainWindowViewModel;
         }
-
-        private MainWindowViewModel MainWindowViewModel { get; }
 
         private void OnInputFileOpenButtonClicked(object sender, RoutedEventArgs e)
         {
@@ -67,9 +59,11 @@ namespace DiKErnel.Gui.View
             {
                 Filter = fileDialogFilter
             };
+
             if (openFileDialog.ShowDialog() == true)
             {
-                MainWindowViewModel.InputFilePath = openFileDialog.FileName;
+                mainWindowViewModel.InputFilePath = openFileDialog.FileName;
+
                 InputTextBox.Text = openFileDialog.FileName;
                 InputTextBox.Foreground = Brushes.Black;
 
@@ -89,7 +83,8 @@ namespace DiKErnel.Gui.View
 
             if (openFileDialog.ShowDialog() == true)
             {
-                MainWindowViewModel.OutputFilePath = openFileDialog.FileName;
+                mainWindowViewModel.OutputFilePath = openFileDialog.FileName;
+
                 OutputTextBox.Text = openFileDialog.FileName;
                 OutputTextBox.Foreground = Brushes.Black;
 
@@ -126,13 +121,13 @@ namespace DiKErnel.Gui.View
 
         private void EraseLogging()
         {
-            MainWindowViewModel.TextBlocks = new ObservableCollection<TextBlock>();
+            mainWindowViewModel.TextBlocks = new ObservableCollection<TextBlock>();
         }
 
         private void OnCopyButtonClicked(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(
-                string.Join("\n", MainWindowViewModel.TextBlocks.Select(block => block.Text))
+                string.Join("\n", mainWindowViewModel.TextBlocks.Select(block => block.Text))
             );
         }
 
@@ -152,9 +147,9 @@ namespace DiKErnel.Gui.View
         {
             try
             {
-                RemoveFileWhenExists(MainWindowViewModel.OutputFilePath);
+                RemoveFileWhenExists(mainWindowViewModel.OutputFilePath);
 
-                DataResult<ICalculationInput> calculationInputDataResult = ValidateAndReadInput(MainWindowViewModel.InputFilePath);
+                DataResult<ICalculationInput> calculationInputDataResult = ValidateAndReadInput(mainWindowViewModel.InputFilePath);
 
                 if (calculationInputDataResult == null)
                 {
@@ -325,7 +320,7 @@ namespace DiKErnel.Gui.View
                     throw new ArgumentOutOfRangeException(nameof(textType), textType, null);
             }
 
-            MainWindowViewModel.TextBlocks.Add(textBlock);
+            mainWindowViewModel.TextBlocks.Add(textBlock);
         }
 
         private void LogCachedMessages(
@@ -390,25 +385,26 @@ namespace DiKErnel.Gui.View
                 metaDataItems["tijdsduurBerekening"] = elapsed.Elapsed.Seconds;
             }
 
-            //this commented out code is dependent on the Json output project
+            var outputLevel = JsonOutputType.Failure;
 
-            // JsonOutputType outputLevel;
-            // if (Falen.IsChecked == true) {outputLevel = JsonOutputType.Failure;}
-            // if (Schade.IsChecked == true) {outputLevel = JsonOutputType.Damage;}
-            // if (Fysica.IsChecked == true) { outputLevel = JsonOutputType.Physics;}
-            //
-            // var outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
-            //     MainWindowViewModel.OutputFilePath,
-            //     calculationOutput,
-            //     outputLevel,
-            //     metaDataItems);
-            //
-            // CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult.Events);
-            //
-            // if (!outputComposerResult.Successful)
-            // {
-            //     LogFailureMessage(errorMessageCache);
-            // }
+            if (Schade.IsChecked == true)
+            {
+                outputLevel = JsonOutputType.Damage;
+            }
+            else if (Fysica.IsChecked == true)
+            {
+                outputLevel = JsonOutputType.Physics;
+            }
+
+            SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
+                mainWindowViewModel.OutputFilePath, calculationOutput, outputLevel, metaDataItems);
+
+            CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult.Events);
+
+            if (!outputComposerResult.Successful)
+            {
+                LogFailureMessage();
+            }
         }
 
         #endregion
