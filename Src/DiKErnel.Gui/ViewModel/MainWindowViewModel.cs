@@ -22,6 +22,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Controls;
+using System.Windows.Media;
 using DiKErnel.Application;
 
 namespace DiKErnel.Gui.ViewModel
@@ -73,8 +74,11 @@ namespace DiKErnel.Gui.ViewModel
                 inputFilePath = value;
 
                 OnPropertyChanged(nameof(InputFilePath));
+                OnPropertyChanged(nameof(InputFilePathForeground));
             }
         }
+
+        public SolidColorBrush InputFilePathForeground => InputFilePath == exampleInputFilePath ? Brushes.DarkGray : Brushes.Black;
 
         public string OutputFilePath
         {
@@ -89,8 +93,11 @@ namespace DiKErnel.Gui.ViewModel
                 outputFilePath = value;
 
                 OnPropertyChanged(nameof(OutputFilePath));
+                OnPropertyChanged(nameof(OutputFilePathForeground));
             }
         }
+
+        public SolidColorBrush OutputFilePathForeground => OutputFilePath == exampleOutputFilePath ? Brushes.DarkGray : Brushes.Black;
 
         public bool CanCalculate => InputFilePath != exampleInputFilePath && outputFilePath != exampleOutputFilePath;
 

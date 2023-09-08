@@ -687,6 +687,5 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="IsReadOnly" Value="True"/>
-        <Setter Property="Foreground" Value="DarkGray"/>
     </Style>
 </ResourceDictionary>

@@ -27,7 +27,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Navigation;
 using DiKErnel.Application;
 using DiKErnel.Core;
@@ -66,9 +65,6 @@ namespace DiKErnel.Gui.View
             {
                 mainWindowViewModel.InputFilePath = openFileDialog.FileName;
 
-                InputTextBox.Text = openFileDialog.FileName;
-                InputTextBox.Foreground = Brushes.Black;
-
                 SetCursorToEnd(InputTextBox);
 
                 CheckToEnableStartButton();
@@ -86,9 +82,6 @@ namespace DiKErnel.Gui.View
             if (openFileDialog.ShowDialog() == true)
             {
                 mainWindowViewModel.OutputFilePath = openFileDialog.FileName;
-
-                OutputTextBox.Text = openFileDialog.FileName;
-                OutputTextBox.Foreground = Brushes.Black;
 
                 SetCursorToEnd(OutputTextBox);
 
