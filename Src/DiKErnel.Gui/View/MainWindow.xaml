@@ -102,7 +102,6 @@ All rights reserved.
                         <Border BorderThickness="2" BorderBrush="DimGray"/>
                         <TextBlock x:Name="InputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0" Foreground="DarkGray" Text="{Binding InputFilePath}"/>
                     </Grid>
-                    <!-- Input file dialog button -->
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnInputFileOpenButtonClicked">
                         ...
                     </Button>
@@ -118,7 +117,6 @@ All rights reserved.
                         <Border BorderThickness="2" BorderBrush="DimGray"/>
                         <TextBlock x:Name="OutputTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0" Foreground="DarkGray" Text="{Binding OutputFilePath}"/>
                     </Grid>
-                    <!-- Output file dialog button -->
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnOutputFileOpenButtonClicked">
                         ...
                     </Button>
@@ -131,7 +129,6 @@ All rights reserved.
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <!-- Options Label -->
                 <TextBlock Grid.Row="0" Margin="0, 0, 0, 5" FontWeight="DemiBold">
                     Opties
                 </TextBlock>
@@ -147,11 +144,9 @@ All rights reserved.
                         Schrijven meta-informatie
                     </mah:ToggleSwitch>
                 </Grid>
-                <!-- Output level label -->
                 <TextBlock Grid.Row="2" Margin="0, 15, 0, 5" FontWeight="DemiBold">
                     Uitvoerniveau
                 </TextBlock>
-                <!-- Output level grid -->
                 <Grid Grid.Row="3" Width="413" Height="32">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -169,7 +164,6 @@ All rights reserved.
                     </RadioButton>
                 </Grid>
             </Grid>
-            <!-- Start button -->
             <Button Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="StartButton" Width="65" Height="32" IsEnabled="False" Click="OnStartButtonClicked">
                 Start
             </Button>
