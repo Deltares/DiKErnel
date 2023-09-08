@@ -93,7 +93,7 @@ namespace DiKErnel.Gui.View
         private void OnFilePathChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = (TextBox) sender;
-            
+
             // Set cursor to end
             textBox.CaretIndex = textBox.Text.Length;
             textBox.Focus();
@@ -174,7 +174,7 @@ namespace DiKErnel.Gui.View
 
         private DataResult<ICalculationInput> ValidateAndReadInput(string jsonInputFilePath)
         {
-            if (ValidateJson.IsOn)
+            if (mainWindowViewModel.ValidateJsonInput)
             {
                 bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
 
@@ -351,7 +351,7 @@ namespace DiKErnel.Gui.View
         {
             var metaDataItems = new Dictionary<string, object>();
 
-            if (WriteMetadata.IsOn)
+            if (mainWindowViewModel.WriteMetadata)
             {
                 metaDataItems["versie"] = ApplicationHelper.ApplicationVersionString;
                 metaDataItems["besturingssysteem"] = ApplicationHelper.OperatingSystemName;

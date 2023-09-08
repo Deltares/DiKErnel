@@ -102,6 +102,10 @@ namespace DiKErnel.Gui.ViewModel
 
         public SolidColorBrush OutputFilePathForeground => OutputFilePath == exampleOutputFilePath ? Brushes.DarkGray : Brushes.Black;
 
+        public bool ValidateJsonInput { get; set; } = true;
+
+        public bool WriteMetadata { get; set; } = true;
+
         public JsonOutputType OutputType { get; set; } = JsonOutputType.Damage;
 
         public bool CanCalculate => InputFilePath != exampleInputFilePath && outputFilePath != exampleOutputFilePath;

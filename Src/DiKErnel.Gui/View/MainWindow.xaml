@@ -145,10 +145,10 @@ All rights reserved.
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <mah:ToggleSwitch x:Name="ValidateJson" VerticalAlignment="Center" Grid.Column="0">
+                    <mah:ToggleSwitch IsOn="{Binding ValidateJsonInput}" VerticalAlignment="Center" Grid.Column="0">
                         Valideren Json-formaat
                     </mah:ToggleSwitch>
-                    <mah:ToggleSwitch x:Name="WriteMetadata" VerticalAlignment="Center" Grid.Column="1">
+                    <mah:ToggleSwitch IsOn="{Binding WriteMetadata}" VerticalAlignment="Center" Grid.Column="1">
                         Schrijven meta-informatie
                     </mah:ToggleSwitch>
                 </Grid>
