@@ -138,6 +138,7 @@ namespace DiKErnel.Gui.View
                 }
 
                 var stopwatch = new Stopwatch();
+
                 stopwatch.Start();
 
                 DataResult<CalculationOutput> calculatorResult = Calculate(calculationInput);
@@ -153,13 +154,11 @@ namespace DiKErnel.Gui.View
 
                 WriteFinalLogMessages(calculationInput, stopwatch);
             }
-            catch (Exception e)
+            catch
             {
                 AddMessage("Berekening mislukt", TextType.Bold);
-
-                AddMessage(
-                    "Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via dikernel@deltares.nl.");
-
+                AddMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via " +
+                           "dikernel@deltares.nl.");
                 AddMessage("");
             }
         }
@@ -178,13 +177,12 @@ namespace DiKErnel.Gui.View
             {
                 bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
 
-                IReadOnlyList<Event> validationEvents = EventRegistry.Flush();
-
-                CacheMessagesWhenApplicable("het valideren van het Json-formaat", validationEvents);
+                CacheMessagesWhenApplicable("het valideren van het Json-formaat", EventRegistry.Flush());
 
                 if (!validationResult)
                 {
                     LogFailureMessage();
+
                     return null;
                 }
             }
@@ -199,6 +197,7 @@ namespace DiKErnel.Gui.View
             }
 
             LogFailureMessage();
+
             return null;
         }
 
@@ -214,12 +213,14 @@ namespace DiKErnel.Gui.View
             }
 
             LogFailureMessage();
+
             return false;
         }
 
         private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
             var calculator = new Calculator(calculationInput);
+
             calculator.WaitForCompletion();
 
             DataResult<CalculationOutput> calculatorResult = calculator.Result;
@@ -232,22 +233,24 @@ namespace DiKErnel.Gui.View
             }
 
             LogFailureMessage();
+
             return null;
         }
 
-        private void CacheMessagesWhenApplicable(string endOfDescription, IEnumerable<Event> inEvents)
+        private void CacheMessagesWhenApplicable(string endOfDescription, IEnumerable<Event> events)
         {
-            var warningMessages = new List<string>();
             var errorMessages = new List<string>();
-            foreach (Event inEvent in inEvents)
+            var warningMessages = new List<string>();
+
+            foreach (Event e in events)
             {
-                switch (inEvent.Type)
+                switch (e.Type)
                 {
                     case EventType.Error:
-                        errorMessages.Add(inEvent.Message);
+                        errorMessages.Add(e.Message);
                         break;
                     case EventType.Warning:
-                        warningMessages.Add(inEvent.Message);
+                        warningMessages.Add(e.Message);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -282,13 +285,13 @@ namespace DiKErnel.Gui.View
             };
             switch (textType)
             {
+                case TextType.Normal:
+                    break;
                 case TextType.Bold:
                     textBlock.FontWeight = FontWeights.Bold;
                     break;
                 case TextType.Italic:
                     textBlock.FontStyle = FontStyles.Italic;
-                    break;
-                case TextType.Normal:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(textType), textType, null);
@@ -297,10 +300,8 @@ namespace DiKErnel.Gui.View
             mainWindowViewModel.TextBlocks.Add(textBlock);
         }
 
-        private void LogCachedMessages(
-            Dictionary<string, IEnumerable<string>> messageCache,
-            string messageTypeDescriptionSingular,
-            string messageTypeDescriptionPlural)
+        private void LogCachedMessages(Dictionary<string, IEnumerable<string>> messageCache,
+                                       string messageTypeDescriptionSingular, string messageTypeDescriptionPlural)
         {
             foreach ((string endOfDescription, IEnumerable<string> messagesEnumerable) in messageCache)
             {
@@ -323,9 +324,7 @@ namespace DiKErnel.Gui.View
             }
         }
 
-        private void WriteFinalLogMessages(
-            ICalculationInput calculationInput,
-            Stopwatch elapsed)
+        private void WriteFinalLogMessages(ICalculationInput calculationInput, Stopwatch elapsed)
         {
             AddMessage(@"Berekening gelukt", TextType.Bold);
 
@@ -345,18 +344,19 @@ namespace DiKErnel.Gui.View
             AddMessage("");
         }
 
-        void WriteOutput(
-            CalculationOutput calculationOutput,
-            Stopwatch elapsed)
+        private void WriteOutput(CalculationOutput calculationOutput, Stopwatch elapsed)
         {
-            var metaDataItems = new Dictionary<string, object>();
+            Dictionary<string, object> metaDataItems = null;
 
             if (mainWindowViewModel.WriteMetadata)
             {
-                metaDataItems["versie"] = ApplicationHelper.ApplicationVersionString;
-                metaDataItems["besturingssysteem"] = ApplicationHelper.OperatingSystemName;
-                metaDataItems["tijdstipBerekening"] = ApplicationHelper.FormattedDateTimeString;
-                metaDataItems["tijdsduurBerekening"] = elapsed.Elapsed.Seconds;
+                metaDataItems = new Dictionary<string, object>
+                {
+                    ["versie"] = ApplicationHelper.ApplicationVersionString,
+                    ["besturingssysteem"] = ApplicationHelper.OperatingSystemName,
+                    ["tijdstipBerekening"] = ApplicationHelper.FormattedDateTimeString,
+                    ["tijdsduurBerekening"] = elapsed.Elapsed.Seconds
+                };
             }
 
             SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
@@ -368,6 +368,13 @@ namespace DiKErnel.Gui.View
             {
                 LogFailureMessage();
             }
+        }
+
+        private enum TextType
+        {
+            Bold,
+            Italic,
+            Normal
         }
 
         #endregion
