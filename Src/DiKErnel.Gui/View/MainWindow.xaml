@@ -111,7 +111,7 @@ All rights reserved.
                     <Border Grid.Column="0" Width="375" Height="32" Background="{DynamicResource MahApps.Brushes.IdealForeground}"
                             BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Gray2}">
                         <TextBox Padding="7, 5, 7, 5" Text="{Binding InputFilePath}" Foreground="{Binding InputFilePathForeground}"
-                                 TextChanged="OnFilePathChanged"/>
+                                 TextChanged="OnTextChanged"/>
                     </Border>
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnSelectInputFileButtonClicked">
                         ...
@@ -126,7 +126,7 @@ All rights reserved.
                     <Border Grid.Column="0" Width="375" Height="32" Background="{DynamicResource MahApps.Brushes.IdealForeground}"
                             BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Gray2}">
                         <TextBox Padding="7, 5, 7, 5" Text="{Binding OutputFilePath}" Foreground="{Binding OutputFilePathForeground}"
-                                 TextChanged="OnFilePathChanged"/>
+                                 TextChanged="OnTextChanged"/>
                     </Border>
                     <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnSelectOutputFileButtonClicked">
                         ...

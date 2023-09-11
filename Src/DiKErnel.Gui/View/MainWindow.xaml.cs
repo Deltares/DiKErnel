@@ -40,11 +40,15 @@ namespace DiKErnel.Gui.View
 {
     public partial class MainWindow
     {
-        private const string fileDialogFilter = "Json files (*.json)|*.json|All files (*.*)|*.*";
+        private const string jsonFileFilter = "Json files (*.json)|*.json|All files (*.*)|*.*";
 
         private readonly MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
-        private readonly Dictionary<string, IEnumerable<string>> errorMessageCache = new Dictionary<string, IEnumerable<string>>();
-        private readonly Dictionary<string, IEnumerable<string>> warningMessageCache = new Dictionary<string, IEnumerable<string>>();
+
+        private readonly Dictionary<string, IReadOnlyList<string>> errorMessageCache =
+            new Dictionary<string, IReadOnlyList<string>>();
+
+        private readonly Dictionary<string, IReadOnlyList<string>> warningMessageCache =
+            new Dictionary<string, IReadOnlyList<string>>();
 
         public MainWindow()
         {
@@ -67,7 +71,7 @@ namespace DiKErnel.Gui.View
         {
             var openFileDialog = new OpenFileDialog
             {
-                Filter = fileDialogFilter
+                Filter = jsonFileFilter
             };
 
             if (openFileDialog.ShowDialog() == true)
@@ -80,7 +84,7 @@ namespace DiKErnel.Gui.View
         {
             var openFileDialog = new SaveFileDialog
             {
-                Filter = fileDialogFilter,
+                Filter = jsonFileFilter,
                 CheckFileExists = false
             };
 
@@ -90,7 +94,7 @@ namespace DiKErnel.Gui.View
             }
         }
 
-        private void OnFilePathChanged(object sender, TextChangedEventArgs e)
+        private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = (TextBox) sender;
 
@@ -101,13 +105,12 @@ namespace DiKErnel.Gui.View
 
         private void OnStartButtonClicked(object sender, RoutedEventArgs e)
         {
-            StartCalculation();
+            PerformCalculation();
         }
 
         private void OnCopyButtonClicked(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(
-                string.Join(Environment.NewLine, mainWindowViewModel.TextBlocks.Select(block => block.Text)));
+            Clipboard.SetText(string.Join(Environment.NewLine, mainWindowViewModel.TextBlocks.Select(b => b.Text)));
         }
 
         private void OnEraseButtonClicked(object sender, RoutedEventArgs e)
@@ -117,13 +120,14 @@ namespace DiKErnel.Gui.View
 
         #region Calculate
 
-        private void StartCalculation()
+        private void PerformCalculation()
         {
             try
             {
                 RemoveFileWhenExists(mainWindowViewModel.OutputFilePath);
 
-                DataResult<ICalculationInput> calculationInputDataResult = ValidateAndReadInput(mainWindowViewModel.InputFilePath);
+                DataResult<ICalculationInput> calculationInputDataResult =
+                    ValidateAndReadInput(mainWindowViewModel.InputFilePath);
 
                 if (calculationInputDataResult == null)
                 {
@@ -150,16 +154,13 @@ namespace DiKErnel.Gui.View
 
                 stopwatch.Stop();
 
-                WriteOutput(calculatorResult.Data, stopwatch);
+                WriteJsonOutput(calculatorResult.Data, stopwatch);
 
-                WriteFinalLogMessages(calculationInput, stopwatch);
+                AddLogMessagesForSuccesfulCalculation(calculationInput, stopwatch);
             }
             catch
             {
-                AddMessage("Berekening mislukt", TextType.Bold);
-                AddMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen via " +
-                           "dikernel@deltares.nl.");
-                AddMessage("");
+                AddLogMessagesForUnexpectedError();
             }
         }
 
@@ -181,7 +182,7 @@ namespace DiKErnel.Gui.View
 
                 if (!validationResult)
                 {
-                    LogFailureMessage();
+                    AddLogMessagesForFailedCalculation();
 
                     return null;
                 }
@@ -191,14 +192,14 @@ namespace DiKErnel.Gui.View
 
             CacheMessagesWhenApplicable("het valideren van het Json-formaat", inputComposerResult.Events);
 
-            if (inputComposerResult.Successful)
+            if (!inputComposerResult.Successful)
             {
-                return inputComposerResult;
+                AddLogMessagesForFailedCalculation();
+
+                return null;
             }
 
-            LogFailureMessage();
-
-            return null;
+            return inputComposerResult;
         }
 
         private bool ValidateCalculationInput(ICalculationInput calculationInput)
@@ -207,14 +208,14 @@ namespace DiKErnel.Gui.View
 
             CacheMessagesWhenApplicable("het valideren van de invoer", validationResult.Events);
 
-            if (validationResult.Data != ValidationResultType.Failed && validationResult.Successful)
+            if (validationResult.Data == ValidationResultType.Failed || !validationResult.Successful)
             {
-                return true;
+                AddLogMessagesForFailedCalculation();
+
+                return false;
             }
 
-            LogFailureMessage();
-
-            return false;
+            return true;
         }
 
         private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
@@ -227,14 +228,14 @@ namespace DiKErnel.Gui.View
 
             CacheMessagesWhenApplicable("de berekening", calculatorResult.Events);
 
-            if (calculator.CalculationState == CalculationState.FinishedSuccessfully && calculatorResult.Successful)
+            if (calculator.CalculationState != CalculationState.FinishedSuccessfully || !calculatorResult.Successful)
             {
-                return calculatorResult;
+                AddLogMessagesForFailedCalculation();
+
+                return null;
             }
 
-            LogFailureMessage();
-
-            return null;
+            return calculatorResult;
         }
 
         private void CacheMessagesWhenApplicable(string endOfDescription, IEnumerable<Event> events)
@@ -253,7 +254,7 @@ namespace DiKErnel.Gui.View
                         warningMessages.Add(e.Message);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new NotSupportedException();
                 }
             }
 
@@ -268,83 +269,89 @@ namespace DiKErnel.Gui.View
             }
         }
 
-        private void LogFailureMessage()
-        {
-            AddMessage("Berekening mislukt", TextType.Bold);
-
-            LogCachedMessages(errorMessageCache, "fout", "fouten");
-
-            AddMessage("");
-        }
-
-        private void AddMessage(string s, TextType textType = TextType.Normal)
+        private void AddLogMessage(string message, bool bold = false, bool italic = false)
         {
             var textBlock = new TextBlock
             {
-                Text = s
+                Text = message
             };
-            switch (textType)
+
+            if (bold)
             {
-                case TextType.Normal:
-                    break;
-                case TextType.Bold:
-                    textBlock.FontWeight = FontWeights.Bold;
-                    break;
-                case TextType.Italic:
-                    textBlock.FontStyle = FontStyles.Italic;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(textType), textType, null);
+                textBlock.FontWeight = FontWeights.Bold;
+            }
+
+            if (italic)
+            {
+                textBlock.FontStyle = FontStyles.Italic;
             }
 
             mainWindowViewModel.TextBlocks.Add(textBlock);
         }
 
-        private void LogCachedMessages(Dictionary<string, IEnumerable<string>> messageCache,
-                                       string messageTypeDescriptionSingular, string messageTypeDescriptionPlural)
+        private void AddLogMessagesFromCache(Dictionary<string, IReadOnlyList<string>> cache,
+                                             string messageTypeDescriptionSingular, string messageTypeDescriptionPlural)
         {
-            foreach ((string endOfDescription, IEnumerable<string> messagesEnumerable) in messageCache)
+            foreach ((string endOfDescription, IReadOnlyList<string> messages) in cache)
             {
-                IEnumerable<string> messages = messagesEnumerable.ToList();
-                if (messages.Count() == 1)
+                if (messages.Count == 1)
                 {
-                    AddMessage($"De volgende {messageTypeDescriptionSingular} is opgetreden tijdens {endOfDescription}:");
-                    AddMessage($"{messages.ElementAt(0)}", TextType.Italic);
+                    AddLogMessage($"De volgende {messageTypeDescriptionSingular} is opgetreden tijdens {endOfDescription}:");
+                    AddLogMessage($"{messages[0]}", italic: true);
                 }
                 else
                 {
-                    AddMessage($"De volgende {messageTypeDescriptionPlural} is opgetreden tijdens {endOfDescription}:");
-                    AddMessage($"{messages.ElementAt(0)}", TextType.Italic);
+                    AddLogMessage($"De volgende {messageTypeDescriptionPlural} zijn opgetreden tijdens {endOfDescription}:");
 
                     foreach (string message in messages)
                     {
-                        AddMessage($"- {message}", TextType.Italic);
+                        AddLogMessage($"- {message}", italic: true);
                     }
                 }
             }
         }
 
-        private void WriteFinalLogMessages(ICalculationInput calculationInput, Stopwatch elapsed)
+        private void AddLogMessagesForFailedCalculation()
         {
-            AddMessage(@"Berekening gelukt", TextType.Bold);
+            AddLogMessage("Berekening mislukt", bold: true);
 
-            LogCachedMessages(warningMessageCache, "waarschuwing", "waarschuwingen");
+            AddLogMessagesFromCache(errorMessageCache, "fout", "fouten");
+
+            AddLogMessage("");
+        }
+
+        private void AddLogMessagesForSuccesfulCalculation(ICalculationInput calculationInput, Stopwatch elapsed)
+        {
+            AddLogMessage(@"Berekening gelukt", bold: true);
+
+            AddLogMessagesFromCache(warningMessageCache, "waarschuwing", "waarschuwingen");
 
             int numberOfLocations = calculationInput.LocationDependentInputItems.Count;
             int numberOfTimeSteps = calculationInput.TimeDependentInputItems.Count;
 
-            var timeStepString = $"{(numberOfTimeSteps == 1 ? "is {numberOfTimeSteps} tijdstap" : "zijn {numberOfTimeSteps} tijdstappen")}";
+            string timeStepString = numberOfTimeSteps == 1
+                                        ? $"is {numberOfTimeSteps} tijdstap"
+                                        : $"zijn {numberOfTimeSteps} tijdstappen";
 
-            AddMessage($"Er {timeStepString} doorgerekend voor {numberOfLocations} {(numberOfLocations == 1 ? "locatie" : "locaties")}.");
+            string locationString = numberOfLocations == 1
+                                        ? "locatie"
+                                        : "locaties";
 
-            AddMessage($"De rekenduur bedroeg {elapsed.Elapsed.Seconds} seconden.");
-
-            AddMessage("Zie het uitvoerbestand voor verdere details.");
-
-            AddMessage("");
+            AddLogMessage($"Er {timeStepString} doorgerekend voor {numberOfLocations} {locationString}.");
+            AddLogMessage($"De rekenduur bedroeg {elapsed.Elapsed.Seconds} seconden.");
+            AddLogMessage("Zie het uitvoerbestand voor verdere details.");
+            AddLogMessage("");
         }
 
-        private void WriteOutput(CalculationOutput calculationOutput, Stopwatch elapsed)
+        private void AddLogMessagesForUnexpectedError()
+        {
+            AddLogMessage("Berekening mislukt", bold: true);
+            AddLogMessage("Er is een onverwachte fout opgetreden. Indien gewenst kunt u contact met ons opnemen " +
+                          "via dikernel@deltares.nl.");
+            AddLogMessage("");
+        }
+
+        private void WriteJsonOutput(CalculationOutput calculationOutput, Stopwatch elapsed)
         {
             Dictionary<string, object> metaDataItems = null;
 
@@ -366,15 +373,8 @@ namespace DiKErnel.Gui.View
 
             if (!outputComposerResult.Successful)
             {
-                LogFailureMessage();
+                AddLogMessagesForFailedCalculation();
             }
-        }
-
-        private enum TextType
-        {
-            Bold,
-            Italic,
-            Normal
         }
 
         #endregion
