@@ -6,6 +6,9 @@
         <UseWPF>true</UseWPF>
         <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
     </PropertyGroup>
+    <PropertyGroup>
+        <NoWarn>CA1031;CA1812</NoWarn>
+    </PropertyGroup>
     <ItemGroup>
         <None Remove="Resources\logo.svg" />
         <Resource Include="Resources\logo.svg" />
