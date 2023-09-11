@@ -57,6 +57,8 @@ namespace DiKErnel.Gui.View
             DataContext = mainWindowViewModel;
         }
 
+        # region Interaction logic
+
         private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)
@@ -94,15 +96,6 @@ namespace DiKErnel.Gui.View
             }
         }
 
-        private void OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            var textBox = (TextBox) sender;
-
-            // Set cursor to end
-            textBox.CaretIndex = textBox.Text.Length;
-            textBox.Focus();
-        }
-
         private void OnStartButtonClicked(object sender, RoutedEventArgs e)
         {
             PerformCalculation();
@@ -118,7 +111,27 @@ namespace DiKErnel.Gui.View
             mainWindowViewModel.LogMessages.Clear();
         }
 
-        #region Calculate
+        private void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = (TextBox) sender;
+
+            // Set cursor to end
+            textBox.CaretIndex = textBox.Text.Length;
+            textBox.Focus();
+        }
+
+        private void OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            // Set scroll position to end
+            if (e.OriginalSource is ScrollViewer scrollViewer && Math.Abs(e.ExtentHeightChange) > 0.0)
+            {
+                scrollViewer.ScrollToBottom();
+            }
+        }
+
+        # endregion
+
+        #region Calculation logic
 
         private void PerformCalculation()
         {
