@@ -107,11 +107,12 @@ All rights reserved.
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" Width="375" Height="32" Background="White" BorderThickness="2" BorderBrush="DimGray">
+                    <Border Grid.Column="0" Width="375" Height="32" Background="{DynamicResource MahApps.Brushes.IdealForeground}"
+                            BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Gray2}">
                         <TextBox Padding="7, 5, 7, 5" Text="{Binding InputFilePath}" Foreground="{Binding InputFilePathForeground}"
                                  TextChanged="OnFilePathChanged"/>
                     </Border>
-                    <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnInputFileOpenButtonClicked">
+                    <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnSelectInputFileButtonClicked">
                         ...
                     </Button>
                 </Grid>
@@ -121,11 +122,12 @@ All rights reserved.
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" Width="375" Height="32" Background="White" BorderThickness="2" BorderBrush="DimGray">
+                    <Border Grid.Column="0" Width="375" Height="32" Background="{DynamicResource MahApps.Brushes.IdealForeground}"
+                            BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Gray2}">
                         <TextBox Padding="7, 5, 7, 5" Text="{Binding OutputFilePath}" Foreground="{Binding OutputFilePathForeground}"
                                  TextChanged="OnFilePathChanged"/>
                     </Border>
-                    <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnOutputFileOpenButtonClicked">
+                    <Button Grid.Column="1" Margin="6, 0, 0, 0" Width="32" Height="32" Click="OnSelectOutputFileButtonClicked">
                         ...
                     </Button>
                 </Grid>
@@ -145,10 +147,10 @@ All rights reserved.
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <mah:ToggleSwitch IsOn="{Binding ValidateJsonInput}" VerticalAlignment="Center" Grid.Column="0">
+                    <mah:ToggleSwitch Grid.Column="0" IsOn="{Binding ValidateJsonInput}" VerticalAlignment="Center">
                         Valideren Json-formaat
                     </mah:ToggleSwitch>
-                    <mah:ToggleSwitch IsOn="{Binding WriteMetadata}" VerticalAlignment="Center" Grid.Column="1">
+                    <mah:ToggleSwitch Grid.Column="1" IsOn="{Binding WriteMetadata}" VerticalAlignment="Center">
                         Schrijven meta-informatie
                     </mah:ToggleSwitch>
                 </Grid>
@@ -162,15 +164,18 @@ All rights reserved.
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <RadioButton Grid.Column="0" GroupName="UitvoerNiveau"
-                                 IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static output:JsonOutputType.Failure}}">
+                                 IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter},
+                                 ConverterParameter={x:Static output:JsonOutputType.Failure}}">
                         Falen
                     </RadioButton>
                     <RadioButton Grid.Column="1" GroupName="UitvoerNiveau"
-                                 IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static output:JsonOutputType.Damage}}">
+                                 IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter},
+                                 ConverterParameter={x:Static output:JsonOutputType.Damage}}">
                         Schade
                     </RadioButton>
                     <RadioButton Grid.Column="2" GroupName="UitvoerNiveau"
-                                 IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static output:JsonOutputType.Physics}}">
+                                 IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter}, 
+                                 ConverterParameter={x:Static output:JsonOutputType.Physics}}">
                         Fysica
                     </RadioButton>
                 </Grid>
@@ -180,7 +185,7 @@ All rights reserved.
                 Start
             </Button>
         </Grid>
-        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding TextBlocks, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding TextBlocks}"/>
         <Grid Grid.Row="4" Margin="24, 12, 24, 24">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

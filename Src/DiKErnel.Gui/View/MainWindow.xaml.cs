@@ -63,7 +63,7 @@ namespace DiKErnel.Gui.View
             e.Handled = true;
         }
 
-        private void OnInputFileOpenButtonClicked(object sender, RoutedEventArgs e)
+        private void OnSelectInputFileButtonClicked(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
             {
@@ -76,7 +76,7 @@ namespace DiKErnel.Gui.View
             }
         }
 
-        private void OnOutputFileOpenButtonClicked(object sender, RoutedEventArgs e)
+        private void OnSelectOutputFileButtonClicked(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new SaveFileDialog
             {
