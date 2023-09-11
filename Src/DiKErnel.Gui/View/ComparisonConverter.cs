@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace DiKErnel.Gui.View
 {
-    internal class ComparisonConverter : IValueConverter
+    internal sealed class ComparisonConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
