@@ -28,7 +28,7 @@ using DiKErnel.KernelWrapper.Json.Output;
 
 namespace DiKErnel.Gui.ViewModel
 {
-    internal class MainWindowViewModel : INotifyPropertyChanged
+    internal sealed class MainWindowViewModel : INotifyPropertyChanged
     {
         private string inputFilePath;
         private string outputFilePath;
