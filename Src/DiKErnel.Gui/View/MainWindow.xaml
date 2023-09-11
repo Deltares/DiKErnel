@@ -164,17 +164,17 @@ All rights reserved.
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton Grid.Column="0" GroupName="UitvoerNiveau"
+                    <RadioButton Grid.Column="0" GroupName="OutputType"
                                  IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter},
                                  ConverterParameter={x:Static output:JsonOutputType.Failure}}">
                         Falen
                     </RadioButton>
-                    <RadioButton Grid.Column="1" GroupName="UitvoerNiveau"
+                    <RadioButton Grid.Column="1" GroupName="OutputType"
                                  IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter},
                                  ConverterParameter={x:Static output:JsonOutputType.Damage}}">
                         Schade
                     </RadioButton>
-                    <RadioButton Grid.Column="2" GroupName="UitvoerNiveau"
+                    <RadioButton Grid.Column="2" GroupName="OutputType"
                                  IsChecked="{Binding Path=OutputType, Converter={StaticResource ComparisonConverter}, 
                                  ConverterParameter={x:Static output:JsonOutputType.Physics}}">
                         Fysica
