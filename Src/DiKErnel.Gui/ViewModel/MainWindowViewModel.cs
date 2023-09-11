@@ -35,7 +35,7 @@ namespace DiKErnel.Gui.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<TextBlock> TextBlocks { get; } = new ObservableCollection<TextBlock>();
+        public ObservableCollection<TextBlock> LogMessages { get; } = new ObservableCollection<TextBlock>();
 
         public static string VersionNumber => ApplicationHelper.ApplicationVersionString;
 

@@ -110,12 +110,12 @@ namespace DiKErnel.Gui.View
 
         private void OnCopyButtonClicked(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(string.Join(Environment.NewLine, mainWindowViewModel.TextBlocks.Select(b => b.Text)));
+            Clipboard.SetText(string.Join(Environment.NewLine, mainWindowViewModel.LogMessages.Select(b => b.Text)));
         }
 
         private void OnEraseButtonClicked(object sender, RoutedEventArgs e)
         {
-            mainWindowViewModel.TextBlocks.Clear();
+            mainWindowViewModel.LogMessages.Clear();
         }
 
         #region Calculate
@@ -277,22 +277,22 @@ namespace DiKErnel.Gui.View
 
         private void AddLogMessage(string message, bool bold = false, bool italic = false)
         {
-            var textBlock = new TextBlock
+            var logMessage = new TextBlock
             {
                 Text = message
             };
 
             if (bold)
             {
-                textBlock.FontWeight = FontWeights.Bold;
+                logMessage.FontWeight = FontWeights.Bold;
             }
 
             if (italic)
             {
-                textBlock.FontStyle = FontStyles.Italic;
+                logMessage.FontStyle = FontStyles.Italic;
             }
 
-            mainWindowViewModel.TextBlocks.Add(textBlock);
+            mainWindowViewModel.LogMessages.Add(logMessage);
         }
 
         private void AddLogMessagesFromCache(Dictionary<string, IReadOnlyList<string>> cache,
