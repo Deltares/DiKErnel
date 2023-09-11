@@ -46,11 +46,6 @@ namespace DiKErnel.Gui.ViewModel
                        : "Invoerbestand.json";
             set
             {
-                if (value == inputFilePath)
-                {
-                    return;
-                }
-
                 inputFilePath = value;
 
                 OnPropertyChanged(nameof(InputFilePath));
@@ -70,11 +65,6 @@ namespace DiKErnel.Gui.ViewModel
                        : "Uitvoerbestand.json";
             set
             {
-                if (value == outputFilePath)
-                {
-                    return;
-                }
-
                 outputFilePath = value;
 
                 OnPropertyChanged(nameof(OutputFilePath));
