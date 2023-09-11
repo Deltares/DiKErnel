@@ -70,7 +70,7 @@ All rights reserved.
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Demonstratie" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Text="{Binding VersionNumber}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Text="{x:Static viewModel:MainWindowViewModel.VersionNumber}" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="2" Text="Deltares" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="3" VerticalAlignment="Center">
                     <Hyperlink NavigateUri="mailto:dikernel@deltares.nl" RequestNavigate="OnRequestNavigate">dikernel@deltares.nl</Hyperlink>

@@ -162,6 +162,11 @@ namespace DiKErnel.Gui.View
             {
                 AddLogMessagesForUnexpectedError();
             }
+            finally
+            {
+                errorMessageCache.Clear();
+                warningMessageCache.Clear();
+            }
         }
 
         private static void RemoveFileWhenExists(string filePath)

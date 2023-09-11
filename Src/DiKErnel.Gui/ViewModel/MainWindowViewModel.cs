@@ -30,34 +30,14 @@ namespace DiKErnel.Gui.ViewModel
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
-        private string versionNumber;
         private string inputFilePath;
         private string outputFilePath;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindowViewModel()
-        {
-            versionNumber = ApplicationHelper.ApplicationVersionString;
-        }
-
         public ObservableCollection<TextBlock> TextBlocks { get; } = new ObservableCollection<TextBlock>();
 
-        public string VersionNumber
-        {
-            get => versionNumber;
-            set
-            {
-                if (value == versionNumber)
-                {
-                    return;
-                }
-
-                versionNumber = value;
-
-                OnPropertyChanged(nameof(VersionNumber));
-            }
-        }
+        public static string VersionNumber => ApplicationHelper.ApplicationVersionString;
 
         public string InputFilePath
         {
