@@ -32,7 +32,7 @@ All rights reserved.
     <mah:MetroWindow.DataContext>
         <viewModel:MainWindowViewModel/>
     </mah:MetroWindow.DataContext>
-    <Grid Background="#E6E6E6">
+    <Grid Background="{DynamicResource MahApps.Brushes.Gray9}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -76,7 +76,8 @@ All rights reserved.
                     <Hyperlink NavigateUri="mailto:dikernel@deltares.nl" RequestNavigate="OnRequestNavigate">dikernel@deltares.nl</Hyperlink>
                 </TextBlock>
             </Grid>
-            <Border Grid.Column="3" BorderThickness="1" BorderBrush="#d3d3d3" Margin="20, 0, 0, 0" Width="600" Height="110">
+            <Border Grid.Column="3" BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Gray7}" Margin="20, 0, 0, 0"
+                    Width="600" Height="110">
                 <TextBlock Margin="10, 6, 10, 6" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12">
                     <Bold>Disclaimer: </Bold>
                     De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid.

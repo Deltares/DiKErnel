@@ -24,15 +24,15 @@ All rights reserved.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:markup="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"
                     xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
-    <Color x:Key="MahApps.Colors.Highlight">#199CD8</Color>
-    <Color x:Key="MahApps.Colors.AccentBase">#199CD8</Color>
-    <Color x:Key="MahApps.Colors.Accent">#199CD8</Color>
-    <Color x:Key="MahApps.Colors.Accent2">#168CC2</Color>
-    <Color x:Key="MahApps.Colors.Accent3">#199CD8</Color>
-    <Color x:Key="MahApps.Colors.Accent4">#199CD8</Color>
+    <Color x:Key="MahApps.Colors.Highlight">#FF199CD8</Color>
+    <Color x:Key="MahApps.Colors.AccentBase">#FF199CD8</Color>
+    <Color x:Key="MahApps.Colors.Accent">#FF199CD8</Color>
+    <Color x:Key="MahApps.Colors.Accent2">#FF168CC2</Color>
+    <Color x:Key="MahApps.Colors.Accent3">#FF199CD8</Color>
+    <Color x:Key="MahApps.Colors.Accent4">#FF199CD8</Color>
     <Color x:Key="MahApps.Colors.ThemeForeground">#FF000000</Color>
     <Color x:Key="MahApps.Colors.ThemeBackground">#FFFFFFFF</Color>
-    <Color x:Key="MahApps.Colors.IdealForeground">White</Color>
+    <Color x:Key="MahApps.Colors.IdealForeground">#FFFFFFFF</Color>
     <Color x:Key="MahApps.Colors.Gray1">#FF333333</Color>
     <Color x:Key="MahApps.Colors.Gray2">#FF7F7F7F</Color>
     <Color x:Key="MahApps.Colors.Gray3">#FF9D9D9D</Color>
@@ -41,7 +41,7 @@ All rights reserved.
     <Color x:Key="MahApps.Colors.Gray6">#FFCCCCCC</Color>
     <Color x:Key="MahApps.Colors.Gray7">#FFD8D8D9</Color>
     <Color x:Key="MahApps.Colors.Gray8">#FFE0E0E0</Color>
-    <Color x:Key="MahApps.Colors.Gray9">#5EC9C9C9</Color>
+    <Color x:Key="MahApps.Colors.Gray9">#FFE6E6E6</Color>
     <Color x:Key="MahApps.Colors.Gray10">#FFF7F7F7</Color>
     <Color x:Key="MahApps.Colors.Gray">#FFBEBEBE</Color>
     <Color x:Key="MahApps.Colors.Gray.MouseOver">#FF333333</Color>
