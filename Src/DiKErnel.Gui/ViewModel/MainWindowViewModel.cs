@@ -30,12 +30,9 @@ namespace DiKErnel.Gui.ViewModel
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
-        private const string exampleInputFilePath = "Invoerbestand.json";
-        private const string exampleOutputFilePath = "Uitvoerbestand.json";
-
         private string versionNumber;
-        private string inputFilePath = exampleInputFilePath;
-        private string outputFilePath = exampleOutputFilePath;
+        private string inputFilePath;
+        private string outputFilePath;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -64,7 +61,9 @@ namespace DiKErnel.Gui.ViewModel
 
         public string InputFilePath
         {
-            get => inputFilePath;
+            get => !string.IsNullOrEmpty(inputFilePath)
+                       ? inputFilePath
+                       : "Invoerbestand.json";
             set
             {
                 if (value == inputFilePath)
@@ -80,11 +79,15 @@ namespace DiKErnel.Gui.ViewModel
             }
         }
 
-        public SolidColorBrush InputFilePathForeground => InputFilePath == exampleInputFilePath ? Brushes.DarkGray : Brushes.Black;
+        public SolidColorBrush InputFilePathForeground => !string.IsNullOrEmpty(inputFilePath)
+                                                              ? Brushes.Black
+                                                              : Brushes.DarkGray;
 
         public string OutputFilePath
         {
-            get => outputFilePath;
+            get => !string.IsNullOrEmpty(outputFilePath)
+                       ? outputFilePath
+                       : "Uitvoerbestand.json";
             set
             {
                 if (value == outputFilePath)
@@ -100,7 +103,9 @@ namespace DiKErnel.Gui.ViewModel
             }
         }
 
-        public SolidColorBrush OutputFilePathForeground => OutputFilePath == exampleOutputFilePath ? Brushes.DarkGray : Brushes.Black;
+        public SolidColorBrush OutputFilePathForeground => !string.IsNullOrEmpty(outputFilePath)
+                                                               ? Brushes.Black
+                                                               : Brushes.DarkGray;
 
         public bool ValidateJsonInput { get; set; } = true;
 
@@ -108,7 +113,7 @@ namespace DiKErnel.Gui.ViewModel
 
         public JsonOutputType OutputType { get; set; } = JsonOutputType.Damage;
 
-        public bool CanCalculate => InputFilePath != exampleInputFilePath && outputFilePath != exampleOutputFilePath;
+        public bool CanCalculate => !string.IsNullOrEmpty(inputFilePath) && !string.IsNullOrEmpty(outputFilePath);
 
         private void OnPropertyChanged(string propertyName)
         {
