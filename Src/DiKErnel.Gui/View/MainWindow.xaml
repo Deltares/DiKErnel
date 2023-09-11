@@ -24,10 +24,10 @@ All rights reserved.
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:viewModel="clr-namespace:DiKErnel.Gui.ViewModel"
                  xmlns:output="clr-namespace:DiKErnel.KernelWrapper.Json.Output;assembly=DiKErnel.KernelWrapper.Json.Output"
-                 xmlns:gui="clr-namespace:DiKErnel.Gui" MinWidth="1024" MinHeight="768" Width="1024" Height="768" Title="DiKErnel-gui"
-                 TitleCharacterCasing="Normal" WindowTransitionsEnabled="False">
+                 xmlns:view="clr-namespace:DiKErnel.Gui.View" MinWidth="1024" MinHeight="768" Width="1024" Height="768"
+                 Title="DiKErnel-gui" TitleCharacterCasing="Normal" WindowTransitionsEnabled="False">
     <mah:MetroWindow.Resources>
-        <gui:ComparisonConverter x:Key="ComparisonConverter"/>
+        <view:ComparisonConverter x:Key="ComparisonConverter"/>
     </mah:MetroWindow.Resources>
     <mah:MetroWindow.DataContext>
         <viewModel:MainWindowViewModel/>

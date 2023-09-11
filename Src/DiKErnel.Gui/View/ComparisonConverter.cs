@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace DiKErnel.Gui
+namespace DiKErnel.Gui.View
 {
     internal class ComparisonConverter : IValueConverter
     {
