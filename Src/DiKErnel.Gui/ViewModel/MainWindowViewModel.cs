@@ -35,8 +35,6 @@ namespace DiKErnel.Gui.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<TextBlock> LogMessages { get; } = new ObservableCollection<TextBlock>();
-
         public static string VersionNumber => ApplicationHelper.ApplicationVersionString;
 
         public string InputFilePath
@@ -84,6 +82,8 @@ namespace DiKErnel.Gui.ViewModel
         public JsonOutputType OutputType { get; set; } = JsonOutputType.Damage;
 
         public bool CanCalculate => !string.IsNullOrEmpty(inputFilePath) && !string.IsNullOrEmpty(outputFilePath);
+
+        public ObservableCollection<TextBlock> LogMessages { get; } = new ObservableCollection<TextBlock>();
 
         private void OnPropertyChanged(string propertyName)
         {
