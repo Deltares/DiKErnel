@@ -167,9 +167,11 @@ namespace DiKErnel.Gui.View
 
                 stopwatch.Stop();
 
-                WriteJsonOutput(calculatorResult.Data, stopwatch);
+                double duration = stopwatch.Elapsed.TotalSeconds;
 
-                AddLogMessagesForSuccesfulCalculation(calculationInput, stopwatch);
+                WriteJsonOutput(calculatorResult.Data, duration);
+
+                AddLogMessagesForSuccesfulCalculation(calculationInput, duration);
             }
             catch
             {
@@ -339,7 +341,7 @@ namespace DiKErnel.Gui.View
             AddLogMessage("");
         }
 
-        private void AddLogMessagesForSuccesfulCalculation(ICalculationInput calculationInput, Stopwatch elapsed)
+        private void AddLogMessagesForSuccesfulCalculation(ICalculationInput calculationInput, double duration)
         {
             AddLogMessage(@"Berekening gelukt", bold: true);
 
@@ -357,7 +359,7 @@ namespace DiKErnel.Gui.View
                                         : "locaties";
 
             AddLogMessage($"Er {timeStepString} doorgerekend voor {numberOfLocations} {locationString}.");
-            AddLogMessage($"De rekenduur bedroeg {elapsed.Elapsed.Seconds} seconden.");
+            AddLogMessage($"De rekenduur bedroeg {duration} seconden.");
             AddLogMessage("Zie het uitvoerbestand voor verdere details.");
             AddLogMessage("");
         }
@@ -370,7 +372,7 @@ namespace DiKErnel.Gui.View
             AddLogMessage("");
         }
 
-        private void WriteJsonOutput(CalculationOutput calculationOutput, Stopwatch elapsed)
+        private void WriteJsonOutput(CalculationOutput calculationOutput, double duration)
         {
             Dictionary<string, object> metaDataItems = null;
 
@@ -381,7 +383,7 @@ namespace DiKErnel.Gui.View
                     ["versie"] = ApplicationHelper.ApplicationVersionString,
                     ["besturingssysteem"] = ApplicationHelper.OperatingSystemName,
                     ["tijdstipBerekening"] = ApplicationHelper.FormattedDateTimeString,
-                    ["tijdsduurBerekening"] = elapsed.Elapsed.Seconds
+                    ["tijdsduurBerekening"] = duration
                 };
             }
 

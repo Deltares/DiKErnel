@@ -89,7 +89,7 @@ namespace DiKErnel.Cli
 
                 stopwatch.Stop();
 
-                bool writeOutputResult = WriteOutput(calculatorResult.Data, parser, stopwatch.ElapsedMilliseconds);
+                bool writeOutputResult = WriteOutput(calculatorResult.Data, parser, stopwatch.Elapsed.TotalSeconds);
 
                 return !writeOutputResult ? -1 : 0;
             }
@@ -158,7 +158,7 @@ namespace DiKErnel.Cli
         }
 
         private static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser,
-                                        long elapsed)
+                                        double duration)
         {
             Dictionary<string, object> metaDataItems = null;
 
@@ -169,7 +169,7 @@ namespace DiKErnel.Cli
                     ["versie"] = ApplicationHelper.ApplicationVersionString,
                     ["besturingssysteem"] = ApplicationHelper.OperatingSystemName,
                     ["tijdstipBerekening"] = ApplicationHelper.FormattedDateTimeString,
-                    ["tijdsduurBerekening"] = elapsed
+                    ["tijdsduurBerekening"] = duration
                 };
             }
 
