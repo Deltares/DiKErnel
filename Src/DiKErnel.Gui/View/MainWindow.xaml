@@ -186,7 +186,13 @@ All rights reserved.
                 Start
             </Button>
         </Grid>
-        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding LogMessages}" ScrollViewer.ScrollChanged="OnScrollChanged"/>
+        <ListView Grid.Row="3" Margin="24, 12, 24, 0" ItemsSource="{Binding LogMessages}" ScrollViewer.ScrollChanged="OnScrollChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="IsHitTestVisible" Value="false"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
         <Grid Grid.Row="4" Margin="24, 12, 24, 24">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
