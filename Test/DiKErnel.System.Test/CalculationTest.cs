@@ -65,6 +65,9 @@ namespace DiKErnel.System.Test
                 calculator.WaitForCompletion();
             }
 
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
             stopWatch.Stop();
 
             TimeSpan timeSpan = stopWatch.Elapsed;
