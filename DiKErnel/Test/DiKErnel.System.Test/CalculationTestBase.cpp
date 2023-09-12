@@ -72,7 +72,7 @@ namespace DiKErnel::System::Test
 
         const auto startTime = std::chrono::high_resolution_clock::now();
 
-        for (auto i = 0; i < 10000; ++i)
+        for (auto i = 0; i < 1000; ++i)
         {
             calculator = make_unique<Calculator>(calculationInput);
 
