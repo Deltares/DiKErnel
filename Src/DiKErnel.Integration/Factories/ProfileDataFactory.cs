@@ -72,10 +72,8 @@ namespace DiKErnel.Integration.Factories
         private static ProfilePoint GetMatchingPointOnSegment(ProfileDataFactoryPoint profilePoint,
                                                               IReadOnlyList<ProfileSegment> segments)
         {
-            foreach (ProfileSegment segment in segments)
+            foreach (ProfilePoint segmentStartPoint in segments.Select(s => s.StartPoint))
             {
-                ProfilePoint segmentStartPoint = segment.StartPoint;
-
                 if (NumericsHelper.AreEqual(profilePoint.X, segmentStartPoint.X))
                 {
                     return segmentStartPoint;
