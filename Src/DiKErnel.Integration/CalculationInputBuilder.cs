@@ -282,8 +282,8 @@ namespace DiKErnel.Integration
                 return false;
             }
 
-            if (profileDataFactorySegments.Any(profileSegment => NumericsHelper.AreEqual(profileSegment.StartPointX,
-                                                                                         characteristicPoint.X)))
+            if (profileDataFactorySegments.Exists(profileSegment => NumericsHelper.AreEqual(profileSegment.StartPointX,
+                                                                                            characteristicPoint.X)))
             {
                 return true;
             }
