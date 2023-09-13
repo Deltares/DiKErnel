@@ -25,7 +25,7 @@ namespace DiKErnel.Application
     /// <summary>
     /// Class containing helper methods for applications.
     /// </summary>
-    public class ApplicationHelper
+    public static class ApplicationHelper
     {
         private const string isoFormat = "yyyy-MM-ddTHH:mm:ssK";
 

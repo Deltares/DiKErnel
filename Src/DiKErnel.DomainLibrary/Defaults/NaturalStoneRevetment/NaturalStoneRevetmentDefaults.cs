@@ -21,7 +21,7 @@ namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment
     /// <summary>
     /// Class that contains default values for natural stone revetments.
     /// </summary>
-    public class NaturalStoneRevetmentDefaults
+    public static class NaturalStoneRevetmentDefaults
     {
         /// <summary>
         /// Gets the default value of the Aus coefficient [-].

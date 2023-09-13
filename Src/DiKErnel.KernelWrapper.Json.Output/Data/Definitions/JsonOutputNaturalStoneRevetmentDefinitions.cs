@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
-    internal class JsonOutputNaturalStoneRevetmentDefinitions
+    internal static class JsonOutputNaturalStoneRevetmentDefinitions
     {
         public const string SLOPE_UPPER_LEVEL = "bovenzijdeHellingvlak";
         public const string SLOPE_UPPER_POSITION = "rechterzijdeHellingvlak";

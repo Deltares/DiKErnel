@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
-    internal class JsonOutputGrassRevetmentDefinitions
+    internal static class JsonOutputGrassRevetmentDefinitions
     {
         public const string VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION = "verticaleAfstandWaterstandHoogteLocatie";
         public const string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieve2p";

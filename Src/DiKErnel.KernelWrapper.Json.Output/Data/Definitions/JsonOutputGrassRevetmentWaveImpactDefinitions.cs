@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
-    internal class JsonOutputGrassRevetmentWaveImpactDefinitions
+    internal static class JsonOutputGrassRevetmentWaveImpactDefinitions
     {
         public const string MAXIMUM_WAVE_HEIGHT = "maximumGolfhoogte";
         public const string MINIMUM_WAVE_HEIGHT = "minimumGolfhoogte";

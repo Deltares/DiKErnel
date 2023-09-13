@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
-    internal class JsonOutputDefinitions
+    internal static class JsonOutputDefinitions
     {
         public const string META_DATA = "metaInformatie";
 
