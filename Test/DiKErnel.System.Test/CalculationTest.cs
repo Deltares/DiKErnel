@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Linq;
+using System.Collections.Generic;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
@@ -36,9 +36,8 @@ namespace DiKErnel.System.Test
             Assert.IsTrue(calculatorResult.Successful);
             CollectionAssert.IsEmpty(calculatorResult.Events);
 
-            Assert.AreEqual(expectedDamage,
-                            calculatorResult.Data.LocationDependentOutputItems[0].GetDamages().Last(),
-                            1e-14);
+            IReadOnlyList<double> damages = calculatorResult.Data.LocationDependentOutputItems[0].GetDamages();
+            Assert.AreEqual(expectedDamage, damages[damages.Count - 1], 1e-14);
 
             Assert.AreEqual(expectedTimeOfFailure,
                             calculatorResult.Data.LocationDependentOutputItems[0].GetTimeOfFailure());
