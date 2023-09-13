@@ -249,11 +249,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
             double calculateDikeHeight = locationHeight;
 
-            foreach (ProfileSegment profileSegment in profileSegments)
+            foreach (ProfilePoint segmentStartPoint in profileSegments.Select(s => s.StartPoint))
             {
-                if (profileSegment.StartPoint.X >= outerCrest.Item1 && profileSegment.StartPoint.X < X)
+                if (segmentStartPoint.X >= outerCrest.Item1 && segmentStartPoint.X < X)
                 {
-                    calculateDikeHeight = Math.Max(calculateDikeHeight, profileSegment.StartPoint.Z);
+                    calculateDikeHeight = Math.Max(calculateDikeHeight, segmentStartPoint.Z);
                 }
             }
 
