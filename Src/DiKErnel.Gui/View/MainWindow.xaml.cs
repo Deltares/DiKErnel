@@ -168,7 +168,7 @@ namespace DiKErnel.Gui.View
 
                 WriteJsonOutput(calculatorResult.Data, duration);
 
-                AddLogMessagesForSuccesfulCalculation(calculationInput, duration);
+                AddLogMessagesForSuccessfulCalculation(calculationInput, duration);
             }
             catch
             {
@@ -338,7 +338,7 @@ namespace DiKErnel.Gui.View
             AddLogMessage("");
         }
 
-        private void AddLogMessagesForSuccesfulCalculation(ICalculationInput calculationInput, double duration)
+        private void AddLogMessagesForSuccessfulCalculation(ICalculationInput calculationInput, double duration)
         {
             AddLogMessage(@"Berekening gelukt", bold: true);
 
