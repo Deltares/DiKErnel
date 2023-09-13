@@ -47,15 +47,8 @@ namespace DiKErnel.Core.Extensions
         /// output.</returns>
         public static int? GetTimeOfFailure(this LocationDependentOutput locationDependentOutput)
         {
-            foreach (TimeDependentOutput timeDependentOutput in locationDependentOutput.TimeDependentOutputItems)
-            {
-                if (timeDependentOutput.TimeOfFailure.HasValue)
-                {
-                    return timeDependentOutput.TimeOfFailure;
-                }
-            }
-
-            return null;
+            return locationDependentOutput.TimeDependentOutputItems
+                                          .FirstOrDefault(tdo => tdo.TimeOfFailure.HasValue)?.TimeOfFailure;
         }
     }
 }
