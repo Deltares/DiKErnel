@@ -288,7 +288,8 @@ namespace DiKErnel.Integration
                 return true;
             }
 
-            if (NumericsHelper.AreEqual(profileDataFactorySegments.Last().EndPointX, characteristicPoint.X))
+            if (NumericsHelper.AreEqual(profileDataFactorySegments[profileDataFactorySegments.Count - 1].EndPointX,
+                                        characteristicPoint.X))
             {
                 return true;
             }
@@ -478,7 +479,7 @@ namespace DiKErnel.Integration
                 }
             }
 
-            double outerCrestZ = zValuesProfile.Last();
+            double outerCrestZ = zValuesProfile[zValuesProfile.Count - 1];
             double dikeHeight = GetOvertoppingDikeHeight(constructionProperties.DikeHeight, outerCrestZ);
 
             IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xValuesProfile.ToArray(),
