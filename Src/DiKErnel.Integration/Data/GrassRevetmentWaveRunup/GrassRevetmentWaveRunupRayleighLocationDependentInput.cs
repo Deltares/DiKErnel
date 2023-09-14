@@ -89,7 +89,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 Z, timeDependentInput.WaterLevel);
 
-            if (verticalDistanceWaterLevelElevation > 0)
+            if (verticalDistanceWaterLevelElevation > 0.0)
             {
                 int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                      timeDependentInput.EndTime);
@@ -167,7 +167,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
-            if (verticalDistanceWaterLevelElevation > 0)
+            if (verticalDistanceWaterLevelElevation > 0.0)
             {
                 constructionProperties.WaveAngleImpact = waveAngleImpact;
                 constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;

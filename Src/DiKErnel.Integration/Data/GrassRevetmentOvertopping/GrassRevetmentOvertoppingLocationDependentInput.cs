@@ -151,7 +151,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 dikeHeight, timeDependentInput.WaterLevel);
 
-            if (verticalDistanceWaterLevelElevation >= 0)
+            if (verticalDistanceWaterLevelElevation >= 0.0)
             {
                 int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                      timeDependentInput.EndTime);
@@ -271,7 +271,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
-            if (verticalDistanceWaterLevelElevation >= 0)
+            if (verticalDistanceWaterLevelElevation >= 0.0)
             {
                 constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
                 constructionProperties.CumulativeOverload = cumulativeOverload;

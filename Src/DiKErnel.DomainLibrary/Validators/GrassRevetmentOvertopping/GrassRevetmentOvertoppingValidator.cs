@@ -33,7 +33,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping
         /// <c>null</c> otherwise.</returns>
         public static ValidationIssue AccelerationAlphaA(double accelerationAlphaA)
         {
-            if (accelerationAlphaA < 0)
+            if (accelerationAlphaA < 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "AccelerationAlphaA must be equal to 0 or larger.");
             }
@@ -49,7 +49,7 @@ namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping
         /// otherwise.</returns>
         public static ValidationIssue FrontVelocityCwo(double frontVelocityCwo)
         {
-            if (frontVelocityCwo <= 0)
+            if (frontVelocityCwo <= 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "FrontVelocityCwo must be larger than 0.");
             }

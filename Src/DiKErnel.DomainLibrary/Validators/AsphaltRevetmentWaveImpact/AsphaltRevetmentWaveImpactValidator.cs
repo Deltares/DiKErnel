@@ -77,7 +77,7 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         /// otherwise.</returns>
         public static ValidationIssue DensityOfWater(double densityOfWater)
         {
-            if (densityOfWater < 950 || densityOfWater > 1050)
+            if (densityOfWater < 950.0 || densityOfWater > 1050.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "DensityOfWater must be in range [950, 1050].");
             }
@@ -131,7 +131,7 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
 
         private static ValidationIssue ValidateLargerThanZero(double propertyToValidate, string propertyName)
         {
-            if (propertyToValidate <= 0)
+            if (propertyToValidate <= 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, propertyName + " must be larger than 0.");
             }

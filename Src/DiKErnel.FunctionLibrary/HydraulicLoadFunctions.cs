@@ -32,7 +32,7 @@ namespace DiKErnel.FunctionLibrary
         /// <returns>The wave direction [deg].</returns>
         public static double WaveDirection(double waveAngle)
         {
-            if (waveAngle >= -180 && waveAngle < 0)
+            if (waveAngle >= -180.0 && waveAngle < 0.0)
             {
                 return 360 - Math.Abs(waveAngle);
             }

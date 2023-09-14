@@ -33,12 +33,12 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RelativeDensity(double relativeDensity)
         {
-            if (relativeDensity <= 0 || relativeDensity >= 10)
+            if (relativeDensity <= 0.0 || relativeDensity >= 10.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "RelativeDensity must be in range {0, 10}.");
             }
 
-            if (relativeDensity < 0.1 || relativeDensity > 5)
+            if (relativeDensity < 0.1 || relativeDensity > 5.0)
             {
                 return new ValidationIssue(ValidationIssueType.Warning, "RelativeDensity should be in range [0.1, 5].");
             }
@@ -54,7 +54,7 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// <c>null</c> otherwise.</returns>
         public static ValidationIssue ThicknessTopLayer(double thicknessTopLayer)
         {
-            if (thicknessTopLayer <= 0 || thicknessTopLayer >= 1)
+            if (thicknessTopLayer <= 0.0 || thicknessTopLayer >= 1.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "ThicknessTopLayer must be in range {0, 1}.");
             }
@@ -75,7 +75,7 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// otherwise.</returns>
         public static ValidationIssue SlopeUpperLevelAus(double slopeUpperLevelAus)
         {
-            if (slopeUpperLevelAus <= 0)
+            if (slopeUpperLevelAus <= 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "SlopeUpperLevelAus must be larger than 0.");
             }
@@ -96,12 +96,12 @@ namespace DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment
         /// otherwise.</returns>
         public static ValidationIssue SlopeLowerLevelAls(double slopeLowerLevelAls)
         {
-            if (slopeLowerLevelAls <= 0)
+            if (slopeLowerLevelAls <= 0.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "SlopeLowerLevelAls must be larger than 0.");
             }
 
-            if (slopeLowerLevelAls < 1 || slopeLowerLevelAls > 2)
+            if (slopeLowerLevelAls < 1.0 || slopeLowerLevelAls > 2.0)
             {
                 return new ValidationIssue(ValidationIssueType.Warning, "SlopeLowerLevelAls should be in range [1, 2].");
             }
