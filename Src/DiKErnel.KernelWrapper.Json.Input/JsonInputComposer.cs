@@ -38,14 +38,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
     /// </summary>
     public static class JsonInputComposer
     {
-        private static readonly JSchema schema;
-
-        static JsonInputComposer()
-        {
-            using Stream validatorSchemaStream = new MemoryStream(Resources.SchemaDefinition);
-            using var validatorSchemaReader = new StreamReader(validatorSchemaStream);
-            schema = JSchema.Parse(validatorSchemaReader.ReadToEnd());
-        }
+        private static readonly JSchema schema = InitializeSchema();
 
         /// <summary>
         /// Performs a Json schema based validation.
@@ -107,6 +100,14 @@ namespace DiKErnel.KernelWrapper.Json.Input
             }
 
             return new DataResult<ICalculationInput>(EventRegistry.Flush());
+        }
+
+        private static JSchema InitializeSchema()
+        {
+            using Stream validatorSchemaStream = new MemoryStream(Resources.SchemaDefinition);
+            using var validatorSchemaReader = new StreamReader(validatorSchemaStream);
+
+            return JSchema.Parse(validatorSchemaReader.ReadToEnd());
         }
     }
 }
