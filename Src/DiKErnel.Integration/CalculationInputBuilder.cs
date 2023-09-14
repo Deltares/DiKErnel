@@ -302,7 +302,7 @@ namespace DiKErnel.Integration
         private ProfileDataFactoryPoint GetProfileDataFactoryPointForCharacteristicPointType(
             CharacteristicPointType characteristicPointType)
         {
-            return profileDataFactoryPoints.FirstOrDefault(
+            return profileDataFactoryPoints.Find(
                 profileDataFactoryPoint => profileDataFactoryPoint.CharacteristicPointType == characteristicPointType);
         }
 
