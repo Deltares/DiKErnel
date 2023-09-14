@@ -104,7 +104,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            void Call() => new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "verticalDistanceWaterLevelElevation must be set.");

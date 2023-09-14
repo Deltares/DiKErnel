@@ -173,7 +173,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.ComputationalThickness = null;
 
             // Call
-            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "computationalThickness must be set.");

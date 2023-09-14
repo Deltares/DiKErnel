@@ -189,7 +189,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.OuterSlope = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "outerSlope must be set.");
@@ -205,7 +208,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.SlopeUpperLevel = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeUpperLevel must be set.");
@@ -221,7 +227,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.SlopeUpperPosition = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeUpperPosition must be set.");
@@ -237,7 +246,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.SlopeLowerLevel = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeLowerLevel must be set.");
@@ -253,7 +265,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.SlopeLowerPosition = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeLowerPosition must be set.");
@@ -269,7 +284,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.LoadingRevetment = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "loadingRevetment must be set.");
@@ -285,7 +303,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.SurfSimilarityParameter = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "surfSimilarityParameter must be set.");
@@ -301,7 +322,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.LowerLimitLoading = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "lowerLimitLoading must be set.");
@@ -317,7 +341,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.DepthMaximumWaveLoad = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "depthMaximumWaveLoad must be set.");
@@ -333,7 +360,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.DistanceMaximumWaveElevation = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "distanceMaximumWaveElevation must be set.");
@@ -349,7 +379,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.NormativeWidthOfWaveImpact = null;
 
             // Call
-            void Call() => new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "normativeWidthOfWaveImpact must be set.");

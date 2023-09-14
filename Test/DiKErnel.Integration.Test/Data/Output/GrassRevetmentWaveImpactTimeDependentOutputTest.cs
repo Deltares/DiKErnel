@@ -124,7 +124,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.LoadingRevetment = null;
 
             // Call
-            void Call() => new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "loadingRevetment must be set.");
@@ -140,7 +143,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.UpperLimitLoading = null;
 
             // Call
-            void Call() => new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "upperLimitLoading must be set.");
@@ -156,7 +162,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.LowerLimitLoading = null;
 
             // Call
-            void Call() => new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "lowerLimitLoading must be set.");
