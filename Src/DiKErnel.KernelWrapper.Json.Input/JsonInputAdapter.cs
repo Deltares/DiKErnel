@@ -308,7 +308,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassWaveRunupLocationData locationData, JsonInputGrassWaveRunupCalculationData calculationData)
         {
             GrassRevetmentWaveRunupLocationConstructionProperties constructionProperties =
-                calculationData?.CalculationProtocolData?.CalculationProtocolType switch
+                calculationData.CalculationProtocolData?.CalculationProtocolType switch
                 {
                     JsonInputGrassWaveRunupCalculationProtocolType.RayleighDiscrete =>
                         CreateGrassWaveRunupRayleighConstructionProperties(
