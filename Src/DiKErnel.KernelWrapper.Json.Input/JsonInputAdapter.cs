@@ -213,8 +213,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputAsphaltWaveImpactTopLayerFatigueData fatigueData = topLayerData?.Fatigue;
 
             return new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                locationData.X, ConvertTopLayerType(locationData.TopLayerType), locationData.FailureTension,
-                locationData.SoilElasticity, upperLayerData.ThicknessLayer, upperLayerData.ElasticModulusLayer)
+                locationData.X, ConvertAsphaltRevetmentTopLayerType(locationData.TopLayerType),
+                locationData.FailureTension, locationData.SoilElasticity, upperLayerData.ThicknessLayer,
+                upperLayerData.ElasticModulusLayer)
             {
                 InitialDamage = locationData.InitialDamage,
                 ThicknessSubLayer = subLayerData?.ThicknessLayer,
@@ -235,7 +236,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static AsphaltRevetmentTopLayerType ConvertTopLayerType(
+        private static AsphaltRevetmentTopLayerType ConvertAsphaltRevetmentTopLayerType(
             JsonInputAsphaltRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
@@ -258,7 +259,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 calculationData?.AccelerationAlphaAData;
 
             return new GrassRevetmentOvertoppingLocationConstructionProperties(
-                locationData.X, ConvertTopLayerType(locationData.TopLayerType))
+                locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,
                 IncreasedLoadTransitionAlphaM = locationData.IncreasedLoadTransitionAlphaM,
@@ -287,7 +288,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassWaveImpactCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
 
             return new GrassRevetmentWaveImpactLocationConstructionProperties(
-                locationData.X, ConvertTopLayerType(locationData.TopLayerType))
+                locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,
                 FailureNumber = calculationData?.FailureNumber,
@@ -351,14 +352,15 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassWaveRunupCalculationProtocolData calculationProtocolData)
         {
             return new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                locationData.X, locationData.OuterSlope, ConvertTopLayerType(locationData.TopLayerType))
+                locationData.X, locationData.OuterSlope, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 FixedNumberOfWaves = calculationProtocolData.FixedNumberOfWaves,
                 FrontVelocityCu = calculationProtocolData.FrontVelocity
             };
         }
 
-        private static GrassRevetmentTopLayerType ConvertTopLayerType(JsonInputGrassRevetmentTopLayerType topLayerType)
+        private static GrassRevetmentTopLayerType ConvertGrassRevetmentTopLayerType(
+            JsonInputGrassRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
             {
@@ -388,8 +390,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 calculationData?.NormativeWidthOfWaveImpact;
 
             return new NaturalStoneRevetmentLocationConstructionProperties(
-                locationData.X, ConvertTopLayerType(locationData.TopLayerType), locationData.ThicknessTopLayer,
-                locationData.RelativeDensity)
+                locationData.X, ConvertNaturalStoneRevetmentTopLayerType(locationData.TopLayerType),
+                locationData.ThicknessTopLayer, locationData.RelativeDensity)
             {
                 InitialDamage = locationData.InitialDamage,
                 FailureNumber = calculationData?.FailureNumber,
@@ -418,7 +420,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static NaturalStoneRevetmentTopLayerType ConvertTopLayerType(
+        private static NaturalStoneRevetmentTopLayerType ConvertNaturalStoneRevetmentTopLayerType(
             JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
