@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
@@ -30,6 +31,11 @@ namespace DiKErnel.System.Test
         protected static void AssertOutput(Calculator calculator, double expectedDamage,
                                            int? expectedTimeOfFailure = null)
         {
+            if (calculator == null)
+            {
+                throw new ArgumentNullException(nameof(calculator));
+            }
+            
             Assert.AreEqual(CalculationState.FinishedSuccessfully, calculator.CalculationState);
 
             DataResult<CalculationOutput> calculatorResult = calculator.Result;
