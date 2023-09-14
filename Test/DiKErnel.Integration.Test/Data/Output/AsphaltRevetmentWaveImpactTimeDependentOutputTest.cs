@@ -116,7 +116,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.LogFailureTension = null;
 
             // Call
-            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "logFailureTension must be set.");
@@ -132,7 +135,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.MaximumPeakStress = null;
 
             // Call
-            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "maximumPeakStress must be set.");
@@ -148,7 +154,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.StiffnessRelation = null;
 
             // Call
-            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "stiffnessRelation must be set.");
@@ -180,7 +189,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             constructionProperties.EquivalentElasticModulus = null;
 
             // Call
-            void Call() => new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            void Call()
+            {
+                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
 
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "equivalentElasticModulus must be set.");
