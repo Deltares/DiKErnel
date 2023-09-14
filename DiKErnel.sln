@@ -66,7 +66,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F7C27D31-C84D-47F4-A06B-EEF53F95CE4A}.Coverage|x64.ActiveCfg = Coverage|x64
-		{F7C27D31-C84D-47F4-A06B-EEF53F95CE4A}.Coverage|x64.Build.0 = Coverage|x64
 		{F7C27D31-C84D-47F4-A06B-EEF53F95CE4A}.Coverage|x86.ActiveCfg = Coverage|x86
 		{F7C27D31-C84D-47F4-A06B-EEF53F95CE4A}.Coverage|x86.Build.0 = Coverage|x86
 		{F7C27D31-C84D-47F4-A06B-EEF53F95CE4A}.Debug|x64.ActiveCfg = Debug|x64
@@ -78,7 +77,6 @@ Global
 		{F7C27D31-C84D-47F4-A06B-EEF53F95CE4A}.Release|x86.ActiveCfg = Release|x86
 		{F7C27D31-C84D-47F4-A06B-EEF53F95CE4A}.Release|x86.Build.0 = Release|x86
 		{DF75FCF0-5A4C-4357-852E-A97A5F01F393}.Coverage|x64.ActiveCfg = Coverage|x64
-		{DF75FCF0-5A4C-4357-852E-A97A5F01F393}.Coverage|x64.Build.0 = Coverage|x64
 		{DF75FCF0-5A4C-4357-852E-A97A5F01F393}.Coverage|x86.ActiveCfg = Coverage|x86
 		{DF75FCF0-5A4C-4357-852E-A97A5F01F393}.Coverage|x86.Build.0 = Coverage|x86
 		{DF75FCF0-5A4C-4357-852E-A97A5F01F393}.Debug|x64.ActiveCfg = Debug|x64
@@ -138,7 +136,6 @@ Global
 		{B0ADE808-DB11-4F98-BC9C-3FAA33187B94}.Release|x86.ActiveCfg = Release|x86
 		{B0ADE808-DB11-4F98-BC9C-3FAA33187B94}.Release|x86.Build.0 = Release|x86
 		{96FB139B-B8A9-4936-BAE3-A4DCD4F5F209}.Coverage|x64.ActiveCfg = Coverage|x64
-		{96FB139B-B8A9-4936-BAE3-A4DCD4F5F209}.Coverage|x64.Build.0 = Coverage|x64
 		{96FB139B-B8A9-4936-BAE3-A4DCD4F5F209}.Coverage|x86.ActiveCfg = Coverage|x86
 		{96FB139B-B8A9-4936-BAE3-A4DCD4F5F209}.Coverage|x86.Build.0 = Coverage|x86
 		{96FB139B-B8A9-4936-BAE3-A4DCD4F5F209}.Debug|x64.ActiveCfg = Debug|x64
