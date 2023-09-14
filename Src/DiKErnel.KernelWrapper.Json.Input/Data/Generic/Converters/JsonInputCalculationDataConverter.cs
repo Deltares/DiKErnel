@@ -29,6 +29,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
 {
     internal class JsonInputCalculationDataConverter : JsonConverter<JsonInputCalculationData>
     {
+        public override bool CanWrite => false;
+
         public override void WriteJson(JsonWriter writer, JsonInputCalculationData value, JsonSerializer serializer)
         {
             throw new NotSupportedException();
