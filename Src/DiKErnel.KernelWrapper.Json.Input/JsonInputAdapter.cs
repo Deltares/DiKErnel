@@ -308,14 +308,17 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static GrassRevetmentWaveRunupLocationConstructionProperties CreateGrassWaveRunupConstructionProperties(
             JsonInputGrassWaveRunupLocationData locationData, JsonInputGrassWaveRunupCalculationData calculationData)
         {
-            GrassRevetmentWaveRunupLocationConstructionProperties constructionProperties =
-                calculationData.CalculationProtocolData?.CalculationProtocolType switch
-                {
-                    JsonInputGrassWaveRunupCalculationProtocolType.RayleighDiscrete =>
-                        CreateGrassWaveRunupRayleighConstructionProperties(
-                            locationData, calculationData.CalculationProtocolData),
-                    _ => throw new JsonInputConversionException("Cannot convert calculation protocol type.")
-                };
+            GrassRevetmentWaveRunupLocationConstructionProperties constructionProperties;
+
+            switch (calculationData?.CalculationProtocolData?.CalculationProtocolType)
+            {
+                case JsonInputGrassWaveRunupCalculationProtocolType.RayleighDiscrete:
+                    constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(
+                        locationData, calculationData.CalculationProtocolData);
+                    break;
+                default:
+                    throw new JsonInputConversionException("Cannot convert calculation protocol type.");
+            }
 
             JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData representativeWaveRunupData =
                 calculationData.JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData;

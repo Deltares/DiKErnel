@@ -293,6 +293,17 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
             bool slopeUpperLevelOnUpperSlope = input.NotchOuterBermHeight < input.SlopeUpperLevel
                                                && input.SlopeUpperLevel <= input.OuterCrestHeight;
 
+            return OuterSlopeWithBerm(input, slopeLowerLevelOnLowerSlope, slopeUpperLevelOnLowerSlope,
+                                      slopeLowerLevelOnBerm, slopeUpperLevelOnBerm, slopeLowerLevelOnUpperSlope,
+                                      slopeUpperLevelOnUpperSlope);
+        }
+
+        private static double OuterSlopeWithBerm(NaturalStoneRevetmentOuterSlopeInput input,
+                                                 bool slopeLowerLevelOnLowerSlope, bool slopeUpperLevelOnLowerSlope,
+                                                 bool slopeLowerLevelOnBerm,
+                                                 bool slopeUpperLevelOnBerm, bool slopeLowerLevelOnUpperSlope,
+                                                 bool slopeUpperLevelOnUpperSlope)
+        {
             if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope
                 || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm
                 || slopeLowerLevelOnUpperSlope && slopeUpperLevelOnUpperSlope)
