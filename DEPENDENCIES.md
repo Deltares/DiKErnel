@@ -7,6 +7,7 @@ For each library the version and used license is shown. For the full license tex
 |-----------------------------------|-------------|--------------|----------------------------------------------------------------------------------------------|
 | DikesOvertopping                  | 22.1.1.12231| AGPL-3.0     | https://repos.deltares.nl/repos/FailureMechanisms/FailureMechanisms/DikesOvertopping/trunk/  |
 | MahApp.Metro                      | 2.4.10      | MIT          | https://github.com/MahApps/MahApps.Metro                                                     |
+| Microsoft.Net.Test.Sdk            | 17.6.3      | MIT          | https://github.com/microsoft/vstest                                                          |
 | Newtonsoft.Json                   | 13.0.3      | MIT          | https://github.com/JamesNK/Newtonsoft.Json                                                   |
 | Newtonsoft.Json.Schema            | 5.0.0       | AGPL-3.0     | https://github.com/JamesNK/Newtonsoft.Json.Schema                                            |
 | NSubstitute                       | 5.0.0       | BSD3-Clause  | https://github.com/nsubstitute/NSubstitute                                                   |
