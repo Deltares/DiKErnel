@@ -136,7 +136,7 @@ namespace DiKErnel.Cli
 
                 if (readKey.StartsWith("--", StringComparison.InvariantCulture))
                 {
-                    string key = readKey[2..];
+                    string key = readKey.Substring(2);
                     var value = "";
 
                     if (argumentOptions.ContainsKey(key))
@@ -193,8 +193,8 @@ namespace DiKErnel.Cli
 
         private string CreateLogOutputFilePath()
         {
-            return Path.Join(Path.GetDirectoryName(JsonOutputFilePath),
-                             Path.GetFileNameWithoutExtension(JsonOutputFilePath) + ".log");
+            return Path.Combine(Path.GetDirectoryName(JsonOutputFilePath),
+                                Path.GetFileNameWithoutExtension(JsonOutputFilePath) + ".log");
         }
     }
 }
