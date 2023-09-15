@@ -3,6 +3,7 @@
     <Import Project="$(SolutionDir)build\NetStandard.targets" />
     <PropertyGroup>
         <OutputType>Exe</OutputType>
+        <AssemblyName>DiKErnel-cli</AssemblyName>
     </PropertyGroup>
     <PropertyGroup>
         <NoWarn>CA1031</NoWarn>

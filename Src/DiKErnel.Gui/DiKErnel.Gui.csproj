@@ -5,6 +5,7 @@
         <OutputType>WinExe</OutputType>
         <UseWPF>true</UseWPF>
         <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
+        <AssemblyName>DiKErnel-gui</AssemblyName>
     </PropertyGroup>
     <PropertyGroup>
         <NoWarn>CA1031;CA1812</NoWarn>
