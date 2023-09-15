@@ -29,7 +29,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                             IReadOnlyList<double> verticalDistanceWaterLevelElevation,
                                                                             IReadOnlyList<double?> waveAngleImpact,
                                                                             IReadOnlyList<double?> representativeWaveRunup2P,
-                                                                            IReadOnlyList<double?> cumulativeOverload) 
+                                                                            IReadOnlyList<double?> cumulativeOverload)
             : base(incrementDamage)
         {
             Z = z;

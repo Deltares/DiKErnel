@@ -35,7 +35,7 @@ namespace DiKErnel.System.Test
             {
                 throw new ArgumentNullException(nameof(calculator));
             }
-            
+
             Assert.AreEqual(CalculationState.FinishedSuccessfully, calculator.CalculationState);
 
             DataResult<CalculationOutput> calculatorResult = calculator.Result;

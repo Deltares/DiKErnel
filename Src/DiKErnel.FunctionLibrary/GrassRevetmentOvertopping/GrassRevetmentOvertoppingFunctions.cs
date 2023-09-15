@@ -47,11 +47,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassRevetmentOvertoppingCumulativeOverloadInput input)
         {
-            return GrassRevetmentFunctions.CumulativeOverload(input, waveRunup => FrontVelocity(waveRunup,
-                                                                                                input.VerticalDistanceWaterLevelElevation,
-                                                                                                input.AccelerationAlphaA,
-                                                                                                input.FrontVelocityCwo,
-                                                                                                input.GravitationalAcceleration));
+            return GrassRevetmentFunctions.CumulativeOverload(
+                input, waveRunup => FrontVelocity(waveRunup, input.VerticalDistanceWaterLevelElevation,
+                                                  input.AccelerationAlphaA, input.FrontVelocityCwo,
+                                                  input.GravitationalAcceleration));
         }
 
         private static double FrontVelocity(double waveRunup, double verticalDistanceWaterLevelElevation,

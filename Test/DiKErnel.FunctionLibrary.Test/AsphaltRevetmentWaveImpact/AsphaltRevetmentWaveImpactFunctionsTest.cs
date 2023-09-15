@@ -126,9 +126,8 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             const double densityOfWater = 1025;
 
             // Call
-            double maximumPeakStress = AsphaltRevetmentWaveImpactFunctions.MaximumPeakStress(waveHeightHm0,
-                                                                                             gravitationalAcceleration,
-                                                                                             densityOfWater);
+            double maximumPeakStress = AsphaltRevetmentWaveImpactFunctions.MaximumPeakStress(
+                waveHeightHm0, gravitationalAcceleration, densityOfWater);
 
             // Assert
             AssertHelper.AreEqual(0.0160884, maximumPeakStress);
@@ -144,9 +143,8 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             const double stiffnessRelationNu = 0.35;
 
             // Call
-            double stiffnessRelation = AsphaltRevetmentWaveImpactFunctions.StiffnessRelation(computationalThickness,
-                                                                                             equivalentElasticModulus,
-                                                                                             soilElasticity, stiffnessRelationNu);
+            double stiffnessRelation = AsphaltRevetmentWaveImpactFunctions.StiffnessRelation(
+                computationalThickness, equivalentElasticModulus, soilElasticity, stiffnessRelationNu);
 
             // Assert
             AssertHelper.AreEqual(1.18562618326908, stiffnessRelation);
@@ -162,10 +160,8 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             const double elasticModulusSubLayer = 19214;
 
             // Call
-            double computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(thicknessUpperLayer,
-                                                                                                       thicknessSubLayer,
-                                                                                                       elasticModulusUpperLayer,
-                                                                                                       elasticModulusSubLayer);
+            double computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(
+                thicknessUpperLayer, thicknessSubLayer, elasticModulusUpperLayer, elasticModulusSubLayer);
 
             // Assert
             AssertHelper.AreEqual(0.38717464855982, computationalThickness);
@@ -181,8 +177,8 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             const double slopeUpperLevel = 2.95;
 
             // Call
-            double outerSlope = AsphaltRevetmentWaveImpactFunctions.OuterSlope(slopeLowerPosition, slopeLowerLevel,
-                                                                               slopeUpperPosition, slopeUpperLevel);
+            double outerSlope = AsphaltRevetmentWaveImpactFunctions.OuterSlope(
+                slopeLowerPosition, slopeLowerLevel, slopeUpperPosition, slopeUpperLevel);
 
             // Assert
             AssertHelper.AreEqual(0.15384615384615, outerSlope);
