@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\NetWindows.targets" />
+    <Import Project="$(SolutionDir)build\NetWindows.targets"/>
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <UseWPF>true</UseWPF>
@@ -11,19 +11,19 @@
         <NoWarn>CA1031;CA1812</NoWarn>
     </PropertyGroup>
     <ItemGroup>
-        <None Remove="Resources\logo.svg" />
-        <Resource Include="Resources\logo.svg" />
+        <None Remove="Resources\logo.svg"/>
+        <Resource Include="Resources\logo.svg"/>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="MahApps.Metro" Version="2.4.10" />
-        <PackageReference Include="SharpVectors" Version="1.8.1" />
+        <PackageReference Include="MahApps.Metro" Version="2.4.10"/>
+        <PackageReference Include="SharpVectors" Version="1.8.1"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj" />
-        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj" />
-        <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Input\DiKErnel.KernelWrapper.Json.Input.csproj" />
-        <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Output\DiKErnel.KernelWrapper.Json.Output.csproj" />
-        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj" />
+        <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj"/>
+        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj"/>
+        <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Input\DiKErnel.KernelWrapper.Json.Input.csproj"/>
+        <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Output\DiKErnel.KernelWrapper.Json.Output.csproj"/>
+        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj"/>
     </ItemGroup>
     <ItemGroup>
         <Page Update="View\MainWindow.xaml">

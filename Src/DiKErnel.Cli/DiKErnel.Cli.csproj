@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\Net.targets" />
+    <Import Project="$(SolutionDir)build\Net.targets"/>
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <AssemblyName>DiKErnel-cli</AssemblyName>
@@ -9,11 +9,11 @@
         <NoWarn>CA1031</NoWarn>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj" />
-      <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj" />
-      <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Input\DiKErnel.KernelWrapper.Json.Input.csproj" />
-      <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Output\DiKErnel.KernelWrapper.Json.Output.csproj" />
-      <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj" />
+        <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj"/>
+        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj"/>
+        <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Input\DiKErnel.KernelWrapper.Json.Input.csproj"/>
+        <ProjectReference Include="..\DiKErnel.KernelWrapper.Json.Output\DiKErnel.KernelWrapper.Json.Output.csproj"/>
+        <ProjectReference Include="..\DiKErnel.Util\DiKErnel.Util.csproj"/>
     </ItemGroup>
 
 </Project>
