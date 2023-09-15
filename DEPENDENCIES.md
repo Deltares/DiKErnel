@@ -1,3 +1,4 @@
+# Dependencies
 The following table shows the libraries used in the repository.
 
 For each library the version and used license is shown. For the full license text of the library, refer to the [Licenses subfolder](licenses).
