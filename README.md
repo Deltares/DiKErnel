@@ -21,6 +21,9 @@ The source code files of DiKErnel.
 **Test**\
 The test code files of DiKErnel.
 
+**DEPENDENCIES.md**\
+Overview of the libraries used in the repository.
+
 **LICENCE**\
 The terms under which DiKErnel can be redistributed and/or modified.
 
@@ -33,4 +36,3 @@ The terms under which DiKErnel can be redistributed and/or modified.
 ### Requirements for running
 - .NET7 runtime
 - Microsoft Visual C++ Redistributable 2022
-
