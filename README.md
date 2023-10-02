@@ -12,6 +12,9 @@ Dependencies required when deploying instances of DiKErnel on different platform
 **Design**\
 UML diagrams that elaborate on the architecture of DiKErnel.
 
+**Licenses**\
+Full license texts of the libraries used in the repository.
+
 **Src**\
 The source code files of DiKErnel.
 
@@ -20,9 +23,6 @@ The test code files of DiKErnel.
 
 **LICENCE**\
 The terms under which DiKErnel can be redistributed and/or modified.
-
-**LICENSE-3RD-PARTY**\
-A listing of the terms that are shipped with the third party components used by DiKErnel.
 
 ## Build
 
