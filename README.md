@@ -24,7 +24,7 @@ The test code files of DiKErnel.
 **DEPENDENCIES.md**\
 Overview of the libraries used in the repository.
 
-**LICENCE**\
+**LICENSE**\
 The terms under which DiKErnel can be redistributed and/or modified.
 
 ## Build
