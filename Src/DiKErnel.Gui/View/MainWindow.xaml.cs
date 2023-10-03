@@ -208,7 +208,7 @@ namespace DiKErnel.Gui.View
             DataResult<ICalculationInput> inputComposerResult =
                 JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
 
-            CacheMessagesWhenApplicable("het valideren van het Json-formaat", inputComposerResult.Events);
+            CacheMessagesWhenApplicable("het lezen van de invoer", inputComposerResult.Events);
 
             if (!inputComposerResult.Successful)
             {
