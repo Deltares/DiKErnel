@@ -4,7 +4,7 @@
 ## Contents of Repository
 
 **Build**\
-Files for deploying specific parts of the development environment (e.g. static code analysis).
+Files for deploying specific parts of the development environment.
 
 **Deployment**\
 Dependencies required when deploying instances of DiKErnel on different platforms (currently only Windows).
