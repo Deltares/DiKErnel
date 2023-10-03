@@ -28,6 +28,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY)]
-        public JsonInputNaturalStoneTopLayerNorseStoneStabilityData Stability { get; private set; }
+        public JsonInputNaturalStoneTopLayerStabilityData Stability { get; private set; }
     }
 }

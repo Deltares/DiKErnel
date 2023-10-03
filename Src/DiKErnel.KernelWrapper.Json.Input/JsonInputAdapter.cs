@@ -376,13 +376,13 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static NaturalStoneRevetmentLocationConstructionProperties CreateNaturalStoneConstructionProperties(
             JsonInputNaturalStoneLocationData locationData, JsonInputNaturalStoneCalculationData calculationData)
         {
-            JsonInputNaturalStoneTopLayerNorseStoneStabilityData stabilityData =
+            JsonInputNaturalStoneTopLayerStabilityData stabilityData =
                 calculationData?.TopLayerDefinitionData?
                     .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType)?.Stability;
-            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData plungingData =
-                stabilityData?.JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData;
-            JsonInputNaturalStoneTopLayerNorseStoneStabilityCoefficientsData surgingData =
-                stabilityData?.JsonInputNaturalStoneTopLayerNorseStoneSurgingData;
+            JsonInputNaturalStoneTopLayerStabilityCoefficientsData plungingData =
+                stabilityData?.JsonInputNaturalStoneTopLayerPlungingData;
+            JsonInputNaturalStoneTopLayerStabilityCoefficientsData surgingData =
+                stabilityData?.JsonInputNaturalStoneTopLayerSurgingData;
             JsonInputNaturalStoneCalculationSlopeData slopeData = calculationData?.Slope;
             JsonInputNaturalStoneCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingArea;
             JsonInputNaturalStoneCalculationLimitData upperLimitLoadingData = loadingAreaData?.UpperLimitLoading;
