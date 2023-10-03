@@ -6,8 +6,8 @@
 **Build**\
 Files for deploying specific parts of the development environment.
 
-**Deployment**\
-Dependencies required when deploying instances of DiKErnel on different platforms (currently only Windows).
+**Dependencies**\
+Libraries used in the repository that are not consumed via NuGet.
 
 **Design**\
 UML diagrams that elaborate on the architecture of DiKErnel.

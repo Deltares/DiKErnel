@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
       <BuildDir>$(SolutionDir)\bin\</BuildDir>
-      <ExternalDependenciesDir>$(SolutionDir)Deployment\Windows\Overtopping\$(Platform)\</ExternalDependenciesDir>
+      <ExternalDependenciesDir>$(SolutionDir)Dependencies\Windows\Overtopping\$(Platform)\</ExternalDependenciesDir>
   </PropertyGroup>
   <PropertyGroup>
     <OutDir>$(BuildDir)\Deployment\</OutDir>
