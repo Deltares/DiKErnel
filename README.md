@@ -3,11 +3,14 @@
 
 ## Contents of Repository
 
-**Build**\
+**Development**\
 Files for deploying specific parts of the development environment.
 
 **Dependencies**\
 Libraries used in the repository that are not consumed via NuGet.
+
+**Deployment**\
+Files for specifying the deployment environment.
 
 **Design**\
 UML diagrams that elaborate on the architecture of DiKErnel.
