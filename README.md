@@ -1,7 +1,7 @@
 # DiKErnel
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Deltares_DiKErnel&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Deltares_DiKErnel)
 
-## Contents of Repository
+## Contents of repository
 
 **Development**\
 Files for deploying specific parts of the development environment.
