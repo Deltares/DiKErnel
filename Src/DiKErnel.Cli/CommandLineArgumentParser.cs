@@ -148,7 +148,7 @@ namespace DiKErnel.Cli
                                 return false; // Value missing
                             }
 
-                            value = args[i++];
+                            value = args[++i];
                         }
                     }
                     else
