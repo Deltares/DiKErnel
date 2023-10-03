@@ -55,13 +55,22 @@ namespace DiKErnel.KernelWrapper.Json.Input
             }
             else
             {
-                JObject jObject = JObject.Parse(File.ReadAllText(filePath));
-
-                if (!jObject.IsValid(schema, out IList<ValidationError> validationErrors))
+                try
                 {
-                    validationIssues.AddRange(
-                        validationErrors.Select(e => new ValidationIssue(ValidationIssueType.Error, e.Message))
-                                        .ToList());
+                    JObject jObject = JObject.Parse(File.ReadAllText(filePath));
+
+                    if (!jObject.IsValid(schema, out IList<ValidationError> validationErrors))
+                    {
+                        validationIssues.AddRange(
+                            validationErrors.Select(e => new ValidationIssue(ValidationIssueType.Error, e.Message))
+                                            .ToList());
+                    }
+                }
+                catch (JsonReaderException jsonReaderException)
+                {
+                    validationIssues.Add(new ValidationIssue(ValidationIssueType.Error, "The provided input file is invalid (error found " +
+                                                                                        $"on line {jsonReaderException.LineNumber}, " +
+                                                                                        $"position {jsonReaderException.LinePosition})"));
                 }
             }
 
