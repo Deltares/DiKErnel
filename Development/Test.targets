@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)build\Base.targets" />
+  <Import Project="$(SolutionDir)Development\Base.targets" />
   <PropertyGroup> 
     <TargetFrameworks>net48;net7.0</TargetFrameworks>
     <OutDir>$(BuildDir)\Regression\$(TargetFramework)</OutDir>

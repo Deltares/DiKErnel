@@ -36,12 +36,12 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(SolutionDir)build\GlobalAssembly.cs">
+    <Compile Include="$(SolutionDir)Development\GlobalAssembly.cs">
       <Link>Properties\GlobalAssembly.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Build\Copying.Lesser.licenseheader">
+    <None Include="..\..\Development\Copying.Lesser.licenseheader">
       <Link>Copying.Lesser.licenseheader</Link>
     </None>
   </ItemGroup>

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\Test.targets"/>
+    <Import Project="$(SolutionDir)Development\Test.targets"/>
 
     <ItemGroup>
         <PackageReference Include="NUnit" Version="3.13.3"/>

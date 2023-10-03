@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)build\Net.targets"/>
+    <Import Project="$(SolutionDir)Development\Net.targets"/>
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <AssemblyName>DiKErnel-cli</AssemblyName>
