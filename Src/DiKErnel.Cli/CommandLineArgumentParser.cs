@@ -82,13 +82,13 @@ namespace DiKErnel.Cli
             LogOutputFilePath = CreateLogOutputFilePath();
         }
 
-        public bool ArgumentsAreValid { get; private set; } = true;
+        public bool ArgumentsAreValid { get; } = true;
 
         public string JsonInputFilePath => readArguments[inputFilePathKey];
 
         public string JsonOutputFilePath => readArguments[outputFilePathKey];
 
-        public string LogOutputFilePath { get; private set; }
+        public string LogOutputFilePath { get; }
 
         public string OutputLevel => readArguments.TryGetValue(outputLevelKey, out string value) ? value : "schade";
 
