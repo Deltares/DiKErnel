@@ -26,12 +26,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertop
     internal class JsonInputGrassOvertoppingLocationData : JsonInputLocationData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
+        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
-        public double? IncreasedLoadTransitionAlphaM { get; }
+        public double? IncreasedLoadTransitionAlphaM { get; private set; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.REDUCED_STRENGTH_TRANSITION_ALPHA_S)]
-        public double? ReducedStrengthTransitionAlphaS { get; }
+        public double? ReducedStrengthTransitionAlphaS { get; private set; }
     }
 }

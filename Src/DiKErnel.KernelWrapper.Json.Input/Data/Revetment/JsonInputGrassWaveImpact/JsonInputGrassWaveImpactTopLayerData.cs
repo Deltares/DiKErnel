@@ -25,9 +25,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
     internal class JsonInputGrassWaveImpactTopLayerData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
+        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.TIME_LINE)]
-        public JsonInputGrassWaveImpactTopLayerTimeLineData TimeLine { get; }
+        public JsonInputGrassWaveImpactTopLayerTimeLineData TimeLine { get; private set; }
     }
 }

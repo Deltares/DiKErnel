@@ -26,18 +26,18 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
     internal class JsonInputAsphaltWaveImpactLocationData : JsonInputLocationData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; }
+        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FAILURE_TENSION)]
-        public double FailureTension { get; }
+        public double FailureTension { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.SOIL_ELASTICITY)]
-        public double SoilElasticity { get; }
+        public double SoilElasticity { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.UPPER_LAYER)]
-        public JsonInputAsphaltWaveImpactLocationLayerData UpperLayer { get; }
+        public JsonInputAsphaltWaveImpactLocationLayerData UpperLayer { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.SUB_LAYER)]
-        public JsonInputAsphaltWaveImpactLocationLayerData SubLayerData { get; }
+        public JsonInputAsphaltWaveImpactLocationLayerData SubLayerData { get; private set; }
     }
 }

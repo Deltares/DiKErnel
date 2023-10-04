@@ -25,9 +25,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
     internal class JsonInputGrassWaveRunupCalculationImpactAngleData
     {
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.A_BETA)]
-        public double? WaveAngleImpactABeta { get; }
+        public double? WaveAngleImpactABeta { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.BETA_MAX)]
-        public double? WaveAngleImpactBetaMax { get; }
+        public double? WaveAngleImpactBetaMax { get; private set; }
     }
 }

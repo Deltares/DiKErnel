@@ -27,24 +27,24 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
     internal class JsonInputAsphaltWaveImpactCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IReadOnlyList<JsonInputAsphaltWaveImpactTopLayerData> TopLayerDefinitionData { get; }
+        public IReadOnlyList<JsonInputAsphaltWaveImpactTopLayerData> TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DENSITY_OF_WATER)]
-        public double? DensityOfWater { get; }
+        public double? DensityOfWater { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
-        public double? FactorCtm { get; }
+        public double? FactorCtm { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_NUMBER_C)]
-        public double? ImpactNumberC { get; }
+        public double? ImpactNumberC { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.WIDTH_FACTORS)]
-        public IReadOnlyList<IReadOnlyList<double>> WidthFactors { get; }
+        public IReadOnlyList<IReadOnlyList<double>> WidthFactors { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DEPTH_FACTORS)]
-        public IReadOnlyList<IReadOnlyList<double>> DepthFactors { get; }
+        public IReadOnlyList<IReadOnlyList<double>> DepthFactors { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.IMPACT_FACTORS)]
-        public IReadOnlyList<IReadOnlyList<double>> ImpactFactors { get; }
+        public IReadOnlyList<IReadOnlyList<double>> ImpactFactors { get; private set; }
     }
 }

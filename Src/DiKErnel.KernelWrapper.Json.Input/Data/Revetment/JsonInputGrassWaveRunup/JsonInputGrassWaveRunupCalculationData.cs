@@ -27,19 +27,19 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
     internal class JsonInputGrassWaveRunupCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL)]
-        public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; }
+        public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerDefinitionData { get; }
+        public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
-        public double? FactorCtm { get; }
+        public double? FactorCtm { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
         public JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData
-            JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData { get; }
+            JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
-        public JsonInputGrassWaveRunupCalculationImpactAngleData JsonInputGrassWaveRunupCalculationImpactAngleData { get; }
+        public JsonInputGrassWaveRunupCalculationImpactAngleData JsonInputGrassWaveRunupCalculationImpactAngleData { get; private set; }
     }
 }

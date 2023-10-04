@@ -24,9 +24,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneCalculationLoadingAreaData
     {
         [JsonProperty(JsonInputDefinitions.UPPER_LIMIT)]
-        public JsonInputNaturalStoneCalculationLimitData UpperLimitLoading { get; }
+        public JsonInputNaturalStoneCalculationLimitData UpperLimitLoading { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.LOWER_LIMIT)]
-        public JsonInputNaturalStoneCalculationLimitData LowerLimitLoading { get; }
+        public JsonInputNaturalStoneCalculationLimitData LowerLimitLoading { get; private set; }
     }
 }

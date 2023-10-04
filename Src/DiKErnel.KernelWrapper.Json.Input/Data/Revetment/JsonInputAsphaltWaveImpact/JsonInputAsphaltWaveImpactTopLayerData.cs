@@ -25,12 +25,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
     internal class JsonInputAsphaltWaveImpactTopLayerData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; }
+        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FATIGUE)]
-        public JsonInputAsphaltWaveImpactTopLayerFatigueData Fatigue { get; }
+        public JsonInputAsphaltWaveImpactTopLayerFatigueData Fatigue { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.STIFFNESS_RELATION_NU)]
-        public double? StiffnessRelationNu { get; }
+        public double? StiffnessRelationNu { get; private set; }
     }
 }

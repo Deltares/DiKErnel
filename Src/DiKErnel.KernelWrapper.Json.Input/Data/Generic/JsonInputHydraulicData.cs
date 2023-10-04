@@ -25,15 +25,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
     internal class JsonInputHydraulicData
     {
         [JsonProperty(JsonInputDefinitions.WATER_LEVELS)]
-        public IReadOnlyList<double> WaterLevels { get; }
+        public IReadOnlyList<double> WaterLevels { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.WAVE_HEIGHTS_HM0)]
-        public IReadOnlyList<double> WaveHeightsHm0 { get; }
+        public IReadOnlyList<double> WaveHeightsHm0 { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.WAVE_PERIODS_TM10)]
-        public IReadOnlyList<double> WavePeriodsTm10 { get; }
+        public IReadOnlyList<double> WavePeriodsTm10 { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.WAVE_ANGLES)]
-        public IReadOnlyList<double> WaveAngles { get; }
+        public IReadOnlyList<double> WaveAngles { get; private set; }
     }
 }

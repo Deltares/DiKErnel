@@ -27,21 +27,21 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertop
     internal class JsonInputGrassOvertoppingCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
-        public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerDefinitionData { get; }
+        public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputGrassOvertoppingDefinitions.DIKE_HEIGHT)]
-        public double? DikeHeight { get; }
+        public double? DikeHeight { get; private set; }
 
         [JsonProperty(JsonInputGrassOvertoppingDefinitions.ACCELERATION_ALPHA_A)]
-        public JsonInputGrassOvertoppingCalculationAccelerationAlphaAData AccelerationAlphaAData { get; }
+        public JsonInputGrassOvertoppingCalculationAccelerationAlphaAData AccelerationAlphaAData { get; private set; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.FIXED_NUMBER_OF_WAVES)]
-        public int? FixedNumberOfWaves { get; }
+        public int? FixedNumberOfWaves { get; private set; }
 
         [JsonProperty(JsonInputGrassOvertoppingDefinitions.FRONT_VELOCITY_CWO)]
-        public double? FrontVelocity { get; }
+        public double? FrontVelocity { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
-        public double? FactorCtm { get; }
+        public double? FactorCtm { get; private set; }
     }
 }
