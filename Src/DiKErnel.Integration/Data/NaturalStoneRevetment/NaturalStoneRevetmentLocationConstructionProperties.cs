@@ -22,7 +22,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
     /// Construction properties to construct natural stone revetment location dependent
     /// input.
     /// </summary>
-    public class NaturalStoneRevetmentLocationConstructionProperties : RevetmentLocationConstructionPropertiesBase
+    public class NaturalStoneRevetmentLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>

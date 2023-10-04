@@ -30,11 +30,11 @@ namespace DiKErnel.Integration.Factories
     internal static class LocationDependentInputFactory
     {
         public static IReadOnlyList<ILocationDependentInput> Create(
-            IReadOnlyList<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems)
+            IReadOnlyList<RevetmentLocationConstructionProperties> locationConstructionPropertiesItems)
         {
             var locationDependentInputItems = new List<ILocationDependentInput>();
 
-            foreach (RevetmentLocationConstructionPropertiesBase locationConstructionProperties in locationConstructionPropertiesItems)
+            foreach (RevetmentLocationConstructionProperties locationConstructionProperties in locationConstructionPropertiesItems)
             {
                 switch (locationConstructionProperties)
                 {

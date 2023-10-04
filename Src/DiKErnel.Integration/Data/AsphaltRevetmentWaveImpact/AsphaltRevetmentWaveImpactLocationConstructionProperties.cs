@@ -23,7 +23,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
     /// <summary>
     /// Construction properties to construct asphalt revetment wave impact location dependent input.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactLocationConstructionProperties : RevetmentLocationConstructionPropertiesBase
+    public class AsphaltRevetmentWaveImpactLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>

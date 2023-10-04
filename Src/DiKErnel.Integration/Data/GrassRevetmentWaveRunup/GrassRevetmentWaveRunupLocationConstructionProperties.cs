@@ -24,8 +24,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     /// Construction properties to construct grass revetment wave run-up location dependent
     /// input.
     /// </summary>
-    public abstract class GrassRevetmentWaveRunupLocationConstructionProperties
-        : RevetmentLocationConstructionPropertiesBase
+    public abstract class GrassRevetmentWaveRunupLocationConstructionProperties : RevetmentLocationConstructionProperties
 
     {
         /// <inheritdoc/>

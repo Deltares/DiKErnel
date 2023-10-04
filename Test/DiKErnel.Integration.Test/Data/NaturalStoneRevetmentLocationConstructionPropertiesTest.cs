@@ -40,7 +40,7 @@ namespace DiKErnel.Integration.Test.Data
                 x, topLayerType, thicknessTopLayer, relativeDensity);
 
             // Assert
-            Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
+            Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
             Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
             Assert.AreEqual(x, constructionProperties.X);
             Assert.AreEqual(thicknessTopLayer, constructionProperties.ThicknessTopLayer);

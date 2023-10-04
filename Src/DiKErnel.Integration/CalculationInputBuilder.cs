@@ -48,8 +48,8 @@ namespace DiKErnel.Integration
         private readonly List<TimeDependentInputFactoryData> timeDependentInputFactoryDataItems =
             new List<TimeDependentInputFactoryData>();
 
-        private readonly List<RevetmentLocationConstructionPropertiesBase> locationConstructionPropertiesItems =
-            new List<RevetmentLocationConstructionPropertiesBase>();
+        private readonly List<RevetmentLocationConstructionProperties> locationConstructionPropertiesItems =
+            new List<RevetmentLocationConstructionProperties>();
 
         private bool grassOvertoppingLocationAdded;
 
@@ -191,7 +191,7 @@ namespace DiKErnel.Integration
                                                                          roughnessCoefficient));
         }
 
-        private void AddLocation(RevetmentLocationConstructionPropertiesBase constructionProperties)
+        private void AddLocation(RevetmentLocationConstructionProperties constructionProperties)
         {
             locationConstructionPropertiesItems.Add(constructionProperties);
         }
@@ -315,7 +315,7 @@ namespace DiKErnel.Integration
                 return false;
             }
 
-            foreach (RevetmentLocationConstructionPropertiesBase locationConstructionProperties in locationConstructionPropertiesItems)
+            foreach (RevetmentLocationConstructionProperties locationConstructionProperties in locationConstructionPropertiesItems)
             {
                 switch (locationConstructionProperties)
                 {

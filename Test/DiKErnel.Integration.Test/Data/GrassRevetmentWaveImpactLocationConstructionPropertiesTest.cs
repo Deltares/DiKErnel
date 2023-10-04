@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Test.Data
             var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
 
             // Assert
-            Assert.IsInstanceOf<RevetmentLocationConstructionPropertiesBase>(constructionProperties);
+            Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
             Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
             Assert.AreEqual(x, constructionProperties.X);
             Assert.IsNull(constructionProperties.InitialDamage);

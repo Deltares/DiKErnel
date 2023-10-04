@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
     /// Construction properties to construct grass revetment wave impact location dependent
     /// input.
     /// </summary>
-    public class GrassRevetmentWaveImpactLocationConstructionProperties : RevetmentLocationConstructionPropertiesBase
+    public class GrassRevetmentWaveImpactLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
