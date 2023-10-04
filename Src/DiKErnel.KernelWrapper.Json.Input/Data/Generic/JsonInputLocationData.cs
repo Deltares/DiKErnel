@@ -24,12 +24,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
     internal class JsonInputLocationData
     {
         [JsonProperty(JsonInputDefinitions.X)]
-        public double X { get; private set; }
+        public double X { get; }
 
         [JsonProperty(JsonInputDefinitions.INITIAL_DAMAGE)]
-        public double? InitialDamage { get; private set; }
+        public double? InitialDamage { get; }
 
         [JsonProperty(JsonInputDefinitions.CALCULATION_METHOD_TYPE)]
-        public JsonInputCalculationType CalculationMethodType { get; private set; }
+        public JsonInputCalculationType CalculationMethodType { get; }
     }
 }

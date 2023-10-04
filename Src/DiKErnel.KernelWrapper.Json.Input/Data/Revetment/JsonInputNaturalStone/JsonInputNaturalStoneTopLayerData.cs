@@ -25,9 +25,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneTopLayerData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; private set; }
+        public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; }
 
         [JsonProperty(JsonInputNaturalStoneDefinitions.STABILITY)]
-        public JsonInputNaturalStoneTopLayerStabilityData Stability { get; private set; }
+        public JsonInputNaturalStoneTopLayerStabilityData Stability { get; }
     }
 }

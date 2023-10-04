@@ -25,15 +25,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneTopLayerStabilityCoefficientsData
     {
         [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
-        public double? A { get; private set; }
+        public double? A { get; }
 
         [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
-        public double? B { get; private set; }
+        public double? B { get; }
 
         [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
-        public double? C { get; private set; }
+        public double? C { get; }
 
         [JsonProperty(JsonInputNaturalStoneDefinitions.N_COEFFICIENT)]
-        public double? N { get; private set; }
+        public double? N { get; }
     }
 }

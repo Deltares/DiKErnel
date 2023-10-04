@@ -25,30 +25,30 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
     internal class JsonInputDikeProfileData
     {
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_X)]
-        public IReadOnlyList<double> XLocations { get; private set; }
+        public IReadOnlyList<double> XLocations { get; }
 
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_Z)]
-        public IReadOnlyList<double> ZLocations { get; private set; }
+        public IReadOnlyList<double> ZLocations { get; }
 
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_ROUGHNESS_COEFFICIENTS)]
-        public IReadOnlyList<double> RoughnessCoefficients { get; private set; }
+        public IReadOnlyList<double> RoughnessCoefficients { get; }
 
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_TOE)]
-        public double? OuterToe { get; private set; }
+        public double? OuterToe { get; }
 
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM)]
-        public double? CrestOuterBerm { get; private set; }
+        public double? CrestOuterBerm { get; }
 
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM)]
-        public double? NotchOuterBerm { get; private set; }
+        public double? NotchOuterBerm { get; }
 
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_OUTER_CREST)]
-        public double? OuterCrest { get; private set; }
+        public double? OuterCrest { get; }
 
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_CREST)]
-        public double? InnerCrest { get; private set; }
+        public double? InnerCrest { get; }
 
         [JsonProperty(JsonInputDefinitions.CHARACTERISTIC_POINT_TYPE_INNER_TOE)]
-        public double? InnerToe { get; private set; }
+        public double? InnerToe { get; }
     }
 }

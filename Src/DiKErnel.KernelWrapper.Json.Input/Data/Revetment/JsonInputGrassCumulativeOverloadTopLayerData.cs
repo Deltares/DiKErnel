@@ -25,12 +25,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
     internal class JsonInputGrassCumulativeOverloadTopLayerData
     {
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
+        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.CRITICAL_CUMULATIVE_OVERLOAD)]
-        public double? CriticalCumulativeOverload { get; private set; }
+        public double? CriticalCumulativeOverload { get; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.CRITICAL_FRONT_VELOCITY)]
-        public double? CriticalFrontVelocity { get; private set; }
+        public double? CriticalFrontVelocity { get; }
     }
 }
