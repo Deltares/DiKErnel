@@ -29,28 +29,28 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 {
     internal class NaturalStoneRevetmentLocationDependentInput : LocationDependentInput
     {
-        private double outerToeHeight = double.PositiveInfinity;
-        private double outerCrestHeight = double.PositiveInfinity;
+        private double outerToeHeight = double.NaN;
+        private double outerCrestHeight = double.NaN;
         private (double, double)? notchOuterBerm;
         private (double, double)? crestOuterBerm;
-        private double resistance = double.PositiveInfinity;
-        private double slopeLowerPosition = double.PositiveInfinity;
-        private double slopeLowerLevel = double.PositiveInfinity;
-        private double slopeUpperPosition = double.PositiveInfinity;
-        private double slopeUpperLevel = double.PositiveInfinity;
-        private double outerSlope = double.PositiveInfinity;
-        private double waveSteepnessDeepWater = double.PositiveInfinity;
-        private double distanceMaximumWaveElevation = double.PositiveInfinity;
-        private double surfSimilarityParameter = double.PositiveInfinity;
-        private double normativeWidthWaveImpact = double.PositiveInfinity;
-        private double depthMaximumWaveLoad = double.PositiveInfinity;
-        private double upperLimitLoading = double.PositiveInfinity;
-        private double lowerLimitLoading = double.PositiveInfinity;
+        private double resistance = double.NaN;
+        private double slopeLowerPosition = double.NaN;
+        private double slopeLowerLevel = double.NaN;
+        private double slopeUpperPosition = double.NaN;
+        private double slopeUpperLevel = double.NaN;
+        private double outerSlope = double.NaN;
+        private double waveSteepnessDeepWater = double.NaN;
+        private double distanceMaximumWaveElevation = double.NaN;
+        private double surfSimilarityParameter = double.NaN;
+        private double normativeWidthWaveImpact = double.NaN;
+        private double depthMaximumWaveLoad = double.NaN;
+        private double upperLimitLoading = double.NaN;
+        private double lowerLimitLoading = double.NaN;
         private bool loadingRevetment;
-        private double hydraulicLoad = double.PositiveInfinity;
-        private double waveAngleImpact = double.PositiveInfinity;
-        private double referenceTimeDegradation = double.PositiveInfinity;
-        private double referenceDegradation = double.PositiveInfinity;
+        private double hydraulicLoad = double.NaN;
+        private double waveAngleImpact = double.NaN;
+        private double referenceTimeDegradation = double.NaN;
+        private double referenceDegradation = double.NaN;
 
         public NaturalStoneRevetmentLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                            double relativeDensity, double thicknessTopLayer,
