@@ -47,6 +47,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 
         public const string WAVE_ANGLE_IMPACT = "impactGolfhoek";
 
-        public const string AVERAGE_NUMBER_OF_WAVES = "GemiddeldAantalGolven";
+        public const string AVERAGE_NUMBER_OF_WAVES = "gemiddeldAantalGolven";
     }
 }

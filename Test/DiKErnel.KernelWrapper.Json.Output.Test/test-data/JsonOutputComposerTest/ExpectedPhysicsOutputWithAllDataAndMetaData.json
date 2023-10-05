@@ -36,7 +36,7 @@
                     "equivalenteStijfheidsmodulus": [
                         0.8
                     ],
-                    "GemiddeldAantalGolven": [
+                    "gemiddeldAantalGolven": [
                         0.9
                     ]
                 }
@@ -64,7 +64,7 @@
                     "cumulatieveOverbelasting": [
                         1.5
                     ],
-                    "GemiddeldAantalGolven": [
+                    "gemiddeldAantalGolven": [
                         1.6
                     ]
                 }
@@ -134,7 +134,7 @@
                     "cumulatieveOverbelasting": [
                         3.2
                     ],
-                    "GemiddeldAantalGolven": [
+                    "gemiddeldAantalGolven": [
                         3.3
                     ]
                 }
