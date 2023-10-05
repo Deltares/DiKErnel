@@ -136,15 +136,14 @@ namespace DiKErnel.Gui.View
             {
                 RemoveFileWhenExists(mainWindowViewModel.OutputFilePath);
 
-                DataResult<ICalculationInput> calculationInputDataResult =
-                    ValidateAndReadInput(mainWindowViewModel.InputFilePath);
+                ComposedInputData composedInputData = ValidateAndReadInput(mainWindowViewModel.InputFilePath);
 
-                if (calculationInputDataResult == null)
+                if (composedInputData == null)
                 {
                     return;
                 }
 
-                ICalculationInput calculationInput = calculationInputDataResult.Data;
+                ICalculationInput calculationInput = composedInputData.CalculationInputDataResult.Data;
 
                 if (!ValidateCalculationInput(calculationInput))
                 {
@@ -166,7 +165,7 @@ namespace DiKErnel.Gui.View
 
                 double duration = stopwatch.Elapsed.TotalSeconds;
 
-                WriteJsonOutput(calculatorResult.Data, duration);
+                WriteJsonOutput(calculatorResult.Data, composedInputData.LocationIds, duration);
 
                 AddLogMessagesForSuccessfulCalculation(calculationInput, duration);
             }
@@ -189,7 +188,7 @@ namespace DiKErnel.Gui.View
             }
         }
 
-        private DataResult<ICalculationInput> ValidateAndReadInput(string jsonInputFilePath)
+        private ComposedInputData ValidateAndReadInput(string jsonInputFilePath)
         {
             if (mainWindowViewModel.ValidateJsonInput)
             {
@@ -205,8 +204,8 @@ namespace DiKErnel.Gui.View
                 }
             }
 
-            ComposedInputData inputComposerResult = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
-            DataResult<ICalculationInput> calculationInputDataResult = inputComposerResult.CalculationInputDataResult;
+            ComposedInputData composedInputData = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
+            DataResult<ICalculationInput> calculationInputDataResult = composedInputData.CalculationInputDataResult;
 
             CacheMessagesWhenApplicable("het lezen van de invoer", calculationInputDataResult.Events);
 
@@ -217,7 +216,7 @@ namespace DiKErnel.Gui.View
                 return null;
             }
 
-            return calculationInputDataResult;
+            return composedInputData;
         }
 
         private bool ValidateCalculationInput(ICalculationInput calculationInput)
@@ -369,7 +368,8 @@ namespace DiKErnel.Gui.View
             AddLogMessage("");
         }
 
-        private void WriteJsonOutput(CalculationOutput calculationOutput, double duration)
+        private void WriteJsonOutput(CalculationOutput calculationOutput, IReadOnlyList<int?> locationIds, 
+                                     double duration)
         {
             Dictionary<string, object> metaDataItems = null;
 
@@ -386,7 +386,7 @@ namespace DiKErnel.Gui.View
 
             SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
                 mainWindowViewModel.OutputFilePath, calculationOutput, mainWindowViewModel.OutputType,
-                metaDataItems: metaDataItems);
+                locationIds, metaDataItems);
 
             CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult.Events);
 
