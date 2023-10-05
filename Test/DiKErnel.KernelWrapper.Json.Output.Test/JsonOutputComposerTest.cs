@@ -261,7 +261,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     TimeOfFailure = 11,
                     VerticalDistanceWaterLevelElevation = 1.2,
                     RepresentativeWaveRunup2P = 1.3,
-                    CumulativeOverload = 1.4
+                    CumulativeOverload = 1.4,
+                    AverageNumberOfWaves = 1.5
                 });
 
             var grassWaveImpactTimeDependentOutput = new GrassRevetmentWaveImpactTimeDependentOutput(

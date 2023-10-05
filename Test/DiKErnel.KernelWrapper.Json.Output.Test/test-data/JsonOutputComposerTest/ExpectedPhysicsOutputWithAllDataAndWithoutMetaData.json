@@ -56,6 +56,9 @@
                     ],
                     "cumulatieveOverbelasting": [
                         1.4
+                    ],
+                    "GemiddeldAantalGolven": [
+                        1.5
                     ]
                 }
             },
