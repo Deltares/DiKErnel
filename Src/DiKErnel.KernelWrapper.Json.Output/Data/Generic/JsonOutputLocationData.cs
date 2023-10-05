@@ -33,7 +33,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
         }
 
         [JsonProperty(JsonOutputDefinitions.ID, NullValueHandling = NullValueHandling.Ignore)]
-        public int? Id { get; }
+        public int? Id { get; set; }
 
         [JsonProperty(JsonOutputDefinitions.FAILURE)]
         public JsonOutputFailureLocationData FailureData { get; }

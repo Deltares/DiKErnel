@@ -385,7 +385,8 @@ namespace DiKErnel.Gui.View
             }
 
             SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
-                mainWindowViewModel.OutputFilePath, calculationOutput, mainWindowViewModel.OutputType, metaDataItems);
+                mainWindowViewModel.OutputFilePath, calculationOutput, mainWindowViewModel.OutputType,
+                metaDataItems: metaDataItems);
 
             CacheMessagesWhenApplicable("het schrijven van de resultaten", outputComposerResult.Events);
 

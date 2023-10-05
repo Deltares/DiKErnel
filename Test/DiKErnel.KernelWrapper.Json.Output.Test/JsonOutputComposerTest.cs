@@ -192,7 +192,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             // Call
             SimpleResult result = JsonOutputComposer.WriteCalculationOutputToJson(
-                actualOutputFilePath, calculationOutput, outputType, metaDataItems);
+                actualOutputFilePath, calculationOutput, outputType, metaDataItems: metaDataItems);
 
             // Assert
             string expectedOutputFilePath =
@@ -225,7 +225,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             // Call
             SimpleResult result = JsonOutputComposer.WriteCalculationOutputToJson(
-                actualOutputFilePath, calculationOutput, JsonOutputType.Physics, metaDataItems);
+                actualOutputFilePath, calculationOutput, JsonOutputType.Physics, metaDataItems: metaDataItems);
 
             // Assert
             string expectedOutputFilePath =

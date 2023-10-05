@@ -172,7 +172,7 @@ namespace DiKErnel.Cli
 
             SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
                 parser.JsonOutputFilePath, calculationOutput, ConvertOutputType(parser.OutputLevel),
-                metaDataItems);
+                metaDataItems: metaDataItems);
 
             WriteToLogFile(outputComposerResult.Events);
 

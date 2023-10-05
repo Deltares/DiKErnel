@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.KernelWrapper.Json.Output.Data.Generic;
 using DiKErnel.Util;
@@ -41,16 +42,20 @@ namespace DiKErnel.KernelWrapper.Json.Output
         /// <param name="filePath">The path to the Json file.</param>
         /// <param name="calculationOutput">The calculation output to write.</param>
         /// <param name="outputType">The output type.</param>
+        /// <param name="locationIds">The (optional) location ids to write.</param>
         /// <param name="metaDataItems">The (optional) meta data items to write.</param>
         /// <returns>The result of the operation.</returns>
         public static SimpleResult WriteCalculationOutputToJson(
             string filePath, CalculationOutput calculationOutput, JsonOutputType outputType,
+            IReadOnlyList<int?> locationIds = null,
             IReadOnlyDictionary<string, object> metaDataItems = null)
         {
             try
             {
                 JsonOutputData jsonOutput = CalculationOutputAdapter.AdaptCalculationOutput(
                     calculationOutput, outputType, metaDataItems);
+
+                SetLocationIdsToOutput(jsonOutput, locationIds);
 
                 using StreamWriter file = File.CreateText(filePath);
                 using (var jsonTextWriter = new JsonTextWriter(file)
@@ -71,6 +76,21 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                  EventType.Error));
 
                 return new SimpleResult(false, EventRegistry.Flush());
+            }
+        }
+
+        private static void SetLocationIdsToOutput(JsonOutputData jsonOutput, IReadOnlyList<int?> locationIds)
+        {
+            if (locationIds == null)
+            {
+                return;
+            }
+
+            IReadOnlyList<JsonOutputLocationData> locationDataItems = jsonOutput.LocationDataItems.LocationDataItems;
+
+            for (var i = 0; i < locationDataItems.Count; i++)
+            {
+                locationDataItems[i].Id = locationIds.ElementAtOrDefault(i);
             }
         }
     }
