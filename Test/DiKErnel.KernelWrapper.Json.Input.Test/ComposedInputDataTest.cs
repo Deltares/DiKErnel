@@ -12,14 +12,14 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var calculationInput = new DataResult<ICalculationInput>(Array.Empty<Event>());
+            var calculationInputDataResult = new DataResult<ICalculationInput>(Array.Empty<Event>());
             int?[] locationIds = Array.Empty<int?>();
 
             // Call
-            var composedInputData = new ComposedInputData(calculationInput, locationIds);
+            var composedInputData = new ComposedInputData(calculationInputDataResult, locationIds);
 
             // Assert
-            Assert.AreSame(calculationInput, composedInputData.CalculationInput);
+            Assert.AreSame(calculationInputDataResult, composedInputData.CalculationInputDataResult);
             Assert.AreSame(locationIds, composedInputData.LocationIds);
         }
     }

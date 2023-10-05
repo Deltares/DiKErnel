@@ -126,11 +126,11 @@ namespace DiKErnel.Cli
             }
 
             ComposedInputData inputComposerResult = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
-            DataResult<ICalculationInput> calculationInput = inputComposerResult.CalculationInput;
+            DataResult<ICalculationInput> calculationInputDataResult = inputComposerResult.CalculationInputDataResult;
 
-            WriteToLogFile(calculationInput.Events);
+            WriteToLogFile(calculationInputDataResult.Events);
 
-            return calculationInput.Successful ? calculationInput : null;
+            return calculationInputDataResult.Successful ? calculationInputDataResult : null;
         }
 
         private static bool ValidateCalculationInput(ICalculationInput calculationInput)
