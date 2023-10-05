@@ -40,6 +40,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(constructionProperties.VerticalDistanceWaterLevelElevation);
             Assert.IsNull(constructionProperties.RepresentativeWaveRunup2P);
             Assert.IsNull(constructionProperties.CumulativeOverload);
+            Assert.IsNull(constructionProperties.AverageNumberOfWaves);
         }
 
         [Test]
@@ -52,6 +53,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();
+            double averageNumberOfWaves = Random.NextDouble();
 
             // When
             var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
@@ -61,7 +63,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 TimeOfFailure = timeOfFailure,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
                 RepresentativeWaveRunup2P = representativeWaveRunup2P,
-                CumulativeOverload = cumulativeOverload
+                CumulativeOverload = cumulativeOverload,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             // Then
@@ -72,6 +75,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                             constructionProperties.VerticalDistanceWaterLevelElevation);
             Assert.AreEqual(representativeWaveRunup2P, constructionProperties.RepresentativeWaveRunup2P);
             Assert.AreEqual(cumulativeOverload, constructionProperties.CumulativeOverload);
+            Assert.AreEqual(averageNumberOfWaves, constructionProperties.AverageNumberOfWaves);
         }
     }
 }

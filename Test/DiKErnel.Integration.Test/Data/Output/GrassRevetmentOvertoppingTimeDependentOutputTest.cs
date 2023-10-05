@@ -37,6 +37,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();
+            double averageNumberOfWaves = Random.NextDouble();
 
             var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
             {
@@ -45,7 +46,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 TimeOfFailure = timeOfFailure,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
                 RepresentativeWaveRunup2P = representativeWaveRunup2P,
-                CumulativeOverload = cumulativeOverload
+                CumulativeOverload = cumulativeOverload,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             // Call
@@ -59,6 +61,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
             Assert.AreEqual(representativeWaveRunup2P, output.RepresentativeWaveRunup2P);
             Assert.AreEqual(cumulativeOverload, output.CumulativeOverload);
+            Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
         }
 
         [Test]
@@ -87,6 +90,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
             Assert.IsNull(output.RepresentativeWaveRunup2P);
             Assert.IsNull(output.CumulativeOverload);
+            Assert.IsNull(output.AverageNumberOfWaves);
         }
 
         [Test]
@@ -100,7 +104,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 TimeOfFailure = Random.Next(),
                 VerticalDistanceWaterLevelElevation = null,
                 RepresentativeWaveRunup2P = Random.NextDouble(),
-                CumulativeOverload = Random.NextDouble()
+                CumulativeOverload = Random.NextDouble(),
+                AverageNumberOfWaves = Random.NextDouble()
             };
 
             // Call

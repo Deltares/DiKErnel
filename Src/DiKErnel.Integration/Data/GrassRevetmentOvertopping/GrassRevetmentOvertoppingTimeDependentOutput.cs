@@ -36,6 +36,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                       nameof(constructionProperties.VerticalDistanceWaterLevelElevation));
             RepresentativeWaveRunup2P = constructionProperties.RepresentativeWaveRunup2P;
             CumulativeOverload = constructionProperties.CumulativeOverload;
+            AverageNumberOfWaves = constructionProperties.AverageNumberOfWaves;
         }
 
         /// <summary>
@@ -52,5 +53,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         /// Gets the cumulative overload.
         /// </summary>
         public double? CumulativeOverload { get; }
+        
+        /// <summary>
+        /// Gets the average number of waves.
+        /// </summary>
+        public double? AverageNumberOfWaves { get; }
     }
 }

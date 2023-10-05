@@ -147,6 +147,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             var incrementDamage = 0.0;
             double damage = initialDamage;
             int? timeOfFailure = null;
+            double? averageNumberOfWaves = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 dikeHeight, timeDependentInput.WaterLevel);
@@ -155,9 +156,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             {
                 int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                      timeDependentInput.EndTime);
-                double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
-                                                                                      timeDependentInput.WavePeriodTm10,
-                                                                                      AverageNumberOfWavesCtm);
+                averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
+                                                                               timeDependentInput.WavePeriodTm10,
+                                                                               AverageNumberOfWavesCtm);
                 double waveDirection = HydraulicLoadFunctions.WaveDirection(timeDependentInput.WaveAngle);
 
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaterLevel,
@@ -165,7 +166,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                                timeDependentInput.WavePeriodTm10,
                                                                                waveDirection);
 
-                cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
+                cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves.Value);
 
                 incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
                                                                           CriticalCumulativeOverload);
@@ -183,7 +184,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             }
 
             return new GrassRevetmentOvertoppingTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+                CreateConstructionProperties(incrementDamage, damage, averageNumberOfWaves, timeOfFailure));
         }
 
         private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
@@ -261,14 +262,15 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         }
 
         private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, int? timeOfFailure)
+            double incrementDamage, double damage, double? averageNumberOfWaves, int? timeOfFailure)
         {
             var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             if (verticalDistanceWaterLevelElevation >= 0.0)
