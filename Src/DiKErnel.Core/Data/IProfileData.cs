@@ -45,7 +45,7 @@ namespace DiKErnel.Core.Data
         /// Gets the vertical height based on linear interpolation.
         /// </summary>
         /// <param name="horizontalPosition">The horizontal position.</param>
-        /// <returns>The vertical height or <see cref="double.PositiveInfinity"/> when the
+        /// <returns>The vertical height or <see cref="double.NaN"/> when the
         /// horizontal position cannot be fitted with the dike profile.</returns>
         public double GetVerticalHeight(double horizontalPosition);
 
@@ -53,7 +53,7 @@ namespace DiKErnel.Core.Data
         /// Gets the horizontal position based on linear interpolation.
         /// </summary>
         /// <param name="verticalHeight">The vertical height.</param>
-        /// <returns>The horizontal position or <see cref="double.PositiveInfinity"/> when
+        /// <returns>The horizontal position or <see cref="double.NaN"/> when
         /// the vertical height cannot be fitted with the dike profile.</returns>
         public double GetHorizontalPosition(double verticalHeight);
 

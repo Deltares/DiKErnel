@@ -71,7 +71,7 @@ namespace DiKErnel.Integration.Data
                 {
                     if (i == 0)
                     {
-                        return double.PositiveInfinity;
+                        return double.NaN;
                     }
 
                     ProfilePoint previousProfilePoint = profilePoints[i - 1];
@@ -84,7 +84,7 @@ namespace DiKErnel.Integration.Data
                 }
             }
 
-            return double.PositiveInfinity;
+            return double.NaN;
         }
 
         public double GetHorizontalPosition(double verticalHeight)
@@ -104,7 +104,7 @@ namespace DiKErnel.Integration.Data
                 {
                     if (i == 0)
                     {
-                        return double.PositiveInfinity;
+                        return double.NaN;
                     }
 
                     ProfilePoint previousProfilePoint = profilePoints[i - 1];
@@ -117,7 +117,7 @@ namespace DiKErnel.Integration.Data
                 }
             }
 
-            return double.PositiveInfinity;
+            return double.NaN;
         }
 
         public ProfileSegment GetProfileSegment(double horizontalPosition)

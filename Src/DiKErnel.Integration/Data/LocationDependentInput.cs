@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Data
             X = x;
             InitialDamage = initialDamage;
             FailureNumber = failureNumber;
-            Z = double.PositiveInfinity;
+            Z = double.NaN;
         }
 
         public double X { get; }

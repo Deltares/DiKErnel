@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(0.0);
 
             // Assert
-            Assert.AreEqual(double.PositiveInfinity, verticalHeight);
+            Assert.IsNaN(verticalHeight);
         }
 
         [Test]
@@ -127,7 +127,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(4.0);
 
             // Assert
-            Assert.AreEqual(double.PositiveInfinity, verticalHeight);
+            Assert.IsNaN(verticalHeight);
         }
 
         [Test]
@@ -140,7 +140,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(0.0);
 
             // Assert
-            Assert.AreEqual(double.PositiveInfinity, horizontalPosition);
+            Assert.IsNaN(horizontalPosition);
         }
 
         [Test]
@@ -205,7 +205,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(4.0);
 
             // Assert
-            Assert.AreEqual(double.PositiveInfinity, horizontalPosition);
+            Assert.IsNaN(horizontalPosition);
         }
 
         [Test]
