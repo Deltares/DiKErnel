@@ -43,8 +43,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                                            "JsonInputComposerTest", "InputWithAllData.json");
 
             // When
-            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
-            ICalculationInput calculationInput = result.Data;
+            ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
+            ICalculationInput calculationInput = result.CalculationInput.Data;
 
             // Then
             Assert.IsInstanceOf<CalculationInput>(calculationInput);
@@ -235,8 +235,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                                            "JsonInputComposerTest", "InputWithAllMandatoryData.json");
 
             // When
-            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
-            ICalculationInput calculationInput = result.Data;
+            ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
+            ICalculationInput calculationInput = result.CalculationInput.Data;
 
             // Then
             Assert.IsInstanceOf<CalculationInput>(calculationInput);
@@ -533,14 +533,17 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             const string filePath = "NotExisting";
 
             // When
-            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
+            ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
 
             // Then
-            Assert.IsFalse(result.Successful);
+            DataResult<ICalculationInput> calculationInput = result.CalculationInput;
 
-            Assert.AreEqual(1, result.Events.Count);
-            Assert.AreEqual(EventType.Error, result.Events[0].Type);
-            Assert.AreEqual("The provided input file does not exist", result.Events[0].Message);
+            Assert.IsFalse(calculationInput.Successful);
+            Assert.AreEqual(1, calculationInput.Events.Count);
+            Assert.AreEqual(EventType.Error, calculationInput.Events[0].Type);
+            Assert.AreEqual("The provided input file does not exist", calculationInput.Events[0].Message);
+
+            CollectionAssert.IsEmpty(result.LocationIds);
         }
 
         [Test]
@@ -604,15 +607,19 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                                            "JsonInputComposerTest", fileName);
 
             // When
-            DataResult<ICalculationInput> result = JsonInputComposer.GetInputDataFromJson(filePath);
+            ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
 
             // Then
-            Assert.IsFalse(result.Successful);
+            DataResult<ICalculationInput> calculationInput = result.CalculationInput;
 
-            Assert.AreEqual(1, result.Events.Count);
-            Assert.AreEqual(EventType.Error, result.Events[0].Type);
+            Assert.IsFalse(calculationInput.Successful);
+
+            Assert.AreEqual(1, calculationInput.Events.Count);
+            Assert.AreEqual(EventType.Error, calculationInput.Events[0].Type);
             Assert.AreEqual("An unhandled error occurred while composing calculation data from the Json input. See " +
-                            "stack trace for more information:\n" + expectedStackTrace, result.Events[0].Message);
+                            "stack trace for more information:\n" + expectedStackTrace, calculationInput.Events[0].Message);
+
+            CollectionAssert.IsEmpty(result.LocationIds);
         }
     }
 }
