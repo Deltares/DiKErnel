@@ -297,7 +297,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AreEqual(double.PositiveInfinity, outerSlope);
+            Assert.IsNaN(outerSlope);
         }
 
         [Test]
@@ -328,7 +328,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
 
             // Assert
-            AssertHelper.AreEqual(double.PositiveInfinity, outerSlope);
+            Assert.IsNaN(outerSlope);
         }
 
         [Test]

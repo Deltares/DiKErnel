@@ -47,10 +47,10 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
             Assert.AreEqual(slopeUpperLevel, input.SlopeUpperLevel);
             Assert.AreEqual(outerToeHeight, input.OuterToeHeight);
             Assert.AreEqual(outerCrestHeight, input.OuterCrestHeight);
-            Assert.AreEqual(double.PositiveInfinity, input.NotchOuterBermPosition);
-            Assert.AreEqual(double.PositiveInfinity, input.NotchOuterBermHeight);
-            Assert.AreEqual(double.PositiveInfinity, input.CrestOuterBermPosition);
-            Assert.AreEqual(double.PositiveInfinity, input.CrestOuterBermHeight);
+            Assert.IsNaN(input.NotchOuterBermPosition);
+            Assert.IsNaN(input.NotchOuterBermHeight);
+            Assert.IsNaN(input.CrestOuterBermPosition);
+            Assert.IsNaN(input.CrestOuterBermHeight);
         }
     }
 }

@@ -43,10 +43,10 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
             OuterToeHeight = outerToeHeight;
             OuterCrestHeight = outerCrestHeight;
 
-            NotchOuterBermPosition = double.PositiveInfinity;
-            NotchOuterBermHeight = double.PositiveInfinity;
-            CrestOuterBermPosition = double.PositiveInfinity;
-            CrestOuterBermHeight = double.PositiveInfinity;
+            NotchOuterBermPosition = double.NaN;
+            NotchOuterBermHeight = double.NaN;
+            CrestOuterBermPosition = double.NaN;
+            CrestOuterBermHeight = double.NaN;
         }
 
         /// <summary>

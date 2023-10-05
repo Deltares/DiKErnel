@@ -336,7 +336,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
                                            input.SlopeUpperPosition);
             }
 
-            return double.PositiveInfinity;
+            return double.NaN;
         }
 
         private static double SlopeLowerSlopeBerm(double crestOuterBermPosition, double crestOuterBermHeight,
@@ -390,10 +390,10 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
 
         private static bool HasBerm(NaturalStoneRevetmentOuterSlopeInput input)
         {
-            return !double.IsInfinity(input.NotchOuterBermPosition)
-                   && !double.IsInfinity(input.NotchOuterBermHeight)
-                   && !double.IsInfinity(input.CrestOuterBermPosition)
-                   && !double.IsInfinity(input.CrestOuterBermHeight);
+            return !double.IsNaN(input.NotchOuterBermPosition)
+                   && !double.IsNaN(input.NotchOuterBermHeight)
+                   && !double.IsNaN(input.CrestOuterBermPosition)
+                   && !double.IsNaN(input.CrestOuterBermHeight);
         }
     }
 }
