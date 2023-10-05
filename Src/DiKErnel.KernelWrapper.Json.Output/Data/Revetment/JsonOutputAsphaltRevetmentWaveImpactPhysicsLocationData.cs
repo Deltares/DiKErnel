@@ -30,7 +30,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                        IReadOnlyList<double> maximumPeakStress,
                                                                        IReadOnlyList<double> stiffnessRelation,
                                                                        IReadOnlyList<double> computationalThickness,
-                                                                       IReadOnlyList<double> equivalentElasticModulus)
+                                                                       IReadOnlyList<double> equivalentElasticModulus,
+                                                                       IReadOnlyList<double> averageNumberOfWaves)
             : base(incrementDamage)
         {
             Z = z;
@@ -40,6 +41,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             StiffnessRelation = stiffnessRelation;
             ComputationalThickness = computationalThickness;
             EquivalentElasticModulus = equivalentElasticModulus;
+            AverageNumberOfWaves = averageNumberOfWaves;
         }
 
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
@@ -62,5 +64,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EQUIVALENT_ELASTIC_MODULUS)]
         public IReadOnlyList<double> EquivalentElasticModulus { get; }
+        
+        [JsonProperty(JsonOutputDefinitions.AVERAGE_NUMBER_OF_WAVES)]
+        public IReadOnlyList<double> AverageNumberOfWaves { get; set; }
     }
 }

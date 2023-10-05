@@ -101,7 +101,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.ComputationalThickness).ToList(),
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.EquivalentElasticModulus).ToList());
+                            .Select(tdo => tdo.EquivalentElasticModulus).ToList(), 
+                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
                 case GrassRevetmentOvertoppingLocationDependentOutput _:
                 {
