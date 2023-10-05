@@ -111,7 +111,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 }
             }
 
-            return new ComposedInputData(new DataResult<ICalculationInput>(EventRegistry.Flush()), Array.Empty<int>());
+            return new ComposedInputData(new DataResult<ICalculationInput>(EventRegistry.Flush()), Array.Empty<int?>());
         }
 
         private static JSchema InitializeSchema()

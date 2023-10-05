@@ -14,7 +14,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         /// </summary>
         /// <param name="calculationInput">The composed calculation input.</param>
         /// <param name="locationIds">The ids of the locations in the composed calculation input.</param>
-        internal ComposedInputData(DataResult<ICalculationInput> calculationInput, IReadOnlyList<int> locationIds)
+        internal ComposedInputData(DataResult<ICalculationInput> calculationInput, IReadOnlyList<int?> locationIds)
         {
             CalculationInput = calculationInput;
             LocationIds = locationIds;
@@ -28,6 +28,6 @@ namespace DiKErnel.KernelWrapper.Json.Input
         /// <summary>
         /// Gets the ids of the locations in the composed calculation input.
         /// </summary>
-        public IReadOnlyList<int> LocationIds { get; }
+        public IReadOnlyList<int?> LocationIds { get; }
     }
 }

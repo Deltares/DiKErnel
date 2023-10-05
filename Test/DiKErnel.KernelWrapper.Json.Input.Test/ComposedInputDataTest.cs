@@ -13,7 +13,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
         {
             // Setup
             var calculationInput = new DataResult<ICalculationInput>(Array.Empty<Event>());
-            int[] locationIds = Array.Empty<int>();
+            int?[] locationIds = Array.Empty<int?>();
 
             // Call
             var composedInputData = new ComposedInputData(calculationInput, locationIds);
