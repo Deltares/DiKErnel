@@ -230,7 +230,8 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = subLayerElasticModulus
+                EquivalentElasticModulus = subLayerElasticModulus,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
         }
     }

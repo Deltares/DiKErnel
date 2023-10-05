@@ -42,6 +42,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(constructionProperties.StiffnessRelation);
             Assert.IsNull(constructionProperties.ComputationalThickness);
             Assert.IsNull(constructionProperties.EquivalentElasticModulus);
+            Assert.IsNull(constructionProperties.AverageNumberOfWaves);
         }
 
         [Test]
@@ -56,6 +57,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double stiffnessRelation = Random.NextDouble();
             double computationalThickness = Random.NextDouble();
             double equivalentElasticModulus = Random.NextDouble();
+            double averageNumberOfWaves = Random.NextDouble();
 
             // When
             var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
@@ -67,7 +69,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = equivalentElasticModulus
+                EquivalentElasticModulus = equivalentElasticModulus,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             // Then
@@ -80,6 +83,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(stiffnessRelation, constructionProperties.StiffnessRelation);
             Assert.AreEqual(computationalThickness, constructionProperties.ComputationalThickness);
             Assert.AreEqual(equivalentElasticModulus, constructionProperties.EquivalentElasticModulus);
+            Assert.AreEqual(averageNumberOfWaves, constructionProperties.AverageNumberOfWaves);
         }
     }
 }

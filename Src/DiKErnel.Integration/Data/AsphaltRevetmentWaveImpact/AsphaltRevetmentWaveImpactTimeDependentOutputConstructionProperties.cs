@@ -51,5 +51,10 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         /// Gets or sets the equivalent elastic modulus.
         /// </summary>
         public double? EquivalentElasticModulus { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the average number of waves.
+        /// </summary>
+        public double? AverageNumberOfWaves { get; set; }
     }
 }

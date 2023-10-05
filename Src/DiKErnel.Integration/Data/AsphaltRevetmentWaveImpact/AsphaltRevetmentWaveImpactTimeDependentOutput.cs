@@ -46,6 +46,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             EquivalentElasticModulus = constructionProperties.EquivalentElasticModulus
                                        ?? throw new InvalidTimeDependentOutputException(
                                            nameof(constructionProperties.EquivalentElasticModulus));
+            AverageNumberOfWaves = constructionProperties.AverageNumberOfWaves
+                                   ?? throw new InvalidTimeDependentOutputException(
+                                       nameof(constructionProperties.AverageNumberOfWaves));
         }
 
         /// <summary>
@@ -72,5 +75,10 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         /// Gets the equivalent elastic modulus.
         /// </summary>
         public double EquivalentElasticModulus { get; }
+
+        /// <summary>
+        /// Gets the average number of waves.
+        /// </summary>
+        public double AverageNumberOfWaves { get; }
     }
 }

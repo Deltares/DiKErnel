@@ -250,7 +250,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     MaximumPeakStress = 0.5,
                     StiffnessRelation = 0.6,
                     ComputationalThickness = 0.7,
-                    EquivalentElasticModulus = 0.8
+                    EquivalentElasticModulus = 0.8,
+                    AverageNumberOfWaves = 0.9
                 });
 
             var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(
@@ -355,7 +356,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     MaximumPeakStress = 0.4,
                     StiffnessRelation = 0.5,
                     ComputationalThickness = 0.6,
-                    EquivalentElasticModulus = 0.7
+                    EquivalentElasticModulus = 0.7,
+                    AverageNumberOfWaves = 0.9
                 });
 
             var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(

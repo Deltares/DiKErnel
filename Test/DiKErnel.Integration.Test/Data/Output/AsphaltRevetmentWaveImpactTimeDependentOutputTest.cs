@@ -39,6 +39,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double stiffnessRelation = Random.NextDouble();
             double computationalThickness = Random.NextDouble();
             double equivalentElasticModulus = Random.NextDouble();
+            double averageNumberOfWaves = Random.NextDouble();
 
             var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
             {
@@ -49,7 +50,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = equivalentElasticModulus
+                EquivalentElasticModulus = equivalentElasticModulus,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             // Call
@@ -65,6 +67,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
             Assert.AreEqual(computationalThickness, output.ComputationalThickness);
             Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
+            Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
         }
 
         [Test]
@@ -78,6 +81,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double stiffnessRelation = Random.NextDouble();
             double computationalThickness = Random.NextDouble();
             double equivalentElasticModulus = Random.NextDouble();
+            double averageNumberOfWaves = Random.NextDouble();
 
             var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
             {
@@ -88,7 +92,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = equivalentElasticModulus
+                EquivalentElasticModulus = equivalentElasticModulus,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             // Call
@@ -104,6 +109,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
             Assert.AreEqual(computationalThickness, output.ComputationalThickness);
             Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
+            Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
         }
 
         [Test]
@@ -200,6 +206,26 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Assert
             Assert.Throws<InvalidTimeDependentOutputException>(Call, "equivalentElasticModulus must be set.");
         }
+        
+        [Test]
+        public void Constructor_AverageNumberOfWavesNull_ThrowsInvalidTimeDependentOutputException()
+        {
+            // Setup
+            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+                CreateFullyConfiguredConstructionProperties();
+
+            constructionProperties.AverageNumberOfWaves = null;
+
+            // Call
+            void Call()
+            {
+                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            }
+
+            // Assert
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "equivalentElasticModulus must be set.");
+        }
+
 
         private static AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
@@ -212,7 +238,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 MaximumPeakStress = Random.NextDouble(),
                 StiffnessRelation = Random.NextDouble(),
                 ComputationalThickness = Random.NextDouble(),
-                EquivalentElasticModulus = Random.NextDouble()
+                EquivalentElasticModulus = Random.NextDouble(),
+                AverageNumberOfWaves = Random.NextDouble()
             };
         }
     }
