@@ -58,8 +58,9 @@ namespace DiKErnel.Cli
                 RemoveFileWhenExists(jsonOutputFilePath);
                 RemoveFileWhenExists(logOutputFilePath);
 
-                DataResult<ICalculationInput> calculationInputDataResult =
-                    ValidateAndReadInput(jsonInputFilePath, parser);
+                ComposedInputData composedInputData = ValidateAndReadInput(jsonInputFilePath, parser);
+
+                DataResult<ICalculationInput> calculationInputDataResult = composedInputData.CalculationInputDataResult;
 
                 if (calculationInputDataResult == null)
                 {
@@ -86,7 +87,8 @@ namespace DiKErnel.Cli
 
                 stopwatch.Stop();
 
-                bool writeOutputResult = WriteOutput(calculatorResult.Data, parser, stopwatch.Elapsed.TotalSeconds);
+                bool writeOutputResult = WriteOutput(calculatorResult.Data, composedInputData.LocationIds, parser,
+                                                     stopwatch.Elapsed.TotalSeconds);
 
                 return !writeOutputResult ? -1 : 0;
             }
@@ -108,7 +110,7 @@ namespace DiKErnel.Cli
             }
         }
 
-        private static DataResult<ICalculationInput> ValidateAndReadInput(
+        private static ComposedInputData ValidateAndReadInput(
             string jsonInputFilePath, CommandLineArgumentParser parser)
         {
             if (parser.ValidateJsonFormat)
@@ -125,12 +127,12 @@ namespace DiKErnel.Cli
                 }
             }
 
-            ComposedInputData inputComposerResult = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
-            DataResult<ICalculationInput> calculationInputDataResult = inputComposerResult.CalculationInputDataResult;
+            ComposedInputData composedInputData = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
+            DataResult<ICalculationInput> calculationInputDataResult = composedInputData.CalculationInputDataResult;
 
             WriteToLogFile(calculationInputDataResult.Events);
 
-            return calculationInputDataResult.Successful ? calculationInputDataResult : null;
+            return calculationInputDataResult.Successful ? composedInputData : null;
         }
 
         private static bool ValidateCalculationInput(ICalculationInput calculationInput)
@@ -154,8 +156,8 @@ namespace DiKErnel.Cli
             return calculator.CalculationState != CalculationState.FinishedInError ? calculatorResult : null;
         }
 
-        private static bool WriteOutput(CalculationOutput calculationOutput, CommandLineArgumentParser parser,
-                                        double duration)
+        private static bool WriteOutput(CalculationOutput calculationOutput, IReadOnlyList<int?> locationIds,
+                                        CommandLineArgumentParser parser, double duration)
         {
             Dictionary<string, object> metaDataItems = null;
 
@@ -172,7 +174,7 @@ namespace DiKErnel.Cli
 
             SimpleResult outputComposerResult = JsonOutputComposer.WriteCalculationOutputToJson(
                 parser.JsonOutputFilePath, calculationOutput, ConvertOutputType(parser.OutputLevel),
-                metaDataItems: metaDataItems);
+                locationIds, metaDataItems);
 
             WriteToLogFile(outputComposerResult.Events);
 
