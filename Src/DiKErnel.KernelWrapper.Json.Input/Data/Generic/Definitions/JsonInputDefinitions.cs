@@ -41,6 +41,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
         public const string CHARACTERISTIC_POINT_TYPE_INNER_CREST = "kruinBinnenzijde";
         public const string CHARACTERISTIC_POINT_TYPE_INNER_TOE = "teenBinnenzijde";
 
+        public const string Id = "id";
         public const string X = "positie";
         public const string INITIAL_DAMAGE = "beginschade";
         public const string FAILURE_NUMBER = "faalgetal";
