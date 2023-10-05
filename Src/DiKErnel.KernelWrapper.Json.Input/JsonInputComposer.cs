@@ -82,7 +82,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         /// </summary>
         /// <param name="filePath">The path to the Json file to get the input from.</param>
         /// <returns>The result of the operation.</returns>
-        public static DataResult<ICalculationInput> GetInputDataFromJson(string filePath)
+        public static ComposedInputData GetInputDataFromJson(string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -98,7 +98,10 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 {
                     JObject jObject = JObject.Parse(File.ReadAllText(filePath));
 
-                    return JsonInputAdapter.AdaptJsonInputData(jObject.ToObject<JsonInputData>(jsonSerializer));
+                    var jsonInputData = jObject.ToObject<JsonInputData>(jsonSerializer);
+
+                    return new ComposedInputData(JsonInputAdapter.AdaptJsonInputData(jsonInputData),
+                                                 jsonInputData.LocationData.Select(ld => ld.Id).ToList());
                 }
                 catch (Exception e)
                 {
@@ -108,7 +111,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 }
             }
 
-            return new DataResult<ICalculationInput>(EventRegistry.Flush());
+            return new ComposedInputData(new DataResult<ICalculationInput>(EventRegistry.Flush()), Array.Empty<int>());
         }
 
         private static JSchema InitializeSchema()
