@@ -23,7 +23,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     internal class JsonInputLocationData
     {
-        [JsonProperty(JsonInputDefinitions.Id)]
+        [JsonProperty(JsonInputDefinitions.ID)]
         public int? Id { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.X)]

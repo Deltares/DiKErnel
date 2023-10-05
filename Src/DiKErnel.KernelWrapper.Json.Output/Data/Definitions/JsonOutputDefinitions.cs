@@ -26,6 +26,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 
         public const string LOCATIONS = "locaties";
 
+        public const string ID = "id";
         public const string FAILURE = "falen";
         public const string FAILED = "faalgebeurtenis";
         public const string TIME_OF_FAILURE = "faaltijd";
