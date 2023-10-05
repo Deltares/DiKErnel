@@ -30,13 +30,13 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
 {
     internal class AsphaltRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
-        private double outerSlope = double.PositiveInfinity;
-        private double logFailureTension = double.PositiveInfinity;
-        private double computationalThickness = double.PositiveInfinity;
-        private double stiffnessRelation = double.PositiveInfinity;
-        private double subLayerElasticModulus = double.PositiveInfinity;
-        private double averageNumberOfWaves = double.PositiveInfinity;
-        private double maximumPeakStress = double.PositiveInfinity;
+        private double outerSlope = double.NaN;
+        private double logFailureTension = double.NaN;
+        private double computationalThickness = double.NaN;
+        private double stiffnessRelation = double.NaN;
+        private double subLayerElasticModulus = double.NaN;
+        private double averageNumberOfWaves = double.NaN;
+        private double maximumPeakStress = double.NaN;
 
         public AsphaltRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                 double failureTension, double densityOfWater,
