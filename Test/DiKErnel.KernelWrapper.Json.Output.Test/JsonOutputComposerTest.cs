@@ -257,67 +257,67 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(
                 new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 0.9,
-                    Damage = 1.0,
-                    TimeOfFailure = 11,
-                    VerticalDistanceWaterLevelElevation = 1.2,
-                    RepresentativeWaveRunup2P = 1.3,
-                    CumulativeOverload = 1.4,
-                    AverageNumberOfWaves = 1.5
+                    IncrementDamage = 1.0,
+                    Damage = 1.1,
+                    TimeOfFailure = 12,
+                    VerticalDistanceWaterLevelElevation = 1.3,
+                    RepresentativeWaveRunup2P = 1.4,
+                    CumulativeOverload = 1.5,
+                    AverageNumberOfWaves = 1.6
                 });
 
             var grassWaveImpactTimeDependentOutput = new GrassRevetmentWaveImpactTimeDependentOutput(
                 new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 1.5,
-                    Damage = 1.6,
-                    TimeOfFailure = 17,
+                    IncrementDamage = 1.7,
+                    Damage = 1.8,
+                    TimeOfFailure = 19,
                     LoadingRevetment = true,
-                    UpperLimitLoading = 1.8,
-                    LowerLimitLoading = 1.9,
-                    MinimumWaveHeight = 2.0,
-                    MaximumWaveHeight = 2.1,
-                    WaveAngleImpact = 2.2,
-                    WaveHeightImpact = 2.3
+                    UpperLimitLoading = 2.0,
+                    LowerLimitLoading = 2.1,
+                    MinimumWaveHeight = 2.2,
+                    MaximumWaveHeight = 2.3,
+                    WaveAngleImpact = 2.4,
+                    WaveHeightImpact = 2.5
                 });
 
             var grassWaveRunupRayleighTimeDependentOutput = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
                 new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 2.4,
-                    Damage = 2.5,
-                    TimeOfFailure = 26,
-                    VerticalDistanceWaterLevelElevation = 2.7,
-                    WaveAngleImpact = 2.8,
-                    RepresentativeWaveRunup2P = 2.9,
-                    CumulativeOverload = 3.0,
-                    AverageNumberOfWaves = 3.1
+                    IncrementDamage = 2.6,
+                    Damage = 2.7,
+                    TimeOfFailure = 28,
+                    VerticalDistanceWaterLevelElevation = 2.9,
+                    WaveAngleImpact = 3.0,
+                    RepresentativeWaveRunup2P = 3.1,
+                    CumulativeOverload = 3.2,
+                    AverageNumberOfWaves = 3.3
                 });
 
             var naturalStoneTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
                 new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 3.2,
-                    Damage = 3.3,
-                    TimeOfFailure = 34,
-                    OuterSlope = 3.5,
-                    SlopeUpperLevel = 3.6,
-                    SlopeUpperPosition = 3.7,
-                    SlopeLowerLevel = 3.8,
-                    SlopeLowerPosition = 3.9,
+                    IncrementDamage = 3.4,
+                    Damage = 3.5,
+                    TimeOfFailure = 36,
+                    OuterSlope = 3.7,
+                    SlopeUpperLevel = 3.8,
+                    SlopeUpperPosition = 3.9,
+                    SlopeLowerLevel = 4.0,
+                    SlopeLowerPosition = 4.1,
                     LoadingRevetment = true,
-                    SurfSimilarityParameter = 4.0,
-                    WaveSteepnessDeepWater = 4.1,
-                    UpperLimitLoading = 4.2,
-                    LowerLimitLoading = 4.3,
-                    DepthMaximumWaveLoad = 4.4,
-                    DistanceMaximumWaveElevation = 4.5,
-                    NormativeWidthOfWaveImpact = 4.6,
-                    HydraulicLoad = 4.7,
-                    WaveAngleImpact = 4.8,
-                    Resistance = 4.9,
-                    ReferenceTimeDegradation = 5.0,
-                    ReferenceDegradation = 5.1
+                    SurfSimilarityParameter = 4.2,
+                    WaveSteepnessDeepWater = 4.3,
+                    UpperLimitLoading = 4.4,
+                    LowerLimitLoading = 4.5,
+                    DepthMaximumWaveLoad = 4.6,
+                    DistanceMaximumWaveElevation = 4.7,
+                    NormativeWidthOfWaveImpact = 4.8,
+                    HydraulicLoad = 4.9,
+                    WaveAngleImpact = 5.0,
+                    Resistance = 5.1,
+                    ReferenceTimeDegradation = 5.2,
+                    ReferenceDegradation = 5.3
                 });
 
             return new CalculationOutput(new List<LocationDependentOutput>
@@ -325,7 +325,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
-                }, 5.2, 5.3),
+                }, 5.3, 5.4),
                 new GrassRevetmentOvertoppingLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput
@@ -333,15 +333,15 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
-                }, 5.4),
+                }, 5.5),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighTimeDependentOutput
-                }, 5.5),
+                }, 5.6),
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
                     naturalStoneTimeDependentOutput
-                }, 5.6)
+                }, 5.7)
             });
         }
 
@@ -357,53 +357,53 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     StiffnessRelation = 0.5,
                     ComputationalThickness = 0.6,
                     EquivalentElasticModulus = 0.7,
-                    AverageNumberOfWaves = 0.9
+                    AverageNumberOfWaves = 0.8
                 });
 
             var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(
                 new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 0.8,
-                    Damage = 0.9,
-                    VerticalDistanceWaterLevelElevation = 1.0
+                    IncrementDamage = 0.9,
+                    Damage = 1.0,
+                    VerticalDistanceWaterLevelElevation = 1.1
                 });
 
             var grassWaveImpactTimeDependentOutput = new GrassRevetmentWaveImpactTimeDependentOutput(
                 new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 1.1,
-                    Damage = 1.2,
+                    IncrementDamage = 1.2,
+                    Damage = 1.3,
                     LoadingRevetment = true,
-                    UpperLimitLoading = 1.3,
-                    LowerLimitLoading = 1.4
+                    UpperLimitLoading = 1.4,
+                    LowerLimitLoading = 1.5
                 });
 
             var grassWaveRunupRayleighTimeDependentOutput = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
                 new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 1.5,
-                    Damage = 1.6,
-                    VerticalDistanceWaterLevelElevation = 1.7
+                    IncrementDamage = 1.6,
+                    Damage = 1.7,
+                    VerticalDistanceWaterLevelElevation = 1.8
                 });
 
             var naturalStoneTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
                 new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
                 {
-                    IncrementDamage = 1.8,
-                    Damage = 1.9,
-                    OuterSlope = 2.0,
-                    SlopeUpperLevel = 2.1,
-                    SlopeUpperPosition = 2.2,
-                    SlopeLowerLevel = 2.3,
-                    SlopeLowerPosition = 2.4,
+                    IncrementDamage = 1.9,
+                    Damage = 2.0,
+                    OuterSlope = 2.1,
+                    SlopeUpperLevel = 2.2,
+                    SlopeUpperPosition = 2.3,
+                    SlopeLowerLevel = 2.4,
+                    SlopeLowerPosition = 2.5,
                     LoadingRevetment = true,
-                    SurfSimilarityParameter = 2.5,
-                    WaveSteepnessDeepWater = 2.6,
-                    UpperLimitLoading = 2.7,
-                    LowerLimitLoading = 2.8,
-                    DepthMaximumWaveLoad = 2.9,
-                    DistanceMaximumWaveElevation = 3.0,
-                    NormativeWidthOfWaveImpact = 3.1
+                    SurfSimilarityParameter = 2.6,
+                    WaveSteepnessDeepWater = 2.7,
+                    UpperLimitLoading = 2.8,
+                    LowerLimitLoading = 2.9,
+                    DepthMaximumWaveLoad = 3.0,
+                    DistanceMaximumWaveElevation = 3.1,
+                    NormativeWidthOfWaveImpact = 3.2
                 });
 
             return new CalculationOutput(new List<LocationDependentOutput>
@@ -411,7 +411,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
-                }, 3.2, 3.3),
+                }, 3.3, 3.4),
                 new GrassRevetmentOvertoppingLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput
@@ -419,15 +419,15 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
-                }, 3.4),
+                }, 3.5),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighTimeDependentOutput
-                }, 3.5),
+                }, 3.6),
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
                     naturalStoneTimeDependentOutput
-                }, 3.6)
+                }, 3.7)
             });
         }
     }
