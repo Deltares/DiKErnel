@@ -37,12 +37,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         private readonly List<double> xValuesProfile = new List<double>();
         private readonly List<double> zValuesProfile = new List<double>();
         private readonly List<double> roughnessCoefficients = new List<double>();
-        private double dikeHeight = double.PositiveInfinity;
-        private double accelerationAlphaA = double.PositiveInfinity;
+        private double dikeHeight = double.NaN;
+        private double accelerationAlphaA = double.NaN;
 
-        private double verticalDistanceWaterLevelElevation = double.PositiveInfinity;
-        private double representativeWaveRunup2P = double.PositiveInfinity;
-        private double cumulativeOverload = double.PositiveInfinity;
+        private double verticalDistanceWaterLevelElevation = double.NaN;
+        private double representativeWaveRunup2P = double.NaN;
+        private double cumulativeOverload = double.NaN;
 
         public GrassRevetmentOvertoppingLocationDependentInput(
             double x, double initialDamage, double failureNumber, double criticalCumulativeOverload,
