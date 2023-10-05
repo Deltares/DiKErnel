@@ -148,6 +148,18 @@
           "veerconstanteOndergrond": {
             "type": "number"
           },
+          "vermoeiingAsfalt": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "alfa": {
+                "type": "number"
+              },
+              "beta": {
+                "type": "number"
+              }
+            }
+          },
           "toplaag": {
             "type": "object",
             "required": [
@@ -215,7 +227,7 @@
             "required": [
               "breuksterkteAsfalt",
               "veerconstanteOndergrond",
-              "toplaag"
+              "toplaag",
             ]
           },
           {
@@ -364,18 +376,6 @@
                 },
                 "stijfheidsverhoudingNu": {
                   "type": "number"
-                },
-                "vermoeiingAsfalt": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "alfa": {
-                      "type": "number"
-                    },
-                    "beta": {
-                      "type": "number"
-                    }
-                  }
                 },
                 "standtijdlijn": {
                   "type": "object",
