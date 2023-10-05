@@ -85,6 +85,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             var incrementDamage = 0.0;
             double damage = initialDamage;
             int? timeOfFailure = null;
+            double? averageNumberOfWaves = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 Z, timeDependentInput.WaterLevel);
@@ -94,9 +95,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                      timeDependentInput.EndTime);
 
-                double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
-                                                                                      timeDependentInput.WavePeriodTm10,
-                                                                                      AverageNumberOfWavesCtm);
+                averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
+                                                                               timeDependentInput.WavePeriodTm10,
+                                                                               AverageNumberOfWavesCtm);
 
                 double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
                     OuterSlope, timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
@@ -109,7 +110,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(surfSimilarityParameter,
                                                                                timeDependentInput.WaveHeightHm0);
 
-                cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
+                cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves.Value);
 
                 incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
                                                                           CriticalCumulativeOverload);
@@ -128,7 +129,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             }
 
             return new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+                CreateConstructionProperties(incrementDamage, damage, averageNumberOfWaves, timeOfFailure));
         }
 
         private double CalculateRepresentativeWaveRunup2P(double surfSimilarityParameter, double waveHeightHm0)
@@ -157,14 +158,15 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         }
 
         private GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, int? timeOfFailure)
+            double incrementDamage, double damage, double? averageNumberOfWaves, int? timeOfFailure)
         {
             var constructionProperties = new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             if (verticalDistanceWaterLevelElevation > 0.0)

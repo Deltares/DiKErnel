@@ -20,6 +20,7 @@ using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
 using DiKErnel.TestUtil;
+using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output
@@ -38,6 +39,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double waveAngleImpact = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();
+            double averageNumberOfWaves = Random.NextDouble();
 
             var constructionProperties = new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
             {
@@ -47,7 +49,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
                 WaveAngleImpact = waveAngleImpact,
                 RepresentativeWaveRunup2P = representativeWaveRunup2P,
-                CumulativeOverload = cumulativeOverload
+                CumulativeOverload = cumulativeOverload,
+                AverageNumberOfWaves = averageNumberOfWaves
             };
 
             // Call
@@ -62,6 +65,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
             Assert.AreEqual(representativeWaveRunup2P, output.RepresentativeWaveRunup2P);
             Assert.AreEqual(cumulativeOverload, output.CumulativeOverload);
+            Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
         }
 
         [Test]
@@ -91,6 +95,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(output.WaveAngleImpact);
             Assert.IsNull(output.RepresentativeWaveRunup2P);
             Assert.IsNull(output.CumulativeOverload);
+            Assert.IsNull(output.AverageNumberOfWaves);
         }
 
         [Test]
@@ -105,7 +110,8 @@ namespace DiKErnel.Integration.Test.Data.Output
                 VerticalDistanceWaterLevelElevation = null,
                 WaveAngleImpact = Random.NextDouble(),
                 RepresentativeWaveRunup2P = Random.NextDouble(),
-                CumulativeOverload = Random.NextDouble()
+                CumulativeOverload = Random.NextDouble(),
+                AverageNumberOfWaves = Random.NextDouble()
             };
 
             // Call
