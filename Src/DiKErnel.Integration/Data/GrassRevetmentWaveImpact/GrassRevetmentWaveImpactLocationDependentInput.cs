@@ -28,13 +28,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 {
     internal class GrassRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
-        private double minimumWaveHeight = double.PositiveInfinity;
-        private double maximumWaveHeight = double.PositiveInfinity;
-        private double lowerLimitLoading = double.PositiveInfinity;
-        private double upperLimitLoading = double.PositiveInfinity;
+        private double minimumWaveHeight = double.NaN;
+        private double maximumWaveHeight = double.NaN;
+        private double lowerLimitLoading = double.NaN;
+        private double upperLimitLoading = double.NaN;
         private bool loadingRevetment;
-        private double waveAngleImpact = double.PositiveInfinity;
-        private double waveHeightImpact = double.PositiveInfinity;
+        private double waveAngleImpact = double.NaN;
+        private double waveHeightImpact = double.NaN;
 
         public GrassRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                               GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact,
