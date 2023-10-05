@@ -60,14 +60,12 @@ namespace DiKErnel.Cli
 
                 ComposedInputData composedInputData = ValidateAndReadInput(jsonInputFilePath, parser);
 
-                DataResult<ICalculationInput> calculationInputDataResult = composedInputData.CalculationInputDataResult;
-
-                if (calculationInputDataResult == null)
+                if (composedInputData == null)
                 {
                     return -1;
                 }
 
-                ICalculationInput calculationInput = calculationInputDataResult.Data;
+                ICalculationInput calculationInput = composedInputData.CalculationInputDataResult.Data;
 
                 if (!ValidateCalculationInput(calculationInput))
                 {
