@@ -165,7 +165,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
                             .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
-                            .Select(tdo => tdo.CumulativeOverload).ToList());
+                            .Select(tdo => tdo.CumulativeOverload).ToList(), 
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems
+                            .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
                 case NaturalStoneRevetmentLocationDependentOutput naturalStoneRevetmentLocationDependentOutput:
                 {

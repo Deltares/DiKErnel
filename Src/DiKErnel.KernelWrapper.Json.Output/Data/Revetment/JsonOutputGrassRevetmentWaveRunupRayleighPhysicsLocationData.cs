@@ -29,7 +29,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                             IReadOnlyList<double> verticalDistanceWaterLevelElevation,
                                                                             IReadOnlyList<double?> waveAngleImpact,
                                                                             IReadOnlyList<double?> representativeWaveRunup2P,
-                                                                            IReadOnlyList<double?> cumulativeOverload)
+                                                                            IReadOnlyList<double?> cumulativeOverload,
+                                                                            IReadOnlyList<double?> averageNumberOfWaves)
             : base(incrementDamage)
         {
             Z = z;
@@ -37,6 +38,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             WaveAngleImpact = waveAngleImpact;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;
             CumulativeOverload = cumulativeOverload;
+            AverageNumberOfWaves = averageNumberOfWaves;
         }
 
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
@@ -53,5 +55,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.CUMULATIVE_OVERLOAD)]
         public IReadOnlyList<double?> CumulativeOverload { get; }
+        
+        [JsonProperty(JsonOutputDefinitions.AVERAGE_NUMBER_OF_WAVES)]
+        public IReadOnlyList<double?> AverageNumberOfWaves { get; }
     }
 }
