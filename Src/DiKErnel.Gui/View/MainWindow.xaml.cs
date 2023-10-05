@@ -205,19 +205,19 @@ namespace DiKErnel.Gui.View
                 }
             }
 
-            DataResult<ICalculationInput> inputComposerResult =
-                JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
+            ComposedInputData inputComposerResult = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);
+            DataResult<ICalculationInput> calculationInput = inputComposerResult.CalculationInput;
 
-            CacheMessagesWhenApplicable("het lezen van de invoer", inputComposerResult.Events);
+            CacheMessagesWhenApplicable("het lezen van de invoer", calculationInput.Events);
 
-            if (!inputComposerResult.Successful)
+            if (!calculationInput.Successful)
             {
                 AddLogMessagesForFailedCalculation();
 
                 return null;
             }
 
-            return inputComposerResult;
+            return calculationInput;
         }
 
         private bool ValidateCalculationInput(ICalculationInput calculationInput)
