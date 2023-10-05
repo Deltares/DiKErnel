@@ -39,5 +39,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.SUB_LAYER)]
         public JsonInputAsphaltWaveImpactLocationLayerData SubLayerData { get; private set; }
+        
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FATIGUE)]
+        public JsonInputAsphaltWaveImpactTopLayerFatigueData Fatigue { get; private set; }
     }
 }

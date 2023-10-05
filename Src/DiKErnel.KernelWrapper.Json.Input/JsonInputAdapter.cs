@@ -210,7 +210,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputAsphaltWaveImpactTopLayerData topLayerData =
                 calculationData?.TopLayerDefinitionData?
                     .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
-            JsonInputAsphaltWaveImpactTopLayerFatigueData fatigueData = topLayerData?.Fatigue;
+            JsonInputAsphaltWaveImpactTopLayerFatigueData fatigueData = locationData.Fatigue;
 
             return new AsphaltRevetmentWaveImpactLocationConstructionProperties(
                 locationData.X, ConvertAsphaltRevetmentTopLayerType(locationData.TopLayerType),
