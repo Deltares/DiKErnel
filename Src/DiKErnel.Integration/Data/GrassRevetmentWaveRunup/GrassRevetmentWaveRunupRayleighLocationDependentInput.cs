@@ -31,10 +31,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
     {
-        private double verticalDistanceWaterLevelElevation = double.PositiveInfinity;
-        private double waveAngleImpact = double.PositiveInfinity;
-        private double representativeWaveRunup2P = double.PositiveInfinity;
-        private double cumulativeOverload = double.PositiveInfinity;
+        private double verticalDistanceWaterLevelElevation = double.NaN;
+        private double waveAngleImpact = double.NaN;
+        private double representativeWaveRunup2P = double.NaN;
+        private double cumulativeOverload = double.NaN;
 
         public GrassRevetmentWaveRunupRayleighLocationDependentInput(double x, double initialDamage,
                                                                      double failureNumber, double outerSlope,
