@@ -121,6 +121,9 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "id": {
+            "type": "integer"
+          },
           "positie": {
             "type": "number"
           },
