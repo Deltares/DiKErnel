@@ -546,27 +546,14 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GivenJsonInputWithGrassRevetmentWaveRunupNoCalculationMethod_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             PerformInvalidJsonTest("GrassRevetmentWaveRunupNoCalculationMethod.json",
-                                   "Cannot convert calculation protocol type.");
+                                   "An unhandled error occurred while composing calculation data from the Json input. See " +
+                                   "stack trace for more information:\nCannot convert calculation protocol type.");
         }
 
         [Test]
         public void GivenNotExistingJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            // Given
-            const string filePath = "NotExisting";
-
-            // When
-            ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
-
-            // Then
-            DataResult<ICalculationInput> calculationInputDataResult = result.CalculationInputDataResult;
-
-            Assert.IsFalse(calculationInputDataResult.Successful);
-            Assert.AreEqual(1, calculationInputDataResult.Events.Count);
-            Assert.AreEqual(EventType.Error, calculationInputDataResult.Events[0].Type);
-            Assert.AreEqual("The provided input file does not exist", calculationInputDataResult.Events[0].Message);
-
-            CollectionAssert.IsEmpty(result.LocationIds);
+            PerformInvalidJsonTest("NotExisting.json", "The provided input file does not exist");
         }
 
         [Test]
@@ -623,7 +610,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.AreEqual("The provided input file does not exist", registeredEvents[0].Message);
         }
 
-        private static void PerformInvalidJsonTest(string fileName, string expectedStackTrace)
+        private static void PerformInvalidJsonTest(string fileName, string expectedMessage)
         {
             // Given
             string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
@@ -639,8 +626,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             Assert.AreEqual(1, calculationInputDataResult.Events.Count);
             Assert.AreEqual(EventType.Error, calculationInputDataResult.Events[0].Type);
-            Assert.AreEqual("An unhandled error occurred while composing calculation data from the Json input. See " +
-                            "stack trace for more information:\n" + expectedStackTrace, calculationInputDataResult.Events[0].Message);
+            Assert.AreEqual(expectedMessage, calculationInputDataResult.Events[0].Message);
 
             CollectionAssert.IsEmpty(result.LocationIds);
         }
