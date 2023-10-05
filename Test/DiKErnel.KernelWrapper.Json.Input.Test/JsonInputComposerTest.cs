@@ -18,6 +18,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
@@ -44,9 +45,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             // When
             ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
-            ICalculationInput calculationInput = result.CalculationInput.Data;
 
             // Then
+            Assert.IsNotNull(result);
+
+            ICalculationInput calculationInput = result.CalculationInput.Data;
+
             Assert.IsInstanceOf<CalculationInput>(calculationInput);
 
             IProfileData profileData = calculationInput.ProfileData;
@@ -225,6 +229,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 3.6, 45.1, grassRevetmentOvertoppingLocationDependentInputItem);
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1.8, 4.4, grassRevetmentOvertoppingLocationDependentInputItem.LocationDependentAccelerationAlphaA);
+
+            CollectionAssert.AreEqual(new[]
+            {
+                1,
+                2,
+                3,
+                5,
+                9
+            }, result.LocationIds);
         }
 
         [Test]
@@ -236,9 +249,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             // When
             ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
-            ICalculationInput calculationInput = result.CalculationInput.Data;
 
             // Then
+            Assert.IsNotNull(result);
+
+            ICalculationInput calculationInput = result.CalculationInput.Data;
+
             Assert.IsInstanceOf<CalculationInput>(calculationInput);
 
             IProfileData profileData = calculationInput.ProfileData;
@@ -516,6 +532,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 4.3, 1.45, grassRevetmentOvertoppingLocationDependentInputItem2);
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2.LocationDependentAccelerationAlphaA);
+
+            Assert.IsTrue(result.LocationIds.All(lid => !lid.HasValue));
         }
 
         [Test]

@@ -124,6 +124,7 @@
     },
     "locaties": [
         {
+            "id": 1,
             "positie": 11,
             "beginschade": 0.1,
             "rekenmethode": "natuursteen",
@@ -132,12 +133,14 @@
             "dikteToplaag": 0.3
         },
         {
+            "id": 2,
             "positie": 1,
             "beginschade": 0.04,
             "rekenmethode": "grasGolfklap",
             "typeToplaag": "grasGeslotenZode"
         },
         {
+            "id": 3,
             "positie": 64.9,
             "beginschade": 0.0006,
             "rekenmethode": "grasGolfoploop",
@@ -149,6 +152,7 @@
             "ruwheidsFactorGammaF": 4.1
         },
         {
+            "id": 5,
             "positie": 25,
             "beginschade": 1.0,
             "rekenmethode": "asfaltGolfklap",
@@ -165,6 +169,7 @@
             }
         },
         {
+            "id": 9,
             "positie": 65,
             "beginschade": 0.023,
             "rekenmethode": "grasGolfoverslag",
