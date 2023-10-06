@@ -27,14 +27,14 @@ namespace DiKErnel.Integration.Data
     internal class TimeDependentInput : ITimeDependentInput
     {
         public TimeDependentInput(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
-                                  double wavePeriodTm10, double waveAngle)
+                                  double wavePeriodTm10, double waveDirection)
         {
             BeginTime = beginTime;
             EndTime = endTime;
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
             WavePeriodTm10 = wavePeriodTm10;
-            WaveAngle = waveAngle;
+            WaveDirection = waveDirection;
         }
 
         public int BeginTime { get; }
@@ -47,7 +47,7 @@ namespace DiKErnel.Integration.Data
 
         public double WavePeriodTm10 { get; }
 
-        public double WaveAngle { get; }
+        public double WaveDirection { get; }
 
         public bool Validate()
         {
@@ -55,7 +55,7 @@ namespace DiKErnel.Integration.Data
             {
                 HydraulicLoadsValidator.WaveHeightHm0(WaveHeightHm0),
                 HydraulicLoadsValidator.WavePeriodTm10(WavePeriodTm10),
-                HydraulicLoadsValidator.WaveAngle(WaveAngle)
+                HydraulicLoadsValidator.WaveAngle(WaveDirection)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues);

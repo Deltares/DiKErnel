@@ -124,7 +124,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                      timeDependentInput.EndTime);
 
-                waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(timeDependentInput.WaveAngle,
+                waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(timeDependentInput.WaveDirection,
                                                                                     WaveAngleImpact.WaveAngleImpactNwa,
                                                                                     WaveAngleImpact.WaveAngleImpactQwa,
                                                                                     WaveAngleImpact.WaveAngleImpactRwa);

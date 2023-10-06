@@ -172,7 +172,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 hydraulicLoad = CalculateHydraulicLoad(timeDependentInput.WaveHeightHm0);
 
                 waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(
-                    timeDependentInput.WaveAngle, WaveAngleImpact.Betamax);
+                    timeDependentInput.WaveDirection, WaveAngleImpact.Betamax);
 
                 referenceDegradation = NaturalStoneRevetmentFunctions.ReferenceDegradation(
                     resistance, hydraulicLoad, waveAngleImpact, initialDamage);

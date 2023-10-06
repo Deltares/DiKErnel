@@ -25,7 +25,7 @@ namespace DiKErnel.Integration.TestUtil
     {
         public static void AssertTimeDependentInputItem(int expectedBeginTime, int expectedEndTime,
                                                         double expectedWaterLevel, double expectedWaveHeightHm0,
-                                                        double expectedWavePeriodTm10, double expectedWaveAngle,
+                                                        double expectedWavePeriodTm10, double expectedWaveDirection,
                                                         ITimeDependentInput actualTimeDependentInput)
         {
             Assert.AreEqual(expectedBeginTime, actualTimeDependentInput.BeginTime);
@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.TestUtil
             Assert.AreEqual(expectedWaterLevel, actualTimeDependentInput.WaterLevel);
             Assert.AreEqual(expectedWaveHeightHm0, actualTimeDependentInput.WaveHeightHm0);
             Assert.AreEqual(expectedWavePeriodTm10, actualTimeDependentInput.WavePeriodTm10);
-            Assert.AreEqual(expectedWaveAngle, actualTimeDependentInput.WaveAngle);
+            Assert.AreEqual(expectedWaveDirection, actualTimeDependentInput.WaveDirection);
         }
     }
 }

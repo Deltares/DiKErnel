@@ -49,9 +49,9 @@ namespace DiKErnel.Core.Data
         public double WavePeriodTm10 { get; }
 
         /// <summary>
-        /// Gets the wave angle.
+        /// Gets the wave direction.
         /// </summary>
-        public double WaveAngle { get; }
+        public double WaveDirection { get; }
 
         /// <summary>
         /// Performs validation on the input.
