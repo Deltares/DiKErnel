@@ -166,6 +166,10 @@
             "onderlaag": {
                 "dikte": 0.20,
                 "stijfheidsmodulus": 15000
+            },
+            "vermoeiingAsfalt": {
+                "alfa": 0.723,
+                "beta": 7.2
             }
         },
         {
@@ -291,11 +295,7 @@
             "toplagen": [
                 {
                     "typeToplaag": "waterbouwAsfaltBeton",
-                    "stijfheidsverhoudingNu": 0.58,
-                    "vermoeiingAsfalt": {
-                        "alfa": 0.723,
-                        "beta": 7.2
-                    }
+                    "stijfheidsverhoudingNu": 0.58
                 }
             ],
             "soortelijkeDichtheidWater": 0.25,
