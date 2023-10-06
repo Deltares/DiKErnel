@@ -24,7 +24,7 @@
         "waterstanden",
         "golfhoogtenHm0",
         "golfperiodenTm10",
-        "golfhoeken"
+        "golfrichtingen"
       ],
       "additionalProperties": false,
       "properties": {
@@ -49,7 +49,7 @@
             "type": "number"
           }
         },
-        "golfhoeken": {
+        "golfrichtingen": {
           "type": "array",
           "minItems": 1,
           "items": {
@@ -63,6 +63,7 @@
       "required": [
         "posities",
         "hoogten",
+        "dijkOrientatie",
         "teenBuitenzijde",
         "kruinBuitenzijde"
       ],
@@ -88,6 +89,9 @@
           "items": {
             "type": "number"
           }
+        },
+        "dijkOrientatie": {
+          "type": "number"
         },
         "teenBuitenzijde": {
           "type": "number"
