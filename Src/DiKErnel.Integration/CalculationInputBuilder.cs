@@ -97,13 +97,13 @@ namespace DiKErnel.Integration
         /// <param name="waterLevel">The water level.</param>
         /// <param name="waveHeightHm0">The wave height.</param>
         /// <param name="wavePeriodTm10">The wave period.</param>
-        /// <param name="waveAngle">The wave angle.</param>
+        /// <param name="waveDirection">The wave direction.</param>
         public void AddTimeStep(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
-                                double wavePeriodTm10, double waveAngle)
+                                double wavePeriodTm10, double waveDirection)
         {
             timeDependentInputFactoryDataItems.Add(new TimeDependentInputFactoryData(beginTime, endTime, waterLevel,
                                                                                      waveHeightHm0, wavePeriodTm10,
-                                                                                     waveAngle));
+                                                                                     waveDirection));
         }
 
         /// <summary>

@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Factories
                                                                                        timeStepDataItem.WaterLevel,
                                                                                        timeStepDataItem.WaveHeightHm0,
                                                                                        timeStepDataItem.WavePeriodTm10,
-                                                                                       timeStepDataItem.WaveAngle))
+                                                                                       timeStepDataItem.WaveDirection))
                                     .ToList();
         }
     }
