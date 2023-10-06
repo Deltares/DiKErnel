@@ -24,6 +24,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     internal class JsonInputDikeProfileData
     {
+        [JsonProperty(JsonInputDefinitions.DIKE_ORIENTATION)]
+        public double DikeOrientation { get; private set; }
+        
         [JsonProperty(JsonInputDefinitions.DIKE_PROFILE_POINTS_X)]
         public IReadOnlyList<double> XLocations { get; private set; }
 

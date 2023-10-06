@@ -30,6 +30,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
         public const string WAVE_ANGLES = "golfhoeken";
 
         public const string DIKE_PROFILE = "dijkprofiel";
+        public const string DIKE_ORIENTATION = "dijkOrientatie";
         public const string DIKE_PROFILE_POINTS_X = "posities";
         public const string DIKE_PROFILE_POINTS_Z = "hoogten";
         public const string DIKE_PROFILE_ROUGHNESS_COEFFICIENTS = "ruwheidscoefficienten";
