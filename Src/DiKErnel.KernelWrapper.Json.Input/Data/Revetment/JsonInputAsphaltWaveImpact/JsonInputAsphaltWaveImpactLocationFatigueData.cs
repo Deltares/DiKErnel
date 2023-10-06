@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    internal class JsonInputAsphaltWaveImpactTopLayerFatigueData
+    internal class JsonInputAsphaltWaveImpactLocationFatigueData
     {
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ALPHA)]
         public double? FatigueAlpha { get; private set; }
