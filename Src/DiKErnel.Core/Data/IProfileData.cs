@@ -26,6 +26,11 @@ namespace DiKErnel.Core.Data
     public interface IProfileData
     {
         /// <summary>
+        /// Gets the dike orientation to use in the calculation.
+        /// </summary>
+        double DikeOrientation { get; }
+        
+        /// <summary>
         /// Gets the profile segments to use in the calculation.
         /// </summary>
         IReadOnlyList<ProfileSegment> ProfileSegments { get; }

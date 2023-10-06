@@ -31,15 +31,19 @@ namespace DiKErnel.Integration.Data
         private readonly List<ProfilePoint> profilePoints = new List<ProfilePoint>();
 
         public ProfileData(IReadOnlyList<ProfileSegment> profileSegments,
-                           IReadOnlyList<CharacteristicPoint> characteristicPoints)
+                           IReadOnlyList<CharacteristicPoint> characteristicPoints, double dikeOrientation)
         {
             ProfileSegments = profileSegments;
             CharacteristicPoints = characteristicPoints;
 
             profilePoints.Add(ProfileSegments[0].StartPoint);
             profilePoints.AddRange(ProfileSegments.Select(profileSegment => profileSegment.EndPoint));
+
+            DikeOrientation = dikeOrientation;
         }
 
+        public double DikeOrientation { get; }
+        
         public IReadOnlyList<ProfileSegment> ProfileSegments { get; }
 
         public IReadOnlyList<CharacteristicPoint> CharacteristicPoints { get; }
