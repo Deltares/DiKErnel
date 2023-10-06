@@ -117,14 +117,14 @@ namespace DiKErnel.KernelWrapper.Json.Input
             IReadOnlyList<double> waterLevels = hydraulicData.WaterLevels;
             IReadOnlyList<double> waveHeightsHm0 = hydraulicData.WaveHeightsHm0;
             IReadOnlyList<double> wavePeriodsTm10 = hydraulicData.WavePeriodsTm10;
-            IReadOnlyList<double> waveAngles = hydraulicData.WaveAngles;
+            IReadOnlyList<double> waveDirections = hydraulicData.WaveDirections;
 
             IReadOnlyList<int> times = jsonInputData.Times;
 
             for (var i = 0; i < times.Count - 1; i++)
             {
                 builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeightsHm0[i], wavePeriodsTm10[i],
-                                    waveAngles[i]);
+                                    waveDirections[i]);
             }
         }
 

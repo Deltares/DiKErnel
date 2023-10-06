@@ -27,7 +27,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
         public const string WATER_LEVELS = "waterstanden";
         public const string WAVE_HEIGHTS_HM0 = "golfhoogtenHm0";
         public const string WAVE_PERIODS_TM10 = "golfperiodenTm10";
-        public const string WAVE_ANGLES = "golfhoeken";
+        public const string WAVE_DIRECTIONS = "golfrichtingen";
 
         public const string DIKE_PROFILE = "dijkprofiel";
         public const string DIKE_ORIENTATION = "dijkOrientatie";

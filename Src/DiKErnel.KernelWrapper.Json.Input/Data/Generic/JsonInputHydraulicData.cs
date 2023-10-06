@@ -33,7 +33,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         [JsonProperty(JsonInputDefinitions.WAVE_PERIODS_TM10)]
         public IReadOnlyList<double> WavePeriodsTm10 { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.WAVE_ANGLES)]
-        public IReadOnlyList<double> WaveAngles { get; private set; }
+        [JsonProperty(JsonInputDefinitions.WAVE_DIRECTIONS)]
+        public IReadOnlyList<double> WaveDirections { get; private set; }
     }
 }
