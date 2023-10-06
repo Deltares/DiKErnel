@@ -1,0 +1,13 @@
+default_excludes: true
+component_depth: 1
+exclude:
+- ".*/*[.]TestUtil/.*"
+languages:
+- name: "Csharp"
+dependencychecker:
+  enabled: true
+  blacklist:
+  - "NONE"
+  exclude:
+  - ".*/*[.]Test/.*"
+  - ".*/*[.]TestUtil/.*"
