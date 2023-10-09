@@ -136,5 +136,15 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
             (5.6, 0.005),
             (6, 0.001)
         };
+        
+        /// <summary>
+        /// Gets the default value of the fatigue alpha coefficient [-].
+        /// </summary>
+        public static double FatigueAlpha => 0.42;
+
+        /// <summary>
+        /// Gets the default value of the fatigue beta coefficient [-].
+        /// </summary>
+        public static double FatigueBeta => 4.76;
     }
 }

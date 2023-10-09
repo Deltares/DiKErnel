@@ -147,5 +147,19 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
                 (6, 0.001)
             }, AsphaltRevetmentWaveImpactDefaults.ImpactFactors);
         }
+
+        [Test]
+        public void FatigueAlpha_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.AreEqual(0.42, AsphaltRevetmentWaveImpactDefaults.FatigueAlpha);
+        }
+
+        [Test]
+        public void FatigueBeta_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.AreEqual(4.76, AsphaltRevetmentWaveImpactDefaults.FatigueBeta);
+        }
     }
 }
