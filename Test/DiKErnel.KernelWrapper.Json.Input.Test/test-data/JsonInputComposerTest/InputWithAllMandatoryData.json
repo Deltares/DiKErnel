@@ -13,11 +13,12 @@
         "golfperiodenTm10": [
             2
         ],
-        "golfhoeken": [
-            -10
+        "golfrichtingen": [
+            350
         ]
     },
     "dijkprofiel": {
+        "dijkOrientatie": 14.45,
         "posities": [
             30,
             65,

@@ -29,15 +29,16 @@
             7,
             4
         ],
-        "golfhoeken": [
-            -10,
-            -5,
+        "golfrichtingen": [
             0,
             7,
-            8
+            8,
+            350,
+            355
         ]
     },
     "dijkprofiel": {
+        "dijkOrientatie": 14.45,
         "posities": [
             -30,
             -20,

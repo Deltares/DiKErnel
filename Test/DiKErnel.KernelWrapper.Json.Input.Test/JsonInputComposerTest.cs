@@ -57,6 +57,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             IProfileData profileData = calculationInput.ProfileData;
 
+            Assert.AreEqual(14.45, calculationInput.ProfileData.DikeOrientation);
             IReadOnlyList<ProfileSegment> profileSegments = profileData.ProfileSegments;
             Assert.AreEqual(23, profileSegments.Count);
             ProfileDataAssertHelper.AssertProfileSegment(-30, -11.85, -20, -8.95, 0, profileSegments[0]);
@@ -101,15 +102,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
             Assert.AreEqual(5, timeDependentInputItems.Count);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems[0]);
+                0, 100, 0.1, 0.5, 2, 0, timeDependentInputItems[0]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                100, 500, 0.5, 0.8, 6, -5, timeDependentInputItems[1]);
+                100, 500, 0.5, 0.8, 6, 7, timeDependentInputItems[1]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                500, 800, 1.15, 1.2, 6, 0, timeDependentInputItems[2]);
+                500, 800, 1.15, 1.2, 6, 8, timeDependentInputItems[2]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                800, 1200, 1.77, 1.5, 7, 7, timeDependentInputItems[3]);
+                800, 1200, 1.77, 1.5, 7, 350, timeDependentInputItems[3]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                1200, 2000, 2, 0.5, 4, 8, timeDependentInputItems[4]);
+                1200, 2000, 2, 0.5, 4, 355, timeDependentInputItems[4]);
 
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 calculationInput.LocationDependentInputItems;
@@ -263,6 +264,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             IProfileData profileData = calculationInput.ProfileData;
 
+            Assert.AreEqual(14.45, profileData.DikeOrientation);
             IReadOnlyList<ProfileSegment> profileSegments = profileData.ProfileSegments;
             Assert.AreEqual(3, profileSegments.Count);
             ProfileDataAssertHelper.AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegments[0]);
@@ -283,7 +285,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
             Assert.AreEqual(1, timeDependentInputItems.Count);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                0, 100, 0.1, 0.5, 2, -10, timeDependentInputItems[0]);
+                0, 100, 0.1, 0.5, 2, 350, timeDependentInputItems[0]);
 
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 calculationInput.LocationDependentInputItems;

@@ -54,7 +54,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static void AdaptDikeProfileData(JsonInputData jsonInputData, CalculationInputBuilder builder)
         {
             JsonInputDikeProfileData dikeProfileData = jsonInputData.DikeProfileData;
-
+            
+            builder.SetDikeOrientation(jsonInputData.DikeProfileData.DikeOrientation);
+            
             IReadOnlyList<double> xLocations = dikeProfileData.XLocations;
             IReadOnlyList<double> zLocations = dikeProfileData.ZLocations;
             IReadOnlyList<double> roughnessCoefficients = dikeProfileData.RoughnessCoefficients;
