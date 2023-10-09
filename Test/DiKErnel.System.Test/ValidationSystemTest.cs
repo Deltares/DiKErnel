@@ -67,6 +67,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var builder = new CalculationInputBuilder();
+            builder.SetDikeOrientation(-10);
             builder.AddDikeProfileSegment(10, 5, 20, 10, 1.5);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
@@ -86,9 +87,11 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(1, validationResult.Events.Count);
+            Assert.AreEqual(2, validationResult.Events.Count);
             Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("Roughness coefficient must be in range [0.5, 1].", validationResult.Events[0].Message);
+            Assert.AreEqual("Dike orientation must be in range [0, 360].", validationResult.Events[0].Message);
+            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
+            Assert.AreEqual("Roughness coefficient must be in range [0.5, 1].", validationResult.Events[1].Message);
         }
 
         [Test]

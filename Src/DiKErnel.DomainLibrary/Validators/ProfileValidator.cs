@@ -26,6 +26,22 @@ namespace DiKErnel.DomainLibrary.Validators
     public static class ProfileValidator
     {
         /// <summary>
+        /// Validates the dike orientation.
+        /// </summary>
+        /// <param name="dikeOrientation">The dike orientation [deg].</param>
+        /// <returns>A validation issue when the dike orientation is not valid;
+        /// <c>null</c> otherwise.</returns>
+        public static ValidationIssue DikeOrientation(double dikeOrientation)
+        {
+            if (dikeOrientation < 0 || dikeOrientation > 360)
+            {
+                return new ValidationIssue(ValidationIssueType.Error, "Dike orientation must be in range [0, 360].");
+            }
+
+            return null;
+        }
+        
+        /// <summary>
         /// Validates the roughness coefficient.
         /// </summary>
         /// <param name="roughnessCoefficient">The roughness coefficient [-].</param>

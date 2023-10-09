@@ -43,17 +43,20 @@ namespace DiKErnel.Integration.Data
         }
 
         public double DikeOrientation { get; }
-        
+
         public IReadOnlyList<ProfileSegment> ProfileSegments { get; }
 
         public IReadOnlyList<CharacteristicPoint> CharacteristicPoints { get; }
 
         public bool Validate()
         {
-            List<ValidationIssue> validationIssues =
-                ProfileSegments.Select(profileSegment => ProfileValidator.RoughnessCoefficient(
-                                           profileSegment.RoughnessCoefficient))
-                               .ToList();
+            var validationIssues = new List<ValidationIssue>
+            {
+                ProfileValidator.DikeOrientation(DikeOrientation)
+            };
+            validationIssues.AddRange(ProfileSegments.Select(profileSegment => ProfileValidator.RoughnessCoefficient(
+                                                                 profileSegment.RoughnessCoefficient))
+                                                     .ToList());
 
             return ValidationHelper.RegisterValidationIssues(validationIssues);
         }

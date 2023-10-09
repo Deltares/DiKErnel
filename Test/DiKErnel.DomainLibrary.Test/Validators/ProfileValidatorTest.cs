@@ -28,6 +28,26 @@ namespace DiKErnel.DomainLibrary.Test.Validators
     public class ProfileValidatorTest
     {
         [Test]
+        public void DikeOrientation_VariousScenarios_ExpectedValues()
+        {
+            Func<double, ValidationIssue> validationFunc = ProfileValidator.DikeOrientation;
+
+            const string errorMessage = "Dike orientation must be in range [0, 360].";
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 360 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 360);
+            ValidatorAssertHelper.AssertValue(validationFunc, 360 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
+        }
+        
+        [Test]
         public void RoughnessCoefficient_VariousScenarios_ExpectedValues()
         {
             Func<double, ValidationIssue> validationFunc = ProfileValidator.RoughnessCoefficient;
