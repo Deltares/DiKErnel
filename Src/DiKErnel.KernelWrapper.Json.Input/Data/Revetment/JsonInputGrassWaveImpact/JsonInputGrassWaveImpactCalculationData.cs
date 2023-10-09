@@ -29,10 +29,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
         public IReadOnlyList<JsonInputGrassWaveImpactTopLayerData> TopLayerDefinitionData { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMAX)]
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.Temax)]
         public double? Temax { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveImpactDefinitions.TEMIN)]
+        [JsonProperty(JsonInputGrassWaveImpactDefinitions.Temin)]
         public double? Temin { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]

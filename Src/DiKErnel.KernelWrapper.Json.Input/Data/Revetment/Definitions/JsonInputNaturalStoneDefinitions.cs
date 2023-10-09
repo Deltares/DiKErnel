@@ -20,24 +20,24 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputNaturalStoneDefinitions
     {
-        public const string TOP_LAYER_TYPE_NORDIC_STONE = "noorseSteen";
+        public const string TopLayerTypeNordicStone = "noorseSteen";
 
-        public const string RELATIVE_DENSITY = "relatieveDichtheid";
-        public const string THICKNESS_TOP_LAYER = "dikteToplaag";
+        public const string RelativeDensity = "relatieveDichtheid";
+        public const string ThicknessTopLayer = "dikteToplaag";
 
-        public const string STABILITY = "stabiliteit";
-        public const string STABILITY_PLUNGING = "plunging";
-        public const string STABILITY_SURGING = "surging";
+        public const string Stability = "stabiliteit";
+        public const string StabilityPlunging = "plunging";
+        public const string StabilitySurging = "surging";
 
-        public const string N_COEFFICIENT = "n";
-        public const string XIB_COEFFICIENT = "xib";
+        public const string N = "n";
+        public const string Xib = "xib";
 
-        public const string SLOPE = "hellingvlak";
-        public const string SLOPE_UPPER_LEVEL = "bovenzijde";
-        public const string SLOPE_LOWER_LEVEL = "onderzijde";
+        public const string Slope = "hellingvlak";
+        public const string SlopeUpperLevel = "bovenzijde";
+        public const string SlopeLowerLevel = "onderzijde";
 
-        public const string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogte";
+        public const string DistanceMaximumWaveElevation = "afstandMaximaleStijghoogte";
 
-        public const string NORMATIVE_WIDTH_OF_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
+        public const string NormativeWidthOfWaveImpact = "maatgevendeBreedteGolfklap";
     }
 }

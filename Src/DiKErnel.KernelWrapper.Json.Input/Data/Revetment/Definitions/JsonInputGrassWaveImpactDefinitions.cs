@@ -20,13 +20,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputGrassWaveImpactDefinitions
     {
-        public const string TIME_LINE = "standtijdlijn";
+        public const string TimeLine = "standtijdlijn";
 
-        public const string TEMAX = "temax";
-        public const string TEMIN = "temin";
+        public const string Temax = "temax";
+        public const string Temin = "temin";
 
-        public const string N_COEFFICIENT = "n";
-        public const string Q_COEFFICIENT = "q";
-        public const string R_COEFFICIENT = "r";
+        public const string N = "n";
+        public const string Q = "q";
+        public const string R = "r";
     }
 }

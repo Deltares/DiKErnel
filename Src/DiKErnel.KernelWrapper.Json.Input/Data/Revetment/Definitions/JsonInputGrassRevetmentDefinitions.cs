@@ -20,15 +20,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputGrassRevetmentDefinitions
     {
-        public const string TOP_LAYER_TYPE_CLOSED_SOD = "grasGeslotenZode";
-        public const string TOP_LAYER_TYPE_OPEN_SOD = "grasOpenZode";
+        public const string TopLayerTypeClosedSod = "grasGeslotenZode";
+        public const string TopLayerTypeOpenSod = "grasOpenZode";
 
-        public const string INCREASED_LOAD_TRANSITION_ALPHA_M = "verhogingBelastingOvergangAlfaM";
-        public const string REDUCED_STRENGTH_TRANSITION_ALPHA_S = "verlagingSterkteOvergangAlfaS";
+        public const string IncreasedLoadTransitionAlphaM = "verhogingBelastingOvergangAlfaM";
+        public const string ReducedStrengthTransitionAlphaS = "verlagingSterkteOvergangAlfaS";
 
-        public const string CRITICAL_CUMULATIVE_OVERLOAD = "kritiekeCumulatieveOverbelasting";
-        public const string CRITICAL_FRONT_VELOCITY = "kritiekeFrontsnelheid";
+        public const string CriticalCumulativeOverload = "kritiekeCumulatieveOverbelasting";
+        public const string CriticalFrontVelocity = "kritiekeFrontsnelheid";
 
-        public const string FIXED_NUMBER_OF_WAVES = "aantalGolvenVast";
+        public const string FixedNumberOfWaves = "aantalGolvenVast";
     }
 }

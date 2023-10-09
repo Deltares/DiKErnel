@@ -23,7 +23,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 {
     internal enum JsonInputGrassWaveRunupCalculationProtocolType
     {
-        [EnumMember(Value = JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE)]
+        [EnumMember(Value = JsonInputGrassWaveRunupDefinitions.CalculationProtocolTypeRayleighDiscrete)]
         RayleighDiscrete
     }
 }

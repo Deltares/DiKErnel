@@ -28,19 +28,19 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.OUTER_SLOPE)]
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.OuterSlope)]
         public double OuterSlope { get; private set; }
 
-        [JsonProperty(JsonInputGrassRevetmentDefinitions.INCREASED_LOAD_TRANSITION_ALPHA_M)]
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.IncreasedLoadTransitionAlphaM)]
         public double? IncreasedLoadTransitionAlphaM { get; private set; }
 
-        [JsonProperty(JsonInputGrassRevetmentDefinitions.REDUCED_STRENGTH_TRANSITION_ALPHA_S)]
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.ReducedStrengthTransitionAlphaS)]
         public double? ReducedStrengthTransitionAlphaS { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B)]
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.RepresentativeWaveRunup2PGammaB)]
         public double? RepresentativeWaveRunup2PGammaB { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F)]
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.RepresentativeWaveRunup2PGammaF)]
         public double? RepresentativeWaveRunup2PGammaF { get; private set; }
     }
 }

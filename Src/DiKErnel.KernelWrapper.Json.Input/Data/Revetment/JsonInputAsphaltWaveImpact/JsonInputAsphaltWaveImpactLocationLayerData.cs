@@ -23,10 +23,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
 {
     internal class JsonInputAsphaltWaveImpactLocationLayerData
     {
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.THICKNESS)]
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.Thickness)]
         public double ThicknessLayer { get; private set; }
 
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ELASTIC_MODULUS)]
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ElasticModulus)]
         public double ElasticModulusLayer { get; private set; }
     }
 }

@@ -20,27 +20,27 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputAsphaltWaveImpactDefinitions
     {
-        public const string TOP_LAYER_TYPE_HYDRAULIC_ASPHALT_CONCRETE = "waterbouwAsfaltBeton";
+        public const string TopLayerTypeHydraulicAsphaltConcrete = "waterbouwAsfaltBeton";
 
-        public const string FAILURE_TENSION = "breuksterkteAsfalt";
-        public const string DENSITY_OF_WATER = "soortelijkeDichtheidWater";
-        public const string SOIL_ELASTICITY = "veerconstanteOndergrond";
+        public const string FailureTension = "breuksterkteAsfalt";
+        public const string DensityOfWater = "soortelijkeDichtheidWater";
+        public const string SoilElasticity = "veerconstanteOndergrond";
 
-        public const string UPPER_LAYER = "toplaag";
-        public const string SUB_LAYER = "onderlaag";
+        public const string UpperLayer = "toplaag";
+        public const string SubLayer = "onderlaag";
 
-        public const string THICKNESS = "dikte";
-        public const string ELASTIC_MODULUS = "stijfheidsmodulus";
+        public const string Thickness = "dikte";
+        public const string ElasticModulus = "stijfheidsmodulus";
 
-        public const string FATIGUE = "vermoeiingAsfalt";
-        public const string ALPHA = "alfa";
-        public const string BETA = "beta";
+        public const string Fatigue = "vermoeiingAsfalt";
+        public const string Alpha = "alfa";
+        public const string Beta = "beta";
 
-        public const string IMPACT_NUMBER_C = "stootgetalC";
-        public const string STIFFNESS_RELATION_NU = "stijfheidsverhoudingNu";
+        public const string ImpactNumberC = "stootgetalC";
+        public const string StiffnessRelationNu = "stijfheidsverhoudingNu";
 
-        public const string WIDTH_FACTORS = "breedteFactoren";
-        public const string DEPTH_FACTORS = "diepteFactoren";
-        public const string IMPACT_FACTORS = "stootFactoren";
+        public const string WidthFactors = "breedteFactoren";
+        public const string DepthFactors = "diepteFactoren";
+        public const string ImpactFactors = "stootFactoren";
     }
 }

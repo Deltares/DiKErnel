@@ -28,10 +28,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
         public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.RELATIVE_DENSITY)]
+        [JsonProperty(JsonInputNaturalStoneDefinitions.RelativeDensity)]
         public double RelativeDensity { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.THICKNESS_TOP_LAYER)]
+        [JsonProperty(JsonInputNaturalStoneDefinitions.ThicknessTopLayer)]
         public double ThicknessTopLayer { get; private set; }
     }
 }

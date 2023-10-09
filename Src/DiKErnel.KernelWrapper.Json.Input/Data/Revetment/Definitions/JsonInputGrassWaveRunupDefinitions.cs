@@ -20,18 +20,18 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputGrassWaveRunupDefinitions
     {
-        public const string OUTER_SLOPE = "tanA";
+        public const string OuterSlope = "tanA";
 
-        public const string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_B = "bermFactorGammaB";
-        public const string REPRESENTATIVE_WAVE_RUNUP_2P_GAMMA_F = "ruwheidsFactorGammaF";
+        public const string RepresentativeWaveRunup2PGammaB = "bermFactorGammaB";
+        public const string RepresentativeWaveRunup2PGammaF = "ruwheidsFactorGammaF";
 
-        public const string REPRESENTATIVE_WAVE_RUNUP_2P = "representatieveGolfoploop2p";
+        public const string RepresentativeWaveRunup2P = "representatieveGolfoploop2p";
 
-        public const string A_BETA = "aBeta";
+        public const string ABeta = "aBeta";
 
-        public const string CALCULATION_PROTOCOL = "rekenprotocol";
-        public const string CALCULATION_PROTOCOL_TYPE = "typeRekenprotocol";
-        public const string CALCULATION_PROTOCOL_TYPE_RAYLEIGH_DISCRETE = "rayleighDiscreet";
-        public const string FRONT_VELOCITY = "frontsnelheid";
+        public const string CalculationProtocol = "rekenprotocol";
+        public const string CalculationProtocolType = "typeRekenprotocol";
+        public const string CalculationProtocolTypeRayleighDiscrete = "rayleighDiscreet";
+        public const string FrontVelocity = "frontsnelheid";
     }
 }

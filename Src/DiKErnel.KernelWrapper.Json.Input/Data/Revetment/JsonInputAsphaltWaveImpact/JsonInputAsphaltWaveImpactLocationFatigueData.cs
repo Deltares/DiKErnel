@@ -23,10 +23,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
 {
     internal class JsonInputAsphaltWaveImpactLocationFatigueData
     {
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ALPHA)]
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.Alpha)]
         public double? FatigueAlpha { get; private set; }
 
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.BETA)]
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.Beta)]
         public double? FatigueBeta { get; private set; }
     }
 }

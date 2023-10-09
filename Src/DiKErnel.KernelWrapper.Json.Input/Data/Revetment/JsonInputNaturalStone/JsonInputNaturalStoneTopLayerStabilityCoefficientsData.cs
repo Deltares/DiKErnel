@@ -33,7 +33,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
         public double? C { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.N_COEFFICIENT)]
+        [JsonProperty(JsonInputNaturalStoneDefinitions.N)]
         public double? N { get; private set; }
     }
 }

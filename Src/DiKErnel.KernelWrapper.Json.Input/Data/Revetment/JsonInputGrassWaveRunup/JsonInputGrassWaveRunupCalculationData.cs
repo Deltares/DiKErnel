@@ -26,7 +26,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 {
     internal class JsonInputGrassWaveRunupCalculationData : JsonInputCalculationData
     {
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL)]
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.CalculationProtocol)]
         public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
@@ -35,7 +35,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
         [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
         public double? FactorCtm { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.RepresentativeWaveRunup2P)]
         public JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData
             JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData { get; private set; }
 

@@ -23,13 +23,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 {
     internal class JsonInputGrassWaveRunupCalculationProtocolData
     {
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.CALCULATION_PROTOCOL_TYPE)]
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.CalculationProtocolType)]
         public JsonInputGrassWaveRunupCalculationProtocolType CalculationProtocolType { get; private set; }
 
-        [JsonProperty(JsonInputGrassRevetmentDefinitions.FIXED_NUMBER_OF_WAVES)]
+        [JsonProperty(JsonInputGrassRevetmentDefinitions.FixedNumberOfWaves)]
         public int? FixedNumberOfWaves { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.FRONT_VELOCITY)]
+        [JsonProperty(JsonInputGrassWaveRunupDefinitions.FrontVelocity)]
         public double? FrontVelocity { get; private set; }
     }
 }

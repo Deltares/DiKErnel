@@ -20,12 +20,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputGrassOvertoppingDefinitions
     {
-        public const string ACCELERATION_ALPHA_A = "versnellingAlfaA";
-        public const string ACCELERATION_ALPHA_A_CREST = "kruin";
-        public const string ACCELERATION_ALPHA_A_INNER_SLOPE = "binnentalud";
+        public const string AccelerationAlphaA = "versnellingAlfaA";
+        public const string AccelerationAlphaACrest = "kruin";
+        public const string AccelerationAlphaAInnerSlope = "binnentalud";
 
-        public const string FRONT_VELOCITY_CWO = "frontsnelheidCwo";
+        public const string FrontVelocityCwo = "frontsnelheidCwo";
 
-        public const string DIKE_HEIGHT = "dijkHoogte";
+        public const string DikeHeight = "dijkHoogte";
     }
 }
