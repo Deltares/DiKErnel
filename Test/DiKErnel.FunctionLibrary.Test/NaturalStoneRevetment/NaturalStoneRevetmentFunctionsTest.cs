@@ -40,7 +40,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                                                                                     waveAngleImpact);
 
             // Assert
-            AssertHelper.AreEqual(0.08797769696969, incrementDamage);
+            AssertHelper.AreEqual(2.77795937782014e-11, incrementDamage);
         }
 
         [Test]

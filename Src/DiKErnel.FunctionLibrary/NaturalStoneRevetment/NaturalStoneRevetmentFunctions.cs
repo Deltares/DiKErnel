@@ -37,7 +37,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
         public static double IncrementDamage(double hydraulicLoad, double resistance, double incrementDegradation,
                                              double waveAngleImpact)
         {
-            return hydraulicLoad / resistance * incrementDegradation * waveAngleImpact;
+            return Math.Pow(hydraulicLoad / resistance * incrementDegradation * waveAngleImpact, 10);
         }
 
         /// <summary>
