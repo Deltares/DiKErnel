@@ -53,6 +53,17 @@ namespace DiKErnel.Integration
 
         private bool grassOvertoppingLocationAdded;
 
+        private double dikeOrientation = double.NaN;
+
+        /// <summary>
+        /// Sets the dike orientation.
+        /// </summary>
+        /// <param name="dikeOrientation">The dike orientation.</param>
+        public void SetDikeOrientation(double dikeOrientation)
+        {
+            this.dikeOrientation = dikeOrientation;
+        }
+
         /// <summary>
         /// Adds a dike profile point.
         /// </summary>
@@ -173,7 +184,8 @@ namespace DiKErnel.Integration
                 return new DataResult<ICalculationInput>(EventRegistry.Flush());
             }
 
-            ProfileData profileData = ProfileDataFactory.Create(profileDataFactorySegments, profileDataFactoryPoints);
+            ProfileData profileData = ProfileDataFactory.Create(profileDataFactorySegments, profileDataFactoryPoints,
+                                                                dikeOrientation);
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 LocationDependentInputFactory.Create(locationConstructionPropertiesItems);
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems =

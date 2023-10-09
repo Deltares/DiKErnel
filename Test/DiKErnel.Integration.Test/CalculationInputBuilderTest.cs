@@ -98,6 +98,35 @@ namespace DiKErnel.Integration.Test
                 "outer crest and inner toe.");
         }
 
+        #region Dike Orientation
+
+        [Test]
+        public void GivenBuilderWithDikeOrientationSet_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            double dikeOrientation = Random.NextDouble();
+
+            var builder = new CalculationInputBuilder();
+            builder.AddDikeProfileSegment(0, 10, 10, 20);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
+            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+            builder.SetDikeOrientation(dikeOrientation);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            Assert.AreEqual(dikeOrientation, result.Data.ProfileData.DikeOrientation);
+        }
+
+        #endregion
+
         #region Profile segments
 
         [Test]
