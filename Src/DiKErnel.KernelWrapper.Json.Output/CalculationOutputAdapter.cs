@@ -34,11 +34,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
     internal static class CalculationOutputAdapter
     {
         public static JsonOutputData AdaptCalculationOutput(
-            CalculationOutput calculationOutput, JsonOutputType outputType,
-            IReadOnlyDictionary<string, object> metaDataItems)
+            CalculationOutput calculationOutput, JsonOutputType outputType)
         {
-            return new JsonOutputData(
-                CreateLocations(calculationOutput.LocationDependentOutputItems, outputType), metaDataItems);
+            return new JsonOutputData(CreateLocations(calculationOutput.LocationDependentOutputItems, outputType));
         }
 
         private static JsonOutputLocationsObject CreateLocations(

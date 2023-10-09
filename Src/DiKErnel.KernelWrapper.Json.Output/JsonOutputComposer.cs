@@ -53,9 +53,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
             try
             {
                 JsonOutputData jsonOutput = CalculationOutputAdapter.AdaptCalculationOutput(
-                    calculationOutput, outputType, metaDataItems);
+                    calculationOutput, outputType);
 
-                SetLocationIdsToOutput(jsonOutput, locationIds);
+                SetOptionalOutput(jsonOutput, locationIds, metaDataItems);
 
                 using StreamWriter file = File.CreateText(filePath);
                 using (var jsonTextWriter = new JsonTextWriter(file)
@@ -79,19 +79,20 @@ namespace DiKErnel.KernelWrapper.Json.Output
             }
         }
 
-        private static void SetLocationIdsToOutput(JsonOutputData jsonOutput, IReadOnlyList<int?> locationIds)
+        private static void SetOptionalOutput(JsonOutputData jsonOutput, IReadOnlyList<int?> locationIds,
+                                              IReadOnlyDictionary<string, object> metaDataItems)
         {
-            if (locationIds == null)
+            if (locationIds != null)
             {
-                return;
+                IReadOnlyList<JsonOutputLocationData> locationDataItems = jsonOutput.LocationDataItems.LocationDataItems;
+
+                for (var i = 0; i < locationDataItems.Count; i++)
+                {
+                    locationDataItems[i].Id = locationIds.ElementAtOrDefault(i);
+                }
             }
 
-            IReadOnlyList<JsonOutputLocationData> locationDataItems = jsonOutput.LocationDataItems.LocationDataItems;
-
-            for (var i = 0; i < locationDataItems.Count; i++)
-            {
-                locationDataItems[i].Id = locationIds.ElementAtOrDefault(i);
-            }
+            jsonOutput.MetaDataItems = metaDataItems;
         }
     }
 }

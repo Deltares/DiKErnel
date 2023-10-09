@@ -24,14 +24,13 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputData
     {
-        public JsonOutputData(JsonOutputLocationsObject locationDataItems, IReadOnlyDictionary<string, object> metaDataItems)
+        public JsonOutputData(JsonOutputLocationsObject locationDataItems)
         {
             LocationDataItems = locationDataItems;
-            MetaDataItems = metaDataItems;
         }
 
         [JsonProperty(JsonOutputDefinitions.META_DATA, NullValueHandling = NullValueHandling.Ignore)]
-        public IReadOnlyDictionary<string, object> MetaDataItems { get; }
+        public IReadOnlyDictionary<string, object> MetaDataItems { get; set; }
 
         [JsonProperty(JsonOutputDefinitions.OUTPUT_DATA)]
         public JsonOutputLocationsObject LocationDataItems { get; }
