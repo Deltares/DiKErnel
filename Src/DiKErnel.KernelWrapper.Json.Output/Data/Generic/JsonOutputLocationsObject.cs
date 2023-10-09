@@ -29,7 +29,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             LocationDataItems = locationDataItems;
         }
 
-        [JsonProperty(JsonOutputDefinitions.LOCATIONS)]
+        [JsonProperty(JsonOutputDefinitions.Locations)]
         public IReadOnlyList<JsonOutputLocationData> LocationDataItems { get; }
     }
 }

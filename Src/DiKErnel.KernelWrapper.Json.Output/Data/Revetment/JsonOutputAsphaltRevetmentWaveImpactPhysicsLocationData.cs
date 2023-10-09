@@ -47,7 +47,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
 
-        [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE, Order = -2)]
+        [JsonProperty(JsonOutputDefinitions.OuterSlope, Order = -2)]
         public double OuterSlope { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LogFailureTension)]
@@ -65,7 +65,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EquivalentElasticModulus)]
         public IReadOnlyList<double> EquivalentElasticModulus { get; }
         
-        [JsonProperty(JsonOutputDefinitions.AVERAGE_NUMBER_OF_WAVES)]
+        [JsonProperty(JsonOutputDefinitions.AverageNumberOfWaves)]
         public IReadOnlyList<double> AverageNumberOfWaves { get; set; }
     }
 }

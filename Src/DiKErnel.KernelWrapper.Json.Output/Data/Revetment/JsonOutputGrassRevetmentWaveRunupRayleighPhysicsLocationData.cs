@@ -47,7 +47,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.VerticalDistanceWaterLevelElevation)]
         public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; }
 
-        [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT)]
+        [JsonProperty(JsonOutputDefinitions.WaveAngleImpact)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.RepresentativeWaveRunup2P)]
@@ -56,7 +56,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.CumulativeOverload)]
         public IReadOnlyList<double?> CumulativeOverload { get; }
         
-        [JsonProperty(JsonOutputDefinitions.AVERAGE_NUMBER_OF_WAVES)]
+        [JsonProperty(JsonOutputDefinitions.AverageNumberOfWaves)]
         public IReadOnlyList<double?> AverageNumberOfWaves { get; }
     }
 }

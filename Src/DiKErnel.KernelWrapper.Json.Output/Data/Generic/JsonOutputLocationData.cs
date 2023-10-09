@@ -28,16 +28,16 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             FailureData = failureData;
         }
 
-        [JsonProperty(JsonOutputDefinitions.ID, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonOutputDefinitions.Id, NullValueHandling = NullValueHandling.Ignore)]
         public int? Id { get; set; }
 
-        [JsonProperty(JsonOutputDefinitions.FAILURE)]
+        [JsonProperty(JsonOutputDefinitions.Failure)]
         public JsonOutputFailureLocationData FailureData { get; }
 
-        [JsonProperty(JsonOutputDefinitions.DAMAGE, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonOutputDefinitions.Damage, NullValueHandling = NullValueHandling.Ignore)]
         public JsonOutputDamageLocationData DamageData { get; set; }
 
-        [JsonProperty(JsonOutputDefinitions.PHYSICS, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonOutputDefinitions.Physics, NullValueHandling = NullValueHandling.Ignore)]
         public JsonOutputPhysicsLocationData PhysicsData { get; set; }
     }
 }

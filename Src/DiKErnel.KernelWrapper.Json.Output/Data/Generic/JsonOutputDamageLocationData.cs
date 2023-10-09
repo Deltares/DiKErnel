@@ -29,7 +29,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             Damage = damage;
         }
 
-        [JsonProperty(JsonOutputDefinitions.DAMAGE_OVER_TIME)]
+        [JsonProperty(JsonOutputDefinitions.DamageOverTime)]
         public IReadOnlyList<double> Damage { get; }
     }
 }

@@ -28,10 +28,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             TimeOfFailure = timeOfFailure;
         }
 
-        [JsonProperty(JsonOutputDefinitions.FAILED)]
+        [JsonProperty(JsonOutputDefinitions.Failed)]
         public bool Failed => TimeOfFailure != null;
 
-        [JsonProperty(JsonOutputDefinitions.TIME_OF_FAILURE)]
+        [JsonProperty(JsonOutputDefinitions.TimeOfFailure)]
         public int? TimeOfFailure { get; }
     }
 }

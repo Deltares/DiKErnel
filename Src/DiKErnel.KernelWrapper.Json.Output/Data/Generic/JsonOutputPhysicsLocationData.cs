@@ -29,7 +29,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             IncrementDamage = incrementDamage;
         }
 
-        [JsonProperty(JsonOutputDefinitions.INCREMENT_DAMAGE, Order = -2)]
+        [JsonProperty(JsonOutputDefinitions.IncrementDamage, Order = -2)]
         public IReadOnlyList<double> IncrementDamage { get; }
     }
 }

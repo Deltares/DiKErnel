@@ -20,33 +20,33 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
     internal static class JsonOutputDefinitions
     {
-        public const string META_DATA = "metaInformatie";
+        public const string MetaData = "metaInformatie";
 
-        public const string OUTPUT_DATA = "uitvoerdata";
+        public const string OutputData = "uitvoerdata";
 
-        public const string LOCATIONS = "locaties";
+        public const string Locations = "locaties";
 
-        public const string ID = "id";
-        public const string FAILURE = "falen";
-        public const string FAILED = "faalgebeurtenis";
-        public const string TIME_OF_FAILURE = "faaltijd";
+        public const string Id = "id";
+        public const string Failure = "falen";
+        public const string Failed = "faalgebeurtenis";
+        public const string TimeOfFailure = "faaltijd";
 
-        public const string DAMAGE = "schade";
-        public const string DAMAGE_OVER_TIME = "schadegetalPerTijdstap";
+        public const string Damage = "schade";
+        public const string DamageOverTime = "schadegetalPerTijdstap";
 
-        public const string PHYSICS = "fysica";
+        public const string Physics = "fysica";
 
         public const string Z = "hoogteLocatie";
 
-        public const string HYDRAULIC_LOAD = "belastingBekleding";
-        public const string OUTER_SLOPE = "hellingBuitentalud";
-        public const string INCREMENT_DAMAGE = "toenameSchade";
+        public const string HydraulicLoad = "belastingBekleding";
+        public const string OuterSlope = "hellingBuitentalud";
+        public const string IncrementDamage = "toenameSchade";
 
-        public const string UPPER_LIMIT_LOADING = "bovengrensBelasting";
-        public const string LOWER_LIMIT_LOADING = "ondergrensBelasting";
+        public const string UpperLimitLoading = "bovengrensBelasting";
+        public const string LowerLimitLoading = "ondergrensBelasting";
 
-        public const string WAVE_ANGLE_IMPACT = "impactGolfhoek";
+        public const string WaveAngleImpact = "impactGolfhoek";
 
-        public const string AVERAGE_NUMBER_OF_WAVES = "gemiddeldAantalGolven";
+        public const string AverageNumberOfWaves = "gemiddeldAantalGolven";
     }
 }

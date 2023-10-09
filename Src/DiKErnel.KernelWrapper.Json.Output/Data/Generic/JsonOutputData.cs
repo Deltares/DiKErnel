@@ -29,10 +29,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
             LocationDataItems = locationDataItems;
         }
 
-        [JsonProperty(JsonOutputDefinitions.META_DATA, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(JsonOutputDefinitions.MetaData, NullValueHandling = NullValueHandling.Ignore)]
         public IReadOnlyDictionary<string, object> MetaDataItems { get; set; }
 
-        [JsonProperty(JsonOutputDefinitions.OUTPUT_DATA)]
+        [JsonProperty(JsonOutputDefinitions.OutputData)]
         public JsonOutputLocationsObject LocationDataItems { get; }
     }
 }

@@ -70,7 +70,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
 
-        [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE)]
+        [JsonProperty(JsonOutputDefinitions.OuterSlope)]
         public IReadOnlyList<double> OuterSlope { get; }
 
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeUpperLevel)]
@@ -85,7 +85,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeLowerPosition)]
         public IReadOnlyList<double> SlopeLowerPosition { get; }
 
-        [JsonProperty(JsonOutputDefinitions.HYDRAULIC_LOAD)]
+        [JsonProperty(JsonOutputDefinitions.HydraulicLoad)]
         public IReadOnlyList<bool> LoadingRevetment { get; }
 
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SurfSimilarityParameter)]
@@ -94,10 +94,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.WaveSteepnessDeepWater)]
         public IReadOnlyList<double> WaveSteepnessDeepWater { get; }
 
-        [JsonProperty(JsonOutputDefinitions.UPPER_LIMIT_LOADING)]
+        [JsonProperty(JsonOutputDefinitions.UpperLimitLoading)]
         public IReadOnlyList<double> UpperLimitLoading { get; }
 
-        [JsonProperty(JsonOutputDefinitions.LOWER_LIMIT_LOADING)]
+        [JsonProperty(JsonOutputDefinitions.LowerLimitLoading)]
         public IReadOnlyList<double> LowerLimitLoading { get; }
 
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.DepthMaximumWaveLoad)]
@@ -112,7 +112,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.HydraulicLoad)]
         public IReadOnlyList<double?> HydraulicLoad { get; }
 
-        [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT)]
+        [JsonProperty(JsonOutputDefinitions.WaveAngleImpact)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }
 
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.Resistance)]
