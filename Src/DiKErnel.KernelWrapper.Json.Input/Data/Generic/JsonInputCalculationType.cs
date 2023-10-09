@@ -23,19 +23,19 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     internal enum JsonInputCalculationType
     {
-        [EnumMember(Value = JsonInputDefinitions.CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT)]
+        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeAsphaltWaveImpact)]
         AsphaltWaveImpact,
 
-        [EnumMember(Value = JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_OVERTOPPING)]
+        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeGrassOvertopping)]
         GrassOvertopping,
 
-        [EnumMember(Value = JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT)]
+        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeGrassWaveImpact)]
         GrassWaveImpact,
 
-        [EnumMember(Value = JsonInputDefinitions.CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP)]
+        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeGrassWaveRunup)]
         GrassWaveRunup,
 
-        [EnumMember(Value = JsonInputDefinitions.CALCULATION_METHOD_TYPE_NATURAL_STONE)]
+        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeNaturalStone)]
         NaturalStone
     }
 }

@@ -23,13 +23,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 {
     internal class JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData
     {
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.A)]
         public double? RepresentativeWaveRunup2Pa { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.B)]
         public double? RepresentativeWaveRunup2Pb { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.C)]
         public double? RepresentativeWaveRunup2Pc { get; private set; }
     }
 }

@@ -26,10 +26,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
     internal class JsonInputNaturalStoneCalculationData : JsonInputCalculationData
     {
-        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        [JsonProperty(JsonInputDefinitions.TopLayers)]
         public IReadOnlyList<JsonInputNaturalStoneTopLayerData> TopLayerDefinitionData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
+        [JsonProperty(JsonInputDefinitions.LoadingArea)]
         public JsonInputNaturalStoneCalculationLoadingAreaData LoadingArea { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneDefinitions.Slope)]
@@ -41,7 +41,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         [JsonProperty(JsonInputNaturalStoneDefinitions.NormativeWidthOfWaveImpact)]
         public JsonInputNaturalStoneCalculationNormativeWidthWaveImpactData NormativeWidthOfWaveImpact { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        [JsonProperty(JsonInputDefinitions.WaveAngleImpact)]
         public JsonInputNaturalStoneCalculationWaveImpactData WaveAngleImpact { get; private set; }
     }
 }

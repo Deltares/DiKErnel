@@ -24,19 +24,19 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     internal class JsonInputData
     {
-        [JsonProperty(JsonInputDefinitions.TIME)]
+        [JsonProperty(JsonInputDefinitions.Time)]
         public IReadOnlyList<int> Times { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.HYDRAULIC_LOADS)]
+        [JsonProperty(JsonInputDefinitions.HydraulicLoads)]
         public JsonInputHydraulicData HydraulicData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.DIKE_PROFILE)]
+        [JsonProperty(JsonInputDefinitions.DikeProfile)]
         public JsonInputDikeProfileData DikeProfileData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.LOCATIONS)]
+        [JsonProperty(JsonInputDefinitions.Locations)]
         public IReadOnlyList<JsonInputLocationData> LocationData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.CALCULATION_METHODS)]
+        [JsonProperty(JsonInputDefinitions.CalculationMethods)]
         public IReadOnlyList<JsonInputCalculationData> CalculationDefinitionData { get; private set; }
     }
 }

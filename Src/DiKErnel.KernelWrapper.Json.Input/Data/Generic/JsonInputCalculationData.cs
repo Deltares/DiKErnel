@@ -23,10 +23,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
 {
     internal class JsonInputCalculationData
     {
-        [JsonProperty(JsonInputDefinitions.CALCULATION_METHOD_TYPE)]
+        [JsonProperty(JsonInputDefinitions.CalculationMethodType)]
         public JsonInputCalculationType CalculationMethodType { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.FAILURE_NUMBER)]
+        [JsonProperty(JsonInputDefinitions.FailureNumber)]
         public double? FailureNumber { get; private set; }
     }
 }

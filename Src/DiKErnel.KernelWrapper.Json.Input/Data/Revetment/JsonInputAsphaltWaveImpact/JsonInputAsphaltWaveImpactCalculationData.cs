@@ -26,13 +26,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
 {
     internal class JsonInputAsphaltWaveImpactCalculationData : JsonInputCalculationData
     {
-        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        [JsonProperty(JsonInputDefinitions.TopLayers)]
         public IReadOnlyList<JsonInputAsphaltWaveImpactTopLayerData> TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.DensityOfWater)]
         public double? DensityOfWater { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
+        [JsonProperty(JsonInputDefinitions.FactorCtm)]
         public double? FactorCtm { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.ImpactNumberC)]

@@ -23,13 +23,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
 {
     internal class JsonInputGrassWaveImpactTopLayerTimeLineData
     {
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.A)]
         public double? TimeLineA { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.B)]
         public double? TimeLineB { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.C_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.C)]
         public double? TimeLineC { get; private set; }
     }
 }

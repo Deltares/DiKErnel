@@ -23,7 +23,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
     internal class JsonInputNaturalStoneCalculationWaveImpactData
     {
-        [JsonProperty(JsonInputDefinitions.BETA_MAX)]
+        [JsonProperty(JsonInputDefinitions.BetaMax)]
         public double? WaveAngleImpactBetaMax { get; private set; }
     }
 }

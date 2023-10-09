@@ -25,7 +25,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 {
     internal class JsonInputGrassWaveRunupLocationData : JsonInputLocationData
     {
-        [JsonProperty(JsonInputDefinitions.TYPE_TOP_LAYER)]
+        [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
         public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.OuterSlope)]

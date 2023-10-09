@@ -20,56 +20,56 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
 {
     internal static class JsonInputDefinitions
     {
-        public const string HYDRAULIC_LOADS = "hydraulischeBelastingen";
-        public const string LOCATIONS = "locaties";
+        public const string HydraulicLoads = "hydraulischeBelastingen";
+        public const string Locations = "locaties";
 
-        public const string TIME = "tijdstippen";
-        public const string WATER_LEVELS = "waterstanden";
-        public const string WAVE_HEIGHTS_HM0 = "golfhoogtenHm0";
-        public const string WAVE_PERIODS_TM10 = "golfperiodenTm10";
-        public const string WAVE_DIRECTIONS = "golfrichtingen";
+        public const string Time = "tijdstippen";
+        public const string WaterLevels = "waterstanden";
+        public const string WaveHeightsHm0 = "golfhoogtenHm0";
+        public const string WavePeriodsTm10 = "golfperiodenTm10";
+        public const string WaveDirections = "golfrichtingen";
 
-        public const string DIKE_PROFILE = "dijkprofiel";
-        public const string DIKE_ORIENTATION = "dijkOrientatie";
-        public const string DIKE_PROFILE_POINTS_X = "posities";
-        public const string DIKE_PROFILE_POINTS_Z = "hoogten";
-        public const string DIKE_PROFILE_ROUGHNESS_COEFFICIENTS = "ruwheidscoefficienten";
+        public const string DikeProfile = "dijkprofiel";
+        public const string DikeOrientation = "dijkOrientatie";
+        public const string DikeProfilePointsX = "posities";
+        public const string DikeProfilePointsZ = "hoogten";
+        public const string DikeProfileRoughnessCoefficients = "ruwheidscoefficienten";
 
-        public const string CHARACTERISTIC_POINT_TYPE_OUTER_TOE = "teenBuitenzijde";
-        public const string CHARACTERISTIC_POINT_TYPE_OUTER_CREST = "kruinBuitenzijde";
-        public const string CHARACTERISTIC_POINT_TYPE_CREST_OUTER_BERM = "kruinBermBuitenzijde";
-        public const string CHARACTERISTIC_POINT_TYPE_NOTCH_OUTER_BERM = "insteekBermBuitenzijde";
-        public const string CHARACTERISTIC_POINT_TYPE_INNER_CREST = "kruinBinnenzijde";
-        public const string CHARACTERISTIC_POINT_TYPE_INNER_TOE = "teenBinnenzijde";
+        public const string CharacteristicPointTypeOuterToe = "teenBuitenzijde";
+        public const string CharacteristicPointTypeOuterCrest = "kruinBuitenzijde";
+        public const string CharacteristicPointTypeCrestOuterBerm = "kruinBermBuitenzijde";
+        public const string CharacteristicPointTypeNotchOuterBerm = "insteekBermBuitenzijde";
+        public const string CharacteristicPointTypeInnerCrest = "kruinBinnenzijde";
+        public const string CharacteristicPointTypeInnerToe = "teenBinnenzijde";
 
-        public const string ID = "id";
+        public const string Id = "id";
         public const string X = "positie";
-        public const string INITIAL_DAMAGE = "beginschade";
-        public const string FAILURE_NUMBER = "faalgetal";
+        public const string InitialDamage = "beginschade";
+        public const string FailureNumber = "faalgetal";
 
-        public const string CALCULATION_METHODS = "rekenmethoden";
-        public const string CALCULATION_METHOD_TYPE = "rekenmethode";
+        public const string CalculationMethods = "rekenmethoden";
+        public const string CalculationMethodType = "rekenmethode";
 
-        public const string CALCULATION_METHOD_TYPE_ASPHALT_WAVE_IMPACT = "asfaltGolfklap";
-        public const string CALCULATION_METHOD_TYPE_GRASS_OVERTOPPING = "grasGolfoverslag";
-        public const string CALCULATION_METHOD_TYPE_GRASS_WAVE_IMPACT = "grasGolfklap";
-        public const string CALCULATION_METHOD_TYPE_GRASS_WAVE_RUNUP = "grasGolfoploop";
-        public const string CALCULATION_METHOD_TYPE_NATURAL_STONE = "natuursteen";
+        public const string CalculationMethodTypeAsphaltWaveImpact = "asfaltGolfklap";
+        public const string CalculationMethodTypeGrassOvertopping = "grasGolfoverslag";
+        public const string CalculationMethodTypeGrassWaveImpact = "grasGolfklap";
+        public const string CalculationMethodTypeGrassWaveRunup = "grasGolfoploop";
+        public const string CalculationMethodTypeNaturalStone = "natuursteen";
 
-        public const string TOP_LAYERS = "toplagen";
-        public const string TYPE_TOP_LAYER = "typeToplaag";
+        public const string TopLayers = "toplagen";
+        public const string TypeTopLayer = "typeToplaag";
 
-        public const string A_COEFFICIENT = "a";
-        public const string B_COEFFICIENT = "b";
-        public const string C_COEFFICIENT = "c";
+        public const string A = "a";
+        public const string B = "b";
+        public const string C = "c";
 
-        public const string LOADING_AREA = "belastingzone";
-        public const string UPPER_LIMIT = "bovengrens";
-        public const string LOWER_LIMIT = "ondergrens";
+        public const string LoadingArea = "belastingzone";
+        public const string UpperLimit = "bovengrens";
+        public const string LowerLimit = "ondergrens";
 
-        public const string WAVE_ANGLE_IMPACT = "impactGolfhoek";
-        public const string BETA_MAX = "betaMax";
+        public const string WaveAngleImpact = "impactGolfhoek";
+        public const string BetaMax = "betaMax";
 
-        public const string FACTOR_CTM = "factorCtm";
+        public const string FactorCtm = "factorCtm";
     }
 }

@@ -26,7 +26,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
 {
     internal class JsonInputGrassWaveImpactCalculationData : JsonInputCalculationData
     {
-        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        [JsonProperty(JsonInputDefinitions.TopLayers)]
         public IReadOnlyList<JsonInputGrassWaveImpactTopLayerData> TopLayerDefinitionData { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.Temax)]
@@ -35,10 +35,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.Temin)]
         public double? Temin { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        [JsonProperty(JsonInputDefinitions.WaveAngleImpact)]
         public JsonInputGrassWaveImpactCalculationImpactWaveAngleData WaveAngleData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.LOADING_AREA)]
+        [JsonProperty(JsonInputDefinitions.LoadingArea)]
         public JsonInputGrassWaveImpactCalculationLoadingAreaData LoadingAreaData { get; private set; }
     }
 }

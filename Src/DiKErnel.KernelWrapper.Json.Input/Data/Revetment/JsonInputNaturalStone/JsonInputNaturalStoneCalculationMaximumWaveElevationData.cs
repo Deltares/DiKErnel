@@ -23,10 +23,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
     internal class JsonInputNaturalStoneCalculationMaximumWaveElevationData
     {
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.A)]
         public double? DistanceMaximumWaveElevationA { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.B)]
         public double? DistanceMaximumWaveElevationB { get; private set; }
     }
 }

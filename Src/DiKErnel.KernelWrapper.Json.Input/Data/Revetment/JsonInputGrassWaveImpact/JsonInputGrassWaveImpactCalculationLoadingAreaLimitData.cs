@@ -23,7 +23,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
 {
     internal class JsonInputGrassWaveImpactCalculationLoadingAreaLimitData
     {
-        [JsonProperty(JsonInputDefinitions.A_COEFFICIENT)]
+        [JsonProperty(JsonInputDefinitions.A)]
         public double? LimitLoading { get; private set; }
     }
 }

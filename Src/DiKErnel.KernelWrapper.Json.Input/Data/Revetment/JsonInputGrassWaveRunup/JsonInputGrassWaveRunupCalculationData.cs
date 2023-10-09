@@ -29,17 +29,17 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.CalculationProtocol)]
         public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.TOP_LAYERS)]
+        [JsonProperty(JsonInputDefinitions.TopLayers)]
         public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerDefinitionData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.FACTOR_CTM)]
+        [JsonProperty(JsonInputDefinitions.FactorCtm)]
         public double? FactorCtm { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.RepresentativeWaveRunup2P)]
         public JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData
             JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.WAVE_ANGLE_IMPACT)]
+        [JsonProperty(JsonInputDefinitions.WaveAngleImpact)]
         public JsonInputGrassWaveRunupCalculationImpactAngleData JsonInputGrassWaveRunupCalculationImpactAngleData { get; private set; }
     }
 }
