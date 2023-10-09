@@ -51,14 +51,19 @@ namespace DiKErnel.KernelWrapper.Json.Output
         private static JsonOutputLocationData CreateLocationData(
             LocationDependentOutput locationDependentOutput, JsonOutputType outputType)
         {
-            return new JsonOutputLocationData(
-                CreateFailureLocationData(locationDependentOutput),
-                outputType == JsonOutputType.Damage || outputType == JsonOutputType.Physics
-                    ? CreateDamageLocationData(locationDependentOutput)
-                    : null,
-                outputType == JsonOutputType.Physics
-                    ? CreatePhysicsLocationData(locationDependentOutput)
-                    : null);
+            var locationData = new JsonOutputLocationData(CreateFailureLocationData(locationDependentOutput));
+
+            if (outputType != JsonOutputType.Failure)
+            {
+                locationData.DamageData = CreateDamageLocationData(locationDependentOutput);
+            }
+
+            if (outputType == JsonOutputType.Physics)
+            {
+                locationData.PhysicsData = CreatePhysicsLocationData(locationDependentOutput);
+            }
+
+            return locationData;
         }
 
         private static JsonOutputFailureLocationData CreateFailureLocationData(
@@ -99,7 +104,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.ComputationalThickness).ToList(),
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.EquivalentElasticModulus).ToList(), 
+                            .Select(tdo => tdo.EquivalentElasticModulus).ToList(),
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
@@ -118,7 +123,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassRevetmentOvertoppingTimeDependentOutputItems
                             .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),
                         grassRevetmentOvertoppingTimeDependentOutputItems
-                            .Select(tdo => tdo.CumulativeOverload).ToList(), 
+                            .Select(tdo => tdo.CumulativeOverload).ToList(),
                         grassRevetmentOvertoppingTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
@@ -167,7 +172,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
                             .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
-                            .Select(tdo => tdo.CumulativeOverload).ToList(), 
+                            .Select(tdo => tdo.CumulativeOverload).ToList(),
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }

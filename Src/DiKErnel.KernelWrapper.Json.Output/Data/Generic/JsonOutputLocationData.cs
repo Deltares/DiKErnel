@@ -23,13 +23,9 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputLocationData
     {
-        public JsonOutputLocationData(JsonOutputFailureLocationData failureData,
-                                      JsonOutputDamageLocationData damageData,
-                                      JsonOutputPhysicsLocationData physicsData)
+        public JsonOutputLocationData(JsonOutputFailureLocationData failureData)
         {
             FailureData = failureData;
-            DamageData = damageData;
-            PhysicsData = physicsData;
         }
 
         [JsonProperty(JsonOutputDefinitions.ID, NullValueHandling = NullValueHandling.Ignore)]
@@ -39,9 +35,9 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
         public JsonOutputFailureLocationData FailureData { get; }
 
         [JsonProperty(JsonOutputDefinitions.DAMAGE, NullValueHandling = NullValueHandling.Ignore)]
-        public JsonOutputDamageLocationData DamageData { get; }
+        public JsonOutputDamageLocationData DamageData { get; set; }
 
         [JsonProperty(JsonOutputDefinitions.PHYSICS, NullValueHandling = NullValueHandling.Ignore)]
-        public JsonOutputPhysicsLocationData PhysicsData { get; }
+        public JsonOutputPhysicsLocationData PhysicsData { get; set; }
     }
 }
