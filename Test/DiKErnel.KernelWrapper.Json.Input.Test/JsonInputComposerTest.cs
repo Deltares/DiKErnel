@@ -590,6 +590,26 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
             Assert.AreEqual(1, registeredEvents.Count);
             Assert.AreEqual(EventType.Error, registeredEvents[0].Type);
+            Assert.AreEqual("The provided input file is invalid (error found on line 4, position 8)",
+                            registeredEvents[0].Message);
+        }
+
+        [Test]
+        public void GivenIncompleteJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered()
+        {
+            // Given
+            string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
+                                           "JsonInputComposerTest", "Incomplete.json");
+
+            // When
+            bool result = JsonInputComposer.ValidateJson(filePath);
+
+            // Then
+            Assert.IsFalse(result);
+
+            IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
+            Assert.AreEqual(1, registeredEvents.Count);
+            Assert.AreEqual(EventType.Error, registeredEvents[0].Type);
             Assert.AreEqual("Required properties are missing from object: tijdstippen, hydraulischeBelastingen, " +
                             "dijkprofiel, locaties.", registeredEvents[0].Message);
         }
