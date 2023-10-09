@@ -44,8 +44,8 @@ namespace DiKErnel.Integration.Factories
             }
 
             var fatigue = new AsphaltRevetmentWaveImpactFatigue(
-                constructionProperties.FatigueAlpha ?? topLayerDefaults.FatigueAlpha,
-                constructionProperties.FatigueBeta ?? topLayerDefaults.FatigueBeta);
+                constructionProperties.FatigueAlpha ?? AsphaltRevetmentWaveImpactDefaults.FatigueAlpha,
+                constructionProperties.FatigueBeta ?? AsphaltRevetmentWaveImpactDefaults.FatigueBeta);
 
             return new AsphaltRevetmentWaveImpactLocationDependentInput(
                 constructionProperties.X,

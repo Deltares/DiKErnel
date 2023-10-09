@@ -33,11 +33,7 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
         /// </summary> 
         public static AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults Instance =>
             instance ??= new AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults();
-
-        public double FatigueAlpha => 0.42;
-
-        public double FatigueBeta => 4.76;
-
+        
         public double StiffnessRelationNu => 0.35;
     }
 }

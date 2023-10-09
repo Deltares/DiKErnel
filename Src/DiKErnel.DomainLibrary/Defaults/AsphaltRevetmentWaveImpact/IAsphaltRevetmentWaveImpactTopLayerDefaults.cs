@@ -25,16 +25,6 @@ namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
     public interface IAsphaltRevetmentWaveImpactTopLayerDefaults
     {
         /// <summary>
-        /// Gets the default value of the fatigue alpha coefficient [-].
-        /// </summary>
-        public double FatigueAlpha { get; }
-
-        /// <summary>
-        /// Gets the default value of the fatigue beta coefficient [-].
-        /// </summary>
-        public double FatigueBeta { get; }
-
-        /// <summary>
         /// Gets the default value of the stiffness relation Nu coefficient [-].
         /// </summary>
         public double StiffnessRelationNu { get; }
