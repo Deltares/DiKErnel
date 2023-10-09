@@ -45,30 +45,16 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
         [Test]
         public void
-            WriteCalculationOutputToJson_JsonOutputTypeFailureWithoutMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
+            WriteCalculationOutputToJson_JsonOutputTypeFailure_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformTest("ExpectedFailureOutputWithoutMetaData.json", JsonOutputType.Failure, false);
+            PerformTest("ExpectedFailureOutput.json", JsonOutputType.Failure, false);
         }
 
         [Test]
         public void
-            WriteCalculationOutputToJson_JsonOutputTypeFailureWithMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
+            WriteCalculationOutputToJson_JsonOutputTypeDamage_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformTest("ExpectedFailureOutputWithMetaData.json", JsonOutputType.Failure, true);
-        }
-
-        [Test]
-        public void
-            WriteCalculationOutputToJson_JsonOutputTypeDamageWithoutMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
-        {
-            PerformTest("ExpectedDamageOutputWithoutMetaData.json", JsonOutputType.Damage, false);
-        }
-
-        [Test]
-        public void
-            WriteCalculationOutputToJson_JsonOutputTypeDamageWithMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
-        {
-            PerformTest("ExpectedDamageOutputWithMetaData.json", JsonOutputType.Damage, true);
+            PerformTest("ExpectedDamageOutput.json", JsonOutputType.Damage, false);
         }
 
         [Test]
@@ -104,38 +90,27 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
         [Test]
         public void
-            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithAllDataAndMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
+            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithAllDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
             PerformPhysicsTest(
-                "ExpectedPhysicsOutputWithAllDataAndMetaData.json",
-                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), true);
+                "ExpectedPhysicsOutputWithAllData.json",
+                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet());
         }
 
         [Test]
         public void
-            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithAllDataAndWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
+            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithOnlyMandatoryDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
             PerformPhysicsTest(
-                "ExpectedPhysicsOutputWithAllDataAndWithoutMetaData.json",
-                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet(), false);
+                "ExpectedPhysicsOutputWithOnlyMandatoryData.json",
+                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet());
         }
 
         [Test]
         public void
-            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithOnlyMandatoryDataAndMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
+            WriteCalculationOutputToJson_JsonOutputTypeFailureWithMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformPhysicsTest(
-                "ExpectedPhysicsOutputWithOnlyMandatoryDataAndMetaData.json",
-                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), true);
-        }
-
-        [Test]
-        public void
-            WriteCalculationOutputToJson_JsonOutputTypePhysicsWithOnlyMandatoryDataAndWithoutMetaDataAndTimeDependentOutputSupported_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
-        {
-            PerformPhysicsTest(
-                "ExpectedPhysicsOutputWithOnlyMandatoryDataAndWithoutMetaData.json",
-                CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet(), false);
+            PerformTest("ExpectedFailureOutputWithMetaData.json", JsonOutputType.Failure, true);
         }
 
         private static void PerformTest(string filename, JsonOutputType outputType, bool withMetaData)
@@ -205,27 +180,11 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             CollectionAssert.IsEmpty(result.Events);
         }
 
-        private static void PerformPhysicsTest(string filename, CalculationOutput calculationOutput, bool withMetaData)
+        private static void PerformPhysicsTest(string filename, CalculationOutput calculationOutput)
         {
-            // Setup
-            Dictionary<string, object> metaDataItems = null;
-
-            if (withMetaData)
-            {
-                metaDataItems = new Dictionary<string, object>
-                {
-                    {
-                        "Test 1", 1.23
-                    },
-                    {
-                        "Test 2", "4.56"
-                    }
-                };
-            }
-
             // Call
             SimpleResult result = JsonOutputComposer.WriteCalculationOutputToJson(
-                actualOutputFilePath, calculationOutput, JsonOutputType.Physics, metaDataItems: metaDataItems);
+                actualOutputFilePath, calculationOutput, JsonOutputType.Physics);
 
             // Assert
             string expectedOutputFilePath =
