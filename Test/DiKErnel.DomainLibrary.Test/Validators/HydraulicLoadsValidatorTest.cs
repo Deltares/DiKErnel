@@ -104,5 +104,27 @@ namespace DiKErnel.DomainLibrary.Test.Validators
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
         }
+
+        [Test]
+        public void WaveDirection_VariousScenarios_ExpectedValues()
+        {
+            Func<double, ValidationIssue> validationFunc = HydraulicLoadsValidator.WaveDirection;
+
+            const string errorMessage = "WaveDirection must be in range [0, 360].";
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 0 - ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+                                              errorMessage);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0);
+            ValidatorAssertHelper.AssertValue(validationFunc, 0 + ValidatorAssertHelper.Epsilon);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, 360 - ValidatorAssertHelper.Epsilon);
+            ValidatorAssertHelper.AssertValue(validationFunc, 360);
+            ValidatorAssertHelper.AssertValue(validationFunc, 360 + ValidatorAssertHelper.Epsilon, ValidationIssueType.Error,
+                                              errorMessage);
+
+            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
+        }
     }
 }

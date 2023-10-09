@@ -82,5 +82,21 @@ namespace DiKErnel.DomainLibrary.Validators
 
             return null;
         }
+        
+        /// <summary>
+        /// Validates the wave direction.
+        /// </summary>
+        /// <param name="waveDirection">The wave direction [deg].</param>
+        /// <returns>A validation issue when the wave direction is not valid; <c>null</c>
+        /// otherwise.</returns>
+        public static ValidationIssue WaveDirection(double waveDirection)
+        {
+            if (waveDirection < 0 || waveDirection > 360)
+            {
+                return new ValidationIssue(ValidationIssueType.Error, "WaveDirection must be in range [0, 360].");
+            }
+
+            return null;
+        }
     }
 }
