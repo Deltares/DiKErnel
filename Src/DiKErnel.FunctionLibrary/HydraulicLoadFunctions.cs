@@ -41,6 +41,23 @@ namespace DiKErnel.FunctionLibrary
         }
 
         /// <summary>
+        /// Calculates the wave angle.
+        /// </summary>
+        /// <param name="waveDirection">The wave direction [deg].</param>
+        /// <param name="dikeOrientation">The dike orientation [deg].</param>
+        /// <returns>The wave angle [deg].</returns>
+        public static double WaveAngle(double waveDirection, double dikeOrientation)
+        {
+            double waveAngle = Math.Abs(waveDirection - dikeOrientation);
+            if (waveAngle > 180)
+            {
+                return 360 - waveAngle;
+            }
+
+            return waveAngle;
+        }
+        
+        /// <summary>
         /// Calculates the slope angle.
         /// </summary>
         /// <param name="outerSlope">The outer slope [-].</param>

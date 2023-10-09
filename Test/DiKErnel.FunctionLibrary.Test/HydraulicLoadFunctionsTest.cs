@@ -80,6 +80,23 @@ namespace DiKErnel.FunctionLibrary.Test
         }
 
         [Test]
+        [TestCase(45, 30, 15)]
+        [TestCase(30, 45, 15)]
+        [TestCase(270, 45, 135)]
+        [TestCase(45, 270, 135)]
+        [TestCase(360, 0, 0)]
+        [TestCase(0, 360, 0)]
+        public void WaveAngle_VariousWaveDirectionAndDikeOrientation_ExpectedValue(double waveDirection, double dikeOrientation,
+                                                                                   double expectedWaveAngle)
+        {
+            // Call
+            double waveAngle = HydraulicLoadFunctions.WaveAngle(waveDirection, dikeOrientation);
+            
+            // Assert
+            AssertHelper.AreEqual(expectedWaveAngle, waveAngle);
+        }
+
+        [Test]
         public void SlopeAngle_ValidInput_ExpectedValue()
         {
             // Setup
