@@ -55,7 +55,7 @@ namespace DiKErnel.Integration.Data
             {
                 HydraulicLoadsValidator.WaveHeightHm0(WaveHeightHm0),
                 HydraulicLoadsValidator.WavePeriodTm10(WavePeriodTm10),
-                HydraulicLoadsValidator.WaveAngle(WaveDirection)
+                HydraulicLoadsValidator.WaveDirection(WaveDirection)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues);

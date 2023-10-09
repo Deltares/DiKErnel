@@ -66,22 +66,6 @@ namespace DiKErnel.DomainLibrary.Validators
 
             return null;
         }
-
-        /// <summary>
-        /// Validates the wave angle.
-        /// </summary>
-        /// <param name="waveAngle">The wave angle [deg].</param>
-        /// <returns>A validation issue when the wave angle is not valid; <c>null</c>
-        /// otherwise.</returns>
-        public static ValidationIssue WaveAngle(double waveAngle)
-        {
-            if (waveAngle <= -180.0 || waveAngle > 180.0)
-            {
-                return new ValidationIssue(ValidationIssueType.Error, "WaveAngle must be in range {-180, 180].");
-            }
-
-            return null;
-        }
         
         /// <summary>
         /// Validates the wave direction.

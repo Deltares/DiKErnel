@@ -38,7 +38,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var builder = new CalculationInputBuilder();
-            builder.AddTimeStep(90, 100, 10, -1, 30, 200);
+            builder.AddTimeStep(90, 100, 10, -1, 30, -10);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
@@ -59,7 +59,7 @@ namespace DiKErnel.System.Test
             Assert.AreEqual(EventType.Warning, validationResult.Events[1].Type);
             Assert.AreEqual("WavePeriodTm10 should be in range {0.5, 25}.", validationResult.Events[1].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
-            Assert.AreEqual("WaveAngle must be in range {-180, 180].", validationResult.Events[2].Message);
+            Assert.AreEqual("WaveDirection must be in range [0, 360].", validationResult.Events[2].Message);
         }
 
         [Test]
