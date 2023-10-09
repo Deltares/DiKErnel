@@ -159,12 +159,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
                                                                                timeDependentInput.WavePeriodTm10,
                                                                                AverageNumberOfWavesCtm);
-                double waveDirection = timeDependentInput.WaveDirection;
 
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaterLevel,
                                                                                timeDependentInput.WaveHeightHm0,
                                                                                timeDependentInput.WavePeriodTm10,
-                                                                               waveDirection);
+                                                                               timeDependentInput.WaveDirection);
 
                 cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves.Value);
 
