@@ -47,14 +47,14 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
         public void
             WriteCalculationOutputToJson_JsonOutputTypeFailure_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformTest("ExpectedFailureOutput.json", JsonOutputType.Failure, false);
+            PerformTest("ExpectedFailureOutput.json", JsonOutputType.Failure);
         }
 
         [Test]
         public void
             WriteCalculationOutputToJson_JsonOutputTypeDamage_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformTest("ExpectedDamageOutput.json", JsonOutputType.Damage, false);
+            PerformTest("ExpectedDamageOutput.json", JsonOutputType.Damage);
         }
 
         [Test]
@@ -110,10 +110,17 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
         public void
             WriteCalculationOutputToJson_JsonOutputTypeFailureWithMetaData_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
         {
-            PerformTest("ExpectedFailureOutputWithMetaData.json", JsonOutputType.Failure, true);
+            PerformTest("ExpectedFailureOutputWithMetaData.json", JsonOutputType.Failure, withMetaData: true);
         }
 
-        private static void PerformTest(string filename, JsonOutputType outputType, bool withMetaData)
+        [Test]
+        public void
+            WriteCalculationOutputToJson_JsonOutputTypeFailureWithLocationIds_ReturnsResultWithSuccessfulTrueAndNoEventsAndWritesExpectedValues()
+        {
+            PerformTest("ExpectedFailureOutputWithLocationIds.json", JsonOutputType.Failure, withLocationIds: true);
+        }
+
+        private static void PerformTest(string filename, JsonOutputType outputType, bool withLocationIds = false, bool withMetaData = false)
         {
             // Setup
             var calculationOutput = new CalculationOutput(new List<LocationDependentOutput>
@@ -150,6 +157,17 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 })
             });
 
+            IReadOnlyList<int?> locationIds = null;
+
+            if (withLocationIds)
+            {
+                locationIds = new int?[]
+                {
+                    2,
+                    6
+                };
+            }
+
             Dictionary<string, object> metaDataItems = null;
 
             if (withMetaData)
@@ -167,7 +185,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             // Call
             SimpleResult result = JsonOutputComposer.WriteCalculationOutputToJson(
-                actualOutputFilePath, calculationOutput, outputType, metaDataItems: metaDataItems);
+                actualOutputFilePath, calculationOutput, outputType, locationIds, metaDataItems);
 
             // Assert
             string expectedOutputFilePath =

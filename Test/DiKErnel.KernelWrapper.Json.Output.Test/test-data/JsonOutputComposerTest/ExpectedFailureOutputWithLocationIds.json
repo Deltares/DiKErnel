@@ -1,0 +1,20 @@
+{
+    "uitvoerdata": {
+        "locaties": [
+            {
+                "id": 2,
+                "falen": {
+                    "faalgebeurtenis": true,
+                    "faaltijd": 60
+                }
+            },
+            {
+                "id": 6,
+                "falen": {
+                    "faalgebeurtenis": false,
+                    "faaltijd": null
+                }
+            }
+        ]
+    }
+}
