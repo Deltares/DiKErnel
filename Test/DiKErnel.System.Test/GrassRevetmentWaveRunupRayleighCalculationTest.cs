@@ -311,6 +311,7 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(50400, 54000, 0.1, 1.3, 4.8, 15);
             builder.AddTimeStep(54000, 57600, 0, 1, 4.5, 20);
 
+            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
@@ -340,6 +341,7 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(50400, 54000, 0.1, 0.6, 4.2, 15);
             builder.AddTimeStep(54000, 57600, 0, 0.5, 3.9, 20);
 
+            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
@@ -369,6 +371,7 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(50400, 54000, 0.1, 1.3, 4.8, 15);
             builder.AddTimeStep(54000, 57600, 0, 1, 4.5, 20);
 
+            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
@@ -398,6 +401,7 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(30600, 36000, 0.1, 1.3, 4.8, 15);
             builder.AddTimeStep(36000, 43200, 0, 1, 4.5, 20);
 
+            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
