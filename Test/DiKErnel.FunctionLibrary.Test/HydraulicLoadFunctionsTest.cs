@@ -25,60 +25,6 @@ namespace DiKErnel.FunctionLibrary.Test
     [TestFixture]
     public class HydraulicLoadFunctionsTest
     {
-        private const double tolerance = 1e-6;
-
-        [Test]
-        public void WaveDirection_InputEqualTo0Degrees_ExpectedValue()
-        {
-            // Setup
-            const double waveAngle = 0;
-
-            // Call
-            double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
-
-            // Assert
-            AssertHelper.AreEqual(0, waveDirection);
-        }
-
-        [Test]
-        public void WaveDirection_InputLargerThan0Degrees_ExpectedValue()
-        {
-            // Setup
-            double waveAngle = Random.NextDouble(0 + tolerance, 540);
-
-            // Call
-            double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
-
-            // Assert
-            AssertHelper.AreEqual(waveAngle, waveDirection);
-        }
-
-        [Test]
-        public void WaveDirection_InputBetweenMinus180And0Degrees_ExpectedValue()
-        {
-            // Setup
-            double waveAngle = Random.NextDouble(-180 + tolerance, 0);
-
-            // Call
-            double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
-
-            // Assert
-            AssertHelper.AreEqual(360 + waveAngle, waveDirection);
-        }
-
-        [Test]
-        public void WaveDirection_InputEqualToMinus180Degrees_ExpectedValue()
-        {
-            // Setup
-            const double waveAngle = -180;
-
-            // Call
-            double waveDirection = HydraulicLoadFunctions.WaveDirection(waveAngle);
-
-            // Assert
-            AssertHelper.AreEqual(180, waveDirection);
-        }
-
         [Test]
         [TestCase(45, 30, 15)]
         [TestCase(30, 45, 15)]
@@ -91,7 +37,7 @@ namespace DiKErnel.FunctionLibrary.Test
         {
             // Call
             double waveAngle = HydraulicLoadFunctions.WaveAngle(waveDirection, dikeOrientation);
-            
+
             // Assert
             AssertHelper.AreEqual(expectedWaveAngle, waveAngle);
         }

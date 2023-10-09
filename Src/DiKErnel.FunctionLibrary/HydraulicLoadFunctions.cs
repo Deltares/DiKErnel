@@ -26,21 +26,6 @@ namespace DiKErnel.FunctionLibrary
     public static class HydraulicLoadFunctions
     {
         /// <summary>
-        /// Calculates the wave direction.
-        /// </summary>
-        /// <param name="waveAngle">The wave angle [deg].</param>
-        /// <returns>The wave direction [deg].</returns>
-        public static double WaveDirection(double waveAngle)
-        {
-            if (waveAngle >= -180.0 && waveAngle < 0.0)
-            {
-                return 360 - Math.Abs(waveAngle);
-            }
-
-            return waveAngle;
-        }
-
-        /// <summary>
         /// Calculates the wave angle.
         /// </summary>
         /// <param name="waveDirection">The wave direction [deg].</param>
