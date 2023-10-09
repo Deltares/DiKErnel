@@ -37,13 +37,13 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             AverageNumberOfWaves = averageNumberOfWaves;
         }
 
-        [JsonProperty(JsonOutputGrassRevetmentDefinitions.VERTICAL_DISTANCE_WATER_LEVEL_ELEVATION)]
+        [JsonProperty(JsonOutputGrassRevetmentDefinitions.VerticalDistanceWaterLevelElevation)]
         public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentDefinitions.REPRESENTATIVE_WAVE_RUNUP_2P)]
+        [JsonProperty(JsonOutputGrassRevetmentDefinitions.RepresentativeWaveRunup2P)]
         public IReadOnlyList<double?> RepresentativeWaveRunup2P { get; }
 
-        [JsonProperty(JsonOutputGrassRevetmentDefinitions.CUMULATIVE_OVERLOAD)]
+        [JsonProperty(JsonOutputGrassRevetmentDefinitions.CumulativeOverload)]
         public IReadOnlyList<double?> CumulativeOverload { get; }
         
         [JsonProperty(JsonOutputDefinitions.AVERAGE_NUMBER_OF_WAVES)]

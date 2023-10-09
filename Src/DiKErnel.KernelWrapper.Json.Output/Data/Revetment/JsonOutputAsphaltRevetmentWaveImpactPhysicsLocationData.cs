@@ -50,19 +50,19 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE, Order = -2)]
         public double OuterSlope { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LOG_FAILURE_TENSION)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LogFailureTension)]
         public IReadOnlyList<double> LogFailureTension { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.MAXIMUM_PEAK_STRESS)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.MaximumPeakStress)]
         public IReadOnlyList<double> MaximumPeakStress { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.STIFFNESS_RELATION)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.StiffnessRelation)]
         public IReadOnlyList<double> StiffnessRelation { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.COMPUTATIONAL_THICKNESS)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.ComputationalThickness)]
         public IReadOnlyList<double> ComputationalThickness { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EQUIVALENT_ELASTIC_MODULUS)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EquivalentElasticModulus)]
         public IReadOnlyList<double> EquivalentElasticModulus { get; }
         
         [JsonProperty(JsonOutputDefinitions.AVERAGE_NUMBER_OF_WAVES)]

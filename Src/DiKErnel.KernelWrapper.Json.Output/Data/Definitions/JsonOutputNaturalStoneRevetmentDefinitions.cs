@@ -20,20 +20,20 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
     internal static class JsonOutputNaturalStoneRevetmentDefinitions
     {
-        public const string SLOPE_UPPER_LEVEL = "bovenzijdeHellingvlak";
-        public const string SLOPE_UPPER_POSITION = "rechterzijdeHellingvlak";
-        public const string SLOPE_LOWER_LEVEL = "onderzijdeHellingvlak";
-        public const string SLOPE_LOWER_POSITION = "linkerzijdeHellingvlak";
+        public const string SlopeUpperLevel = "bovenzijdeHellingvlak";
+        public const string SlopeUpperPosition = "rechterzijdeHellingvlak";
+        public const string SlopeLowerLevel = "onderzijdeHellingvlak";
+        public const string SlopeLowerPosition = "linkerzijdeHellingvlak";
 
-        public const string SURF_SIMILARITY_PARAMETER = "golfbrekingparameter";
-        public const string WAVE_STEEPNESS_DEEP_WATER = "golfsteilheidDiepWater";
+        public const string SurfSimilarityParameter = "golfbrekingparameter";
+        public const string WaveSteepnessDeepWater = "golfsteilheidDiepWater";
 
-        public const string DEPTH_MAXIMUM_WAVE_LOAD = "diepteMaximaleGolfbelasting";
-        public const string DISTANCE_MAXIMUM_WAVE_ELEVATION = "afstandMaximaleStijghoogte";
-        public const string NORMATIVE_WIDTH_WAVE_IMPACT = "maatgevendeBreedteGolfklap";
-        public const string HYDRAULIC_LOAD = "hydraulischeBelasting";
-        public const string RESISTANCE = "sterkteBekleding";
-        public const string REFERENCE_TIME_DEGRADATION = "referentietijdDegradatie";
-        public const string REFERENCE_DEGRADATION = "referentieDegradatie";
+        public const string DepthMaximumWaveLoad = "diepteMaximaleGolfbelasting";
+        public const string DistanceMaximumWaveElevation = "afstandMaximaleStijghoogte";
+        public const string NormativeWidthWaveImpact = "maatgevendeBreedteGolfklap";
+        public const string HydraulicLoad = "hydraulischeBelasting";
+        public const string Resistance = "sterkteBekleding";
+        public const string ReferenceTimeDegradation = "referentietijdDegradatie";
+        public const string ReferenceDegradation = "referentieDegradatie";
     }
 }

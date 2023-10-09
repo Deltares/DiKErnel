@@ -73,25 +73,25 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.OUTER_SLOPE)]
         public IReadOnlyList<double> OuterSlope { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SLOPE_UPPER_LEVEL)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeUpperLevel)]
         public IReadOnlyList<double> SlopeUpperLevel { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SLOPE_UPPER_POSITION)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeUpperPosition)]
         public IReadOnlyList<double> SlopeUpperPosition { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SLOPE_LOWER_LEVEL)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeLowerLevel)]
         public IReadOnlyList<double> SlopeLowerLevel { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SLOPE_LOWER_POSITION)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeLowerPosition)]
         public IReadOnlyList<double> SlopeLowerPosition { get; }
 
         [JsonProperty(JsonOutputDefinitions.HYDRAULIC_LOAD)]
         public IReadOnlyList<bool> LoadingRevetment { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SURF_SIMILARITY_PARAMETER)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SurfSimilarityParameter)]
         public IReadOnlyList<double> SurfSimilarityParameter { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.WAVE_STEEPNESS_DEEP_WATER)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.WaveSteepnessDeepWater)]
         public IReadOnlyList<double> WaveSteepnessDeepWater { get; }
 
         [JsonProperty(JsonOutputDefinitions.UPPER_LIMIT_LOADING)]
@@ -100,28 +100,28 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.LOWER_LIMIT_LOADING)]
         public IReadOnlyList<double> LowerLimitLoading { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.DEPTH_MAXIMUM_WAVE_LOAD)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.DepthMaximumWaveLoad)]
         public IReadOnlyList<double> DepthMaximumWaveLoad { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.DISTANCE_MAXIMUM_WAVE_ELEVATION)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.DistanceMaximumWaveElevation)]
         public IReadOnlyList<double> DistanceMaximumWaveElevation { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.NORMATIVE_WIDTH_WAVE_IMPACT)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.NormativeWidthWaveImpact)]
         public IReadOnlyList<double> NormativeWidthOfWaveImpact { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.HYDRAULIC_LOAD)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.HydraulicLoad)]
         public IReadOnlyList<double?> HydraulicLoad { get; }
 
         [JsonProperty(JsonOutputDefinitions.WAVE_ANGLE_IMPACT)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.RESISTANCE)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.Resistance)]
         public IReadOnlyList<double?> Resistance { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.REFERENCE_TIME_DEGRADATION)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.ReferenceTimeDegradation)]
         public IReadOnlyList<double?> ReferenceTimeDegradation { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.REFERENCE_DEGRADATION)]
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.ReferenceDegradation)]
         public IReadOnlyList<double?> ReferenceDegradation { get; }
     }
 }

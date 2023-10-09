@@ -20,10 +20,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
     internal static class JsonOutputAsphaltRevetmentWaveImpactDefinitions
     {
-        public const string LOG_FAILURE_TENSION = "logBreukspanning";
-        public const string MAXIMUM_PEAK_STRESS = "maximalePiekdruk";
-        public const string STIFFNESS_RELATION = "stijfheidsverhouding";
-        public const string COMPUTATIONAL_THICKNESS = "rekendikte";
-        public const string EQUIVALENT_ELASTIC_MODULUS = "equivalenteStijfheidsmodulus";
+        public const string LogFailureTension = "logBreukspanning";
+        public const string MaximumPeakStress = "maximalePiekdruk";
+        public const string StiffnessRelation = "stijfheidsverhouding";
+        public const string ComputationalThickness = "rekendikte";
+        public const string EquivalentElasticModulus = "equivalenteStijfheidsmodulus";
     }
 }
