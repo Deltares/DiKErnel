@@ -148,7 +148,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                     <mah:ToggleSwitch Grid.Column="0" IsOn="{Binding ValidateJsonInput}" VerticalAlignment="Center">
                         Valideren Json-formaat
                     </mah:ToggleSwitch>
-                    <mah:ToggleSwitch Grid.Column="1" IsOn="{Binding WriteMetadata}" VerticalAlignment="Center">
+                    <mah:ToggleSwitch Grid.Column="1" IsOn="{Binding WriteMetaData}" VerticalAlignment="Center">
                         Schrijven meta-informatie
                     </mah:ToggleSwitch>
                 </Grid>

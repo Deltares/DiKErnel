@@ -74,7 +74,7 @@ namespace DiKErnel.Gui.ViewModel
 
         public bool ValidateJsonInput { get; set; } = true;
 
-        public bool WriteMetadata { get; set; } = true;
+        public bool WriteMetaData { get; set; } = true;
 
         public JsonOutputType OutputType { get; set; } = JsonOutputType.Damage;
 

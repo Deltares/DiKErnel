@@ -373,7 +373,7 @@ namespace DiKErnel.Gui.View
         {
             Dictionary<string, object> metaDataItems = null;
 
-            if (mainWindowViewModel.WriteMetadata)
+            if (mainWindowViewModel.WriteMetaData)
             {
                 metaDataItems = new Dictionary<string, object>
                 {

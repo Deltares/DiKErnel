@@ -28,7 +28,7 @@ namespace DiKErnel.Cli
         private const string inputFilePathKey = "invoerbestand";
         private const string outputFilePathKey = "uitvoerbestand";
         private const string outputLevelKey = "uitvoerniveau";
-        private const string noMetaInformationKey = "niet-schrijven-meta-informatie";
+        private const string noMetaDataKey = "niet-schrijven-meta-informatie";
         private const string noJsonFormatValidationKey = "niet-valideren-json-formaat";
 
         private static readonly IReadOnlyDictionary<string, IEnumerable<ArgumentType>> argumentOptions =
@@ -56,7 +56,7 @@ namespace DiKErnel.Cli
                     }
                 },
                 {
-                    noMetaInformationKey, new[]
+                    noMetaDataKey, new[]
                     {
                         ArgumentType.Optional
                     }
@@ -92,7 +92,7 @@ namespace DiKErnel.Cli
 
         public string OutputLevel => readArguments.TryGetValue(outputLevelKey, out string value) ? value : "schade";
 
-        public bool WriteMetaData => !readArguments.ContainsKey(noMetaInformationKey);
+        public bool WriteMetaData => !readArguments.ContainsKey(noMetaDataKey);
 
         public bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
 
