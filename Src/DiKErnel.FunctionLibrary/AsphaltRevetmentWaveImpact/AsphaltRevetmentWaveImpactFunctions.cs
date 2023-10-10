@@ -153,7 +153,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         {
             double logTension = LogTension(bendingStress, input.OuterSlope, impactFactorValue, input.ImpactNumberC);
 
-            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFailureTension - logTension),
+            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFlexuralStrength - logTension),
                                                               input.FatigueAlpha));
         }
 

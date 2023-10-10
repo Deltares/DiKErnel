@@ -28,8 +28,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="logFailureTension">The logarithm of the failure
-        /// tension [MPa].</param>
+        /// <param name="logFlexuralStrength">The logarithm of the flexural
+        /// strength [MPa].</param>
         /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
         /// <param name="maximumPeakStress">The maximum peak stress [MPa].</param>
         /// <param name="stiffnessRelation">The stiffness relation [m^-1].</param>
@@ -44,7 +44,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         /// <param name="fatigueAlpha">The fatigue alpha coefficient [-].</param>
         /// <param name="fatigueBeta">The fatigue beta coefficient [-].</param>
         /// <param name="impactNumberC">The impact number c coefficient [-].</param>
-        public AsphaltRevetmentWaveImpactFunctionsInput(double logFailureTension, double averageNumberOfWaves,
+        public AsphaltRevetmentWaveImpactFunctionsInput(double logFlexuralStrength, double averageNumberOfWaves,
                                                         double maximumPeakStress, double stiffnessRelation,
                                                         double computationalThickness, double outerSlope,
                                                         IReadOnlyList<(double, double)> widthFactors,
@@ -53,7 +53,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
                                                         double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
                                                         double fatigueBeta, double impactNumberC)
         {
-            LogFailureTension = logFailureTension;
+            LogFlexuralStrength = logFlexuralStrength;
             AverageNumberOfWaves = averageNumberOfWaves;
             MaximumPeakStress = maximumPeakStress;
             StiffnessRelation = stiffnessRelation;
@@ -71,9 +71,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         }
 
         /// <summary>
-        /// Gets the logarithm of the failure tension [MPa].
+        /// Gets the logarithm of the flexural strength [MPa].
         /// </summary>
-        public double LogFailureTension { get; }
+        public double LogFlexuralStrength { get; }
 
         /// <summary>
         /// Gets the average number of waves [-].

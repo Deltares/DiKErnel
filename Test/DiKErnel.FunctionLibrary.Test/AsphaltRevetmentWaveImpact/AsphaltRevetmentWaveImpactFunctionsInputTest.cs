@@ -31,7 +31,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
         public void Constructor_ExpectedValues()
         {
             // Setup
-            double logFailureTension = Random.NextDouble();
+            double logFlexuralStrength = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
             double stiffnessRelation = Random.NextDouble();
@@ -50,13 +50,13 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             double impactNumberC = Random.NextDouble();
 
             // Call
-            var input = new AsphaltRevetmentWaveImpactFunctionsInput(logFailureTension, averageNumberOfWaves, maximumPeakStress,
+            var input = new AsphaltRevetmentWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
                                                                      stiffnessRelation, computationalThickness, outerSlope,
                                                                      widthFactors, depthFactors, impactFactors, z, waterLevel,
                                                                      waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
 
             // Assert
-            Assert.AreEqual(logFailureTension, input.LogFailureTension);
+            Assert.AreEqual(logFlexuralStrength, input.LogFlexuralStrength);
             Assert.AreEqual(averageNumberOfWaves, input.AverageNumberOfWaves);
             Assert.AreEqual(maximumPeakStress, input.MaximumPeakStress);
             Assert.AreEqual(stiffnessRelation, input.StiffnessRelation);
