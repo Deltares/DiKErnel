@@ -70,7 +70,7 @@
             "positie": 39,
             "rekenmethode": "asfaltGolfklap",
             "typeToplaag": "waterbouwAsfaltBeton",
-            "breuksterkteAsfalt": 1.56,
+            "buigtreksterkteAsfalt": 1.56,
             "veerconstanteOndergrond": 56,
             "toplaag": {
                 "dikte": 0.16,

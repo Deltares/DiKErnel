@@ -139,7 +139,7 @@ namespace DiKErnel.System.Test
             Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
             Assert.AreEqual("FatigueBeta must be larger than 0.", validationResult.Events[3].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
-            Assert.AreEqual("FailureTension must be larger than 0.", validationResult.Events[4].Message);
+            Assert.AreEqual("FlexuralStrength must be larger than 0.", validationResult.Events[4].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
             Assert.AreEqual("ImpactNumberC must be larger than 0.", validationResult.Events[5].Message);
             Assert.AreEqual(EventType.Error, validationResult.Events[6].Type);
