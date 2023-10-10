@@ -60,11 +60,11 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltRevetmentWaveImpact
         }
 
         [Test]
-        public void FailureTension_VariousScenarios_ExpectedValues()
+        public void FlexuralStrength_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.FailureTension;
+            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.FlexuralStrength;
 
-            const string errorMessage = "FailureTension must be larger than 0.";
+            const string errorMessage = "FlexuralStrength must be larger than 0.";
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMin, ValidationIssueType.Error, errorMessage);
 

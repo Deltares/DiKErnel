@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             {
                 AsphaltRevetmentWaveImpactValidator.FatigueAlpha(Fatigue.Alpha),
                 AsphaltRevetmentWaveImpactValidator.FatigueBeta(Fatigue.Beta),
-                AsphaltRevetmentWaveImpactValidator.FailureTension(FlexuralStrength),
+                AsphaltRevetmentWaveImpactValidator.FlexuralStrength(FlexuralStrength),
                 AsphaltRevetmentWaveImpactValidator.ImpactNumberC(ImpactNumberC),
                 AsphaltRevetmentWaveImpactValidator.DensityOfWater(DensityOfWater),
                 AsphaltRevetmentWaveImpactValidator.SoilElasticity(SoilElasticity),

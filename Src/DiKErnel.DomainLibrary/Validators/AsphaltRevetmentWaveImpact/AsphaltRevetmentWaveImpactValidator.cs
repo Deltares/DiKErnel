@@ -48,14 +48,14 @@ namespace DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact
         }
 
         /// <summary>
-        /// Validates the failure tension.
+        /// Validates the flexural strength.
         /// </summary>
-        /// <param name="failureTension">The failure tension [MPa].</param>
-        /// <returns>A validation issue when the failure tension is not valid; <c>null</c>
+        /// <param name="flexuralStrength">The flexural strength [MPa].</param>
+        /// <returns>A validation issue when the flexural strength is not valid; <c>null</c>
         /// otherwise.</returns>
-        public static ValidationIssue FailureTension(double failureTension)
+        public static ValidationIssue FlexuralStrength(double flexuralStrength)
         {
-            return ValidateLargerThanZero(failureTension, "FailureTension");
+            return ValidateLargerThanZero(flexuralStrength, "FlexuralStrength");
         }
 
         /// <summary>
