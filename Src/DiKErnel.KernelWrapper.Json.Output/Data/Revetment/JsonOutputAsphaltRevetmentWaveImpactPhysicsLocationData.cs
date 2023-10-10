@@ -26,7 +26,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
     internal class JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
     {
         public JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z, double outerSlope,
-                                                                       IReadOnlyList<double> logFailureTension,
+                                                                       IReadOnlyList<double> logFlexuralStrength,
                                                                        IReadOnlyList<double> maximumPeakStress,
                                                                        IReadOnlyList<double> stiffnessRelation,
                                                                        IReadOnlyList<double> computationalThickness,
@@ -36,7 +36,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         {
             Z = z;
             OuterSlope = outerSlope;
-            LogFailureTension = logFailureTension;
+            LogFlexuralStrength = logFlexuralStrength;
             MaximumPeakStress = maximumPeakStress;
             StiffnessRelation = stiffnessRelation;
             ComputationalThickness = computationalThickness;
@@ -50,8 +50,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.OuterSlope, Order = -2)]
         public double OuterSlope { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LogFailureTension)]
-        public IReadOnlyList<double> LogFailureTension { get; }
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LogFlexuralStrength)]
+        public IReadOnlyList<double> LogFlexuralStrength { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.MaximumPeakStress)]
         public IReadOnlyList<double> MaximumPeakStress { get; }

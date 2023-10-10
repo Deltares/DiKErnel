@@ -20,7 +20,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
     internal static class JsonOutputAsphaltRevetmentWaveImpactDefinitions
     {
-        public const string LogFailureTension = "logBreukspanning";
+        public const string LogFlexuralStrength = "logbuigtreksterkte";
         public const string MaximumPeakStress = "maximalePiekdruk";
         public const string StiffnessRelation = "stijfheidsverhouding";
         public const string ComputationalThickness = "rekendikte";
