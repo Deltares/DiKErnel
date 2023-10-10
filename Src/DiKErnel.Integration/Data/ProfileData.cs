@@ -30,16 +30,16 @@ namespace DiKErnel.Integration.Data
     {
         private readonly List<ProfilePoint> profilePoints = new List<ProfilePoint>();
 
-        public ProfileData(IReadOnlyList<ProfileSegment> profileSegments,
-                           IReadOnlyList<CharacteristicPoint> characteristicPoints, double dikeOrientation)
+        public ProfileData(double dikeOrientation, IReadOnlyList<ProfileSegment> profileSegments,
+                           IReadOnlyList<CharacteristicPoint> characteristicPoints)
         {
+            DikeOrientation = dikeOrientation;
+            
             ProfileSegments = profileSegments;
             CharacteristicPoints = characteristicPoints;
 
             profilePoints.Add(ProfileSegments[0].StartPoint);
             profilePoints.AddRange(ProfileSegments.Select(profileSegment => profileSegment.EndPoint));
-
-            DikeOrientation = dikeOrientation;
         }
 
         public double DikeOrientation { get; }
@@ -54,6 +54,7 @@ namespace DiKErnel.Integration.Data
             {
                 ProfileValidator.DikeOrientation(DikeOrientation)
             };
+            
             validationIssues.AddRange(ProfileSegments.Select(profileSegment => ProfileValidator.RoughnessCoefficient(
                                                                  profileSegment.RoughnessCoefficient))
                                                      .ToList());

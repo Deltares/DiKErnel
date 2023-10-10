@@ -27,12 +27,12 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class ProfileDataFactory
     {
-        public static ProfileData Create(IReadOnlyList<ProfileDataFactorySegment> profileSegments,
-                                         IReadOnlyList<ProfileDataFactoryPoint> profilePoints, double dikeOrientation)
+        public static ProfileData Create(double dikeOrientation, IReadOnlyList<ProfileDataFactorySegment> profileSegments,
+                                         IReadOnlyList<ProfileDataFactoryPoint> profilePoints)
         {
             IReadOnlyList<ProfileSegment> segments = CreateProfileSegments(profileSegments);
 
-            return new ProfileData(segments, CreateCharacteristicPoints(profilePoints, segments), dikeOrientation);
+            return new ProfileData(dikeOrientation, segments, CreateCharacteristicPoints(profilePoints, segments));
         }
 
         private static IReadOnlyList<ProfileSegment> CreateProfileSegments(

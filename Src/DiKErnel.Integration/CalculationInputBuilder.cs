@@ -184,8 +184,8 @@ namespace DiKErnel.Integration
                 return new DataResult<ICalculationInput>(EventRegistry.Flush());
             }
 
-            ProfileData profileData = ProfileDataFactory.Create(profileDataFactorySegments, profileDataFactoryPoints,
-                                                                dikeOrientation);
+            ProfileData profileData = ProfileDataFactory.Create(dikeOrientation, profileDataFactorySegments, 
+                                                                profileDataFactoryPoints);
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 LocationDependentInputFactory.Create(locationConstructionPropertiesItems);
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems =
