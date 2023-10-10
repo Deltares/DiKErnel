@@ -24,12 +24,12 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(double failureTension, double densityOfWater,
+        public static void AssertGeneralProperties(double flexuralStrength, double densityOfWater,
                                                    double soilElasticity, double averageNumberOfWavesCtm,
                                                    double impactNumberC, double stiffnessRelationNu,
                                                    AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(failureTension, locationDependentInput.FailureTension);
+            Assert.AreEqual(flexuralStrength, locationDependentInput.FlexuralStrength);
             Assert.AreEqual(densityOfWater, locationDependentInput.DensityOfWater);
             Assert.AreEqual(soilElasticity, locationDependentInput.SoilElasticity);
             Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);

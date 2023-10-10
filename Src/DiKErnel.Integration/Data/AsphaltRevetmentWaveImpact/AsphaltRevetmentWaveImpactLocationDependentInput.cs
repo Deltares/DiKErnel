@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         private double maximumPeakStress = double.NaN;
 
         public AsphaltRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                                double failureTension, double densityOfWater,
+                                                                double flexuralStrength, double densityOfWater,
                                                                 double soilElasticity,
                                                                 AsphaltRevetmentWaveImpactLayer upperLayer,
                                                                 AsphaltRevetmentWaveImpactLayer subLayer,
@@ -51,7 +51,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                                                                 IReadOnlyList<(double, double)> impactFactors)
             : base(x, initialDamage, failureNumber)
         {
-            FailureTension = failureTension;
+            FlexuralStrength = flexuralStrength;
             DensityOfWater = densityOfWater;
             SoilElasticity = soilElasticity;
             UpperLayer = upperLayer;
@@ -65,7 +65,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             ImpactFactors = impactFactors;
         }
 
-        public double FailureTension { get; }
+        public double FlexuralStrength { get; }
 
         public double DensityOfWater { get; }
 
@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             {
                 AsphaltRevetmentWaveImpactValidator.FatigueAlpha(Fatigue.Alpha),
                 AsphaltRevetmentWaveImpactValidator.FatigueBeta(Fatigue.Beta),
-                AsphaltRevetmentWaveImpactValidator.FailureTension(FailureTension),
+                AsphaltRevetmentWaveImpactValidator.FailureTension(FlexuralStrength),
                 AsphaltRevetmentWaveImpactValidator.ImpactNumberC(ImpactNumberC),
                 AsphaltRevetmentWaveImpactValidator.DensityOfWater(DensityOfWater),
                 AsphaltRevetmentWaveImpactValidator.SoilElasticity(SoilElasticity),
@@ -141,7 +141,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 subLayerElasticModulus = UpperLayer.ElasticModulus;
             }
 
-            logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(FailureTension);
+            logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(FlexuralStrength);
 
             computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(UpperLayer.Thickness,
                 subLayerThickness,
