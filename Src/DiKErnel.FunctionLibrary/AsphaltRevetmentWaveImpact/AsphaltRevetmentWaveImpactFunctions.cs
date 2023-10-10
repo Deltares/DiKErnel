@@ -49,13 +49,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact
         }
 
         /// <summary>
-        /// Calculates the logarithm of the failure tension.
+        /// Calculates the logarithm of the flexural strength.
         /// </summary>
-        /// <param name="failureTension">The failure tension [MPa].</param>
-        /// <returns>The logarithm of the failure tension [MPa].</returns>
-        public static double LogFailureTension(double failureTension)
+        /// <param name="flexuralStrength">The flexural strength [MPa].</param>
+        /// <returns>The logarithm of the flexural strength [MPa].</returns>
+        public static double LogFlexuralStrength(double flexuralStrength)
         {
-            return Math.Log10(failureTension);
+            return Math.Log10(flexuralStrength);
         }
 
         /// <summary>

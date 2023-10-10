@@ -105,16 +105,16 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
         }
 
         [Test]
-        public void LogFailureTension_ValidInput_ExpectedValue()
+        public void LogFlexuralStrength_ValidInput_ExpectedValue()
         {
             // Setup
-            const double failureTension = 1.56;
+            const double flexuralStrength = 1.56;
 
             // Call
-            double logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(failureTension);
+            double logFlexuralStrength = AsphaltRevetmentWaveImpactFunctions.LogFlexuralStrength(flexuralStrength);
 
             // Assert
-            AssertHelper.AreEqual(0.19312459835446, logFailureTension);
+            AssertHelper.AreEqual(0.19312459835446, logFlexuralStrength);
         }
 
         [Test]

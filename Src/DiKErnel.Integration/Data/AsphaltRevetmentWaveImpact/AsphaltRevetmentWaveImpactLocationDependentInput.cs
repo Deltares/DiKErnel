@@ -31,7 +31,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
     internal class AsphaltRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {
         private double outerSlope = double.NaN;
-        private double logFailureTension = double.NaN;
+        private double logFlexuralStrength = double.NaN;
         private double computationalThickness = double.NaN;
         private double stiffnessRelation = double.NaN;
         private double subLayerElasticModulus = double.NaN;
@@ -141,7 +141,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 subLayerElasticModulus = UpperLayer.ElasticModulus;
             }
 
-            logFailureTension = AsphaltRevetmentWaveImpactFunctions.LogFailureTension(FlexuralStrength);
+            logFlexuralStrength = AsphaltRevetmentWaveImpactFunctions.LogFlexuralStrength(FlexuralStrength);
 
             computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(UpperLayer.Thickness,
                 subLayerThickness,
@@ -210,7 +210,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         private AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(double waterLevel,
                                                                                     double waveHeightHm0)
         {
-            return new AsphaltRevetmentWaveImpactFunctionsInput(logFailureTension, averageNumberOfWaves,
+            return new AsphaltRevetmentWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves,
                                                                 maximumPeakStress, stiffnessRelation,
                                                                 computationalThickness, outerSlope, WidthFactors,
                                                                 DepthFactors, ImpactFactors, Z, waterLevel,
@@ -226,7 +226,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                LogFailureTension = logFailureTension,
+                LogFailureTension = logFlexuralStrength,
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
