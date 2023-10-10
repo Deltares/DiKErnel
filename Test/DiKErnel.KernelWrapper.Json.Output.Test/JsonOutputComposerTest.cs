@@ -37,7 +37,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
     {
         private static readonly string actualOutputFilePath = Path.Combine(Path.GetTempPath(), "actualOutput.json");
 
-        [OneTimeTearDown]
+        [TearDown]
         public void TearDown()
         {
             File.Delete(actualOutputFilePath);

@@ -5,7 +5,7 @@ using DiKErnel.Util;
 namespace DiKErnel.KernelWrapper.Json.Input
 {
     /// <summary>
-    /// Container for a calculation input data result and the meta-data that goes with it.
+    /// Container for a calculation input data result and the associated meta-data.
     /// </summary>
     public class ComposedInputData
     {

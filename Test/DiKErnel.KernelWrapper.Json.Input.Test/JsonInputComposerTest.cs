@@ -547,15 +547,17 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
         public void
             GivenJsonInputWithGrassRevetmentWaveRunupNoCalculationMethod_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            PerformInvalidJsonTest("GrassRevetmentWaveRunupNoCalculationMethod.json",
-                                   "An unhandled error occurred while composing calculation data from the Json input. See " +
-                                   "stack trace for more information:\nCannot convert calculation protocol type.");
+            GivenInvalidJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                "GrassRevetmentWaveRunupNoCalculationMethod.json",
+                "An unhandled error occurred while composing calculation data from the Json input. See stack trace " +
+                "for more information:\n Cannot convert calculation protocol type.");
         }
 
         [Test]
         public void GivenNotExistingJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            PerformInvalidJsonTest("NotExisting.json", "The provided input file does not exist");
+            GivenInvalidJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                "NotExisting.json", "The provided input file does not exist");
         }
 
         [Test]
@@ -575,7 +577,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
         }
 
         [Test]
-        public void GivenInvalidJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered()
+        public void GivenInvalidlyFormattedJsonInputFile_WhenValidatingJson_ThenReturnsFalseAndExpectedEventsRegistered()
         {
             // Given
             string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
@@ -632,7 +634,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.AreEqual("The provided input file does not exist", registeredEvents[0].Message);
         }
 
-        private static void PerformInvalidJsonTest(string fileName, string expectedMessage)
+        private static void GivenInvalidJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent(
+            string fileName, string expectedMessage)
         {
             // Given
             string filePath = Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Input.Test"),
