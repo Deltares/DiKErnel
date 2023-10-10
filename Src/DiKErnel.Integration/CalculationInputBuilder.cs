@@ -53,8 +53,17 @@ namespace DiKErnel.Integration
 
         private bool grassOvertoppingLocationAdded;
 
-        private double dikeOrientation = double.NaN;
+        private readonly double dikeOrientation;
 
+        /// <summary>
+        /// Creates a new instance of <see cref="CalculationInputBuilder"/>.
+        /// </summary>
+        /// <param name="dikeOrientation">The dike orientation.</param>
+        public CalculationInputBuilder(double dikeOrientation)
+        {
+            this.dikeOrientation = dikeOrientation;
+        }
+        
         /// <summary>
         /// Sets the dike orientation.
         /// </summary>
