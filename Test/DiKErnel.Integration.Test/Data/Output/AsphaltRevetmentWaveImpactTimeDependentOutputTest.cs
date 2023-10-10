@@ -34,7 +34,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
             int timeOfFailure = Random.Next();
-            double logFailureTension = Random.NextDouble();
+            double logFlexuralStrength = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
             double stiffnessRelation = Random.NextDouble();
             double computationalThickness = Random.NextDouble();
@@ -46,7 +46,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                LogFlexuralStrength = logFailureTension,
+                LogFlexuralStrength = logFlexuralStrength,
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(incrementDamage, output.IncrementDamage);
             Assert.AreEqual(damage, output.Damage);
             Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
-            Assert.AreEqual(logFailureTension, output.LogFailureTension);
+            Assert.AreEqual(logFlexuralStrength, output.LogFlexuralStrength);
             Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
             Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
             Assert.AreEqual(computationalThickness, output.ComputationalThickness);
@@ -76,7 +76,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double logFailureTension = Random.NextDouble();
+            double logFlexuralStrength = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
             double stiffnessRelation = Random.NextDouble();
             double computationalThickness = Random.NextDouble();
@@ -88,7 +88,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = null,
-                LogFlexuralStrength = logFailureTension,
+                LogFlexuralStrength = logFlexuralStrength,
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
@@ -104,7 +104,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(incrementDamage, output.IncrementDamage);
             Assert.AreEqual(damage, output.Damage);
             Assert.IsNull(output.TimeOfFailure);
-            Assert.AreEqual(logFailureTension, output.LogFailureTension);
+            Assert.AreEqual(logFlexuralStrength, output.LogFlexuralStrength);
             Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
             Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
             Assert.AreEqual(computationalThickness, output.ComputationalThickness);

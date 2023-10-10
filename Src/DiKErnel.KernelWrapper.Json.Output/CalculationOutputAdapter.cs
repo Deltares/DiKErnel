@@ -96,7 +96,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         asphaltRevetmentWaveImpactLocationDependentOutput.Z,
                         asphaltRevetmentWaveImpactLocationDependentOutput.OuterSlope,
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.LogFailureTension).ToList(),
+                            .Select(tdo => tdo.LogFlexuralStrength).ToList(),
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.MaximumPeakStress).ToList(),
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
