@@ -146,7 +146,7 @@
           "relatieveDichtheid": {
             "type": "number"
           },
-          "breuksterkteAsfalt": {
+          "buigtreksterkteAsfalt": {
             "type": "number"
           },
           "veerconstanteOndergrond": {
@@ -229,7 +229,7 @@
               }
             },
             "required": [
-              "breuksterkteAsfalt",
+              "buigtreksterkteAsfalt",
               "veerconstanteOndergrond",
               "toplaag"
             ]

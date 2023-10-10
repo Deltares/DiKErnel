@@ -22,7 +22,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
     {
         public const string TopLayerTypeHydraulicAsphaltConcrete = "waterbouwAsfaltBeton";
 
-        public const string FailureTension = "breuksterkteAsfalt";
+        public const string FailureTension = "buigtreksterkteAsfalt";
         public const string DensityOfWater = "soortelijkeDichtheidWater";
         public const string SoilElasticity = "veerconstanteOndergrond";
 
