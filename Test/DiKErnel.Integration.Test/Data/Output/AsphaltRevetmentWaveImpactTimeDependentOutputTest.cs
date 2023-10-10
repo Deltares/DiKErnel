@@ -113,7 +113,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         }
 
         [Test]
-        public void Constructor_LogFailureTensionNull_ThrowsInvalidTimeDependentOutputException()
+        public void Constructor_LogFlexuralStrengthNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
             AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
@@ -128,7 +128,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "logFailureTension must be set.");
+            Assert.Throws<InvalidTimeDependentOutputException>(Call, "LogFlexuralStrength must be set.");
         }
 
         [Test]
