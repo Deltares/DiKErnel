@@ -65,15 +65,6 @@ namespace DiKErnel.Integration
         }
         
         /// <summary>
-        /// Sets the dike orientation.
-        /// </summary>
-        /// <param name="dikeOrientation">The dike orientation.</param>
-        public void SetDikeOrientation(double dikeOrientation)
-        {
-            this.dikeOrientation = dikeOrientation;
-        }
-
-        /// <summary>
         /// Adds a dike profile point.
         /// </summary>
         /// <param name="x">The x coordinate.</param>

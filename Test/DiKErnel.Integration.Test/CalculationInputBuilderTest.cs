@@ -69,7 +69,7 @@ namespace DiKErnel.Integration.Test
             Action<CalculationInputBuilder> addLocationAction, string expectedMessage)
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             addLocationAction(builder);
 
@@ -98,44 +98,19 @@ namespace DiKErnel.Integration.Test
                 "outer crest and inner toe.");
         }
 
-        #region Dike orientation
-
         [Test]
-        public void GivenBuilderWithoutDikeOrientationSet_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void GivenBuilderWithValidData_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            const double dikeOrientation = 13.37;
+
+            var builder = new CalculationInputBuilder(dikeOrientation);
             builder.AddDikeProfileSegment(0, 10, 10, 20);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
             builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
                                                    0.1, GrassRevetmentTopLayerType.ClosedSod));
             builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-            
-            // When
-            DataResult<ICalculationInput> result = builder.Build();
-
-            // Then
-            Assert.IsTrue(result.Successful);
-            
-            Assert.IsNaN(result.Data.ProfileData.DikeOrientation);
-        }
-        
-        [Test]
-        public void GivenBuilderWithDikeOrientationSet_WhenBuild_ThenReturnsResultWithCalculationInput()
-        {
-            // Given
-            double dikeOrientation = Random.NextDouble();
-
-            var builder = new CalculationInputBuilder();
-            builder.AddDikeProfileSegment(0, 10, 10, 20);
-            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
-                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
-            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-
-            builder.SetDikeOrientation(dikeOrientation);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -146,15 +121,13 @@ namespace DiKErnel.Integration.Test
             Assert.AreEqual(dikeOrientation, result.Data.ProfileData.DikeOrientation);
         }
 
-        #endregion
-
         #region Profile segments
 
         [Test]
         public void GivenBuilderWithoutDikeProfileSegments_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -168,7 +141,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfileSegmentsAdded_WhenProfileSegmentXCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(10, 20, 20, 30);
             builder.AddDikeProfileSegment(20.01, 30, 30, 40);
 
@@ -186,7 +159,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfileSegmentsAdded_WhenProfileSegmentZCoordinateUnchained_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(10, 20, 20, 30);
             builder.AddDikeProfileSegment(20, 30.01, 30, 40);
 
@@ -208,7 +181,7 @@ namespace DiKErnel.Integration.Test
             const double endPointX = 20;
             const double endPointZ = 30;
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
@@ -239,7 +212,7 @@ namespace DiKErnel.Integration.Test
             const double endPointZ = 30;
             double roughnessCoefficient = Random.NextDouble();
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
@@ -272,7 +245,7 @@ namespace DiKErnel.Integration.Test
             const double endPointZSegment2 = 40;
             double roughnessCoefficient = Random.NextDouble();
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(startPointXSegment1, startPointZSegment1, endPointXSegment1,
                                           endPointZSegment1, roughnessCoefficient);
             builder.AddDikeProfileSegment(endPointXSegment1, endPointZSegment1, endPointXSegment2, endPointZSegment2,
@@ -312,7 +285,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfilePointDataOuterToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 20, 30);
             builder.AddDikeProfilePoint(10.01, CharacteristicPointType.OuterToe);
 
@@ -329,7 +302,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfilePointDataCrestOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 20, 30);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(10.01, CharacteristicPointType.CrestOuterBerm);
@@ -347,7 +320,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfilePointDataNotchOuterBermNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 20, 30);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(10.01, CharacteristicPointType.NotchOuterBerm);
@@ -365,7 +338,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfilePointDataOuterCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 20, 30);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(10.01, CharacteristicPointType.OuterCrest);
@@ -383,7 +356,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfilePointDataInnerCrestNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 20, 30);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
@@ -402,7 +375,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithDikeProfilePointDataInnerToeNotOnProfileSegmentPoints_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 20, 30);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
@@ -420,7 +393,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithoutDikeProfilePointDataOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 10, 30);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
 
@@ -435,7 +408,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithoutDikeProfilePointDataOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 10, 30);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
 
@@ -453,7 +426,7 @@ namespace DiKErnel.Integration.Test
             // Given
             const double startPointX = 10;
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, startPointX, 30);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterCrest);
@@ -475,7 +448,7 @@ namespace DiKErnel.Integration.Test
             // Given
             const double startPointX = 10;
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, startPointX, 30);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterCrest);
@@ -497,7 +470,7 @@ namespace DiKErnel.Integration.Test
             const CharacteristicPointType outerToe = CharacteristicPointType.OuterToe;
             const CharacteristicPointType outerCrest = CharacteristicPointType.OuterCrest;
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(10, 20, 20, 30);
             builder.AddDikeProfilePoint(10, outerToe);
             builder.AddDikeProfilePoint(20, outerCrest);
@@ -532,7 +505,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithoutTimeStepAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 10, 20);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
@@ -550,7 +523,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithNonSuccessiveTimeStepsAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 10, 20);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
@@ -572,7 +545,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithTimeStepWithInvalidBeginAndEndTimeAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(0, 10, 10, 20);
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
@@ -602,7 +575,7 @@ namespace DiKErnel.Integration.Test
             const double startPointX = 0;
             const double endPointX = 10;
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddDikeProfileSegment(startPointX, 10, endPointX, 20);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
@@ -632,7 +605,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithoutLocationAdded_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
 
             // When
@@ -681,7 +654,7 @@ namespace DiKErnel.Integration.Test
             var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
                 0.1, topLayerType, 0.2, 0.3, 0.4, 0.5);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
@@ -743,7 +716,7 @@ namespace DiKErnel.Integration.Test
                 ImpactFactors = impactFactors
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
@@ -797,7 +770,7 @@ namespace DiKErnel.Integration.Test
             var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
                 x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
 
@@ -946,7 +919,7 @@ namespace DiKErnel.Integration.Test
             const GrassRevetmentTopLayerType topLayerType = (GrassRevetmentTopLayerType) 99;
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(45, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddDikeProfileSegment(10, 20, 30, 40);
             builder.AddDikeProfileSegment(30, 40, 50, 60);
@@ -972,7 +945,7 @@ namespace DiKErnel.Integration.Test
             const double outerToeX = 0;
             const double outerCrestX = 30;
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
             builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
@@ -1009,7 +982,7 @@ namespace DiKErnel.Integration.Test
             const double outerToeX = 0;
             const double outerCrestX = 30;
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
 
             builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
@@ -1071,7 +1044,7 @@ namespace DiKErnel.Integration.Test
                 DikeHeight = dikeHeight
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddDikeProfileSegment(10, 20, 30, 40);
             builder.AddDikeProfileSegment(30, 40, 50, 60);
@@ -1128,7 +1101,7 @@ namespace DiKErnel.Integration.Test
 
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddDikeProfileSegment(10, 20, 30, 40);
             builder.AddDikeProfileSegment(30, 40, 50, 60);
@@ -1182,7 +1155,7 @@ namespace DiKErnel.Integration.Test
 
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddDikeProfileSegment(10, 20, 30, 40);
             builder.AddDikeProfileSegment(30, 40, 50, 60);
@@ -1266,7 +1239,7 @@ namespace DiKErnel.Integration.Test
             const GrassRevetmentTopLayerType topLayerType = (GrassRevetmentTopLayerType) 99;
             var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(0.1, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveImpactLocation(constructionProperties);
 
@@ -1313,7 +1286,7 @@ namespace DiKErnel.Integration.Test
                 LowerLimitLoadingAll = lowerLimitLoadingAll
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveImpactLocation(constructionProperties);
 
@@ -1365,7 +1338,7 @@ namespace DiKErnel.Integration.Test
 
             var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveImpactLocation(constructionProperties);
 
@@ -1415,7 +1388,7 @@ namespace DiKErnel.Integration.Test
 
             var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveImpactLocation(constructionProperties);
 
@@ -1497,7 +1470,7 @@ namespace DiKErnel.Integration.Test
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
                 0.1, 0.2, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
@@ -1554,7 +1527,7 @@ namespace DiKErnel.Integration.Test
                 FrontVelocityCu = frontVelocityCu
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
@@ -1613,7 +1586,7 @@ namespace DiKErnel.Integration.Test
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
                 x, outerSlope, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
@@ -1669,7 +1642,7 @@ namespace DiKErnel.Integration.Test
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
                 x, outerSlope, topLayerType);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
 
@@ -1753,7 +1726,7 @@ namespace DiKErnel.Integration.Test
             var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
                 0.1, topLayerType, 0.2, 0.3);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddNaturalStoneLocation(constructionProperties);
 
@@ -1827,7 +1800,7 @@ namespace DiKErnel.Integration.Test
                 WaveAngleImpactBetamax = waveAngleImpactBetamax
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddNaturalStoneLocation(constructionProperties);
 
@@ -1892,7 +1865,7 @@ namespace DiKErnel.Integration.Test
             var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
                 x, topLayerType, thicknessTopLayer, relativeDensity);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             AddDefaultProfileAndTimeStep(builder);
             builder.AddNaturalStoneLocation(constructionProperties);
 
