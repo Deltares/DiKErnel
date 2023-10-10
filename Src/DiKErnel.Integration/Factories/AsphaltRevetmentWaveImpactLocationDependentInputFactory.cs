@@ -51,7 +51,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
-                constructionProperties.FailureTension,
+                constructionProperties.FlexuralStrength,
                 constructionProperties.DensityOfWater ?? AsphaltRevetmentWaveImpactDefaults.DensityOfWater,
                 constructionProperties.SoilElasticity,
                 upperLayer,

@@ -33,20 +33,20 @@ namespace DiKErnel.Integration.Test.Data
             // Setup
             var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
             double x = Random.NextDouble();
-            double failureTension = Random.NextDouble();
+            double flexuralStrength = Random.NextDouble();
             double soilElasticity = Random.NextDouble();
             double thicknessUpperLayer = Random.NextDouble();
             double elasticModulusUpperLayer = Random.NextDouble();
 
             // Call
             var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+                x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
             // Assert
             Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
             Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
             Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(failureTension, constructionProperties.FailureTension);
+            Assert.AreEqual(flexuralStrength, constructionProperties.FlexuralStrength);
             Assert.AreEqual(soilElasticity, constructionProperties.SoilElasticity);
             Assert.AreEqual(thicknessUpperLayer, constructionProperties.ThicknessUpperLayer);
             Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.ElasticModulusUpperLayer);
@@ -71,7 +71,7 @@ namespace DiKErnel.Integration.Test.Data
             // Given
             var topLayerType = Random.NextEnumValue<AsphaltRevetmentTopLayerType>();
             double x = Random.NextDouble();
-            double failureTension = Random.NextDouble();
+            double flexuralStrength = Random.NextDouble();
             double soilElasticity = Random.NextDouble();
             double thicknessUpperLayer = Random.NextDouble();
             double elasticModulusUpperLayer = Random.NextDouble();
@@ -99,7 +99,7 @@ namespace DiKErnel.Integration.Test.Data
             };
 
             var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                x, topLayerType, failureTension, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
+                x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
             // When
             constructionProperties.InitialDamage = initialDamage;
@@ -119,7 +119,7 @@ namespace DiKErnel.Integration.Test.Data
             // Then
             Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
             Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(failureTension, constructionProperties.FailureTension);
+            Assert.AreEqual(flexuralStrength, constructionProperties.FlexuralStrength);
             Assert.AreEqual(soilElasticity, constructionProperties.SoilElasticity);
             Assert.AreEqual(thicknessUpperLayer, constructionProperties.ThicknessUpperLayer);
             Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.ElasticModulusUpperLayer);

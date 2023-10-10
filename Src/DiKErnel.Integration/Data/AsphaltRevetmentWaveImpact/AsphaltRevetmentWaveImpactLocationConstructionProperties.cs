@@ -27,20 +27,20 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
-        /// <param name="failureTension">The failure tension.</param>
+        /// <param name="flexuralStrength">The flexural strength.</param>
         /// <param name="soilElasticity">The elasticity of the soil.</param>
         /// <param name="thicknessUpperLayer">The thickness of the upper layer.</param>
         /// <param name="elasticModulusUpperLayer">The elastic modulus of the upper
         /// layer.</param>
         public AsphaltRevetmentWaveImpactLocationConstructionProperties(double x,
                                                                         AsphaltRevetmentTopLayerType topLayerType,
-                                                                        double failureTension, double soilElasticity,
+                                                                        double flexuralStrength, double soilElasticity,
                                                                         double thicknessUpperLayer,
                                                                         double elasticModulusUpperLayer)
             : base(x)
         {
             TopLayerType = topLayerType;
-            FailureTension = failureTension;
+            FlexuralStrength = flexuralStrength;
             SoilElasticity = soilElasticity;
             ThicknessUpperLayer = thicknessUpperLayer;
             ElasticModulusUpperLayer = elasticModulusUpperLayer;
@@ -52,9 +52,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         public AsphaltRevetmentTopLayerType TopLayerType { get; }
 
         /// <summary>
-        /// Gets the failure tension.
+        /// Gets the flexural strength.
         /// </summary>
-        public double FailureTension { get; }
+        public double FlexuralStrength { get; }
 
         /// <summary>
         /// Gets the soil elasticity.
