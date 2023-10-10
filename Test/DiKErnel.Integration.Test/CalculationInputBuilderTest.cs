@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Test
                 "outer crest and inner toe.");
         }
 
-        #region Dike Orientation
+        #region Dike orientation
 
         [Test]
         public void GivenBuilderWithoutDikeOrientationSet_WhenBuild_ThenReturnsResultWithCalculationInput()
@@ -597,7 +597,7 @@ namespace DiKErnel.Integration.Test
             const double waterLevel = 0.3;
             const double waveHeightHm0 = 0.4;
             const double wavePeriodTm10 = 0.5;
-            const double waveAngle = 0.6;
+            const double waveDirection = 0.6;
 
             const double startPointX = 0;
             const double endPointX = 10;
@@ -608,7 +608,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
             builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
                                                    0.1, GrassRevetmentTopLayerType.ClosedSod));
-            builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveAngle);
+            builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -620,7 +620,7 @@ namespace DiKErnel.Integration.Test
             Assert.AreEqual(1, actualTimeDependentInputItems.Count);
 
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(beginTime, endTime, waterLevel, waveHeightHm0,
-                                                                        wavePeriodTm10, waveAngle,
+                                                                        wavePeriodTm10, waveDirection,
                                                                         actualTimeDependentInputItems[0]);
         }
 

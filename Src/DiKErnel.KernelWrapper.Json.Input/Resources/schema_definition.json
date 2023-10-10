@@ -61,14 +61,17 @@
     "dijkprofiel": {
       "type": "object",
       "required": [
+        "dijkOrientatie",
         "posities",
         "hoogten",
-        "dijkOrientatie",
         "teenBuitenzijde",
         "kruinBuitenzijde"
       ],
       "additionalProperties": false,
       "properties": {
+        "dijkOrientatie": {
+          "type": "number"
+        },
         "posities": {
           "type": "array",
           "minItems": 2,
@@ -89,9 +92,6 @@
           "items": {
             "type": "number"
           }
-        },
-        "dijkOrientatie": {
-          "type": "number"
         },
         "teenBuitenzijde": {
           "type": "number"

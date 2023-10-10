@@ -104,6 +104,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                     Constants.GravitationalAcceleration);
 
                 double waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
+                
                 waveAngleImpact = GrassRevetmentWaveRunupFunctions.WaveAngleImpact(waveAngle,
                                                                                    WaveAngleImpact.Abeta,
                                                                                    WaveAngleImpact.Betamax);

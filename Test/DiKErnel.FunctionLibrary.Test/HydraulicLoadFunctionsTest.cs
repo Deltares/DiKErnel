@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.TestUtil;
-using DiKErnel.TestUtil;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test
@@ -25,8 +24,8 @@ namespace DiKErnel.FunctionLibrary.Test
     [TestFixture]
     public class HydraulicLoadFunctionsTest
     {
-        private const double tolerance = 1e-6;
-        
+        private const double epsilon = 1e-6;
+
         [Test]
         [TestCase(45, 30, 15)]
         [TestCase(30, 45, 15)]
@@ -34,10 +33,12 @@ namespace DiKErnel.FunctionLibrary.Test
         [TestCase(45, 270, 135)]
         [TestCase(360, 0, 0)]
         [TestCase(0, 360, 0)]
-        [TestCase(180 + tolerance, 0, 180 - tolerance)]
-        [TestCase(0, 180 + tolerance, 180 - tolerance)]
-        public void WaveAngle_VariousWaveDirectionAndDikeOrientation_ExpectedValue(double waveDirection, double dikeOrientation,
-                                                                                   double expectedWaveAngle)
+        [TestCase(0, 0, 0)]
+        [TestCase(360, 360, 0)]
+        [TestCase(180 + epsilon, 0, 180 - epsilon)]
+        [TestCase(0, 180 + epsilon, 180 - epsilon)]
+        public void WaveAngle_VariousScenarios_ExpectedValue(double waveDirection, double dikeOrientation,
+                                                             double expectedWaveAngle)
         {
             // Call
             double waveAngle = HydraulicLoadFunctions.WaveAngle(waveDirection, dikeOrientation);

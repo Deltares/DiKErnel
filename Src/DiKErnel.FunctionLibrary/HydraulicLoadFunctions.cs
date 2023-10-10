@@ -34,7 +34,8 @@ namespace DiKErnel.FunctionLibrary
         public static double WaveAngle(double waveDirection, double dikeOrientation)
         {
             double waveAngle = Math.Abs(waveDirection - dikeOrientation);
-            if (waveAngle > 180)
+            
+            if (waveAngle > 180.0)
             {
                 return 360 - waveAngle;
             }

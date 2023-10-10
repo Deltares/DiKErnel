@@ -75,7 +75,7 @@ namespace DiKErnel.DomainLibrary.Validators
         /// otherwise.</returns>
         public static ValidationIssue WaveDirection(double waveDirection)
         {
-            if (waveDirection < 0 || waveDirection > 360)
+            if (waveDirection < 0.0 || waveDirection > 360.0)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "WaveDirection must be in range [0, 360].");
             }
