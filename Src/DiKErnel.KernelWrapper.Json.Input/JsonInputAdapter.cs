@@ -216,7 +216,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
             return new AsphaltRevetmentWaveImpactLocationConstructionProperties(
                 locationData.X, ConvertAsphaltRevetmentTopLayerType(locationData.TopLayerType),
-                locationData.FailureTension, locationData.SoilElasticity, upperLayerData.ThicknessLayer,
+                locationData.FlexuralStrength, locationData.SoilElasticity, upperLayerData.ThicknessLayer,
                 upperLayerData.ElasticModulusLayer)
             {
                 InitialDamage = locationData.InitialDamage,

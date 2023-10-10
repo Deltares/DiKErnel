@@ -28,8 +28,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
         [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
         public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FailureTension)]
-        public double FailureTension { get; private set; }
+        [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FlexuralStrength)]
+        public double FlexuralStrength { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.SoilElasticity)]
         public double SoilElasticity { get; private set; }
