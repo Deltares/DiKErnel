@@ -295,7 +295,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization1()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(0, 3600, 2, 1, 4, 0);
             builder.AddTimeStep(3600, 7200, 2.2, 1.5, 5, 0);
@@ -318,7 +318,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization2()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(-3600, -2880, 2, 1, 4, 0);
             builder.AddTimeStep(-2880, -1440, 2.2, 1.5, 5, 0);
@@ -341,7 +341,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization3()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(0, 3600, 2, 1, 4, 0);
             builder.AddTimeStep(3600, 7200, 2.2, 1.5, 5, 0);

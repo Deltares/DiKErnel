@@ -329,7 +329,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization1()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(0, 3600, 5.5, 1.9, 4.7, 350);
             builder.AddTimeStep(3600, 7200, 5.6, 1.95, 4.73, 352);
@@ -348,7 +348,6 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(50400, 54000, 5.6, 2.6, 5.12, 18);
             builder.AddTimeStep(54000, 57600, 5.5, 2.65, 5.15, 20);
 
-            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(0, -0.1, 5, 0, 1);
             builder.AddDikeProfileSegment(5, 0, 15, 3, 1);
             builder.AddDikeProfileSegment(15, 3, 22, 3.2, 0.75);
@@ -372,7 +371,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization2()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(0, 3600, 5, 2.35, 5.2, 350);
             builder.AddTimeStep(3600, 7200, 5.1, 2.4, 5.23, 352);
@@ -391,7 +390,6 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(50400, 54000, 5.1, 3.05, 5.62, 18);
             builder.AddTimeStep(54000, 57600, 5, 3.1, 5.65, 20);
 
-            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(0, -0.1, 5, 0, 1);
             builder.AddDikeProfileSegment(5, 0, 30, 7.5, 1);
             builder.AddDikeProfileSegment(30, 7.5, 31, 7.6, 0.8);
@@ -411,7 +409,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization3()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(0, 3600, 5.7, 2.05, 5.2, 350);
             builder.AddTimeStep(3600, 7200, 6.2, 2.1, 5.23, 352);
@@ -426,7 +424,6 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(57600, 75600, 6, 2.55, 5.5, 10);
             builder.AddTimeStep(75600, 79200, 5.7, 2.6, 5.53, 12);
 
-            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(-5, -4, -1.73, -2.89, 1);
             builder.AddDikeProfileSegment(-1.73, -2.89, 33.82, 6.03, 1);
             builder.AddDikeProfileSegment(33.82, 6.03, 38.16, 6.31, 0.9);

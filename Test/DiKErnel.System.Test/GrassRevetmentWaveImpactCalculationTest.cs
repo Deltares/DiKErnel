@@ -196,7 +196,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization1()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(0, 900, 0.5, 0.5, 3, 0);
             builder.AddTimeStep(900, 1800, 0.55, 0.6, 3, 15);
@@ -223,7 +223,6 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(19800, 20700, 0.55, 0.9, 3, 0);
             builder.AddTimeStep(20700, 21600, 0.5, 0.9, 3, 0);
 
-            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(5, -1, 55, 11.5);
 
             builder.AddDikeProfilePoint(5, CharacteristicPointType.OuterToe);
@@ -234,7 +233,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization2()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(0, 900, 0.5, 0.3, 3, 0);
             builder.AddTimeStep(900, 1800, 0.55, 0.4, 3, 15);
@@ -261,7 +260,6 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(19800, 20700, 0.55, 0.7, 3, 0);
             builder.AddTimeStep(20700, 21600, 0.5, 0.7, 3, 0);
 
-            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(5, -1, 55, 11.5);
 
             builder.AddDikeProfilePoint(5, CharacteristicPointType.OuterToe);
@@ -272,7 +270,7 @@ namespace DiKErnel.System.Test
 
         private static CalculationInputBuilder CreateBuilderForSchematization3()
         {
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
 
             builder.AddTimeStep(-3600, -3510, 0.5, 0.5, 3, 0);
             builder.AddTimeStep(-3510, -3330, 0.55, 0.6, 3, 15);
@@ -299,7 +297,6 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(19170, 21240, 0.55, 0.9, 3, 0);
             builder.AddTimeStep(21240, 21600, 0.5, 0.9, 3, 0);
 
-            builder.SetDikeOrientation(0);
             builder.AddDikeProfileSegment(5, -1, 55, 11.5);
 
             builder.AddDikeProfilePoint(5, CharacteristicPointType.OuterToe);

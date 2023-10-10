@@ -37,7 +37,7 @@ namespace DiKErnel.System.Test
         public void GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(90, 100, 10, -1, 30, -10);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
@@ -66,8 +66,7 @@ namespace DiKErnel.System.Test
         public void GivenCalculationInputWithInvalidProfileData_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            var builder = new CalculationInputBuilder();
-            builder.SetDikeOrientation(-10);
+            var builder = new CalculationInputBuilder(-10);
             builder.AddDikeProfileSegment(10, 5, 20, 10, 1.5);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
@@ -113,7 +112,7 @@ namespace DiKErnel.System.Test
                 AverageNumberOfWavesCtm = 0
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
@@ -181,7 +180,7 @@ namespace DiKErnel.System.Test
                     LowerLimitLoadingAll = 1
                 };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
@@ -246,7 +245,7 @@ namespace DiKErnel.System.Test
                 FrontVelocityCu = -1
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
@@ -314,7 +313,7 @@ namespace DiKErnel.System.Test
                 ReducedStrengthTransitionAlphaS = -3
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfileSegment(20, 10, 30, 10);
@@ -375,7 +374,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = dikeHeight
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
             builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
@@ -414,7 +413,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = dikeHeight
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, dikeHeight, 5, 10, 30);
             builder.AddTimeStep(100, 150, dikeHeight, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
@@ -448,7 +447,7 @@ namespace DiKErnel.System.Test
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
                 25, GrassRevetmentTopLayerType.ClosedSod);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
             builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, heightOuterCrest);
@@ -484,7 +483,7 @@ namespace DiKErnel.System.Test
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
                 25, GrassRevetmentTopLayerType.ClosedSod);
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, heightOuterCrest, 5, 10, 30);
             builder.AddTimeStep(100, 150, heightOuterCrest, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, heightOuterCrest);
@@ -511,7 +510,7 @@ namespace DiKErnel.System.Test
         public void GivenValidCalculationInput_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddTimeStep(100, 150, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0);
@@ -572,7 +571,7 @@ namespace DiKErnel.System.Test
                 SlopeLowerLevelAls = 0
             };
 
-            var builder = new CalculationInputBuilder();
+            var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
