@@ -28,9 +28,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>
-        /// Gets or sets the log failure tension.
+        /// Gets or sets the log flexural strength.
         /// </summary>
-        public double? LogFailureTension { get; set; }
+        public double? LogFlexuralStrength { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum peak stress.

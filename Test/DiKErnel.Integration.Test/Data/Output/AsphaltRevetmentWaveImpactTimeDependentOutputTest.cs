@@ -46,7 +46,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                LogFailureTension = logFailureTension,
+                LogFlexuralStrength = logFailureTension,
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
@@ -88,7 +88,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = null,
-                LogFailureTension = logFailureTension,
+                LogFlexuralStrength = logFailureTension,
                 MaximumPeakStress = maximumPeakStress,
                 StiffnessRelation = stiffnessRelation,
                 ComputationalThickness = computationalThickness,
@@ -119,7 +119,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
-            constructionProperties.LogFailureTension = null;
+            constructionProperties.LogFlexuralStrength = null;
 
             // Call
             void Call()
@@ -234,7 +234,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
                 TimeOfFailure = Random.Next(),
-                LogFailureTension = Random.NextDouble(),
+                LogFlexuralStrength = Random.NextDouble(),
                 MaximumPeakStress = Random.NextDouble(),
                 StiffnessRelation = Random.NextDouble(),
                 ComputationalThickness = Random.NextDouble(),

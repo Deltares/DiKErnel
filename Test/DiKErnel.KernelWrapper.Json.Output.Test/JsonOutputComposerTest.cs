@@ -223,7 +223,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     IncrementDamage = 0.1,
                     Damage = 0.2,
                     TimeOfFailure = 3,
-                    LogFailureTension = 0.4,
+                    LogFlexuralStrength = 0.4,
                     MaximumPeakStress = 0.5,
                     StiffnessRelation = 0.6,
                     ComputationalThickness = 0.7,
@@ -329,7 +329,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     IncrementDamage = 0.1,
                     Damage = 0.2,
-                    LogFailureTension = 0.3,
+                    LogFlexuralStrength = 0.3,
                     MaximumPeakStress = 0.4,
                     StiffnessRelation = 0.5,
                     ComputationalThickness = 0.6,

@@ -31,9 +31,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
-            LogFailureTension = constructionProperties.LogFailureTension
+            LogFailureTension = constructionProperties.LogFlexuralStrength
                                 ?? throw new InvalidTimeDependentOutputException(
-                                    nameof(constructionProperties.LogFailureTension));
+                                    nameof(constructionProperties.LogFlexuralStrength));
             MaximumPeakStress = constructionProperties.MaximumPeakStress
                                 ?? throw new InvalidTimeDependentOutputException(
                                     nameof(constructionProperties.MaximumPeakStress));
