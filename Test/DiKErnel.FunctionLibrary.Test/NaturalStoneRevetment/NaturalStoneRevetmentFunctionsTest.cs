@@ -17,9 +17,9 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
-using DiKErnel.FunctionLibrary.TestUtil;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
+using AssertHelper = DiKErnel.FunctionLibrary.TestUtil.AssertHelper;
 
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
 {

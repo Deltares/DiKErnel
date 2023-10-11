@@ -28,7 +28,6 @@ using DiKErnel.TestUtil;
 using DiKErnel.Util;
 using NSubstitute;
 using NUnit.Framework;
-using FileAssert = DiKErnel.TestUtil.FileAssert;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Test
 {
@@ -192,7 +191,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test"),
                              "JsonOutputComposerTest", filename);
 
-            FileAssert.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
+            AssertHelper.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
 
             Assert.IsTrue(result.Successful);
             CollectionAssert.IsEmpty(result.Events);
@@ -209,7 +208,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 Path.Combine(TestDataPathHelper.GetTestDataPath("DiKErnel.KernelWrapper.Json.Output.Test"),
                              "JsonOutputComposerTest", filename);
 
-            FileAssert.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
+            AssertHelper.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
 
             Assert.IsTrue(result.Successful);
             CollectionAssert.IsEmpty(result.Events);

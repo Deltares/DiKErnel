@@ -16,12 +16,13 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.IO;
 using NUnit.Framework;
 
 namespace DiKErnel.TestUtil
 {
-    public static class FileAssert
+    public static class AssertHelper
     {
         public static void AssertFileContents(string expectedContentFilePath, string actualContentFilePath)
         {
