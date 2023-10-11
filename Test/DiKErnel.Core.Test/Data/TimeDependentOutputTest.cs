@@ -20,6 +20,7 @@ using System;
 using System.Reflection;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
+using DiKErnel.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;
@@ -63,9 +64,7 @@ namespace DiKErnel.Core.Test.Data
             void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
-            Exception exception = Assert.Throws<TargetInvocationException>(Call)?.InnerException as InvalidTimeDependentOutputException;
-            Assert.IsNotNull(exception);
-            Assert.AreEqual("IncrementDamage must be set.", exception.Message);
+            AssertHelper.AssertInnerException<InvalidTimeDependentOutputException>(Call, "IncrementDamage must be set.");
         }
 
         [Test]
@@ -80,9 +79,7 @@ namespace DiKErnel.Core.Test.Data
             void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
-            Exception exception = Assert.Throws<TargetInvocationException>(Call)?.InnerException as InvalidTimeDependentOutputException;
-            Assert.IsNotNull(exception);
-            Assert.AreEqual("Damage must be set.", exception.Message);
+            AssertHelper.AssertInnerException<InvalidTimeDependentOutputException>(Call, "Damage must be set.");
         }
 
         [Test]

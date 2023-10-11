@@ -32,7 +32,19 @@ namespace DiKErnel.TestUtil
         public static void AssertException<T>(TestDelegate call, string expectedMessage) where T : Exception
         {
             var exception = Assert.Throws<T>(call);
+            Assert.IsNotNull(exception);
             Assert.AreEqual(expectedMessage, exception.Message);
+        }
+
+        public static void AssertInnerException<T>(TestDelegate call, string expectedMessage) where T : Exception
+        {
+            Exception exception = Assert.Catch(call);
+            Assert.IsNotNull(exception);
+
+            Exception innerException = exception.InnerException;
+            Assert.IsNotNull(innerException);
+            Assert.AreEqual(typeof(T), innerException.GetType());
+            Assert.AreEqual(expectedMessage, innerException.Message);
         }
     }
 }
