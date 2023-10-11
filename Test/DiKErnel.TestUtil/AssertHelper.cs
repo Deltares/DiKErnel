@@ -28,5 +28,11 @@ namespace DiKErnel.TestUtil
         {
             Assert.AreEqual(File.ReadAllText(expectedContentFilePath), File.ReadAllText(actualContentFilePath));
         }
+
+        public static void AssertException<T>(TestDelegate call, string expectedMessage) where T : Exception
+        {
+            var exception = Assert.Throws<T>(call);
+            Assert.AreEqual(expectedMessage, exception.Message);
+        }
     }
 }

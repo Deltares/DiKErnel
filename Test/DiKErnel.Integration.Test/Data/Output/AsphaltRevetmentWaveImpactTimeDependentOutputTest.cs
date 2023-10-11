@@ -223,7 +223,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "equivalentElasticModulus must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call, "AverageNumberOfWaves must be set.");
         }
 
 
