@@ -28,14 +28,14 @@ namespace DiKErnel.FunctionLibrary.Test
 
         [Test]
         [TestCase(45, 30, 15)]
-        [TestCase(30, 45, 15)]
-        [TestCase(270, 45, 135)]
+        [TestCase(30, 45, -15)]
+        [TestCase(270, 45, -135)]
         [TestCase(45, 270, 135)]
         [TestCase(360, 0, 0)]
         [TestCase(0, 360, 0)]
         [TestCase(0, 0, 0)]
         [TestCase(360, 360, 0)]
-        [TestCase(180 + epsilon, 0, 180 - epsilon)]
+        [TestCase(180 + epsilon, 0, -180 + epsilon)]
         [TestCase(0, 180 + epsilon, 180 - epsilon)]
         public void WaveAngle_VariousScenarios_ExpectedValue(double waveDirection, double dikeOrientation,
                                                              double expectedWaveAngle)
