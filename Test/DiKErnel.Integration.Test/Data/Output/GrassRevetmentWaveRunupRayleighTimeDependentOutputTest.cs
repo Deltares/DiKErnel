@@ -20,7 +20,6 @@ using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
 using DiKErnel.TestUtil;
-using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output

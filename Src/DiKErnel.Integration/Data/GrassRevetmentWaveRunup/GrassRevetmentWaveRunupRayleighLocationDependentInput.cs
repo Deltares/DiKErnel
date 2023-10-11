@@ -35,6 +35,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         private double waveAngleImpact = double.NaN;
         private double representativeWaveRunup2P = double.NaN;
         private double cumulativeOverload = double.NaN;
+        private double averageNumberOfWaves = double.NaN;
 
         public GrassRevetmentWaveRunupRayleighLocationDependentInput(double x, double initialDamage,
                                                                      double failureNumber, double outerSlope,
@@ -85,7 +86,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             var incrementDamage = 0.0;
             double damage = initialDamage;
             int? timeOfFailure = null;
-            double? averageNumberOfWaves = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 Z, timeDependentInput.WaterLevel);
@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(surfSimilarityParameter,
                                                                                timeDependentInput.WaveHeightHm0);
 
-                cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves.Value);
+                cumulativeOverload = CalculateCumulativeOverload();
 
                 incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
                                                                           CriticalCumulativeOverload);
@@ -131,7 +131,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             }
 
             return new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, averageNumberOfWaves, timeOfFailure));
+                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
         private double CalculateRepresentativeWaveRunup2P(double surfSimilarityParameter, double waveHeightHm0)
@@ -145,7 +145,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                                  Representative2P.Representative2PCru));
         }
 
-        private double CalculateCumulativeOverload(double averageNumberOfWaves)
+        private double CalculateCumulativeOverload()
         {
             return GrassRevetmentWaveRunupRayleighFunctions.CumulativeOverload(
                 new GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(averageNumberOfWaves,
@@ -160,15 +160,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         }
 
         private GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, double? averageNumberOfWaves, int? timeOfFailure)
+            double incrementDamage, double damage, int? timeOfFailure)
         {
             var constructionProperties = new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
-                AverageNumberOfWaves = averageNumberOfWaves
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
             if (verticalDistanceWaterLevelElevation > 0.0)
@@ -176,6 +175,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 constructionProperties.WaveAngleImpact = waveAngleImpact;
                 constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
                 constructionProperties.CumulativeOverload = cumulativeOverload;
+                constructionProperties.AverageNumberOfWaves = averageNumberOfWaves;
             }
 
             return constructionProperties;

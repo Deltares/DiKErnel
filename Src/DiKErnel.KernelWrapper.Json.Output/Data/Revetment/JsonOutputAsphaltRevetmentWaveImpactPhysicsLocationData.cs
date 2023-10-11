@@ -66,6 +66,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         public IReadOnlyList<double> EquivalentElasticModulus { get; }
         
         [JsonProperty(JsonOutputDefinitions.AverageNumberOfWaves)]
-        public IReadOnlyList<double> AverageNumberOfWaves { get; set; }
+        public IReadOnlyList<double> AverageNumberOfWaves { get; }
     }
 }
