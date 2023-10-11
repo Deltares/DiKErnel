@@ -115,7 +115,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "verticalDistanceWaterLevelElevation must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call, 
+                                                                              "VerticalDistanceWaterLevelElevation must be set.");
         }
     }
 }

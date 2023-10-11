@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using DiKErnel.Integration.Helpers;
+using DiKErnel.TestUtil;
 using DiKErnel.Util;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
@@ -92,7 +93,8 @@ namespace DiKErnel.Integration.Test.Helpers
             });
 
             // Then
-            Assert.Throws<NotSupportedException>(Call, "Unsupported ValidationIssueType.");
+            AssertHelper.AssertException<NotSupportedException>(Call,
+                                                                "Unsupported ValidationIssueType.");
         }
     }
 }

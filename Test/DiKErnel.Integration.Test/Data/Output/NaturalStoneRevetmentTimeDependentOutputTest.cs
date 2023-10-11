@@ -195,7 +195,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "outerSlope must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "OuterSlope must be set.");
         }
 
         [Test]
@@ -214,7 +215,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeUpperLevel must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "SlopeUpperLevel must be set.");
         }
 
         [Test]
@@ -233,7 +235,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeUpperPosition must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "SlopeUpperPosition must be set.");
         }
 
         [Test]
@@ -252,7 +255,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeLowerLevel must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "SlopeLowerLevel must be set.");
         }
 
         [Test]
@@ -271,7 +275,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "slopeLowerPosition must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "SlopeLowerPosition must be set.");
         }
 
         [Test]
@@ -290,7 +295,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "loadingRevetment must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "LoadingRevetment must be set.");
         }
 
         [Test]
@@ -309,7 +315,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "surfSimilarityParameter must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "SurfSimilarityParameter must be set.");
         }
 
         [Test]
@@ -328,7 +335,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "lowerLimitLoading must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "LowerLimitLoading must be set.");
         }
 
         [Test]
@@ -347,7 +355,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "depthMaximumWaveLoad must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "DepthMaximumWaveLoad must be set.");
         }
 
         [Test]
@@ -366,7 +375,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "distanceMaximumWaveElevation must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "DistanceMaximumWaveElevation must be set.");
         }
 
         [Test]
@@ -385,7 +395,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "normativeWidthOfWaveImpact must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "NormativeWidthOfWaveImpact must be set.");
         }
 
         private static NaturalStoneRevetmentTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()

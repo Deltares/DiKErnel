@@ -128,7 +128,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "LogFlexuralStrength must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "LogFlexuralStrength must be set.");
         }
 
         [Test]
@@ -147,7 +148,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "maximumPeakStress must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "MaximumPeakStress must be set.");
         }
 
         [Test]
@@ -166,7 +168,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "stiffnessRelation must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "StiffnessRelation must be set.");
         }
 
         [Test]
@@ -185,7 +188,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "computationalThickness must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "ComputationalThickness must be set.");
         }
 
         [Test]
@@ -204,9 +208,10 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            Assert.Throws<InvalidTimeDependentOutputException>(Call, "equivalentElasticModulus must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "EquivalentElasticModulus must be set.");
         }
-        
+
         [Test]
         public void Constructor_AverageNumberOfWavesNull_ThrowsInvalidTimeDependentOutputException()
         {
@@ -223,9 +228,9 @@ namespace DiKErnel.Integration.Test.Data.Output
             }
 
             // Assert
-            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call, "AverageNumberOfWaves must be set.");
+            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
+                                                                              "AverageNumberOfWaves must be set.");
         }
-
 
         private static AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
