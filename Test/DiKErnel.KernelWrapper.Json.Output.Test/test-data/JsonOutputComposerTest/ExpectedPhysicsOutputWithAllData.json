@@ -12,8 +12,8 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 5.3,
-                    "hellingBuitentalud": 5.4,
+                    "hoogteLocatie": 5.4,
+                    "hellingBuitentalud": 5.5,
                     "toenameSchade": [
                         0.1
                     ],
@@ -76,7 +76,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 5.5,
+                    "hoogteLocatie": 5.6,
                     "toenameSchade": [
                         1.7
                     ],
@@ -114,7 +114,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 5.6,
+                    "hoogteLocatie": 5.7,
                     "toenameSchade": [
                         2.6
                     ],
@@ -146,7 +146,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 5.7,
+                    "hoogteLocatie": 5.8,
                     "toenameSchade": [
                         3.4
                     ],
