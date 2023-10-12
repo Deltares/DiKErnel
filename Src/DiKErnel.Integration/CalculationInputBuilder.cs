@@ -51,9 +51,9 @@ namespace DiKErnel.Integration
         private readonly List<RevetmentLocationConstructionProperties> locationConstructionPropertiesItems =
             new List<RevetmentLocationConstructionProperties>();
 
-        private bool grassOvertoppingLocationAdded;
-
         private readonly double dikeOrientation;
+
+        private bool grassOvertoppingLocationAdded;
 
         /// <summary>
         /// Creates a new instance of <see cref="CalculationInputBuilder"/>.
@@ -63,7 +63,7 @@ namespace DiKErnel.Integration
         {
             this.dikeOrientation = dikeOrientation;
         }
-        
+
         /// <summary>
         /// Adds a dike profile point.
         /// </summary>
@@ -184,7 +184,7 @@ namespace DiKErnel.Integration
                 return new DataResult<ICalculationInput>(EventRegistry.Flush());
             }
 
-            ProfileData profileData = ProfileDataFactory.Create(dikeOrientation, profileDataFactorySegments, 
+            ProfileData profileData = ProfileDataFactory.Create(dikeOrientation, profileDataFactorySegments,
                                                                 profileDataFactoryPoints);
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 LocationDependentInputFactory.Create(locationConstructionPropertiesItems);

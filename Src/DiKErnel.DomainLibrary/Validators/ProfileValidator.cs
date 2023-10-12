@@ -40,7 +40,7 @@ namespace DiKErnel.DomainLibrary.Validators
 
             return null;
         }
-        
+
         /// <summary>
         /// Validates the roughness coefficient.
         /// </summary>

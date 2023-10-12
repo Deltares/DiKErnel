@@ -45,7 +45,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.CumulativeOverload)]
         public IReadOnlyList<double?> CumulativeOverload { get; }
-        
+
         [JsonProperty(JsonOutputDefinitions.AverageNumberOfWaves)]
         public IReadOnlyList<double?> AverageNumberOfWaves { get; }
     }

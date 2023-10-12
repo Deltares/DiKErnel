@@ -368,7 +368,7 @@ namespace DiKErnel.Gui.View
             AddLogMessage("");
         }
 
-        private void WriteJsonOutput(CalculationOutput calculationOutput, IReadOnlyList<int?> locationIds, 
+        private void WriteJsonOutput(CalculationOutput calculationOutput, IReadOnlyList<int?> locationIds,
                                      double duration)
         {
             Dictionary<string, object> metaDataItems = null;

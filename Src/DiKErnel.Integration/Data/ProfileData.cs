@@ -34,7 +34,6 @@ namespace DiKErnel.Integration.Data
                            IReadOnlyList<CharacteristicPoint> characteristicPoints)
         {
             DikeOrientation = dikeOrientation;
-            
             ProfileSegments = profileSegments;
             CharacteristicPoints = characteristicPoints;
 
@@ -54,7 +53,7 @@ namespace DiKErnel.Integration.Data
             {
                 ProfileValidator.DikeOrientation(DikeOrientation)
             };
-            
+
             validationIssues.AddRange(ProfileSegments.Select(profileSegment => ProfileValidator.RoughnessCoefficient(
                                                                  profileSegment.RoughnessCoefficient))
                                                      .ToList());

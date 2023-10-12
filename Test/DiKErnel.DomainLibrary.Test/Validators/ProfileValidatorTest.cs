@@ -46,7 +46,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators
 
             ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.DoubleMax, ValidationIssueType.Error, errorMessage);
         }
-        
+
         [Test]
         public void RoughnessCoefficient_VariousScenarios_ExpectedValues()
         {

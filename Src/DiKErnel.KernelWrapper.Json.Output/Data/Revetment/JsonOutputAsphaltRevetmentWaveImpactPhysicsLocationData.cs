@@ -64,7 +64,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EquivalentElasticModulus)]
         public IReadOnlyList<double> EquivalentElasticModulus { get; }
-        
+
         [JsonProperty(JsonOutputDefinitions.AverageNumberOfWaves)]
         public IReadOnlyList<double> AverageNumberOfWaves { get; }
     }

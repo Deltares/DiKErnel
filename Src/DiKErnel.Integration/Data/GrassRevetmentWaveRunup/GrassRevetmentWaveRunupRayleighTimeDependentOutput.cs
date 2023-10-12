@@ -60,7 +60,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         /// Gets the cumulative overload.
         /// </summary>
         public double? CumulativeOverload { get; }
-        
+
         /// <summary>
         /// Gets the average number of waves.
         /// </summary>

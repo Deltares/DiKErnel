@@ -36,6 +36,29 @@ namespace DiKErnel.Integration.Test
     [TestFixture]
     public class CalculationInputBuilderTest
     {
+        [Test]
+        public void GivenBuilderWithValidData_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const double dikeOrientation = 13.37;
+
+            var builder = new CalculationInputBuilder(dikeOrientation);
+            builder.AddDikeProfileSegment(0, 10, 10, 20);
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
+            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
+            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.IsTrue(result.Successful);
+
+            Assert.AreEqual(dikeOrientation, result.Data.ProfileData.DikeOrientation);
+        }
+
         private static void AssertResultWithSuccessfulFalseAndEvent(SimpleResult result, string expectedMessage)
         {
             Assert.IsFalse(result.Successful);
@@ -96,29 +119,6 @@ namespace DiKErnel.Integration.Test
                 },
                 "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
                 "outer crest and inner toe.");
-        }
-
-        [Test]
-        public void GivenBuilderWithValidData_WhenBuild_ThenReturnsResultWithCalculationInput()
-        {
-            // Given
-            const double dikeOrientation = 13.37;
-
-            var builder = new CalculationInputBuilder(dikeOrientation);
-            builder.AddDikeProfileSegment(0, 10, 10, 20);
-            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
-                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
-            builder.AddTimeStep(1, 2, 0.3, 0.4, 0.5, 0.6);
-
-            // When
-            DataResult<ICalculationInput> result = builder.Build();
-
-            // Then
-            Assert.IsTrue(result.Successful);
-
-            Assert.AreEqual(dikeOrientation, result.Data.ProfileData.DikeOrientation);
         }
 
         #region Profile segments

@@ -29,7 +29,7 @@ namespace DiKErnel.Core.Data
         /// Gets the dike orientation to use in the calculation.
         /// </summary>
         double DikeOrientation { get; }
-        
+
         /// <summary>
         /// Gets the profile segments to use in the calculation.
         /// </summary>

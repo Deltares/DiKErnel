@@ -125,7 +125,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                                                                      timeDependentInput.EndTime);
 
                 double waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
-                
+
                 waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle,
                                                                                     WaveAngleImpact.WaveAngleImpactNwa,
                                                                                     WaveAngleImpact.WaveAngleImpactQwa,

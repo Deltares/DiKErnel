@@ -66,7 +66,7 @@ namespace DiKErnel.DomainLibrary.Validators
 
             return null;
         }
-        
+
         /// <summary>
         /// Validates the wave direction.
         /// </summary>

@@ -44,10 +44,10 @@ namespace DiKErnel.FunctionLibrary
             {
                 return waveAngle + 360;
             }
-            
+
             return waveAngle;
         }
-        
+
         /// <summary>
         /// Calculates the slope angle.
         /// </summary>
