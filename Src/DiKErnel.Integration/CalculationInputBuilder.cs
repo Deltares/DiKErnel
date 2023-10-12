@@ -496,7 +496,8 @@ namespace DiKErnel.Integration
 
             IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xValuesProfile.ToArray(),
                                                                          zValuesProfile.ToArray(),
-                                                                         roughnessCoefficients.ToArray(), dikeHeight);
+                                                                         roughnessCoefficients.ToArray(), dikeHeight, 
+                                                                         dikeOrientation);
             if (messages.Any())
             {
                 foreach (string message in messages)

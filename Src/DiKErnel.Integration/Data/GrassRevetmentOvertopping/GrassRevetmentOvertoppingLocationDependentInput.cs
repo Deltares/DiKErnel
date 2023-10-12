@@ -163,7 +163,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaterLevel,
                                                                                timeDependentInput.WaveHeightHm0,
                                                                                timeDependentInput.WavePeriodTm10,
-                                                                               timeDependentInput.WaveDirection);
+                                                                               timeDependentInput.WaveDirection,
+                                                                               profileData.DikeOrientation);
 
                 cumulativeOverload = CalculateCumulativeOverload();
 
@@ -216,12 +217,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         }
 
         private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
-                                                          double wavePeriodTm10, double waveDirection)
+                                                          double wavePeriodTm10, double waveDirection,
+                                                          double dikeOrientation)
         {
             return GrassRevetmentOvertoppingFunctions.RepresentativeWaveRunup2P(
                 new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
                                                                    waveDirection, xValuesProfile, zValuesProfile,
-                                                                   roughnessCoefficients, dikeHeight));
+                                                                   roughnessCoefficients, dikeHeight, dikeOrientation));
         }
 
         private double CalculateCumulativeOverload()

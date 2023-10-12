@@ -39,11 +39,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             IReadOnlyList<double> zValuesProfile = Array.Empty<double>();
             IReadOnlyList<double> roughnessCoefficients = Array.Empty<double>();
             double dikeHeight = Random.NextDouble();
+            double dikeOrientation = Random.NextDouble();
 
             // Call
             var input = new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
                                                                            waveDirection, xValuesProfile, zValuesProfile,
-                                                                           roughnessCoefficients, dikeHeight);
+                                                                           roughnessCoefficients, dikeHeight, 
+                                                                           dikeOrientation);
 
             // Assert
             Assert.AreEqual(waterLevel, input.WaterLevel);
@@ -54,6 +56,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             Assert.AreSame(zValuesProfile, input.ZValuesProfile);
             Assert.AreSame(roughnessCoefficients, input.RoughnessCoefficients);
             Assert.AreEqual(dikeHeight, input.DikeHeight);
+            Assert.AreEqual(dikeOrientation, input.DikeOrientation);
         }
     }
 }

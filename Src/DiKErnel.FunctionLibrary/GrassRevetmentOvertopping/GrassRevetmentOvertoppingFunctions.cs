@@ -37,7 +37,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         {
             return OvertoppingAdapter.CalculateZ2(input.WaterLevel, input.WaveHeightHm0, input.WavePeriodTm10, input.WaveDirection,
                                                   input.XValuesProfile.ToArray(), input.ZValuesProfile.ToArray(),
-                                                  input.RoughnessCoefficients.ToArray(), input.DikeHeight);
+                                                  input.RoughnessCoefficients.ToArray(), input.DikeHeight, input.DikeOrientation);
         }
 
         /// <summary>

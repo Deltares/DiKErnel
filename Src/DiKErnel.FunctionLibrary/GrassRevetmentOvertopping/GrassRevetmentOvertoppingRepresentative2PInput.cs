@@ -38,10 +38,13 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// <param name="roughnessCoefficients">The roughness coefficients of the profile
         /// segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
+        /// <param name="dikeOrientation">The dike orientation with respect to the
+        /// North [deg].</param>
         public GrassRevetmentOvertoppingRepresentative2PInput(double waterLevel, double waveHeightHm0, double wavePeriodTm10,
                                                               double waveDirection, IReadOnlyList<double> xValuesProfile,
                                                               IReadOnlyList<double> zValuesProfile,
-                                                              IReadOnlyList<double> roughnessCoefficients, double dikeHeight)
+                                                              IReadOnlyList<double> roughnessCoefficients, double dikeHeight,
+                                                              double dikeOrientation)
         {
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
@@ -51,6 +54,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
             ZValuesProfile = zValuesProfile;
             RoughnessCoefficients = roughnessCoefficients;
             DikeHeight = dikeHeight;
+            DikeOrientation = dikeOrientation;
         }
 
         /// <summary>
@@ -92,5 +96,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentOvertopping
         /// Gets the dike height [m].
         /// </summary>
         public double DikeHeight { get; }
+
+        /// <summary>
+        /// Gets the dike orientation with respect to the North [deg].
+        /// </summary>
+        public double DikeOrientation { get; }
     }
 }

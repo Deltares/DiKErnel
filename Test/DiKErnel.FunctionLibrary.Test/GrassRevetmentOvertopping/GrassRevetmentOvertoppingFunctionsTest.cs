@@ -33,6 +33,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             const double waveHeightHm0 = 1.9;
             const double wavePeriodTm10 = 4.7;
             const double waveDirection = 350;
+            const double dikeOrientation = 0;
 
             double[] xValuesProfile =
             {
@@ -61,7 +62,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
 
             var input = new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
                                                                            waveDirection, xValuesProfile, zValuesProfile,
-                                                                           roughnessCoefficients, dikeHeight);
+                                                                           roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Call
             double representativeWaveRunup2P = GrassRevetmentOvertoppingFunctions.RepresentativeWaveRunup2P(input);
