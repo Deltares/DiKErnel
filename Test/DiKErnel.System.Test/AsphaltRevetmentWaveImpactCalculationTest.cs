@@ -29,6 +29,21 @@ namespace DiKErnel.System.Test
     [TestFixture]
     public class AsphaltRevetmentWaveImpactCalculationTest : CalculationTest
     {
+        private readonly IReadOnlyList<(double, double)> depthFactors = new[]
+        {
+            (-1, 0.0244),
+            (-0.875, 0.0544),
+            (-0.75, 0.0938),
+            (-0.625, 0.1407),
+            (-0.5, 0.1801),
+            (-0.375, 0.1632),
+            (-0.25, 0.1426),
+            (-0.125, 0.0994),
+            (0, 0.06),
+            (0.125, 0.0244),
+            (0.25, 0.0169)
+        };
+
         [Test]
         public void GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult()
         {
@@ -36,30 +51,9 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
-
-            builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
-
-            DataResult<ICalculationInput> calculationInput = builder.Build();
-
-            // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
-
-            // Then
-            AssertOutput(calculator, 1.09045507114147, 28730);
-        }
-
-        [Test]
-        public void GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult()
-        {
-            // Given
-            CalculationInputBuilder builder = CreateBuilderForSchematization1();
-
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000)
+                10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000)
             {
-                InitialDamage = 0.4
+                DepthFactors = depthFactors
             };
 
             builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
@@ -71,7 +65,32 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.59946302845746, 21784);
+            AssertOutput(calculator, 1.12993952544264, 25720);
+        }
+
+        [Test]
+        public void GivenCalculationInputForSchematization1Testcase2_WhenCalculating_ThenReturnsExpectedCalculationResult()
+        {
+            // Given
+            CalculationInputBuilder builder = CreateBuilderForSchematization1();
+
+            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000)
+            {
+                InitialDamage = 0.4,
+                DepthFactors = depthFactors
+            };
+
+            builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            var calculator = new Calculator(calculationInput.Data);
+            calculator.WaitForCompletion();
+
+            // Then
+            AssertOutput(calculator, 1.72416579184261, 22141);
         }
 
         [Test]
@@ -84,7 +103,8 @@ namespace DiKErnel.System.Test
                 10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.15, 18000)
             {
                 ThicknessSubLayer = 0.18,
-                ElasticModulusSubLayer = 15000
+                ElasticModulusSubLayer = 15000,
+                DepthFactors = depthFactors
             };
 
             builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
@@ -96,7 +116,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.45048223968934, 24186);
+            AssertOutput(calculator, 1.53983898504504, 23511);
         }
 
         [Test]
@@ -125,7 +145,8 @@ namespace DiKErnel.System.Test
                     (5.2, 0.003),
                     (5.6, 0.002),
                     (6.0, 0.001)
-                }
+                },
+                DepthFactors = depthFactors
             };
 
             builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
@@ -137,7 +158,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.12097513403652, 28534);
+            AssertOutput(calculator, 1.13998469842776, 25237);
         }
 
         [Test]
@@ -207,7 +228,8 @@ namespace DiKErnel.System.Test
                     (1.9, 0.015),
                     (2.05, 0.01),
                     (2.2, 0.007)
-                }
+                },
+                DepthFactors = depthFactors
             };
 
             builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
@@ -219,7 +241,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.39298363995088, 24516);
+            AssertOutput(calculator, 1.47912119894062, 23892);
         }
 
         [Test]
@@ -236,7 +258,8 @@ namespace DiKErnel.System.Test
                 FatigueBeta = 4.5,
                 AverageNumberOfWavesCtm = 0.9,
                 ImpactNumberC = 0.95,
-                DensityOfWater = 1000
+                DensityOfWater = 1000,
+                DepthFactors = depthFactors
             };
 
             builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
@@ -248,7 +271,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.28607774443342, 25376);
+            AssertOutput(calculator, 1.39129768977666, 24032);
         }
 
         [Test]
@@ -258,7 +281,10 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
+                10, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000)
+            {
+                DepthFactors = depthFactors
+            };
 
             builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
 
@@ -269,7 +295,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.42481731059929, 16415);
+            AssertOutput(calculator, 1.46369311689636, 15187);
         }
 
         [Test]
@@ -279,7 +305,10 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
             var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                12.5, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000);
+                12.5, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000)
+            {
+                DepthFactors = depthFactors
+            };
 
             builder.AddAsphaltWaveImpactLocation(locationConstructionProperties);
 
@@ -290,7 +319,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.09045507114147, 28730);
+            AssertOutput(calculator, 1.12993952544264, 25720);
         }
 
         private static CalculationInputBuilder CreateBuilderForSchematization1()
