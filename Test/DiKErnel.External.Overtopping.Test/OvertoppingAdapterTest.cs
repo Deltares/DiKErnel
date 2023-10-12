@@ -29,6 +29,7 @@ namespace DiKErnel.External.Overtopping.Test
         {
             // Setup
             const double dikeHeight = 9.1;
+            const double dikeOrientation = 0;
 
             double[] xCoordinates =
             {
@@ -58,7 +59,7 @@ namespace DiKErnel.External.Overtopping.Test
 
             // Call
             IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients,
-                                                                         dikeHeight);
+                                                                         dikeHeight, dikeOrientation);
 
             // Assert
             CollectionAssert.IsNotEmpty(messages);
@@ -69,6 +70,7 @@ namespace DiKErnel.External.Overtopping.Test
         {
             // Setup
             const double dikeHeight = 9.1;
+            const double dikeOrientation = 0;
 
             double[] xCoordinates =
             {
@@ -98,7 +100,7 @@ namespace DiKErnel.External.Overtopping.Test
 
             // Call
             IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xCoordinates, zCoordinates, roughnessCoefficients,
-                                                                         dikeHeight);
+                                                                         dikeHeight, dikeOrientation);
 
             // Assert
             CollectionAssert.IsEmpty(messages);
@@ -114,6 +116,7 @@ namespace DiKErnel.External.Overtopping.Test
             const double waveDirection = 1.912229230397281e-12;
 
             const double dikeHeight = 3.7;
+            const double dikeOrientation = 0;
 
             double[] xCoordinates =
             {
@@ -134,7 +137,7 @@ namespace DiKErnel.External.Overtopping.Test
 
             // Call
             double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates,
-                                                       zCoordinates, roughnessCoefficients, dikeHeight);
+                                                       zCoordinates, roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Assert
             Assert.Zero(z2);
@@ -150,6 +153,7 @@ namespace DiKErnel.External.Overtopping.Test
             const double waveDirection = 50;
 
             const double dikeHeight = 9.1;
+            const double dikeOrientation = 0;
 
             double[] xCoordinates =
             {
@@ -174,7 +178,7 @@ namespace DiKErnel.External.Overtopping.Test
 
             // Call
             double z2 = OvertoppingAdapter.CalculateZ2(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection, xCoordinates,
-                                                       zCoordinates, roughnessCoefficients, dikeHeight);
+                                                       zCoordinates, roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Assert
             Assert.NotZero(z2);

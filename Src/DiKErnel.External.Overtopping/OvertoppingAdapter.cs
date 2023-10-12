@@ -45,13 +45,15 @@ namespace DiKErnel.External.Overtopping
         /// <param name="xValues">The x values of the profile points [m].</param>
         /// <param name="zValues">The z values of the profile points [m].</param>
         /// <param name="roughnessCoefficients">The roughness coefficients of the profile
-        /// segments [-].</param>
+        ///     segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
+        /// <param name="dikeOrientation">The dike orientation with respect to the
+        ///     North [deg].</param>
         /// <returns>A collection of validation messages.</returns>
         public static IReadOnlyList<string> Validate(double[] xValues, double[] zValues, double[] roughnessCoefficients,
-                                                     double dikeHeight)
+                                                     double dikeHeight, double dikeOrientation)
         {
-            Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
+            Geometry geometry = CreateGeometry(dikeOrientation, xValues, zValues, roughnessCoefficients);
             ModelFactors modelFactors = GetDefaultModelFactors();
 
             var success = false;
@@ -78,9 +80,12 @@ namespace DiKErnel.External.Overtopping
         /// <param name="roughnessCoefficients">The roughness coefficients of the profile
         /// segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
+        /// <param name="dikeOrientation">The dike orientation with respect to the
+        /// North [deg].</param>
         /// <returns>The representative wave run-up (2 percent) [m].</returns>
         public static double CalculateZ2(double waterLevel, double waveHeightHm0, double wavePeriodTm10, double waveDirection,
-                                         double[] xValues, double[] zValues, double[] roughnessCoefficients, double dikeHeight)
+                                         double[] xValues, double[] zValues, double[] roughnessCoefficients, double dikeHeight,
+                                         double dikeOrientation)
         {
             var load = new Load
             {
@@ -90,7 +95,7 @@ namespace DiKErnel.External.Overtopping
                 Direction = waveDirection
             };
 
-            Geometry geometry = CreateGeometry(xValues, zValues, roughnessCoefficients);
+            Geometry geometry = CreateGeometry(dikeOrientation, xValues, zValues, roughnessCoefficients);
             ModelFactors modelFactors = GetDefaultModelFactors();
             var result = new Result();
 
@@ -106,11 +111,11 @@ namespace DiKErnel.External.Overtopping
             return result.Z2;
         }
 
-        private static Geometry CreateGeometry(double[] xValues, double[] zValues, double[] roughnessCoefficients)
+        private static Geometry CreateGeometry(double dikeOrientation, double[] xValues, double[] zValues, double[] roughnessCoefficients)
         {
             var geometry = new Geometry
             {
-                Normal = 0,
+                Normal = dikeOrientation,
                 NPoints = xValues.Length,
                 XCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * xValues.Length),
                 YCoords = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * zValues.Length),
