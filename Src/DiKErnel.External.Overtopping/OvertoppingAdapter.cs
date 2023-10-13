@@ -45,10 +45,10 @@ namespace DiKErnel.External.Overtopping
         /// <param name="xValues">The x values of the profile points [m].</param>
         /// <param name="zValues">The z values of the profile points [m].</param>
         /// <param name="roughnessCoefficients">The roughness coefficients of the profile
-        ///     segments [-].</param>
+        /// segments [-].</param>
         /// <param name="dikeHeight">The dike height [m].</param>
         /// <param name="dikeOrientation">The dike orientation with respect to the
-        ///     North [deg].</param>
+        /// North [deg].</param>
         /// <returns>A collection of validation messages.</returns>
         public static IReadOnlyList<string> Validate(double[] xValues, double[] zValues, double[] roughnessCoefficients,
                                                      double dikeHeight, double dikeOrientation)

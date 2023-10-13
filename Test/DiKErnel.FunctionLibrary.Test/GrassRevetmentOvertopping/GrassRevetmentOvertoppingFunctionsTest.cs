@@ -32,8 +32,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             const double waterLevel = 5.5;
             const double waveHeightHm0 = 1.9;
             const double wavePeriodTm10 = 4.7;
-            const double waveDirection = 350;
-            const double dikeOrientation = 0;
+            const double waveDirection = 355;
+            const double dikeOrientation = 5;
 
             double[] xValuesProfile =
             {
