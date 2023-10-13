@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetment;
@@ -582,7 +583,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
             builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
-                                                   0.1, GrassRevetmentTopLayerType.ClosedSod));
+                                                   startPointX + Random.NextDouble(), GrassRevetmentTopLayerType.ClosedSod));
             builder.AddTimeStep(2, 1, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
 
             // When
@@ -685,8 +686,10 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const AsphaltRevetmentTopLayerType topLayerType = (AsphaltRevetmentTopLayerType) 99;
+
+            double x = Random.NextDouble();
             var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                0.1, topLayerType, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
+                x, topLayerType, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -697,7 +700,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, "The location with position 0.1 has an invalid top layer type.");
+                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
         }
 
         [Test]
@@ -1285,7 +1288,9 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const GrassRevetmentTopLayerType topLayerType = (GrassRevetmentTopLayerType) 99;
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(0.1, topLayerType);
+
+            double x = Random.NextDouble();
+            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -1296,7 +1301,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, "The location with position 0.1 has an invalid top layer type.");
+                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
         }
 
         [Test]
@@ -1491,7 +1496,7 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddGrassWaveRunupRayleighLocation(
                         new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                            locationX, 0.1, GrassRevetmentTopLayerType.ClosedSod));
+                            locationX, Random.NextDouble(), GrassRevetmentTopLayerType.ClosedSod));
                 }, locationX);
         }
 
@@ -1505,7 +1510,7 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddGrassWaveRunupRayleighLocation(
                         new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                            locationX, 0.1, GrassRevetmentTopLayerType.ClosedSod));
+                            locationX, Random.NextDouble(), GrassRevetmentTopLayerType.ClosedSod));
                 }, locationX);
         }
 
@@ -1515,8 +1520,10 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const GrassRevetmentTopLayerType topLayerType = (GrassRevetmentTopLayerType) 99;
+
+            double x = Random.NextDouble();
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                0.1, Random.NextDouble(), topLayerType);
+                x, Random.NextDouble(), topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -1527,7 +1534,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, "The location with position 0.1 has an invalid top layer type.");
+                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
         }
 
         [Test]
@@ -1771,8 +1778,10 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const NaturalStoneRevetmentTopLayerType topLayerType = (NaturalStoneRevetmentTopLayerType) 99;
+
+            double x = Random.NextDouble();
             var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
-                0.1, topLayerType, Random.NextDouble(), Random.NextDouble());
+                x, topLayerType, Random.NextDouble(), Random.NextDouble());
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -1783,7 +1792,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, "The location with position 0.1 has an invalid top layer type.");
+                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
         }
 
         [Test]
