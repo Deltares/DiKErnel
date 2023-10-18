@@ -228,11 +228,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                LogFlexuralStrength = logFlexuralStrength,
                 MaximumPeakStress = maximumPeakStress,
-                StiffnessRelation = stiffnessRelation,
-                ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = subLayerElasticModulus,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
         }
