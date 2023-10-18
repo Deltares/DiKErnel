@@ -32,6 +32,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
     {
         private double verticalDistanceWaterLevelElevation = double.NaN;
+        private double waveAngle = double.NaN;
         private double waveAngleImpact = double.NaN;
         private double representativeWaveRunup2P = double.NaN;
         private double cumulativeOverload = double.NaN;
@@ -103,7 +104,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                     OuterSlope, timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
                     Constants.GravitationalAcceleration);
 
-                double waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
+                waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
                 waveAngleImpact = GrassRevetmentWaveRunupFunctions.WaveAngleImpact(waveAngle,
                                                                                    WaveAngleImpact.Abeta,
@@ -172,6 +173,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
             if (verticalDistanceWaterLevelElevation > 0.0)
             {
+                constructionProperties.WaveAngle = waveAngle;
                 constructionProperties.WaveAngleImpact = waveAngleImpact;
                 constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
                 constructionProperties.CumulativeOverload = cumulativeOverload;

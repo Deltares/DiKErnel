@@ -39,6 +39,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(constructionProperties.Damage);
             Assert.IsNull(constructionProperties.TimeOfFailure);
             Assert.IsNull(constructionProperties.VerticalDistanceWaterLevelElevation);
+            Assert.IsNull(constructionProperties.WaveAngle);
             Assert.IsNull(constructionProperties.WaveAngleImpact);
             Assert.IsNull(constructionProperties.RepresentativeWaveRunup2P);
             Assert.IsNull(constructionProperties.CumulativeOverload);
@@ -52,6 +53,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double damage = Random.NextDouble();
             int timeOfFailure = Random.Next();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
+            double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();
@@ -64,6 +66,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
+                WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
                 RepresentativeWaveRunup2P = representativeWaveRunup2P,
                 CumulativeOverload = cumulativeOverload,
@@ -75,6 +78,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(damage, constructionProperties.Damage);
             Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
             Assert.AreEqual(verticalDistanceWaterLevelElevation, constructionProperties.VerticalDistanceWaterLevelElevation);
+            Assert.AreEqual(waveAngle, constructionProperties.WaveAngle);
             Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
             Assert.AreEqual(representativeWaveRunup2P, constructionProperties.RepresentativeWaveRunup2P);
             Assert.AreEqual(cumulativeOverload, constructionProperties.CumulativeOverload);
