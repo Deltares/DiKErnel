@@ -187,6 +187,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         naturalStoneRevetmentLocationDependentOutput.Z,
+                        naturalStoneRevetmentLocationDependentOutput.Resistance,
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.OuterSlope).ToList(),
                         naturalStoneRevetmentTimeDependentOutputItems
@@ -219,8 +220,6 @@ namespace DiKErnel.KernelWrapper.Json.Output
                             .Select(tdo => tdo.WaveAngle).ToList(),
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngleImpact).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
-                            .Select(tdo => tdo.Resistance).ToList(),
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.ReferenceTimeDegradation).ToList(),
                         naturalStoneRevetmentTimeDependentOutputItems

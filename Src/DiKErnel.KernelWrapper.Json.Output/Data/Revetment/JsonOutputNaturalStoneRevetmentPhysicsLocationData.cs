@@ -26,7 +26,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
     internal class JsonOutputNaturalStoneRevetmentPhysicsLocationData : JsonOutputPhysicsLocationData
     {
         public JsonOutputNaturalStoneRevetmentPhysicsLocationData(IReadOnlyList<double> incrementDamage,
-                                                                  double z,
+                                                                  double z, double resistance,
                                                                   IReadOnlyList<double> outerSlope,
                                                                   IReadOnlyList<double> slopeUpperLevel,
                                                                   IReadOnlyList<double> slopeUpperPosition,
@@ -43,11 +43,11 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                   IReadOnlyList<double?> hydraulicLoad,
                                                                   IReadOnlyList<double?> waveAngle,
                                                                   IReadOnlyList<double?> waveAngleImpact,
-                                                                  IReadOnlyList<double?> resistance,
                                                                   IReadOnlyList<double?> referenceTimeDegradation,
                                                                   IReadOnlyList<double?> referenceDegradation) : base(incrementDamage)
         {
             Z = z;
+            Resistance = resistance;
             OuterSlope = outerSlope;
             SlopeUpperLevel = slopeUpperLevel;
             SlopeUpperPosition = slopeUpperPosition;
@@ -64,13 +64,15 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             HydraulicLoad = hydraulicLoad;
             WaveAngle = waveAngle;
             WaveAngleImpact = waveAngleImpact;
-            Resistance = resistance;
             ReferenceTimeDegradation = referenceTimeDegradation;
             ReferenceDegradation = referenceDegradation;
         }
 
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
+        
+        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.Resistance, Order = -2)]
+        public double Resistance { get; }
 
         [JsonProperty(JsonOutputDefinitions.OuterSlope)]
         public IReadOnlyList<double> OuterSlope { get; }
@@ -119,9 +121,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputDefinitions.WaveAngleImpact)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }
-
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.Resistance)]
-        public IReadOnlyList<double?> Resistance { get; }
 
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.ReferenceTimeDegradation)]
         public IReadOnlyList<double?> ReferenceTimeDegradation { get; }

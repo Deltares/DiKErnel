@@ -290,7 +290,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     HydraulicLoad = 5.1,
                     WaveAngle = 5.2,
                     WaveAngleImpact = 5.3,
-                    Resistance = 5.4,
                     ReferenceTimeDegradation = 5.5,
                     ReferenceDegradation = 5.6
                 });
@@ -316,7 +315,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
                     naturalStoneTimeDependentOutput
-                }, 6.1)
+                }, 6.1, 6.2)
             });
         }
 
@@ -398,7 +397,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
                     naturalStoneTimeDependentOutput
-                }, 3.7)
+                }, 3.7, 3.8)
             });
         }
     }
