@@ -46,5 +46,25 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         /// Gets the calculated outer slope.
         /// </summary>
         public double OuterSlope { get; }
+        
+        /// <summary>
+        /// Gets the log flexural strength.
+        /// </summary>
+        public double LogFlexuralStrength { get; }
+        
+        /// <summary>
+        /// Gets the computational thickness.
+        /// </summary>
+        public double ComputationalThickness { get; }
+        
+        /// <summary>
+        /// Gets the stiffness relation.
+        /// </summary>
+        public double StiffnessRelation { get; }
+        
+        /// <summary>
+        /// Gets the equivalent elastic modulus.
+        /// </summary>
+        public double EquivalentElasticModulus { get; }
     }
 }
