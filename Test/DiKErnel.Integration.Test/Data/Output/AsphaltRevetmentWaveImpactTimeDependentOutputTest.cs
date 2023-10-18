@@ -34,11 +34,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
             int timeOfFailure = Random.Next();
-            double logFlexuralStrength = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
-            double stiffnessRelation = Random.NextDouble();
-            double computationalThickness = Random.NextDouble();
-            double equivalentElasticModulus = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
             var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
@@ -46,11 +42,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                LogFlexuralStrength = logFlexuralStrength,
                 MaximumPeakStress = maximumPeakStress,
-                StiffnessRelation = stiffnessRelation,
-                ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = equivalentElasticModulus,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
 
@@ -62,11 +54,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(incrementDamage, output.IncrementDamage);
             Assert.AreEqual(damage, output.Damage);
             Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
-            Assert.AreEqual(logFlexuralStrength, output.LogFlexuralStrength);
             Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
-            Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
-            Assert.AreEqual(computationalThickness, output.ComputationalThickness);
-            Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
             Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
         }
 
@@ -76,11 +64,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double logFlexuralStrength = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
-            double stiffnessRelation = Random.NextDouble();
-            double computationalThickness = Random.NextDouble();
-            double equivalentElasticModulus = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
             var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
@@ -88,11 +72,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = null,
-                LogFlexuralStrength = logFlexuralStrength,
                 MaximumPeakStress = maximumPeakStress,
-                StiffnessRelation = stiffnessRelation,
-                ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = equivalentElasticModulus,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
 
@@ -104,32 +84,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(incrementDamage, output.IncrementDamage);
             Assert.AreEqual(damage, output.Damage);
             Assert.IsNull(output.TimeOfFailure);
-            Assert.AreEqual(logFlexuralStrength, output.LogFlexuralStrength);
             Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
-            Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
-            Assert.AreEqual(computationalThickness, output.ComputationalThickness);
-            Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
             Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
-        }
-
-        [Test]
-        public void Constructor_LogFlexuralStrengthNull_ThrowsInvalidTimeDependentOutputException()
-        {
-            // Setup
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.LogFlexuralStrength = null;
-
-            // Call
-            void Call()
-            {
-                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-            }
-
-            // Assert
-            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
-                                                                              "LogFlexuralStrength must be set.");
         }
 
         [Test]
@@ -150,66 +106,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Assert
             AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
                                                                               "MaximumPeakStress must be set.");
-        }
-
-        [Test]
-        public void Constructor_StiffnessRelationNull_ThrowsInvalidTimeDependentOutputException()
-        {
-            // Setup
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.StiffnessRelation = null;
-
-            // Call
-            void Call()
-            {
-                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-            }
-
-            // Assert
-            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
-                                                                              "StiffnessRelation must be set.");
-        }
-
-        [Test]
-        public void Constructor_ComputationalThicknessNull_ThrowsInvalidTimeDependentOutputException()
-        {
-            // Setup
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.ComputationalThickness = null;
-
-            // Call
-            void Call()
-            {
-                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-            }
-
-            // Assert
-            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
-                                                                              "ComputationalThickness must be set.");
-        }
-
-        [Test]
-        public void Constructor_EquivalentElasticModulusNull_ThrowsInvalidTimeDependentOutputException()
-        {
-            // Setup
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
-                CreateFullyConfiguredConstructionProperties();
-
-            constructionProperties.EquivalentElasticModulus = null;
-
-            // Call
-            void Call()
-            {
-                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
-            }
-
-            // Assert
-            AssertHelper.AssertException<InvalidTimeDependentOutputException>(Call,
-                                                                              "EquivalentElasticModulus must be set.");
         }
 
         [Test]
@@ -239,11 +135,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
                 TimeOfFailure = Random.Next(),
-                LogFlexuralStrength = Random.NextDouble(),
                 MaximumPeakStress = Random.NextDouble(),
-                StiffnessRelation = Random.NextDouble(),
-                ComputationalThickness = Random.NextDouble(),
-                EquivalentElasticModulus = Random.NextDouble(),
                 AverageNumberOfWaves = Random.NextDouble()
             };
         }

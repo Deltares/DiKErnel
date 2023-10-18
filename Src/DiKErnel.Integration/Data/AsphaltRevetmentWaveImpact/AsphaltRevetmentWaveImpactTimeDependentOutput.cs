@@ -31,50 +31,18 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
-            LogFlexuralStrength = constructionProperties.LogFlexuralStrength
-                                  ?? throw new InvalidTimeDependentOutputException(
-                                      nameof(constructionProperties.LogFlexuralStrength));
             MaximumPeakStress = constructionProperties.MaximumPeakStress
                                 ?? throw new InvalidTimeDependentOutputException(
                                     nameof(constructionProperties.MaximumPeakStress));
-            StiffnessRelation = constructionProperties.StiffnessRelation
-                                ?? throw new InvalidTimeDependentOutputException(
-                                    nameof(constructionProperties.StiffnessRelation));
-            ComputationalThickness = constructionProperties.ComputationalThickness
-                                     ?? throw new InvalidTimeDependentOutputException(
-                                         nameof(constructionProperties.ComputationalThickness));
-            EquivalentElasticModulus = constructionProperties.EquivalentElasticModulus
-                                       ?? throw new InvalidTimeDependentOutputException(
-                                           nameof(constructionProperties.EquivalentElasticModulus));
             AverageNumberOfWaves = constructionProperties.AverageNumberOfWaves
                                    ?? throw new InvalidTimeDependentOutputException(
                                        nameof(constructionProperties.AverageNumberOfWaves));
         }
 
         /// <summary>
-        /// Gets the log flexural strength.
-        /// </summary>
-        public double LogFlexuralStrength { get; }
-
-        /// <summary>
         /// Gets the maximum peak stress.
         /// </summary>
         public double MaximumPeakStress { get; }
-
-        /// <summary>
-        /// Gets the stiffness relation.
-        /// </summary>
-        public double StiffnessRelation { get; }
-
-        /// <summary>
-        /// Gets the computational thickness.
-        /// </summary>
-        public double ComputationalThickness { get; }
-
-        /// <summary>
-        /// Gets the equivalent elastic modulus.
-        /// </summary>
-        public double EquivalentElasticModulus { get; }
 
         /// <summary>
         /// Gets the average number of waves.
