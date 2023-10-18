@@ -28,16 +28,31 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
+        /// <param name="minimumWaveHeight">The calculated minimum wave height.</param>
+        /// <param name="maximumWaveHeight">The calculated maximum wave height.</param>
         public GrassRevetmentWaveImpactLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double minimumWaveHeight, 
+            double maximumWaveHeight)
             : base(timeDependentOutputItems)
         {
             Z = z;
+            MinimumWaveHeight = minimumWaveHeight;
+            MaximumWaveHeight = maximumWaveHeight;
         }
 
         /// <summary>
         /// Gets the calculated z.
         /// </summary>
         public double Z { get; }
+
+        /// <summary>
+        /// Gets the minimum wave height.
+        /// </summary>
+        public double MinimumWaveHeight { get; }
+
+        /// <summary>
+        /// Gets the maximum wave height.
+        /// </summary>
+        public double MaximumWaveHeight { get; }
     }
 }

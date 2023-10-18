@@ -90,7 +90,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new GrassRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, Z);
+            return new GrassRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, minimumWaveHeight,
+                                                                       maximumWaveHeight);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)

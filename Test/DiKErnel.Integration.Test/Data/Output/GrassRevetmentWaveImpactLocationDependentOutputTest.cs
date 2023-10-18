@@ -32,15 +32,20 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             double z = Random.NextDouble();
+            double minimumWaveHeight = Random.NextDouble();
+            double maximumWaveHeight = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, z);
+            var output = new GrassRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, z, minimumWaveHeight,
+                                                                             maximumWaveHeight);
 
             // Assert
             Assert.IsInstanceOf<LocationDependentOutput>(output);
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
             Assert.AreEqual(z, output.Z);
+            Assert.AreEqual(minimumWaveHeight, output.MinimumWaveHeight);
+            Assert.AreEqual(maximumWaveHeight, output.MaximumWaveHeight);
         }
     }
 }
