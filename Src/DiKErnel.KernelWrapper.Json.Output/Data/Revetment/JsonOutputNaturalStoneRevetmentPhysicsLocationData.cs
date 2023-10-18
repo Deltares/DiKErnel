@@ -41,6 +41,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                   IReadOnlyList<double> distanceMaximumWaveElevation,
                                                                   IReadOnlyList<double> normativeWidthOfWaveImpact,
                                                                   IReadOnlyList<double?> hydraulicLoad,
+                                                                  IReadOnlyList<double?> waveAngle,
                                                                   IReadOnlyList<double?> waveAngleImpact,
                                                                   IReadOnlyList<double?> resistance,
                                                                   IReadOnlyList<double?> referenceTimeDegradation,
@@ -61,6 +62,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             DistanceMaximumWaveElevation = distanceMaximumWaveElevation;
             NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact;
             HydraulicLoad = hydraulicLoad;
+            WaveAngle = waveAngle;
             WaveAngleImpact = waveAngleImpact;
             Resistance = resistance;
             ReferenceTimeDegradation = referenceTimeDegradation;
@@ -111,6 +113,9 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.HydraulicLoad)]
         public IReadOnlyList<double?> HydraulicLoad { get; }
+
+        [JsonProperty(JsonOutputDefinitions.WaveAngle)]
+        public IReadOnlyList<double?> WaveAngle { get; }
 
         [JsonProperty(JsonOutputDefinitions.WaveAngleImpact)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }

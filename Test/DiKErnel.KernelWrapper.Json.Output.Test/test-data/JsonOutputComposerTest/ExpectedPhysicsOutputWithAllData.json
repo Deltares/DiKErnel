@@ -192,6 +192,9 @@
                     "hydraulischeBelasting": [
                         5.1
                     ],
+                    "golfhoek": [
+                        5.2
+                    ],
                     "impactGolfhoek": [
                         5.3
                     ],

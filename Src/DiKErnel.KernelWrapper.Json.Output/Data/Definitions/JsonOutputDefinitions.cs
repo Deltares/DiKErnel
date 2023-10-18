@@ -45,6 +45,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
         public const string UpperLimitLoading = "bovengrensBelasting";
         public const string LowerLimitLoading = "ondergrensBelasting";
 
+        public const string WaveAngle = "golfhoek";
         public const string WaveAngleImpact = "impactGolfhoek";
 
         public const string AverageNumberOfWaves = "gemiddeldAantalGolven";

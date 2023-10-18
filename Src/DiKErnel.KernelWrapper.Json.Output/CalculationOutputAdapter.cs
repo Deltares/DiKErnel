@@ -216,6 +216,8 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.HydraulicLoad).ToList(),
                         naturalStoneRevetmentTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveAngle).ToList(),
+                        naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngleImpact).ToList(),
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.Resistance).ToList(),

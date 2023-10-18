@@ -177,6 +177,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(distanceMaximumWaveElevation, output.DistanceMaximumWaveElevation);
             Assert.AreEqual(normativeWidthOfWaveImpact, output.NormativeWidthOfWaveImpact);
             Assert.IsNull(output.HydraulicLoad);
+            Assert.IsNull(output.WaveAngle);
             Assert.IsNull(output.WaveAngleImpact);
             Assert.IsNull(output.Resistance);
             Assert.IsNull(output.ReferenceTimeDegradation);
