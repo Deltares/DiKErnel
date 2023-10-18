@@ -37,11 +37,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(constructionProperties.IncrementDamage);
             Assert.IsNull(constructionProperties.Damage);
             Assert.IsNull(constructionProperties.TimeOfFailure);
-            Assert.IsNull(constructionProperties.LogFlexuralStrength);
             Assert.IsNull(constructionProperties.MaximumPeakStress);
-            Assert.IsNull(constructionProperties.StiffnessRelation);
-            Assert.IsNull(constructionProperties.ComputationalThickness);
-            Assert.IsNull(constructionProperties.EquivalentElasticModulus);
             Assert.IsNull(constructionProperties.AverageNumberOfWaves);
         }
 
@@ -52,11 +48,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
             int timeOfFailure = Random.Next();
-            double logFlexuralStrength = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
-            double stiffnessRelation = Random.NextDouble();
-            double computationalThickness = Random.NextDouble();
-            double equivalentElasticModulus = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
             // When
@@ -65,11 +57,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 IncrementDamage = incrementDamage,
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
-                LogFlexuralStrength = logFlexuralStrength,
                 MaximumPeakStress = maximumPeakStress,
-                StiffnessRelation = stiffnessRelation,
-                ComputationalThickness = computationalThickness,
-                EquivalentElasticModulus = equivalentElasticModulus,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
 
@@ -78,11 +66,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
             Assert.AreEqual(damage, constructionProperties.Damage);
             Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
-            Assert.AreEqual(logFlexuralStrength, constructionProperties.LogFlexuralStrength);
             Assert.AreEqual(maximumPeakStress, constructionProperties.MaximumPeakStress);
-            Assert.AreEqual(stiffnessRelation, constructionProperties.StiffnessRelation);
-            Assert.AreEqual(computationalThickness, constructionProperties.ComputationalThickness);
-            Assert.AreEqual(equivalentElasticModulus, constructionProperties.EquivalentElasticModulus);
             Assert.AreEqual(averageNumberOfWaves, constructionProperties.AverageNumberOfWaves);
         }
     }

@@ -28,29 +28,9 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>
-        /// Gets or sets the log flexural strength.
-        /// </summary>
-        public double? LogFlexuralStrength { get; set; }
-
-        /// <summary>
         /// Gets or sets the maximum peak stress.
         /// </summary>
         public double? MaximumPeakStress { get; set; }
-
-        /// <summary>
-        /// Gets or sets the stiffness relation.
-        /// </summary>
-        public double? StiffnessRelation { get; set; }
-
-        /// <summary>
-        /// Gets or sets the computational thickness.
-        /// </summary>
-        public double? ComputationalThickness { get; set; }
-
-        /// <summary>
-        /// Gets or sets the equivalent elastic modulus.
-        /// </summary>
-        public double? EquivalentElasticModulus { get; set; }
 
         /// <summary>
         /// Gets or sets the average number of waves.
