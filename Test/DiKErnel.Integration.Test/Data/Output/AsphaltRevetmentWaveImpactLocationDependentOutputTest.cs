@@ -33,16 +33,26 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Setup
             double z = Random.NextDouble();
             double outerSlope = Random.NextDouble();
+            double logFlexuralStrength = Random.NextDouble();
+            double computationalThickness = Random.NextDouble();
+            double stiffnessRelation = Random.NextDouble();
+            double equivalentElasticModulus = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new AsphaltRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, z, outerSlope);
+            var output = new AsphaltRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, z, outerSlope,
+                                                                               logFlexuralStrength, computationalThickness,
+                                                                               stiffnessRelation, equivalentElasticModulus);
 
             // Assert
             Assert.IsInstanceOf<LocationDependentOutput>(output);
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
             Assert.AreEqual(z, output.Z);
             Assert.AreEqual(outerSlope, output.OuterSlope);
+            Assert.AreEqual(logFlexuralStrength, output.LogFlexuralStrength);
+            Assert.AreEqual(computationalThickness, output.ComputationalThickness);
+            Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
+            Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
         }
     }
 }

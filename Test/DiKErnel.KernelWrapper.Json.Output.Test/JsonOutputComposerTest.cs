@@ -304,7 +304,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
-                }, 5.7, 5.8),
+                }, 5.7, 5.8, 5.9, 6.0, 6.1, 6.2),
                 new GrassRevetmentOvertoppingLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput
@@ -390,7 +390,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
-                }, 3.3, 3.4),
+                }, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8),
                 new GrassRevetmentOvertoppingLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput

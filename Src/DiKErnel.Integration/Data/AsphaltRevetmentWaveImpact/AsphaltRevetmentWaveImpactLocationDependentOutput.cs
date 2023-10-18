@@ -29,12 +29,21 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
         /// <param name="outerSlope">The calculated outer slope.</param>
+        /// <param name="logFlexuralStrength">The log flexural strength.</param>
+        /// <param name="computationalThickness">The computational thickness.</param>
+        /// <param name="stiffnessRelation">The stiffness relation.</param>
+        /// <param name="equivalentElasticModulus">The equivalent elastic modulus.</param>
         public AsphaltRevetmentWaveImpactLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double outerSlope)
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double outerSlope, double logFlexuralStrength,
+            double computationalThickness, double stiffnessRelation, double equivalentElasticModulus)
             : base(timeDependentOutputItems)
         {
             Z = z;
             OuterSlope = outerSlope;
+            LogFlexuralStrength = logFlexuralStrength;
+            ComputationalThickness = computationalThickness;
+            StiffnessRelation = stiffnessRelation;
+            EquivalentElasticModulus = equivalentElasticModulus;
         }
 
         /// <summary>
@@ -46,22 +55,22 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         /// Gets the calculated outer slope.
         /// </summary>
         public double OuterSlope { get; }
-        
+
         /// <summary>
         /// Gets the log flexural strength.
         /// </summary>
         public double LogFlexuralStrength { get; }
-        
+
         /// <summary>
         /// Gets the computational thickness.
         /// </summary>
         public double ComputationalThickness { get; }
-        
+
         /// <summary>
         /// Gets the stiffness relation.
         /// </summary>
         public double StiffnessRelation { get; }
-        
+
         /// <summary>
         /// Gets the equivalent elastic modulus.
         /// </summary>
