@@ -149,6 +149,8 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.MaximumWaveHeight).ToList(),
                         grassRevetmentWaveImpactTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveAngle).ToList(),
+                        grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngleImpact).ToList(),
                         grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveHeightImpact).ToList());

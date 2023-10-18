@@ -31,6 +31,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
                                                                      IReadOnlyList<double> lowerLimitLoading,
                                                                      IReadOnlyList<double?> minimumWaveHeight,
                                                                      IReadOnlyList<double?> maximumWaveHeight,
+                                                                     IReadOnlyList<double?> waveAngle,
                                                                      IReadOnlyList<double?> waveAngleImpact,
                                                                      IReadOnlyList<double?> waveHeightImpact) : base(incrementDamage)
         {
@@ -40,6 +41,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
             LowerLimitLoading = lowerLimitLoading;
             MinimumWaveHeight = minimumWaveHeight;
             MaximumWaveHeight = maximumWaveHeight;
+            WaveAngle = waveAngle;
             WaveAngleImpact = waveAngleImpact;
             WaveHeightImpact = waveHeightImpact;
         }
@@ -61,6 +63,9 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MinimumWaveHeight)]
         public IReadOnlyList<double?> MinimumWaveHeight { get; }
+
+        [JsonProperty(JsonOutputDefinitions.WaveAngle)]
+        public IReadOnlyList<double?> WaveAngle { get; }
 
         [JsonProperty(JsonOutputDefinitions.WaveAngleImpact)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }

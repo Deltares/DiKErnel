@@ -95,6 +95,9 @@
                     "minimumGolfhoogte": [
                         null
                     ],
+                    "golfhoek": [
+                        null
+                    ],
                     "impactGolfhoek": [
                         null
                     ],

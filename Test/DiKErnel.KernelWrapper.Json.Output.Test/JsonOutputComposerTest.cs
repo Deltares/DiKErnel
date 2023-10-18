@@ -251,8 +251,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     LoadingRevetment = true,
                     UpperLimitLoading = 2.0,
                     LowerLimitLoading = 2.1,
-                    MinimumWaveHeight = 2.2,
-                    MaximumWaveHeight = 2.3,
+                    MaximumWaveHeight = 2.2,
+                    MinimumWaveHeight = 2.3,
                     WaveAngle = 2.4,
                     WaveAngleImpact = 2.5,
                     WaveHeightImpact = 2.6

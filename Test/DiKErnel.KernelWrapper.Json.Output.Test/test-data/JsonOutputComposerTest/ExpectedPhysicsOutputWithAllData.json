@@ -90,10 +90,13 @@
                         2.1
                     ],
                     "maximumGolfhoogte": [
-                        2.3
+                        2.2
                     ],
                     "minimumGolfhoogte": [
-                        2.2
+                        2.3
+                    ],
+                    "golfhoek": [
+                        2.4
                     ],
                     "impactGolfhoek": [
                         2.5
