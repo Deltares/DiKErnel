@@ -170,6 +170,8 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
                             .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
+                            .Select(tdo => tdo.WaveAngle).ToList(),
+                        grassRevetmentWaveRunupRayleighTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngleImpact).ToList(),
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems
                             .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),

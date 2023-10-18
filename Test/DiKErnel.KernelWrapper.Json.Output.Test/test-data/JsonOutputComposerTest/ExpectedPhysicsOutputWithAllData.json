@@ -124,6 +124,9 @@
                     "verticaleAfstandWaterstandHoogteLocatie": [
                         3.0
                     ],
+                    "golfhoek": [
+                        3.1
+                    ],
                     "impactGolfhoek": [
                         3.2
                     ],
