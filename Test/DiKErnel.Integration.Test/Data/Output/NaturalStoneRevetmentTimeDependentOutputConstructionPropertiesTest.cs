@@ -51,6 +51,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(constructionProperties.DistanceMaximumWaveElevation);
             Assert.IsNull(constructionProperties.NormativeWidthOfWaveImpact);
             Assert.IsNull(constructionProperties.HydraulicLoad);
+            Assert.IsNull(constructionProperties.WaveAngle);
             Assert.IsNull(constructionProperties.WaveAngleImpact);
             Assert.IsNull(constructionProperties.Resistance);
             Assert.IsNull(constructionProperties.ReferenceTimeDegradation);
@@ -78,6 +79,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double distanceMaximumWaveElevation = Random.NextDouble();
             double normativeWidthOfWaveImpact = Random.NextDouble();
             double hydraulicLoad = Random.NextDouble();
+            double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double resistance = Random.NextDouble();
             double referenceTimeDegradation = Random.NextDouble();
@@ -103,6 +105,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 DistanceMaximumWaveElevation = distanceMaximumWaveElevation,
                 NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact,
                 HydraulicLoad = hydraulicLoad,
+                WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
                 Resistance = resistance,
                 ReferenceTimeDegradation = referenceTimeDegradation,
@@ -127,6 +130,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(distanceMaximumWaveElevation, constructionProperties.DistanceMaximumWaveElevation);
             Assert.AreEqual(normativeWidthOfWaveImpact, constructionProperties.NormativeWidthOfWaveImpact);
             Assert.AreEqual(hydraulicLoad, constructionProperties.HydraulicLoad);
+            Assert.AreEqual(waveAngle, constructionProperties.WaveAngle);
             Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
             Assert.AreEqual(resistance, constructionProperties.Resistance);
             Assert.AreEqual(referenceTimeDegradation, constructionProperties.ReferenceTimeDegradation);

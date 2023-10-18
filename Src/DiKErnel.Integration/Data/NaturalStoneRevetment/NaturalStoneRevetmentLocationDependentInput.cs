@@ -48,6 +48,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         private double lowerLimitLoading = double.NaN;
         private bool loadingRevetment;
         private double hydraulicLoad = double.NaN;
+        private double waveAngle = double.NaN;
         private double waveAngleImpact = double.NaN;
         private double referenceTimeDegradation = double.NaN;
         private double referenceDegradation = double.NaN;
@@ -171,7 +172,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             {
                 hydraulicLoad = CalculateHydraulicLoad(timeDependentInput.WaveHeightHm0);
 
-                double waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
+                waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
                 waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(waveAngle, WaveAngleImpact.Betamax);
 
@@ -305,6 +306,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             if (loadingRevetment)
             {
                 constructionProperties.HydraulicLoad = hydraulicLoad;
+                constructionProperties.WaveAngle = waveAngle;
                 constructionProperties.WaveAngleImpact = waveAngleImpact;
                 constructionProperties.Resistance = resistance;
                 constructionProperties.ReferenceTimeDegradation = referenceTimeDegradation;

@@ -97,6 +97,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         public double? HydraulicLoad { get; set; }
 
         /// <summary>
+        /// Gets or sets the wave angle.
+        /// </summary>
+        public double? WaveAngle { get; set; }
+
+        /// <summary>
         /// Gets or sets the wave angle impact.
         /// </summary>
         public double? WaveAngleImpact { get; set; }
