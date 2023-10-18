@@ -95,16 +95,12 @@ namespace DiKErnel.KernelWrapper.Json.Output
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         asphaltRevetmentWaveImpactLocationDependentOutput.Z,
                         asphaltRevetmentWaveImpactLocationDependentOutput.OuterSlope,
-                        asphaltRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.LogFlexuralStrength).ToList(),
+                        asphaltRevetmentWaveImpactLocationDependentOutput.LogFlexuralStrength,
+                        asphaltRevetmentWaveImpactLocationDependentOutput.StiffnessRelation,
+                        asphaltRevetmentWaveImpactLocationDependentOutput.ComputationalThickness,
+                        asphaltRevetmentWaveImpactLocationDependentOutput.EquivalentElasticModulus,
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.MaximumPeakStress).ToList(),
-                        asphaltRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.StiffnessRelation).ToList(),
-                        asphaltRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.ComputationalThickness).ToList(),
-                        asphaltRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.EquivalentElasticModulus).ToList(),
                         asphaltRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }

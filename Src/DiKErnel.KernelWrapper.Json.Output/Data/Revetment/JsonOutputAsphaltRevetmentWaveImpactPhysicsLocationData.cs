@@ -26,21 +26,19 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
     internal class JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
     {
         public JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z, double outerSlope,
-                                                                       IReadOnlyList<double> logFlexuralStrength,
+                                                                       double logFlexuralStrength, double stiffnessRelation,
+                                                                       double computationalThickness, double equivalentElasticModulus,
                                                                        IReadOnlyList<double> maximumPeakStress,
-                                                                       IReadOnlyList<double> stiffnessRelation,
-                                                                       IReadOnlyList<double> computationalThickness,
-                                                                       IReadOnlyList<double> equivalentElasticModulus,
                                                                        IReadOnlyList<double> averageNumberOfWaves)
             : base(incrementDamage)
         {
             Z = z;
             OuterSlope = outerSlope;
             LogFlexuralStrength = logFlexuralStrength;
-            MaximumPeakStress = maximumPeakStress;
             StiffnessRelation = stiffnessRelation;
             ComputationalThickness = computationalThickness;
             EquivalentElasticModulus = equivalentElasticModulus;
+            MaximumPeakStress = maximumPeakStress;
             AverageNumberOfWaves = averageNumberOfWaves;
         }
 
@@ -51,19 +49,19 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         public double OuterSlope { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LogFlexuralStrength)]
-        public IReadOnlyList<double> LogFlexuralStrength { get; }
+        public double LogFlexuralStrength { get; }
+
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.StiffnessRelation)]
+        public double StiffnessRelation { get; }
+
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.ComputationalThickness)]
+        public double ComputationalThickness { get; }
+
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EquivalentElasticModulus)]
+        public double EquivalentElasticModulus { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.MaximumPeakStress)]
         public IReadOnlyList<double> MaximumPeakStress { get; }
-
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.StiffnessRelation)]
-        public IReadOnlyList<double> StiffnessRelation { get; }
-
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.ComputationalThickness)]
-        public IReadOnlyList<double> ComputationalThickness { get; }
-
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EquivalentElasticModulus)]
-        public IReadOnlyList<double> EquivalentElasticModulus { get; }
 
         [JsonProperty(JsonOutputDefinitions.AverageNumberOfWaves)]
         public IReadOnlyList<double> AverageNumberOfWaves { get; }
