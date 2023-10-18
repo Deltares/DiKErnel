@@ -42,6 +42,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                                     nameof(constructionProperties.LowerLimitLoading));
             MinimumWaveHeight = constructionProperties.MinimumWaveHeight;
             MaximumWaveHeight = constructionProperties.MaximumWaveHeight;
+            WaveAngle = constructionProperties.WaveAngle;
             WaveAngleImpact = constructionProperties.WaveAngleImpact;
             WaveHeightImpact = constructionProperties.WaveHeightImpact;
         }
@@ -70,6 +71,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         /// Gets the maximum wave height.
         /// </summary>
         public double? MaximumWaveHeight { get; }
+
+        /// <summary>
+        /// Gets the wave angle.
+        /// </summary>
+        public double? WaveAngle { get; }
 
         /// <summary>
         /// Gets the wave angle impact.
