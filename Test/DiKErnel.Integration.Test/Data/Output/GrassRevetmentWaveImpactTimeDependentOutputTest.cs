@@ -37,8 +37,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             bool loadingRevetment = Random.NextBoolean();
             double upperLimitLoading = Random.NextDouble();
             double lowerLimitLoading = Random.NextDouble();
-            double minimumWaveHeight = Random.NextDouble();
-            double maximumWaveHeight = Random.NextDouble();
             double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double waveHeightImpact = Random.NextDouble();
@@ -51,8 +49,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading,
-                MinimumWaveHeight = minimumWaveHeight,
-                MaximumWaveHeight = maximumWaveHeight,
                 WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
                 WaveHeightImpact = waveHeightImpact
@@ -69,8 +65,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
             Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
             Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
-            Assert.AreEqual(minimumWaveHeight, output.MinimumWaveHeight);
-            Assert.AreEqual(maximumWaveHeight, output.MaximumWaveHeight);
             Assert.AreEqual(waveAngle, output.WaveAngle);
             Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
             Assert.AreEqual(waveHeightImpact, output.WaveHeightImpact);
@@ -94,8 +88,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading,
-                MinimumWaveHeight = null,
-                MaximumWaveHeight = null,
                 WaveAngle = null,
                 WaveAngleImpact = null,
                 WaveHeightImpact = null
@@ -112,8 +104,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
             Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
             Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
-            Assert.IsNull(output.MinimumWaveHeight);
-            Assert.IsNull(output.MaximumWaveHeight);
             Assert.IsNull(output.WaveAngle);
             Assert.IsNull(output.WaveAngleImpact);
             Assert.IsNull(output.WaveHeightImpact);
@@ -189,8 +179,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 LoadingRevetment = Random.NextBoolean(),
                 UpperLimitLoading = Random.NextDouble(),
                 LowerLimitLoading = Random.NextDouble(),
-                MinimumWaveHeight = Random.NextDouble(),
-                MaximumWaveHeight = Random.NextDouble(),
                 WaveAngle = Random.NextDouble(),
                 WaveAngleImpact = Random.NextDouble(),
                 WaveHeightImpact = Random.NextDouble()

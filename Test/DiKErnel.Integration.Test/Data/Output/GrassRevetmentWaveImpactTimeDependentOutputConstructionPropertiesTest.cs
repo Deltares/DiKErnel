@@ -40,8 +40,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(constructionProperties.LoadingRevetment);
             Assert.IsNull(constructionProperties.UpperLimitLoading);
             Assert.IsNull(constructionProperties.LowerLimitLoading);
-            Assert.IsNull(constructionProperties.MinimumWaveHeight);
-            Assert.IsNull(constructionProperties.MaximumWaveHeight);
             Assert.IsNull(constructionProperties.WaveAngle);
             Assert.IsNull(constructionProperties.WaveAngleImpact);
             Assert.IsNull(constructionProperties.WaveHeightImpact);
@@ -57,8 +55,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             bool loadingRevetment = Random.NextBoolean();
             double upperLimitLoading = Random.NextDouble();
             double lowerLimitLoading = Random.NextDouble();
-            double minimumWaveHeight = Random.NextDouble();
-            double maximumWaveHeight = Random.NextDouble();
             double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double waveHeightImpact = Random.NextDouble();
@@ -72,8 +68,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading,
-                MinimumWaveHeight = minimumWaveHeight,
-                MaximumWaveHeight = maximumWaveHeight,
                 WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
                 WaveHeightImpact = waveHeightImpact
@@ -86,8 +80,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(loadingRevetment, constructionProperties.LoadingRevetment);
             Assert.AreEqual(upperLimitLoading, constructionProperties.UpperLimitLoading);
             Assert.AreEqual(lowerLimitLoading, constructionProperties.LowerLimitLoading);
-            Assert.AreEqual(minimumWaveHeight, constructionProperties.MinimumWaveHeight);
-            Assert.AreEqual(maximumWaveHeight, constructionProperties.MaximumWaveHeight);
             Assert.AreEqual(waveAngle, constructionProperties.WaveAngle);
             Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
             Assert.AreEqual(waveHeightImpact, constructionProperties.WaveHeightImpact);

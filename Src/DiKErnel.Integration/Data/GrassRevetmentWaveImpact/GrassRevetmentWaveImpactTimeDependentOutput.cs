@@ -40,8 +40,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
             LowerLimitLoading = constructionProperties.LowerLimitLoading
                                 ?? throw new InvalidTimeDependentOutputException(
                                     nameof(constructionProperties.LowerLimitLoading));
-            MinimumWaveHeight = constructionProperties.MinimumWaveHeight;
-            MaximumWaveHeight = constructionProperties.MaximumWaveHeight;
             WaveAngle = constructionProperties.WaveAngle;
             WaveAngleImpact = constructionProperties.WaveAngleImpact;
             WaveHeightImpact = constructionProperties.WaveHeightImpact;
@@ -61,16 +59,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         /// Gets the lower limit loading.
         /// </summary>
         public double LowerLimitLoading { get; }
-
-        /// <summary>
-        /// Gets the minimum wave height.
-        /// </summary>
-        public double? MinimumWaveHeight { get; }
-
-        /// <summary>
-        /// Gets the maximum wave height.
-        /// </summary>
-        public double? MaximumWaveHeight { get; }
 
         /// <summary>
         /// Gets the wave angle.

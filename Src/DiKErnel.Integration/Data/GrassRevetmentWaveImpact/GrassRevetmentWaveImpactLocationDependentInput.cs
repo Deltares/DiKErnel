@@ -185,8 +185,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 
             if (loadingRevetment)
             {
-                constructionProperties.MinimumWaveHeight = minimumWaveHeight;
-                constructionProperties.MaximumWaveHeight = maximumWaveHeight;
                 constructionProperties.WaveAngle = waveAngle;
                 constructionProperties.WaveAngleImpact = waveAngleImpact;
                 constructionProperties.WaveHeightImpact = waveHeightImpact;
