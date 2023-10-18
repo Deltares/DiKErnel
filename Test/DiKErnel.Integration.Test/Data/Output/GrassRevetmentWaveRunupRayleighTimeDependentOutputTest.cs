@@ -35,6 +35,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double damage = Random.NextDouble();
             int timeOfFailure = Random.Next();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
+            double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();
@@ -46,6 +47,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 Damage = damage,
                 TimeOfFailure = timeOfFailure,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
+                WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
                 RepresentativeWaveRunup2P = representativeWaveRunup2P,
                 CumulativeOverload = cumulativeOverload,
@@ -61,6 +63,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(damage, output.Damage);
             Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
             Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
+            Assert.AreEqual(waveAngle, output.WaveAngle);
             Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
             Assert.AreEqual(representativeWaveRunup2P, output.RepresentativeWaveRunup2P);
             Assert.AreEqual(cumulativeOverload, output.CumulativeOverload);
@@ -91,6 +94,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(damage, output.Damage);
             Assert.IsNull(output.TimeOfFailure);
             Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
+            Assert.IsNull(output.WaveAngle);
             Assert.IsNull(output.WaveAngleImpact);
             Assert.IsNull(output.RepresentativeWaveRunup2P);
             Assert.IsNull(output.CumulativeOverload);
@@ -107,6 +111,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 Damage = Random.NextDouble(),
                 TimeOfFailure = Random.Next(),
                 VerticalDistanceWaterLevelElevation = null,
+                WaveAngle = Random.NextDouble(),
                 WaveAngleImpact = Random.NextDouble(),
                 RepresentativeWaveRunup2P = Random.NextDouble(),
                 CumulativeOverload = Random.NextDouble(),

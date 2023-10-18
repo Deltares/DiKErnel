@@ -35,6 +35,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             VerticalDistanceWaterLevelElevation = constructionProperties.VerticalDistanceWaterLevelElevation
                                                   ?? throw new InvalidTimeDependentOutputException(
                                                       nameof(constructionProperties.VerticalDistanceWaterLevelElevation));
+            WaveAngle = constructionProperties.WaveAngle;
             WaveAngleImpact = constructionProperties.WaveAngleImpact;
             RepresentativeWaveRunup2P = constructionProperties.RepresentativeWaveRunup2P;
             CumulativeOverload = constructionProperties.CumulativeOverload;
@@ -45,6 +46,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         /// Gets the vertical distance water level elevation.
         /// </summary>
         public double VerticalDistanceWaterLevelElevation { get; }
+
+        /// <summary>
+        /// Gets the wave angle.
+        /// </summary>
+        public double? WaveAngle { get; }
 
         /// <summary>
         /// Gets the wave angle impact.
