@@ -290,10 +290,11 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     DistanceMaximumWaveElevation = 4.7,
                     NormativeWidthOfWaveImpact = 4.8,
                     HydraulicLoad = 4.9,
-                    WaveAngleImpact = 5.0,
-                    Resistance = 5.1,
-                    ReferenceTimeDegradation = 5.2,
-                    ReferenceDegradation = 5.3
+                    WaveAngle = 5.0,
+                    WaveAngleImpact = 5.1,
+                    Resistance = 5.2,
+                    ReferenceTimeDegradation = 5.3,
+                    ReferenceDegradation = 5.4
                 });
 
             return new CalculationOutput(new List<LocationDependentOutput>
@@ -301,7 +302,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
-                }, 5.4, 5.5),
+                }, 5.5, 5.6),
                 new GrassRevetmentOvertoppingLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput
@@ -309,15 +310,15 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
-                }, 5.6),
+                }, 5.7),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighTimeDependentOutput
-                }, 5.7),
+                }, 5.8),
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
                     naturalStoneTimeDependentOutput
-                }, 5.8)
+                }, 5.9)
             });
         }
 

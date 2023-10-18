@@ -48,6 +48,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double distanceMaximumWaveElevation = Random.NextDouble();
             double normativeWidthOfWaveImpact = Random.NextDouble();
             double hydraulicLoad = Random.NextDouble();
+            double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double resistance = Random.NextDouble();
             double referenceTimeDegradation = Random.NextDouble();
@@ -72,6 +73,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 DistanceMaximumWaveElevation = distanceMaximumWaveElevation,
                 NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact,
                 HydraulicLoad = hydraulicLoad,
+                WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
                 Resistance = resistance,
                 ReferenceTimeDegradation = referenceTimeDegradation,
@@ -100,6 +102,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(distanceMaximumWaveElevation, output.DistanceMaximumWaveElevation);
             Assert.AreEqual(normativeWidthOfWaveImpact, output.NormativeWidthOfWaveImpact);
             Assert.AreEqual(hydraulicLoad, output.HydraulicLoad);
+            Assert.AreEqual(waveAngle, output.WaveAngle);
             Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
             Assert.AreEqual(resistance, output.Resistance);
             Assert.AreEqual(referenceTimeDegradation, output.ReferenceTimeDegradation);
@@ -145,6 +148,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 DistanceMaximumWaveElevation = distanceMaximumWaveElevation,
                 NormativeWidthOfWaveImpact = normativeWidthOfWaveImpact,
                 HydraulicLoad = null,
+                WaveAngle = null,
                 WaveAngleImpact = null,
                 Resistance = null,
                 ReferenceTimeDegradation = null,
@@ -420,6 +424,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                 DistanceMaximumWaveElevation = Random.NextDouble(),
                 NormativeWidthOfWaveImpact = Random.NextDouble(),
                 HydraulicLoad = Random.NextDouble(),
+                WaveAngle = Random.NextDouble(),
                 WaveAngleImpact = Random.NextDouble(),
                 Resistance = Random.NextDouble(),
                 ReferenceTimeDegradation = Random.NextDouble(),

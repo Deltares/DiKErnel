@@ -71,6 +71,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                                          ?? throw new InvalidTimeDependentOutputException(
                                              nameof(constructionProperties.NormativeWidthOfWaveImpact));
             HydraulicLoad = constructionProperties.HydraulicLoad;
+            WaveAngle = constructionProperties.WaveAngle;
             WaveAngleImpact = constructionProperties.WaveAngleImpact;
             Resistance = constructionProperties.Resistance;
             ReferenceTimeDegradation = constructionProperties.ReferenceTimeDegradation;
@@ -146,6 +147,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         /// Gets the hydraulic load.
         /// </summary>
         public double? HydraulicLoad { get; }
+
+        /// <summary>
+        /// Gets the wave angle.
+        /// </summary>
+        public double? WaveAngle { get; }
 
         /// <summary>
         /// Gets the wave angle impact.
