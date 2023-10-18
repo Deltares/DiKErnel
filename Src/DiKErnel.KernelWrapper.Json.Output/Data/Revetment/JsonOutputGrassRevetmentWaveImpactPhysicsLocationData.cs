@@ -26,21 +26,20 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
     internal class JsonOutputGrassRevetmentWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
     {
         public JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
+                                                                     double minimumWaveHeight, double maximumWaveHeight,
                                                                      IReadOnlyList<bool> loadingRevetment,
                                                                      IReadOnlyList<double> upperLimitLoading,
                                                                      IReadOnlyList<double> lowerLimitLoading,
-                                                                     IReadOnlyList<double?> minimumWaveHeight,
-                                                                     IReadOnlyList<double?> maximumWaveHeight,
                                                                      IReadOnlyList<double?> waveAngle,
                                                                      IReadOnlyList<double?> waveAngleImpact,
                                                                      IReadOnlyList<double?> waveHeightImpact) : base(incrementDamage)
         {
             Z = z;
+            MinimumWaveHeight = minimumWaveHeight;
+            MaximumWaveHeight = maximumWaveHeight;
             LoadingRevetment = loadingRevetment;
             UpperLimitLoading = upperLimitLoading;
             LowerLimitLoading = lowerLimitLoading;
-            MinimumWaveHeight = minimumWaveHeight;
-            MaximumWaveHeight = maximumWaveHeight;
             WaveAngle = waveAngle;
             WaveAngleImpact = waveAngleImpact;
             WaveHeightImpact = waveHeightImpact;
@@ -48,6 +47,12 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
+
+        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MinimumWaveHeight, Order = -2)]
+        public double MinimumWaveHeight { get; }
+
+        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MaximumWaveHeight, Order = -2)]
+        public double MaximumWaveHeight { get; }
 
         [JsonProperty(JsonOutputDefinitions.HydraulicLoad)]
         public IReadOnlyList<bool> LoadingRevetment { get; }
@@ -57,12 +62,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputDefinitions.LowerLimitLoading)]
         public IReadOnlyList<double> LowerLimitLoading { get; }
-
-        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MaximumWaveHeight)]
-        public IReadOnlyList<double?> MaximumWaveHeight { get; }
-
-        [JsonProperty(JsonOutputGrassRevetmentWaveImpactDefinitions.MinimumWaveHeight)]
-        public IReadOnlyList<double?> MinimumWaveHeight { get; }
 
         [JsonProperty(JsonOutputDefinitions.WaveAngle)]
         public IReadOnlyList<double?> WaveAngle { get; }

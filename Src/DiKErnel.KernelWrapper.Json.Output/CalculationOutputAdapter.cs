@@ -134,6 +134,8 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         grassRevetmentWaveImpactLocationDependentOutput.Z,
+                        grassRevetmentWaveImpactLocationDependentOutput.MinimumWaveHeight,
+                        grassRevetmentWaveImpactLocationDependentOutput.MaximumWaveHeight,
                         grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.LoadingRevetment).ToList(),
                         grassRevetmentWaveImpactTimeDependentOutputItems
@@ -141,12 +143,10 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.LowerLimitLoading).ToList(),
                         grassRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.MinimumWaveHeight).ToList(),
-                        grassRevetmentWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.MaximumWaveHeight).ToList(),
+
                         grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngle).ToList(),
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+
                             .Select(tdo => tdo.WaveAngleImpact).ToList(),
                         grassRevetmentWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveHeightImpact).ToList());

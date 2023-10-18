@@ -247,8 +247,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     LoadingRevetment = true,
                     UpperLimitLoading = 2.0,
                     LowerLimitLoading = 2.1,
-                    MaximumWaveHeight = 2.2,
-                    MinimumWaveHeight = 2.3,
                     WaveAngle = 2.4,
                     WaveAngleImpact = 2.5,
                     WaveHeightImpact = 2.6
@@ -307,7 +305,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
-                }, 5.9),
+                }, 5.9, 6.0, 6.1),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighTimeDependentOutput
@@ -389,7 +387,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
-                }, 3.5),
+                }, 3.5, 3.6, 3.7),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighTimeDependentOutput
