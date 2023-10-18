@@ -48,16 +48,16 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.OuterSlope, Order = -2)]
         public double OuterSlope { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LogFlexuralStrength)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.LogFlexuralStrength, Order = -2)]
         public double LogFlexuralStrength { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.StiffnessRelation)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.StiffnessRelation, Order = -2)]
         public double StiffnessRelation { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.ComputationalThickness)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.ComputationalThickness, Order = -2)]
         public double ComputationalThickness { get; }
 
-        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EquivalentElasticModulus)]
+        [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.EquivalentElasticModulus, Order = -2)]
         public double EquivalentElasticModulus { get; }
 
         [JsonProperty(JsonOutputAsphaltRevetmentWaveImpactDefinitions.MaximumPeakStress)]
