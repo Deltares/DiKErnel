@@ -53,6 +53,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         public double? MaximumWaveHeight { get; set; }
 
         /// <summary>
+        /// Gets or sets the wave angle.
+        /// </summary>
+        public double? WaveAngle { get; set; }
+
+        /// <summary>
         /// Gets or sets the wave angle impact.
         /// </summary>
         public double? WaveAngleImpact { get; set; }

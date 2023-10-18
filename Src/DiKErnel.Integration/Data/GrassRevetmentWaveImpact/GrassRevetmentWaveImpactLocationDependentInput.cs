@@ -33,6 +33,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         private double lowerLimitLoading = double.NaN;
         private double upperLimitLoading = double.NaN;
         private bool loadingRevetment;
+        private double waveAngle = double.NaN;
         private double waveAngleImpact = double.NaN;
         private double waveHeightImpact = double.NaN;
 
@@ -124,7 +125,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
                 int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                      timeDependentInput.EndTime);
 
-                double waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
+                waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
                 waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle,
                                                                                     WaveAngleImpact.WaveAngleImpactNwa,
@@ -185,6 +186,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
             {
                 constructionProperties.MinimumWaveHeight = minimumWaveHeight;
                 constructionProperties.MaximumWaveHeight = maximumWaveHeight;
+                constructionProperties.WaveAngle = waveAngle;
                 constructionProperties.WaveAngleImpact = waveAngleImpact;
                 constructionProperties.WaveHeightImpact = waveHeightImpact;
             }
