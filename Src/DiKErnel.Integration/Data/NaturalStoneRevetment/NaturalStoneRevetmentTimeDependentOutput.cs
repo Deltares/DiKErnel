@@ -73,7 +73,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
             HydraulicLoad = constructionProperties.HydraulicLoad;
             WaveAngle = constructionProperties.WaveAngle;
             WaveAngleImpact = constructionProperties.WaveAngleImpact;
-            Resistance = constructionProperties.Resistance;
             ReferenceTimeDegradation = constructionProperties.ReferenceTimeDegradation;
             ReferenceDegradation = constructionProperties.ReferenceDegradation;
         }
@@ -157,11 +156,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         /// Gets the wave angle impact.
         /// </summary>
         public double? WaveAngleImpact { get; }
-
-        /// <summary>
-        /// Gets the resistance.
-        /// </summary>
-        public double? Resistance { get; }
 
         /// <summary>
         /// Gets the reference time degradation.

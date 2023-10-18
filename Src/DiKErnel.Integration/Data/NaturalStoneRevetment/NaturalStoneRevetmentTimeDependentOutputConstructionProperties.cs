@@ -107,11 +107,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         public double? WaveAngleImpact { get; set; }
 
         /// <summary>
-        /// Gets or sets the resistance.
-        /// </summary>
-        public double? Resistance { get; set; }
-
-        /// <summary>
         /// Gets or sets the reference time degradation.
         /// </summary>
         public double? ReferenceTimeDegradation { get; set; }

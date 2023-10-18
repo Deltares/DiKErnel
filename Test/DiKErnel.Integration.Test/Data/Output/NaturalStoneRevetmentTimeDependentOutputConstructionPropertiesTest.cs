@@ -53,7 +53,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(constructionProperties.HydraulicLoad);
             Assert.IsNull(constructionProperties.WaveAngle);
             Assert.IsNull(constructionProperties.WaveAngleImpact);
-            Assert.IsNull(constructionProperties.Resistance);
             Assert.IsNull(constructionProperties.ReferenceTimeDegradation);
             Assert.IsNull(constructionProperties.ReferenceDegradation);
         }
@@ -81,7 +80,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             double hydraulicLoad = Random.NextDouble();
             double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
-            double resistance = Random.NextDouble();
             double referenceTimeDegradation = Random.NextDouble();
             double referenceDegradation = Random.NextDouble();
 
@@ -107,7 +105,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 HydraulicLoad = hydraulicLoad,
                 WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
-                Resistance = resistance,
                 ReferenceTimeDegradation = referenceTimeDegradation,
                 ReferenceDegradation = referenceDegradation
             };
@@ -132,7 +129,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(hydraulicLoad, constructionProperties.HydraulicLoad);
             Assert.AreEqual(waveAngle, constructionProperties.WaveAngle);
             Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
-            Assert.AreEqual(resistance, constructionProperties.Resistance);
             Assert.AreEqual(referenceTimeDegradation, constructionProperties.ReferenceTimeDegradation);
             Assert.AreEqual(referenceDegradation, constructionProperties.ReferenceDegradation);
         }

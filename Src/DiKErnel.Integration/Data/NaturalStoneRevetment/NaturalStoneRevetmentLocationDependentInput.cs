@@ -308,7 +308,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 constructionProperties.HydraulicLoad = hydraulicLoad;
                 constructionProperties.WaveAngle = waveAngle;
                 constructionProperties.WaveAngleImpact = waveAngleImpact;
-                constructionProperties.Resistance = resistance;
                 constructionProperties.ReferenceTimeDegradation = referenceTimeDegradation;
                 constructionProperties.ReferenceDegradation = referenceDegradation;
             }

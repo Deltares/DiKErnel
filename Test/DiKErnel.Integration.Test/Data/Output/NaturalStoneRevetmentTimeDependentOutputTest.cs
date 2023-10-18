@@ -50,7 +50,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             double hydraulicLoad = Random.NextDouble();
             double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
-            double resistance = Random.NextDouble();
             double referenceTimeDegradation = Random.NextDouble();
             double referenceDegradation = Random.NextDouble();
 
@@ -75,7 +74,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 HydraulicLoad = hydraulicLoad,
                 WaveAngle = waveAngle,
                 WaveAngleImpact = waveAngleImpact,
-                Resistance = resistance,
                 ReferenceTimeDegradation = referenceTimeDegradation,
                 ReferenceDegradation = referenceDegradation
             };
@@ -104,7 +102,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(hydraulicLoad, output.HydraulicLoad);
             Assert.AreEqual(waveAngle, output.WaveAngle);
             Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
-            Assert.AreEqual(resistance, output.Resistance);
             Assert.AreEqual(referenceTimeDegradation, output.ReferenceTimeDegradation);
             Assert.AreEqual(referenceDegradation, output.ReferenceDegradation);
         }
@@ -150,7 +147,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 HydraulicLoad = null,
                 WaveAngle = null,
                 WaveAngleImpact = null,
-                Resistance = null,
                 ReferenceTimeDegradation = null,
                 ReferenceDegradation = null
             };
@@ -179,7 +175,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.IsNull(output.HydraulicLoad);
             Assert.IsNull(output.WaveAngle);
             Assert.IsNull(output.WaveAngleImpact);
-            Assert.IsNull(output.Resistance);
             Assert.IsNull(output.ReferenceTimeDegradation);
             Assert.IsNull(output.ReferenceDegradation);
         }
@@ -427,7 +422,6 @@ namespace DiKErnel.Integration.Test.Data.Output
                 HydraulicLoad = Random.NextDouble(),
                 WaveAngle = Random.NextDouble(),
                 WaveAngleImpact = Random.NextDouble(),
-                Resistance = Random.NextDouble(),
                 ReferenceTimeDegradation = Random.NextDouble(),
                 ReferenceDegradation = Random.NextDouble()
             };
