@@ -28,11 +28,13 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
+        /// <param name="resistance">The calculated resistance.</param>
         public NaturalStoneRevetmentLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double resistance)
             : base(timeDependentOutputItems)
         {
             Z = z;
+            Resistance = resistance;
         }
 
         /// <summary>

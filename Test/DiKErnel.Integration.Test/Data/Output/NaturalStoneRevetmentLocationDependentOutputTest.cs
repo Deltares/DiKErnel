@@ -32,15 +32,17 @@ namespace DiKErnel.Integration.Test.Data.Output
         {
             // Setup
             double z = Random.NextDouble();
+            double resistance = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new NaturalStoneRevetmentLocationDependentOutput(timeDependentOutputItems, z);
+            var output = new NaturalStoneRevetmentLocationDependentOutput(timeDependentOutputItems, z, resistance);
 
             // Assert
             Assert.IsInstanceOf<LocationDependentOutput>(output);
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
             Assert.AreEqual(z, output.Z);
+            Assert.AreEqual(resistance, output.Resistance);
         }
     }
 }

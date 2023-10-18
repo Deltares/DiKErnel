@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new NaturalStoneRevetmentLocationDependentOutput(timeDependentOutputItems, Z);
+            return new NaturalStoneRevetmentLocationDependentOutput(timeDependentOutputItems, Z, resistance);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
