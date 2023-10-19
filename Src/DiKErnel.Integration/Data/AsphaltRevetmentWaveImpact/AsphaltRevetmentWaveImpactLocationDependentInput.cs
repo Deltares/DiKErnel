@@ -122,8 +122,8 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
             return new AsphaltRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, outerSlope,
-                                                                         logFlexuralStrength, computationalThickness,
-                                                                         stiffnessRelation, subLayerElasticModulus);
+                                                                         logFlexuralStrength, stiffnessRelation,
+                                                                         computationalThickness, subLayerElasticModulus);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)

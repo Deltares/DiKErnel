@@ -46,12 +46,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         public double Z { get; }
 
         /// <summary>
-        /// Gets the minimum wave height.
+        /// Gets the calculated minimum wave height.
         /// </summary>
         public double MinimumWaveHeight { get; }
 
         /// <summary>
-        /// Gets the maximum wave height.
+        /// Gets the calculated maximum wave height.
         /// </summary>
         public double MaximumWaveHeight { get; }
     }

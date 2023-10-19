@@ -27,22 +27,24 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
     public class AsphaltRevetmentWaveImpactLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
+        /// <param name="timeDependentOutputItems"></param>
         /// <param name="z">The calculated z.</param>
         /// <param name="outerSlope">The calculated outer slope.</param>
         /// <param name="logFlexuralStrength">The calculated log flexural strength.</param>
-        /// <param name="computationalThickness">The calculated computational thickness.</param>
         /// <param name="stiffnessRelation">The calculated stiffness relation.</param>
+        /// <param name="computationalThickness">The calculated computational thickness.</param>
         /// <param name="equivalentElasticModulus">The calculated equivalent elastic modulus.</param>
-        public AsphaltRevetmentWaveImpactLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double outerSlope, double logFlexuralStrength,
-            double computationalThickness, double stiffnessRelation, double equivalentElasticModulus)
+        public AsphaltRevetmentWaveImpactLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z,
+                                                                 double outerSlope, double logFlexuralStrength,
+                                                                 double stiffnessRelation, double computationalThickness,
+                                                                 double equivalentElasticModulus)
             : base(timeDependentOutputItems)
         {
             Z = z;
             OuterSlope = outerSlope;
             LogFlexuralStrength = logFlexuralStrength;
-            ComputationalThickness = computationalThickness;
             StiffnessRelation = stiffnessRelation;
+            ComputationalThickness = computationalThickness;
             EquivalentElasticModulus = equivalentElasticModulus;
         }
 
@@ -57,22 +59,22 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         public double OuterSlope { get; }
 
         /// <summary>
-        /// Gets the log flexural strength.
+        /// Gets the calculated log flexural strength.
         /// </summary>
         public double LogFlexuralStrength { get; }
 
         /// <summary>
-        /// Gets the computational thickness.
-        /// </summary>
-        public double ComputationalThickness { get; }
-
-        /// <summary>
-        /// Gets the stiffness relation.
+        /// Gets the calculated stiffness relation.
         /// </summary>
         public double StiffnessRelation { get; }
 
         /// <summary>
-        /// Gets the equivalent elastic modulus.
+        /// Gets the calculated computational thickness.
+        /// </summary>
+        public double ComputationalThickness { get; }
+
+        /// <summary>
+        /// Gets the calculated equivalent elastic modulus.
         /// </summary>
         public double EquivalentElasticModulus { get; }
     }
