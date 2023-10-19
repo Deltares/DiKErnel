@@ -52,7 +52,6 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.AreEqual(logFlexuralStrength, output.LogFlexuralStrength);
             Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
             Assert.AreEqual(computationalThickness, output.ComputationalThickness);
-            Assert.AreEqual(computationalThickness, output.ComputationalThickness);
             Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
         }
     }

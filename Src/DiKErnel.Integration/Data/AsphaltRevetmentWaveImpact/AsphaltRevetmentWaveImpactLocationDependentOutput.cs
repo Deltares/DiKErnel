@@ -27,7 +27,6 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
     public class AsphaltRevetmentWaveImpactLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
-        /// <param name="timeDependentOutputItems"></param>
         /// <param name="z">The calculated z.</param>
         /// <param name="outerSlope">The calculated outer slope.</param>
         /// <param name="logFlexuralStrength">The calculated log flexural strength.</param>
