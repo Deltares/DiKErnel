@@ -212,7 +212,7 @@ namespace DiKErnel.Core.Test
             Event exceptionEvent = result.Events[0];
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);
             Assert.AreEqual("An unhandled error occurred while performing the calculation. See stack trace for more " +
-                            $"information:\n{exceptionMessage}", exceptionEvent.Message);
+                            $"information:{Environment.NewLine}{exceptionMessage}", exceptionEvent.Message);
         }
 
         private static ICalculationInput CreateCalculationInput(double damage = 0, int? timeOfFailure = null)

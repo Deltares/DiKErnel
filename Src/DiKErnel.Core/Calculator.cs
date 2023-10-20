@@ -121,7 +121,7 @@ namespace DiKErnel.Core
                 CalculationState = CalculationState.FinishedInError;
 
                 EventRegistry.Register(new Event("An unhandled error occurred while performing the calculation. See stack " +
-                                                 "trace for more information:\n" + e.Message, EventType.Error));
+                                                 $"trace for more information:{Environment.NewLine}{e.Message}", EventType.Error));
 
                 return new DataResult<CalculationOutput>(EventRegistry.Flush());
             }
