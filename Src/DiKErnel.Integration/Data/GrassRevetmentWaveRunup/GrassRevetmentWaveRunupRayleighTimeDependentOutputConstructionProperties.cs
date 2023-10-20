@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         /// Gets or sets the wave angle.
         /// </summary>
         public double? WaveAngle { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the wave angle impact.
         /// </summary>

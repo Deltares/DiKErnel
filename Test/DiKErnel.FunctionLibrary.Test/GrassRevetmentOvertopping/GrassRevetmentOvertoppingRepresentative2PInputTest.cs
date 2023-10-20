@@ -44,7 +44,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             // Call
             var input = new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
                                                                            waveDirection, xValuesProfile, zValuesProfile,
-                                                                           roughnessCoefficients, dikeHeight, 
+                                                                           roughnessCoefficients, dikeHeight,
                                                                            dikeOrientation);
 
             // Assert

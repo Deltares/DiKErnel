@@ -70,7 +70,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
-        
+
         [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.Resistance, Order = -2)]
         public double Resistance { get; }
 

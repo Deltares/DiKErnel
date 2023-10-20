@@ -16,7 +16,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="MahApps.Metro" Version="2.4.10"/>
-        <PackageReference Include="SharpVectors" Version="1.8.1"/>
+        <PackageReference Include="SharpVectors" Version="1.8.2"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\DiKErnel.Application\DiKErnel.Application.csproj"/>

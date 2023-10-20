@@ -41,7 +41,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         /// Gets the calculated z.
         /// </summary>
         public double Z { get; }
-        
+
         /// <summary>
         /// Gets the calculated resistance.
         /// </summary>
