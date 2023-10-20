@@ -138,7 +138,7 @@ namespace DiKErnel.Core.Test
 
             Event exceptionEvent = validationResult.Events[0];
             Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more " +
-                            "information:\n" + exceptionMessage, exceptionEvent.Message);
+                            $"information:{Environment.NewLine}{exceptionMessage}", exceptionEvent.Message);
             Assert.AreEqual(EventType.Error, exceptionEvent.Type);
         }
     }

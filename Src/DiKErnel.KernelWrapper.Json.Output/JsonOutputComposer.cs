@@ -72,8 +72,8 @@ namespace DiKErnel.KernelWrapper.Json.Output
             catch (Exception e)
             {
                 EventRegistry.Register(new Event("An unhandled error occurred while composing Json output from the " +
-                                                 $"calculation data. See stack trace for more information:\n{e.Message}",
-                                                 EventType.Error));
+                                                 "calculation data. See stack trace for more information:" +
+                                                 $"{Environment.NewLine}{e.Message}", EventType.Error));
 
                 return new SimpleResult(false, EventRegistry.Flush());
             }

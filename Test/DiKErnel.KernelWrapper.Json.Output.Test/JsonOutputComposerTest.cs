@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using DiKErnel.Core.Data;
@@ -84,7 +85,8 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             Assert.AreEqual(1, result.Events.Count);
             Assert.AreEqual(EventType.Error, result.Events[0].Type);
             Assert.AreEqual("An unhandled error occurred while composing Json output from the calculation data. See " +
-                            "stack trace for more information:\nInvalid revetment type.", result.Events[0].Message);
+                            $"stack trace for more information:{Environment.NewLine}Invalid revetment type.",
+                            result.Events[0].Message);
         }
 
         [Test]

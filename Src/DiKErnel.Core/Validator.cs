@@ -69,7 +69,7 @@ namespace DiKErnel.Core
             catch (Exception e)
             {
                 EventRegistry.Register(new Event("An unhandled error occurred while validating the calculation input. See " +
-                                                 "stack trace for more information:\n" + e.Message, EventType.Error));
+                                                 $"stack trace for more information:{Environment.NewLine}{e.Message}", EventType.Error));
 
                 return new DataResult<ValidationResultType>(EventRegistry.Flush());
             }
