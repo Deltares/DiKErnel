@@ -85,7 +85,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
             {
                 case AsphaltRevetmentWaveImpactLocationDependentOutput asphaltRevetmentWaveImpactLocationDependentOutput:
                 {
-                    IEnumerable<AsphaltRevetmentWaveImpactTimeDependentOutput> asphaltRevetmentWaveImpactTimeDependentOutputItems =
+                    IReadOnlyList<AsphaltRevetmentWaveImpactTimeDependentOutput> asphaltRevetmentWaveImpactTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
                                                .Cast<AsphaltRevetmentWaveImpactTimeDependentOutput>()
                                                .ToList();
@@ -106,7 +106,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case GrassRevetmentOvertoppingLocationDependentOutput _:
                 {
-                    IEnumerable<GrassRevetmentOvertoppingTimeDependentOutput> grassRevetmentOvertoppingTimeDependentOutputItems =
+                    IReadOnlyList<GrassRevetmentOvertoppingTimeDependentOutput> grassRevetmentOvertoppingTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
                                                .Cast<GrassRevetmentOvertoppingTimeDependentOutput>()
                                                .ToList();
@@ -125,7 +125,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case GrassRevetmentWaveImpactLocationDependentOutput grassRevetmentWaveImpactLocationDependentOutput:
                 {
-                    IEnumerable<GrassRevetmentWaveImpactTimeDependentOutput> grassRevetmentWaveImpactTimeDependentOutputItems =
+                    IReadOnlyList<GrassRevetmentWaveImpactTimeDependentOutput> grassRevetmentWaveImpactTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
                                                .Cast<GrassRevetmentWaveImpactTimeDependentOutput>()
                                                .ToList();
@@ -151,7 +151,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case GrassRevetmentWaveRunupRayleighLocationDependentOutput grassRevetmentWaveRunupRayleighLocationDependentOutput:
                 {
-                    IEnumerable<GrassRevetmentWaveRunupRayleighTimeDependentOutput>
+                    IReadOnlyList<GrassRevetmentWaveRunupRayleighTimeDependentOutput>
                         grassRevetmentWaveRunupRayleighTimeDependentOutputItems =
                             locationDependentOutput.TimeDependentOutputItems
                                                    .Cast<GrassRevetmentWaveRunupRayleighTimeDependentOutput>()
@@ -176,7 +176,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case NaturalStoneRevetmentLocationDependentOutput naturalStoneRevetmentLocationDependentOutput:
                 {
-                    IEnumerable<NaturalStoneRevetmentTimeDependentOutput> naturalStoneRevetmentTimeDependentOutputItems =
+                    IReadOnlyList<NaturalStoneRevetmentTimeDependentOutput> naturalStoneRevetmentTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
                                                .Cast<NaturalStoneRevetmentTimeDependentOutput>()
                                                .ToList();

@@ -255,7 +255,7 @@ namespace DiKErnel.Gui.View
             return calculatorResult;
         }
 
-        private void CacheMessagesWhenApplicable(string endOfDescription, IEnumerable<Event> events)
+        private void CacheMessagesWhenApplicable(string endOfDescription, IReadOnlyList<Event> events)
         {
             var errorMessages = new List<string>();
             var warningMessages = new List<string>();

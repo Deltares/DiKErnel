@@ -31,8 +31,8 @@ namespace DiKErnel.Cli
         private const string noMetaDataKey = "niet-schrijven-meta-informatie";
         private const string noJsonFormatValidationKey = "niet-valideren-json-formaat";
 
-        private static readonly IReadOnlyDictionary<string, IEnumerable<ArgumentType>> argumentOptions =
-            new Dictionary<string, IEnumerable<ArgumentType>>
+        private static readonly IReadOnlyDictionary<string, IReadOnlyList<ArgumentType>> argumentOptions =
+            new Dictionary<string, IReadOnlyList<ArgumentType>>
             {
                 {
                     inputFilePathKey, new[]
