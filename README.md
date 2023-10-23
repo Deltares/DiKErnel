@@ -12,9 +12,6 @@ Libraries used in the repository that are not consumed via NuGet.
 **Deployment**\
 Files for specifying the deployment environment.
 
-**Design**\
-UML diagrams that elaborate on the architecture of DiKErnel.
-
 **Licenses**\
 Full license texts of the libraries used in the repository.
 
