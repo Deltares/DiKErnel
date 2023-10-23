@@ -18,7 +18,6 @@
 
 using System;
 using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("Stichting Deltares and State of the Netherlands")]
@@ -27,7 +26,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Stichting Deltares and State of the Netherlands 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: NeutralResourcesLanguage("nl-NL")]
 
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(false)]
