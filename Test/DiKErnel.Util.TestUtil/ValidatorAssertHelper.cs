@@ -60,7 +60,7 @@ namespace DiKErnel.Util.TestUtil
             ValidationIssue validationIssue = validationFunc(value);
 
             // Assert
-            Assert.NotNull(validationIssue);
+            Assert.That(validationIssue, Is.Not.Null);
             Assert.That(validationIssue.ValidationIssueType, Is.EqualTo(validationIssueType));
             Assert.That(validationIssue.Message, Is.EqualTo(message));
         }

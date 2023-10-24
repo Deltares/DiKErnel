@@ -51,7 +51,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
             Assert.That(validationResult.Events, Has.Count.EqualTo(3));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
@@ -84,7 +84,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
             Assert.That(validationResult.Events, Has.Count.EqualTo(2));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
@@ -125,7 +125,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
             Assert.That(validationResult.Events, Has.Count.EqualTo(14));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
@@ -192,7 +192,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
             Assert.That(validationResult.Events, Has.Count.EqualTo(11));
 
@@ -254,7 +254,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
             Assert.That(validationResult.Events, Has.Count.EqualTo(12));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
@@ -321,7 +321,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
             Assert.That(validationResult.Events, Has.Count.EqualTo(11));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
@@ -380,7 +380,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
             Assert.That(validationResult.Events, Has.Count.EqualTo(1));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
@@ -420,7 +420,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
             Assert.That(validationResult.Events.Count, Is.EqualTo(0));
         }
@@ -454,7 +454,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
             Assert.That(validationResult.Events, Has.Count.EqualTo(1));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
@@ -491,7 +491,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
             Assert.That(validationResult.Events.Count, Is.EqualTo(0));
         }
@@ -543,7 +543,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
             Assert.That(validationResult.Events.Count, Is.EqualTo(0));
         }
@@ -574,7 +574,7 @@ namespace DiKErnel.System.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
             // Then
-            Assert.True(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
             Assert.That(validationResult.Events, Has.Count.EqualTo(6));
 

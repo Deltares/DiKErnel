@@ -36,7 +36,7 @@ namespace DiKErnel.Util.Test
             var result = new DataResult<int>(data, events);
 
             // Assert
-            Assert.True(result.Successful);
+            Assert.That(result.Successful, Is.True);
             Assert.That(result.Events, Is.SameAs(events));
             Assert.That(result.Data, Is.EqualTo(data));
         }
@@ -67,7 +67,7 @@ namespace DiKErnel.Util.Test
             var result = new DataResult<object>(data, events);
 
             // Assert
-            Assert.True(result.Successful);
+            Assert.That(result.Successful, Is.True);
             Assert.That(result.Events, Is.SameAs(events));
             Assert.That(result.Data, Is.SameAs(data));
         }

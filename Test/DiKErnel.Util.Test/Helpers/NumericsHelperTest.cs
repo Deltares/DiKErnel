@@ -33,7 +33,7 @@ namespace DiKErnel.Util.Test.Helpers
             bool areEqual = NumericsHelper.AreEqual(0.1, 0.1);
 
             // Assert
-            Assert.True(areEqual);
+            Assert.That(areEqual, Is.True);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace DiKErnel.Util.Test.Helpers
             bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + tolerance);
 
             // Assert
-            Assert.True(areEqual);
+            Assert.That(areEqual, Is.True);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace DiKErnel.Util.Test.Helpers
             bool areEqual = NumericsHelper.AreEqual(0.1 + tolerance, 0.1);
 
             // Assert
-            Assert.True(areEqual);
+            Assert.That(areEqual, Is.True);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace DiKErnel.Util.Test.Helpers
             bool areEqual = NumericsHelper.AreEqual(0.1, 0.1 + tolerance * 2);
 
             // Assert
-            Assert.False(areEqual);
+            Assert.That(areEqual, Is.False);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace DiKErnel.Util.Test.Helpers
             bool areEqual = NumericsHelper.AreEqual(0.1 + tolerance * 2, 0.1);
 
             // Assert
-            Assert.False(areEqual);
+            Assert.That(areEqual, Is.False);
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace DiKErnel.Util.Test.Helpers
             bool areEqual = NumericsHelper.AreEqual(0.1, 0.11);
 
             // Assert
-            Assert.False(areEqual);
+            Assert.That(areEqual, Is.False);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace DiKErnel.Util.Test.Helpers
             bool areEqual = NumericsHelper.AreEqual(0.11, 0.1);
 
             // Assert
-            Assert.False(areEqual);
+            Assert.That(areEqual, Is.False);
         }
 
         [Test]

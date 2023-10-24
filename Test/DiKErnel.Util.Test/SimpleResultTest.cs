@@ -34,7 +34,7 @@ namespace DiKErnel.Util.Test
             var result = new SimpleResult(true, events);
 
             // Assert
-            Assert.True(result.Successful);
+            Assert.That(result.Successful, Is.True);
             Assert.That(result.Events, Is.SameAs(events));
         }
     }

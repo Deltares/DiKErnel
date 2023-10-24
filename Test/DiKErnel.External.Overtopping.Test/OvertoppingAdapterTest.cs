@@ -140,7 +140,7 @@ namespace DiKErnel.External.Overtopping.Test
                                                        zCoordinates, roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Assert
-            Assert.Zero(z2);
+            Assert.That(z2, Is.Zero);
         }
 
         [Test]
@@ -181,7 +181,7 @@ namespace DiKErnel.External.Overtopping.Test
                                                        zCoordinates, roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Assert
-            Assert.NotZero(z2);
+            Assert.That(z2, Is.Not.Zero);
         }
     }
 }
