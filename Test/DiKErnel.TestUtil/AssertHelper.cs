@@ -26,14 +26,14 @@ namespace DiKErnel.TestUtil
     {
         public static void AssertFileContents(string expectedContentFilePath, string actualContentFilePath)
         {
-            Assert.AreEqual(File.ReadAllText(expectedContentFilePath), File.ReadAllText(actualContentFilePath));
+            Assert.That(File.ReadAllText(actualContentFilePath), Is.EqualTo(File.ReadAllText(expectedContentFilePath)));
         }
 
         public static void AssertException<T>(TestDelegate call, string expectedMessage) where T : Exception
         {
             var exception = Assert.Throws<T>(call);
             Assert.IsNotNull(exception);
-            Assert.AreEqual(expectedMessage, exception.Message);
+            Assert.That(exception.Message, Is.EqualTo(expectedMessage));
         }
 
         public static void AssertInnerException<T>(TestDelegate call, string expectedMessage) where T : Exception
@@ -43,8 +43,8 @@ namespace DiKErnel.TestUtil
 
             Exception innerException = exception.InnerException;
             Assert.IsNotNull(innerException);
-            Assert.AreEqual(typeof(T), innerException.GetType());
-            Assert.AreEqual(expectedMessage, innerException.Message);
+            Assert.That(innerException.GetType(), Is.EqualTo(typeof(T)));
+            Assert.That(innerException.Message, Is.EqualTo(expectedMessage));
         }
     }
 }

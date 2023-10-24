@@ -37,7 +37,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test.Exceptions
 
             // Assert
             Assert.IsInstanceOf<Exception>(exception);
-            Assert.AreEqual(message, exception.Message);
+            Assert.That(exception.Message, Is.EqualTo(message));
         }
     }
 }

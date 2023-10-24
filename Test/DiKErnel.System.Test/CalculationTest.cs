@@ -36,17 +36,16 @@ namespace DiKErnel.System.Test
                 throw new ArgumentNullException(nameof(calculator));
             }
 
-            Assert.AreEqual(CalculationState.FinishedSuccessfully, calculator.CalculationState);
+            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
 
             DataResult<CalculationOutput> calculatorResult = calculator.Result;
             Assert.IsTrue(calculatorResult.Successful);
             CollectionAssert.IsEmpty(calculatorResult.Events);
 
             IReadOnlyList<double> damages = calculatorResult.Data.LocationDependentOutputItems[0].GetDamages();
-            Assert.AreEqual(expectedDamage, damages[damages.Count - 1], 1e-14);
+            Assert.That(damages[damages.Count - 1], Is.EqualTo(expectedDamage).Within(1e-14));
 
-            Assert.AreEqual(expectedTimeOfFailure,
-                            calculatorResult.Data.LocationDependentOutputItems[0].GetTimeOfFailure());
+            Assert.That(calculatorResult.Data.LocationDependentOutputItems[0].GetTimeOfFailure(), Is.EqualTo(expectedTimeOfFailure));
         }
     }
 }

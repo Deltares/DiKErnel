@@ -82,11 +82,11 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             // Assert
             Assert.IsFalse(result.Successful);
 
-            Assert.AreEqual(1, result.Events.Count);
-            Assert.AreEqual(EventType.Error, result.Events[0].Type);
-            Assert.AreEqual("An unhandled error occurred while composing Json output from the calculation data. See " +
-                            $"stack trace for more information:{Environment.NewLine}Invalid revetment type.",
-                            result.Events[0].Message);
+            Assert.That(result.Events.Count, Is.EqualTo(1));
+            Assert.That(result.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(result.Events[0].Message, Is.EqualTo("An unhandled error occurred while composing Json output " +
+                                                             "from the calculation data. See stack trace for more " +
+                                                             $"information:{Environment.NewLine}Invalid revetment type."));
         }
 
         [Test]

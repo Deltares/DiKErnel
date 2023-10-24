@@ -49,7 +49,7 @@ namespace DiKErnel.Util.Test
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
 
             // Then
-            Assert.AreEqual(2, registeredEvents.Count);
+            Assert.That(registeredEvents.Count, Is.EqualTo(2));
             Assert.AreSame(event1, registeredEvents[0]);
             Assert.AreSame(event2, registeredEvents[1]);
         }
@@ -72,8 +72,8 @@ namespace DiKErnel.Util.Test
             registeredEventsOnMainThread.AddRange(EventRegistry.Flush());
 
             // Then
-            Assert.AreEqual(numberOfEventsToRegisterOnFirstThread, testHelperThread1.RegisteredEvents.Count);
-            Assert.AreEqual(numberOfEventsToRegisterOnSecondThread, testHelperThread2.RegisteredEvents.Count);
+            Assert.That(testHelperThread1.RegisteredEvents.Count, Is.EqualTo(numberOfEventsToRegisterOnFirstThread));
+            Assert.That(testHelperThread2.RegisteredEvents.Count, Is.EqualTo(numberOfEventsToRegisterOnSecondThread));
             Assert.IsEmpty(registeredEventsOnMainThread);
         }
 
@@ -85,7 +85,7 @@ namespace DiKErnel.Util.Test
             EventRegistry.Register(new Event(Random.NextString(), Random.NextEnumValue<EventType>()));
 
             // Precondition
-            Assert.AreEqual(2, EventRegistry.Flush().Count);
+            Assert.That(EventRegistry.Flush().Count, Is.EqualTo(2));
 
             // When
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();

@@ -38,7 +38,7 @@ namespace DiKErnel.Util.Test
             // Assert
             Assert.True(result.Successful);
             Assert.AreSame(events, result.Events);
-            Assert.AreEqual(data, result.Data);
+            Assert.That(result.Data, Is.EqualTo(data));
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace DiKErnel.Util.Test
             // Assert
             Assert.IsFalse(result.Successful);
             Assert.AreSame(events, result.Events);
-            Assert.AreEqual(0, result.Data);
+            Assert.That(result.Data, Is.EqualTo(0));
         }
 
         [Test]

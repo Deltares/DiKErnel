@@ -107,11 +107,11 @@ namespace DiKErnel.Util.Test.Helpers
             var string5 = NumericsHelper.ToString(0.123456789);
 
             // Assert
-            Assert.AreEqual("0.3", string1);
-            Assert.AreEqual("1e-06", string2);
-            Assert.AreEqual("0.001", string3);
-            Assert.AreEqual("1", string4);
-            Assert.AreEqual("0.123457", string5);
+            Assert.That(string1, Is.EqualTo("0.3"));
+            Assert.That(string2, Is.EqualTo("1e-06"));
+            Assert.That(string3, Is.EqualTo("0.001"));
+            Assert.That(string4, Is.EqualTo("1"));
+            Assert.That(string5, Is.EqualTo("0.123457"));
         }
     }
 }

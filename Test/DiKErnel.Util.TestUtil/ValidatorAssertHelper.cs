@@ -61,8 +61,8 @@ namespace DiKErnel.Util.TestUtil
 
             // Assert
             Assert.NotNull(validationIssue);
-            Assert.AreEqual(validationIssueType, validationIssue.ValidationIssueType);
-            Assert.AreEqual(message, validationIssue.Message);
+            Assert.That(validationIssue.ValidationIssueType, Is.EqualTo(validationIssueType));
+            Assert.That(validationIssue.Message, Is.EqualTo(message));
         }
     }
 }

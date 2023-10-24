@@ -52,14 +52,14 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(3, validationResult.Events.Count);
-            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("WaveHeightHm0 must be larger than 0.", validationResult.Events[0].Message);
-            Assert.AreEqual(EventType.Warning, validationResult.Events[1].Type);
-            Assert.AreEqual("WavePeriodTm10 should be in range {0.5, 25}.", validationResult.Events[1].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
-            Assert.AreEqual("WaveDirection must be in range [0, 360].", validationResult.Events[2].Message);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(3));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("WaveHeightHm0 must be larger than 0."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("WavePeriodTm10 should be in range {0.5, 25}."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("WaveDirection must be in range [0, 360]."));
         }
 
         [Test]
@@ -85,12 +85,12 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(2, validationResult.Events.Count);
-            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("Dike orientation must be in range [0, 360].", validationResult.Events[0].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("Roughness coefficient must be in range [0.5, 1].", validationResult.Events[1].Message);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(2));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("Dike orientation must be in range [0, 360]."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("Roughness coefficient must be in range [0.5, 1]."));
         }
 
         [Test]
@@ -126,37 +126,36 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(14, validationResult.Events.Count);
-            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
-                            validationResult.Events[1].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
-            Assert.AreEqual("FatigueAlpha must be larger than 0.", validationResult.Events[2].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
-            Assert.AreEqual("FatigueBeta must be larger than 0.", validationResult.Events[3].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
-            Assert.AreEqual("FlexuralStrength must be larger than 0.", validationResult.Events[4].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
-            Assert.AreEqual("ImpactNumberC must be larger than 0.", validationResult.Events[5].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[6].Type);
-            Assert.AreEqual("DensityOfWater must be in range [950, 1050].", validationResult.Events[6].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[7].Type);
-            Assert.AreEqual("SoilElasticity must be larger than 0.", validationResult.Events[7].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[8].Type);
-            Assert.AreEqual("StiffnessRelationNu must be larger than 0.", validationResult.Events[8].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[9].Type);
-            Assert.AreEqual("Thickness must be larger than 0.", validationResult.Events[9].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[10].Type);
-            Assert.AreEqual("ElasticModulus must be larger than 0.", validationResult.Events[10].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[11].Type);
-            Assert.AreEqual("Thickness must be larger than 0.", validationResult.Events[11].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[12].Type);
-            Assert.AreEqual("ElasticModulus must be larger than 0.", validationResult.Events[12].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[13].Type);
-            Assert.AreEqual("AverageNumberOfWavesCtm must be larger than 0.", validationResult.Events[13].Message);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(14));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("FatigueAlpha must be larger than 0."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("FatigueBeta must be larger than 0."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("FlexuralStrength must be larger than 0."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("ImpactNumberC must be larger than 0."));
+            Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[6].Message, Is.EqualTo("DensityOfWater must be in range [950, 1050]."));
+            Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("SoilElasticity must be larger than 0."));
+            Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("StiffnessRelationNu must be larger than 0."));
+            Assert.That(validationResult.Events[9].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[9].Message, Is.EqualTo("Thickness must be larger than 0."));
+            Assert.That(validationResult.Events[10].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[10].Message, Is.EqualTo("ElasticModulus must be larger than 0."));
+            Assert.That(validationResult.Events[11].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[11].Message, Is.EqualTo("Thickness must be larger than 0."));
+            Assert.That(validationResult.Events[12].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[12].Message, Is.EqualTo("ElasticModulus must be larger than 0."));
+            Assert.That(validationResult.Events[13].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[13].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
         }
 
         [Test]
@@ -194,34 +193,31 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(11, validationResult.Events.Count);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(11));
 
-            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
-                            validationResult.Events[1].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
-            Assert.AreEqual("TimeLineAgwi must be larger than TimeLineCgwi.", validationResult.Events[2].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
-            Assert.AreEqual("TimeLineBgwi must be smaller than 0.", validationResult.Events[3].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
-            Assert.AreEqual("TimeLineCgwi must be equal to 0 or larger.", validationResult.Events[4].Message);
-            Assert.AreEqual(EventType.Warning, validationResult.Events[5].Type);
-            Assert.AreEqual("MinimumWaveHeightTemax should be in range {1000000, 3600000].",
-                            validationResult.Events[5].Message);
-            Assert.AreEqual(EventType.Warning, validationResult.Events[6].Type);
-            Assert.AreEqual("MaximumWaveHeightTemin should be in range [3.6, 10}.", validationResult.Events[6].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[7].Type);
-            Assert.AreEqual("WaveAngleImpactNwa must be equal to 1 or smaller.", validationResult.Events[7].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[8].Type);
-            Assert.AreEqual("WaveAngleImpactQwa must be in range [0, 1].", validationResult.Events[8].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[9].Type);
-            Assert.AreEqual("WaveAngleImpactRwa must be larger than 0.", validationResult.Events[9].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[10].Type);
-            Assert.AreEqual("UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.",
-                            validationResult.Events[10].Message);
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("TimeLineAgwi must be larger than TimeLineCgwi."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("TimeLineBgwi must be smaller than 0."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("TimeLineCgwi must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("MinimumWaveHeightTemax should be in range {1000000, 3600000]."));
+            Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[6].Message, Is.EqualTo("MaximumWaveHeightTemin should be in range [3.6, 10}."));
+            Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("WaveAngleImpactNwa must be equal to 1 or smaller."));
+            Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("WaveAngleImpactQwa must be in range [0, 1]."));
+            Assert.That(validationResult.Events[9].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[9].Message, Is.EqualTo("WaveAngleImpactRwa must be larger than 0."));
+            Assert.That(validationResult.Events[10].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[10].Message, Is.EqualTo("UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll."));
         }
 
         [Test]
@@ -259,37 +255,32 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(12, validationResult.Events.Count);
-            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
-                            validationResult.Events[1].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
-            Assert.AreEqual("CriticalCumulativeOverload must be larger than 0.", validationResult.Events[2].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
-            Assert.AreEqual("RepresentativeWaveRunup2PGammab must be in range [0.6, 1].",
-                            validationResult.Events[3].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
-            Assert.AreEqual("RepresentativeWaveRunup2PGammaf must be in range [0.5, 1].",
-                            validationResult.Events[4].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
-            Assert.AreEqual("CriticalFrontVelocity must be equal to 0 or larger.", validationResult.Events[5].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[6].Type);
-            Assert.AreEqual("IncreasedLoadTransitionAlphaM must be equal to 0 or larger.",
-                            validationResult.Events[6].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[7].Type);
-            Assert.AreEqual("ReducedStrengthTransitionAlphaS must be equal to 0 or larger.",
-                            validationResult.Events[7].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[8].Type);
-            Assert.AreEqual("OuterSlope must be in range {0, 1}.", validationResult.Events[8].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[9].Type);
-            Assert.AreEqual("AverageNumberOfWavesCtm must be larger than 0.", validationResult.Events[9].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[10].Type);
-            Assert.AreEqual("FixedNumberOfWaves must be larger than 0.", validationResult.Events[10].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[11].Type);
-            Assert.AreEqual("FrontVelocityCu must be larger than 0.", validationResult.Events[11].Message);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(12));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("CriticalCumulativeOverload must be larger than 0."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("RepresentativeWaveRunup2PGammab must be in range [0.6, 1]."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("RepresentativeWaveRunup2PGammaf must be in range [0.5, 1]."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("CriticalFrontVelocity must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[6].Message, Is.EqualTo("IncreasedLoadTransitionAlphaM must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("ReducedStrengthTransitionAlphaS must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("OuterSlope must be in range {0, 1}."));
+            Assert.That(validationResult.Events[9].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[9].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
+            Assert.That(validationResult.Events[10].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[10].Message, Is.EqualTo("FixedNumberOfWaves must be larger than 0."));
+            Assert.That(validationResult.Events[11].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[11].Message, Is.EqualTo("FrontVelocityCu must be larger than 0."));
         }
 
         [Test]
@@ -331,33 +322,30 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(11, validationResult.Events.Count);
-            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
-                            validationResult.Events[1].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
-            Assert.AreEqual("CriticalCumulativeOverload must be larger than 0.", validationResult.Events[2].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
-            Assert.AreEqual("CriticalFrontVelocity must be equal to 0 or larger.", validationResult.Events[3].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[4].Type);
-            Assert.AreEqual("AccelerationAlphaA must be equal to 0 or larger.", validationResult.Events[4].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
-            Assert.AreEqual("AccelerationAlphaA must be equal to 0 or larger.", validationResult.Events[5].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[6].Type);
-            Assert.AreEqual("FixedNumberOfWaves must be larger than 0.", validationResult.Events[6].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[7].Type);
-            Assert.AreEqual("FrontVelocityCwo must be larger than 0.", validationResult.Events[7].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[8].Type);
-            Assert.AreEqual("AverageNumberOfWavesCtm must be larger than 0.", validationResult.Events[8].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[9].Type);
-            Assert.AreEqual("IncreasedLoadTransitionAlphaM must be equal to 0 or larger.",
-                            validationResult.Events[9].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[10].Type);
-            Assert.AreEqual("ReducedStrengthTransitionAlphaS must be equal to 0 or larger.",
-                            validationResult.Events[10].Message);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(11));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("CriticalCumulativeOverload must be larger than 0."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("CriticalFrontVelocity must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("AccelerationAlphaA must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("AccelerationAlphaA must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[6].Message, Is.EqualTo("FixedNumberOfWaves must be larger than 0."));
+            Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("FrontVelocityCwo must be larger than 0."));
+            Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
+            Assert.That(validationResult.Events[9].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[9].Message, Is.EqualTo("IncreasedLoadTransitionAlphaM must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[10].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[10].Message, Is.EqualTo("ReducedStrengthTransitionAlphaS must be equal to 0 or larger."));
         }
 
         [Test]
@@ -393,11 +381,12 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(1, validationResult.Events.Count);
-            Assert.AreEqual(EventType.Warning, validationResult.Events[0].Type);
-            Assert.AreEqual("For one or more time steps the water level exceeds the dike height. No damage will be " +
-                            "calculated for these time steps.", validationResult.Events[0].Message);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(1));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("For one or more time steps the water level " +
+                                                                       "exceeds the dike height. No damage will be " +
+                                                                       "calculated for these time steps."));
         }
 
         [Test]
@@ -432,8 +421,8 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(0, validationResult.Events.Count);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -466,11 +455,12 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(1, validationResult.Events.Count);
-            Assert.AreEqual(EventType.Warning, validationResult.Events[0].Type);
-            Assert.AreEqual("For one or more time steps the water level exceeds the dike height. No damage will be " +
-                            "calculated for these time steps.", validationResult.Events[0].Message);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(1));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("For one or more time steps the water level " +
+                                                                       "exceeds the dike height. No damage will be " +
+                                                                       "calculated for these time steps."));
         }
 
         [Test]
@@ -502,8 +492,8 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(0, validationResult.Events.Count);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -554,8 +544,8 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Successful, validationResult.Data);
-            Assert.AreEqual(0, validationResult.Events.Count);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -585,22 +575,21 @@ namespace DiKErnel.System.Test
 
             // Then
             Assert.True(validationResult.Successful);
-            Assert.AreEqual(ValidationResultType.Failed, validationResult.Data);
-            Assert.AreEqual(6, validationResult.Events.Count);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events.Count, Is.EqualTo(6));
 
-            Assert.AreEqual(EventType.Error, validationResult.Events[0].Type);
-            Assert.AreEqual("InitialDamage must be equal to 0 or larger.", validationResult.Events[0].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[1].Type);
-            Assert.AreEqual("FailureNumber must be equal to InitialDamage or larger.",
-                            validationResult.Events[1].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[2].Type);
-            Assert.AreEqual("RelativeDensity must be in range {0, 10}.", validationResult.Events[2].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[3].Type);
-            Assert.AreEqual("ThicknessTopLayer must be in range {0, 1}.", validationResult.Events[3].Message);
-            Assert.AreEqual(EventType.Warning, validationResult.Events[4].Type);
-            Assert.AreEqual("SlopeUpperLevelAus should be in range [0.01, 0.2].", validationResult.Events[4].Message);
-            Assert.AreEqual(EventType.Error, validationResult.Events[5].Type);
-            Assert.AreEqual("SlopeLowerLevelAls must be larger than 0.", validationResult.Events[5].Message);
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("RelativeDensity must be in range {0, 10}."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("ThicknessTopLayer must be in range {0, 1}."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("SlopeUpperLevelAus should be in range [0.01, 0.2]."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("SlopeLowerLevelAls must be larger than 0."));
         }
     }
 }

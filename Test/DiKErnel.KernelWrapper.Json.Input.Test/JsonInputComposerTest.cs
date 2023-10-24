@@ -58,9 +58,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             IProfileData profileData = calculationInput.ProfileData;
 
-            Assert.AreEqual(14.45, calculationInput.ProfileData.DikeOrientation);
+            Assert.That(calculationInput.ProfileData.DikeOrientation, Is.EqualTo(14.45));
             IReadOnlyList<ProfileSegment> profileSegments = profileData.ProfileSegments;
-            Assert.AreEqual(23, profileSegments.Count);
+            Assert.That(profileSegments.Count, Is.EqualTo(23));
             ProfileDataAssertHelper.AssertProfileSegment(-30, -11.85, -20, -8.95, 0, profileSegments[0]);
             ProfileDataAssertHelper.AssertProfileSegment(-20, -8.95, -10, -6.05, 0, profileSegments[1]);
             ProfileDataAssertHelper.AssertProfileSegment(-10, -6.05, 0, -3.15, 0, profileSegments[2]);
@@ -86,7 +86,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             ProfileDataAssertHelper.AssertProfileSegment(95, 8.5, 100, 7.1, 1.5, profileSegments[22]);
 
             IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
-            Assert.AreEqual(6, characteristicPoints.Count);
+            Assert.That(characteristicPoints.Count, Is.EqualTo(6));
             ProfileDataAssertHelper.AssertCharacteristicPoint(
                 profileSegments[2].EndPoint, CharacteristicPointType.OuterToe, characteristicPoints[0]);
             ProfileDataAssertHelper.AssertCharacteristicPoint(
@@ -101,7 +101,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 profileSegments[22].EndPoint, CharacteristicPointType.InnerToe, characteristicPoints[5]);
 
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
-            Assert.AreEqual(5, timeDependentInputItems.Count);
+            Assert.That(timeDependentInputItems.Count, Is.EqualTo(5));
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
                 0, 100, 0.1, 0.5, 2, 0, timeDependentInputItems[0]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
@@ -115,7 +115,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 calculationInput.LocationDependentInputItems;
-            Assert.AreEqual(5, locationDependentInputItems.Count);
+            Assert.That(locationDependentInputItems.Count, Is.EqualTo(5));
 
             var naturalStoneRevetmentLocationDependentInputItem =
                 locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
@@ -265,15 +265,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             IProfileData profileData = calculationInput.ProfileData;
 
-            Assert.AreEqual(14.45, profileData.DikeOrientation);
+            Assert.That(profileData.DikeOrientation, Is.EqualTo(14.45));
             IReadOnlyList<ProfileSegment> profileSegments = profileData.ProfileSegments;
-            Assert.AreEqual(3, profileSegments.Count);
+            Assert.That(profileSegments.Count, Is.EqualTo(3));
             ProfileDataAssertHelper.AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegments[0]);
             ProfileDataAssertHelper.AssertProfileSegment(65, 15.7, 75, 15.7, 1, profileSegments[1]);
             ProfileDataAssertHelper.AssertProfileSegment(75, 15.7, 85, 10, 1, profileSegments[2]);
 
             IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
-            Assert.AreEqual(4, characteristicPoints.Count);
+            Assert.That(characteristicPoints.Count, Is.EqualTo(4));
             ProfileDataAssertHelper.AssertCharacteristicPoint(
                 profileSegments[0].StartPoint, CharacteristicPointType.OuterToe, characteristicPoints[0]);
             ProfileDataAssertHelper.AssertCharacteristicPoint(
@@ -284,13 +284,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 profileSegments[2].EndPoint, CharacteristicPointType.InnerToe, characteristicPoints[3]);
 
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
-            Assert.AreEqual(1, timeDependentInputItems.Count);
+            Assert.That(timeDependentInputItems.Count, Is.EqualTo(1));
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
                 0, 100, 0.1, 0.5, 2, 350, timeDependentInputItems[0]);
 
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 calculationInput.LocationDependentInputItems;
-            Assert.AreEqual(8, locationDependentInputItems.Count);
+            Assert.That(locationDependentInputItems.Count, Is.EqualTo(8));
 
             var naturalStoneRevetmentLocationDependentInputItem =
                 locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
@@ -591,10 +591,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.IsFalse(result);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.AreEqual(1, registeredEvents.Count);
-            Assert.AreEqual(EventType.Error, registeredEvents[0].Type);
-            Assert.AreEqual("The provided input file is invalid (error found on line 4, position 8)",
-                            registeredEvents[0].Message);
+            Assert.That(registeredEvents.Count, Is.EqualTo(1));
+            Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(registeredEvents[0].Message, Is.EqualTo("The provided input file is invalid (error found on line 4, position 8)"));
         }
 
         [Test]
@@ -611,10 +610,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.IsFalse(result);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.AreEqual(1, registeredEvents.Count);
-            Assert.AreEqual(EventType.Error, registeredEvents[0].Type);
-            Assert.AreEqual("Required properties are missing from object: tijdstippen, hydraulischeBelastingen, " +
-                            "dijkprofiel, locaties.", registeredEvents[0].Message);
+            Assert.That(registeredEvents.Count, Is.EqualTo(1));
+            Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(registeredEvents[0].Message, Is.EqualTo("Required properties are missing from object: tijdstippen, hydraulischeBelastingen, " +
+                            "dijkprofiel, locaties."));
         }
 
         [Test]
@@ -630,9 +629,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.IsFalse(result);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.AreEqual(1, registeredEvents.Count);
-            Assert.AreEqual(EventType.Error, registeredEvents[0].Type);
-            Assert.AreEqual("The provided input file does not exist", registeredEvents[0].Message);
+            Assert.That(registeredEvents.Count, Is.EqualTo(1));
+            Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(registeredEvents[0].Message, Is.EqualTo("The provided input file does not exist"));
         }
 
         private static void GivenInvalidJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent(
@@ -650,9 +649,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             Assert.IsFalse(calculationInputDataResult.Successful);
 
-            Assert.AreEqual(1, calculationInputDataResult.Events.Count);
-            Assert.AreEqual(EventType.Error, calculationInputDataResult.Events[0].Type);
-            Assert.AreEqual(expectedMessage, calculationInputDataResult.Events[0].Message);
+            Assert.That(calculationInputDataResult.Events.Count, Is.EqualTo(1));
+            Assert.That(calculationInputDataResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(calculationInputDataResult.Events[0].Message, Is.EqualTo(expectedMessage));
 
             CollectionAssert.IsEmpty(result.LocationIds);
         }
