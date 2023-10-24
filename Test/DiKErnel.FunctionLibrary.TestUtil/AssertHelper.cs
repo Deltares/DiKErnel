@@ -24,7 +24,7 @@ namespace DiKErnel.FunctionLibrary.TestUtil
     {
         public static void AreEqual(double expected, double actual)
         {
-            Assert.AreEqual(expected, actual, 1e-14);
+            Assert.That(actual, Is.EqualTo(expected).Within(1e-14));
         }
     }
 }

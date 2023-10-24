@@ -25,8 +25,8 @@ namespace DiKErnel.Integration.TestUtil
     {
         public static void AssertProfilePoint(double expectedX, double expectedZ, ProfilePoint actualProfilePoint)
         {
-            Assert.AreEqual(expectedX, actualProfilePoint.X);
-            Assert.AreEqual(expectedZ, actualProfilePoint.Z);
+            Assert.That(actualProfilePoint.X, Is.EqualTo(expectedX));
+            Assert.That(actualProfilePoint.Z, Is.EqualTo(expectedZ));
         }
 
         public static void AssertProfileSegment(double expectedStartPointX, double expectedStartPointZ,
@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.TestUtil
         {
             AssertProfilePoint(expectedStartPointX, expectedStartPointZ, actualProfileSegment.StartPoint);
             AssertProfilePoint(expectedEndPointX, expectedEndPointZ, actualProfileSegment.EndPoint);
-            Assert.AreEqual(expectedRoughnessCoefficient, actualProfileSegment.RoughnessCoefficient);
+            Assert.That(actualProfileSegment.RoughnessCoefficient, Is.EqualTo(expectedRoughnessCoefficient));
         }
 
         public static void AssertCharacteristicPoint(ProfilePoint expectedProfilePoint,
@@ -44,7 +44,7 @@ namespace DiKErnel.Integration.TestUtil
                                                      CharacteristicPoint actualCharacteristicPoint)
         {
             Assert.AreSame(expectedProfilePoint, actualCharacteristicPoint.ProfilePoint);
-            Assert.AreEqual(expectedCharacteristicPointType, actualCharacteristicPoint.CharacteristicPointType);
+            Assert.That(actualCharacteristicPoint.CharacteristicPointType, Is.EqualTo(expectedCharacteristicPointType));
         }
     }
 }

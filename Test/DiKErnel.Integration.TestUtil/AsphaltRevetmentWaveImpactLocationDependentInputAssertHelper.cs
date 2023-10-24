@@ -29,24 +29,24 @@ namespace DiKErnel.Integration.TestUtil
                                                    double impactNumberC, double stiffnessRelationNu,
                                                    AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(flexuralStrength, locationDependentInput.FlexuralStrength);
-            Assert.AreEqual(densityOfWater, locationDependentInput.DensityOfWater);
-            Assert.AreEqual(soilElasticity, locationDependentInput.SoilElasticity);
-            Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
-            Assert.AreEqual(impactNumberC, locationDependentInput.ImpactNumberC);
-            Assert.AreEqual(stiffnessRelationNu, locationDependentInput.StiffnessRelationNu);
+            Assert.That(locationDependentInput.FlexuralStrength, Is.EqualTo(flexuralStrength));
+            Assert.That(locationDependentInput.DensityOfWater, Is.EqualTo(densityOfWater));
+            Assert.That(locationDependentInput.SoilElasticity, Is.EqualTo(soilElasticity));
+            Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
+            Assert.That(locationDependentInput.ImpactNumberC, Is.EqualTo(impactNumberC));
+            Assert.That(locationDependentInput.StiffnessRelationNu, Is.EqualTo(stiffnessRelationNu));
         }
 
         public static void AssertLayer(double thickness, double elasticModulus, AsphaltRevetmentWaveImpactLayer layer)
         {
-            Assert.AreEqual(thickness, layer.Thickness);
-            Assert.AreEqual(elasticModulus, layer.ElasticModulus);
+            Assert.That(layer.Thickness, Is.EqualTo(thickness));
+            Assert.That(layer.ElasticModulus, Is.EqualTo(elasticModulus));
         }
 
         public static void AssertFatigue(double alpha, double beta, AsphaltRevetmentWaveImpactFatigue fatigue)
         {
-            Assert.AreEqual(alpha, fatigue.Alpha);
-            Assert.AreEqual(beta, fatigue.Beta);
+            Assert.That(fatigue.Alpha, Is.EqualTo(alpha));
+            Assert.That(fatigue.Beta, Is.EqualTo(beta));
         }
 
         public static void AssertFactors(IReadOnlyList<(double, double)> widthFactors,

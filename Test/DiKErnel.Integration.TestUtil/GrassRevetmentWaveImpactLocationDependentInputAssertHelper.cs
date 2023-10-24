@@ -26,42 +26,42 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertMinimumWaveHeight(double minimumWaveHeightTemax,
                                                    GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(minimumWaveHeightTemax, locationDependentInput.MinimumWaveHeightTemax);
+            Assert.That(locationDependentInput.MinimumWaveHeightTemax, Is.EqualTo(minimumWaveHeightTemax));
         }
 
         public static void AssertMaximumWaveHeight(double maximumWaveHeightTemin,
                                                    GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(maximumWaveHeightTemin, locationDependentInput.MaximumWaveHeightTemin);
+            Assert.That(locationDependentInput.MaximumWaveHeightTemin, Is.EqualTo(maximumWaveHeightTemin));
         }
 
         public static void AssertWaveAngleImpact(double waveAngleImpactNwa, double waveAngleImpactQwa,
                                                  double waveAngleImpactRwa,
                                                  GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact)
         {
-            Assert.AreEqual(waveAngleImpactNwa, waveAngleImpact.WaveAngleImpactNwa);
-            Assert.AreEqual(waveAngleImpactQwa, waveAngleImpact.WaveAngleImpactQwa);
-            Assert.AreEqual(waveAngleImpactRwa, waveAngleImpact.WaveAngleImpactRwa);
+            Assert.That(waveAngleImpact.WaveAngleImpactNwa, Is.EqualTo(waveAngleImpactNwa));
+            Assert.That(waveAngleImpact.WaveAngleImpactQwa, Is.EqualTo(waveAngleImpactQwa));
+            Assert.That(waveAngleImpact.WaveAngleImpactRwa, Is.EqualTo(waveAngleImpactRwa));
         }
 
         public static void AssertTimeLine(double timeLineAgwi, double timeLineBgwi, double timeLineCgwi,
                                           GrassRevetmentWaveImpactTimeLine timeLine)
         {
-            Assert.AreEqual(timeLineAgwi, timeLine.TimeLineAgwi);
-            Assert.AreEqual(timeLineBgwi, timeLine.TimeLineBgwi);
-            Assert.AreEqual(timeLineCgwi, timeLine.TimeLineCgwi);
+            Assert.That(timeLine.TimeLineAgwi, Is.EqualTo(timeLineAgwi));
+            Assert.That(timeLine.TimeLineBgwi, Is.EqualTo(timeLineBgwi));
+            Assert.That(timeLine.TimeLineCgwi, Is.EqualTo(timeLineCgwi));
         }
 
         public static void AssertUpperLimitLoading(double upperLimitLoadingAul,
                                                    GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(upperLimitLoadingAul, locationDependentInput.UpperLimitLoadingAul);
+            Assert.That(locationDependentInput.UpperLimitLoadingAul, Is.EqualTo(upperLimitLoadingAul));
         }
 
         public static void AssertLowerLimitLoading(double lowerLimitLoadingAll,
                                                    GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(lowerLimitLoadingAll, locationDependentInput.LowerLimitLoadingAll);
+            Assert.That(locationDependentInput.LowerLimitLoadingAll, Is.EqualTo(lowerLimitLoadingAll));
         }
     }
 }

@@ -28,12 +28,12 @@ namespace DiKErnel.Integration.TestUtil
                                                         double expectedWavePeriodTm10, double expectedWaveDirection,
                                                         ITimeDependentInput actualTimeDependentInput)
         {
-            Assert.AreEqual(expectedBeginTime, actualTimeDependentInput.BeginTime);
-            Assert.AreEqual(expectedEndTime, actualTimeDependentInput.EndTime);
-            Assert.AreEqual(expectedWaterLevel, actualTimeDependentInput.WaterLevel);
-            Assert.AreEqual(expectedWaveHeightHm0, actualTimeDependentInput.WaveHeightHm0);
-            Assert.AreEqual(expectedWavePeriodTm10, actualTimeDependentInput.WavePeriodTm10);
-            Assert.AreEqual(expectedWaveDirection, actualTimeDependentInput.WaveDirection);
+            Assert.That(actualTimeDependentInput.BeginTime, Is.EqualTo(expectedBeginTime));
+            Assert.That(actualTimeDependentInput.EndTime, Is.EqualTo(expectedEndTime));
+            Assert.That(actualTimeDependentInput.WaterLevel, Is.EqualTo(expectedWaterLevel));
+            Assert.That(actualTimeDependentInput.WaveHeightHm0, Is.EqualTo(expectedWaveHeightHm0));
+            Assert.That(actualTimeDependentInput.WavePeriodTm10, Is.EqualTo(expectedWavePeriodTm10));
+            Assert.That(actualTimeDependentInput.WaveDirection, Is.EqualTo(expectedWaveDirection));
         }
     }
 }

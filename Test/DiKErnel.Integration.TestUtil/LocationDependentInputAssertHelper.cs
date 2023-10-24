@@ -25,15 +25,15 @@ namespace DiKErnel.Integration.TestUtil
     {
         public static void AssertLocationProperties(double x, LocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(x, locationDependentInput.X);
+            Assert.That(locationDependentInput.X, Is.EqualTo(x));
             Assert.IsNaN(locationDependentInput.Z);
         }
 
         public static void AssertDamageProperties(double initialDamage, double failureNumber,
                                                   LocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(initialDamage, locationDependentInput.InitialDamage);
-            Assert.AreEqual(failureNumber, locationDependentInput.FailureNumber);
+            Assert.That(locationDependentInput.InitialDamage, Is.EqualTo(initialDamage));
+            Assert.That(locationDependentInput.FailureNumber, Is.EqualTo(failureNumber));
         }
     }
 }

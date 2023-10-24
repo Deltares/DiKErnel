@@ -26,43 +26,43 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertGeneralProperties(double? dikeHeight,
                                                    GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(dikeHeight, locationDependentInput.EnforcedDikeHeight);
+            Assert.That(locationDependentInput.EnforcedDikeHeight, Is.EqualTo(dikeHeight));
         }
 
         public static void AssertCumulativeOverload(double criticalCumulativeOverload, int fixedNumberOfWaves,
                                                     GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(criticalCumulativeOverload, locationDependentInput.CriticalCumulativeOverload);
-            Assert.AreEqual(fixedNumberOfWaves, locationDependentInput.FixedNumberOfWaves);
+            Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
+            Assert.That(locationDependentInput.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
         }
 
         public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCwo,
                                                GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(criticalFrontVelocity, locationDependentInput.CriticalFrontVelocity);
-            Assert.AreEqual(frontVelocityCwo, locationDependentInput.FrontVelocityCwo);
+            Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
+            Assert.That(locationDependentInput.FrontVelocityCwo, Is.EqualTo(frontVelocityCwo));
         }
 
         public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
                                                  double reducedStrengthTransitionAlphaS,
                                                  GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(increasedLoadTransitionAlphaM, locationDependentInput.IncreasedLoadTransitionAlphaM);
-            Assert.AreEqual(reducedStrengthTransitionAlphaS, locationDependentInput.ReducedStrengthTransitionAlphaS);
+            Assert.That(locationDependentInput.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
+            Assert.That(locationDependentInput.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
         }
 
         public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
                                                       GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
+            Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
         }
 
         public static void AssertAccelerationAlphaA(
             double accelerationAlphaAForCrest, double accelerationAlphaAForInnerSlope,
             GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA)
         {
-            Assert.AreEqual(accelerationAlphaAForCrest, locationDependentAccelerationAlphaA.ValueAtCrest);
-            Assert.AreEqual(accelerationAlphaAForInnerSlope, locationDependentAccelerationAlphaA.ValueAtInnerSlope);
+            Assert.That(locationDependentAccelerationAlphaA.ValueAtCrest, Is.EqualTo(accelerationAlphaAForCrest));
+            Assert.That(locationDependentAccelerationAlphaA.ValueAtInnerSlope, Is.EqualTo(accelerationAlphaAForInnerSlope));
         }
     }
 }

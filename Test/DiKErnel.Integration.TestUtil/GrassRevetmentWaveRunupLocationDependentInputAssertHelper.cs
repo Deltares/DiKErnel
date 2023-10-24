@@ -26,51 +26,51 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertGeneralProperties(double outerSlope,
                                                    GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(outerSlope, locationDependentInput.OuterSlope);
+            Assert.That(locationDependentInput.OuterSlope, Is.EqualTo(outerSlope));
         }
 
         public static void AssertRepresentative2P(double representative2PAru, double representative2PBru,
                                                   double representative2PCru, double gammab, double gammaf,
                                                   GrassRevetmentWaveRunupRepresentative2P representative2P)
         {
-            Assert.AreEqual(representative2PAru, representative2P.Representative2PAru);
-            Assert.AreEqual(representative2PBru, representative2P.Representative2PBru);
-            Assert.AreEqual(representative2PCru, representative2P.Representative2PCru);
-            Assert.AreEqual(gammab, representative2P.Gammab);
-            Assert.AreEqual(gammaf, representative2P.Gammaf);
+            Assert.That(representative2P.Representative2PAru, Is.EqualTo(representative2PAru));
+            Assert.That(representative2P.Representative2PBru, Is.EqualTo(representative2PBru));
+            Assert.That(representative2P.Representative2PCru, Is.EqualTo(representative2PCru));
+            Assert.That(representative2P.Gammab, Is.EqualTo(gammab));
+            Assert.That(representative2P.Gammaf, Is.EqualTo(gammaf));
         }
 
         public static void AssertWaveAngleImpact(double abeta, double betamax,
                                                  GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact)
         {
-            Assert.AreEqual(abeta, waveAngleImpact.Abeta);
-            Assert.AreEqual(betamax, waveAngleImpact.Betamax);
+            Assert.That(waveAngleImpact.Abeta, Is.EqualTo(abeta));
+            Assert.That(waveAngleImpact.Betamax, Is.EqualTo(betamax));
         }
 
         public static void AssertCumulativeOverload(double criticalCumulativeOverload,
                                                     GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(criticalCumulativeOverload, locationDependentInput.CriticalCumulativeOverload);
+            Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
         }
 
         public static void AssertFrontVelocity(double criticalFrontVelocity,
                                                GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(criticalFrontVelocity, locationDependentInput.CriticalFrontVelocity);
+            Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
         }
 
         public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
                                                  double reducedStrengthTransitionAlphaS,
                                                  GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(increasedLoadTransitionAlphaM, locationDependentInput.IncreasedLoadTransitionAlphaM);
-            Assert.AreEqual(reducedStrengthTransitionAlphaS, locationDependentInput.ReducedStrengthTransitionAlphaS);
+            Assert.That(locationDependentInput.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
+            Assert.That(locationDependentInput.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
         }
 
         public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
                                                       GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
-            Assert.AreEqual(averageNumberOfWavesCtm, locationDependentInput.AverageNumberOfWavesCtm);
+            Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
         }
     }
 }
