@@ -37,7 +37,7 @@ namespace DiKErnel.Core.Test.Exceptions
 
             // Assert
             Assert.IsInstanceOf<Exception>(exception);
-            Assert.AreEqual($"{propertyName} must be set.", exception.Message);
+            Assert.That(exception.Message, Is.EqualTo($"{propertyName} must be set."));
         }
     }
 }

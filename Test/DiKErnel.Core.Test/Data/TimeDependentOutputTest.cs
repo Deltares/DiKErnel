@@ -44,9 +44,9 @@ namespace DiKErnel.Core.Test.Data
             var timeDependentOutput = Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
-            Assert.AreEqual(incrementDamage, timeDependentOutput.IncrementDamage);
-            Assert.AreEqual(damage, timeDependentOutput.Damage);
-            Assert.AreEqual(timeOfFailure, timeDependentOutput.TimeOfFailure);
+            Assert.That(timeDependentOutput.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(timeDependentOutput.Damage, Is.EqualTo(damage));
+            Assert.That(timeDependentOutput.TimeOfFailure, Is.EqualTo(timeOfFailure));
         }
 
         [Test]
@@ -94,8 +94,8 @@ namespace DiKErnel.Core.Test.Data
             var timeDependentOutput = Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
-            Assert.AreEqual(incrementDamage, timeDependentOutput.IncrementDamage);
-            Assert.AreEqual(damage, timeDependentOutput.Damage);
+            Assert.That(timeDependentOutput.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(timeDependentOutput.Damage, Is.EqualTo(damage));
             Assert.IsNull(timeDependentOutput.TimeOfFailure);
         }
     }

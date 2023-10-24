@@ -91,7 +91,7 @@ namespace DiKErnel.Core.Test.Extensions
             int? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
 
             // Then
-            Assert.AreEqual(timeOfFailureInLastTimeStep, timeOfFailure);
+            Assert.That(timeOfFailure, Is.EqualTo(timeOfFailureInLastTimeStep));
         }
     }
 }

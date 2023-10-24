@@ -42,8 +42,8 @@ namespace DiKErnel.Core.Test
             calculator.WaitForCompletion();
 
             // Then
-            Assert.AreEqual(CalculationState.FinishedSuccessfully, calculator.CalculationState);
-            Assert.AreEqual(100, calculator.Progress);
+            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
+            Assert.That(calculator.Progress, Is.EqualTo(100));
         }
 
         [Test]
@@ -66,13 +66,13 @@ namespace DiKErnel.Core.Test
             Assert.IsNotNull(calculator.Result);
 
             CalculationOutput output = calculator.Result.Data;
-            Assert.AreEqual(1, output.LocationDependentOutputItems.Count);
+            Assert.That(output.LocationDependentOutputItems.Count, Is.EqualTo(1));
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
-            Assert.AreEqual(3, damages.Count);
+            Assert.That(damages.Count, Is.EqualTo(3));
             Assert.IsTrue(damages.All(d => d.Equals(damage)));
-            Assert.AreEqual(timeOfFailure, locationDependentOutput.GetTimeOfFailure());
+            Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailure));
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace DiKErnel.Core.Test
             calculator.WaitForCompletion();
 
             // Then
-            Assert.AreEqual(CalculationState.Cancelled, calculator.CalculationState);
+            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.Cancelled));
             Assert.AreNotEqual(100, calculator.Progress);
         }
 
@@ -102,8 +102,8 @@ namespace DiKErnel.Core.Test
             calculator.Cancel();
 
             // Then
-            Assert.AreEqual(CalculationState.FinishedSuccessfully, calculator.CalculationState);
-            Assert.AreEqual(100, calculator.Progress);
+            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
+            Assert.That(calculator.Progress, Is.EqualTo(100));
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace DiKErnel.Core.Test
             CalculationState calculationState = calculator.CalculationState;
 
             // Then
-            Assert.AreEqual(CalculationState.Running, calculationState);
+            Assert.That(calculationState, Is.EqualTo(CalculationState.Running));
 
             calculator.WaitForCompletion();
         }
@@ -149,7 +149,7 @@ namespace DiKErnel.Core.Test
             CalculationState calculationState = calculator.CalculationState;
 
             // Then
-            Assert.AreEqual(CalculationState.Cancelled, calculationState);
+            Assert.That(calculationState, Is.EqualTo(CalculationState.Cancelled));
         }
 
         [Test]
@@ -185,7 +185,7 @@ namespace DiKErnel.Core.Test
             CalculationState calculationState = calculator.CalculationState;
 
             // Then
-            Assert.AreEqual(CalculationState.FinishedInError, calculationState);
+            Assert.That(calculationState, Is.EqualTo(CalculationState.FinishedInError));
         }
 
         [Test]
@@ -207,12 +207,13 @@ namespace DiKErnel.Core.Test
 
             // Then
             Assert.IsFalse(result.Successful);
-            Assert.AreEqual(1, result.Events.Count);
+            Assert.That(result.Events.Count, Is.EqualTo(1));
 
             Event exceptionEvent = result.Events[0];
-            Assert.AreEqual(EventType.Error, exceptionEvent.Type);
-            Assert.AreEqual("An unhandled error occurred while performing the calculation. See stack trace for more " +
-                            $"information:{Environment.NewLine}{exceptionMessage}", exceptionEvent.Message);
+            Assert.That(exceptionEvent.Type, Is.EqualTo(EventType.Error));
+            Assert.That(exceptionEvent.Message, Is.EqualTo("An unhandled error occurred while performing the " +
+                                                           "calculation. See stack trace for more information:" +
+                                                           $"{Environment.NewLine}{exceptionMessage}"));
         }
 
         private static ICalculationInput CreateCalculationInput(double damage = 0, int? timeOfFailure = null)

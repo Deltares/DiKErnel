@@ -96,7 +96,7 @@ namespace DiKErnel.Core.Test
                                                                     : ValidationResultType.Failed;
 
             Assert.IsTrue(validationResult.Successful);
-            Assert.AreEqual(expectedValidationResultType, validationResult.Data);
+            Assert.That(validationResult.Data, Is.EqualTo(expectedValidationResultType));
         }
 
         [Test]
@@ -134,12 +134,13 @@ namespace DiKErnel.Core.Test
 
             // Assert
             Assert.IsFalse(validationResult.Successful);
-            Assert.AreEqual(1, validationResult.Events.Count);
+            Assert.That(validationResult.Events.Count, Is.EqualTo(1));
 
             Event exceptionEvent = validationResult.Events[0];
-            Assert.AreEqual("An unhandled error occurred while validating the calculation input. See stack trace for more " +
-                            $"information:{Environment.NewLine}{exceptionMessage}", exceptionEvent.Message);
-            Assert.AreEqual(EventType.Error, exceptionEvent.Type);
+            Assert.That(exceptionEvent.Message, Is.EqualTo("An unhandled error occurred while validating the " +
+                                                           "calculation input. See stack trace for more information:" +
+                                                           $"{Environment.NewLine}{exceptionMessage}"));
+            Assert.That(exceptionEvent.Type, Is.EqualTo(EventType.Error));
         }
     }
 }

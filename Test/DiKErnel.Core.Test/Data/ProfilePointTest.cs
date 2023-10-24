@@ -36,8 +36,8 @@ namespace DiKErnel.Core.Test.Data
             var profilePoint = new ProfilePoint(x, z);
 
             // Assert
-            Assert.AreEqual(x, profilePoint.X);
-            Assert.AreEqual(z, profilePoint.Z);
+            Assert.That(profilePoint.X, Is.EqualTo(x));
+            Assert.That(profilePoint.Z, Is.EqualTo(z));
         }
     }
 }
