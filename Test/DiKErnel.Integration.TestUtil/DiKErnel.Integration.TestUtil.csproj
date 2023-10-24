@@ -6,8 +6,4 @@
         <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="NUnit" Version="3.13.3"/>
-    </ItemGroup>
-
 </Project>

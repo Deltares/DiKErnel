@@ -2,8 +2,4 @@
 
     <Import Project="$(SolutionDir)Development\Test.targets"/>
 
-    <ItemGroup>
-        <PackageReference Include="NUnit" Version="3.13.3"/>
-    </ItemGroup>
-
 </Project>
