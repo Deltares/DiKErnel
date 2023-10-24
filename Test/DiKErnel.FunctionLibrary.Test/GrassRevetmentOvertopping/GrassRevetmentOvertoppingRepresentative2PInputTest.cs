@@ -48,15 +48,15 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
                                                                            dikeOrientation);
 
             // Assert
-            Assert.AreEqual(waterLevel, input.WaterLevel);
-            Assert.AreEqual(waveHeightHm0, input.WaveHeightHm0);
-            Assert.AreEqual(wavePeriodTm10, input.WavePeriodTm10);
-            Assert.AreEqual(waveDirection, input.WaveDirection);
+            Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));
+            Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
+            Assert.That(input.WavePeriodTm10, Is.EqualTo(wavePeriodTm10));
+            Assert.That(input.WaveDirection, Is.EqualTo(waveDirection));
             Assert.AreSame(xValuesProfile, input.XValuesProfile);
             Assert.AreSame(zValuesProfile, input.ZValuesProfile);
             Assert.AreSame(roughnessCoefficients, input.RoughnessCoefficients);
-            Assert.AreEqual(dikeHeight, input.DikeHeight);
-            Assert.AreEqual(dikeOrientation, input.DikeOrientation);
+            Assert.That(input.DikeHeight, Is.EqualTo(dikeHeight));
+            Assert.That(input.DikeOrientation, Is.EqualTo(dikeOrientation));
         }
     }
 }

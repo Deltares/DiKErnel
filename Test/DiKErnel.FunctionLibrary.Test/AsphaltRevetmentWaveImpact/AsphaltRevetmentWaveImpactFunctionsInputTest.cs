@@ -56,23 +56,23 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
                                                                      waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
 
             // Assert
-            Assert.AreEqual(logFlexuralStrength, input.LogFlexuralStrength);
-            Assert.AreEqual(averageNumberOfWaves, input.AverageNumberOfWaves);
-            Assert.AreEqual(maximumPeakStress, input.MaximumPeakStress);
-            Assert.AreEqual(stiffnessRelation, input.StiffnessRelation);
-            Assert.AreEqual(computationalThickness, input.ComputationalThickness);
-            Assert.AreEqual(outerSlope, input.OuterSlope);
+            Assert.That(input.LogFlexuralStrength, Is.EqualTo(logFlexuralStrength));
+            Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
+            Assert.That(input.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
+            Assert.That(input.StiffnessRelation, Is.EqualTo(stiffnessRelation));
+            Assert.That(input.ComputationalThickness, Is.EqualTo(computationalThickness));
+            Assert.That(input.OuterSlope, Is.EqualTo(outerSlope));
 
             Assert.AreSame(widthFactors, input.WidthFactors);
             Assert.AreSame(depthFactors, input.DepthFactors);
             Assert.AreSame(impactFactors, input.ImpactFactors);
 
-            Assert.AreEqual(z, input.Z);
-            Assert.AreEqual(waterLevel, input.WaterLevel);
-            Assert.AreEqual(waveHeightHm0, input.WaveHeightHm0);
-            Assert.AreEqual(fatigueAlpha, input.FatigueAlpha);
-            Assert.AreEqual(fatigueBeta, input.FatigueBeta);
-            Assert.AreEqual(impactNumberC, input.ImpactNumberC);
+            Assert.That(input.Z, Is.EqualTo(z));
+            Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));
+            Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
+            Assert.That(input.FatigueAlpha, Is.EqualTo(fatigueAlpha));
+            Assert.That(input.FatigueBeta, Is.EqualTo(fatigueBeta));
+            Assert.That(input.ImpactNumberC, Is.EqualTo(impactNumberC));
         }
     }
 }

@@ -47,14 +47,14 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
                                                                          representativeWaveRunup2PCru);
 
             // Assert
-            Assert.AreEqual(surfSimilarityParameter, input.SurfSimilarityParameter);
-            Assert.AreEqual(waveAngleImpact, input.WaveAngleImpact);
-            Assert.AreEqual(waveHeightHm0, input.WaveHeightHm0);
-            Assert.AreEqual(representativeWaveRunup2PGammab, input.RepresentativeWaveRunup2PGammab);
-            Assert.AreEqual(representativeWaveRunup2PGammaf, input.RepresentativeWaveRunup2PGammaf);
-            Assert.AreEqual(representativeWaveRunup2PAru, input.RepresentativeWaveRunup2PAru);
-            Assert.AreEqual(representativeWaveRunup2PBru, input.RepresentativeWaveRunup2PBru);
-            Assert.AreEqual(representativeWaveRunup2PCru, input.RepresentativeWaveRunup2PCru);
+            Assert.That(input.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));
+            Assert.That(input.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
+            Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
+            Assert.That(input.RepresentativeWaveRunup2PGammab, Is.EqualTo(representativeWaveRunup2PGammab));
+            Assert.That(input.RepresentativeWaveRunup2PGammaf, Is.EqualTo(representativeWaveRunup2PGammaf));
+            Assert.That(input.RepresentativeWaveRunup2PAru, Is.EqualTo(representativeWaveRunup2PAru));
+            Assert.That(input.RepresentativeWaveRunup2PBru, Is.EqualTo(representativeWaveRunup2PBru));
+            Assert.That(input.RepresentativeWaveRunup2PCru, Is.EqualTo(representativeWaveRunup2PCru));
         }
     }
 }

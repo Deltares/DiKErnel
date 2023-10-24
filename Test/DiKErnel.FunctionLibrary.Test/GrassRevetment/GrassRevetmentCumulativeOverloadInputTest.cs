@@ -45,14 +45,14 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetment
                                                                   reducedStrengthTransitionAlphaS, gravitationalAcceleration);
 
             // Assert
-            Assert.AreEqual(averageNumberOfWaves, input.AverageNumberOfWaves);
-            Assert.AreEqual(representativeWaveRunup2P, input.RepresentativeWaveRunup2P);
-            Assert.AreEqual(fixedNumberOfWaves, input.FixedNumberOfWaves);
-            Assert.AreEqual(verticalDistanceWaterLevelElevation, input.VerticalDistanceWaterLevelElevation);
-            Assert.AreEqual(criticalFrontVelocity, input.CriticalFrontVelocity);
-            Assert.AreEqual(increasedLoadTransitionAlphaM, input.IncreasedLoadTransitionAlphaM);
-            Assert.AreEqual(reducedStrengthTransitionAlphaS, input.ReducedStrengthTransitionAlphaS);
-            Assert.AreEqual(gravitationalAcceleration, input.GravitationalAcceleration);
+            Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
+            Assert.That(input.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
+            Assert.That(input.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
+            Assert.That(input.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
+            Assert.That(input.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
+            Assert.That(input.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
+            Assert.That(input.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
+            Assert.That(input.GravitationalAcceleration, Is.EqualTo(gravitationalAcceleration));
         }
     }
 }

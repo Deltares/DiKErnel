@@ -42,13 +42,13 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneRevetment
                                                                    waveHeightHm0, a, b, c);
 
             // Assert
-            Assert.AreEqual(depthMaximumWaveLoad, input.DepthMaximumWaveLoad);
-            Assert.AreEqual(surfSimilarityParameter, input.SurfSimilarityParameter);
-            Assert.AreEqual(waterLevel, input.WaterLevel);
-            Assert.AreEqual(waveHeightHm0, input.WaveHeightHm0);
-            Assert.AreEqual(a, input.A);
-            Assert.AreEqual(b, input.B);
-            Assert.AreEqual(c, input.C);
+            Assert.That(input.DepthMaximumWaveLoad, Is.EqualTo(depthMaximumWaveLoad));
+            Assert.That(input.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));
+            Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));
+            Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
+            Assert.That(input.A, Is.EqualTo(a));
+            Assert.That(input.B, Is.EqualTo(b));
+            Assert.That(input.C, Is.EqualTo(c));
         }
     }
 }
