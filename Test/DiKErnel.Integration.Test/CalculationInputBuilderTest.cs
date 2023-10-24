@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Test
             Assert.IsFalse(result.Successful);
 
             IReadOnlyList<Event> events = result.Events;
-            Assert.That(events.Count, Is.EqualTo(1));
+            Assert.That(events, Has.Count.EqualTo(1));
             Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(events[0].Message, Is.EqualTo(expectedMessage));
         }
@@ -199,7 +199,7 @@ namespace DiKErnel.Integration.Test
             Assert.That(result.Successful, Is.True);
 
             IReadOnlyList<ProfileSegment> actualProfileSegments = result.Data.ProfileData.ProfileSegments;
-            Assert.That(actualProfileSegments.Count, Is.EqualTo(1));
+            Assert.That(actualProfileSegments, Has.Count.EqualTo(1));
 
             ProfileDataAssertHelper.AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1.0,
                                                          actualProfileSegments[0]);
@@ -230,7 +230,7 @@ namespace DiKErnel.Integration.Test
             Assert.That(result.Successful, Is.True);
 
             IReadOnlyList<ProfileSegment> actualProfileSegments = result.Data.ProfileData.ProfileSegments;
-            Assert.That(actualProfileSegments.Count, Is.EqualTo(1));
+            Assert.That(actualProfileSegments, Has.Count.EqualTo(1));
 
             ProfileDataAssertHelper.AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ,
                                                          roughnessCoefficient, actualProfileSegments[0]);
@@ -266,7 +266,7 @@ namespace DiKErnel.Integration.Test
             Assert.That(result.Successful, Is.True);
 
             IReadOnlyList<ProfileSegment> actualProfileSegments = result.Data.ProfileData.ProfileSegments;
-            Assert.That(actualProfileSegments.Count, Is.EqualTo(2));
+            Assert.That(actualProfileSegments, Has.Count.EqualTo(2));
 
             ProfileDataAssertHelper.AssertProfileSegment(startPointXSegment1, startPointZSegment1, endPointXSegment1,
                                                          endPointZSegment1, roughnessCoefficient,
@@ -511,8 +511,8 @@ namespace DiKErnel.Integration.Test
             IProfileData actualProfileData = result.Data.ProfileData;
             IReadOnlyList<ProfileSegment> actualProfileSegments = actualProfileData.ProfileSegments;
             IReadOnlyList<CharacteristicPoint> actualCharacteristicPoints = actualProfileData.CharacteristicPoints;
-            Assert.That(actualProfileSegments.Count, Is.EqualTo(1));
-            Assert.That(actualCharacteristicPoints.Count, Is.EqualTo(2));
+            Assert.That(actualProfileSegments, Has.Count.EqualTo(1));
+            Assert.That(actualCharacteristicPoints, Has.Count.EqualTo(2));
 
             ProfileSegment actualSegment = actualProfileSegments[0];
             ProfileDataAssertHelper.AssertCharacteristicPoint(actualSegment.StartPoint, outerToe,
@@ -623,7 +623,7 @@ namespace DiKErnel.Integration.Test
             Assert.That(result.Successful, Is.True);
 
             IReadOnlyList<ITimeDependentInput> actualTimeDependentInputItems = result.Data.TimeDependentInputItems;
-            Assert.That(actualTimeDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualTimeDependentInputItems, Has.Count.EqualTo(1));
 
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(beginTime, endTime, waterLevel, waveHeightHm0,
                                                                         wavePeriodTm10, waveDirection,
@@ -765,7 +765,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as AsphaltRevetmentWaveImpactLocationDependentInput;
@@ -819,7 +819,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as AsphaltRevetmentWaveImpactLocationDependentInput;
@@ -835,7 +835,7 @@ namespace DiKErnel.Integration.Test
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 thicknessUpperLayer, elasticModulusUpperLayer, locationDependentInput.UpperLayer);
 
-            Assert.IsNull(locationDependentInput.SubLayer);
+            Assert.That(locationDependentInput.SubLayer, Is.Null);
 
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
                 0.42, 4.76, locationDependentInput.Fatigue);
@@ -1007,7 +1007,7 @@ namespace DiKErnel.Integration.Test
             Assert.IsFalse(result.Successful);
 
             IReadOnlyList<Event> events = result.Events;
-            Assert.That(events.Count, Is.EqualTo(1));
+            Assert.That(events, Has.Count.EqualTo(1));
             Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
             Assert.IsNotEmpty(events[0].Message);
         }
@@ -1044,7 +1044,7 @@ namespace DiKErnel.Integration.Test
             Assert.IsFalse(result.Successful);
 
             IReadOnlyList<Event> events = result.Events;
-            Assert.That(events.Count, Is.EqualTo(2));
+            Assert.That(events, Has.Count.EqualTo(2));
             Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
             Assert.IsNotEmpty(events[0].Message);
             Assert.That(events[1].Type, Is.EqualTo(EventType.Error));
@@ -1105,7 +1105,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentOvertoppingLocationDependentInput;
@@ -1165,7 +1165,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentOvertoppingLocationDependentInput;
@@ -1222,7 +1222,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentOvertoppingLocationDependentInput;
@@ -1351,7 +1351,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveImpactLocationDependentInput;
@@ -1403,7 +1403,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveImpactLocationDependentInput;
@@ -1453,7 +1453,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveImpactLocationDependentInput;
@@ -1594,7 +1594,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveRunupRayleighLocationDependentInput;
@@ -1653,7 +1653,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveRunupRayleighLocationDependentInput;
@@ -1709,7 +1709,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassRevetmentWaveRunupRayleighLocationDependentInput;
@@ -1869,7 +1869,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as NaturalStoneRevetmentLocationDependentInput;
@@ -1934,7 +1934,7 @@ namespace DiKErnel.Integration.Test
 
             IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
                 result.Data.LocationDependentInputItems;
-            Assert.That(actualLocationDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as NaturalStoneRevetmentLocationDependentInput;

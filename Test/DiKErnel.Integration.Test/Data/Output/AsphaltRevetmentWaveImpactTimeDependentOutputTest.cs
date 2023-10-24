@@ -83,7 +83,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.IsNull(output.TimeOfFailure);
+            Assert.That(output.TimeOfFailure, Is.Null);
             Assert.That(output.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
             Assert.That(output.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }

@@ -41,18 +41,18 @@ namespace DiKErnel.Integration.Test.Data
             Assert.That(constructionProperties, Is.InstanceOf<RevetmentLocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
-            Assert.IsNull(constructionProperties.InitialDamage);
-            Assert.IsNull(constructionProperties.FailureNumber);
-            Assert.IsNull(constructionProperties.CriticalCumulativeOverload);
-            Assert.IsNull(constructionProperties.CriticalFrontVelocity);
-            Assert.IsNull(constructionProperties.IncreasedLoadTransitionAlphaM);
-            Assert.IsNull(constructionProperties.ReducedStrengthTransitionAlphaS);
-            Assert.IsNull(constructionProperties.AverageNumberOfWavesCtm);
-            Assert.IsNull(constructionProperties.FixedNumberOfWaves);
-            Assert.IsNull(constructionProperties.FrontVelocityCwo);
-            Assert.IsNull(constructionProperties.AccelerationAlphaAForCrest);
-            Assert.IsNull(constructionProperties.AccelerationAlphaAForInnerSlope);
-            Assert.IsNull(constructionProperties.DikeHeight);
+            Assert.That(constructionProperties.InitialDamage, Is.Null);
+            Assert.That(constructionProperties.FailureNumber, Is.Null);
+            Assert.That(constructionProperties.CriticalCumulativeOverload, Is.Null);
+            Assert.That(constructionProperties.CriticalFrontVelocity, Is.Null);
+            Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.Null);
+            Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.Null);
+            Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.Null);
+            Assert.That(constructionProperties.FixedNumberOfWaves, Is.Null);
+            Assert.That(constructionProperties.FrontVelocityCwo, Is.Null);
+            Assert.That(constructionProperties.AccelerationAlphaAForCrest, Is.Null);
+            Assert.That(constructionProperties.AccelerationAlphaAForInnerSlope, Is.Null);
+            Assert.That(constructionProperties.DikeHeight, Is.Null);
         }
 
         [Test]

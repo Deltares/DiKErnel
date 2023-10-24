@@ -32,9 +32,9 @@ namespace DiKErnel.Core.Test.Data
             var timeDependentOutputConstructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
 
             // Assert
-            Assert.IsNull(timeDependentOutputConstructionProperties.IncrementDamage);
-            Assert.IsNull(timeDependentOutputConstructionProperties.Damage);
-            Assert.IsNull(timeDependentOutputConstructionProperties.TimeOfFailure);
+            Assert.That(timeDependentOutputConstructionProperties.IncrementDamage, Is.Null);
+            Assert.That(timeDependentOutputConstructionProperties.Damage, Is.Null);
+            Assert.That(timeDependentOutputConstructionProperties.TimeOfFailure, Is.Null);
         }
     }
 }

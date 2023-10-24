@@ -53,7 +53,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(3));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(3));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("WaveHeightHm0 must be larger than 0."));
             Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Warning));
@@ -86,7 +86,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(2));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(2));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("Dike orientation must be in range [0, 360]."));
             Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
@@ -127,7 +127,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(14));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(14));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
             Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
@@ -194,7 +194,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(11));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(11));
 
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
@@ -256,7 +256,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(12));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(12));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
             Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
@@ -323,7 +323,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(11));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(11));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
             Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
@@ -382,7 +382,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(1));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(1));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("For one or more time steps the water level " +
                                                                        "exceeds the dike height. No damage will be " +
@@ -456,7 +456,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(1));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(1));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("For one or more time steps the water level " +
                                                                        "exceeds the dike height. No damage will be " +
@@ -576,7 +576,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.True(validationResult.Successful);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(6));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(6));
 
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));

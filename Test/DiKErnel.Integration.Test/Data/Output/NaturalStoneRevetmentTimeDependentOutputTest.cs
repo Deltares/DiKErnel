@@ -158,7 +158,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.IsNull(output.TimeOfFailure);
+            Assert.That(output.TimeOfFailure, Is.Null);
             Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
             Assert.That(output.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
             Assert.That(output.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
@@ -172,11 +172,11 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.That(output.DepthMaximumWaveLoad, Is.EqualTo(depthMaximumWaveLoad));
             Assert.That(output.DistanceMaximumWaveElevation, Is.EqualTo(distanceMaximumWaveElevation));
             Assert.That(output.NormativeWidthOfWaveImpact, Is.EqualTo(normativeWidthOfWaveImpact));
-            Assert.IsNull(output.HydraulicLoad);
-            Assert.IsNull(output.WaveAngle);
-            Assert.IsNull(output.WaveAngleImpact);
-            Assert.IsNull(output.ReferenceTimeDegradation);
-            Assert.IsNull(output.ReferenceDegradation);
+            Assert.That(output.HydraulicLoad, Is.Null);
+            Assert.That(output.WaveAngle, Is.Null);
+            Assert.That(output.WaveAngleImpact, Is.Null);
+            Assert.That(output.ReferenceTimeDegradation, Is.Null);
+            Assert.That(output.ReferenceDegradation, Is.Null);
         }
 
         [Test]

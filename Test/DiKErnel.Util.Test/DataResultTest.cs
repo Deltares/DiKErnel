@@ -84,7 +84,7 @@ namespace DiKErnel.Util.Test
             // Assert
             Assert.IsFalse(result.Successful);
             Assert.AreSame(events, result.Events);
-            Assert.IsNull(result.Data);
+            Assert.That(result.Data, Is.Null);
         }
     }
 }

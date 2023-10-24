@@ -37,8 +37,8 @@ namespace DiKErnel.Integration.Test.Data
 
             // Assert
             Assert.That(constructionProperties.X, Is.EqualTo(x));
-            Assert.IsNull(constructionProperties.InitialDamage);
-            Assert.IsNull(constructionProperties.FailureNumber);
+            Assert.That(constructionProperties.InitialDamage, Is.Null);
+            Assert.That(constructionProperties.FailureNumber, Is.Null);
         }
 
         [Test]

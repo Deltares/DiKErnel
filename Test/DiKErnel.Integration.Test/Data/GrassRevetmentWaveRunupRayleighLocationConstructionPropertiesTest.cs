@@ -43,22 +43,22 @@ namespace DiKErnel.Integration.Test.Data
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.That(constructionProperties.OuterSlope, Is.EqualTo(outerSlope));
-            Assert.IsNull(constructionProperties.InitialDamage);
-            Assert.IsNull(constructionProperties.FailureNumber);
-            Assert.IsNull(constructionProperties.CriticalCumulativeOverload);
-            Assert.IsNull(constructionProperties.CriticalFrontVelocity);
-            Assert.IsNull(constructionProperties.IncreasedLoadTransitionAlphaM);
-            Assert.IsNull(constructionProperties.ReducedStrengthTransitionAlphaS);
-            Assert.IsNull(constructionProperties.AverageNumberOfWavesCtm);
-            Assert.IsNull(constructionProperties.RepresentativeWaveRunup2PAru);
-            Assert.IsNull(constructionProperties.RepresentativeWaveRunup2PBru);
-            Assert.IsNull(constructionProperties.RepresentativeWaveRunup2PCru);
-            Assert.IsNull(constructionProperties.RepresentativeWaveRunup2PGammab);
-            Assert.IsNull(constructionProperties.RepresentativeWaveRunup2PGammaf);
-            Assert.IsNull(constructionProperties.WaveAngleImpactAbeta);
-            Assert.IsNull(constructionProperties.WaveAngleImpactBetamax);
-            Assert.IsNull(constructionProperties.FixedNumberOfWaves);
-            Assert.IsNull(constructionProperties.FrontVelocityCu);
+            Assert.That(constructionProperties.InitialDamage, Is.Null);
+            Assert.That(constructionProperties.FailureNumber, Is.Null);
+            Assert.That(constructionProperties.CriticalCumulativeOverload, Is.Null);
+            Assert.That(constructionProperties.CriticalFrontVelocity, Is.Null);
+            Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.Null);
+            Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.Null);
+            Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.Null);
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PAru, Is.Null);
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PBru, Is.Null);
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PCru, Is.Null);
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PGammab, Is.Null);
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PGammaf, Is.Null);
+            Assert.That(constructionProperties.WaveAngleImpactAbeta, Is.Null);
+            Assert.That(constructionProperties.WaveAngleImpactBetamax, Is.Null);
+            Assert.That(constructionProperties.FixedNumberOfWaves, Is.Null);
+            Assert.That(constructionProperties.FrontVelocityCu, Is.Null);
         }
 
         [Test]

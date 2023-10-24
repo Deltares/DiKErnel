@@ -96,7 +96,7 @@ namespace DiKErnel.Core.Test.Data
             // Assert
             Assert.That(timeDependentOutput.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(timeDependentOutput.Damage, Is.EqualTo(damage));
-            Assert.IsNull(timeDependentOutput.TimeOfFailure);
+            Assert.That(timeDependentOutput.TimeOfFailure, Is.Null);
         }
     }
 }

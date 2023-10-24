@@ -34,27 +34,27 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
-            Assert.IsNull(constructionProperties.IncrementDamage);
-            Assert.IsNull(constructionProperties.Damage);
-            Assert.IsNull(constructionProperties.TimeOfFailure);
-            Assert.IsNull(constructionProperties.OuterSlope);
-            Assert.IsNull(constructionProperties.SlopeUpperLevel);
-            Assert.IsNull(constructionProperties.SlopeUpperPosition);
-            Assert.IsNull(constructionProperties.SlopeLowerLevel);
-            Assert.IsNull(constructionProperties.SlopeLowerPosition);
-            Assert.IsNull(constructionProperties.LoadingRevetment);
-            Assert.IsNull(constructionProperties.SurfSimilarityParameter);
-            Assert.IsNull(constructionProperties.WaveSteepnessDeepWater);
-            Assert.IsNull(constructionProperties.UpperLimitLoading);
-            Assert.IsNull(constructionProperties.LowerLimitLoading);
-            Assert.IsNull(constructionProperties.DepthMaximumWaveLoad);
-            Assert.IsNull(constructionProperties.DistanceMaximumWaveElevation);
-            Assert.IsNull(constructionProperties.NormativeWidthOfWaveImpact);
-            Assert.IsNull(constructionProperties.HydraulicLoad);
-            Assert.IsNull(constructionProperties.WaveAngle);
-            Assert.IsNull(constructionProperties.WaveAngleImpact);
-            Assert.IsNull(constructionProperties.ReferenceTimeDegradation);
-            Assert.IsNull(constructionProperties.ReferenceDegradation);
+            Assert.That(constructionProperties.IncrementDamage, Is.Null);
+            Assert.That(constructionProperties.Damage, Is.Null);
+            Assert.That(constructionProperties.TimeOfFailure, Is.Null);
+            Assert.That(constructionProperties.OuterSlope, Is.Null);
+            Assert.That(constructionProperties.SlopeUpperLevel, Is.Null);
+            Assert.That(constructionProperties.SlopeUpperPosition, Is.Null);
+            Assert.That(constructionProperties.SlopeLowerLevel, Is.Null);
+            Assert.That(constructionProperties.SlopeLowerPosition, Is.Null);
+            Assert.That(constructionProperties.LoadingRevetment, Is.Null);
+            Assert.That(constructionProperties.SurfSimilarityParameter, Is.Null);
+            Assert.That(constructionProperties.WaveSteepnessDeepWater, Is.Null);
+            Assert.That(constructionProperties.UpperLimitLoading, Is.Null);
+            Assert.That(constructionProperties.LowerLimitLoading, Is.Null);
+            Assert.That(constructionProperties.DepthMaximumWaveLoad, Is.Null);
+            Assert.That(constructionProperties.DistanceMaximumWaveElevation, Is.Null);
+            Assert.That(constructionProperties.NormativeWidthOfWaveImpact, Is.Null);
+            Assert.That(constructionProperties.HydraulicLoad, Is.Null);
+            Assert.That(constructionProperties.WaveAngle, Is.Null);
+            Assert.That(constructionProperties.WaveAngleImpact, Is.Null);
+            Assert.That(constructionProperties.ReferenceTimeDegradation, Is.Null);
+            Assert.That(constructionProperties.ReferenceDegradation, Is.Null);
         }
 
         [Test]

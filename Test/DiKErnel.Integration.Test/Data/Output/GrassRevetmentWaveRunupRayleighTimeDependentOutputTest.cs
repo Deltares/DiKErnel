@@ -92,13 +92,13 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.IsNull(output.TimeOfFailure);
+            Assert.That(output.TimeOfFailure, Is.Null);
             Assert.That(output.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
-            Assert.IsNull(output.WaveAngle);
-            Assert.IsNull(output.WaveAngleImpact);
-            Assert.IsNull(output.RepresentativeWaveRunup2P);
-            Assert.IsNull(output.CumulativeOverload);
-            Assert.IsNull(output.AverageNumberOfWaves);
+            Assert.That(output.WaveAngle, Is.Null);
+            Assert.That(output.WaveAngleImpact, Is.Null);
+            Assert.That(output.RepresentativeWaveRunup2P, Is.Null);
+            Assert.That(output.CumulativeOverload, Is.Null);
+            Assert.That(output.AverageNumberOfWaves, Is.Null);
         }
 
         [Test]

@@ -45,7 +45,7 @@ namespace DiKErnel.Util.TestUtil
             ValidationIssue validationIssue = validationFunc(value);
 
             // Assert
-            Assert.IsNull(validationIssue);
+            Assert.That(validationIssue, Is.Null);
         }
 
         public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value,

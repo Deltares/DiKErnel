@@ -48,7 +48,7 @@ namespace DiKErnel.Integration.Test.Helpers
             Assert.That(validationSuccessful, Is.True);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.That(registeredEvents.Count, Is.EqualTo(2));
+            Assert.That(registeredEvents, Has.Count.EqualTo(2));
             Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Warning));
             Assert.That(registeredEvents[0].Message, Is.EqualTo(validationIssue1.Message));
             Assert.That(registeredEvents[1].Type, Is.EqualTo(EventType.Warning));
@@ -73,7 +73,7 @@ namespace DiKErnel.Integration.Test.Helpers
             Assert.IsFalse(validationSuccessful);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.That(registeredEvents.Count, Is.EqualTo(2));
+            Assert.That(registeredEvents, Has.Count.EqualTo(2));
             Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Warning));
             Assert.That(registeredEvents[0].Message, Is.EqualTo(validationIssue1.Message));
             Assert.That(registeredEvents[1].Type, Is.EqualTo(EventType.Error));

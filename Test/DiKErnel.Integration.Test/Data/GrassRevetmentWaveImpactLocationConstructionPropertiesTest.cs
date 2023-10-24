@@ -41,18 +41,18 @@ namespace DiKErnel.Integration.Test.Data
             Assert.That(constructionProperties, Is.InstanceOf<RevetmentLocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
-            Assert.IsNull(constructionProperties.InitialDamage);
-            Assert.IsNull(constructionProperties.FailureNumber);
-            Assert.IsNull(constructionProperties.TimeLineAgwi);
-            Assert.IsNull(constructionProperties.TimeLineBgwi);
-            Assert.IsNull(constructionProperties.TimeLineCgwi);
-            Assert.IsNull(constructionProperties.MinimumWaveHeightTemax);
-            Assert.IsNull(constructionProperties.MaximumWaveHeightTemin);
-            Assert.IsNull(constructionProperties.WaveAngleImpactNwa);
-            Assert.IsNull(constructionProperties.WaveAngleImpactQwa);
-            Assert.IsNull(constructionProperties.WaveAngleImpactRwa);
-            Assert.IsNull(constructionProperties.UpperLimitLoadingAul);
-            Assert.IsNull(constructionProperties.LowerLimitLoadingAll);
+            Assert.That(constructionProperties.InitialDamage, Is.Null);
+            Assert.That(constructionProperties.FailureNumber, Is.Null);
+            Assert.That(constructionProperties.TimeLineAgwi, Is.Null);
+            Assert.That(constructionProperties.TimeLineBgwi, Is.Null);
+            Assert.That(constructionProperties.TimeLineCgwi, Is.Null);
+            Assert.That(constructionProperties.MinimumWaveHeightTemax, Is.Null);
+            Assert.That(constructionProperties.MaximumWaveHeightTemin, Is.Null);
+            Assert.That(constructionProperties.WaveAngleImpactNwa, Is.Null);
+            Assert.That(constructionProperties.WaveAngleImpactQwa, Is.Null);
+            Assert.That(constructionProperties.WaveAngleImpactRwa, Is.Null);
+            Assert.That(constructionProperties.UpperLimitLoadingAul, Is.Null);
+            Assert.That(constructionProperties.LowerLimitLoadingAll, Is.Null);
         }
 
         [Test]

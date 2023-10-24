@@ -134,7 +134,7 @@ namespace DiKErnel.Core.Test
 
             // Assert
             Assert.IsFalse(validationResult.Successful);
-            Assert.That(validationResult.Events.Count, Is.EqualTo(1));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(1));
 
             Event exceptionEvent = validationResult.Events[0];
             Assert.That(exceptionEvent.Message, Is.EqualTo("An unhandled error occurred while validating the " +

@@ -100,13 +100,13 @@ namespace DiKErnel.Integration.Test.Data.Output
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.IsNull(output.TimeOfFailure);
+            Assert.That(output.TimeOfFailure, Is.Null);
             Assert.That(output.LoadingRevetment, Is.EqualTo(loadingRevetment));
             Assert.That(output.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
             Assert.That(output.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
-            Assert.IsNull(output.WaveAngle);
-            Assert.IsNull(output.WaveAngleImpact);
-            Assert.IsNull(output.WaveHeightImpact);
+            Assert.That(output.WaveAngle, Is.Null);
+            Assert.That(output.WaveAngleImpact, Is.Null);
+            Assert.That(output.WaveHeightImpact, Is.Null);
         }
 
         [Test]

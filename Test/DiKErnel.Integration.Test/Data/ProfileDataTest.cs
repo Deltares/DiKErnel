@@ -218,7 +218,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileSegment profileSegment = profileData.GetProfileSegment(0.0);
 
             // Assert
-            Assert.IsNull(profileSegment);
+            Assert.That(profileSegment, Is.Null);
         }
 
         [Test]
@@ -231,7 +231,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileSegment profileSegment = profileData.GetProfileSegment(1.0);
 
             // Assert
-            Assert.IsNull(profileSegment);
+            Assert.That(profileSegment, Is.Null);
         }
 
         [Test]
@@ -292,7 +292,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileSegment profileSegment = profileData.GetProfileSegment(4.0);
 
             // Assert
-            Assert.IsNull(profileSegment);
+            Assert.That(profileSegment, Is.Null);
         }
 
         private static ProfileData CreateDefaultProfileData()

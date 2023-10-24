@@ -60,7 +60,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             Assert.That(calculationInput.ProfileData.DikeOrientation, Is.EqualTo(14.45));
             IReadOnlyList<ProfileSegment> profileSegments = profileData.ProfileSegments;
-            Assert.That(profileSegments.Count, Is.EqualTo(23));
+            Assert.That(profileSegments, Has.Count.EqualTo(23));
             ProfileDataAssertHelper.AssertProfileSegment(-30, -11.85, -20, -8.95, 0, profileSegments[0]);
             ProfileDataAssertHelper.AssertProfileSegment(-20, -8.95, -10, -6.05, 0, profileSegments[1]);
             ProfileDataAssertHelper.AssertProfileSegment(-10, -6.05, 0, -3.15, 0, profileSegments[2]);
@@ -86,7 +86,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             ProfileDataAssertHelper.AssertProfileSegment(95, 8.5, 100, 7.1, 1.5, profileSegments[22]);
 
             IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
-            Assert.That(characteristicPoints.Count, Is.EqualTo(6));
+            Assert.That(characteristicPoints, Has.Count.EqualTo(6));
             ProfileDataAssertHelper.AssertCharacteristicPoint(
                 profileSegments[2].EndPoint, CharacteristicPointType.OuterToe, characteristicPoints[0]);
             ProfileDataAssertHelper.AssertCharacteristicPoint(
@@ -101,7 +101,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 profileSegments[22].EndPoint, CharacteristicPointType.InnerToe, characteristicPoints[5]);
 
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
-            Assert.That(timeDependentInputItems.Count, Is.EqualTo(5));
+            Assert.That(timeDependentInputItems, Has.Count.EqualTo(5));
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
                 0, 100, 0.1, 0.5, 2, 0, timeDependentInputItems[0]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
@@ -115,7 +115,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 calculationInput.LocationDependentInputItems;
-            Assert.That(locationDependentInputItems.Count, Is.EqualTo(5));
+            Assert.That(locationDependentInputItems, Has.Count.EqualTo(5));
 
             var naturalStoneRevetmentLocationDependentInputItem =
                 locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
@@ -267,13 +267,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             Assert.That(profileData.DikeOrientation, Is.EqualTo(14.45));
             IReadOnlyList<ProfileSegment> profileSegments = profileData.ProfileSegments;
-            Assert.That(profileSegments.Count, Is.EqualTo(3));
+            Assert.That(profileSegments, Has.Count.EqualTo(3));
             ProfileDataAssertHelper.AssertProfileSegment(30, 5.55, 65, 15.7, 1, profileSegments[0]);
             ProfileDataAssertHelper.AssertProfileSegment(65, 15.7, 75, 15.7, 1, profileSegments[1]);
             ProfileDataAssertHelper.AssertProfileSegment(75, 15.7, 85, 10, 1, profileSegments[2]);
 
             IReadOnlyList<CharacteristicPoint> characteristicPoints = profileData.CharacteristicPoints;
-            Assert.That(characteristicPoints.Count, Is.EqualTo(4));
+            Assert.That(characteristicPoints, Has.Count.EqualTo(4));
             ProfileDataAssertHelper.AssertCharacteristicPoint(
                 profileSegments[0].StartPoint, CharacteristicPointType.OuterToe, characteristicPoints[0]);
             ProfileDataAssertHelper.AssertCharacteristicPoint(
@@ -284,13 +284,13 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 profileSegments[2].EndPoint, CharacteristicPointType.InnerToe, characteristicPoints[3]);
 
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
-            Assert.That(timeDependentInputItems.Count, Is.EqualTo(1));
+            Assert.That(timeDependentInputItems, Has.Count.EqualTo(1));
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
                 0, 100, 0.1, 0.5, 2, 350, timeDependentInputItems[0]);
 
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 calculationInput.LocationDependentInputItems;
-            Assert.That(locationDependentInputItems.Count, Is.EqualTo(8));
+            Assert.That(locationDependentInputItems, Has.Count.EqualTo(8));
 
             var naturalStoneRevetmentLocationDependentInputItem =
                 locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
@@ -411,7 +411,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 1.56, 1025, 56, 1, 1, 0.35, asphaltRevetmentWaveImpactLocationDependentInputItem);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem.UpperLayer);
-            Assert.IsNull(asphaltRevetmentWaveImpactLocationDependentInputItem.SubLayer);
+            Assert.That(asphaltRevetmentWaveImpactLocationDependentInputItem.SubLayer, Is.Null);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
                 0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem.Fatigue);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
@@ -591,7 +591,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.IsFalse(result);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.That(registeredEvents.Count, Is.EqualTo(1));
+            Assert.That(registeredEvents, Has.Count.EqualTo(1));
             Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(registeredEvents[0].Message, Is.EqualTo("The provided input file is invalid (error found on line 4, position 8)"));
         }
@@ -610,7 +610,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.IsFalse(result);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.That(registeredEvents.Count, Is.EqualTo(1));
+            Assert.That(registeredEvents, Has.Count.EqualTo(1));
             Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(registeredEvents[0].Message, Is.EqualTo("Required properties are missing from object: tijdstippen, hydraulischeBelastingen, " +
                             "dijkprofiel, locaties."));
@@ -629,7 +629,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.IsFalse(result);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.That(registeredEvents.Count, Is.EqualTo(1));
+            Assert.That(registeredEvents, Has.Count.EqualTo(1));
             Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(registeredEvents[0].Message, Is.EqualTo("The provided input file does not exist"));
         }
@@ -649,7 +649,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             Assert.IsFalse(calculationInputDataResult.Successful);
 
-            Assert.That(calculationInputDataResult.Events.Count, Is.EqualTo(1));
+            Assert.That(calculationInputDataResult.Events, Has.Count.EqualTo(1));
             Assert.That(calculationInputDataResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(calculationInputDataResult.Events[0].Message, Is.EqualTo(expectedMessage));
 

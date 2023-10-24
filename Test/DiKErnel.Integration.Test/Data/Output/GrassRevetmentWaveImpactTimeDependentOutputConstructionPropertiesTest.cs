@@ -34,15 +34,15 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
-            Assert.IsNull(constructionProperties.IncrementDamage);
-            Assert.IsNull(constructionProperties.Damage);
-            Assert.IsNull(constructionProperties.TimeOfFailure);
-            Assert.IsNull(constructionProperties.LoadingRevetment);
-            Assert.IsNull(constructionProperties.UpperLimitLoading);
-            Assert.IsNull(constructionProperties.LowerLimitLoading);
-            Assert.IsNull(constructionProperties.WaveAngle);
-            Assert.IsNull(constructionProperties.WaveAngleImpact);
-            Assert.IsNull(constructionProperties.WaveHeightImpact);
+            Assert.That(constructionProperties.IncrementDamage, Is.Null);
+            Assert.That(constructionProperties.Damage, Is.Null);
+            Assert.That(constructionProperties.TimeOfFailure, Is.Null);
+            Assert.That(constructionProperties.LoadingRevetment, Is.Null);
+            Assert.That(constructionProperties.UpperLimitLoading, Is.Null);
+            Assert.That(constructionProperties.LowerLimitLoading, Is.Null);
+            Assert.That(constructionProperties.WaveAngle, Is.Null);
+            Assert.That(constructionProperties.WaveAngleImpact, Is.Null);
+            Assert.That(constructionProperties.WaveHeightImpact, Is.Null);
         }
 
         [Test]

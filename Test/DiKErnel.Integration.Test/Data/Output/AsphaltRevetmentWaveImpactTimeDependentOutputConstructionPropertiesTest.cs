@@ -34,11 +34,11 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
-            Assert.IsNull(constructionProperties.IncrementDamage);
-            Assert.IsNull(constructionProperties.Damage);
-            Assert.IsNull(constructionProperties.TimeOfFailure);
-            Assert.IsNull(constructionProperties.MaximumPeakStress);
-            Assert.IsNull(constructionProperties.AverageNumberOfWaves);
+            Assert.That(constructionProperties.IncrementDamage, Is.Null);
+            Assert.That(constructionProperties.Damage, Is.Null);
+            Assert.That(constructionProperties.TimeOfFailure, Is.Null);
+            Assert.That(constructionProperties.MaximumPeakStress, Is.Null);
+            Assert.That(constructionProperties.AverageNumberOfWaves, Is.Null);
         }
 
         [Test]

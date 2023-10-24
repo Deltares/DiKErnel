@@ -82,7 +82,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             // Assert
             Assert.IsFalse(result.Successful);
 
-            Assert.That(result.Events.Count, Is.EqualTo(1));
+            Assert.That(result.Events, Has.Count.EqualTo(1));
             Assert.That(result.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(result.Events[0].Message, Is.EqualTo("An unhandled error occurred while composing Json output " +
                                                              "from the calculation data. See stack trace for more " +

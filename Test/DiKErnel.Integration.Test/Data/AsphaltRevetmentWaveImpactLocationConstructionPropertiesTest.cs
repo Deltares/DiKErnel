@@ -50,19 +50,19 @@ namespace DiKErnel.Integration.Test.Data
             Assert.That(constructionProperties.SoilElasticity, Is.EqualTo(soilElasticity));
             Assert.That(constructionProperties.ThicknessUpperLayer, Is.EqualTo(thicknessUpperLayer));
             Assert.That(constructionProperties.ElasticModulusUpperLayer, Is.EqualTo(elasticModulusUpperLayer));
-            Assert.IsNull(constructionProperties.InitialDamage);
-            Assert.IsNull(constructionProperties.FailureNumber);
-            Assert.IsNull(constructionProperties.DensityOfWater);
-            Assert.IsNull(constructionProperties.ThicknessSubLayer);
-            Assert.IsNull(constructionProperties.ElasticModulusSubLayer);
-            Assert.IsNull(constructionProperties.AverageNumberOfWavesCtm);
-            Assert.IsNull(constructionProperties.FatigueAlpha);
-            Assert.IsNull(constructionProperties.FatigueBeta);
-            Assert.IsNull(constructionProperties.ImpactNumberC);
-            Assert.IsNull(constructionProperties.StiffnessRelationNu);
-            Assert.IsNull(constructionProperties.WidthFactors);
-            Assert.IsNull(constructionProperties.DepthFactors);
-            Assert.IsNull(constructionProperties.ImpactFactors);
+            Assert.That(constructionProperties.InitialDamage, Is.Null);
+            Assert.That(constructionProperties.FailureNumber, Is.Null);
+            Assert.That(constructionProperties.DensityOfWater, Is.Null);
+            Assert.That(constructionProperties.ThicknessSubLayer, Is.Null);
+            Assert.That(constructionProperties.ElasticModulusSubLayer, Is.Null);
+            Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.Null);
+            Assert.That(constructionProperties.FatigueAlpha, Is.Null);
+            Assert.That(constructionProperties.FatigueBeta, Is.Null);
+            Assert.That(constructionProperties.ImpactNumberC, Is.Null);
+            Assert.That(constructionProperties.StiffnessRelationNu, Is.Null);
+            Assert.That(constructionProperties.WidthFactors, Is.Null);
+            Assert.That(constructionProperties.DepthFactors, Is.Null);
+            Assert.That(constructionProperties.ImpactFactors, Is.Null);
         }
 
         [Test]
