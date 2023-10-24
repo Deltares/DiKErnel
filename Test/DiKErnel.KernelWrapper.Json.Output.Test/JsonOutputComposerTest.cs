@@ -196,7 +196,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             AssertHelper.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
 
             Assert.That(result.Successful, Is.True);
-            CollectionAssert.IsEmpty(result.Events);
+            Assert.That(result.Events, Is.Empty);
         }
 
         private static void PerformPhysicsTest(string filename, CalculationOutput calculationOutput)
@@ -213,7 +213,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
             AssertHelper.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
 
             Assert.That(result.Successful, Is.True);
-            CollectionAssert.IsEmpty(result.Events);
+            Assert.That(result.Events, Is.Empty);
         }
 
         private static CalculationOutput CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet()

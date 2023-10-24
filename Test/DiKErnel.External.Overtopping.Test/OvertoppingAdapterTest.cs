@@ -62,7 +62,7 @@ namespace DiKErnel.External.Overtopping.Test
                                                                          dikeHeight, dikeOrientation);
 
             // Assert
-            CollectionAssert.IsNotEmpty(messages);
+            Assert.That(messages, Is.Not.Empty);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace DiKErnel.External.Overtopping.Test
                                                                          dikeHeight, dikeOrientation);
 
             // Assert
-            CollectionAssert.IsEmpty(messages);
+            Assert.That(messages, Is.Empty);
         }
 
         [Test]

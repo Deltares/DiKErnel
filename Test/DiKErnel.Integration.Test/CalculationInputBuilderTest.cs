@@ -1009,7 +1009,7 @@ namespace DiKErnel.Integration.Test
             IReadOnlyList<Event> events = result.Events;
             Assert.That(events, Has.Count.EqualTo(1));
             Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
-            Assert.IsNotEmpty(events[0].Message);
+            Assert.That(events[0].Message, Is.Not.Empty);
         }
 
         [Test]
@@ -1046,9 +1046,9 @@ namespace DiKErnel.Integration.Test
             IReadOnlyList<Event> events = result.Events;
             Assert.That(events, Has.Count.EqualTo(2));
             Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
-            Assert.IsNotEmpty(events[0].Message);
+            Assert.That(events[0].Message, Is.Not.Empty);
             Assert.That(events[1].Type, Is.EqualTo(EventType.Error));
-            Assert.IsNotEmpty(events[1].Message);
+            Assert.That(events[1].Message, Is.Not.Empty);
         }
 
         [Test]

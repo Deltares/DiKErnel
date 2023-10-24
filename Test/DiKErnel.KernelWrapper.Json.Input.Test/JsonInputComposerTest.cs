@@ -574,7 +574,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             // Then
             Assert.That(result, Is.True);
 
-            CollectionAssert.IsEmpty(EventRegistry.Flush());
+            Assert.That(EventRegistry.Flush(), Is.Empty);
         }
 
         [Test]
@@ -653,7 +653,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             Assert.That(calculationInputDataResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(calculationInputDataResult.Events[0].Message, Is.EqualTo(expectedMessage));
 
-            CollectionAssert.IsEmpty(result.LocationIds);
+            Assert.That(result.LocationIds, Is.Empty);
         }
     }
 }
