@@ -37,8 +37,8 @@ namespace DiKErnel.Core.Test.Data
             var profileSegment = new ProfileSegment(startPoint, endPoint, roughnessCoefficient);
 
             // Assert
-            Assert.AreSame(startPoint, profileSegment.StartPoint);
-            Assert.AreSame(endPoint, profileSegment.EndPoint);
+            Assert.That(profileSegment.StartPoint, Is.SameAs(startPoint));
+            Assert.That(profileSegment.EndPoint, Is.SameAs(endPoint));
             Assert.That(profileSegment.RoughnessCoefficient, Is.EqualTo(roughnessCoefficient));
         }
     }

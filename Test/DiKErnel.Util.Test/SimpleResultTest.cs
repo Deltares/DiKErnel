@@ -35,7 +35,7 @@ namespace DiKErnel.Util.Test
 
             // Assert
             Assert.True(result.Successful);
-            Assert.AreSame(events, result.Events);
+            Assert.That(result.Events, Is.SameAs(events));
         }
     }
 }

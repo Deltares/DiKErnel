@@ -276,7 +276,7 @@ namespace DiKErnel.Integration.Test
                                                          endPointZSegment2, roughnessCoefficient,
                                                          actualProfileSegments[1]);
 
-            Assert.AreSame(actualProfileSegments[0].EndPoint, actualProfileSegments[1].StartPoint);
+            Assert.That(actualProfileSegments[1].StartPoint, Is.SameAs(actualProfileSegments[0].EndPoint));
         }
 
         #endregion

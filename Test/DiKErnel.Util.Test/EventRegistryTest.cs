@@ -32,7 +32,7 @@ namespace DiKErnel.Util.Test
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
 
             // Then
-            Assert.IsEmpty(registeredEvents);
+            Assert.That(registeredEvents, Is.Empty);
         }
 
         [Test]
@@ -50,8 +50,8 @@ namespace DiKErnel.Util.Test
 
             // Then
             Assert.That(registeredEvents, Has.Count.EqualTo(2));
-            Assert.AreSame(event1, registeredEvents[0]);
-            Assert.AreSame(event2, registeredEvents[1]);
+            Assert.That(registeredEvents[0], Is.SameAs(event1));
+            Assert.That(registeredEvents[1], Is.SameAs(event2));
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace DiKErnel.Util.Test
             // Then
             Assert.That(testHelperThread1.RegisteredEvents, Has.Count.EqualTo(numberOfEventsToRegisterOnFirstThread));
             Assert.That(testHelperThread2.RegisteredEvents, Has.Count.EqualTo(numberOfEventsToRegisterOnSecondThread));
-            Assert.IsEmpty(registeredEventsOnMainThread);
+            Assert.That(registeredEventsOnMainThread, Is.Empty);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace DiKErnel.Util.Test
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
 
             // Then
-            Assert.IsEmpty(registeredEvents);
+            Assert.That(registeredEvents, Is.Empty);
         }
     }
 }

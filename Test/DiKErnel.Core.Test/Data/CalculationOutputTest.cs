@@ -35,7 +35,7 @@ namespace DiKErnel.Core.Test.Data
             var calculationOutput = new CalculationOutput(locationDependentOutputItems);
 
             // Assert
-            Assert.AreSame(locationDependentOutputItems, calculationOutput.LocationDependentOutputItems);
+            Assert.That(calculationOutput.LocationDependentOutputItems, Is.SameAs(locationDependentOutputItems));
         }
     }
 }

@@ -52,9 +52,9 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentOvertopping
             Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
             Assert.That(input.WavePeriodTm10, Is.EqualTo(wavePeriodTm10));
             Assert.That(input.WaveDirection, Is.EqualTo(waveDirection));
-            Assert.AreSame(xValuesProfile, input.XValuesProfile);
-            Assert.AreSame(zValuesProfile, input.ZValuesProfile);
-            Assert.AreSame(roughnessCoefficients, input.RoughnessCoefficients);
+            Assert.That(input.XValuesProfile, Is.SameAs(xValuesProfile));
+            Assert.That(input.ZValuesProfile, Is.SameAs(zValuesProfile));
+            Assert.That(input.RoughnessCoefficients, Is.SameAs(roughnessCoefficients));
             Assert.That(input.DikeHeight, Is.EqualTo(dikeHeight));
             Assert.That(input.DikeOrientation, Is.EqualTo(dikeOrientation));
         }

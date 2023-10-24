@@ -43,7 +43,7 @@ namespace DiKErnel.Integration.TestUtil
                                                      CharacteristicPointType expectedCharacteristicPointType,
                                                      CharacteristicPoint actualCharacteristicPoint)
         {
-            Assert.AreSame(expectedProfilePoint, actualCharacteristicPoint.ProfilePoint);
+            Assert.That(actualCharacteristicPoint.ProfilePoint, Is.SameAs(expectedProfilePoint));
             Assert.That(actualCharacteristicPoint.CharacteristicPointType, Is.EqualTo(expectedCharacteristicPointType));
         }
     }

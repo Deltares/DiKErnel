@@ -19,8 +19,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             var composedInputData = new ComposedInputData(calculationInputDataResult, locationIds);
 
             // Assert
-            Assert.AreSame(calculationInputDataResult, composedInputData.CalculationInputDataResult);
-            Assert.AreSame(locationIds, composedInputData.LocationIds);
+            Assert.That(composedInputData.CalculationInputDataResult, Is.SameAs(calculationInputDataResult));
+            Assert.That(composedInputData.LocationIds, Is.SameAs(locationIds));
         }
     }
 }

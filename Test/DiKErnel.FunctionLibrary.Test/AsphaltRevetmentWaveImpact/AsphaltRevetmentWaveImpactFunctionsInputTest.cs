@@ -63,9 +63,9 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltRevetmentWaveImpact
             Assert.That(input.ComputationalThickness, Is.EqualTo(computationalThickness));
             Assert.That(input.OuterSlope, Is.EqualTo(outerSlope));
 
-            Assert.AreSame(widthFactors, input.WidthFactors);
-            Assert.AreSame(depthFactors, input.DepthFactors);
-            Assert.AreSame(impactFactors, input.ImpactFactors);
+            Assert.That(input.WidthFactors, Is.SameAs(widthFactors));
+            Assert.That(input.DepthFactors, Is.SameAs(depthFactors));
+            Assert.That(input.ImpactFactors, Is.SameAs(impactFactors));
 
             Assert.That(input.Z, Is.EqualTo(z));
             Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));

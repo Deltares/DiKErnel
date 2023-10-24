@@ -36,7 +36,7 @@ namespace DiKErnel.Core.Test.Data
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
 
             // Assert
-            Assert.AreSame(timeDependentOutputItems, locationDependentOutput.TimeDependentOutputItems);
+            Assert.That(locationDependentOutput.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
         }
     }
 }

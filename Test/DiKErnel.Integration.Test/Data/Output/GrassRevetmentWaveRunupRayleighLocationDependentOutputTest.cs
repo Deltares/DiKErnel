@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
-            Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
+            Assert.That(output.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
             Assert.That(output.Z, Is.EqualTo(z));
         }
     }

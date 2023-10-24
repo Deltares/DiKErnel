@@ -36,7 +36,7 @@ namespace DiKErnel.Core.Test.Data
             var characteristicPoint = new CharacteristicPoint(profilePoint, characteristicPointType);
 
             // Assert
-            Assert.AreSame(profilePoint, characteristicPoint.ProfilePoint);
+            Assert.That(characteristicPoint.ProfilePoint, Is.SameAs(profilePoint));
             Assert.That(characteristicPoint.CharacteristicPointType, Is.EqualTo(characteristicPointType));
         }
     }
