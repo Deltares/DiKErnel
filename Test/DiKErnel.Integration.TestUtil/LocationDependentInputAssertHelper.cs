@@ -26,7 +26,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertLocationProperties(double x, LocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.X, Is.EqualTo(x));
-            Assert.IsNaN(locationDependentInput.Z);
+            Assert.That(locationDependentInput.Z, Is.NaN);
         }
 
         public static void AssertDamageProperties(double initialDamage, double failureNumber,
