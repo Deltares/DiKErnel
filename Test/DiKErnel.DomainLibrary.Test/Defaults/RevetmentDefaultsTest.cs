@@ -28,14 +28,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults
         public void InitialDamage_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0, RevetmentDefaults.InitialDamage);
+            Assert.That(RevetmentDefaults.InitialDamage, Is.EqualTo(0));
         }
 
         [Test]
         public void FailureNumber_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, RevetmentDefaults.FailureNumber);
+            Assert.That(RevetmentDefaults.FailureNumber, Is.EqualTo(1));
         }
     }
 }

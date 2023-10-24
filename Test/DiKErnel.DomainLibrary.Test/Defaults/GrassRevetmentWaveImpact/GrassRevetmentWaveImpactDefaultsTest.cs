@@ -28,49 +28,49 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
         public void MinimumWaveHeightTemax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(3600000, GrassRevetmentWaveImpactDefaults.MinimumWaveHeightTemax);
+            Assert.That(GrassRevetmentWaveImpactDefaults.MinimumWaveHeightTemax, Is.EqualTo(3600000));
         }
 
         [Test]
         public void MaximumWaveHeightTemin_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(3.6, GrassRevetmentWaveImpactDefaults.MaximumWaveHeightTemin);
+            Assert.That(GrassRevetmentWaveImpactDefaults.MaximumWaveHeightTemin, Is.EqualTo(3.6));
         }
 
         [Test]
         public void WaveAngleImpactNwa_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(2d / 3, GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa);
+            Assert.That(GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa, Is.EqualTo(2d / 3));
         }
 
         [Test]
         public void WaveAngleImpactQwa_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.35, GrassRevetmentWaveImpactDefaults.WaveAngleImpactQwa);
+            Assert.That(GrassRevetmentWaveImpactDefaults.WaveAngleImpactQwa, Is.EqualTo(0.35));
         }
 
         [Test]
         public void WaveAngleImpactRwa_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(10, GrassRevetmentWaveImpactDefaults.WaveAngleImpactRwa);
+            Assert.That(GrassRevetmentWaveImpactDefaults.WaveAngleImpactRwa, Is.EqualTo(10));
         }
 
         [Test]
         public void UpperLimitLoadingAul_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0, GrassRevetmentWaveImpactDefaults.UpperLimitLoadingAul);
+            Assert.That(GrassRevetmentWaveImpactDefaults.UpperLimitLoadingAul, Is.EqualTo(0));
         }
 
         [Test]
         public void LowerLimitLoadingAll_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.5, GrassRevetmentWaveImpactDefaults.LowerLimitLoadingAll);
+            Assert.That(GrassRevetmentWaveImpactDefaults.LowerLimitLoadingAll, Is.EqualTo(0.5));
         }
     }
 }

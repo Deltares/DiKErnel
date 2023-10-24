@@ -28,91 +28,91 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
         public void SlopeUpperLevelAus_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.05, NaturalStoneRevetmentDefaults.SlopeUpperLevelAus);
+            Assert.That(NaturalStoneRevetmentDefaults.SlopeUpperLevelAus, Is.EqualTo(0.05));
         }
 
         [Test]
         public void SlopeLowerLevelAls_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.5, NaturalStoneRevetmentDefaults.SlopeLowerLevelAls);
+            Assert.That(NaturalStoneRevetmentDefaults.SlopeLowerLevelAls, Is.EqualTo(1.5));
         }
 
         [Test]
         public void UpperLimitLoadingAul_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.1, NaturalStoneRevetmentDefaults.UpperLimitLoadingAul);
+            Assert.That(NaturalStoneRevetmentDefaults.UpperLimitLoadingAul, Is.EqualTo(0.1));
         }
 
         [Test]
         public void UpperLimitLoadingBul_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.6, NaturalStoneRevetmentDefaults.UpperLimitLoadingBul);
+            Assert.That(NaturalStoneRevetmentDefaults.UpperLimitLoadingBul, Is.EqualTo(0.6));
         }
 
         [Test]
         public void UpperLimitLoadingCul_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(4, NaturalStoneRevetmentDefaults.UpperLimitLoadingCul);
+            Assert.That(NaturalStoneRevetmentDefaults.UpperLimitLoadingCul, Is.EqualTo(4));
         }
 
         [Test]
         public void LowerLimitLoadingAll_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.1, NaturalStoneRevetmentDefaults.LowerLimitLoadingAll);
+            Assert.That(NaturalStoneRevetmentDefaults.LowerLimitLoadingAll, Is.EqualTo(0.1));
         }
 
         [Test]
         public void LowerLimitLoadingBll_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.2, NaturalStoneRevetmentDefaults.LowerLimitLoadingBll);
+            Assert.That(NaturalStoneRevetmentDefaults.LowerLimitLoadingBll, Is.EqualTo(0.2));
         }
 
         [Test]
         public void LowerLimitLoadingCll_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(4, NaturalStoneRevetmentDefaults.LowerLimitLoadingCll);
+            Assert.That(NaturalStoneRevetmentDefaults.LowerLimitLoadingCll, Is.EqualTo(4));
         }
 
         [Test]
         public void DistanceMaximumWaveElevationAsmax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.42, NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationAsmax);
+            Assert.That(NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationAsmax, Is.EqualTo(0.42));
         }
 
         [Test]
         public void DistanceMaximumWaveElevationBsmax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.9, NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationBsmax);
+            Assert.That(NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationBsmax, Is.EqualTo(0.9));
         }
 
         [Test]
         public void NormativeWidthOfWaveImpactAwi_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.96, NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactAwi);
+            Assert.That(NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactAwi, Is.EqualTo(0.96));
         }
 
         [Test]
         public void NormativeWidthOfWaveImpactBwi_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.11, NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactBwi);
+            Assert.That(NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactBwi, Is.EqualTo(0.11));
         }
 
         [Test]
         public void WaveAngleImpactBetamax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(78, NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax);
+            Assert.That(NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax, Is.EqualTo(78));
         }
     }
 }

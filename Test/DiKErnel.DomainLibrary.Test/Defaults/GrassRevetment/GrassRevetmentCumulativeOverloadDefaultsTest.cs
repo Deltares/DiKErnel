@@ -28,28 +28,28 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
         public void IncreasedLoadTransitionAlphaM_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM);
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM, Is.EqualTo(1));
         }
 
         [Test]
         public void ReducedStrengthTransitionAlphaS_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS);
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS, Is.EqualTo(1));
         }
 
         [Test]
         public void AverageNumberOfWavesCtm_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.92, GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm);
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm, Is.EqualTo(0.92));
         }
 
         [Test]
         public void FixedNumberOfWaves_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(10000, GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves);
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves, Is.EqualTo(10000));
         }
     }
 }

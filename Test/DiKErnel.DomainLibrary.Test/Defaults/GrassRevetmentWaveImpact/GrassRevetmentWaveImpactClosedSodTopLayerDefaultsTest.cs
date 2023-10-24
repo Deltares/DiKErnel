@@ -32,9 +32,9 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
 
             // Call & Assert
             Assert.IsInstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>(defaults);
-            Assert.AreEqual(1, defaults.TimeLineAgwi);
-            Assert.AreEqual(-0.000009722, defaults.TimeLineBgwi);
-            Assert.AreEqual(0.25, defaults.TimeLineCgwi);
+            Assert.That(defaults.TimeLineAgwi, Is.EqualTo(1));
+            Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.000009722));
+            Assert.That(defaults.TimeLineCgwi, Is.EqualTo(0.25));
         }
     }
 }

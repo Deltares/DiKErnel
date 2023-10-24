@@ -32,7 +32,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
 
             // Call & Assert
             Assert.IsInstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>(defaults);
-            Assert.AreEqual(0.35, defaults.StiffnessRelationNu);
+            Assert.That(defaults.StiffnessRelationNu, Is.EqualTo(0.35));
         }
     }
 }

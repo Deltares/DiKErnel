@@ -28,7 +28,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
         public void FrontVelocityCu_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.1, GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu);
+            Assert.That(GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu, Is.EqualTo(1.1));
         }
     }
 }

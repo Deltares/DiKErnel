@@ -28,49 +28,49 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
         public void RepresentativeWaveRunup2PAru_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.65, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PAru);
+            Assert.That(GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PAru, Is.EqualTo(1.65));
         }
 
         [Test]
         public void RepresentativeWaveRunup2PBru_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(4, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PBru);
+            Assert.That(GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PBru, Is.EqualTo(4));
         }
 
         [Test]
         public void RepresentativeWaveRunup2PCru_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.5, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PCru);
+            Assert.That(GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PCru, Is.EqualTo(1.5));
         }
 
         [Test]
         public void RepresentativeWaveRunup2PGammab_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammab);
+            Assert.That(GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammab, Is.EqualTo(1));
         }
 
         [Test]
         public void RepresentativeWaveRunup2PGammaf_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammaf);
+            Assert.That(GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammaf, Is.EqualTo(1));
         }
 
         [Test]
         public void WaveAngleImpactAbeta_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.0022, GrassRevetmentWaveRunupDefaults.WaveAngleImpactAbeta);
+            Assert.That(GrassRevetmentWaveRunupDefaults.WaveAngleImpactAbeta, Is.EqualTo(0.0022));
         }
 
         [Test]
         public void WaveAngleImpactBetamax_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(80, GrassRevetmentWaveRunupDefaults.WaveAngleImpactBetamax);
+            Assert.That(GrassRevetmentWaveRunupDefaults.WaveAngleImpactBetamax, Is.EqualTo(80));
         }
     }
 }

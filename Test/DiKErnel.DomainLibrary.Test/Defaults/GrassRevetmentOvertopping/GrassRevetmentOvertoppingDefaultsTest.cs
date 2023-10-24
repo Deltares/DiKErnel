@@ -28,21 +28,21 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentOvertopping
         public void FrontVelocityCwo_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.45, GrassRevetmentOvertoppingDefaults.FrontVelocityCwo);
+            Assert.That(GrassRevetmentOvertoppingDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
         }
 
         [Test]
         public void AccelerationAlphaAForCrest_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest);
+            Assert.That(GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
         }
 
         [Test]
         public void AccelerationAlphaAForInnerSlope_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1.4, GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForInnerSlope);
+            Assert.That(GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
         }
     }
 }

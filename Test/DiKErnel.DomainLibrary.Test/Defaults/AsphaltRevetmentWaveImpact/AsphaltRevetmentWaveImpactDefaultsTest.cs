@@ -28,21 +28,21 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
         public void DensityOfWater_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1025, AsphaltRevetmentWaveImpactDefaults.DensityOfWater);
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.DensityOfWater, Is.EqualTo(1025));
         }
 
         [Test]
         public void AverageNumberOfWavesCtm_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, AsphaltRevetmentWaveImpactDefaults.AverageNumberOfWavesCtm);
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.AverageNumberOfWavesCtm, Is.EqualTo(1));
         }
 
         [Test]
         public void ImpactNumberC_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(1, AsphaltRevetmentWaveImpactDefaults.ImpactNumberC);
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.ImpactNumberC, Is.EqualTo(1));
         }
 
         [Test]
@@ -152,14 +152,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
         public void FatigueAlpha_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(0.42, AsphaltRevetmentWaveImpactDefaults.FatigueAlpha);
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.FatigueAlpha, Is.EqualTo(0.42));
         }
 
         [Test]
         public void FatigueBeta_ExpectedValue()
         {
             // Call & Assert
-            Assert.AreEqual(4.76, AsphaltRevetmentWaveImpactDefaults.FatigueBeta);
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.FatigueBeta, Is.EqualTo(4.76));
         }
     }
 }
