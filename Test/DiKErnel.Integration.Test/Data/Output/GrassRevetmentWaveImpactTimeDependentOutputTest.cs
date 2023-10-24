@@ -58,7 +58,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
-            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
@@ -97,7 +97,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
-            Assert.IsInstanceOf<TimeDependentOutput>(output);
+            Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.IsNull(output.TimeOfFailure);

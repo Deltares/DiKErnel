@@ -52,7 +52,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
                                                                                    frontVelocityCu);
 
             // Assert
-            Assert.IsInstanceOf<GrassRevetmentCumulativeOverloadInput>(input);
+            Assert.That(input, Is.InstanceOf<GrassRevetmentCumulativeOverloadInput>());
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
             Assert.That(input.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
             Assert.That(input.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));

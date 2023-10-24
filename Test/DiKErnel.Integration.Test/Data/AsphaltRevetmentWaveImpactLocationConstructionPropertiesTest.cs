@@ -43,7 +43,7 @@ namespace DiKErnel.Integration.Test.Data
                 x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
             // Assert
-            Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
+            Assert.That(constructionProperties, Is.InstanceOf<RevetmentLocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.That(constructionProperties.FlexuralStrength, Is.EqualTo(flexuralStrength));

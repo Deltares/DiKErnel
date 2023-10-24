@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var output = new GrassRevetmentOvertoppingLocationDependentOutput(timeDependentOutputItems);
 
             // Assert
-            Assert.IsInstanceOf<LocationDependentOutput>(output);
+            Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
         }
     }

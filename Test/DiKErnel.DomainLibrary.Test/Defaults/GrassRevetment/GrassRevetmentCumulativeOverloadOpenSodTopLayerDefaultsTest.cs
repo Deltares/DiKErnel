@@ -31,7 +31,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
             var defaults = GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults.Instance;
 
             // Call & Assert
-            Assert.IsInstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>(defaults);
+            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>());
             Assert.That(defaults.CriticalCumulativeOverload, Is.EqualTo(7000));
             Assert.That(defaults.CriticalFrontVelocity, Is.EqualTo(4.3));
         }

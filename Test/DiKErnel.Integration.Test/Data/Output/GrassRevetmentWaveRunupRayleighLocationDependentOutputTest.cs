@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var output = new GrassRevetmentWaveRunupRayleighLocationDependentOutput(timeDependentOutputItems, z);
 
             // Assert
-            Assert.IsInstanceOf<LocationDependentOutput>(output);
+            Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
             Assert.That(output.Z, Is.EqualTo(z));
         }

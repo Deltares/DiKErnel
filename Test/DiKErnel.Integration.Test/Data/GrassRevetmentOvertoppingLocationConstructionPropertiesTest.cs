@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Test.Data
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(x, topLayerType);
 
             // Assert
-            Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
+            Assert.That(constructionProperties, Is.InstanceOf<RevetmentLocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.IsNull(constructionProperties.InitialDamage);

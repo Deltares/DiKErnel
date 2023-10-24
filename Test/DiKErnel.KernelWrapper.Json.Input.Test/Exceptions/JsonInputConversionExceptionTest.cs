@@ -36,7 +36,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test.Exceptions
             var exception = new JsonInputConversionException(message);
 
             // Assert
-            Assert.IsInstanceOf<Exception>(exception);
+            Assert.That(exception, Is.InstanceOf<Exception>());
             Assert.That(exception.Message, Is.EqualTo(message));
         }
     }

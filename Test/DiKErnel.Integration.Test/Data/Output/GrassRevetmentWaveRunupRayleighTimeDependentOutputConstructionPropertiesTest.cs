@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var constructionProperties = new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties();
 
             // Assert
-            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.IsNull(constructionProperties.AverageNumberOfWaves);
             Assert.IsNull(constructionProperties.IncrementDamage);
             Assert.IsNull(constructionProperties.Damage);

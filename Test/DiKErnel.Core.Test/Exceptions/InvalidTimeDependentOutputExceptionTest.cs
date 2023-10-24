@@ -36,7 +36,7 @@ namespace DiKErnel.Core.Test.Exceptions
             var exception = new InvalidTimeDependentOutputException(propertyName);
 
             // Assert
-            Assert.IsInstanceOf<Exception>(exception);
+            Assert.That(exception, Is.InstanceOf<Exception>());
             Assert.That(exception.Message, Is.EqualTo($"{propertyName} must be set."));
         }
     }

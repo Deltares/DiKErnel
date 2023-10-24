@@ -54,7 +54,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             ICalculationInput calculationInput = result.CalculationInputDataResult.Data;
 
-            Assert.IsInstanceOf<CalculationInput>(calculationInput);
+            Assert.That(calculationInput, Is.InstanceOf<CalculationInput>());
 
             IProfileData profileData = calculationInput.ProfileData;
 
@@ -261,7 +261,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             ICalculationInput calculationInput = result.CalculationInputDataResult.Data;
 
-            Assert.IsInstanceOf<CalculationInput>(calculationInput);
+            Assert.That(calculationInput, Is.InstanceOf<CalculationInput>());
 
             IProfileData profileData = calculationInput.ProfileData;
 

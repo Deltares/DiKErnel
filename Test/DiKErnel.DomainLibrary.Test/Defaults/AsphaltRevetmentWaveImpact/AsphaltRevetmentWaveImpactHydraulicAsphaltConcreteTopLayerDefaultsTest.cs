@@ -31,7 +31,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
             var defaults = AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
 
             // Call & Assert
-            Assert.IsInstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>(defaults);
+            Assert.That(defaults, Is.InstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>());
             Assert.That(defaults.StiffnessRelationNu, Is.EqualTo(0.35));
         }
     }

@@ -45,7 +45,7 @@ namespace DiKErnel.Integration.Test.Data.Output
                                                                                computationalThickness, equivalentElasticModulus);
 
             // Assert
-            Assert.IsInstanceOf<LocationDependentOutput>(output);
+            Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
             Assert.That(output.Z, Is.EqualTo(z));
             Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));

@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties();
 
             // Assert
-            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.IsNull(constructionProperties.IncrementDamage);
             Assert.IsNull(constructionProperties.Damage);
             Assert.IsNull(constructionProperties.TimeOfFailure);
@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Then
-            Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
+            Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
             Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));

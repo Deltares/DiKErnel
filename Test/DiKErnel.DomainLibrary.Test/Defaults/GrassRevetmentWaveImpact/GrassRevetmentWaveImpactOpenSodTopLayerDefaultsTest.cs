@@ -31,7 +31,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
             var defaults = GrassRevetmentWaveImpactOpenSodTopLayerDefaults.Instance;
 
             // Call & Assert
-            Assert.IsInstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>(defaults);
+            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>());
             Assert.That(defaults.TimeLineAgwi, Is.EqualTo(0.8));
             Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.00001944));
             Assert.That(defaults.TimeLineCgwi, Is.EqualTo(0.25));
