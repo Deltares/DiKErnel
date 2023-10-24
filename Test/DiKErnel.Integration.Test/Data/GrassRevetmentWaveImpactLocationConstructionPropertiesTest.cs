@@ -39,8 +39,8 @@ namespace DiKErnel.Integration.Test.Data
 
             // Assert
             Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.IsNull(constructionProperties.InitialDamage);
             Assert.IsNull(constructionProperties.FailureNumber);
             Assert.IsNull(constructionProperties.TimeLineAgwi);
@@ -91,20 +91,20 @@ namespace DiKErnel.Integration.Test.Data
             constructionProperties.LowerLimitLoadingAll = lowerLimitLoadingAll;
 
             // Then
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
-            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
-            Assert.AreEqual(timeLineAgwi, constructionProperties.TimeLineAgwi);
-            Assert.AreEqual(timeLineBgwi, constructionProperties.TimeLineBgwi);
-            Assert.AreEqual(timeLineCgwi, constructionProperties.TimeLineCgwi);
-            Assert.AreEqual(minimumWaveHeightTemax, constructionProperties.MinimumWaveHeightTemax);
-            Assert.AreEqual(maximumWaveHeightTemin, constructionProperties.MaximumWaveHeightTemin);
-            Assert.AreEqual(waveAngleImpactNwa, constructionProperties.WaveAngleImpactNwa);
-            Assert.AreEqual(waveAngleImpactQwa, constructionProperties.WaveAngleImpactQwa);
-            Assert.AreEqual(waveAngleImpactRwa, constructionProperties.WaveAngleImpactRwa);
-            Assert.AreEqual(upperLimitLoadingAul, constructionProperties.UpperLimitLoadingAul);
-            Assert.AreEqual(lowerLimitLoadingAll, constructionProperties.LowerLimitLoadingAll);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.InitialDamage, Is.EqualTo(initialDamage));
+            Assert.That(constructionProperties.FailureNumber, Is.EqualTo(failureNumber));
+            Assert.That(constructionProperties.TimeLineAgwi, Is.EqualTo(timeLineAgwi));
+            Assert.That(constructionProperties.TimeLineBgwi, Is.EqualTo(timeLineBgwi));
+            Assert.That(constructionProperties.TimeLineCgwi, Is.EqualTo(timeLineCgwi));
+            Assert.That(constructionProperties.MinimumWaveHeightTemax, Is.EqualTo(minimumWaveHeightTemax));
+            Assert.That(constructionProperties.MaximumWaveHeightTemin, Is.EqualTo(maximumWaveHeightTemin));
+            Assert.That(constructionProperties.WaveAngleImpactNwa, Is.EqualTo(waveAngleImpactNwa));
+            Assert.That(constructionProperties.WaveAngleImpactQwa, Is.EqualTo(waveAngleImpactQwa));
+            Assert.That(constructionProperties.WaveAngleImpactRwa, Is.EqualTo(waveAngleImpactRwa));
+            Assert.That(constructionProperties.UpperLimitLoadingAul, Is.EqualTo(upperLimitLoadingAul));
+            Assert.That(constructionProperties.LowerLimitLoadingAll, Is.EqualTo(lowerLimitLoadingAll));
         }
     }
 }

@@ -63,11 +63,11 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Then
             Assert.IsInstanceOf<TimeDependentOutputConstructionProperties>(constructionProperties);
-            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
-            Assert.AreEqual(damage, constructionProperties.Damage);
-            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
-            Assert.AreEqual(maximumPeakStress, constructionProperties.MaximumPeakStress);
-            Assert.AreEqual(averageNumberOfWaves, constructionProperties.AverageNumberOfWaves);
+            Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
+            Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(constructionProperties.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
+            Assert.That(constructionProperties.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
     }
 }

@@ -41,8 +41,8 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Assert
             Assert.IsInstanceOf<LocationDependentOutput>(output);
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
-            Assert.AreEqual(z, output.Z);
-            Assert.AreEqual(resistance, output.Resistance);
+            Assert.That(output.Z, Is.EqualTo(z));
+            Assert.That(output.Resistance, Is.EqualTo(resistance));
         }
     }
 }

@@ -51,11 +51,11 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
-            Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
-            Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
-            Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
+            Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(output.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
+            Assert.That(output.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
 
         [Test]
@@ -81,11 +81,11 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.IsNull(output.TimeOfFailure);
-            Assert.AreEqual(maximumPeakStress, output.MaximumPeakStress);
-            Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
+            Assert.That(output.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
+            Assert.That(output.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
 
         [Test]

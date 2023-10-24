@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data
             var constructionProperties = Substitute.For<RevetmentLocationConstructionProperties>(x);
 
             // Assert
-            Assert.AreEqual(x, constructionProperties.X);
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.IsNull(constructionProperties.InitialDamage);
             Assert.IsNull(constructionProperties.FailureNumber);
         }
@@ -56,9 +56,9 @@ namespace DiKErnel.Integration.Test.Data
             constructionProperties.FailureNumber = failureNumber;
 
             // Then
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
-            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.InitialDamage, Is.EqualTo(initialDamage));
+            Assert.That(constructionProperties.FailureNumber, Is.EqualTo(failureNumber));
         }
     }
 }

@@ -48,11 +48,11 @@ namespace DiKErnel.Integration.Test.Helpers
             Assert.IsTrue(validationSuccessful);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.AreEqual(2, registeredEvents.Count);
-            Assert.AreEqual(EventType.Warning, registeredEvents[0].Type);
-            Assert.AreEqual(validationIssue1.Message, registeredEvents[0].Message);
-            Assert.AreEqual(EventType.Warning, registeredEvents[1].Type);
-            Assert.AreEqual(validationIssue2.Message, registeredEvents[1].Message);
+            Assert.That(registeredEvents.Count, Is.EqualTo(2));
+            Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(registeredEvents[0].Message, Is.EqualTo(validationIssue1.Message));
+            Assert.That(registeredEvents[1].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(registeredEvents[1].Message, Is.EqualTo(validationIssue2.Message));
         }
 
         [Test]
@@ -73,11 +73,11 @@ namespace DiKErnel.Integration.Test.Helpers
             Assert.IsFalse(validationSuccessful);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
-            Assert.AreEqual(2, registeredEvents.Count);
-            Assert.AreEqual(EventType.Warning, registeredEvents[0].Type);
-            Assert.AreEqual(validationIssue1.Message, registeredEvents[0].Message);
-            Assert.AreEqual(EventType.Error, registeredEvents[1].Type);
-            Assert.AreEqual(validationIssue2.Message, registeredEvents[1].Message);
+            Assert.That(registeredEvents.Count, Is.EqualTo(2));
+            Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(registeredEvents[0].Message, Is.EqualTo(validationIssue1.Message));
+            Assert.That(registeredEvents[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(registeredEvents[1].Message, Is.EqualTo(validationIssue2.Message));
         }
 
         [Test]

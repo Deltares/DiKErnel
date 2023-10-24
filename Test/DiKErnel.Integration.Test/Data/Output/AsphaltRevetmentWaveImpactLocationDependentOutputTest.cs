@@ -47,12 +47,12 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Assert
             Assert.IsInstanceOf<LocationDependentOutput>(output);
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
-            Assert.AreEqual(z, output.Z);
-            Assert.AreEqual(outerSlope, output.OuterSlope);
-            Assert.AreEqual(logFlexuralStrength, output.LogFlexuralStrength);
-            Assert.AreEqual(stiffnessRelation, output.StiffnessRelation);
-            Assert.AreEqual(computationalThickness, output.ComputationalThickness);
-            Assert.AreEqual(equivalentElasticModulus, output.EquivalentElasticModulus);
+            Assert.That(output.Z, Is.EqualTo(z));
+            Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
+            Assert.That(output.LogFlexuralStrength, Is.EqualTo(logFlexuralStrength));
+            Assert.That(output.StiffnessRelation, Is.EqualTo(stiffnessRelation));
+            Assert.That(output.ComputationalThickness, Is.EqualTo(computationalThickness));
+            Assert.That(output.EquivalentElasticModulus, Is.EqualTo(equivalentElasticModulus));
         }
     }
 }

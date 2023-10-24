@@ -42,9 +42,9 @@ namespace DiKErnel.Integration.Test.Data
 
             // Assert
             Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(outerSlope, constructionProperties.OuterSlope);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.OuterSlope, Is.EqualTo(outerSlope));
             Assert.IsNull(constructionProperties.InitialDamage);
             Assert.IsNull(constructionProperties.FailureNumber);
             Assert.IsNull(constructionProperties.CriticalCumulativeOverload);
@@ -103,23 +103,23 @@ namespace DiKErnel.Integration.Test.Data
             constructionProperties.WaveAngleImpactBetamax = waveAngleImpactBetamax;
 
             // Then
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(outerSlope, constructionProperties.OuterSlope);
-            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
-            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
-            Assert.AreEqual(criticalCumulativeOverload, constructionProperties.CriticalCumulativeOverload);
-            Assert.AreEqual(criticalFrontVelocity, constructionProperties.CriticalFrontVelocity);
-            Assert.AreEqual(increasedLoadTransitionAlphaM, constructionProperties.IncreasedLoadTransitionAlphaM);
-            Assert.AreEqual(reducedStrengthTransitionAlphaS, constructionProperties.ReducedStrengthTransitionAlphaS);
-            Assert.AreEqual(averageNumberOfWavesCtm, constructionProperties.AverageNumberOfWavesCtm);
-            Assert.AreEqual(representativeWaveRunup2PAru, constructionProperties.RepresentativeWaveRunup2PAru);
-            Assert.AreEqual(representativeWaveRunup2PBru, constructionProperties.RepresentativeWaveRunup2PBru);
-            Assert.AreEqual(representativeWaveRunup2PCru, constructionProperties.RepresentativeWaveRunup2PCru);
-            Assert.AreEqual(representativeWaveRunup2PGammab, constructionProperties.RepresentativeWaveRunup2PGammab);
-            Assert.AreEqual(representativeWaveRunup2PGammaf, constructionProperties.RepresentativeWaveRunup2PGammaf);
-            Assert.AreEqual(waveAngleImpactAbeta, constructionProperties.WaveAngleImpactAbeta);
-            Assert.AreEqual(waveAngleImpactBetamax, constructionProperties.WaveAngleImpactBetamax);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.OuterSlope, Is.EqualTo(outerSlope));
+            Assert.That(constructionProperties.InitialDamage, Is.EqualTo(initialDamage));
+            Assert.That(constructionProperties.FailureNumber, Is.EqualTo(failureNumber));
+            Assert.That(constructionProperties.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
+            Assert.That(constructionProperties.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
+            Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
+            Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
+            Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PAru, Is.EqualTo(representativeWaveRunup2PAru));
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PBru, Is.EqualTo(representativeWaveRunup2PBru));
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PCru, Is.EqualTo(representativeWaveRunup2PCru));
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PGammab, Is.EqualTo(representativeWaveRunup2PGammab));
+            Assert.That(constructionProperties.RepresentativeWaveRunup2PGammaf, Is.EqualTo(representativeWaveRunup2PGammaf));
+            Assert.That(constructionProperties.WaveAngleImpactAbeta, Is.EqualTo(waveAngleImpactAbeta));
+            Assert.That(constructionProperties.WaveAngleImpactBetamax, Is.EqualTo(waveAngleImpactBetamax));
         }
     }
 }

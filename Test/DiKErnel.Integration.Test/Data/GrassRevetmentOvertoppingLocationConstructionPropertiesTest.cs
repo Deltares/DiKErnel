@@ -39,8 +39,8 @@ namespace DiKErnel.Integration.Test.Data
 
             // Assert
             Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.IsNull(constructionProperties.InitialDamage);
             Assert.IsNull(constructionProperties.FailureNumber);
             Assert.IsNull(constructionProperties.CriticalCumulativeOverload);
@@ -91,20 +91,20 @@ namespace DiKErnel.Integration.Test.Data
             constructionProperties.DikeHeight = dikeHeight;
 
             // Then
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
-            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
-            Assert.AreEqual(criticalCumulativeOverload, constructionProperties.CriticalCumulativeOverload);
-            Assert.AreEqual(criticalFrontVelocity, constructionProperties.CriticalFrontVelocity);
-            Assert.AreEqual(increasedLoadTransitionAlphaM, constructionProperties.IncreasedLoadTransitionAlphaM);
-            Assert.AreEqual(reducedStrengthTransitionAlphaS, constructionProperties.ReducedStrengthTransitionAlphaS);
-            Assert.AreEqual(averageNumberOfWavesCtm, constructionProperties.AverageNumberOfWavesCtm);
-            Assert.AreEqual(fixedNumberOfWaves, constructionProperties.FixedNumberOfWaves);
-            Assert.AreEqual(frontVelocityCwo, constructionProperties.FrontVelocityCwo);
-            Assert.AreEqual(accelerationAlphaAForCrest, constructionProperties.AccelerationAlphaAForCrest);
-            Assert.AreEqual(accelerationAlphaAForInnerSlope, constructionProperties.AccelerationAlphaAForInnerSlope);
-            Assert.AreEqual(dikeHeight, constructionProperties.DikeHeight);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.InitialDamage, Is.EqualTo(initialDamage));
+            Assert.That(constructionProperties.FailureNumber, Is.EqualTo(failureNumber));
+            Assert.That(constructionProperties.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
+            Assert.That(constructionProperties.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
+            Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
+            Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
+            Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
+            Assert.That(constructionProperties.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
+            Assert.That(constructionProperties.FrontVelocityCwo, Is.EqualTo(frontVelocityCwo));
+            Assert.That(constructionProperties.AccelerationAlphaAForCrest, Is.EqualTo(accelerationAlphaAForCrest));
+            Assert.That(constructionProperties.AccelerationAlphaAForInnerSlope, Is.EqualTo(accelerationAlphaAForInnerSlope));
+            Assert.That(constructionProperties.DikeHeight, Is.EqualTo(dikeHeight));
         }
     }
 }

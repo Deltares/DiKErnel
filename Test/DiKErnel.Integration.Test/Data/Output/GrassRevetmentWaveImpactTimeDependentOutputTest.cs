@@ -59,15 +59,15 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
-            Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
-            Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
-            Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
-            Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
-            Assert.AreEqual(waveAngle, output.WaveAngle);
-            Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
-            Assert.AreEqual(waveHeightImpact, output.WaveHeightImpact);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
+            Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(output.LoadingRevetment, Is.EqualTo(loadingRevetment));
+            Assert.That(output.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
+            Assert.That(output.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
+            Assert.That(output.WaveAngle, Is.EqualTo(waveAngle));
+            Assert.That(output.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
+            Assert.That(output.WaveHeightImpact, Is.EqualTo(waveHeightImpact));
         }
 
         [Test]
@@ -98,12 +98,12 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.IsNull(output.TimeOfFailure);
-            Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
-            Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
-            Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
+            Assert.That(output.LoadingRevetment, Is.EqualTo(loadingRevetment));
+            Assert.That(output.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
+            Assert.That(output.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
             Assert.IsNull(output.WaveAngle);
             Assert.IsNull(output.WaveAngleImpact);
             Assert.IsNull(output.WaveHeightImpact);

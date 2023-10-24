@@ -74,15 +74,15 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Then
-            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
-            Assert.AreEqual(damage, constructionProperties.Damage);
-            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
-            Assert.AreEqual(loadingRevetment, constructionProperties.LoadingRevetment);
-            Assert.AreEqual(upperLimitLoading, constructionProperties.UpperLimitLoading);
-            Assert.AreEqual(lowerLimitLoading, constructionProperties.LowerLimitLoading);
-            Assert.AreEqual(waveAngle, constructionProperties.WaveAngle);
-            Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
-            Assert.AreEqual(waveHeightImpact, constructionProperties.WaveHeightImpact);
+            Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
+            Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(constructionProperties.LoadingRevetment, Is.EqualTo(loadingRevetment));
+            Assert.That(constructionProperties.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
+            Assert.That(constructionProperties.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
+            Assert.That(constructionProperties.WaveAngle, Is.EqualTo(waveAngle));
+            Assert.That(constructionProperties.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
+            Assert.That(constructionProperties.WaveHeightImpact, Is.EqualTo(waveHeightImpact));
         }
     }
 }

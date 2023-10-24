@@ -43,9 +43,9 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Assert
             Assert.IsInstanceOf<LocationDependentOutput>(output);
             Assert.AreSame(timeDependentOutputItems, output.TimeDependentOutputItems);
-            Assert.AreEqual(z, output.Z);
-            Assert.AreEqual(minimumWaveHeight, output.MinimumWaveHeight);
-            Assert.AreEqual(maximumWaveHeight, output.MaximumWaveHeight);
+            Assert.That(output.Z, Is.EqualTo(z));
+            Assert.That(output.MinimumWaveHeight, Is.EqualTo(minimumWaveHeight));
+            Assert.That(output.MaximumWaveHeight, Is.EqualTo(maximumWaveHeight));
         }
     }
 }

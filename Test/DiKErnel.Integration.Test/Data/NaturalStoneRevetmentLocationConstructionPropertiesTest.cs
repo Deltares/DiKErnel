@@ -41,10 +41,10 @@ namespace DiKErnel.Integration.Test.Data
 
             // Assert
             Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(thicknessTopLayer, constructionProperties.ThicknessTopLayer);
-            Assert.AreEqual(relativeDensity, constructionProperties.RelativeDensity);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.ThicknessTopLayer, Is.EqualTo(thicknessTopLayer));
+            Assert.That(constructionProperties.RelativeDensity, Is.EqualTo(relativeDensity));
             Assert.IsNull(constructionProperties.InitialDamage);
             Assert.IsNull(constructionProperties.FailureNumber);
             Assert.IsNull(constructionProperties.HydraulicLoadXib);
@@ -134,34 +134,34 @@ namespace DiKErnel.Integration.Test.Data
             constructionProperties.WaveAngleImpactBetamax = waveAngleImpactBetamax;
 
             // Then
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(thicknessTopLayer, constructionProperties.ThicknessTopLayer);
-            Assert.AreEqual(relativeDensity, constructionProperties.RelativeDensity);
-            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
-            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
-            Assert.AreEqual(hydraulicLoadXib, constructionProperties.HydraulicLoadXib);
-            Assert.AreEqual(hydraulicLoadAp, constructionProperties.HydraulicLoadAp);
-            Assert.AreEqual(hydraulicLoadBp, constructionProperties.HydraulicLoadBp);
-            Assert.AreEqual(hydraulicLoadCp, constructionProperties.HydraulicLoadCp);
-            Assert.AreEqual(hydraulicLoadNp, constructionProperties.HydraulicLoadNp);
-            Assert.AreEqual(hydraulicLoadAs, constructionProperties.HydraulicLoadAs);
-            Assert.AreEqual(hydraulicLoadBs, constructionProperties.HydraulicLoadBs);
-            Assert.AreEqual(hydraulicLoadCs, constructionProperties.HydraulicLoadCs);
-            Assert.AreEqual(hydraulicLoadNs, constructionProperties.HydraulicLoadNs);
-            Assert.AreEqual(slopeUpperLevelAus, constructionProperties.SlopeUpperLevelAus);
-            Assert.AreEqual(slopeLowerLevelAls, constructionProperties.SlopeLowerLevelAls);
-            Assert.AreEqual(upperLimitLoadingAul, constructionProperties.UpperLimitLoadingAul);
-            Assert.AreEqual(upperLimitLoadingBul, constructionProperties.UpperLimitLoadingBul);
-            Assert.AreEqual(upperLimitLoadingCul, constructionProperties.UpperLimitLoadingCul);
-            Assert.AreEqual(lowerLimitLoadingAll, constructionProperties.LowerLimitLoadingAll);
-            Assert.AreEqual(lowerLimitLoadingBll, constructionProperties.LowerLimitLoadingBll);
-            Assert.AreEqual(lowerLimitLoadingCll, constructionProperties.LowerLimitLoadingCll);
-            Assert.AreEqual(distanceMaximumWaveElevationAsmax, constructionProperties.DistanceMaximumWaveElevationAsmax);
-            Assert.AreEqual(distanceMaximumWaveElevationBsmax, constructionProperties.DistanceMaximumWaveElevationBsmax);
-            Assert.AreEqual(normativeWidthOfWaveImpactAwi, constructionProperties.NormativeWidthOfWaveImpactAwi);
-            Assert.AreEqual(normativeWidthOfWaveImpactBwi, constructionProperties.NormativeWidthOfWaveImpactBwi);
-            Assert.AreEqual(waveAngleImpactBetamax, constructionProperties.WaveAngleImpactBetamax);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.ThicknessTopLayer, Is.EqualTo(thicknessTopLayer));
+            Assert.That(constructionProperties.RelativeDensity, Is.EqualTo(relativeDensity));
+            Assert.That(constructionProperties.InitialDamage, Is.EqualTo(initialDamage));
+            Assert.That(constructionProperties.FailureNumber, Is.EqualTo(failureNumber));
+            Assert.That(constructionProperties.HydraulicLoadXib, Is.EqualTo(hydraulicLoadXib));
+            Assert.That(constructionProperties.HydraulicLoadAp, Is.EqualTo(hydraulicLoadAp));
+            Assert.That(constructionProperties.HydraulicLoadBp, Is.EqualTo(hydraulicLoadBp));
+            Assert.That(constructionProperties.HydraulicLoadCp, Is.EqualTo(hydraulicLoadCp));
+            Assert.That(constructionProperties.HydraulicLoadNp, Is.EqualTo(hydraulicLoadNp));
+            Assert.That(constructionProperties.HydraulicLoadAs, Is.EqualTo(hydraulicLoadAs));
+            Assert.That(constructionProperties.HydraulicLoadBs, Is.EqualTo(hydraulicLoadBs));
+            Assert.That(constructionProperties.HydraulicLoadCs, Is.EqualTo(hydraulicLoadCs));
+            Assert.That(constructionProperties.HydraulicLoadNs, Is.EqualTo(hydraulicLoadNs));
+            Assert.That(constructionProperties.SlopeUpperLevelAus, Is.EqualTo(slopeUpperLevelAus));
+            Assert.That(constructionProperties.SlopeLowerLevelAls, Is.EqualTo(slopeLowerLevelAls));
+            Assert.That(constructionProperties.UpperLimitLoadingAul, Is.EqualTo(upperLimitLoadingAul));
+            Assert.That(constructionProperties.UpperLimitLoadingBul, Is.EqualTo(upperLimitLoadingBul));
+            Assert.That(constructionProperties.UpperLimitLoadingCul, Is.EqualTo(upperLimitLoadingCul));
+            Assert.That(constructionProperties.LowerLimitLoadingAll, Is.EqualTo(lowerLimitLoadingAll));
+            Assert.That(constructionProperties.LowerLimitLoadingBll, Is.EqualTo(lowerLimitLoadingBll));
+            Assert.That(constructionProperties.LowerLimitLoadingCll, Is.EqualTo(lowerLimitLoadingCll));
+            Assert.That(constructionProperties.DistanceMaximumWaveElevationAsmax, Is.EqualTo(distanceMaximumWaveElevationAsmax));
+            Assert.That(constructionProperties.DistanceMaximumWaveElevationBsmax, Is.EqualTo(distanceMaximumWaveElevationBsmax));
+            Assert.That(constructionProperties.NormativeWidthOfWaveImpactAwi, Is.EqualTo(normativeWidthOfWaveImpactAwi));
+            Assert.That(constructionProperties.NormativeWidthOfWaveImpactBwi, Is.EqualTo(normativeWidthOfWaveImpactBwi));
+            Assert.That(constructionProperties.WaveAngleImpactBetamax, Is.EqualTo(waveAngleImpactBetamax));
         }
     }
 }

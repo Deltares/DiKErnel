@@ -83,27 +83,27 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
-            Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
-            Assert.AreEqual(outerSlope, output.OuterSlope);
-            Assert.AreEqual(slopeUpperLevel, output.SlopeUpperLevel);
-            Assert.AreEqual(slopeUpperPosition, output.SlopeUpperPosition);
-            Assert.AreEqual(slopeLowerLevel, output.SlopeLowerLevel);
-            Assert.AreEqual(slopeLowerPosition, output.SlopeLowerPosition);
-            Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
-            Assert.AreEqual(surfSimilarityParameter, output.SurfSimilarityParameter);
-            Assert.AreEqual(waveSteepnessDeepWater, output.WaveSteepnessDeepWater);
-            Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
-            Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
-            Assert.AreEqual(depthMaximumWaveLoad, output.DepthMaximumWaveLoad);
-            Assert.AreEqual(distanceMaximumWaveElevation, output.DistanceMaximumWaveElevation);
-            Assert.AreEqual(normativeWidthOfWaveImpact, output.NormativeWidthOfWaveImpact);
-            Assert.AreEqual(hydraulicLoad, output.HydraulicLoad);
-            Assert.AreEqual(waveAngle, output.WaveAngle);
-            Assert.AreEqual(waveAngleImpact, output.WaveAngleImpact);
-            Assert.AreEqual(referenceTimeDegradation, output.ReferenceTimeDegradation);
-            Assert.AreEqual(referenceDegradation, output.ReferenceDegradation);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
+            Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
+            Assert.That(output.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
+            Assert.That(output.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
+            Assert.That(output.SlopeLowerLevel, Is.EqualTo(slopeLowerLevel));
+            Assert.That(output.SlopeLowerPosition, Is.EqualTo(slopeLowerPosition));
+            Assert.That(output.LoadingRevetment, Is.EqualTo(loadingRevetment));
+            Assert.That(output.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));
+            Assert.That(output.WaveSteepnessDeepWater, Is.EqualTo(waveSteepnessDeepWater));
+            Assert.That(output.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
+            Assert.That(output.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
+            Assert.That(output.DepthMaximumWaveLoad, Is.EqualTo(depthMaximumWaveLoad));
+            Assert.That(output.DistanceMaximumWaveElevation, Is.EqualTo(distanceMaximumWaveElevation));
+            Assert.That(output.NormativeWidthOfWaveImpact, Is.EqualTo(normativeWidthOfWaveImpact));
+            Assert.That(output.HydraulicLoad, Is.EqualTo(hydraulicLoad));
+            Assert.That(output.WaveAngle, Is.EqualTo(waveAngle));
+            Assert.That(output.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
+            Assert.That(output.ReferenceTimeDegradation, Is.EqualTo(referenceTimeDegradation));
+            Assert.That(output.ReferenceDegradation, Is.EqualTo(referenceDegradation));
         }
 
         [Test]
@@ -156,22 +156,22 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.IsNull(output.TimeOfFailure);
-            Assert.AreEqual(outerSlope, output.OuterSlope);
-            Assert.AreEqual(slopeUpperLevel, output.SlopeUpperLevel);
-            Assert.AreEqual(slopeUpperPosition, output.SlopeUpperPosition);
-            Assert.AreEqual(slopeLowerLevel, output.SlopeLowerLevel);
-            Assert.AreEqual(slopeLowerPosition, output.SlopeLowerPosition);
-            Assert.AreEqual(loadingRevetment, output.LoadingRevetment);
-            Assert.AreEqual(surfSimilarityParameter, output.SurfSimilarityParameter);
-            Assert.AreEqual(waveSteepnessDeepWater, output.WaveSteepnessDeepWater);
-            Assert.AreEqual(upperLimitLoading, output.UpperLimitLoading);
-            Assert.AreEqual(lowerLimitLoading, output.LowerLimitLoading);
-            Assert.AreEqual(depthMaximumWaveLoad, output.DepthMaximumWaveLoad);
-            Assert.AreEqual(distanceMaximumWaveElevation, output.DistanceMaximumWaveElevation);
-            Assert.AreEqual(normativeWidthOfWaveImpact, output.NormativeWidthOfWaveImpact);
+            Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
+            Assert.That(output.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
+            Assert.That(output.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
+            Assert.That(output.SlopeLowerLevel, Is.EqualTo(slopeLowerLevel));
+            Assert.That(output.SlopeLowerPosition, Is.EqualTo(slopeLowerPosition));
+            Assert.That(output.LoadingRevetment, Is.EqualTo(loadingRevetment));
+            Assert.That(output.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));
+            Assert.That(output.WaveSteepnessDeepWater, Is.EqualTo(waveSteepnessDeepWater));
+            Assert.That(output.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
+            Assert.That(output.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
+            Assert.That(output.DepthMaximumWaveLoad, Is.EqualTo(depthMaximumWaveLoad));
+            Assert.That(output.DistanceMaximumWaveElevation, Is.EqualTo(distanceMaximumWaveElevation));
+            Assert.That(output.NormativeWidthOfWaveImpact, Is.EqualTo(normativeWidthOfWaveImpact));
             Assert.IsNull(output.HydraulicLoad);
             Assert.IsNull(output.WaveAngle);
             Assert.IsNull(output.WaveAngleImpact);

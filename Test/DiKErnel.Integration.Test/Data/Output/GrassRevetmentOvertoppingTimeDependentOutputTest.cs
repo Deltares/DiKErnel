@@ -55,13 +55,13 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
-            Assert.AreEqual(timeOfFailure, output.TimeOfFailure);
-            Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
-            Assert.AreEqual(representativeWaveRunup2P, output.RepresentativeWaveRunup2P);
-            Assert.AreEqual(cumulativeOverload, output.CumulativeOverload);
-            Assert.AreEqual(averageNumberOfWaves, output.AverageNumberOfWaves);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
+            Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(output.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
+            Assert.That(output.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
+            Assert.That(output.CumulativeOverload, Is.EqualTo(cumulativeOverload));
+            Assert.That(output.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
 
         [Test]
@@ -84,10 +84,10 @@ namespace DiKErnel.Integration.Test.Data.Output
 
             // Assert
             Assert.IsInstanceOf<TimeDependentOutput>(output);
-            Assert.AreEqual(incrementDamage, output.IncrementDamage);
-            Assert.AreEqual(damage, output.Damage);
+            Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.IsNull(output.TimeOfFailure);
-            Assert.AreEqual(verticalDistanceWaterLevelElevation, output.VerticalDistanceWaterLevelElevation);
+            Assert.That(output.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
             Assert.IsNull(output.RepresentativeWaveRunup2P);
             Assert.IsNull(output.CumulativeOverload);
             Assert.IsNull(output.AverageNumberOfWaves);

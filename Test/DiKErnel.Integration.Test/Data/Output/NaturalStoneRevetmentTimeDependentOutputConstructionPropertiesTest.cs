@@ -110,27 +110,27 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Then
-            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
-            Assert.AreEqual(damage, constructionProperties.Damage);
-            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
-            Assert.AreEqual(outerSlope, constructionProperties.OuterSlope);
-            Assert.AreEqual(slopeUpperLevel, constructionProperties.SlopeUpperLevel);
-            Assert.AreEqual(slopeUpperPosition, constructionProperties.SlopeUpperPosition);
-            Assert.AreEqual(slopeLowerLevel, constructionProperties.SlopeLowerLevel);
-            Assert.AreEqual(slopeLowerPosition, constructionProperties.SlopeLowerPosition);
-            Assert.AreEqual(loadingRevetment, constructionProperties.LoadingRevetment);
-            Assert.AreEqual(surfSimilarityParameter, constructionProperties.SurfSimilarityParameter);
-            Assert.AreEqual(waveSteepnessDeepWater, constructionProperties.WaveSteepnessDeepWater);
-            Assert.AreEqual(upperLimitLoading, constructionProperties.UpperLimitLoading);
-            Assert.AreEqual(lowerLimitLoading, constructionProperties.LowerLimitLoading);
-            Assert.AreEqual(depthMaximumWaveLoad, constructionProperties.DepthMaximumWaveLoad);
-            Assert.AreEqual(distanceMaximumWaveElevation, constructionProperties.DistanceMaximumWaveElevation);
-            Assert.AreEqual(normativeWidthOfWaveImpact, constructionProperties.NormativeWidthOfWaveImpact);
-            Assert.AreEqual(hydraulicLoad, constructionProperties.HydraulicLoad);
-            Assert.AreEqual(waveAngle, constructionProperties.WaveAngle);
-            Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
-            Assert.AreEqual(referenceTimeDegradation, constructionProperties.ReferenceTimeDegradation);
-            Assert.AreEqual(referenceDegradation, constructionProperties.ReferenceDegradation);
+            Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
+            Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(constructionProperties.OuterSlope, Is.EqualTo(outerSlope));
+            Assert.That(constructionProperties.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
+            Assert.That(constructionProperties.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
+            Assert.That(constructionProperties.SlopeLowerLevel, Is.EqualTo(slopeLowerLevel));
+            Assert.That(constructionProperties.SlopeLowerPosition, Is.EqualTo(slopeLowerPosition));
+            Assert.That(constructionProperties.LoadingRevetment, Is.EqualTo(loadingRevetment));
+            Assert.That(constructionProperties.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));
+            Assert.That(constructionProperties.WaveSteepnessDeepWater, Is.EqualTo(waveSteepnessDeepWater));
+            Assert.That(constructionProperties.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
+            Assert.That(constructionProperties.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
+            Assert.That(constructionProperties.DepthMaximumWaveLoad, Is.EqualTo(depthMaximumWaveLoad));
+            Assert.That(constructionProperties.DistanceMaximumWaveElevation, Is.EqualTo(distanceMaximumWaveElevation));
+            Assert.That(constructionProperties.NormativeWidthOfWaveImpact, Is.EqualTo(normativeWidthOfWaveImpact));
+            Assert.That(constructionProperties.HydraulicLoad, Is.EqualTo(hydraulicLoad));
+            Assert.That(constructionProperties.WaveAngle, Is.EqualTo(waveAngle));
+            Assert.That(constructionProperties.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
+            Assert.That(constructionProperties.ReferenceTimeDegradation, Is.EqualTo(referenceTimeDegradation));
+            Assert.That(constructionProperties.ReferenceDegradation, Is.EqualTo(referenceDegradation));
         }
     }
 }

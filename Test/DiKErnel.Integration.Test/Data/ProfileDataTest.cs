@@ -52,7 +52,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(1.0);
 
             // Assert
-            Assert.AreEqual(1.1, verticalHeight);
+            Assert.That(verticalHeight, Is.EqualTo(1.1));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(2.0);
 
             // Assert
-            Assert.AreEqual(2.2, verticalHeight);
+            Assert.That(verticalHeight, Is.EqualTo(2.2));
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(3.0);
 
             // Assert
-            Assert.AreEqual(3.3, verticalHeight);
+            Assert.That(verticalHeight, Is.EqualTo(3.3));
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(1.5);
 
             // Assert
-            Assert.AreEqual(1.65, verticalHeight, tolerance);
+            Assert.That(verticalHeight, Is.EqualTo(1.65).Within(tolerance));
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace DiKErnel.Integration.Test.Data
             double verticalHeight = profileData.GetVerticalHeight(2.5);
 
             // Assert
-            Assert.AreEqual(1.65, verticalHeight, tolerance);
+            Assert.That(verticalHeight, Is.EqualTo(1.65).Within(tolerance));
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(1.1);
 
             // Assert
-            Assert.AreEqual(1.0, horizontalPosition);
+            Assert.That(horizontalPosition, Is.EqualTo(1.0));
         }
 
         [Test]
@@ -166,7 +166,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(2.2);
 
             // Assert
-            Assert.AreEqual(2.0, horizontalPosition);
+            Assert.That(horizontalPosition, Is.EqualTo(2.0));
         }
 
         [Test]
@@ -179,7 +179,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(3.3);
 
             // Assert
-            Assert.AreEqual(3.0, horizontalPosition);
+            Assert.That(horizontalPosition, Is.EqualTo(3.0));
         }
 
         [Test]
@@ -192,7 +192,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(1.65);
 
             // Assert
-            Assert.AreEqual(1.5, horizontalPosition, tolerance);
+            Assert.That(horizontalPosition, Is.EqualTo(1.5).Within(tolerance));
         }
 
         [Test]
@@ -244,10 +244,10 @@ namespace DiKErnel.Integration.Test.Data
             ProfileSegment profileSegment = profileData.GetProfileSegment(2.0);
 
             // Assert
-            Assert.AreEqual(1.0, profileSegment.StartPoint.X);
-            Assert.AreEqual(1.1, profileSegment.StartPoint.Z);
-            Assert.AreEqual(2.0, profileSegment.EndPoint.X);
-            Assert.AreEqual(2.2, profileSegment.EndPoint.Z);
+            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(1.0));
+            Assert.That(profileSegment.StartPoint.Z, Is.EqualTo(1.1));
+            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(2.0));
+            Assert.That(profileSegment.EndPoint.Z, Is.EqualTo(2.2));
         }
 
         [Test]
@@ -260,10 +260,10 @@ namespace DiKErnel.Integration.Test.Data
             ProfileSegment profileSegment = profileData.GetProfileSegment(1.5);
 
             // Assert
-            Assert.AreEqual(1.0, profileSegment.StartPoint.X);
-            Assert.AreEqual(1.1, profileSegment.StartPoint.Z);
-            Assert.AreEqual(2.0, profileSegment.EndPoint.X);
-            Assert.AreEqual(2.2, profileSegment.EndPoint.Z);
+            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(1.0));
+            Assert.That(profileSegment.StartPoint.Z, Is.EqualTo(1.1));
+            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(2.0));
+            Assert.That(profileSegment.EndPoint.Z, Is.EqualTo(2.2));
         }
 
         [Test]
@@ -276,10 +276,10 @@ namespace DiKErnel.Integration.Test.Data
             ProfileSegment profileSegment = profileData.GetProfileSegment(3.0);
 
             // Assert
-            Assert.AreEqual(2.0, profileSegment.StartPoint.X);
-            Assert.AreEqual(2.2, profileSegment.StartPoint.Z);
-            Assert.AreEqual(3.0, profileSegment.EndPoint.X);
-            Assert.AreEqual(3.3, profileSegment.EndPoint.Z);
+            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(2.0));
+            Assert.That(profileSegment.StartPoint.Z, Is.EqualTo(2.2));
+            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(3.0));
+            Assert.That(profileSegment.EndPoint.Z, Is.EqualTo(3.3));
         }
 
         [Test]

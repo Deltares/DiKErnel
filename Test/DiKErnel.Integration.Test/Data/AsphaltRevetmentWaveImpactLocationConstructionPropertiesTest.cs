@@ -44,12 +44,12 @@ namespace DiKErnel.Integration.Test.Data
 
             // Assert
             Assert.IsInstanceOf<RevetmentLocationConstructionProperties>(constructionProperties);
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(flexuralStrength, constructionProperties.FlexuralStrength);
-            Assert.AreEqual(soilElasticity, constructionProperties.SoilElasticity);
-            Assert.AreEqual(thicknessUpperLayer, constructionProperties.ThicknessUpperLayer);
-            Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.ElasticModulusUpperLayer);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.FlexuralStrength, Is.EqualTo(flexuralStrength));
+            Assert.That(constructionProperties.SoilElasticity, Is.EqualTo(soilElasticity));
+            Assert.That(constructionProperties.ThicknessUpperLayer, Is.EqualTo(thicknessUpperLayer));
+            Assert.That(constructionProperties.ElasticModulusUpperLayer, Is.EqualTo(elasticModulusUpperLayer));
             Assert.IsNull(constructionProperties.InitialDamage);
             Assert.IsNull(constructionProperties.FailureNumber);
             Assert.IsNull(constructionProperties.DensityOfWater);
@@ -117,22 +117,22 @@ namespace DiKErnel.Integration.Test.Data
             constructionProperties.ImpactFactors = impactFactors;
 
             // Then
-            Assert.AreEqual(topLayerType, constructionProperties.TopLayerType);
-            Assert.AreEqual(x, constructionProperties.X);
-            Assert.AreEqual(flexuralStrength, constructionProperties.FlexuralStrength);
-            Assert.AreEqual(soilElasticity, constructionProperties.SoilElasticity);
-            Assert.AreEqual(thicknessUpperLayer, constructionProperties.ThicknessUpperLayer);
-            Assert.AreEqual(elasticModulusUpperLayer, constructionProperties.ElasticModulusUpperLayer);
-            Assert.AreEqual(initialDamage, constructionProperties.InitialDamage);
-            Assert.AreEqual(failureNumber, constructionProperties.FailureNumber);
-            Assert.AreEqual(densityOfWater, constructionProperties.DensityOfWater);
-            Assert.AreEqual(thicknessSubLayer, constructionProperties.ThicknessSubLayer);
-            Assert.AreEqual(elasticModulusSubLayer, constructionProperties.ElasticModulusSubLayer);
-            Assert.AreEqual(averageNumberOfWavesCtm, constructionProperties.AverageNumberOfWavesCtm);
-            Assert.AreEqual(fatigueAlpha, constructionProperties.FatigueAlpha);
-            Assert.AreEqual(fatigueBeta, constructionProperties.FatigueBeta);
-            Assert.AreEqual(impactNumberC, constructionProperties.ImpactNumberC);
-            Assert.AreEqual(stiffnessRelationNu, constructionProperties.StiffnessRelationNu);
+            Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
+            Assert.That(constructionProperties.X, Is.EqualTo(x));
+            Assert.That(constructionProperties.FlexuralStrength, Is.EqualTo(flexuralStrength));
+            Assert.That(constructionProperties.SoilElasticity, Is.EqualTo(soilElasticity));
+            Assert.That(constructionProperties.ThicknessUpperLayer, Is.EqualTo(thicknessUpperLayer));
+            Assert.That(constructionProperties.ElasticModulusUpperLayer, Is.EqualTo(elasticModulusUpperLayer));
+            Assert.That(constructionProperties.InitialDamage, Is.EqualTo(initialDamage));
+            Assert.That(constructionProperties.FailureNumber, Is.EqualTo(failureNumber));
+            Assert.That(constructionProperties.DensityOfWater, Is.EqualTo(densityOfWater));
+            Assert.That(constructionProperties.ThicknessSubLayer, Is.EqualTo(thicknessSubLayer));
+            Assert.That(constructionProperties.ElasticModulusSubLayer, Is.EqualTo(elasticModulusSubLayer));
+            Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
+            Assert.That(constructionProperties.FatigueAlpha, Is.EqualTo(fatigueAlpha));
+            Assert.That(constructionProperties.FatigueBeta, Is.EqualTo(fatigueBeta));
+            Assert.That(constructionProperties.ImpactNumberC, Is.EqualTo(impactNumberC));
+            Assert.That(constructionProperties.StiffnessRelationNu, Is.EqualTo(stiffnessRelationNu));
             CollectionAssert.AreEqual(widthFactors, constructionProperties.WidthFactors);
             CollectionAssert.AreEqual(depthFactors, constructionProperties.DepthFactors);
             CollectionAssert.AreEqual(impactFactors, constructionProperties.ImpactFactors);

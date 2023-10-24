@@ -74,15 +74,15 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Then
-            Assert.AreEqual(incrementDamage, constructionProperties.IncrementDamage);
-            Assert.AreEqual(damage, constructionProperties.Damage);
-            Assert.AreEqual(timeOfFailure, constructionProperties.TimeOfFailure);
-            Assert.AreEqual(verticalDistanceWaterLevelElevation, constructionProperties.VerticalDistanceWaterLevelElevation);
-            Assert.AreEqual(waveAngle, constructionProperties.WaveAngle);
-            Assert.AreEqual(waveAngleImpact, constructionProperties.WaveAngleImpact);
-            Assert.AreEqual(representativeWaveRunup2P, constructionProperties.RepresentativeWaveRunup2P);
-            Assert.AreEqual(cumulativeOverload, constructionProperties.CumulativeOverload);
-            Assert.AreEqual(averageNumberOfWaves, constructionProperties.AverageNumberOfWaves);
+            Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
+            Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
+            Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));
+            Assert.That(constructionProperties.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
+            Assert.That(constructionProperties.WaveAngle, Is.EqualTo(waveAngle));
+            Assert.That(constructionProperties.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
+            Assert.That(constructionProperties.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
+            Assert.That(constructionProperties.CumulativeOverload, Is.EqualTo(cumulativeOverload));
+            Assert.That(constructionProperties.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
     }
 }
