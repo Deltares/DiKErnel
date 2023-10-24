@@ -39,7 +39,7 @@ namespace DiKErnel.System.Test
             Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
 
             DataResult<CalculationOutput> calculatorResult = calculator.Result;
-            Assert.IsTrue(calculatorResult.Successful);
+            Assert.That(calculatorResult.Successful, Is.True);
             CollectionAssert.IsEmpty(calculatorResult.Events);
 
             IReadOnlyList<double> damages = calculatorResult.Data.LocationDependentOutputItems[0].GetDamages();

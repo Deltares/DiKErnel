@@ -48,9 +48,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
 
             // Then
-            Assert.IsNotNull(result);
+            Assert.That(result, Is.Not.Null);
 
-            Assert.IsNotNull(result.CalculationInputDataResult);
+            Assert.That(result.CalculationInputDataResult, Is.Not.Null);
 
             ICalculationInput calculationInput = result.CalculationInputDataResult.Data;
 
@@ -119,7 +119,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var naturalStoneRevetmentLocationDependentInputItem =
                 locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
-            Assert.IsNotNull(naturalStoneRevetmentLocationDependentInputItem);
+            Assert.That(naturalStoneRevetmentLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 11, naturalStoneRevetmentLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -143,7 +143,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentWaveImpactLocationDependentInputItem =
                 locationDependentInputItems[1] as GrassRevetmentWaveImpactLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem);
+            Assert.That(grassRevetmentWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 1, grassRevetmentWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -163,7 +163,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentWaveRunupRayleighLocationDependentInputItem =
                 locationDependentInputItems[2] as GrassRevetmentWaveRunupRayleighLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem);
+            Assert.That(grassRevetmentWaveRunupRayleighLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 64.9, grassRevetmentWaveRunupRayleighLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -185,7 +185,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var asphaltRevetmentWaveImpactLocationDependentInputItem =
                 locationDependentInputItems[3] as AsphaltRevetmentWaveImpactLocationDependentInput;
-            Assert.IsNotNull(asphaltRevetmentWaveImpactLocationDependentInputItem);
+            Assert.That(asphaltRevetmentWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 25, asphaltRevetmentWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -216,7 +216,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentOvertoppingLocationDependentInputItem =
                 locationDependentInputItems[4] as GrassRevetmentOvertoppingLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem);
+            Assert.That(grassRevetmentOvertoppingLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 65, grassRevetmentOvertoppingLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -255,9 +255,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             ComposedInputData result = JsonInputComposer.GetInputDataFromJson(filePath);
 
             // Then
-            Assert.IsNotNull(result);
+            Assert.That(result, Is.Not.Null);
 
-            Assert.IsNotNull(result.CalculationInputDataResult);
+            Assert.That(result.CalculationInputDataResult, Is.Not.Null);
 
             ICalculationInput calculationInput = result.CalculationInputDataResult.Data;
 
@@ -294,7 +294,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var naturalStoneRevetmentLocationDependentInputItem =
                 locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
-            Assert.IsNotNull(naturalStoneRevetmentLocationDependentInputItem);
+            Assert.That(naturalStoneRevetmentLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 32.79, naturalStoneRevetmentLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -318,7 +318,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentWaveImpactLocationDependentInputItem1 =
                 locationDependentInputItems[1] as GrassRevetmentWaveImpactLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem1);
+            Assert.That(grassRevetmentWaveImpactLocationDependentInputItem1, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 38.4, grassRevetmentWaveImpactLocationDependentInputItem1);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -338,7 +338,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentWaveImpactLocationDependentInputItem2 =
                 locationDependentInputItems[2] as GrassRevetmentWaveImpactLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentWaveImpactLocationDependentInputItem2);
+            Assert.That(grassRevetmentWaveImpactLocationDependentInputItem2, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 40, grassRevetmentWaveImpactLocationDependentInputItem2);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -358,7 +358,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentWaveRunupRayleighLocationDependentInputItem1 =
                 locationDependentInputItems[3] as GrassRevetmentWaveRunupRayleighLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+            Assert.That(grassRevetmentWaveRunupRayleighLocationDependentInputItem1, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 50.98, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -380,7 +380,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentWaveRunupRayleighLocationDependentInputItem2 =
                 locationDependentInputItems[4] as GrassRevetmentWaveRunupRayleighLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+            Assert.That(grassRevetmentWaveRunupRayleighLocationDependentInputItem2, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 57.698, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -402,7 +402,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var asphaltRevetmentWaveImpactLocationDependentInputItem =
                 locationDependentInputItems[5] as AsphaltRevetmentWaveImpactLocationDependentInput;
-            Assert.IsNotNull(asphaltRevetmentWaveImpactLocationDependentInputItem);
+            Assert.That(asphaltRevetmentWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 39, asphaltRevetmentWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -502,7 +502,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentOvertoppingLocationDependentInputItem1 =
                 locationDependentInputItems[6] as GrassRevetmentOvertoppingLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem1);
+            Assert.That(grassRevetmentOvertoppingLocationDependentInputItem1, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 65, grassRevetmentOvertoppingLocationDependentInputItem1);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -522,7 +522,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
 
             var grassRevetmentOvertoppingLocationDependentInputItem2 =
                 locationDependentInputItems[7] as GrassRevetmentOvertoppingLocationDependentInput;
-            Assert.IsNotNull(grassRevetmentOvertoppingLocationDependentInputItem2);
+            Assert.That(grassRevetmentOvertoppingLocationDependentInputItem2, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
                 85, grassRevetmentOvertoppingLocationDependentInputItem2);
             LocationDependentInputAssertHelper.AssertDamageProperties(
@@ -540,8 +540,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2.LocationDependentAccelerationAlphaA);
 
-            Assert.IsNotNull(result.LocationIds);
-            Assert.IsTrue(result.LocationIds.All(lid => !lid.HasValue));
+            Assert.That(result.LocationIds, Is.Not.Null);
+            Assert.That(result.LocationIds.All(lid => !lid.HasValue), Is.True);
         }
 
         [Test]
@@ -572,7 +572,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             bool result = JsonInputComposer.ValidateJson(filePath);
 
             // Then
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True);
 
             CollectionAssert.IsEmpty(EventRegistry.Flush());
         }

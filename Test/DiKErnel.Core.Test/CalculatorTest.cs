@@ -63,7 +63,7 @@ namespace DiKErnel.Core.Test
             calculator.WaitForCompletion();
 
             // Then
-            Assert.IsNotNull(calculator.Result);
+            Assert.That(calculator.Result, Is.Not.Null);
 
             CalculationOutput output = calculator.Result.Data;
             Assert.That(output.LocationDependentOutputItems.Count, Is.EqualTo(1));
@@ -71,7 +71,7 @@ namespace DiKErnel.Core.Test
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
             Assert.That(damages.Count, Is.EqualTo(3));
-            Assert.IsTrue(damages.All(d => d.Equals(damage)));
+            Assert.That(damages.All(d => d.Equals(damage)), Is.True);
             Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailure));
         }
 
@@ -87,7 +87,7 @@ namespace DiKErnel.Core.Test
 
             // Then
             Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.Cancelled));
-            Assert.AreNotEqual(100, calculator.Progress);
+            Assert.That(calculator.Progress, Is.Not.EqualTo(100));
         }
 
         [Test]

@@ -111,7 +111,7 @@ namespace DiKErnel.FunctionLibrary.Test
             bool failureRevetment = RevetmentFunctions.FailureRevetment(damage, initialDamage, failureNumber);
 
             // Assert
-            Assert.IsTrue(failureRevetment);
+            Assert.That(failureRevetment, Is.True);
         }
 
         [Test]
@@ -126,7 +126,7 @@ namespace DiKErnel.FunctionLibrary.Test
             bool failureRevetment = RevetmentFunctions.FailureRevetment(damage, initialDamage, failureNumber);
 
             // Assert
-            Assert.IsTrue(failureRevetment);
+            Assert.That(failureRevetment, Is.True);
         }
 
         [Test]

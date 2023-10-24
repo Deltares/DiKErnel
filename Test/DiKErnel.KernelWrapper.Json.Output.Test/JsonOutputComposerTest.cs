@@ -195,7 +195,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             AssertHelper.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
 
-            Assert.IsTrue(result.Successful);
+            Assert.That(result.Successful, Is.True);
             CollectionAssert.IsEmpty(result.Events);
         }
 
@@ -212,7 +212,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             AssertHelper.AssertFileContents(expectedOutputFilePath, actualOutputFilePath);
 
-            Assert.IsTrue(result.Successful);
+            Assert.That(result.Successful, Is.True);
             CollectionAssert.IsEmpty(result.Events);
         }
 

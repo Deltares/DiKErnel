@@ -95,7 +95,7 @@ namespace DiKErnel.Core.Test
                                                                     ? ValidationResultType.Successful
                                                                     : ValidationResultType.Failed;
 
-            Assert.IsTrue(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(expectedValidationResultType));
         }
 
