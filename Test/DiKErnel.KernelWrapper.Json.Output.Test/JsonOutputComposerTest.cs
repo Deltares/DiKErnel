@@ -80,7 +80,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 "", calculationOutput, JsonOutputType.Physics);
 
             // Assert
-            Assert.IsFalse(result.Successful);
+            Assert.That(result.Successful, Is.False);
 
             Assert.That(result.Events, Has.Count.EqualTo(1));
             Assert.That(result.Events[0].Type, Is.EqualTo(EventType.Error));

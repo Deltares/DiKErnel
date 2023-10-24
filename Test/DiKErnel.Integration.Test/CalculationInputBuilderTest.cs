@@ -59,7 +59,7 @@ namespace DiKErnel.Integration.Test
 
         private static void AssertResultWithSuccessfulFalseAndEvent(SimpleResult result, string expectedMessage)
         {
-            Assert.IsFalse(result.Successful);
+            Assert.That(result.Successful, Is.False);
 
             IReadOnlyList<Event> events = result.Events;
             Assert.That(events, Has.Count.EqualTo(1));
@@ -1004,7 +1004,7 @@ namespace DiKErnel.Integration.Test
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
-            Assert.IsFalse(result.Successful);
+            Assert.That(result.Successful, Is.False);
 
             IReadOnlyList<Event> events = result.Events;
             Assert.That(events, Has.Count.EqualTo(1));
@@ -1041,7 +1041,7 @@ namespace DiKErnel.Integration.Test
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
-            Assert.IsFalse(result.Successful);
+            Assert.That(result.Successful, Is.False);
 
             IReadOnlyList<Event> events = result.Events;
             Assert.That(events, Has.Count.EqualTo(2));

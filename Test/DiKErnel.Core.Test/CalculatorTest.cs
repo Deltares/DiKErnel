@@ -165,7 +165,7 @@ namespace DiKErnel.Core.Test
             DataResult<CalculationOutput> result = calculator.Result;
 
             // Then
-            Assert.IsFalse(result.Successful);
+            Assert.That(result.Successful, Is.False);
         }
 
         [Test]
@@ -206,7 +206,7 @@ namespace DiKErnel.Core.Test
             DataResult<CalculationOutput> result = calculator.Result;
 
             // Then
-            Assert.IsFalse(result.Successful);
+            Assert.That(result.Successful, Is.False);
             Assert.That(result.Events, Has.Count.EqualTo(1));
 
             Event exceptionEvent = result.Events[0];

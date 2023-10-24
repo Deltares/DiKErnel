@@ -133,7 +133,7 @@ namespace DiKErnel.Core.Test
             DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput);
 
             // Assert
-            Assert.IsFalse(validationResult.Successful);
+            Assert.That(validationResult.Successful, Is.False);
             Assert.That(validationResult.Events, Has.Count.EqualTo(1));
 
             Event exceptionEvent = validationResult.Events[0];

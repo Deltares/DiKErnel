@@ -73,7 +73,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                             upperLimitLoadingRevetment, z);
 
             // Assert
-            Assert.IsFalse(loadingRevetment);
+            Assert.That(loadingRevetment, Is.False);
         }
 
         [Test]
@@ -137,7 +137,7 @@ namespace DiKErnel.FunctionLibrary.Test
                                                                             upperLimitLoadingRevetment, z);
 
             // Assert
-            Assert.IsFalse(loadingRevetment);
+            Assert.That(loadingRevetment, Is.False);
         }
 
         [Test]

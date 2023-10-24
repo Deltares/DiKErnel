@@ -70,7 +70,7 @@ namespace DiKErnel.Integration.Test.Helpers
             });
 
             // Then
-            Assert.IsFalse(validationSuccessful);
+            Assert.That(validationSuccessful, Is.False);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
             Assert.That(registeredEvents, Has.Count.EqualTo(2));

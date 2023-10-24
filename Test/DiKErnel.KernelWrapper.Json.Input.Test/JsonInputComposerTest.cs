@@ -588,7 +588,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             bool result = JsonInputComposer.ValidateJson(filePath);
 
             // Then
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
             Assert.That(registeredEvents, Has.Count.EqualTo(1));
@@ -607,7 +607,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             bool result = JsonInputComposer.ValidateJson(filePath);
 
             // Then
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
             Assert.That(registeredEvents, Has.Count.EqualTo(1));
@@ -626,7 +626,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             bool result = JsonInputComposer.ValidateJson(filePath);
 
             // Then
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
 
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
             Assert.That(registeredEvents, Has.Count.EqualTo(1));
@@ -647,7 +647,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             // Then
             DataResult<ICalculationInput> calculationInputDataResult = result.CalculationInputDataResult;
 
-            Assert.IsFalse(calculationInputDataResult.Successful);
+            Assert.That(calculationInputDataResult.Successful, Is.False);
 
             Assert.That(calculationInputDataResult.Events, Has.Count.EqualTo(1));
             Assert.That(calculationInputDataResult.Events[0].Type, Is.EqualTo(EventType.Error));

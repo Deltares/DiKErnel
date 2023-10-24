@@ -35,7 +35,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test.Data.Generic.Converters
             bool canWrite = converter.CanWrite;
 
             // Assert
-            Assert.IsFalse(canWrite);
+            Assert.That(canWrite, Is.False);
         }
 
         [Test]
