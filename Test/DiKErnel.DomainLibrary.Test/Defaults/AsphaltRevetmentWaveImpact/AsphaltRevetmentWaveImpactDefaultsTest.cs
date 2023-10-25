@@ -49,7 +49,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
         public void WidthFactors_ExpectedValue()
         {
             // Call & Assert
-            CollectionAssert.AreEqual(new[]
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.WidthFactors, Is.EqualTo(new[]
             {
                 (0.1, 0.0392),
                 (0.2, 0.0738),
@@ -66,14 +66,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
                 (1.3, 0.0216),
                 (1.4, 0.015),
                 (1.5, 0.0105)
-            }, AsphaltRevetmentWaveImpactDefaults.WidthFactors);
+            }));
         }
 
         [Test]
         public void DepthFactors_ExpectedValue()
         {
             // Call & Assert
-            CollectionAssert.AreEqual(new[]
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.DepthFactors, Is.EqualTo(new[]
             {
                 (-1.0, 0.005040816326530646),
                 (-0.9744897959183674, 0.00596482278562177),
@@ -125,14 +125,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
                 (0.19897959183673475, 0.0035880654098033892),
                 (0.22448979591836737, 0.003263202667360069),
                 (0.25, 0.0031645408163265307)
-            }, AsphaltRevetmentWaveImpactDefaults.DepthFactors);
+            }));
         }
 
         [Test]
         public void ImpactFactors_ExpectedValue()
         {
             // Call & Assert
-            CollectionAssert.AreEqual(new[]
+            Assert.That(AsphaltRevetmentWaveImpactDefaults.ImpactFactors, Is.EqualTo(new[]
             {
                 (2, 0.039),
                 (2.4, 0.1),
@@ -145,7 +145,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
                 (5.2, 0.01),
                 (5.6, 0.005),
                 (6, 0.001)
-            }, AsphaltRevetmentWaveImpactDefaults.ImpactFactors);
+            }));
         }
 
         [Test]

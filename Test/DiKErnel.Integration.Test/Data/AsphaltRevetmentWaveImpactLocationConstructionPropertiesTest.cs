@@ -133,9 +133,9 @@ namespace DiKErnel.Integration.Test.Data
             Assert.That(constructionProperties.FatigueBeta, Is.EqualTo(fatigueBeta));
             Assert.That(constructionProperties.ImpactNumberC, Is.EqualTo(impactNumberC));
             Assert.That(constructionProperties.StiffnessRelationNu, Is.EqualTo(stiffnessRelationNu));
-            CollectionAssert.AreEqual(widthFactors, constructionProperties.WidthFactors);
-            CollectionAssert.AreEqual(depthFactors, constructionProperties.DepthFactors);
-            CollectionAssert.AreEqual(impactFactors, constructionProperties.ImpactFactors);
+            Assert.That(constructionProperties.WidthFactors, Is.EqualTo(widthFactors));
+            Assert.That(constructionProperties.DepthFactors, Is.EqualTo(depthFactors));
+            Assert.That(constructionProperties.ImpactFactors, Is.EqualTo(impactFactors));
         }
     }
 }

@@ -234,14 +234,14 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1.8, 4.4, grassRevetmentOvertoppingLocationDependentInputItem.LocationDependentAccelerationAlphaA);
 
-            CollectionAssert.AreEqual(new[]
+            Assert.That(result.LocationIds, Is.EqualTo(new[]
             {
                 1,
                 2,
                 3,
                 5,
                 9
-            }, result.LocationIds);
+            }));
         }
 
         [Test]

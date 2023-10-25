@@ -54,9 +54,9 @@ namespace DiKErnel.Integration.TestUtil
                                          IReadOnlyList<(double, double)> impactFactors,
                                          AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput)
         {
-            CollectionAssert.AreEqual(widthFactors, locationDependentInput.WidthFactors);
-            CollectionAssert.AreEqual(depthFactors, locationDependentInput.DepthFactors);
-            CollectionAssert.AreEqual(impactFactors, locationDependentInput.ImpactFactors);
+            Assert.That(locationDependentInput.WidthFactors, Is.EqualTo(widthFactors));
+            Assert.That(locationDependentInput.DepthFactors, Is.EqualTo(depthFactors));
+            Assert.That(locationDependentInput.ImpactFactors, Is.EqualTo(impactFactors));
         }
     }
 }
