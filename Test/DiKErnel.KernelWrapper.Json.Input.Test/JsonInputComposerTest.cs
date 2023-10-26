@@ -612,8 +612,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             IReadOnlyList<Event> registeredEvents = EventRegistry.Flush();
             Assert.That(registeredEvents, Has.Count.EqualTo(1));
             Assert.That(registeredEvents[0].Type, Is.EqualTo(EventType.Error));
-            Assert.That(registeredEvents[0].Message, Is.EqualTo("Required properties are missing from object: tijdstippen, hydraulischeBelastingen, " +
-                            "dijkprofiel, locaties."));
+            Assert.That(registeredEvents[0].Message, Is.EqualTo("Required properties are missing from object: tijdstippen, " +
+                                                                "hydraulischeBelastingen, dijkprofiel, locaties."));
         }
 
         [Test]
