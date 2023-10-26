@@ -36,3 +36,11 @@ The terms under which DiKErnel can be redistributed and/or modified.
 ### Requirements for running
 - .NET7 runtime
 - Microsoft Visual C++ Redistributable 2022
+
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
