@@ -422,7 +422,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(0));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(0));
         }
 
         [Test]
@@ -493,7 +493,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(0));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(0));
         }
 
         [Test]
@@ -545,7 +545,7 @@ namespace DiKErnel.System.Test
             // Then
             Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
-            Assert.That(validationResult.Events.Count, Is.EqualTo(0));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(0));
         }
 
         [Test]
