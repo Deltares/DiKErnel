@@ -68,7 +68,7 @@ namespace DiKErnel.Core.Test.Extensions
         public void GivenLocationDependentOutput_WhenGetTimeOfFailure_ThenExpectedValues(bool withTimeOfFailure)
         {
             // Given
-            int? timeOfFailureInLastTimeStep = withTimeOfFailure ? Random.Next() : (int?) null;
+            double? timeOfFailureInLastTimeStep = withTimeOfFailure ? Random.NextDouble() : (double?) null;
 
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties1.IncrementDamage = Random.NextDouble();
@@ -88,7 +88,7 @@ namespace DiKErnel.Core.Test.Extensions
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
 
             // When
-            int? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
+            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
 
             // Then
             Assert.That(timeOfFailure, Is.EqualTo(timeOfFailureInLastTimeStep));

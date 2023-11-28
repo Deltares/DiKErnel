@@ -53,7 +53,7 @@ namespace DiKErnel.Core.Test
         {
             // Given
             double damage = Random.NextDouble();
-            int? timeOfFailure = withTimeOfFailure ? Random.Next() : (int?) null;
+            double? timeOfFailure = withTimeOfFailure ? Random.NextDouble() : (double?) null;
 
             ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
 
@@ -216,7 +216,7 @@ namespace DiKErnel.Core.Test
                                                            $"{Environment.NewLine}{exceptionMessage}"));
         }
 
-        private static ICalculationInput CreateCalculationInput(double damage = 0, int? timeOfFailure = null)
+        private static ICalculationInput CreateCalculationInput(double damage = 0, double? timeOfFailure = null)
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -240,9 +240,9 @@ namespace DiKErnel.Core.Test
         private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
             private readonly double damage;
-            private readonly int? timeOfFailure;
+            private readonly double? timeOfFailure;
 
-            public TestLocationDependentCalculationInput(double damage, int? timeOfFailure = null)
+            public TestLocationDependentCalculationInput(double damage, double? timeOfFailure = null)
             {
                 this.damage = damage;
                 this.timeOfFailure = timeOfFailure;
