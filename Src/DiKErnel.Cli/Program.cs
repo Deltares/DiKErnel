@@ -111,18 +111,15 @@ namespace DiKErnel.Cli
         private static ComposedInputData ValidateAndReadInput(
             string jsonInputFilePath, CommandLineArgumentParser parser)
         {
-            if (parser.ValidateJsonFormat)
+            bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
+
+            IReadOnlyList<Event> validationEvents = EventRegistry.Flush();
+
+            WriteToLogFile(validationEvents);
+
+            if (!validationResult)
             {
-                bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
-
-                IReadOnlyList<Event> validationEvents = EventRegistry.Flush();
-
-                WriteToLogFile(validationEvents);
-
-                if (!validationResult)
-                {
-                    return null;
-                }
+                return null;
             }
 
             ComposedInputData composedInputData = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);

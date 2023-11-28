@@ -29,7 +29,6 @@ namespace DiKErnel.Cli
         private const string outputFilePathKey = "uitvoerbestand";
         private const string outputLevelKey = "uitvoerniveau";
         private const string noMetaDataKey = "niet-schrijven-meta-informatie";
-        private const string noJsonFormatValidationKey = "niet-valideren-json-formaat";
 
         private static readonly IReadOnlyDictionary<string, IReadOnlyList<ArgumentType>> argumentOptions =
             new Dictionary<string, IReadOnlyList<ArgumentType>>
@@ -57,12 +56,6 @@ namespace DiKErnel.Cli
                 },
                 {
                     noMetaDataKey, new[]
-                    {
-                        ArgumentType.Optional
-                    }
-                },
-                {
-                    noJsonFormatValidationKey, new[]
                     {
                         ArgumentType.Optional
                     }
@@ -94,8 +87,6 @@ namespace DiKErnel.Cli
 
         public bool WriteMetaData => !readArguments.ContainsKey(noMetaDataKey);
 
-        public bool ValidateJsonFormat => !readArguments.ContainsKey(noJsonFormatValidationKey);
-
         public static string HelpMessage =>
             Environment.NewLine + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening " +
             "met DiKErnel" +
@@ -116,13 +107,11 @@ namespace DiKErnel.Cli
             Environment.NewLine + "    -> Standaardwaarde: schade" +
             Environment.NewLine + "--niet-schrijven-meta-informatie" +
             Environment.NewLine + "  = Schakelt het schrijven van meta-informatie uit" +
-            Environment.NewLine + "--niet-valideren-json-formaat" +
-            Environment.NewLine + "  = Schakelt het valideren van het Json-formaat uit" +
             Environment.NewLine +
             Environment.NewLine + "Voorbeeld:" +
             Environment.NewLine + "----------" +
             Environment.NewLine + "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json " +
-            "--uitvoerniveau fysica --niet-schrijven-meta-informatie --niet-valideren-json-formaat" +
+            "--uitvoerniveau fysica --niet-schrijven-meta-informatie" +
             Environment.NewLine +
             Environment.NewLine + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl" +
             Environment.NewLine +
