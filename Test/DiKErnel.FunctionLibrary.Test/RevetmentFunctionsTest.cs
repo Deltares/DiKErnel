@@ -29,14 +29,14 @@ namespace DiKErnel.FunctionLibrary.Test
         public void IncrementTime_ValidInput_ExpectedValue()
         {
             // Setup
-            const int beginTime = 1200;
-            const int endTime = 1500;
+            const double beginTime = 12.3;
+            const double endTime = 45.6;
 
             // Call
             double incrementTime = RevetmentFunctions.IncrementTime(beginTime, endTime);
 
             // Assert
-            AssertHelper.AreEqual(300, incrementTime);
+            AssertHelper.AreEqual(33.3, incrementTime);
         }
 
         [Test]

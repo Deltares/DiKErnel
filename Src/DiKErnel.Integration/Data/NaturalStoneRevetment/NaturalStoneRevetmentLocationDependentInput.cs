@@ -182,7 +182,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                 referenceTimeDegradation = NaturalStoneRevetmentFunctions.ReferenceTimeDegradation(
                     referenceDegradation, timeDependentInput.WavePeriodTm10);
 
-                int incrementTime = RevetmentFunctions.IncrementTime(
+                double incrementTime = RevetmentFunctions.IncrementTime(
                     timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
                 double incrementDegradation = NaturalStoneRevetmentFunctions.IncrementDegradation(

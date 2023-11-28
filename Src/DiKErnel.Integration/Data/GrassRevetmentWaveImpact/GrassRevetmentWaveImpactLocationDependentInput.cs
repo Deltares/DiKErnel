@@ -123,8 +123,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 
             if (loadingRevetment)
             {
-                int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                     timeDependentInput.EndTime);
+                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
+                                                                        timeDependentInput.EndTime);
 
                 waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 

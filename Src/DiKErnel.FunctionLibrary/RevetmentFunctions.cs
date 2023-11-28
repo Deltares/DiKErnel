@@ -31,7 +31,7 @@ namespace DiKErnel.FunctionLibrary
         /// <param name="beginTime">The begin time [s].</param>
         /// <param name="endTime">The end time [s].</param>
         /// <returns>The increment of time [s].</returns>
-        public static int IncrementTime(int beginTime, int endTime)
+        public static double IncrementTime(double beginTime, double endTime)
         {
             return endTime - beginTime;
         }

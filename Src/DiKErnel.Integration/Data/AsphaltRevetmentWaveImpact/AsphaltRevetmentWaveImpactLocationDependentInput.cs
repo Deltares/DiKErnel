@@ -179,8 +179,8 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            int incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                 timeDependentInput.EndTime);
+            double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
+                                                                    timeDependentInput.EndTime);
 
             averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
                                                                            timeDependentInput.WavePeriodTm10,
