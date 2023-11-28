@@ -190,18 +190,15 @@ namespace DiKErnel.Gui.View
 
         private ComposedInputData ValidateAndReadInput(string jsonInputFilePath)
         {
-            if (mainWindowViewModel.ValidateJsonInput)
+            bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
+
+            CacheMessagesWhenApplicable("het valideren van het Json-formaat", EventRegistry.Flush());
+
+            if (!validationResult)
             {
-                bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
+                AddLogMessagesForFailedCalculation();
 
-                CacheMessagesWhenApplicable("het valideren van het Json-formaat", EventRegistry.Flush());
-
-                if (!validationResult)
-                {
-                    AddLogMessagesForFailedCalculation();
-
-                    return null;
-                }
+                return null;
             }
 
             ComposedInputData composedInputData = JsonInputComposer.GetInputDataFromJson(jsonInputFilePath);

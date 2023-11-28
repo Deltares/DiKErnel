@@ -72,8 +72,6 @@ namespace DiKErnel.Gui.ViewModel
                                                                ? Brushes.Black
                                                                : Brushes.DarkGray;
 
-        public bool ValidateJsonInput { get; set; } = true;
-
         public bool WriteMetaData { get; set; } = true;
 
         public JsonOutputType OutputType { get; set; } = JsonOutputType.Damage;

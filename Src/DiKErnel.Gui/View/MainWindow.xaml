@@ -140,18 +140,9 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                 <TextBlock Grid.Row="0" Margin="0, 0, 0, 5" FontWeight="DemiBold">
                     Opties
                 </TextBlock>
-                <Grid Grid.Row="1" Width="413" Height="32">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <mah:ToggleSwitch Grid.Column="0" IsOn="{Binding ValidateJsonInput}" VerticalAlignment="Center">
-                        Valideren Json-formaat
-                    </mah:ToggleSwitch>
-                    <mah:ToggleSwitch Grid.Column="1" IsOn="{Binding WriteMetaData}" VerticalAlignment="Center">
-                        Schrijven meta-informatie
-                    </mah:ToggleSwitch>
-                </Grid>
+                <mah:ToggleSwitch Grid.Row="1" IsOn="{Binding WriteMetaData}" VerticalAlignment="Center">
+                    Schrijven meta-informatie
+                </mah:ToggleSwitch>
                 <TextBlock Grid.Row="2" Margin="0, 15, 0, 5" FontWeight="DemiBold">
                     Uitvoerniveau
                 </TextBlock>
