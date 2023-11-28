@@ -119,7 +119,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
 
             var incrementDamage = 0.0;
             double damage = initialDamage;
-            int? timeOfFailure = null;
+            double? timeOfFailure = null;
 
             if (loadingRevetment)
             {

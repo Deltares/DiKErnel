@@ -165,14 +165,14 @@ namespace DiKErnel.FunctionLibrary.Test
         public void TimeOfFailure_ValidRoundedInput_ExpectedValue()
         {
             // Setup
-            const double durationInTimeStepFailure = 254;
-            const double beginTime = 1568;
+            const double durationInTimeStepFailure = 12.3;
+            const double beginTime = 45.6;
 
             // Call
-            int timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
+            double timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
 
             // Assert
-            AssertHelper.AreEqual(1822, timeOfFailure);
+            AssertHelper.AreEqual(57.9, timeOfFailure);
         }
 
         [Test]

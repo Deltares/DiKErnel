@@ -91,9 +91,9 @@ namespace DiKErnel.FunctionLibrary
         /// <param name="durationInTimeStepFailure">The duration in the time step of failure [s].</param>
         /// <param name="beginTime">The begin time [s].</param>
         /// <returns>The time of failure [s].</returns>
-        public static int TimeOfFailure(double durationInTimeStepFailure, double beginTime)
+        public static double TimeOfFailure(double durationInTimeStepFailure, double beginTime)
         {
-            return (int) Math.Ceiling(durationInTimeStepFailure + beginTime);
+            return durationInTimeStepFailure + beginTime;
         }
     }
 }

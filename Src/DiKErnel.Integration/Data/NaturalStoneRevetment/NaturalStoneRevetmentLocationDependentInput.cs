@@ -166,7 +166,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
 
             var incrementDamage = 0.0;
             double damage = initialDamage;
-            int? timeOfFailure = null;
+            double? timeOfFailure = null;
 
             if (loadingRevetment)
             {
@@ -268,7 +268,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
                                                                 : HydraulicLoads.HydraulicLoadNs));
         }
 
-        private int CalculateTimeOfFailure(double wavePeriodTm10, double beginTime)
+        private double CalculateTimeOfFailure(double wavePeriodTm10, double beginTime)
         {
             double referenceFailure = NaturalStoneRevetmentFunctions.ReferenceFailure(
                 resistance, hydraulicLoad, waveAngleImpact, FailureNumber);

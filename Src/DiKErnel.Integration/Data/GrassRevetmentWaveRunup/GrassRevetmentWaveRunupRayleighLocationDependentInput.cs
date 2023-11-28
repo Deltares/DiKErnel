@@ -86,7 +86,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         {
             var incrementDamage = 0.0;
             double damage = initialDamage;
-            int? timeOfFailure = null;
+            double? timeOfFailure = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 Z, timeDependentInput.WaterLevel);

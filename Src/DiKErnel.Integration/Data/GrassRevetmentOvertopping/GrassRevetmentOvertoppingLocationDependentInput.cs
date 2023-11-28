@@ -147,7 +147,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         {
             var incrementDamage = 0.0;
             double damage = initialDamage;
-            int? timeOfFailure = null;
+            double? timeOfFailure = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 dikeHeight, timeDependentInput.WaterLevel);

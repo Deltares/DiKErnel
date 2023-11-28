@@ -195,7 +195,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
             double incrementDamage = AsphaltRevetmentWaveImpactFunctions.IncrementDamage(input);
             double damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
 
-            int? timeOfFailure = null;
+            double? timeOfFailure = null;
 
             if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
             {
