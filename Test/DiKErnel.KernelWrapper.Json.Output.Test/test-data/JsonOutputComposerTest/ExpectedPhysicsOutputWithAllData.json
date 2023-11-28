@@ -4,7 +4,7 @@
             {
                 "falen": {
                     "faalgebeurtenis": true,
-                    "faaltijd": 3
+                    "faaltijd": 0.3
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
@@ -32,7 +32,7 @@
             {
                 "falen": {
                     "faalgebeurtenis": true,
-                    "faaltijd": 8
+                    "faaltijd": 0.8
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
@@ -60,7 +60,7 @@
             {
                 "falen": {
                     "faalgebeurtenis": true,
-                    "faaltijd": 15
+                    "faaltijd": 1.5
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
@@ -97,7 +97,7 @@
             {
                 "falen": {
                     "faalgebeurtenis": true,
-                    "faaltijd": 23
+                    "faaltijd": 2.3
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
@@ -132,7 +132,7 @@
             {
                 "falen": {
                     "faalgebeurtenis": true,
-                    "faaltijd": 32
+                    "faaltijd": 3.2
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [

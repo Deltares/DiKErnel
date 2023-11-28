@@ -138,7 +138,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     {
                         IncrementDamage = 0,
                         Damage = 0.253,
-                        TimeOfFailure = 60
+                        TimeOfFailure = 60.1
                     })
                 }),
                 Substitute.For<LocationDependentOutput>(new List<TimeDependentOutput>
@@ -223,7 +223,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     IncrementDamage = 0.1,
                     Damage = 0.2,
-                    TimeOfFailure = 3,
+                    TimeOfFailure = 0.3,
                     MaximumPeakStress = 0.4,
                     AverageNumberOfWaves = 0.5
                 });
@@ -233,7 +233,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     IncrementDamage = 0.6,
                     Damage = 0.7,
-                    TimeOfFailure = 8,
+                    TimeOfFailure = 0.8,
                     VerticalDistanceWaterLevelElevation = 0.9,
                     RepresentativeWaveRunup2P = 1.0,
                     CumulativeOverload = 1.1,
@@ -245,7 +245,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     IncrementDamage = 1.3,
                     Damage = 1.4,
-                    TimeOfFailure = 15,
+                    TimeOfFailure = 1.5,
                     LoadingRevetment = true,
                     UpperLimitLoading = 1.6,
                     LowerLimitLoading = 1.7,
@@ -259,7 +259,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     IncrementDamage = 2.1,
                     Damage = 2.2,
-                    TimeOfFailure = 23,
+                    TimeOfFailure = 2.3,
                     VerticalDistanceWaterLevelElevation = 2.4,
                     WaveAngle = 2.5,
                     WaveAngleImpact = 2.6,
@@ -273,7 +273,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     IncrementDamage = 3.0,
                     Damage = 3.1,
-                    TimeOfFailure = 32,
+                    TimeOfFailure = 3.2,
                     OuterSlope = 3.3,
                     SlopeUpperLevel = 3.4,
                     SlopeUpperPosition = 3.5,
