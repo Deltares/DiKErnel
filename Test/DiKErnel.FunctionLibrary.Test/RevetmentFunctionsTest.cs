@@ -16,9 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.TestUtil;
+using DiKErnel.FunctionLibrary.TestUtil;
 using NUnit.Framework;
-using AssertHelper = DiKErnel.FunctionLibrary.TestUtil.AssertHelper;
 
 namespace DiKErnel.FunctionLibrary.Test
 {
@@ -162,7 +161,7 @@ namespace DiKErnel.FunctionLibrary.Test
         }
 
         [Test]
-        public void TimeOfFailure_ValidRoundedInput_ExpectedValue()
+        public void TimeOfFailure_ValidInput_ExpectedValue()
         {
             // Setup
             const double durationInTimeStepFailure = 12.3;
@@ -173,20 +172,6 @@ namespace DiKErnel.FunctionLibrary.Test
 
             // Assert
             AssertHelper.AreEqual(57.9, timeOfFailure);
-        }
-
-        [Test]
-        public void TimeOfFailure_ValidUnroundedInput_ExpectedValue()
-        {
-            // Setup
-            double durationInTimeStepFailure = 254 + Random.NextDouble();
-            const double beginTime = 1568;
-
-            // Call
-            double timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
-
-            // Assert
-            AssertHelper.AreEqual(1823, timeOfFailure);
         }
     }
 }
