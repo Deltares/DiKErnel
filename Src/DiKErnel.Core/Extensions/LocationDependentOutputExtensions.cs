@@ -45,7 +45,7 @@ namespace DiKErnel.Core.Extensions
         /// <param name="locationDependentOutput">The location dependent output.</param>
         /// <returns>The calculated time of failure for the location dependent
         /// output.</returns>
-        public static int? GetTimeOfFailure(this LocationDependentOutput locationDependentOutput)
+        public static double? GetTimeOfFailure(this LocationDependentOutput locationDependentOutput)
         {
             return locationDependentOutput.TimeDependentOutputItems
                                           .FirstOrDefault(tdo => tdo.TimeOfFailure.HasValue)?.TimeOfFailure;

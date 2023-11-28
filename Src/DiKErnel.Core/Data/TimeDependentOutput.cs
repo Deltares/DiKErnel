@@ -53,6 +53,6 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the time of failure.
         /// </summary>
-        public int? TimeOfFailure { get; }
+        public double? TimeOfFailure { get; }
     }
 }

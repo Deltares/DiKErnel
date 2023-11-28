@@ -33,7 +33,7 @@ namespace DiKErnel.Core.Test.Data
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            int timeOfFailure = Random.Next();
+            double timeOfFailure = Random.NextDouble();
 
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
             constructionProperties.IncrementDamage = incrementDamage;
@@ -55,7 +55,7 @@ namespace DiKErnel.Core.Test.Data
             // Setup
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
             constructionProperties.Damage = Random.NextDouble();
-            constructionProperties.TimeOfFailure = Random.Next();
+            constructionProperties.TimeOfFailure = Random.NextDouble();
 
             // Call
             void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
@@ -70,7 +70,7 @@ namespace DiKErnel.Core.Test.Data
             // Setup
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
             constructionProperties.IncrementDamage = Random.NextDouble();
-            constructionProperties.TimeOfFailure = Random.Next();
+            constructionProperties.TimeOfFailure = Random.NextDouble();
 
             // Call
             void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
