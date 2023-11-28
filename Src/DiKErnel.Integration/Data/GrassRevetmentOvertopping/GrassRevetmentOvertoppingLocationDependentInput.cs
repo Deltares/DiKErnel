@@ -264,7 +264,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         }
 
         private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, int? timeOfFailure)
+            double incrementDamage, double damage, double? timeOfFailure)
         {
             var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
             {

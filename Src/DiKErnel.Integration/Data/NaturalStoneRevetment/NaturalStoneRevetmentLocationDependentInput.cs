@@ -281,7 +281,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneRevetment
         }
 
         private NaturalStoneRevetmentTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, int? timeOfFailure)
+            double incrementDamage, double damage, double? timeOfFailure)
         {
             var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
             {

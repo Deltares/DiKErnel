@@ -171,7 +171,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
         }
 
         private GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, int? timeOfFailure)
+            double incrementDamage, double damage, double? timeOfFailure)
         {
             var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
             {

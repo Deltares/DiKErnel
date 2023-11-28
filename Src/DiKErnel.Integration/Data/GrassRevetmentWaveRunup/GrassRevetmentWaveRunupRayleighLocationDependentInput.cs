@@ -161,7 +161,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         }
 
         private GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, int? timeOfFailure)
+            double incrementDamage, double damage, double? timeOfFailure)
         {
             var constructionProperties = new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
             {

@@ -221,7 +221,7 @@ namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
         }
 
         private AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, int? timeOfFailure)
+            double incrementDamage, double damage, double? timeOfFailure)
         {
             return new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
             {
