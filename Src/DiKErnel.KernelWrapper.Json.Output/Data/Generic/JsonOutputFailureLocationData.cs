@@ -23,7 +23,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
 {
     internal class JsonOutputFailureLocationData
     {
-        public JsonOutputFailureLocationData(int? timeOfFailure)
+        public JsonOutputFailureLocationData(double? timeOfFailure)
         {
             TimeOfFailure = timeOfFailure;
         }
@@ -32,6 +32,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Generic
         public bool Failed => TimeOfFailure != null;
 
         [JsonProperty(JsonOutputDefinitions.TimeOfFailure)]
-        public int? TimeOfFailure { get; }
+        public double? TimeOfFailure { get; }
     }
 }
