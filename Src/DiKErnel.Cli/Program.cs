@@ -58,7 +58,7 @@ namespace DiKErnel.Cli
                 RemoveFileWhenExists(jsonOutputFilePath);
                 RemoveFileWhenExists(logOutputFilePath);
 
-                ComposedInputData composedInputData = ValidateAndReadInput(jsonInputFilePath, parser);
+                ComposedInputData composedInputData = ValidateAndReadInput(jsonInputFilePath);
 
                 if (composedInputData == null)
                 {
@@ -108,8 +108,7 @@ namespace DiKErnel.Cli
             }
         }
 
-        private static ComposedInputData ValidateAndReadInput(
-            string jsonInputFilePath, CommandLineArgumentParser parser)
+        private static ComposedInputData ValidateAndReadInput(string jsonInputFilePath)
         {
             bool validationResult = JsonInputComposer.ValidateJson(jsonInputFilePath);
 
