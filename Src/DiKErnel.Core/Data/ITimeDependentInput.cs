@@ -26,12 +26,12 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the begin time.
         /// </summary>
-        public int BeginTime { get; }
+        public double BeginTime { get; }
 
         /// <summary>
         /// Gets the end time.
         /// </summary>
-        public int EndTime { get; }
+        public double EndTime { get; }
 
         /// <summary>
         /// Gets the water level.

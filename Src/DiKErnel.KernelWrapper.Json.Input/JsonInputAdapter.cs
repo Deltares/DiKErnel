@@ -119,7 +119,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             IReadOnlyList<double> wavePeriodsTm10 = hydraulicData.WavePeriodsTm10;
             IReadOnlyList<double> waveDirections = hydraulicData.WaveDirections;
 
-            IReadOnlyList<int> times = jsonInputData.Times;
+            IReadOnlyList<double> times = jsonInputData.Times;
 
             for (var i = 0; i < times.Count - 1; i++)
             {

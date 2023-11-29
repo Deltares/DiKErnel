@@ -109,7 +109,7 @@ namespace DiKErnel.Integration
         /// <param name="waveHeightHm0">The wave height.</param>
         /// <param name="wavePeriodTm10">The wave period.</param>
         /// <param name="waveDirection">The wave direction.</param>
-        public void AddTimeStep(int beginTime, int endTime, double waterLevel, double waveHeightHm0,
+        public void AddTimeStep(double beginTime, double endTime, double waterLevel, double waveHeightHm0,
                                 double wavePeriodTm10, double waveDirection)
         {
             timeDependentInputFactoryDataItems.Add(new TimeDependentInputFactoryData(beginTime, endTime, waterLevel,
@@ -538,12 +538,12 @@ namespace DiKErnel.Integration
 
             foreach (TimeDependentInputFactoryData currentTimeDependentInput in timeDependentInputFactoryDataItems)
             {
-                int currentTimeStepBeginTime = currentTimeDependentInput.BeginTime;
+                double currentTimeStepBeginTime = currentTimeDependentInput.BeginTime;
 
                 if (previousTimeDependentInput != null)
                 {
-                    int previousTimeStepEndTime = previousTimeDependentInput.EndTime;
-                    if (previousTimeStepEndTime != currentTimeStepBeginTime)
+                    double previousTimeStepEndTime = previousTimeDependentInput.EndTime;
+                    if (!NumericsHelper.AreEqual(previousTimeStepEndTime, currentTimeStepBeginTime))
                     {
                         RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must " +
                                                 "be equal to the end time of the previous time step " +
@@ -552,7 +552,7 @@ namespace DiKErnel.Integration
                     }
                 }
 
-                int currentTimeStepEndTime = currentTimeDependentInput.EndTime;
+                double currentTimeStepEndTime = currentTimeDependentInput.EndTime;
 
                 if (currentTimeStepBeginTime >= currentTimeStepEndTime)
                 {

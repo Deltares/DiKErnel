@@ -80,7 +80,7 @@ namespace DiKErnel.Integration.Test
 
         private static void AddDefaultTimeStep(CalculationInputBuilder builder)
         {
-            builder.AddTimeStep(1, 2, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
+            builder.AddTimeStep(1.1, 2.2, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
         }
 
         private static void GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
@@ -559,16 +559,16 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
             builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassRevetmentTopLayerType.ClosedSod));
-            builder.AddTimeStep(1, 2, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
-            builder.AddTimeStep(3, 4, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
+            builder.AddTimeStep(1.1, 2.2, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
+            builder.AddTimeStep(3.3, 4.4, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, "The begin time of the time step (3) must be equal to the end time of the previous time " +
-                        "step (2).");
+                result, "The begin time of the time step (3,3) must be equal to the end time of the previous time " +
+                        "step (2,2).");
         }
 
         [Test]
@@ -584,22 +584,22 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
             builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassRevetmentTopLayerType.ClosedSod));
-            builder.AddTimeStep(2, 1, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
+            builder.AddTimeStep(2.2, 1.1, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, "The begin time of the time step (2) must be smaller than the end time of the time step (1).");
+                result, "The begin time of the time step (2,2) must be smaller than the end time of the time step (1,1).");
         }
 
         [Test]
         public void GivenBuilderWithTimeStepAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
-            const int beginTime = 1;
-            const int endTime = 2;
+            const double beginTime = 1.1;
+            const double endTime = 2.2;
             double waterLevel = Random.NextDouble();
             double waveHeightHm0 = Random.NextDouble();
             double wavePeriodTm10 = Random.NextDouble();
