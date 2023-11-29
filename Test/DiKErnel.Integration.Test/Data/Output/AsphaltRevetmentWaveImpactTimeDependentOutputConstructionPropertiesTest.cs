@@ -47,7 +47,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Given
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            int timeOfFailure = Random.Next();
+            double timeOfFailure = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 

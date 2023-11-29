@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            int timeOfFailure = Random.Next();
+            double timeOfFailure = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
@@ -109,7 +109,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
-                TimeOfFailure = Random.Next(),
+                TimeOfFailure = Random.NextDouble(),
                 VerticalDistanceWaterLevelElevation = null,
                 WaveAngle = Random.NextDouble(),
                 WaveAngleImpact = Random.NextDouble(),

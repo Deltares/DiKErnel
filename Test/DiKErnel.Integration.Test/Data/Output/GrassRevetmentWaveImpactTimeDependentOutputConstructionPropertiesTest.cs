@@ -51,7 +51,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Given
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            int timeOfFailure = Random.Next();
+            double timeOfFailure = Random.NextDouble();
             bool loadingRevetment = Random.NextBoolean();
             double upperLimitLoading = Random.NextDouble();
             double lowerLimitLoading = Random.NextDouble();

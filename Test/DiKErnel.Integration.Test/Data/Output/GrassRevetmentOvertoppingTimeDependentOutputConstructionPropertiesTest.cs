@@ -49,7 +49,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Given
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            int timeOfFailure = Random.Next();
+            double timeOfFailure = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();

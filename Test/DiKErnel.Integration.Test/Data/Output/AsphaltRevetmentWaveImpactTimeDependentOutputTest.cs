@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            int timeOfFailure = Random.Next();
+            double timeOfFailure = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
@@ -134,7 +134,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
-                TimeOfFailure = Random.Next(),
+                TimeOfFailure = Random.NextDouble(),
                 MaximumPeakStress = Random.NextDouble(),
                 AverageNumberOfWaves = Random.NextDouble()
             };

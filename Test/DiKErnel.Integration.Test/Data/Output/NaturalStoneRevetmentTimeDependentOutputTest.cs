@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            int timeOfFailure = Random.Next();
+            double timeOfFailure = Random.NextDouble();
             double outerSlope = Random.NextDouble();
             double slopeUpperLevel = Random.NextDouble();
             double slopeUpperPosition = Random.NextDouble();
@@ -405,7 +405,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
-                TimeOfFailure = Random.Next(),
+                TimeOfFailure = Random.NextDouble(),
                 OuterSlope = Random.NextDouble(),
                 SlopeUpperLevel = Random.NextDouble(),
                 SlopeUpperPosition = Random.NextDouble(),
