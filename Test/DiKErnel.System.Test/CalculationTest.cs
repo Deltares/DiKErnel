@@ -29,7 +29,7 @@ namespace DiKErnel.System.Test
     public abstract class CalculationTest
     {
         protected static void AssertOutput(Calculator calculator, double expectedDamage,
-                                           int? expectedTimeOfFailure = null)
+                                           double? expectedRoundedTimeOfFailure = null)
         {
             if (calculator == null)
             {
@@ -45,7 +45,13 @@ namespace DiKErnel.System.Test
             IReadOnlyList<double> damages = calculatorResult.Data.LocationDependentOutputItems[0].GetDamages();
             Assert.That(damages[damages.Count - 1], Is.EqualTo(expectedDamage).Within(1e-14));
 
-            Assert.That(calculatorResult.Data.LocationDependentOutputItems[0].GetTimeOfFailure(), Is.EqualTo(expectedTimeOfFailure));
+            double? timeOfFailure = calculatorResult.Data.LocationDependentOutputItems[0].GetTimeOfFailure();
+            if (timeOfFailure.HasValue)
+            {
+                timeOfFailure = Math.Ceiling(timeOfFailure.Value);
+            }
+            
+            Assert.That(timeOfFailure, Is.EqualTo(expectedRoundedTimeOfFailure));
         }
     }
 }
