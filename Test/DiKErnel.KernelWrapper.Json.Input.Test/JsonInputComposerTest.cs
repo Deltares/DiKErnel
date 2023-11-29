@@ -107,9 +107,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
                 100, 500, 0.5, 0.8, 6, 7, timeDependentInputItems[1]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                500, 800, 1.15, 1.2, 6, 8, timeDependentInputItems[2]);
+                500, 800.5, 1.15, 1.2, 6, 8, timeDependentInputItems[2]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                800, 1200, 1.77, 1.5, 7, 350, timeDependentInputItems[3]);
+                800.5, 1200, 1.77, 1.5, 7, 350, timeDependentInputItems[3]);
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
                 1200, 2000, 2, 0.5, 4, 355, timeDependentInputItems[4]);
 
@@ -286,7 +286,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
             Assert.That(timeDependentInputItems, Has.Count.EqualTo(1));
             TimeDependentInputAssertHelper.AssertTimeDependentInputItem(
-                0, 100, 0.1, 0.5, 2, 350, timeDependentInputItems[0]);
+                0.5, 100, 0.1, 0.5, 2, 350, timeDependentInputItems[0]);
 
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 calculationInput.LocationDependentInputItems;

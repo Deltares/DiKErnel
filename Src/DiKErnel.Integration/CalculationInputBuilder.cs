@@ -543,6 +543,7 @@ namespace DiKErnel.Integration
                 if (previousTimeDependentInput != null)
                 {
                     double previousTimeStepEndTime = previousTimeDependentInput.EndTime;
+
                     if (!NumericsHelper.AreEqual(previousTimeStepEndTime, currentTimeStepBeginTime))
                     {
                         RegisterValidationError($"The begin time of the time step ({currentTimeStepBeginTime}) must " +
