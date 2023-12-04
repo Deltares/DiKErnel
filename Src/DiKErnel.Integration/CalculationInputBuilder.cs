@@ -546,9 +546,10 @@ namespace DiKErnel.Integration
 
                     if (!NumericsHelper.AreEqual(previousTimeStepEndTime, currentTimeStepBeginTime))
                     {
-                        RegisterValidationError($"The begin time of the time step ({NumericsHelper.ToString(currentTimeStepBeginTime)}) must " +
-                                                "be equal to the end time of the previous time step " +
-                                                $"({NumericsHelper.ToString(previousTimeStepEndTime)}).");
+                        RegisterValidationError(
+                            $"The begin time of the time step ({NumericsHelper.ToString(currentTimeStepBeginTime)}) must " +
+                            "be equal to the end time of the previous time step " +
+                            $"({NumericsHelper.ToString(previousTimeStepEndTime)}).");
                         return false;
                     }
                 }
@@ -557,8 +558,9 @@ namespace DiKErnel.Integration
 
                 if (currentTimeStepBeginTime >= currentTimeStepEndTime)
                 {
-                    RegisterValidationError($"The begin time of the time step ({NumericsHelper.ToString(currentTimeStepBeginTime)}) must be " +
-                                            $"smaller than the end time of the time step ({NumericsHelper.ToString(currentTimeStepEndTime)}).");
+                    RegisterValidationError(
+                        $"The begin time of the time step ({NumericsHelper.ToString(currentTimeStepBeginTime)}) must be " +
+                        $"smaller than the end time of the time step ({NumericsHelper.ToString(currentTimeStepEndTime)}).");
                     return false;
                 }
 

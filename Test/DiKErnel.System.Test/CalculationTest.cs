@@ -50,7 +50,7 @@ namespace DiKErnel.System.Test
             {
                 timeOfFailure = Math.Ceiling(timeOfFailure.Value);
             }
-            
+
             Assert.That(timeOfFailure, Is.EqualTo(expectedRoundedTimeOfFailure));
         }
     }

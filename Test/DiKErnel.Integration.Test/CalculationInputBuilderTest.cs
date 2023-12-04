@@ -563,7 +563,8 @@ namespace DiKErnel.Integration.Test
             double startTimeStep1 = Random.NextDouble();
             double endTimeStep1 = 1 + startTimeStep1;
             double startTimeStep2 = 1 + endTimeStep1;
-            builder.AddTimeStep(startTimeStep1, endTimeStep1, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
+            builder.AddTimeStep(startTimeStep1, endTimeStep1, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(),
+                                Random.NextDouble());
             builder.AddTimeStep(startTimeStep2, 4.4, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
 
             // When
@@ -571,8 +572,9 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, $"The begin time of the time step ({startTimeStep2.ToString("F6", CultureInfo.InvariantCulture)}) must be equal to" +
-                        $" the end time of the previous time step ({endTimeStep1.ToString("F6", CultureInfo.InvariantCulture)}).");
+                result,
+                $"The begin time of the time step ({startTimeStep2.ToString("F6", CultureInfo.InvariantCulture)}) must be equal to" +
+                $" the end time of the previous time step ({endTimeStep1.ToString("F6", CultureInfo.InvariantCulture)}).");
         }
 
         [Test]
@@ -597,8 +599,9 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, $"The begin time of the time step ({beginTime.ToString("F6", CultureInfo.InvariantCulture)}) must be smaller than " +
-                        $"the end time of the time step ({endTime.ToString("F6", CultureInfo.InvariantCulture)}).");
+                result,
+                $"The begin time of the time step ({beginTime.ToString("F6", CultureInfo.InvariantCulture)}) must be smaller than " +
+                $"the end time of the time step ({endTime.ToString("F6", CultureInfo.InvariantCulture)}).");
         }
 
         [Test]
