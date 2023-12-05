@@ -40,12 +40,7 @@ namespace DiKErnel.TestUtil
         {
             return instance.NextDouble();
         }
-
-        public static double NextDouble(double minValue, double maxValue)
-        {
-            return NextDouble() * (maxValue - minValue) + minValue;
-        }
-
+        
         public static bool NextBoolean()
         {
             return Convert.ToBoolean(instance.Next(0, 2));

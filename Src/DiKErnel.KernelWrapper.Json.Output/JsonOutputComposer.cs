@@ -58,12 +58,11 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 SetOptionalOutput(jsonOutput, locationIds, metaDataItems);
 
                 using StreamWriter file = File.CreateText(filePath);
-                using (var jsonTextWriter = new JsonTextWriter(file)
+                using (var jsonTextWriter = new JsonTextWriter(file))
                 {
-                    Indentation = indentation,
-                    Formatting = Formatting.Indented
-                })
-                {
+                    jsonTextWriter.Indentation = indentation;
+                    jsonTextWriter.Formatting = Formatting.Indented;
+                    
                     serializer.Serialize(jsonTextWriter, jsonOutput);
                 }
 

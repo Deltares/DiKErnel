@@ -23,12 +23,6 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class ProfileDataAssertHelper
     {
-        public static void AssertProfilePoint(double expectedX, double expectedZ, ProfilePoint actualProfilePoint)
-        {
-            Assert.That(actualProfilePoint.X, Is.EqualTo(expectedX));
-            Assert.That(actualProfilePoint.Z, Is.EqualTo(expectedZ));
-        }
-
         public static void AssertProfileSegment(double expectedStartPointX, double expectedStartPointZ,
                                                 double expectedEndPointX, double expectedEndPointZ,
                                                 double expectedRoughnessCoefficient,
@@ -45,6 +39,12 @@ namespace DiKErnel.Integration.TestUtil
         {
             Assert.That(actualCharacteristicPoint.ProfilePoint, Is.SameAs(expectedProfilePoint));
             Assert.That(actualCharacteristicPoint.CharacteristicPointType, Is.EqualTo(expectedCharacteristicPointType));
+        }
+
+        private static void AssertProfilePoint(double expectedX, double expectedZ, ProfilePoint actualProfilePoint)
+        {
+            Assert.That(actualProfilePoint.X, Is.EqualTo(expectedX));
+            Assert.That(actualProfilePoint.Z, Is.EqualTo(expectedZ));
         }
     }
 }
