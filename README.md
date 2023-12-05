@@ -30,9 +30,8 @@ The terms under which DiKErnel can be redistributed and/or modified.
 ## Build
 
 ### Requirements for building
-- Microsoft Visual Studio 2022 (build tools)
-- .NET7 SDK
+- .NET7.0 SDK
 
 ### Requirements for running
-- .NET7 runtime
+- .NET7.0 Desktop Runtime
 - Microsoft Visual C++ Redistributable 2022
