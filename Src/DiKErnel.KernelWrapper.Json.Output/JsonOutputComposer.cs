@@ -62,7 +62,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 {
                     jsonTextWriter.Indentation = indentation;
                     jsonTextWriter.Formatting = Formatting.Indented;
-                    
+
                     serializer.Serialize(jsonTextWriter, jsonOutput);
                 }
 
