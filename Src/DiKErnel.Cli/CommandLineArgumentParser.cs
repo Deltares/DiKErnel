@@ -88,8 +88,16 @@ namespace DiKErnel.Cli
         public bool WriteMetaData => !readArguments.ContainsKey(noMetaDataKey);
 
         public static string HelpMessage =>
-            Environment.NewLine + "Deze executable kan worden gebruikt voor het uitvoeren van een command-line berekening " +
-            "met DiKErnel" +
+            Environment.NewLine + "Disclaimer:" +
+            Environment.NewLine + "-----------" +
+            Environment.NewLine + "Dit is een voorbeeldapplicatie om te illustreren hoe DiKErnel gebruikt kan worden." +
+            Environment.NewLine +
+            Environment.NewLine +
+            "De status van DiKErnel is momenteel een ALPHA release. Het doel van deze release is om feedback te ontvangen " +
+            "op het huidige functioneren en om tekortkomingen te identificeren. " + 
+            Environment.NewLine +
+            Environment.NewLine + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl" +
+            Environment.NewLine +
             Environment.NewLine +
             Environment.NewLine + "Verplichte argumenten:" +
             Environment.NewLine + "----------------------" +
@@ -112,8 +120,6 @@ namespace DiKErnel.Cli
             Environment.NewLine + "----------" +
             Environment.NewLine + "DiKErnel-cli.exe --invoerbestand Berekening1.json --uitvoerbestand UitvoerBerekening1.json " +
             "--uitvoerniveau fysica --niet-schrijven-meta-informatie" +
-            Environment.NewLine +
-            Environment.NewLine + "Bij vragen of onduidelijkheden kunt u contact met ons opnemen via dikernel@deltares.nl" +
             Environment.NewLine +
             Environment.NewLine;
 
