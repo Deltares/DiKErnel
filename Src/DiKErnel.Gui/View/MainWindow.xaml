@@ -71,7 +71,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
             </Grid>
             <Border Grid.Column="3" BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Gray7}" Margin="20, 0, 0, 0"
                     Width="600" Height="90">
-                <Grid Margin="10, 0, 10, 6">
+                <Grid Margin="10, -1, 10, 3">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
