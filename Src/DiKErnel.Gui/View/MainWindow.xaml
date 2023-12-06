@@ -46,43 +46,43 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <svgc:SvgViewbox Grid.Column="0" Width="110" Height="110" Source="/Resources/logo.svg"/>
-            <Grid Column="1" Margin="30, 0, 0, 0" Width="70" Height="110">
+            <svgc:SvgViewbox Grid.Column="0" Width="90" Height="90" Source="/Resources/logo.svg"/>
+            <Grid Column="1" Margin="30, 0, 0, 0" Width="70" Height="90">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Doel" VerticalAlignment="Center" FontWeight="DemiBold"/>
-                <TextBlock Grid.Row="1" Text="Versie" VerticalAlignment="Center" FontWeight="DemiBold"/>
-                <TextBlock Grid.Row="2" Text="Bedrijf" VerticalAlignment="Center" FontWeight="DemiBold"/>
-                <TextBlock Grid.Row="3" Text="Contact" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                <TextBlock Grid.Row="0" Text="Versie" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                <TextBlock Grid.Row="1" Text="Bedrijf" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                <TextBlock Grid.Row="2" Text="Contact" VerticalAlignment="Center" FontWeight="DemiBold"/>
             </Grid>
-            <Grid Grid.Column="2" Margin="20, 0, 0, 0" Width="125" Height="110">
+            <Grid Grid.Column="2" Margin="20, 0, 0, 0" Width="125" Height="90">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Demonstratie" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Text="{x:Static viewModel:MainWindowViewModel.VersionNumber}" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="2" Text="Deltares" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="3" VerticalAlignment="Center">
+                <TextBlock Grid.Row="0" Text="{x:Static viewModel:MainWindowViewModel.VersionNumber}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Text="Deltares" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" VerticalAlignment="Center">
                     <Hyperlink NavigateUri="mailto:dikernel@deltares.nl" RequestNavigate="OnRequestNavigate">dikernel@deltares.nl</Hyperlink>
                 </TextBlock>
             </Grid>
             <Border Grid.Column="3" BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Gray7}" Margin="20, 0, 0, 0"
-                    Width="600" Height="110">
-                <TextBlock Margin="10, 6, 10, 6" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12">
-                    <Bold>Disclaimer: </Bold>
-                    De ALPHA versie van DiKErnel is nog in de testfase en zal op vele onderdelen nog moeten worden verbeterd en uitgebreid.
-                    Het doel van deze ALPHA versie is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te detecteren.
-                    DiKErnel dient met de grootst mogelijke voorzichtigheid te worden geïnstalleerd en gebruikt. Op geen enkele manier mag er
-                    worden vertrouwd op de beschikbare resultaten, de bijgeleverde softwaredocumentatie en al het andere materiaal dat bij
-                    deze versie beschikbaar wordt gesteld.
-                </TextBlock>
+                    Width="600" Height="90">
+                <Grid Margin="10, 0, 10, 6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Disclaimer</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.RowSpan="2" TextWrapping="Wrap" TextAlignment="Justify" VerticalAlignment="Center">
+                        Dit is een voorbeeldapplicatie om te illustreren hoe DiKErnel gebruikt kan worden. De status van DiKErnel is momenteel een ALPHA release. Het doel van deze
+                        release is om feedback te ontvangen op het huidige functioneren en om tekortkomingen te identificeren.
+                    </TextBlock>
+                </Grid>
             </Border>
         </Grid>
         <Separator Grid.Row="1" Margin="24, 24, 24, 0"/>
