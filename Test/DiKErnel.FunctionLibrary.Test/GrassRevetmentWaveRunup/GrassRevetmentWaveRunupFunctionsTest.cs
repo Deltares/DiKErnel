@@ -25,31 +25,54 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
     [TestFixture]
     public class GrassRevetmentWaveRunupFunctionsTest
     {
+        private const double epsilon = 1e-6;
+
         [Test]
-        public void RepresentativeWaveRunup2P_ValidInput_ExpectedValue()
+        [TestCase(170, 0)]
+        [TestCase(110 + epsilon, 0)]
+        [TestCase(110, 0)]
+        [TestCase(100, 1.87533524870219)]
+        [TestCase(90, 3.7506704974043981)]
+        [TestCase(80, 5.626005746106598)]
+        [TestCase(80 - epsilon, 5.626005746106598)]
+        [TestCase(40, 5.626005746106598)]
+        [TestCase(20, 5.626005746106598)]
+        [TestCase(-20, 5.626005746106598)]
+        [TestCase(-40, 5.626005746106598)]
+        [TestCase(-80 + epsilon, 5.626005746106598)]
+        [TestCase(-80, 5.626005746106598)]
+        [TestCase(-90, 3.7506704974043981)]
+        [TestCase(-100, 1.87533524870219)]
+        [TestCase(-110, 0)]
+        [TestCase(-110 - epsilon, 0)]
+        [TestCase(-170, 0)]
+        public void RepresentativeWaveRunup2P_ValidInput_ExpectedValue(double waveAngle, double expectedRepresentativeWaveRunup2P)
         {
             // Setup
-            const double surfSimilarityParameter = 1.436;
             const double waveAngleImpact = 0.901;
             const double waveHeightHm0 = 2;
+            const double wavePeriodTm10 = 5.2;
             const double representativeWaveRunup2PGammab = 1.1;
             const double representativeWaveRunup2PGammaf = 1.2;
             const double representativeWaveRunup2PAru = 1.65;
             const double representativeWaveRunup2PBru = 4;
             const double representativeWaveRunup2PCru = 1.5;
+            const double outerSlope = 0.312;
+            const double gravitationalAcceleration = 9.81;
 
-            var input = new GrassRevetmentWaveRunupRepresentative2PInput(surfSimilarityParameter, waveAngleImpact, waveHeightHm0,
-                                                                         representativeWaveRunup2PGammab,
+            var input = new GrassRevetmentWaveRunupRepresentative2PInput(waveAngle, waveAngleImpact, waveHeightHm0,
+                                                                         wavePeriodTm10, representativeWaveRunup2PGammab,
                                                                          representativeWaveRunup2PGammaf,
                                                                          representativeWaveRunup2PAru,
                                                                          representativeWaveRunup2PBru,
-                                                                         representativeWaveRunup2PCru);
+                                                                         representativeWaveRunup2PCru,
+                                                                         outerSlope, gravitationalAcceleration);
 
             // Call
             double representativeWaveRunup2P = GrassRevetmentWaveRunupFunctions.RepresentativeWaveRunup2P(input);
 
             // Assert
-            AssertHelper.AreEqual(5.635949616, representativeWaveRunup2P);
+            AssertHelper.AreEqual(expectedRepresentativeWaveRunup2P, representativeWaveRunup2P);
         }
 
         [Test]
