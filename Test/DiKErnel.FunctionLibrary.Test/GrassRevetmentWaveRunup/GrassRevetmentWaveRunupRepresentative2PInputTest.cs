@@ -29,7 +29,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
         public void Constructor_ExpectedValues()
         {
             // Setup
-            double surfSimilarityParameter = Random.NextDouble();
+            double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double waveHeightHm0 = Random.NextDouble();
             double representativeWaveRunup2PGammab = Random.NextDouble();
@@ -39,7 +39,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
             double representativeWaveRunup2PCru = Random.NextDouble();
 
             // Call
-            var input = new GrassRevetmentWaveRunupRepresentative2PInput(surfSimilarityParameter, waveAngleImpact,
+            var input = new GrassRevetmentWaveRunupRepresentative2PInput(waveAngle, waveAngleImpact,
                                                                          waveHeightHm0, representativeWaveRunup2PGammab,
                                                                          representativeWaveRunup2PGammaf,
                                                                          representativeWaveRunup2PAru,
@@ -47,7 +47,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
                                                                          representativeWaveRunup2PCru);
 
             // Assert
-            Assert.That(input.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));
+            Assert.That(input.WaveAngle, Is.EqualTo(waveAngle));
             Assert.That(input.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
             Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
             Assert.That(input.RepresentativeWaveRunup2PGammab, Is.EqualTo(representativeWaveRunup2PGammab));

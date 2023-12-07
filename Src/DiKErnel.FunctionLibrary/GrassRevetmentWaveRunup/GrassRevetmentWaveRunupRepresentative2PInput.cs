@@ -26,7 +26,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
+        /// <param name="waveAngle">The wave angle [deg].</param>
         /// <param name="waveAngleImpact">The wave impact with respect to the wave
         /// angle [-].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>
@@ -35,14 +35,14 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <param name="representativeWaveRunup2PAru">The Aru coefficient [-].</param>
         /// <param name="representativeWaveRunup2PBru">The Bru coefficient [-].</param>
         /// <param name="representativeWaveRunup2PCru">The Cru coefficient [-].</param>
-        public GrassRevetmentWaveRunupRepresentative2PInput(double surfSimilarityParameter, double waveAngleImpact,
+        public GrassRevetmentWaveRunupRepresentative2PInput(double waveAngle, double waveAngleImpact,
                                                             double waveHeightHm0, double representativeWaveRunup2PGammab,
                                                             double representativeWaveRunup2PGammaf,
                                                             double representativeWaveRunup2PAru,
                                                             double representativeWaveRunup2PBru,
                                                             double representativeWaveRunup2PCru)
         {
-            SurfSimilarityParameter = surfSimilarityParameter;
+            WaveAngle = waveAngle;
             WaveAngleImpact = waveAngleImpact;
             WaveHeightHm0 = waveHeightHm0;
             RepresentativeWaveRunup2PGammab = representativeWaveRunup2PGammab;
@@ -53,9 +53,9 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         }
 
         /// <summary>
-        /// Gets the surf similarity parameter [-].
+        /// Gets the wave angle [deg].
         /// </summary>
-        public double SurfSimilarityParameter { get; }
+        public double WaveAngle { get; }
 
         /// <summary>
         /// Gets the wave impact with respect to the wave angle [-].
