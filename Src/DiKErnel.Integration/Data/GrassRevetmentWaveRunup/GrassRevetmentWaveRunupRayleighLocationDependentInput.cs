@@ -100,18 +100,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                                                timeDependentInput.WavePeriodTm10,
                                                                                AverageNumberOfWavesCtm);
 
-                double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
-                    OuterSlope, timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
-                    Constants.GravitationalAcceleration);
-
                 waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
                 waveAngleImpact = GrassRevetmentWaveRunupFunctions.WaveAngleImpact(waveAngle,
                                                                                    WaveAngleImpact.Abeta,
                                                                                    WaveAngleImpact.Betamax);
 
-                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(surfSimilarityParameter,
-                                                                               timeDependentInput.WaveHeightHm0);
+                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaveHeightHm0,
+                                                                               timeDependentInput.WavePeriodTm10);
 
                 cumulativeOverload = CalculateCumulativeOverload();
 
@@ -135,15 +131,16 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
-        private double CalculateRepresentativeWaveRunup2P(double surfSimilarityParameter, double waveHeightHm0)
+        private double CalculateRepresentativeWaveRunup2P(double waveHeightHm0, double wavePeriodTm10)
         {
             return GrassRevetmentWaveRunupFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentWaveRunupRepresentative2PInput(surfSimilarityParameter, waveAngleImpact,
-                                                                 waveHeightHm0, Representative2P.Gammab,
+                new GrassRevetmentWaveRunupRepresentative2PInput(waveAngle, waveAngleImpact, waveHeightHm0,
+                                                                 wavePeriodTm10, Representative2P.Gammab,
                                                                  Representative2P.Gammaf,
                                                                  Representative2P.Representative2PAru,
                                                                  Representative2P.Representative2PBru,
-                                                                 Representative2P.Representative2PCru));
+                                                                 Representative2P.Representative2PCru, OuterSlope,
+                                                                 Constants.GravitationalAcceleration));
         }
 
         private double CalculateCumulativeOverload()
