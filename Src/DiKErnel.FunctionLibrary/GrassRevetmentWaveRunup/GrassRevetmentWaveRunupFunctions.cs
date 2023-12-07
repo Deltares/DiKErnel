@@ -32,14 +32,36 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <returns>The representative wave run-up (2 percent) [m].</returns>
         public static double RepresentativeWaveRunup2P(GrassRevetmentWaveRunupRepresentative2PInput input)
         {
+            double absoluteWaveAngle = Math.Abs(input.WaveAngle);
+
+            if (absoluteWaveAngle >= 110.0)
+            {
+                return 0.0;
+            }
+
+            double waveHeightHm0 = input.WaveHeightHm0;
+            double wavePeriodTm10 = input.WavePeriodTm10;
+
+            if (absoluteWaveAngle >= 80.0)
+            {
+                double correctionFactor = (110.0 - absoluteWaveAngle) / 30.0;
+
+                waveHeightHm0 *= correctionFactor;
+                wavePeriodTm10 *= Math.Sqrt(correctionFactor);
+            }
+
+            double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
+                input.OuterSlope, waveHeightHm0, wavePeriodTm10,
+                input.GravitationalAcceleration);
+            
             return input.WaveHeightHm0
                    * Math.Min(input.RepresentativeWaveRunup2PAru * input.RepresentativeWaveRunup2PGammab
                                                                  * input.RepresentativeWaveRunup2PGammaf
-                                                                 * input.WaveAngleImpact * input.SurfSimilarityParameter,
+                                                                 * input.WaveAngleImpact * surfSimilarityParameter,
                               input.RepresentativeWaveRunup2PGammaf
                               * input.WaveAngleImpact
                               * (input.RepresentativeWaveRunup2PBru - input.RepresentativeWaveRunup2PCru
-                                 / Math.Sqrt(input.SurfSimilarityParameter)));
+                                 / Math.Sqrt(surfSimilarityParameter)));
         }
 
         /// <summary>
