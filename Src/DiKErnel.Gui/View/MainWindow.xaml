@@ -21,7 +21,7 @@ Deltares and remain full property of Stichting Deltares at all times. All rights
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:viewModel="clr-namespace:DiKErnel.Gui.ViewModel"
                  xmlns:output="clr-namespace:DiKErnel.KernelWrapper.Json.Output;assembly=DiKErnel.KernelWrapper.Json.Output"
-                 xmlns:view="clr-namespace:DiKErnel.Gui.View" MinWidth="1024" MinHeight="768" Width="1024" Height="768"
+                 xmlns:view="clr-namespace:DiKErnel.Gui.View" MinWidth="1004" MinHeight="768" Width="1004" Height="768"
                  Title="DiKErnel-gui" TitleCharacterCasing="Normal" WindowTransitionsEnabled="False">
     <mah:MetroWindow.Resources>
         <view:ComparisonConverter x:Key="ComparisonConverter"/>
