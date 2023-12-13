@@ -29,9 +29,9 @@ The terms under which DiKErnel can be redistributed and/or modified.
 
 ## Build
 
-### Requirements for building
+### Development prerequisites
 - .NET7.0 SDK
 
-### Requirements for running
+### Deployment prerequisites
 - .NET7.0 Desktop Runtime
 - Microsoft Visual C++ Redistributable 2022
