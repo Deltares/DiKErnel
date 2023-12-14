@@ -30,6 +30,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(false)]
 
-[assembly: AssemblyVersion("23.1.1.0")]
-[assembly: AssemblyFileVersion("23.1.1.0")]
-[assembly: AssemblyInformationalVersion("23.1.1-Alpha")]
+[assembly: AssemblyVersion("24.1.1.0")]
+[assembly: AssemblyFileVersion("24.1.1.0")]
+[assembly: AssemblyInformationalVersion("24.1.1.0")]
