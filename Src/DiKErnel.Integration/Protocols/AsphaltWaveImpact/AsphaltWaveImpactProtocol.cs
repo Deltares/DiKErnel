@@ -39,12 +39,10 @@ namespace DiKErnel.Integration.Protocols.AsphaltWaveImpact
         private double averageNumberOfWaves = double.NaN;
         private double maximumPeakStress = double.NaN;
 
-        public AsphaltWaveImpactProtocol(double flexuralStrength, double densityOfWater,
-                                         double soilElasticity,
+        public AsphaltWaveImpactProtocol(double flexuralStrength, double densityOfWater, double soilElasticity,
                                          AsphaltRevetmentWaveImpactLayer upperLayer,
                                          AsphaltRevetmentWaveImpactLayer subLayer,
-                                         double averageNumberOfWavesCtm,
-                                         AsphaltRevetmentWaveImpactFatigue fatigue,
+                                         double averageNumberOfWavesCtm, AsphaltRevetmentWaveImpactFatigue fatigue,
                                          double impactNumberC, double stiffnessRelationNu,
                                          IReadOnlyList<(double, double)> widthFactors,
                                          IReadOnlyList<(double, double)> depthFactors,
