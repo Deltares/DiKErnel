@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.GrassRevetment;
+using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 using DiKErnel.FunctionLibrary.TestUtil;
 using NUnit.Framework;
 
@@ -37,6 +38,52 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetment
 
             // Assert
             AssertHelper.AreEqual(0.15198428571428, incrementDamage);
+        }
+
+        [Test]
+        public void RepresentativeWaveRunup2P_ValidInput_ExpectedValue()
+        {
+            // Setup
+            const double waterLevel = 5.5;
+            const double waveHeightHm0 = 1.9;
+            const double wavePeriodTm10 = 4.7;
+            const double waveDirection = 355;
+            const double dikeOrientation = 5;
+
+            double[] xValuesProfile =
+            {
+                5,
+                15,
+                22,
+                30
+            };
+
+            double[] zValuesProfile =
+            {
+                0,
+                3,
+                3.2,
+                7.5
+            };
+
+            double[] roughnessCoefficients =
+            {
+                1,
+                0.75,
+                0.5
+            };
+
+            const double dikeHeight = 7.7;
+
+            var input = new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
+                                                                           waveDirection, xValuesProfile, zValuesProfile,
+                                                                           roughnessCoefficients, dikeHeight, dikeOrientation);
+
+            // Call
+            double representativeWaveRunup2P = GrassRevetmentFunctions.RepresentativeWaveRunup2P(input);
+
+            // Assert
+            AssertHelper.AreEqual(2.79696767501212, representativeWaveRunup2P);
         }
     }
 }
