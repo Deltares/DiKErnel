@@ -26,36 +26,45 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
+        /// <param name="waveAngle">The wave angle [deg].</param>
         /// <param name="waveAngleImpact">The wave impact with respect to the wave
         /// angle [-].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="wavePeriodTm10">The wave period [s].</param>
         /// <param name="representativeWaveRunup2PGammab">The Gammab value [-].</param>
         /// <param name="representativeWaveRunup2PGammaf">The Gammaf value [-].</param>
         /// <param name="representativeWaveRunup2PAru">The Aru coefficient [-].</param>
         /// <param name="representativeWaveRunup2PBru">The Bru coefficient [-].</param>
         /// <param name="representativeWaveRunup2PCru">The Cru coefficient [-].</param>
-        public GrassRevetmentWaveRunupRepresentative2PInput(double surfSimilarityParameter, double waveAngleImpact,
-                                                            double waveHeightHm0, double representativeWaveRunup2PGammab,
+        /// <param name="outerSlope">The outer slope [-].</param>
+        /// <param name="gravitationalAcceleration">The gravitational
+        /// acceleration [m/s^2].</param>
+        public GrassRevetmentWaveRunupRepresentative2PInput(double waveAngle, double waveAngleImpact,
+                                                            double waveHeightHm0, double wavePeriodTm10,
+                                                            double representativeWaveRunup2PGammab,
                                                             double representativeWaveRunup2PGammaf,
                                                             double representativeWaveRunup2PAru,
                                                             double representativeWaveRunup2PBru,
-                                                            double representativeWaveRunup2PCru)
+                                                            double representativeWaveRunup2PCru, 
+                                                            double outerSlope, double gravitationalAcceleration)
         {
-            SurfSimilarityParameter = surfSimilarityParameter;
+            WaveAngle = waveAngle;
             WaveAngleImpact = waveAngleImpact;
             WaveHeightHm0 = waveHeightHm0;
+            WavePeriodTm10 = wavePeriodTm10;
             RepresentativeWaveRunup2PGammab = representativeWaveRunup2PGammab;
             RepresentativeWaveRunup2PGammaf = representativeWaveRunup2PGammaf;
             RepresentativeWaveRunup2PAru = representativeWaveRunup2PAru;
             RepresentativeWaveRunup2PBru = representativeWaveRunup2PBru;
             RepresentativeWaveRunup2PCru = representativeWaveRunup2PCru;
+            OuterSlope = outerSlope;
+            GravitationalAcceleration = gravitationalAcceleration;
         }
 
         /// <summary>
-        /// Gets the surf similarity parameter [-].
+        /// Gets the wave angle [deg].
         /// </summary>
-        public double SurfSimilarityParameter { get; }
+        public double WaveAngle { get; }
 
         /// <summary>
         /// Gets the wave impact with respect to the wave angle [-].
@@ -66,6 +75,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// Gets the wave height [m].
         /// </summary>
         public double WaveHeightHm0 { get; }
+
+        /// <summary>
+        /// Gets the wave period [s].
+        /// </summary>
+        public double WavePeriodTm10 { get; private set; }
 
         /// <summary>
         /// Gets the Gammab value [-].
@@ -91,5 +105,15 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// Gets the Cru coefficient [-].
         /// </summary>
         public double RepresentativeWaveRunup2PCru { get; }
+
+        /// <summary>
+        /// Gets the outer slope [-].
+        /// </summary>
+        public double OuterSlope { get; }
+
+        /// <summary>
+        /// Gets the gravitational acceleration [m/s^2].
+        /// </summary>
+        public double GravitationalAcceleration { get; }
     }
 }

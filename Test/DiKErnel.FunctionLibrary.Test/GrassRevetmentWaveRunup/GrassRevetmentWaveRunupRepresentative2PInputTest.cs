@@ -29,32 +29,40 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
         public void Constructor_ExpectedValues()
         {
             // Setup
-            double surfSimilarityParameter = Random.NextDouble();
+            double waveAngle = Random.NextDouble();
             double waveAngleImpact = Random.NextDouble();
             double waveHeightHm0 = Random.NextDouble();
+            double wavePeriodTm10 = Random.NextDouble();
             double representativeWaveRunup2PGammab = Random.NextDouble();
             double representativeWaveRunup2PGammaf = Random.NextDouble();
             double representativeWaveRunup2PAru = Random.NextDouble();
             double representativeWaveRunup2PBru = Random.NextDouble();
             double representativeWaveRunup2PCru = Random.NextDouble();
+            double outerSlope = Random.NextDouble();
+            double gravitationalAcceleration = Random.NextDouble();
 
             // Call
-            var input = new GrassRevetmentWaveRunupRepresentative2PInput(surfSimilarityParameter, waveAngleImpact,
-                                                                         waveHeightHm0, representativeWaveRunup2PGammab,
+            var input = new GrassRevetmentWaveRunupRepresentative2PInput(waveAngle, waveAngleImpact,
+                                                                         waveHeightHm0, wavePeriodTm10,
+                                                                         representativeWaveRunup2PGammab,
                                                                          representativeWaveRunup2PGammaf,
                                                                          representativeWaveRunup2PAru,
                                                                          representativeWaveRunup2PBru,
-                                                                         representativeWaveRunup2PCru);
+                                                                         representativeWaveRunup2PCru,
+                                                                         outerSlope, gravitationalAcceleration);
 
             // Assert
-            Assert.That(input.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));
+            Assert.That(input.WaveAngle, Is.EqualTo(waveAngle));
             Assert.That(input.WaveAngleImpact, Is.EqualTo(waveAngleImpact));
             Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
+            Assert.That(input.WavePeriodTm10, Is.EqualTo(wavePeriodTm10));
             Assert.That(input.RepresentativeWaveRunup2PGammab, Is.EqualTo(representativeWaveRunup2PGammab));
             Assert.That(input.RepresentativeWaveRunup2PGammaf, Is.EqualTo(representativeWaveRunup2PGammaf));
             Assert.That(input.RepresentativeWaveRunup2PAru, Is.EqualTo(representativeWaveRunup2PAru));
             Assert.That(input.RepresentativeWaveRunup2PBru, Is.EqualTo(representativeWaveRunup2PBru));
             Assert.That(input.RepresentativeWaveRunup2PCru, Is.EqualTo(representativeWaveRunup2PCru));
+            Assert.That(input.OuterSlope, Is.EqualTo(outerSlope));
+            Assert.That(input.GravitationalAcceleration, Is.EqualTo(gravitationalAcceleration));
         }
     }
 }

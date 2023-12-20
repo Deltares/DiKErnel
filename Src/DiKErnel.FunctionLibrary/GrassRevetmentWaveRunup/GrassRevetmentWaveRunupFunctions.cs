@@ -32,14 +32,36 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <returns>The representative wave run-up (2 percent) [m].</returns>
         public static double RepresentativeWaveRunup2P(GrassRevetmentWaveRunupRepresentative2PInput input)
         {
-            return input.WaveHeightHm0
+            double absoluteWaveAngle = Math.Abs(input.WaveAngle);
+
+            if (absoluteWaveAngle >= 110.0)
+            {
+                return 0.0;
+            }
+
+            double waveHeightHm0 = input.WaveHeightHm0;
+            double wavePeriodTm10 = input.WavePeriodTm10;
+
+            if (absoluteWaveAngle >= 80.0)
+            {
+                double correctionFactor = CorrectionFactor(absoluteWaveAngle);
+
+                waveHeightHm0 *= correctionFactor;
+                wavePeriodTm10 *= Math.Sqrt(correctionFactor);
+            }
+
+            double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
+                input.OuterSlope, waveHeightHm0, wavePeriodTm10,
+                input.GravitationalAcceleration);
+
+            return waveHeightHm0
                    * Math.Min(input.RepresentativeWaveRunup2PAru * input.RepresentativeWaveRunup2PGammab
                                                                  * input.RepresentativeWaveRunup2PGammaf
-                                                                 * input.WaveAngleImpact * input.SurfSimilarityParameter,
+                                                                 * input.WaveAngleImpact * surfSimilarityParameter,
                               input.RepresentativeWaveRunup2PGammaf
                               * input.WaveAngleImpact
                               * (input.RepresentativeWaveRunup2PBru - input.RepresentativeWaveRunup2PCru
-                                 / Math.Sqrt(input.SurfSimilarityParameter)));
+                                 / Math.Sqrt(surfSimilarityParameter)));
         }
 
         /// <summary>
@@ -52,6 +74,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactAbeta, double waveAngleImpactBetamax)
         {
             return 1 - waveAngleImpactAbeta * Math.Min(Math.Abs(waveAngle), waveAngleImpactBetamax);
+        }
+
+        private static double CorrectionFactor(double absoluteWaveAngle)
+        {
+            return (110.0 - absoluteWaveAngle) / 30.0;
         }
     }
 }
