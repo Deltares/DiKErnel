@@ -44,8 +44,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetment
             // Call
             var input = new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
                                                                 waveDirection, xValuesProfile, zValuesProfile,
-                                                                roughnessCoefficients, dikeHeight,
-                                                                dikeOrientation);
+                                                                roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Assert
             Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));

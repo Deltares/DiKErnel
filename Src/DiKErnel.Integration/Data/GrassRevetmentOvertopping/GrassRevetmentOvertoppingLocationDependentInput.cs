@@ -222,9 +222,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                           double dikeOrientation)
         {
             return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
-                                                                   waveDirection, xValuesProfile, zValuesProfile,
-                                                                   roughnessCoefficients, dikeHeight, dikeOrientation));
+                new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
+                                                        xValuesProfile, zValuesProfile, roughnessCoefficients,
+                                                        dikeHeight, dikeOrientation));
         }
 
         private double CalculateCumulativeOverload()

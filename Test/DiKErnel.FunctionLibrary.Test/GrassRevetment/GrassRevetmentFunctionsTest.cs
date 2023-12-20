@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.GrassRevetment;
-using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 using DiKErnel.FunctionLibrary.TestUtil;
 using NUnit.Framework;
 
@@ -75,9 +74,9 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetment
 
             const double dikeHeight = 7.7;
 
-            var input = new GrassRevetmentOvertoppingRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
-                                                                           waveDirection, xValuesProfile, zValuesProfile,
-                                                                           roughnessCoefficients, dikeHeight, dikeOrientation);
+            var input = new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
+                                                                waveDirection, xValuesProfile, zValuesProfile,
+                                                                roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Call
             double representativeWaveRunup2P = GrassRevetmentFunctions.RepresentativeWaveRunup2P(input);

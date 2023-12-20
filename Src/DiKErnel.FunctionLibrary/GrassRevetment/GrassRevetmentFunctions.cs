@@ -19,7 +19,6 @@
 using System;
 using System.Linq;
 using DiKErnel.External.Overtopping;
-using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 
 namespace DiKErnel.FunctionLibrary.GrassRevetment
 {
@@ -45,7 +44,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetment
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The representative wave run-up (2 percent) [m].</returns>
-        public static double RepresentativeWaveRunup2P(GrassRevetmentOvertoppingRepresentative2PInput input)
+        public static double RepresentativeWaveRunup2P(GrassRevetmentRepresentative2PInput input)
         {
             return OvertoppingAdapter.CalculateZ2(input.WaterLevel, input.WaveHeightHm0, input.WavePeriodTm10, input.WaveDirection,
                                                   input.XValuesProfile.ToArray(), input.ZValuesProfile.ToArray(),
