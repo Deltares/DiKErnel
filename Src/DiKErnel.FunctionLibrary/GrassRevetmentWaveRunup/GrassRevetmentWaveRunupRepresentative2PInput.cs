@@ -45,7 +45,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                                                             double representativeWaveRunup2PGammaf,
                                                             double representativeWaveRunup2PAru,
                                                             double representativeWaveRunup2PBru,
-                                                            double representativeWaveRunup2PCru, 
+                                                            double representativeWaveRunup2PCru,
                                                             double outerSlope, double gravitationalAcceleration)
         {
             WaveAngle = waveAngle;
@@ -79,7 +79,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <summary>
         /// Gets the wave period [s].
         /// </summary>
-        public double WavePeriodTm10 { get; private set; }
+        public double WavePeriodTm10 { get; }
 
         /// <summary>
         /// Gets the Gammab value [-].

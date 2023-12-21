@@ -39,22 +39,22 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                 return 0.0;
             }
 
-            double waveHeightHm0 = input.WaveHeightHm0;
-            double wavePeriodTm10 = input.WavePeriodTm10;
+            double effectiveWaveHeightHm0 = input.WaveHeightHm0;
+            double effectiveWavePeriodTm10 = input.WavePeriodTm10;
 
-            if (absoluteWaveAngle >= 80.0)
+            if (absoluteWaveAngle > 80.0)
             {
-                double correctionFactor = CorrectionFactor(absoluteWaveAngle);
+                double correctionFactor = WaveCorrectionFactor(absoluteWaveAngle);
 
-                waveHeightHm0 *= correctionFactor;
-                wavePeriodTm10 *= Math.Sqrt(correctionFactor);
+                effectiveWaveHeightHm0 *= correctionFactor;
+                effectiveWavePeriodTm10 *= Math.Sqrt(correctionFactor);
             }
 
             double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
-                input.OuterSlope, waveHeightHm0, wavePeriodTm10,
+                input.OuterSlope, effectiveWaveHeightHm0, effectiveWavePeriodTm10,
                 input.GravitationalAcceleration);
 
-            return waveHeightHm0
+            return effectiveWaveHeightHm0
                    * Math.Min(input.RepresentativeWaveRunup2PAru * input.RepresentativeWaveRunup2PGammab
                                                                  * input.RepresentativeWaveRunup2PGammaf
                                                                  * input.WaveAngleImpact * surfSimilarityParameter,
@@ -76,7 +76,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             return 1 - waveAngleImpactAbeta * Math.Min(Math.Abs(waveAngle), waveAngleImpactBetamax);
         }
 
-        private static double CorrectionFactor(double absoluteWaveAngle)
+        private static double WaveCorrectionFactor(double absoluteWaveAngle)
         {
             return (110.0 - absoluteWaveAngle) / 30.0;
         }
