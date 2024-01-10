@@ -320,8 +320,6 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     throw new JsonInputConversionException("Cannot convert calculation protocol type.");
             }
 
-            JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData representativeWaveRunupData =
-                calculationData.JsonInputGrassWaveRunupCalculationRepresentativeWaveRunupData;
             JsonInputGrassWaveRunupCalculationImpactAngleData impactAngleData =
                 calculationData.JsonInputGrassWaveRunupCalculationImpactAngleData;
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
@@ -335,12 +333,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
             constructionProperties.RepresentativeWaveRunup2PGammab = locationData.RepresentativeWaveRunup2PGammaB;
             constructionProperties.RepresentativeWaveRunup2PGammaf = locationData.RepresentativeWaveRunup2PGammaF;
             constructionProperties.AverageNumberOfWavesCtm = calculationData.FactorCtm;
-            constructionProperties.RepresentativeWaveRunup2PAru =
-                representativeWaveRunupData?.RepresentativeWaveRunup2Pa;
-            constructionProperties.RepresentativeWaveRunup2PBru =
-                representativeWaveRunupData?.RepresentativeWaveRunup2Pb;
-            constructionProperties.RepresentativeWaveRunup2PCru =
-                representativeWaveRunupData?.RepresentativeWaveRunup2Pc;
+            constructionProperties.RepresentativeWaveRunup2PAru = null;
+            constructionProperties.RepresentativeWaveRunup2PBru = null;
+            constructionProperties.RepresentativeWaveRunup2PCru = null;
             constructionProperties.WaveAngleImpactAbeta = impactAngleData?.WaveAngleImpactABeta;
             constructionProperties.WaveAngleImpactBetamax = impactAngleData?.WaveAngleImpactBetaMax;
             constructionProperties.CriticalCumulativeOverload = topLayerData?.CriticalCumulativeOverload;

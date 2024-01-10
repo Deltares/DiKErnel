@@ -25,8 +25,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
         public const string RepresentativeWaveRunup2PGammaB = "bermFactorGammaB";
         public const string RepresentativeWaveRunup2PGammaF = "ruwheidsFactorGammaF";
 
-        public const string RepresentativeWaveRunup2P = "representatieveGolfoploop2p";
-
         public const string ABeta = "aBeta";
 
         public const string CalculationProtocol = "rekenprotocol";
