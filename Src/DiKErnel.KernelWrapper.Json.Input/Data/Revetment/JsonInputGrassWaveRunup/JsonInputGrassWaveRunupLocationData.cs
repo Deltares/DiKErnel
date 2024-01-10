@@ -28,19 +28,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
         [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
         public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.OuterSlope)]
-        public double OuterSlope { get; private set; }
-
         [JsonProperty(JsonInputGrassRevetmentDefinitions.IncreasedLoadTransitionAlphaM)]
         public double? IncreasedLoadTransitionAlphaM { get; private set; }
 
         [JsonProperty(JsonInputGrassRevetmentDefinitions.ReducedStrengthTransitionAlphaS)]
         public double? ReducedStrengthTransitionAlphaS { get; private set; }
-
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.RepresentativeWaveRunup2PGammaB)]
-        public double? RepresentativeWaveRunup2PGammaB { get; private set; }
-
-        [JsonProperty(JsonInputGrassWaveRunupDefinitions.RepresentativeWaveRunup2PGammaF)]
-        public double? RepresentativeWaveRunup2PGammaF { get; private set; }
     }
 }

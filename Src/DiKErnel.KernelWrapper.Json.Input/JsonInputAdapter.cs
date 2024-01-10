@@ -330,8 +330,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
             constructionProperties.FailureNumber = calculationData.FailureNumber;
             constructionProperties.IncreasedLoadTransitionAlphaM = locationData.IncreasedLoadTransitionAlphaM;
             constructionProperties.ReducedStrengthTransitionAlphaS = locationData.ReducedStrengthTransitionAlphaS;
-            constructionProperties.RepresentativeWaveRunup2PGammab = locationData.RepresentativeWaveRunup2PGammaB;
-            constructionProperties.RepresentativeWaveRunup2PGammaf = locationData.RepresentativeWaveRunup2PGammaF;
+            constructionProperties.RepresentativeWaveRunup2PGammab = null;
+            constructionProperties.RepresentativeWaveRunup2PGammaf = null;
             constructionProperties.AverageNumberOfWavesCtm = calculationData.FactorCtm;
             constructionProperties.RepresentativeWaveRunup2PAru = null;
             constructionProperties.RepresentativeWaveRunup2PBru = null;
@@ -350,7 +350,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassWaveRunupCalculationProtocolData calculationProtocolData)
         {
             return new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                locationData.X, locationData.OuterSlope, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
+                locationData.X, double.NaN, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 FixedNumberOfWaves = calculationProtocolData.FixedNumberOfWaves,
                 FrontVelocityCu = calculationProtocolData.FrontVelocity

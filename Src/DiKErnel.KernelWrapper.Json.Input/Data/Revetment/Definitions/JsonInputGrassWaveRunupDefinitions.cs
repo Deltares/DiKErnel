@@ -20,11 +20,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputGrassWaveRunupDefinitions
     {
-        public const string OuterSlope = "tanA";
-
-        public const string RepresentativeWaveRunup2PGammaB = "bermFactorGammaB";
-        public const string RepresentativeWaveRunup2PGammaF = "ruwheidsFactorGammaF";
-
         public const string ABeta = "aBeta";
 
         public const string CalculationProtocol = "rekenprotocol";
