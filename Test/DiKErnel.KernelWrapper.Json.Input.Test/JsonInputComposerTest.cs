@@ -169,9 +169,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0.0006, 0.45, grassRevetmentWaveRunupRayleighLocationDependentInputItem);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-                0.7, grassRevetmentWaveRunupRayleighLocationDependentInputItem);
+                double.NaN, grassRevetmentWaveRunupRayleighLocationDependentInputItem);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
-                1.56, 4.6, 3.5, 3.2, 4.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem.Representative2P);
+                1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem.Representative2P);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 0.0011, 89, grassRevetmentWaveRunupRayleighLocationDependentInputItem.WaveAngleImpact);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
@@ -364,7 +364,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-                0.8, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
+                double.NaN, grassRevetmentWaveRunupRayleighLocationDependentInputItem1);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
                 1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem1.Representative2P);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
@@ -386,7 +386,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-                0.9, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
+                double.NaN, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
                 1.65, 4, 1.5, 1, 1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2.Representative2P);
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(

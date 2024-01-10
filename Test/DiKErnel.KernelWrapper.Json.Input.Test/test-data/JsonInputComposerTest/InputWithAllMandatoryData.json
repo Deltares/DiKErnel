@@ -63,8 +63,7 @@
         {
             "positie": 57.698,
             "rekenmethode": "grasGolfoploop",
-            "typeToplaag": "grasOpenZode",
-            "tanA": 0.9
+            "typeToplaag": "grasOpenZode"
         },
         {
             "positie": 39,

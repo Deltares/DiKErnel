@@ -147,10 +147,7 @@
             "rekenmethode": "grasGolfoploop",
             "typeToplaag": "grasGeslotenZode",
             "verhogingBelastingOvergangAlfaM": 1.5,
-            "verlagingSterkteOvergangAlfaS": 0.8,
-            "tanA": 0.7,
-            "bermFactorGammaB": 3.2,
-            "ruwheidsFactorGammaF": 4.1
+            "verlagingSterkteOvergangAlfaS": 0.8
         },
         {
             "id": 5,
@@ -275,11 +272,6 @@
                 }
             ],
             "factorCtm": 0.99,
-            "representatieveGolfoploop2p": {
-                "a": 1.56,
-                "b": 4.6,
-                "c": 3.5
-            },
             "impactGolfhoek": {
                 "aBeta": 0.0011,
                 "betaMax": 89.0
