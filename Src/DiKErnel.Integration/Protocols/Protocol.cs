@@ -54,7 +54,7 @@ namespace DiKErnel.Integration.Protocols
                 InitializeDerivedLocationDependentInput(locationDependentInput, profileData);
             }
 
-            return CalculateTimeDependentOutput(initialDamage, locationDependentInput, timeDependentInput, profileData);
+            return CalculateTimeDependentOutput(initialDamage, timeDependentInput, profileData);
         }
 
         public abstract LocationDependentOutput GetLocationDependentOutput(
@@ -67,7 +67,6 @@ namespace DiKErnel.Integration.Protocols
         }
 
         protected abstract TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
-                                                                            ILocationDependentInput locationDependentInput,
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData);
     }
