@@ -196,19 +196,10 @@
               }
             }
           },
-          "tanA": {
-            "type": "number"
-          },
           "verhogingBelastingOvergangAlfaM": {
             "type": "number"
           },
           "verlagingSterkteOvergangAlfaS": {
-            "type": "number"
-          },
-          "bermFactorGammaB": {
-            "type": "number"
-          },
-          "ruwheidsFactorGammaF": {
             "type": "number"
           }
         },
@@ -262,10 +253,7 @@
                   ]
                 }
               }
-            },
-            "required": [
-              "tanA"
-            ]
+            }
           },
           {
             "properties": {
@@ -560,21 +548,6 @@
                 "type": "integer"
               },
               "frontsnelheid": {
-                "type": "number"
-              }
-            }
-          },
-          "representatieveGolfoploop2p": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "a": {
-                "type": "number"
-              },
-              "b": {
-                "type": "number"
-              },
-              "c": {
                 "type": "number"
               }
             }
