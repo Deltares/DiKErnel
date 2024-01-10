@@ -47,9 +47,9 @@ namespace DiKErnel.Integration.Protocols.GrassOvertopping
         private double averageNumberOfWaves = double.NaN;
 
         public GrassOvertoppingProtocol(
-            double criticalCumulativeOverload, double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
-            double reducedStrengthTransitionAlphaS, double averageNumberOfWavesCtm, int fixedNumberOfWaves,
-            double frontVelocityCwo,
+            double criticalCumulativeOverload, double criticalFrontVelocity,
+            double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+            double averageNumberOfWavesCtm, int fixedNumberOfWaves, double frontVelocityCwo,
             GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA,
             double? enforcedDikeHeight)
         {
