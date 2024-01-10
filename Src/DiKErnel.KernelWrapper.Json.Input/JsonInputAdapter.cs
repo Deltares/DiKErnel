@@ -330,12 +330,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             constructionProperties.FailureNumber = calculationData.FailureNumber;
             constructionProperties.IncreasedLoadTransitionAlphaM = locationData.IncreasedLoadTransitionAlphaM;
             constructionProperties.ReducedStrengthTransitionAlphaS = locationData.ReducedStrengthTransitionAlphaS;
-            constructionProperties.RepresentativeWaveRunup2PGammab = null;
-            constructionProperties.RepresentativeWaveRunup2PGammaf = null;
             constructionProperties.AverageNumberOfWavesCtm = calculationData.FactorCtm;
-            constructionProperties.RepresentativeWaveRunup2PAru = null;
-            constructionProperties.RepresentativeWaveRunup2PBru = null;
-            constructionProperties.RepresentativeWaveRunup2PCru = null;
             constructionProperties.WaveAngleImpactAbeta = impactAngleData?.WaveAngleImpactABeta;
             constructionProperties.WaveAngleImpactBetamax = impactAngleData?.WaveAngleImpactBetaMax;
             constructionProperties.CriticalCumulativeOverload = topLayerData?.CriticalCumulativeOverload;
