@@ -42,14 +42,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         private double averageNumberOfWaves = double.NaN;
 
         public GrassRevetmentWaveRunupRayleighLocationDependentInput(double x, double initialDamage,
-                                                                     double failureNumber, double outerSlope,
+                                                                     double failureNumber,
                                                                      double criticalCumulativeOverload,
                                                                      double criticalFrontVelocity,
                                                                      double increasedLoadTransitionAlphaM,
                                                                      double reducedStrengthTransitionAlphaS,
                                                                      double averageNumberOfWavesCtm,
-                                                                     GrassRevetmentWaveRunupRepresentative2P representative2P,
-                                                                     GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact,
                                                                      int fixedNumberOfWaves, double frontVelocityCu)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
