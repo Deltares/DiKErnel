@@ -34,8 +34,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         private readonly List<double> xValuesProfile = new List<double>();
         private readonly List<double> zValuesProfile = new List<double>();
         private readonly List<double> roughnessCoefficients = new List<double>();
-        private readonly double dikeHeight = double.NaN;
 
+        private double dikeHeight = double.NaN;
         private double verticalDistanceWaterLevelElevation = double.NaN;
         private double waveAngle = double.NaN;
         private double waveAngleImpact = double.NaN;
@@ -95,6 +95,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
 
             InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
+
+            dikeHeight = outerCrest.Item2;
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
