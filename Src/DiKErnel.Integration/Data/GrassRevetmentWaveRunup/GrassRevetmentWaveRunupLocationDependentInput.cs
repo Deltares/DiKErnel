@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.GrassRevetment;
-using DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
@@ -72,12 +71,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             var validationIssues = new List<ValidationIssue>
             {
                 GrassRevetmentValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
-                GrassRevetmentWaveRunupValidator.RepresentativeWaveRunup2PGammab(Representative2P.Gammab),
-                GrassRevetmentWaveRunupValidator.RepresentativeWaveRunup2PGammaf(Representative2P.Gammaf),
                 GrassRevetmentValidator.CriticalFrontVelocity(CriticalFrontVelocity),
                 GrassRevetmentValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
                 GrassRevetmentValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
-                GrassRevetmentWaveRunupValidator.OuterSlope(OuterSlope),
                 RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm)
             };
 
