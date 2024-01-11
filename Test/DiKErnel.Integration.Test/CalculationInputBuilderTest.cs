@@ -1615,17 +1615,6 @@ namespace DiKErnel.Integration.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-                outerSlope, locationDependentInput);
-
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
-                representativeWaveRunup2PAru, representativeWaveRunup2PBru, representativeWaveRunup2PCru,
-                representativeWaveRunup2PGammab, representativeWaveRunup2PGammaf,
-                locationDependentInput.Representative2P);
-
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                waveAngleImpactAbeta, waveAngleImpactBetamax, locationDependentInput.WaveAngleImpact);
-
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, locationDependentInput);
 
@@ -1673,15 +1662,6 @@ namespace DiKErnel.Integration.Test
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-                outerSlope, locationDependentInput);
-
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
-                1.65, 4, 1.5, 1, 1, locationDependentInput.Representative2P);
-
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                0.0022, 80, locationDependentInput.WaveAngleImpact);
-
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, locationDependentInput);
 
@@ -1728,15 +1708,6 @@ namespace DiKErnel.Integration.Test
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
-
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertGeneralProperties(
-                outerSlope, locationDependentInput);
-
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertRepresentative2P(
-                1.65, 4, 1.5, 1, 1, locationDependentInput.Representative2P);
-
-            GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                0.0022, 80, locationDependentInput.WaveAngleImpact);
 
             GrassRevetmentWaveRunupLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, locationDependentInput);
