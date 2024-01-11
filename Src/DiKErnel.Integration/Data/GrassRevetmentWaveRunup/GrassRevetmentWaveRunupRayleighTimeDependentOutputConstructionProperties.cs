@@ -33,16 +33,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         public double? VerticalDistanceWaterLevelElevation { get; set; }
 
         /// <summary>
-        /// Gets or sets the wave angle.
-        /// </summary>
-        public double? WaveAngle { get; set; }
-
-        /// <summary>
-        /// Gets or sets the wave angle impact.
-        /// </summary>
-        public double? WaveAngleImpact { get; set; }
-
-        /// <summary>
         /// Gets or sets the representative wave run-up 2P.
         /// </summary>
         public double? RepresentativeWaveRunup2P { get; set; }
