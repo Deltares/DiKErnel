@@ -28,20 +28,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
     {
         /// <inheritdoc/>
-        /// <param name="outerSlope">The outer slope.</param>
         /// <param name="topLayerType">The type of the top layer.</param>
-        protected GrassRevetmentWaveRunupLocationConstructionProperties(double x, double outerSlope,
-                                                                        GrassRevetmentTopLayerType topLayerType)
+        protected GrassRevetmentWaveRunupLocationConstructionProperties(double x, GrassRevetmentTopLayerType topLayerType)
             : base(x)
         {
-            OuterSlope = outerSlope;
             TopLayerType = topLayerType;
         }
-
-        /// <summary>
-        /// Gets the outer slope.
-        /// </summary>
-        public double OuterSlope { get; }
 
         /// <summary>
         /// Gets the type of the top layer.
@@ -72,40 +64,5 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         /// Gets or sets the Ctm coefficient.
         /// </summary>
         public double? AverageNumberOfWavesCtm { get; set; }
-
-        /// <summary>
-        /// Gets or sets the 2P Aru coefficient.
-        /// </summary>
-        public double? RepresentativeWaveRunup2PAru { get; set; }
-
-        /// <summary>
-        /// Gets or sets the 2P Bru coefficient.
-        /// </summary>
-        public double? RepresentativeWaveRunup2PBru { get; set; }
-
-        /// <summary>
-        /// Gets or sets the 2P Cru coefficient.
-        /// </summary>
-        public double? RepresentativeWaveRunup2PCru { get; set; }
-
-        /// <summary>
-        /// Gets or sets the 2P Gammab coefficient.
-        /// </summary>
-        public double? RepresentativeWaveRunup2PGammab { get; set; }
-
-        /// <summary>
-        /// Gets or sets the 2P Gammaf coefficient.
-        /// </summary>
-        public double? RepresentativeWaveRunup2PGammaf { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Abeta coefficient.
-        /// </summary>
-        public double? WaveAngleImpactAbeta { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Betamax coefficient.
-        /// </summary>
-        public double? WaveAngleImpactBetamax { get; set; }
     }
 }

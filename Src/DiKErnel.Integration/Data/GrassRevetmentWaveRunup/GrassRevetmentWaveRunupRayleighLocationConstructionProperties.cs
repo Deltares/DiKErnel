@@ -27,9 +27,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     public class GrassRevetmentWaveRunupRayleighLocationConstructionProperties : GrassRevetmentWaveRunupLocationConstructionProperties
     {
         /// <inheritdoc/>
-        public GrassRevetmentWaveRunupRayleighLocationConstructionProperties(double x, double outerSlope,
-                                                                             GrassRevetmentTopLayerType topLayerType)
-            : base(x, outerSlope, topLayerType) {}
+        public GrassRevetmentWaveRunupRayleighLocationConstructionProperties(double x, GrassRevetmentTopLayerType topLayerType)
+            : base(x, topLayerType) {}
 
         /// <summary>
         /// Gets or sets the fixed number of waves.
