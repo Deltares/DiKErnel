@@ -226,13 +226,11 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, 20, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassRevetmentTopLayerType.ClosedSod)
             {
                 InitialDamage = -0.1,
                 FailureNumber = -1,
                 CriticalCumulativeOverload = -2,
-                RepresentativeWaveRunup2PGammab = 0,
-                RepresentativeWaveRunup2PGammaf = -0.5,
                 CriticalFrontVelocity = -1,
                 IncreasedLoadTransitionAlphaM = -11,
                 ReducedStrengthTransitionAlphaS = -3,
@@ -515,7 +513,7 @@ namespace DiKErnel.System.Test
 
             var grassRevetmentWaveRunupRayleighLocationConstructionProperties = new
                 GrassRevetmentWaveRunupRayleighLocationConstructionProperties
-                (19, 0.71, GrassRevetmentTopLayerType.ClosedSod);
+                (19, GrassRevetmentTopLayerType.ClosedSod);
 
             var naturalStoneRevetmentLocationConstructionProperties =
                 new NaturalStoneRevetmentLocationConstructionProperties(
