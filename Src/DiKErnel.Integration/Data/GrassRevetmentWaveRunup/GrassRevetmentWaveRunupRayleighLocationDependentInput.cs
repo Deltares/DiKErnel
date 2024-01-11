@@ -37,7 +37,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
         private double dikeHeight = double.NaN;
         private double verticalDistanceWaterLevelElevation = double.NaN;
-        private double waveAngle = double.NaN;
+        private readonly double waveAngle = double.NaN;
         private readonly double waveAngleImpact = double.NaN;
         private double representativeWaveRunup2P = double.NaN;
         private double cumulativeOverload = double.NaN;
@@ -118,8 +118,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
                                                                                timeDependentInput.WavePeriodTm10,
                                                                                AverageNumberOfWavesCtm);
-
-                waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaterLevel,
                                                                                timeDependentInput.WaveHeightHm0,
