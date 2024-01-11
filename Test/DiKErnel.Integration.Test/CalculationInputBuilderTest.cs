@@ -1547,6 +1547,83 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(15, topLayerType);
+
+            const double outerToeX = 0;
+            const double crestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultTimeStep(builder);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
+            builder.AddDikeProfileSegment(10, 20, 20, 20);
+            builder.AddDikeProfileSegment(20, 20, crestX, 10);
+            builder.AddDikeProfileSegment(crestX, 10, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, innerToeX, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.False);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.That(events, Has.Count.EqualTo(1));
+            Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[0].Message, Is.Not.Empty);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(15, topLayerType);
+
+            const double outerToeX = 0;
+            const double crestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultTimeStep(builder);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
+            builder.AddDikeProfileSegment(10, 20, crestX, 25, 1.1);
+            builder.AddDikeProfileSegment(crestX, 25, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, 50, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.False);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.That(events, Has.Count.EqualTo(2));
+            Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[0].Message, Is.Not.Empty);
+            Assert.That(events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[1].Message, Is.Not.Empty);
+        }
+
+        [Test]
         public void GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given

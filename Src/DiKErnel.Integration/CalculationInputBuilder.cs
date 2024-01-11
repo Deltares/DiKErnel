@@ -368,7 +368,7 @@ namespace DiKErnel.Integration
         {
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
                    && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
-                   && ValidateOvertoppingLocationSpecificProperties(outerToe, outerCrest, constructionProperties.DikeHeight);
+                   && ValidateOvertoppingAdapterProperties(outerToe, outerCrest, constructionProperties.DikeHeight);
         }
 
         private static bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
@@ -379,12 +379,13 @@ namespace DiKErnel.Integration
                    && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
         }
 
-        private static bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+        private bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
             GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
-                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
+                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
+                   && ValidateOvertoppingAdapterProperties(outerToe, outerCrest);
         }
 
         private static bool ValidateNaturalStoneRevetmentLocationConstructionProperties(
@@ -462,7 +463,7 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private bool ValidateOvertoppingLocationSpecificProperties(
+        private bool ValidateOvertoppingAdapterProperties(
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, double? dikeHeight = null)
         {
             var xValuesProfile = new List<double>();
