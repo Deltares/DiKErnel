@@ -1506,7 +1506,7 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddGrassWaveRunupRayleighLocation(
                         new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                            locationX, Random.NextDouble(), GrassRevetmentTopLayerType.ClosedSod));
+                            locationX, GrassRevetmentTopLayerType.ClosedSod));
                 }, locationX);
         }
 
@@ -1520,7 +1520,7 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddGrassWaveRunupRayleighLocation(
                         new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                            locationX, Random.NextDouble(), GrassRevetmentTopLayerType.ClosedSod));
+                            locationX, GrassRevetmentTopLayerType.ClosedSod));
                 }, locationX);
         }
 
@@ -1533,7 +1533,7 @@ namespace DiKErnel.Integration.Test
 
             double x = Random.NextDouble();
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                x, Random.NextDouble(), topLayerType);
+                x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -1553,7 +1553,6 @@ namespace DiKErnel.Integration.Test
             // Given
             var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
             const double x = 5;
-            double outerSlope = Random.NextDouble();
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();
             double criticalCumulativeOverload = Random.NextDouble();
@@ -1561,18 +1560,11 @@ namespace DiKErnel.Integration.Test
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
-            double representativeWaveRunup2PAru = Random.NextDouble();
-            double representativeWaveRunup2PBru = Random.NextDouble();
-            double representativeWaveRunup2PCru = Random.NextDouble();
-            double representativeWaveRunup2PGammab = Random.NextDouble();
-            double representativeWaveRunup2PGammaf = Random.NextDouble();
-            double waveAngleImpactAbeta = Random.NextDouble();
-            double waveAngleImpactBetamax = Random.NextDouble();
             int fixedNumberOfWaves = Random.Next();
             double frontVelocityCu = Random.NextDouble();
 
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                x, outerSlope, topLayerType)
+                x, topLayerType)
             {
                 InitialDamage = initialDamage,
                 FailureNumber = failureNumber,
@@ -1581,13 +1573,6 @@ namespace DiKErnel.Integration.Test
                 IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM,
                 ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS,
                 AverageNumberOfWavesCtm = averageNumberOfWavesCtm,
-                RepresentativeWaveRunup2PAru = representativeWaveRunup2PAru,
-                RepresentativeWaveRunup2PBru = representativeWaveRunup2PBru,
-                RepresentativeWaveRunup2PCru = representativeWaveRunup2PCru,
-                RepresentativeWaveRunup2PGammab = representativeWaveRunup2PGammab,
-                RepresentativeWaveRunup2PGammaf = representativeWaveRunup2PGammaf,
-                WaveAngleImpactAbeta = waveAngleImpactAbeta,
-                WaveAngleImpactBetamax = waveAngleImpactBetamax,
                 FixedNumberOfWaves = fixedNumberOfWaves,
                 FrontVelocityCu = frontVelocityCu
             };
@@ -1635,10 +1620,9 @@ namespace DiKErnel.Integration.Test
             // Given
             const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.ClosedSod;
             const double x = 5;
-            double outerSlope = Random.NextDouble();
 
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                x, outerSlope, topLayerType);
+                x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -1682,10 +1666,9 @@ namespace DiKErnel.Integration.Test
             // Given
             const GrassRevetmentTopLayerType topLayerType = GrassRevetmentTopLayerType.OpenSod;
             const double x = 5;
-            double outerSlope = Random.NextDouble();
 
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                x, outerSlope, topLayerType);
+                x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
