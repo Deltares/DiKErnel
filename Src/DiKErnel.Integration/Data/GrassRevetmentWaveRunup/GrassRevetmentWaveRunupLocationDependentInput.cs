@@ -28,26 +28,19 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     internal abstract class GrassRevetmentWaveRunupLocationDependentInput : LocationDependentInput
     {
         protected GrassRevetmentWaveRunupLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                                double outerSlope, double criticalCumulativeOverload,
+                                                                double criticalCumulativeOverload,
                                                                 double criticalFrontVelocity,
                                                                 double increasedLoadTransitionAlphaM,
                                                                 double reducedStrengthTransitionAlphaS,
-                                                                double averageNumberOfWavesCtm,
-                                                                GrassRevetmentWaveRunupRepresentative2P representative2P,
-                                                                GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact)
+                                                                double averageNumberOfWavesCtm)
             : base(x, initialDamage, failureNumber)
         {
-            OuterSlope = outerSlope;
             CriticalCumulativeOverload = criticalCumulativeOverload;
             CriticalFrontVelocity = criticalFrontVelocity;
             IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
             ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
             AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
-            Representative2P = representative2P;
-            WaveAngleImpact = waveAngleImpact;
         }
-
-        public double OuterSlope { get; }
 
         public double CriticalCumulativeOverload { get; }
 
@@ -58,10 +51,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         public double ReducedStrengthTransitionAlphaS { get; }
 
         public double AverageNumberOfWavesCtm { get; }
-
-        public GrassRevetmentWaveRunupRepresentative2P Representative2P { get; }
-
-        public GrassRevetmentWaveRunupWaveAngleImpact WaveAngleImpact { get; }
 
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
