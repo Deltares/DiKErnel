@@ -37,8 +37,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
         private double dikeHeight = double.NaN;
         private double verticalDistanceWaterLevelElevation = double.NaN;
-        private readonly double waveAngle = double.NaN;
-        private readonly double waveAngleImpact = double.NaN;
         private double representativeWaveRunup2P = double.NaN;
         private double cumulativeOverload = double.NaN;
         private double averageNumberOfWaves = double.NaN;
@@ -201,8 +199,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
             if (verticalDistanceWaterLevelElevation > 0.0)
             {
-                constructionProperties.WaveAngle = waveAngle;
-                constructionProperties.WaveAngleImpact = waveAngleImpact;
                 constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
                 constructionProperties.CumulativeOverload = cumulativeOverload;
                 constructionProperties.AverageNumberOfWaves = averageNumberOfWaves;
