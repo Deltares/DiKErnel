@@ -368,7 +368,7 @@ namespace DiKErnel.Integration
         {
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
                    && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
-                   && ValidateOvertoppingLocationSpecificProperties(constructionProperties, outerToe, outerCrest);
+                   && ValidateOvertoppingLocationSpecificProperties(outerToe, outerCrest, constructionProperties);
         }
 
         private static bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
@@ -463,8 +463,8 @@ namespace DiKErnel.Integration
         }
 
         private bool ValidateOvertoppingLocationSpecificProperties(
-            GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties,
-            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
+            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
+            GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties)
         {
             var xValuesProfile = new List<double>();
             var zValuesProfile = new List<double>();
