@@ -85,6 +85,18 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             return new GrassRevetmentWaveRunupRayleighLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
+        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        {
+            base.InitializeDerivedLocationDependentInput(profileData);
+
+            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+
+            InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
+        }
+
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
@@ -137,6 +149,23 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
             return new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+        }
+
+        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
+                                                  IReadOnlyList<ProfileSegment> profileSegments)
+        {
+            foreach (ProfileSegment profileSegment in profileSegments)
+            {
+                if (profileSegment.StartPoint.X >= outerToe.Item1 && profileSegment.StartPoint.X < outerCrest.Item1)
+                {
+                    xValuesProfile.Add(profileSegment.StartPoint.X);
+                    zValuesProfile.Add(profileSegment.StartPoint.Z);
+                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient);
+                }
+            }
+
+            xValuesProfile.Add(outerCrest.Item1);
+            zValuesProfile.Add(outerCrest.Item2);
         }
 
         private double CalculateRepresentativeWaveRunup2P(double waveHeightHm0, double wavePeriodTm10)
