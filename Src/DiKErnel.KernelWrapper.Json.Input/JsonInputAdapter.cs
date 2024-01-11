@@ -320,8 +320,6 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     throw new JsonInputConversionException("Cannot convert calculation protocol type.");
             }
 
-            JsonInputGrassWaveRunupCalculationImpactAngleData impactAngleData =
-                calculationData.JsonInputGrassWaveRunupCalculationImpactAngleData;
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData.TopLayerDefinitionData?
                     .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
@@ -331,8 +329,6 @@ namespace DiKErnel.KernelWrapper.Json.Input
             constructionProperties.IncreasedLoadTransitionAlphaM = locationData.IncreasedLoadTransitionAlphaM;
             constructionProperties.ReducedStrengthTransitionAlphaS = locationData.ReducedStrengthTransitionAlphaS;
             constructionProperties.AverageNumberOfWavesCtm = calculationData.FactorCtm;
-            constructionProperties.WaveAngleImpactAbeta = impactAngleData?.WaveAngleImpactABeta;
-            constructionProperties.WaveAngleImpactBetamax = impactAngleData?.WaveAngleImpactBetaMax;
             constructionProperties.CriticalCumulativeOverload = topLayerData?.CriticalCumulativeOverload;
             constructionProperties.CriticalFrontVelocity = topLayerData?.CriticalFrontVelocity;
 
@@ -345,7 +341,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassWaveRunupCalculationProtocolData calculationProtocolData)
         {
             return new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                locationData.X, double.NaN, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
+                locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 FixedNumberOfWaves = calculationProtocolData.FixedNumberOfWaves,
                 FrontVelocityCu = calculationProtocolData.FrontVelocity
