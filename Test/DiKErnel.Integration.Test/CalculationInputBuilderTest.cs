@@ -18,7 +18,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetment;
@@ -573,8 +572,8 @@ namespace DiKErnel.Integration.Test
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
                 result,
-                $"The begin time of the time step ({startTimeStep2.ToString("F6", CultureInfo.InvariantCulture)}) must be equal to" +
-                $" the end time of the previous time step ({endTimeStep1.ToString("F6", CultureInfo.InvariantCulture)}).");
+                $"The begin time of the time step ({NumericsHelper.ToString(startTimeStep2)}) must be equal to" +
+                $" the end time of the previous time step ({NumericsHelper.ToString(endTimeStep1)}).");
         }
 
         [Test]
@@ -600,8 +599,8 @@ namespace DiKErnel.Integration.Test
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
                 result,
-                $"The begin time of the time step ({beginTime.ToString("F6", CultureInfo.InvariantCulture)}) must be smaller than " +
-                $"the end time of the time step ({endTime.ToString("F6", CultureInfo.InvariantCulture)}).");
+                $"The begin time of the time step ({NumericsHelper.ToString(beginTime)}) must be smaller than " +
+                $"the end time of the time step ({NumericsHelper.ToString(endTime)}).");
         }
 
         [Test]
@@ -710,7 +709,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
+                result, $"The location with position {NumericsHelper.ToString(x)} has an invalid top layer type.");
         }
 
         [Test]
@@ -1311,7 +1310,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
+                result, $"The location with position {NumericsHelper.ToString(x)} has an invalid top layer type.");
         }
 
         [Test]
@@ -1544,7 +1543,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
+                result, $"The location with position {NumericsHelper.ToString(x)} has an invalid top layer type.");
         }
 
         [Test]
@@ -1756,7 +1755,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, $"The location with position {x.ToString("F6", CultureInfo.InvariantCulture)} has an invalid top layer type.");
+                result, $"The location with position {NumericsHelper.ToString(x)} has an invalid top layer type.");
         }
 
         [Test]
