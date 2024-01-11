@@ -27,8 +27,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
     {
         public JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
                                                                             IReadOnlyList<double> verticalDistanceWaterLevelElevation,
-                                                                            IReadOnlyList<double?> waveAngle,
-                                                                            IReadOnlyList<double?> waveAngleImpact,
                                                                             IReadOnlyList<double?> representativeWaveRunup2P,
                                                                             IReadOnlyList<double?> cumulativeOverload,
                                                                             IReadOnlyList<double?> averageNumberOfWaves)
@@ -36,8 +34,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         {
             Z = z;
             VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
-            WaveAngle = waveAngle;
-            WaveAngleImpact = waveAngleImpact;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;
             CumulativeOverload = cumulativeOverload;
             AverageNumberOfWaves = averageNumberOfWaves;
@@ -48,12 +44,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.VerticalDistanceWaterLevelElevation)]
         public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; }
-
-        [JsonProperty(JsonOutputDefinitions.WaveAngle)]
-        public IReadOnlyList<double?> WaveAngle { get; }
-
-        [JsonProperty(JsonOutputDefinitions.WaveAngleImpact)]
-        public IReadOnlyList<double?> WaveAngleImpact { get; }
 
         [JsonProperty(JsonOutputGrassRevetmentDefinitions.RepresentativeWaveRunup2P)]
         public IReadOnlyList<double?> RepresentativeWaveRunup2P { get; }
