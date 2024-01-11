@@ -31,6 +31,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
     {
+        private readonly List<double> xValuesProfile = new List<double>();
+        private readonly List<double> zValuesProfile = new List<double>();
+        private readonly List<double> roughnessCoefficients = new List<double>();
+        private readonly double dikeHeight = double.NaN;
+
         private double verticalDistanceWaterLevelElevation = double.NaN;
         private double waveAngle = double.NaN;
         private double waveAngleImpact = double.NaN;
@@ -141,6 +146,16 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                                  Representative2P.Representative2PBru,
                                                                  Representative2P.Representative2PCru, OuterSlope,
                                                                  Constants.GravitationalAcceleration));
+        }
+
+        private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
+                                                          double wavePeriodTm10, double waveDirection,
+                                                          double dikeOrientation)
+        {
+            return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
+                new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
+                                                        xValuesProfile, zValuesProfile, roughnessCoefficients,
+                                                        dikeHeight, dikeOrientation));
         }
 
         private double CalculateCumulativeOverload()
