@@ -111,8 +111,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                                                    WaveAngleImpact.Abeta,
                                                                                    WaveAngleImpact.Betamax);
 
-                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaveHeightHm0,
-                                                                               timeDependentInput.WavePeriodTm10);
+                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput.WaterLevel,
+                                                                               timeDependentInput.WaveHeightHm0,
+                                                                               timeDependentInput.WavePeriodTm10,
+                                                                               timeDependentInput.WaveDirection,
+                                                                               profileData.DikeOrientation);
 
                 cumulativeOverload = CalculateCumulativeOverload();
 
