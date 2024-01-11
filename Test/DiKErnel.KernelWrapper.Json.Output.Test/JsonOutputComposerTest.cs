@@ -261,8 +261,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     Damage = 2.2,
                     TimeOfFailure = 2.3,
                     VerticalDistanceWaterLevelElevation = 2.4,
-                    WaveAngle = 2.5,
-                    WaveAngleImpact = 2.6,
                     RepresentativeWaveRunup2P = 2.7,
                     CumulativeOverload = 2.8,
                     AverageNumberOfWaves = 2.9
