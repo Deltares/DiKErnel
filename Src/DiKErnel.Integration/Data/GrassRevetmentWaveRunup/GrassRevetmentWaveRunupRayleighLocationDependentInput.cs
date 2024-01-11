@@ -51,9 +51,8 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                                      GrassRevetmentWaveRunupRepresentative2P representative2P,
                                                                      GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact,
                                                                      int fixedNumberOfWaves, double frontVelocityCu)
-            : base(x, initialDamage, failureNumber, outerSlope, criticalCumulativeOverload, criticalFrontVelocity,
-                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
-                   representative2P, waveAngleImpact)
+            : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
+                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
             FixedNumberOfWaves = fixedNumberOfWaves;
             FrontVelocityCu = frontVelocityCu;
