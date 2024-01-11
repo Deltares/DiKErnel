@@ -23,30 +23,6 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassRevetmentWaveRunupLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(double outerSlope,
-                                                   GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
-        {
-            Assert.That(locationDependentInput.OuterSlope, Is.EqualTo(outerSlope));
-        }
-
-        public static void AssertRepresentative2P(double representative2PAru, double representative2PBru,
-                                                  double representative2PCru, double gammab, double gammaf,
-                                                  GrassRevetmentWaveRunupRepresentative2P representative2P)
-        {
-            Assert.That(representative2P.Representative2PAru, Is.EqualTo(representative2PAru));
-            Assert.That(representative2P.Representative2PBru, Is.EqualTo(representative2PBru));
-            Assert.That(representative2P.Representative2PCru, Is.EqualTo(representative2PCru));
-            Assert.That(representative2P.Gammab, Is.EqualTo(gammab));
-            Assert.That(representative2P.Gammaf, Is.EqualTo(gammaf));
-        }
-
-        public static void AssertWaveAngleImpact(double abeta, double betamax,
-                                                 GrassRevetmentWaveRunupWaveAngleImpact waveAngleImpact)
-        {
-            Assert.That(waveAngleImpact.Abeta, Is.EqualTo(abeta));
-            Assert.That(waveAngleImpact.Betamax, Is.EqualTo(betamax));
-        }
-
         public static void AssertCumulativeOverload(double criticalCumulativeOverload,
                                                     GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
         {
