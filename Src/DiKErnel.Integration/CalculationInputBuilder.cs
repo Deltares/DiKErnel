@@ -368,7 +368,7 @@ namespace DiKErnel.Integration
         {
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
                    && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
-                   && ValidateOvertoppingLocationSpecificProperties(outerToe, outerCrest, constructionProperties);
+                   && ValidateOvertoppingLocationSpecificProperties(outerToe, outerCrest, constructionProperties.DikeHeight);
         }
 
         private static bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
@@ -463,8 +463,7 @@ namespace DiKErnel.Integration
         }
 
         private bool ValidateOvertoppingLocationSpecificProperties(
-            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
-            GrassRevetmentOvertoppingLocationConstructionProperties constructionProperties)
+            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, double? dikeHeight = null)
         {
             var xValuesProfile = new List<double>();
             var zValuesProfile = new List<double>();
@@ -491,13 +490,12 @@ namespace DiKErnel.Integration
                 }
             }
 
-            double outerCrestZ = zValuesProfile[zValuesProfile.Count - 1];
-            double dikeHeight = GetOvertoppingDikeHeight(constructionProperties.DikeHeight, outerCrestZ);
+            dikeHeight ??= zValuesProfile[zValuesProfile.Count - 1];
 
             IReadOnlyList<string> messages = OvertoppingAdapter.Validate(xValuesProfile.ToArray(),
                                                                          zValuesProfile.ToArray(),
-                                                                         roughnessCoefficients.ToArray(), dikeHeight,
-                                                                         dikeOrientation);
+                                                                         roughnessCoefficients.ToArray(),
+                                                                         dikeHeight.Value, dikeOrientation);
             if (messages.Any())
             {
                 foreach (string message in messages)
@@ -509,21 +507,6 @@ namespace DiKErnel.Integration
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// Gets the location dike height.
-        /// </summary>
-        /// <param name="locationDikeHeight">The optional dike height of the
-        /// location.</param>
-        /// <param name="outerCrestZCoordinate">The height of the outer crest.</param>
-        /// <returns>The dike height.</returns>
-        /// <remarks>In case the dike height of the location is not set, the height of the
-        /// outer crest is returned to provide a valid input for the validation from the
-        /// overtopping adapter.</remarks>
-        private static double GetOvertoppingDikeHeight(double? locationDikeHeight, double outerCrestZCoordinate)
-        {
-            return locationDikeHeight ?? outerCrestZCoordinate;
         }
 
         private bool ValidateTimeSteps()
