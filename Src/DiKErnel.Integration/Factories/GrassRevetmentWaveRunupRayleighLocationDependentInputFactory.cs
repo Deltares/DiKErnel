@@ -32,29 +32,10 @@ namespace DiKErnel.Integration.Factories
                 GrassRevetmentCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(
                     constructionProperties.TopLayerType);
 
-            var representative2P = new GrassRevetmentWaveRunupRepresentative2P(
-                constructionProperties.RepresentativeWaveRunup2PAru
-                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PAru,
-                constructionProperties.RepresentativeWaveRunup2PBru
-                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PBru,
-                constructionProperties.RepresentativeWaveRunup2PCru
-                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PCru,
-                constructionProperties.RepresentativeWaveRunup2PGammab
-                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammab,
-                constructionProperties.RepresentativeWaveRunup2PGammaf
-                ?? GrassRevetmentWaveRunupDefaults.RepresentativeWaveRunup2PGammaf);
-
-            var waveAngleImpact = new GrassRevetmentWaveRunupWaveAngleImpact(
-                constructionProperties.WaveAngleImpactAbeta
-                ?? GrassRevetmentWaveRunupDefaults.WaveAngleImpactAbeta,
-                constructionProperties.WaveAngleImpactBetamax
-                ?? GrassRevetmentWaveRunupDefaults.WaveAngleImpactBetamax);
-
             return new GrassRevetmentWaveRunupRayleighLocationDependentInput(
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
-                constructionProperties.OuterSlope,
                 constructionProperties.CriticalCumulativeOverload ?? topLayerDefaults.CriticalCumulativeOverload,
                 constructionProperties.CriticalFrontVelocity ?? topLayerDefaults.CriticalFrontVelocity,
                 constructionProperties.IncreasedLoadTransitionAlphaM ??
@@ -63,8 +44,6 @@ namespace DiKErnel.Integration.Factories
                 GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
                 constructionProperties.AverageNumberOfWavesCtm
                 ?? GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
-                representative2P,
-                waveAngleImpact,
                 constructionProperties.FixedNumberOfWaves ?? GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves,
                 constructionProperties.FrontVelocityCu ?? GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu);
         }
