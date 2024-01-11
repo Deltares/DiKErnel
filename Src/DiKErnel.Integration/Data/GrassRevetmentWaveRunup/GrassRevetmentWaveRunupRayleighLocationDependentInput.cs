@@ -170,18 +170,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             zValuesProfile.Add(outerCrest.Item2);
         }
 
-        private double CalculateRepresentativeWaveRunup2P(double waveHeightHm0, double wavePeriodTm10)
-        {
-            return GrassRevetmentWaveRunupFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentWaveRunupRepresentative2PInput(waveAngle, waveAngleImpact, waveHeightHm0,
-                                                                 wavePeriodTm10, Representative2P.Gammab,
-                                                                 Representative2P.Gammaf,
-                                                                 Representative2P.Representative2PAru,
-                                                                 Representative2P.Representative2PBru,
-                                                                 Representative2P.Representative2PCru, OuterSlope,
-                                                                 Constants.GravitationalAcceleration));
-        }
-
         private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
                                                           double wavePeriodTm10, double waveDirection,
                                                           double dikeOrientation)
