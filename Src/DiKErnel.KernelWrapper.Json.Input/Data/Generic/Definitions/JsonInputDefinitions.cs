@@ -68,7 +68,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
         public const string LowerLimit = "ondergrens";
 
         public const string WaveAngleImpact = "impactGolfhoek";
-        public const string BetaMax = "betaMax";
 
         public const string FactorCtm = "factorCtm";
     }
