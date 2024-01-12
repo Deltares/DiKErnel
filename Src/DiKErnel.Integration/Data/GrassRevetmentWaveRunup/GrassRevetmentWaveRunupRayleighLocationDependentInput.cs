@@ -123,16 +123,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
-        private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
-                                                          double wavePeriodTm10, double waveDirection,
-                                                          double dikeOrientation)
-        {
-            return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
-                                                        XValuesProfile, ZValuesProfile, RoughnessCoefficients,
-                                                        DikeHeight, dikeOrientation));
-        }
-
         private double CalculateCumulativeOverload()
         {
             return GrassRevetmentWaveRunupRayleighFunctions.CumulativeOverload(
