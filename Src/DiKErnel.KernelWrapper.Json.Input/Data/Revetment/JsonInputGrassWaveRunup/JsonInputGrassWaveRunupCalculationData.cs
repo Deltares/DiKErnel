@@ -34,8 +34,5 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
 
         [JsonProperty(JsonInputDefinitions.FactorCtm)]
         public double? FactorCtm { get; private set; }
-
-        [JsonProperty(JsonInputDefinitions.WaveAngleImpact)]
-        public JsonInputGrassWaveRunupCalculationImpactAngleData JsonInputGrassWaveRunupCalculationImpactAngleData { get; private set; }
     }
 }

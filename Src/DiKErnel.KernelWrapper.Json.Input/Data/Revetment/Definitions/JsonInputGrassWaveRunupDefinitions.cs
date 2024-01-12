@@ -20,8 +20,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
     internal static class JsonInputGrassWaveRunupDefinitions
     {
-        public const string ABeta = "aBeta";
-
         public const string CalculationProtocol = "rekenprotocol";
         public const string CalculationProtocolType = "typeRekenprotocol";
         public const string CalculationProtocolTypeRayleighDiscrete = "rayleighDiscreet";
