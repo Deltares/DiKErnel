@@ -31,11 +31,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
     {
-        private readonly List<double> xValuesProfile = new List<double>();
-        private readonly List<double> zValuesProfile = new List<double>();
-        private readonly List<double> roughnessCoefficients = new List<double>();
-
-        private double dikeHeight = double.NaN;
         private double verticalDistanceWaterLevelElevation = double.NaN;
         private double representativeWaveRunup2P = double.NaN;
         private double cumulativeOverload = double.NaN;
@@ -78,20 +73,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
             return new GrassRevetmentWaveRunupRayleighLocationDependentOutput(timeDependentOutputItems, Z);
-        }
-
-        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
-        {
-            base.InitializeDerivedLocationDependentInput(profileData);
-
-            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
-            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
-
-            InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
-
-            dikeHeight = outerCrest.Item2;
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
@@ -142,31 +123,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
-        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
-                                                  IReadOnlyList<ProfileSegment> profileSegments)
-        {
-            foreach (ProfileSegment profileSegment in profileSegments)
-            {
-                if (profileSegment.StartPoint.X >= outerToe.Item1 && profileSegment.StartPoint.X < outerCrest.Item1)
-                {
-                    xValuesProfile.Add(profileSegment.StartPoint.X);
-                    zValuesProfile.Add(profileSegment.StartPoint.Z);
-                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient);
-                }
-            }
-
-            xValuesProfile.Add(outerCrest.Item1);
-            zValuesProfile.Add(outerCrest.Item2);
-        }
-
         private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
                                                           double wavePeriodTm10, double waveDirection,
                                                           double dikeOrientation)
         {
             return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
                 new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
-                                                        xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                                        dikeHeight, dikeOrientation));
+                                                        XValuesProfile, ZValuesProfile, RoughnessCoefficients,
+                                                        DikeHeight, dikeOrientation));
         }
 
         private double CalculateCumulativeOverload()

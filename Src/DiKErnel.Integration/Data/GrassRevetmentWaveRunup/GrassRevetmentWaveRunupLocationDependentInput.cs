@@ -27,6 +27,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     internal abstract class GrassRevetmentWaveRunupLocationDependentInput : LocationDependentInput
     {
+        private readonly List<double> xValuesProfile = new List<double>();
+        private readonly List<double> zValuesProfile = new List<double>();
+        private readonly List<double> roughnessCoefficients = new List<double>();
+
         protected GrassRevetmentWaveRunupLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                 double criticalCumulativeOverload,
                                                                 double criticalFrontVelocity,
@@ -67,6 +71,45 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
+        }
+
+        protected IReadOnlyList<double> XValuesProfile => xValuesProfile;
+
+        protected IReadOnlyList<double> ZValuesProfile => zValuesProfile;
+
+        protected IReadOnlyList<double> RoughnessCoefficients => roughnessCoefficients;
+
+        protected double DikeHeight { get; private set; }
+
+        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        {
+            base.InitializeDerivedLocationDependentInput(profileData);
+
+            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+
+            InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
+
+            DikeHeight = outerCrest.Item2;
+        }
+
+        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
+                                                  IReadOnlyList<ProfileSegment> profileSegments)
+        {
+            foreach (ProfileSegment profileSegment in profileSegments)
+            {
+                if (profileSegment.StartPoint.X >= outerToe.Item1 && profileSegment.StartPoint.X < outerCrest.Item1)
+                {
+                    xValuesProfile.Add(profileSegment.StartPoint.X);
+                    zValuesProfile.Add(profileSegment.StartPoint.Z);
+                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient);
+                }
+            }
+
+            xValuesProfile.Add(outerCrest.Item1);
+            zValuesProfile.Add(outerCrest.Item2);
         }
     }
 }
