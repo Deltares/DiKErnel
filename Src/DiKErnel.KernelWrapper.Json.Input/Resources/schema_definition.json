@@ -469,9 +469,6 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "aBeta": {
-                "type": "number"
-              },
               "betaMax": {
                 "type": "number"
               },

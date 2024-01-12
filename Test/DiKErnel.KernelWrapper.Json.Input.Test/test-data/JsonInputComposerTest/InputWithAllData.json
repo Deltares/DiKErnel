@@ -272,10 +272,6 @@
                 }
             ],
             "factorCtm": 0.99,
-            "impactGolfhoek": {
-                "aBeta": 0.0011,
-                "betaMax": 89.0
-            },
             "rekenprotocol": {
                 "typeRekenprotocol": "rayleighDiscreet",
                 "aantalGolvenVast": 5000,
