@@ -21,25 +21,20 @@ using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
-using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.GrassRevetment;
 using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
+using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
-    internal class GrassRevetmentOvertoppingLocationDependentInput : LocationDependentInput
+    internal class GrassRevetmentOvertoppingLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
     {
-        private readonly List<double> xValuesProfile = new List<double>();
-        private readonly List<double> zValuesProfile = new List<double>();
-        private readonly List<double> roughnessCoefficients = new List<double>();
-        private double dikeHeight = double.NaN;
         private double accelerationAlphaA = double.NaN;
-
         private double verticalDistanceWaterLevelElevation = double.NaN;
         private double representativeWaveRunup2P = double.NaN;
         private double cumulativeOverload = double.NaN;
@@ -51,28 +46,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             double averageNumberOfWavesCtm, int fixedNumberOfWaves, double frontVelocityCwo,
             GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA,
             double? enforcedDikeHeight)
-            : base(x, initialDamage, failureNumber)
+            : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
+                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
-            CriticalCumulativeOverload = criticalCumulativeOverload;
-            CriticalFrontVelocity = criticalFrontVelocity;
-            IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
-            ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
-            AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
             FixedNumberOfWaves = fixedNumberOfWaves;
             FrontVelocityCwo = frontVelocityCwo;
             LocationDependentAccelerationAlphaA = locationDependentAccelerationAlphaA;
             EnforcedDikeHeight = enforcedDikeHeight;
         }
-
-        public double CriticalCumulativeOverload { get; }
-
-        public double CriticalFrontVelocity { get; }
-
-        public double IncreasedLoadTransitionAlphaM { get; }
-
-        public double ReducedStrengthTransitionAlphaS { get; }
-
-        public double AverageNumberOfWavesCtm { get; }
 
         public int FixedNumberOfWaves { get; }
 
@@ -87,11 +68,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         {
             bool baseValidationSuccessful = base.Validate(timeDependentInputItems, profileData);
 
-            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
-
-            double calculatedDikeHeight = CalculateDikeHeight(outerCrest, profileData.ProfileSegments,
-                                                              profileData.GetVerticalHeight(X));
+            double calculatedDikeHeight = CalculateDikeHeight(profileData);
 
             var validationIssues = new List<ValidationIssue>();
 
@@ -103,18 +80,12 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                          "time steps."));
             }
 
-            validationIssues.Add(GrassRevetmentValidator.CriticalCumulativeOverload(CriticalCumulativeOverload));
-            validationIssues.Add(GrassRevetmentValidator.CriticalFrontVelocity(CriticalFrontVelocity));
             validationIssues.Add(GrassRevetmentOvertoppingValidator.AccelerationAlphaA(
                                      LocationDependentAccelerationAlphaA.ValueAtCrest));
             validationIssues.Add(GrassRevetmentOvertoppingValidator.AccelerationAlphaA(
                                      LocationDependentAccelerationAlphaA.ValueAtInnerSlope));
             validationIssues.Add(GrassRevetmentValidator.FixedNumberOfWaves(FixedNumberOfWaves));
             validationIssues.Add(GrassRevetmentOvertoppingValidator.FrontVelocityCwo(FrontVelocityCwo));
-            validationIssues.Add(RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm));
-            validationIssues.Add(GrassRevetmentValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM));
-            validationIssues.Add(GrassRevetmentValidator.ReducedStrengthTransitionAlphaS(
-                                     ReducedStrengthTransitionAlphaS));
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
@@ -129,16 +100,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 
-            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
-            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
-            (double, double) innerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.InnerCrest);
-
-            InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
-            InitializeDikeHeight(outerCrest, profileData.ProfileSegments);
-            InitializeAccelerationAlphaA(outerCrest, innerCrest);
+            InitializeAccelerationAlphaA(profileData);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
@@ -150,7 +112,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             double? timeOfFailure = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
-                dikeHeight, timeDependentInput.WaterLevel);
+                DikeHeight, timeDependentInput.WaterLevel);
 
             if (verticalDistanceWaterLevelElevation >= 0.0)
             {
@@ -188,43 +150,39 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
-        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
-                                                  IReadOnlyList<ProfileSegment> profileSegments)
+        protected override double CalculateDikeHeight(IProfileData profileData)
         {
-            foreach (ProfileSegment profileSegment in profileSegments)
+            if (EnforcedDikeHeight != null)
             {
-                if (profileSegment.StartPoint.X >= outerToe.Item1 && profileSegment.StartPoint.X < outerCrest.Item1)
+                return EnforcedDikeHeight.Value;
+            }
+
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+
+            double calculatedDikeHeight = profileData.GetVerticalHeight(X);
+
+            foreach (ProfilePoint segmentStartPoint in profileData.ProfileSegments.Select(s => s.StartPoint))
+            {
+                if (segmentStartPoint.X >= outerCrest.Item1 && segmentStartPoint.X < X)
                 {
-                    xValuesProfile.Add(profileSegment.StartPoint.X);
-                    zValuesProfile.Add(profileSegment.StartPoint.Z);
-                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient);
+                    calculatedDikeHeight = Math.Max(calculatedDikeHeight, segmentStartPoint.Z);
                 }
             }
 
-            xValuesProfile.Add(outerCrest.Item1);
-            zValuesProfile.Add(outerCrest.Item2);
+            return calculatedDikeHeight;
         }
 
-        private void InitializeDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments)
+        private void InitializeAccelerationAlphaA(IProfileData profileData)
         {
-            dikeHeight = CalculateDikeHeight(outerCrest, profileSegments, Z);
-        }
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+            (double, double) innerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.InnerCrest);
 
-        private void InitializeAccelerationAlphaA((double, double) outerCrest, (double, double) innerCrest)
-        {
             accelerationAlphaA = X >= outerCrest.Item1 && X <= innerCrest.Item1
                                      ? LocationDependentAccelerationAlphaA.ValueAtCrest
                                      : LocationDependentAccelerationAlphaA.ValueAtInnerSlope;
-        }
-
-        private double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
-                                                          double wavePeriodTm10, double waveDirection,
-                                                          double dikeOrientation)
-        {
-            return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
-                                                        xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                                        dikeHeight, dikeOrientation));
         }
 
         private double CalculateCumulativeOverload()
@@ -240,27 +198,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                      Constants.GravitationalAcceleration,
                                                                      accelerationAlphaA,
                                                                      FrontVelocityCwo));
-        }
-
-        private double CalculateDikeHeight((double, double) outerCrest, IReadOnlyList<ProfileSegment> profileSegments,
-                                           double locationHeight)
-        {
-            if (EnforcedDikeHeight != null)
-            {
-                return EnforcedDikeHeight.Value;
-            }
-
-            double calculateDikeHeight = locationHeight;
-
-            foreach (ProfilePoint segmentStartPoint in profileSegments.Select(s => s.StartPoint))
-            {
-                if (segmentStartPoint.X >= outerCrest.Item1 && segmentStartPoint.X < X)
-                {
-                    calculateDikeHeight = Math.Max(calculateDikeHeight, segmentStartPoint.Z);
-                }
-            }
-
-            return calculateDikeHeight;
         }
 
         private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(

@@ -32,8 +32,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         private readonly List<double> zValuesProfile = new List<double>();
         private readonly List<double> roughnessCoefficients = new List<double>();
 
-        private double dikeHeight = double.NaN;
-
         protected GrassRevetmentWaveRunupLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                 double criticalCumulativeOverload,
                                                                 double criticalFrontVelocity,
@@ -76,13 +74,15 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
+        protected double DikeHeight { get; private set; } = double.NaN;
+
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 
             InitializeCalculationProfile(profileData);
 
-            dikeHeight = CalculateDikeHeight(profileData);
+            DikeHeight = CalculateDikeHeight(profileData);
         }
 
         protected virtual double CalculateDikeHeight(IProfileData profileData)
@@ -100,7 +100,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
                 new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
                                                         xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                                        dikeHeight, dikeOrientation));
+                                                        DikeHeight, dikeOrientation));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)
