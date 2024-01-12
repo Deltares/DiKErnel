@@ -80,14 +80,17 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 
-            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
+            InitializeCalculationProfile(profileData);
+
+            dikeHeight = CalculateDikeHeight(profileData);
+        }
+
+        protected virtual double CalculateDikeHeight(IProfileData profileData)
+        {
             (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
                 profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
 
-            InitializeCalculationProfile(outerToe, outerCrest, profileData.ProfileSegments);
-
-            dikeHeight = outerCrest.Item2;
+            return outerCrest.Item2;
         }
 
         protected double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
@@ -100,10 +103,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
                                                         dikeHeight, dikeOrientation));
         }
 
-        private void InitializeCalculationProfile((double, double) outerToe, (double, double) outerCrest,
-                                                  IReadOnlyList<ProfileSegment> profileSegments)
+        private void InitializeCalculationProfile(IProfileData profileData)
         {
-            foreach (ProfileSegment profileSegment in profileSegments)
+            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+
+            foreach (ProfileSegment profileSegment in profileData.ProfileSegments)
             {
                 if (profileSegment.StartPoint.X >= outerToe.Item1 && profileSegment.StartPoint.X < outerCrest.Item1)
                 {
