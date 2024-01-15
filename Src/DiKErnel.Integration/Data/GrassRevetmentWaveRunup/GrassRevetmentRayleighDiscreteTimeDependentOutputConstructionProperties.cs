@@ -21,10 +21,10 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
     /// <summary>
-    /// Construction properties to construct grass revetment wave run-up time dependent
-    /// output for the Rayleigh protocol.
+    /// Construction properties to construct grass revetment time dependent output for the
+    /// Rayleigh Discrete protocol.
     /// </summary>
-    public class GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
+    public class GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>

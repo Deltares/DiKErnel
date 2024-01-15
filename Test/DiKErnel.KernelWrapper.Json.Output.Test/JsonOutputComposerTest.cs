@@ -255,7 +255,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var grassWaveRunupRayleighTimeDependentOutput = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
-                new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
+                new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 2.1,
                     Damage = 2.2,
@@ -347,7 +347,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var grassWaveRunupRayleighTimeDependentOutput = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
-                new GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties
+                new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 1.2,
                     Damage = 1.3,

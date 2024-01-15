@@ -29,7 +29,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
     {
         /// <inheritdoc/>
         public GrassRevetmentWaveRunupRayleighTimeDependentOutput(
-            GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties)
+            GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
             VerticalDistanceWaterLevelElevation = constructionProperties.VerticalDistanceWaterLevelElevation
