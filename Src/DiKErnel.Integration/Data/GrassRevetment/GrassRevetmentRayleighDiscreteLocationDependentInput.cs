@@ -38,7 +38,8 @@ namespace DiKErnel.Integration.Data.GrassRevetment
                                                                        double criticalFrontVelocity,
                                                                        double increasedLoadTransitionAlphaM,
                                                                        double reducedStrengthTransitionAlphaS,
-                                                                       double averageNumberOfWavesCtm)
+                                                                       double averageNumberOfWavesCtm,
+                                                                       int fixedNumberOfWaves)
             : base(x, initialDamage, failureNumber)
         {
             CriticalCumulativeOverload = criticalCumulativeOverload;
@@ -46,6 +47,7 @@ namespace DiKErnel.Integration.Data.GrassRevetment
             IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
             ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
             AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
+            FixedNumberOfWaves = fixedNumberOfWaves;
         }
 
         public double CriticalCumulativeOverload { get; }
@@ -57,6 +59,8 @@ namespace DiKErnel.Integration.Data.GrassRevetment
         public double ReducedStrengthTransitionAlphaS { get; }
 
         public double AverageNumberOfWavesCtm { get; }
+
+        public int FixedNumberOfWaves { get; }
 
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)

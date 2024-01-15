@@ -47,15 +47,13 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA,
             double? enforcedDikeHeight)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
-                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
+                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
+                   fixedNumberOfWaves)
         {
-            FixedNumberOfWaves = fixedNumberOfWaves;
             FrontVelocityCwo = frontVelocityCwo;
             LocationDependentAccelerationAlphaA = locationDependentAccelerationAlphaA;
             EnforcedDikeHeight = enforcedDikeHeight;
         }
-
-        public int FixedNumberOfWaves { get; }
 
         public double FrontVelocityCwo { get; }
 
