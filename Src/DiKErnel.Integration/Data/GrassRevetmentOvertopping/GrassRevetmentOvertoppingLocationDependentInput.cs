@@ -92,7 +92,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
             InitializeAccelerationAlphaA(profileData);
         }
-        
+
         protected override double CalculateDikeHeight(IProfileData profileData)
         {
             if (EnforcedDikeHeight != null)
@@ -116,18 +116,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             return calculatedDikeHeight;
         }
 
-        private void InitializeAccelerationAlphaA(IProfileData profileData)
-        {
-            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
-            (double, double) innerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.InnerCrest);
-
-            accelerationAlphaA = X >= outerCrest.Item1 && X <= innerCrest.Item1
-                                     ? LocationDependentAccelerationAlphaA.ValueAtCrest
-                                     : LocationDependentAccelerationAlphaA.ValueAtInnerSlope;
-        }
-
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation)
@@ -143,6 +131,18 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                      Constants.GravitationalAcceleration,
                                                                      accelerationAlphaA,
                                                                      FrontVelocityCwo));
+        }
+
+        private void InitializeAccelerationAlphaA(IProfileData profileData)
+        {
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+            (double, double) innerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.InnerCrest);
+
+            accelerationAlphaA = X >= outerCrest.Item1 && X <= innerCrest.Item1
+                                     ? LocationDependentAccelerationAlphaA.ValueAtCrest
+                                     : LocationDependentAccelerationAlphaA.ValueAtInnerSlope;
         }
     }
 }
