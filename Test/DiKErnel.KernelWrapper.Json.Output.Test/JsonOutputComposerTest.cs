@@ -230,7 +230,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(
-                new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+                new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.6,
                     Damage = 0.7,
@@ -330,7 +330,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(
-                new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+                new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.5,
                     Damage = 0.6,

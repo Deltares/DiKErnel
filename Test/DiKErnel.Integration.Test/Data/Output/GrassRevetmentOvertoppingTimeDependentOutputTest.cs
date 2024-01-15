@@ -18,6 +18,7 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
@@ -39,7 +40,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double cumulativeOverload = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -72,7 +73,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double damage = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -97,7 +98,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void ConstructorVerticalDistanceWaterLevelElevationNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),

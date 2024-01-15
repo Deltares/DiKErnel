@@ -18,6 +18,7 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.GrassRevetment;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
@@ -28,7 +29,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
     {
         /// <inheritdoc/>
         public GrassRevetmentOvertoppingTimeDependentOutput(
-            GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties)
+            GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
             VerticalDistanceWaterLevelElevation = constructionProperties.VerticalDistanceWaterLevelElevation

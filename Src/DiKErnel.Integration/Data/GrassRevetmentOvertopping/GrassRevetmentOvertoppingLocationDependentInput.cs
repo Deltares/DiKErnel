@@ -192,10 +192,10 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                      FrontVelocityCwo));
         }
 
-        private GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, double? timeOfFailure)
         {
-            var constructionProperties = new GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
