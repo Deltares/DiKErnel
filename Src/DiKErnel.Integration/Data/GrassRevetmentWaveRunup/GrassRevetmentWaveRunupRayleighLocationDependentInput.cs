@@ -72,6 +72,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             return new GrassRevetmentWaveRunupRayleighLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
+        protected override double CalculateDikeHeight(IProfileData profileData)
+        {
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
+
+            return outerCrest.Item2;
+        }
+
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)

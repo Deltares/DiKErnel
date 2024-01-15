@@ -91,13 +91,7 @@ namespace DiKErnel.Integration.Data.GrassRevetment
             DikeHeight = CalculateDikeHeight(profileData);
         }
 
-        protected virtual double CalculateDikeHeight(IProfileData profileData)
-        {
-            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
-
-            return outerCrest.Item2;
-        }
+        protected abstract double CalculateDikeHeight(IProfileData profileData);
 
         protected double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
                                                             IProfileData profileData)
