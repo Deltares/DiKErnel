@@ -34,6 +34,7 @@ namespace DiKErnel.Integration.Data.GrassRevetment
         private readonly List<double> zValuesProfile = new List<double>();
         private readonly List<double> roughnessCoefficients = new List<double>();
 
+        private double dikeHeight = double.NaN;
         private double verticalDistanceWaterLevelElevation = double.NaN;
         private double representativeWaveRunup2P = double.NaN;
         private double cumulativeOverload = double.NaN;
@@ -87,8 +88,6 @@ namespace DiKErnel.Integration.Data.GrassRevetment
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        protected double DikeHeight { get; private set; } = double.NaN;
-
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
@@ -98,7 +97,7 @@ namespace DiKErnel.Integration.Data.GrassRevetment
             double? timeOfFailure = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
-                DikeHeight, timeDependentInput.WaterLevel);
+                dikeHeight, timeDependentInput.WaterLevel);
 
             if (verticalDistanceWaterLevelElevation >= 0.0)
             {
@@ -139,7 +138,7 @@ namespace DiKErnel.Integration.Data.GrassRevetment
 
             InitializeCalculationProfile(profileData);
 
-            DikeHeight = CalculateDikeHeight(profileData);
+            dikeHeight = CalculateDikeHeight(profileData);
         }
 
         protected abstract double CalculateDikeHeight(IProfileData profileData);
@@ -148,14 +147,14 @@ namespace DiKErnel.Integration.Data.GrassRevetment
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation);
 
-        protected double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
-                                                            IProfileData profileData)
+        private double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
+                                                          IProfileData profileData)
         {
             return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
                 new GrassRevetmentRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                                                         timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
                                                         xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                                        DikeHeight, profileData.DikeOrientation));
+                                                        dikeHeight, profileData.DikeOrientation));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)
