@@ -20,7 +20,9 @@ using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.GrassRevetment;
+using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetment;
+using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
@@ -31,6 +33,11 @@ namespace DiKErnel.Integration.Data.GrassRevetment
         private readonly List<double> xValuesProfile = new List<double>();
         private readonly List<double> zValuesProfile = new List<double>();
         private readonly List<double> roughnessCoefficients = new List<double>();
+
+        private double verticalDistanceWaterLevelElevation = double.NaN;
+        private double representativeWaveRunup2P = double.NaN;
+        private double cumulativeOverload = double.NaN;
+        private double averageNumberOfWaves = double.NaN;
 
         protected GrassRevetmentRayleighDiscreteLocationDependentInput(double x, double initialDamage,
                                                                        double failureNumber,
@@ -82,6 +89,50 @@ namespace DiKErnel.Integration.Data.GrassRevetment
 
         protected double DikeHeight { get; private set; } = double.NaN;
 
+        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
+                                                                            ITimeDependentInput timeDependentInput,
+                                                                            IProfileData profileData)
+        {
+            var incrementDamage = 0.0;
+            double damage = initialDamage;
+            double? timeOfFailure = null;
+
+            verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
+                DikeHeight, timeDependentInput.WaterLevel);
+
+            if (verticalDistanceWaterLevelElevation >= 0.0)
+            {
+                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
+                                                                        timeDependentInput.EndTime);
+
+                averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
+                                                                               timeDependentInput.WavePeriodTm10,
+                                                                               AverageNumberOfWavesCtm);
+
+                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput, profileData);
+
+                cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves, representativeWaveRunup2P,
+                                                                 verticalDistanceWaterLevelElevation);
+
+                incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
+                                                                          CriticalCumulativeOverload);
+
+                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
+
+                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
+                {
+                    double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
+                        incrementTime, incrementDamage, FailureNumber, initialDamage);
+
+                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
+                                                                     timeDependentInput.BeginTime);
+                }
+            }
+
+            return new GrassRevetmentOvertoppingTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+        }
+
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
@@ -92,6 +143,10 @@ namespace DiKErnel.Integration.Data.GrassRevetment
         }
 
         protected abstract double CalculateDikeHeight(IProfileData profileData);
+
+        protected abstract double CalculateCumulativeOverload(double averageNumberOfWaves,
+                                                              double representativeWaveRunup2P,
+                                                              double verticalDistanceWaterLevelElevation);
 
         protected double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
                                                             IProfileData profileData)
@@ -122,6 +177,27 @@ namespace DiKErnel.Integration.Data.GrassRevetment
 
             xValuesProfile.Add(outerCrest.Item1);
             zValuesProfile.Add(outerCrest.Item2);
+        }
+
+        private GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties CreateConstructionProperties(
+            double incrementDamage, double damage, double? timeOfFailure)
+        {
+            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
+            };
+
+            if (verticalDistanceWaterLevelElevation >= 0.0)
+            {
+                constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
+                constructionProperties.CumulativeOverload = cumulativeOverload;
+                constructionProperties.AverageNumberOfWaves = averageNumberOfWaves;
+            }
+
+            return constructionProperties;
         }
     }
 }

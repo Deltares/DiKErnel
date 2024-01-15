@@ -22,8 +22,6 @@ using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
-using DiKErnel.FunctionLibrary;
-using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Helpers;
@@ -34,10 +32,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
     internal class GrassRevetmentOvertoppingLocationDependentInput : GrassRevetmentRayleighDiscreteLocationDependentInput
     {
         private double accelerationAlphaA = double.NaN;
-        private double verticalDistanceWaterLevelElevation = double.NaN;
-        private double representativeWaveRunup2P = double.NaN;
-        private double cumulativeOverload = double.NaN;
-        private double averageNumberOfWaves = double.NaN;
 
         public GrassRevetmentOvertoppingLocationDependentInput(
             double x, double initialDamage, double failureNumber, double criticalCumulativeOverload,
@@ -98,50 +92,7 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 
             InitializeAccelerationAlphaA(profileData);
         }
-
-        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
-                                                                            ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
-        {
-            var incrementDamage = 0.0;
-            double damage = initialDamage;
-            double? timeOfFailure = null;
-
-            verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
-                DikeHeight, timeDependentInput.WaterLevel);
-
-            if (verticalDistanceWaterLevelElevation >= 0.0)
-            {
-                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                        timeDependentInput.EndTime);
-
-                averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
-                                                                               timeDependentInput.WavePeriodTm10,
-                                                                               AverageNumberOfWavesCtm);
-
-                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput, profileData);
-
-                cumulativeOverload = CalculateCumulativeOverload();
-
-                incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
-                                                                          CriticalCumulativeOverload);
-
-                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
-
-                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
-                {
-                    double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
-                        incrementTime, incrementDamage, FailureNumber, initialDamage);
-
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
-                                                                     timeDependentInput.BeginTime);
-                }
-            }
-
-            return new GrassRevetmentOvertoppingTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
-        }
-
+        
         protected override double CalculateDikeHeight(IProfileData profileData)
         {
             if (EnforcedDikeHeight != null)
@@ -177,7 +128,9 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                      : LocationDependentAccelerationAlphaA.ValueAtInnerSlope;
         }
 
-        private double CalculateCumulativeOverload()
+        protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
+                                                              double representativeWaveRunup2P,
+                                                              double verticalDistanceWaterLevelElevation)
         {
             return GrassRevetmentOvertoppingFunctions.CumulativeOverload(
                 new GrassRevetmentOvertoppingCumulativeOverloadInput(averageNumberOfWaves,
@@ -190,27 +143,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                                                      Constants.GravitationalAcceleration,
                                                                      accelerationAlphaA,
                                                                      FrontVelocityCwo));
-        }
-
-        private GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, double? timeOfFailure)
-        {
-            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
-            {
-                IncrementDamage = incrementDamage,
-                Damage = damage,
-                TimeOfFailure = timeOfFailure,
-                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
-            };
-
-            if (verticalDistanceWaterLevelElevation >= 0.0)
-            {
-                constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
-                constructionProperties.CumulativeOverload = cumulativeOverload;
-                constructionProperties.AverageNumberOfWaves = averageNumberOfWaves;
-            }
-
-            return constructionProperties;
         }
     }
 }
