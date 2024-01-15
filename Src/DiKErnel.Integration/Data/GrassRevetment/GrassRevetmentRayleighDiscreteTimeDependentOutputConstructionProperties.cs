@@ -18,7 +18,7 @@
 
 using DiKErnel.Core.Data;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
+namespace DiKErnel.Integration.Data.GrassRevetment
 {
     /// <summary>
     /// Construction properties to construct grass revetment time dependent output for the

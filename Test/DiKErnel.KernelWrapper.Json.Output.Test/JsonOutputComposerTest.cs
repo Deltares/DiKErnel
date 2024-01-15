@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.IO;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
