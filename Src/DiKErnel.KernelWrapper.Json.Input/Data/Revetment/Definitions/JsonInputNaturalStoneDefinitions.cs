@@ -39,7 +39,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
         public const string DistanceMaximumWaveElevation = "afstandMaximaleStijghoogte";
 
         public const string NormativeWidthOfWaveImpact = "maatgevendeBreedteGolfklap";
-        
+
         public const string BetaMax = "betaMax";
     }
 }

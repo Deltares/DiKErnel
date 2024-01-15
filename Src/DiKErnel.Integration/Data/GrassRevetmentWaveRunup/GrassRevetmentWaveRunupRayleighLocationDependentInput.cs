@@ -24,6 +24,7 @@ using DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 

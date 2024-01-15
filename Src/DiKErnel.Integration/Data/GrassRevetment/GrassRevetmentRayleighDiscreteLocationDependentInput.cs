@@ -24,7 +24,7 @@ using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
+namespace DiKErnel.Integration.Data.GrassRevetment
 {
     internal abstract class GrassRevetmentRayleighDiscreteLocationDependentInput : LocationDependentInput
     {

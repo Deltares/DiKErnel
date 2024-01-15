@@ -26,7 +26,7 @@ using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
-using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
