@@ -21,7 +21,7 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class GrassRevetmentWaveRunupLocationDependentInputAssertHelper
+    internal static class GrassRevetmentRayleighDiscreteLocationDependentInputAssertHelper
     {
         public static void AssertCumulativeOverload(double criticalCumulativeOverload,
                                                     GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
