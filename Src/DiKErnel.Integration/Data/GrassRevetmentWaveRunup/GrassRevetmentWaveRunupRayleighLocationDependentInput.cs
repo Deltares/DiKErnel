@@ -29,7 +29,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
-    internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
+    internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentRayleighDiscreteLocationDependentInput
     {
         private double verticalDistanceWaterLevelElevation = double.NaN;
         private double representativeWaveRunup2P = double.NaN;

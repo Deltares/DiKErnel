@@ -32,7 +32,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
 {
-    internal class GrassRevetmentOvertoppingLocationDependentInput : GrassRevetmentWaveRunupLocationDependentInput
+    internal class GrassRevetmentOvertoppingLocationDependentInput : GrassRevetmentRayleighDiscreteLocationDependentInput
     {
         private double accelerationAlphaA = double.NaN;
         private double verticalDistanceWaterLevelElevation = double.NaN;

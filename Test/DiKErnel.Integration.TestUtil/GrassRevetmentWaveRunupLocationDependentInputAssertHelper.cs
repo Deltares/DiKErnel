@@ -24,27 +24,27 @@ namespace DiKErnel.Integration.TestUtil
     internal static class GrassRevetmentWaveRunupLocationDependentInputAssertHelper
     {
         public static void AssertCumulativeOverload(double criticalCumulativeOverload,
-                                                    GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+                                                    GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
         }
 
         public static void AssertFrontVelocity(double criticalFrontVelocity,
-                                               GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+                                               GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
         }
 
         public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
                                                  double reducedStrengthTransitionAlphaS,
-                                                 GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+                                                 GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(locationDependentInput.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
         }
 
         public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
-                                                      GrassRevetmentWaveRunupLocationDependentInput locationDependentInput)
+                                                      GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
         }

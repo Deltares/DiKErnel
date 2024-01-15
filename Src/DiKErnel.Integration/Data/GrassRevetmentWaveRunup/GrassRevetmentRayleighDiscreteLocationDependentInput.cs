@@ -26,18 +26,19 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 {
-    internal abstract class GrassRevetmentWaveRunupLocationDependentInput : LocationDependentInput
+    internal abstract class GrassRevetmentRayleighDiscreteLocationDependentInput : LocationDependentInput
     {
         private readonly List<double> xValuesProfile = new List<double>();
         private readonly List<double> zValuesProfile = new List<double>();
         private readonly List<double> roughnessCoefficients = new List<double>();
 
-        protected GrassRevetmentWaveRunupLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                                double criticalCumulativeOverload,
-                                                                double criticalFrontVelocity,
-                                                                double increasedLoadTransitionAlphaM,
-                                                                double reducedStrengthTransitionAlphaS,
-                                                                double averageNumberOfWavesCtm)
+        protected GrassRevetmentRayleighDiscreteLocationDependentInput(double x, double initialDamage,
+                                                                       double failureNumber,
+                                                                       double criticalCumulativeOverload,
+                                                                       double criticalFrontVelocity,
+                                                                       double increasedLoadTransitionAlphaM,
+                                                                       double reducedStrengthTransitionAlphaS,
+                                                                       double averageNumberOfWavesCtm)
             : base(x, initialDamage, failureNumber)
         {
             CriticalCumulativeOverload = criticalCumulativeOverload;
