@@ -93,14 +93,14 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             return outerCrest.Item2;
         }
 
-        protected double CalculateRepresentativeWaveRunup2P(double waterLevel, double waveHeightHm0,
-                                                            double wavePeriodTm10, double waveDirection,
-                                                            double dikeOrientation)
+        protected double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
+                                                            IProfileData profileData)
         {
             return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
+                new GrassRevetmentRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                                                        timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
                                                         xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                                        DikeHeight, dikeOrientation));
+                                                        DikeHeight, profileData.DikeOrientation));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)
