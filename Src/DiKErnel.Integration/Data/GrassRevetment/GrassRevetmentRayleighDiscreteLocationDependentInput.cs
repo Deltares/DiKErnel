@@ -147,16 +147,6 @@ namespace DiKErnel.Integration.Data.GrassRevetment
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation);
 
-        private double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
-                                                          IProfileData profileData)
-        {
-            return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                                                        timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
-                                                        xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                                        dikeHeight, profileData.DikeOrientation));
-        }
-
         private void InitializeCalculationProfile(IProfileData profileData)
         {
             (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
@@ -176,6 +166,16 @@ namespace DiKErnel.Integration.Data.GrassRevetment
 
             xValuesProfile.Add(outerCrest.Item1);
             zValuesProfile.Add(outerCrest.Item2);
+        }
+
+        private double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
+                                                          IProfileData profileData)
+        {
+            return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
+                new GrassRevetmentRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                                                        timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
+                                                        xValuesProfile, zValuesProfile, roughnessCoefficients,
+                                                        dikeHeight, profileData.DikeOrientation));
         }
 
         private GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties CreateConstructionProperties(
