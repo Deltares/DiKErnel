@@ -82,7 +82,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
                                      LocationDependentAccelerationAlphaA.ValueAtCrest));
             validationIssues.Add(GrassRevetmentOvertoppingValidator.AccelerationAlphaA(
                                      LocationDependentAccelerationAlphaA.ValueAtInnerSlope));
-            validationIssues.Add(GrassRevetmentValidator.FixedNumberOfWaves(FixedNumberOfWaves));
             validationIssues.Add(GrassRevetmentOvertoppingValidator.FrontVelocityCwo(FrontVelocityCwo));
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

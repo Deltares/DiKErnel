@@ -73,7 +73,8 @@ namespace DiKErnel.Integration.Data.GrassRevetment
                 GrassRevetmentValidator.CriticalFrontVelocity(CriticalFrontVelocity),
                 GrassRevetmentValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
                 GrassRevetmentValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
-                RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm)
+                RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm),
+                GrassRevetmentValidator.FixedNumberOfWaves(FixedNumberOfWaves)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

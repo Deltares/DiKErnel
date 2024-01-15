@@ -61,7 +61,6 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassRevetmentValidator.FixedNumberOfWaves(FixedNumberOfWaves),
                 GrassRevetmentWaveRunupRayleighValidator.FrontVelocityCu(FrontVelocityCu)
             };
 
