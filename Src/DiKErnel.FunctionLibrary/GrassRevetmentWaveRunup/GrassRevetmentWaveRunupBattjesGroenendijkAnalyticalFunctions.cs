@@ -178,6 +178,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                    (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / (xi * SpecialFunctions.Gamma(2 + 1 / xi));
         }
 
+        private static double ScalingParameterRu1(double waveRunupTransition, double rootMeanSquareWaveRunup, double lambdaRu)
+        {
+            return rootMeanSquareWaveRunup * LambdaRu1(waveRunupTransition / rootMeanSquareWaveRunup);
+        }
+        
         private static double LambdaRu1(double kappa)
         {
             if (kappa > 3.0)
@@ -189,6 +194,11 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             return interpolator.Interpolate(kappa);
         }
 
+        private static double ScalingParameterRu2(double waveRunupTransition, double rootMeanSquareWaveRunup)
+        {
+            return rootMeanSquareWaveRunup * LambdaRu2(waveRunupTransition / rootMeanSquareWaveRunup);
+        }
+        
         private static double LambdaRu2(double kappa)
         {
             if (kappa > 3.0)
