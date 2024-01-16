@@ -27,6 +27,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <summary>
         /// Creates a new instance.
         /// </summary>
+        /// <param name="averageNumberOfWaves"></param>
         /// <param name="increasedLoadTransitionAlphaM"></param>
         /// <param name="reducedStrengthTransitionAlphaS"></param>
         /// <param name="frontVelocityCu"></param>
@@ -41,11 +42,12 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <param name="k1"></param>
         /// <param name="k2"></param>
         public GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
-            double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS, double frontVelocityCu,
-            double criticalFrontVelocity, double gravitationalAcceleration, double slopeForeshore, double representativeWaveRunup2P,
-            double waveHeightHm0, double waterLevel, double bottomForeshoreZ, double verticalDistanceWaterLevelElevation, double k1,
-            double k2)
+            double averageNumberOfWaves, double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+            double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration, double slopeForeshore,
+            double representativeWaveRunup2P, double waveHeightHm0, double waterLevel, double bottomForeshoreZ,
+            double verticalDistanceWaterLevelElevation, double k1, double k2)
         {
+            AverageNumberOfWaves = averageNumberOfWaves;
             IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
             ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
             FrontVelocityCu = frontVelocityCu;
@@ -61,6 +63,8 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             K2 = k2;
         }
 
+        public double AverageNumberOfWaves { get; }
+        
         public double IncreasedLoadTransitionAlphaM { get; }
         public double ReducedStrengthTransitionAlphaS { get; }
         public double FrontVelocityCu { get; }
