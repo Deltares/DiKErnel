@@ -258,9 +258,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                                                              input.VerticalDistanceWaterLevelElevation,
                                                              scalingParameterRu2, input.K2);
 
-            return cumulativeOverLoad1 + cumulativeOverLoad2 + cumulativeOverLoad3 + cumulativeOverLoad4 + cumulativeOverLoad5 +
-                   cumulativeOverLoad6
-                   + cumulativeOverLoad7 + cumulativeOverLoad8;
+            return input.AverageNumberOfWaves * (cumulativeOverLoad1 - cumulativeOverLoad2 +
+                                                 cumulativeOverLoad3 - cumulativeOverLoad4 +
+                                                 cumulativeOverLoad5 - cumulativeOverLoad6 +
+                                                 cumulativeOverLoad7 - cumulativeOverLoad8);
         }
 
         private static double VerticalWaveRunupLimit1(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup,
@@ -378,7 +379,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         {
             double depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
 
-            return (0.35 + 5.8 * slopeForeshore) * ((depthForeshore * representativeWaveRunup2P) / (1.4 * waveHeightHm0));
+            return (0.35 + 5.8 * slopeForeshore) * depthForeshore * representativeWaveRunup2P / (1.4 * waveHeightHm0);
         }
 
         private static double DepthForeshore(double waterLevel, double bottomForeshoreZ)
@@ -389,7 +390,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         private static double LowerLimitWaveRunup(double verticalWaterLevelDistance, double upperLimitWaveRunup)
         {
             return (1 / 32.0) * (32 * verticalWaterLevelDistance + upperLimitWaveRunup +
-                                 Math.Sqrt(upperLimitWaveRunup) * Math.Sqrt(64 * verticalWaterLevelDistance * upperLimitWaveRunup));
+                                 Math.Sqrt(upperLimitWaveRunup) * Math.Sqrt(64 * verticalWaterLevelDistance + upperLimitWaveRunup));
         }
 
         private static double UpperLimitWaveRunup(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
