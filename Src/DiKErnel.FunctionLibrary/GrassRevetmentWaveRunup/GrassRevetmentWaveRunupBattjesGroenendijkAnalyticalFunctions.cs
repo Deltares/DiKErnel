@@ -192,5 +192,17 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             IInterpolation interpolator = Interpolate.Linear(lambdasRu2.Select(x => x.Item1), lambdasRu2.Select(x => x.Item2));
             return interpolator.Interpolate(kappa);
         }
+
+        private static double RootMeanSquareWaveRunup(double representativeWaveRunup2P, double waveHeightHm0, double waterLevel,
+                                                      double bottomForeshoreZ)
+        {
+            var depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
+            return (0.6725 + (0.2025 * waveHeightHm0) / depthForeshore) * (representativeWaveRunup2P / 1.4);
+        }
+
+        private static double DepthForeshore(double waterLevel, double bottomForeshoreZ)
+        {
+            return waterLevel - bottomForeshoreZ;
+        }
     }
 }
