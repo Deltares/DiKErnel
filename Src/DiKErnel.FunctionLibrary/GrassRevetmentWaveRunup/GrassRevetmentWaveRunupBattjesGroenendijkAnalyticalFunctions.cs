@@ -211,5 +211,18 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         {
             return waterLevel - bottomForeshoreZ;
         }
+
+        private static double LowerLimitWaveRunup(double verticalWaterLevelDistance, double upperLimitWaveRunup)
+        {
+            return (1 / 32.0) * (32 * verticalWaterLevelDistance + upperLimitWaveRunup +
+                                 Math.Sqrt(upperLimitWaveRunup) * Math.Sqrt(64 * verticalWaterLevelDistance * upperLimitWaveRunup));
+        }
+
+        private static double UpperLimitWaveRunup(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+                                                  double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration)
+        {
+            return (reducedStrengthTransitionAlphaS / increasedLoadTransitionAlphaM) *
+                   (Math.Pow(criticalFrontVelocity, 2) / (Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration));
+        }
     }
 }
