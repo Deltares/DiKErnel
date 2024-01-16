@@ -164,6 +164,13 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             return double.NaN;
         }
 
+        public static double WaveRunupTransition(double slopeForeshore, double representativeWaveRunup2P, double waveHeightHm0,
+                                                 double waterLevel, double bottomForeshoreZ)
+        {
+            double depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
+            return (0.35 + 5.8 * slopeForeshore) * ((depthForeshore * representativeWaveRunup2P) / (1.4 * waveHeightHm0));
+        }
+
         private static double ProbabilityBattjesGroenendijkAnalytical(double xi, double eta)
         {
             double probability = Gamma.CDF(1 + 1 / xi, 1, Math.Pow(eta, xi));
@@ -196,7 +203,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         private static double RootMeanSquareWaveRunup(double representativeWaveRunup2P, double waveHeightHm0, double waterLevel,
                                                       double bottomForeshoreZ)
         {
-            var depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
+            double depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
             return (0.6725 + (0.2025 * waveHeightHm0) / depthForeshore) * (representativeWaveRunup2P / 1.4);
         }
 
