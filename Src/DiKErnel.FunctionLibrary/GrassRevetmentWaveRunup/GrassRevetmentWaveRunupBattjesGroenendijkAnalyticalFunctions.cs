@@ -159,30 +159,150 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             (3.00, 1.630)
         };
 
-        public static double CumulativeOverload()
+        public static double CumulativeOverload(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+                                                double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration,
+                                                double slopeForeshore, double representativeWaveRunup2P, double waveHeightHm0,
+                                                double waterLevel, double bottomForeshoreZ, double verticalDistanceWaterLevelElevation,
+                                                double k1, double k2)
         {
-            return double.NaN;
+            double upperLimitWaveRunup = UpperLimitWaveRunup(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, gravitationalAcceleration);
+
+            double lowerLimitWaveRunup = LowerLimitWaveRunup(verticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+
+            double waveRunupTransition = WaveRunupTransition(slopeForeshore, representativeWaveRunup2P, waveHeightHm0, waterLevel,
+                                                             bottomForeshoreZ);
+
+            double rootMeanSquareWaveRunup = RootMeanSquareWaveRunup(representativeWaveRunup2P, waveHeightHm0, waterLevel,
+                                                                     bottomForeshoreZ);
+
+            double scalingParameterRu1 = ScalingParameterRu1(waveRunupTransition, rootMeanSquareWaveRunup);
+
+            double scalingParameterRu2 = ScalingParameterRu2(waveRunupTransition, rootMeanSquareWaveRunup);
+
+            double verticalLimitWaveRunUp1 = VerticalWaveRunupLimit1(verticalDistanceWaterLevelElevation, upperLimitWaveRunup,
+                                                                     waveRunupTransition);
+
+            double cumulativeOverLoad1 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunUp1,
+                                                             gravitationalAcceleration, scalingParameterRu1, k1);
+
+            double verticalLimitWaveRunUp2 = VerticalWaveRunupLimit2(verticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+            double cumulativeOverLoad2 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunUp2,
+                                                             gravitationalAcceleration, scalingParameterRu1, k1);
+
+            double cumulativeOverLoad3 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, 1000000,
+                                                             gravitationalAcceleration, scalingParameterRu2, k2);
+
+            double cumulativeOverLoad4 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunUp1,
+                                                             gravitationalAcceleration, scalingParameterRu2, k2);
+
+            double verticalLimitWaveRunup5 = VerticalWaveRunupLimit5(verticalDistanceWaterLevelElevation, lowerLimitWaveRunup,
+                                                                     waveRunupTransition);
+
+            double cumulativeOverLoad5 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup5,
+                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu1, k1);
+
+            double verticalLimitWaveRunup6 = VerticalWaveRunupLimit6(verticalDistanceWaterLevelElevation, lowerLimitWaveRunup);
+            double cumulativeOverLoad6 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup6,
+                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu1, k1);
+
+            double verticalLimitWaveRunup7 = VerticalWaveRunupLimit7(verticalDistanceWaterLevelElevation);
+            double cumulativeOverLoad7 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup7,
+                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu2, k2);
+
+            double cumulativeOverLoad8 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup5,
+                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu2, k2);
+
+            return cumulativeOverLoad1 + cumulativeOverLoad2 + cumulativeOverLoad3 + cumulativeOverLoad4 + cumulativeOverLoad5 +
+                   cumulativeOverLoad6
+                   + cumulativeOverLoad7 + cumulativeOverLoad8;
         }
 
-        public static double WaveRunupTransition(double slopeForeshore, double representativeWaveRunup2P, double waveHeightHm0,
-                                                 double waterLevel, double bottomForeshoreZ)
+        private static double VerticalWaveRunupLimit1(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup,
+                                                      double waveRunupTransition)
         {
-            double depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
-            return (0.35 + 5.8 * slopeForeshore) * ((depthForeshore * representativeWaveRunup2P) / (1.4 * waveHeightHm0));
+            return Math.Max(Math.Max((4.0 / 3.0) * verticalDistanceWaterLevelElevation, upperLimitWaveRunup), waveRunupTransition);
+        }
+
+        private static double VerticalWaveRunupLimit2(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
+        {
+            return Math.Max((4.0 / 3.0) * verticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+        }
+
+        private static double VerticalWaveRunupLimit5(double verticalDistanceWaterLevelElevation, double lowerLimitWaveRunup,
+                                                      double waveRunupTransition)
+        {
+            double scaledVerticalDistancesWaterLevelElevation = (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
+
+            return Math.Max(Math.Max(Math.Min(scaledVerticalDistancesWaterLevelElevation, lowerLimitWaveRunup),
+                                     verticalDistanceWaterLevelElevation),
+                            Math.Min(scaledVerticalDistancesWaterLevelElevation, waveRunupTransition));
+        }
+
+        private static double VerticalWaveRunupLimit6(double verticalDistanceWaterLevelElevation, double lowerLimitWaveRunup)
+        {
+            double scaledVerticalDistancesWaterLevelElevation = (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
+
+            return Math.Max(Math.Min(scaledVerticalDistancesWaterLevelElevation, lowerLimitWaveRunup),
+                            verticalDistanceWaterLevelElevation);
+        }
+
+        private static double VerticalWaveRunupLimit7(double verticalDistanceWaterLevelElevation)
+        {
+            return (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
+        }
+
+        private static double DeltaCumulativeLoad(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+                                                  double frontVelocityCu, double criticalFrontVelocity,
+                                                  double verticalWaveRunupLimit, double gravitationalAcceleration,
+                                                  double scalingParameterRu, double k)
+        {
+            return increasedLoadTransitionAlphaM * Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration * scalingParameterRu *
+                   ProbabilityBattjesGroenendijkAnalytical(k, verticalWaveRunupLimit / scalingParameterRu) +
+                   ((reducedStrengthTransitionAlphaS * Math.Pow(criticalFrontVelocity, 2)) / k) *
+                   Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
+        }
+
+        private static double DeltaCumulativeLoad(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+                                                  double frontVelocityCu, double criticalFrontVelocity,
+                                                  double verticalWaveRunupLimit, double gravitationalAcceleration,
+                                                  double verticalDistanceWaterLevelElevation,
+                                                  double scalingParameterRu, double k)
+        {
+            return increasedLoadTransitionAlphaM * Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration * k *
+                   ((4.0 * scalingParameterRu) / k *
+                    ProbabilityBattjesGroenendijkAnalytical(k, verticalWaveRunupLimit / scalingParameterRu) +
+                    ((4.0 * verticalDistanceWaterLevelElevation) / k) *
+                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
+                   ((reducedStrengthTransitionAlphaS * Math.Pow(criticalFrontVelocity, 2)) / k) *
+                   Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
         private static double ProbabilityBattjesGroenendijkAnalytical(double xi, double eta)
         {
             double probability = Gamma.CDF(1 + 1 / xi, 1, Math.Pow(eta, xi));
+
             return (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / SpecialFunctions.Gamma(2 + 1 / xi) +
                    (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / (xi * SpecialFunctions.Gamma(2 + 1 / xi));
         }
 
-        private static double ScalingParameterRu1(double waveRunupTransition, double rootMeanSquareWaveRunup, double lambdaRu)
+        private static double ScalingParameterRu1(double waveRunupTransition, double rootMeanSquareWaveRunup)
         {
             return rootMeanSquareWaveRunup * LambdaRu1(waveRunupTransition / rootMeanSquareWaveRunup);
         }
-        
+
         private static double LambdaRu1(double kappa)
         {
             if (kappa > 3.0)
@@ -191,6 +311,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             }
 
             IInterpolation interpolator = Interpolate.Linear(lambdasRu1.Select(x => x.Item1), lambdasRu1.Select(x => x.Item2));
+
             return interpolator.Interpolate(kappa);
         }
 
@@ -198,7 +319,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         {
             return rootMeanSquareWaveRunup * LambdaRu2(waveRunupTransition / rootMeanSquareWaveRunup);
         }
-        
+
         private static double LambdaRu2(double kappa)
         {
             if (kappa > 3.0)
@@ -207,6 +328,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             }
 
             IInterpolation interpolator = Interpolate.Linear(lambdasRu2.Select(x => x.Item1), lambdasRu2.Select(x => x.Item2));
+
             return interpolator.Interpolate(kappa);
         }
 
@@ -214,7 +336,16 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                                                       double bottomForeshoreZ)
         {
             double depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
+
             return (0.6725 + (0.2025 * waveHeightHm0) / depthForeshore) * (representativeWaveRunup2P / 1.4);
+        }
+
+        private static double WaveRunupTransition(double slopeForeshore, double representativeWaveRunup2P, double waveHeightHm0,
+                                                  double waterLevel, double bottomForeshoreZ)
+        {
+            double depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
+
+            return (0.35 + 5.8 * slopeForeshore) * ((depthForeshore * representativeWaveRunup2P) / (1.4 * waveHeightHm0));
         }
 
         private static double DepthForeshore(double waterLevel, double bottomForeshoreZ)
