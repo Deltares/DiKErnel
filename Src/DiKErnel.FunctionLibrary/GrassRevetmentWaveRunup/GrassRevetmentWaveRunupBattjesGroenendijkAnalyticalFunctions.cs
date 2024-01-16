@@ -159,71 +159,104 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             (3.00, 1.630)
         };
 
-        public static double CumulativeOverload(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
-                                                double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration,
-                                                double slopeForeshore, double representativeWaveRunup2P, double waveHeightHm0,
-                                                double waterLevel, double bottomForeshoreZ, double verticalDistanceWaterLevelElevation,
-                                                double k1, double k2)
+        public static double CumulativeOverload(GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input)
         {
-            double upperLimitWaveRunup = UpperLimitWaveRunup(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, gravitationalAcceleration);
+            double upperLimitWaveRunup = UpperLimitWaveRunup(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity,
+                                                             input.GravitationalAcceleration);
 
-            double lowerLimitWaveRunup = LowerLimitWaveRunup(verticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+            double lowerLimitWaveRunup = LowerLimitWaveRunup(input.VerticalDistanceWaterLevelElevation,
+                                                             upperLimitWaveRunup);
 
-            double waveRunupTransition = WaveRunupTransition(slopeForeshore, representativeWaveRunup2P, waveHeightHm0, waterLevel,
-                                                             bottomForeshoreZ);
+            double waveRunupTransition = WaveRunupTransition(input.SlopeForeshore,
+                                                             input.RepresentativeWaveRunup2P,
+                                                             input.WaveHeightHm0,
+                                                             input.WaterLevel,
+                                                             input.BottomForeshoreZ);
 
-            double rootMeanSquareWaveRunup = RootMeanSquareWaveRunup(representativeWaveRunup2P, waveHeightHm0, waterLevel,
-                                                                     bottomForeshoreZ);
+            double rootMeanSquareWaveRunup = RootMeanSquareWaveRunup(input.RepresentativeWaveRunup2P,
+                                                                     input.WaveHeightHm0,
+                                                                     input.WaterLevel,
+                                                                     input.BottomForeshoreZ);
 
             double scalingParameterRu1 = ScalingParameterRu1(waveRunupTransition, rootMeanSquareWaveRunup);
 
             double scalingParameterRu2 = ScalingParameterRu2(waveRunupTransition, rootMeanSquareWaveRunup);
 
-            double verticalLimitWaveRunUp1 = VerticalWaveRunupLimit1(verticalDistanceWaterLevelElevation, upperLimitWaveRunup,
+            double verticalLimitWaveRunUp1 = VerticalWaveRunupLimit1(input.VerticalDistanceWaterLevelElevation,
+                                                                     upperLimitWaveRunup,
                                                                      waveRunupTransition);
 
-            double cumulativeOverLoad1 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunUp1,
-                                                             gravitationalAcceleration, scalingParameterRu1, k1);
+            double cumulativeOverLoad1 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, verticalLimitWaveRunUp1,
+                                                             input.GravitationalAcceleration, scalingParameterRu1,
+                                                             input.K1);
 
-            double verticalLimitWaveRunUp2 = VerticalWaveRunupLimit2(verticalDistanceWaterLevelElevation, upperLimitWaveRunup);
-            double cumulativeOverLoad2 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunUp2,
-                                                             gravitationalAcceleration, scalingParameterRu1, k1);
+            double verticalLimitWaveRunUp2 = VerticalWaveRunupLimit2(input.VerticalDistanceWaterLevelElevation,
+                                                                     upperLimitWaveRunup);
+            double cumulativeOverLoad2 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, verticalLimitWaveRunUp2,
+                                                             input.GravitationalAcceleration, scalingParameterRu1,
+                                                             input.K1);
 
-            double cumulativeOverLoad3 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, 1000000,
-                                                             gravitationalAcceleration, scalingParameterRu2, k2);
+            double cumulativeOverLoad3 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, 1000000,
+                                                             input.GravitationalAcceleration, scalingParameterRu2,
+                                                             input.K2);
 
-            double cumulativeOverLoad4 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunUp1,
-                                                             gravitationalAcceleration, scalingParameterRu2, k2);
+            double cumulativeOverLoad4 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, verticalLimitWaveRunUp1,
+                                                             input.GravitationalAcceleration, scalingParameterRu2,
+                                                             input.K2);
 
-            double verticalLimitWaveRunup5 = VerticalWaveRunupLimit5(verticalDistanceWaterLevelElevation, lowerLimitWaveRunup,
+            double verticalLimitWaveRunup5 = VerticalWaveRunupLimit5(input.VerticalDistanceWaterLevelElevation,
+                                                                     lowerLimitWaveRunup,
                                                                      waveRunupTransition);
 
-            double cumulativeOverLoad5 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup5,
-                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
-                                                             scalingParameterRu1, k1);
+            double cumulativeOverLoad5 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, verticalLimitWaveRunup5,
+                                                             input.GravitationalAcceleration,
+                                                             input.VerticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu1, input.K1);
 
-            double verticalLimitWaveRunup6 = VerticalWaveRunupLimit6(verticalDistanceWaterLevelElevation, lowerLimitWaveRunup);
-            double cumulativeOverLoad6 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup6,
-                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
-                                                             scalingParameterRu1, k1);
+            double verticalLimitWaveRunup6 = VerticalWaveRunupLimit6(input.VerticalDistanceWaterLevelElevation,
+                                                                     lowerLimitWaveRunup);
+            double cumulativeOverLoad6 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, verticalLimitWaveRunup6,
+                                                             input.GravitationalAcceleration,
+                                                             input.VerticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu1, input.K1);
 
-            double verticalLimitWaveRunup7 = VerticalWaveRunupLimit7(verticalDistanceWaterLevelElevation);
-            double cumulativeOverLoad7 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup7,
-                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
-                                                             scalingParameterRu2, k2);
+            double verticalLimitWaveRunup7 = VerticalWaveRunupLimit7(input.VerticalDistanceWaterLevelElevation);
+            double cumulativeOverLoad7 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, verticalLimitWaveRunup7,
+                                                             input.GravitationalAcceleration,
+                                                             input.VerticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu2, input.K2);
 
-            double cumulativeOverLoad8 = DeltaCumulativeLoad(increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                             frontVelocityCu, criticalFrontVelocity, verticalLimitWaveRunup5,
-                                                             gravitationalAcceleration, verticalDistanceWaterLevelElevation,
-                                                             scalingParameterRu2, k2);
+            double cumulativeOverLoad8 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
+                                                             input.ReducedStrengthTransitionAlphaS,
+                                                             input.FrontVelocityCu,
+                                                             input.CriticalFrontVelocity, verticalLimitWaveRunup5,
+                                                             input.GravitationalAcceleration,
+                                                             input.VerticalDistanceWaterLevelElevation,
+                                                             scalingParameterRu2, input.K2);
 
             return cumulativeOverLoad1 + cumulativeOverLoad2 + cumulativeOverLoad3 + cumulativeOverLoad4 + cumulativeOverLoad5 +
                    cumulativeOverLoad6
