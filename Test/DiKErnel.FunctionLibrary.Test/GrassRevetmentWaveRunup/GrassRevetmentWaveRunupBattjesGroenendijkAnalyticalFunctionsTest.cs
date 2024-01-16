@@ -30,9 +30,28 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
         public void CumulativeOverload_VariousScenarios_ExpectedValue()
         {
             // Setup
-            
+            double increasedLoadTransitionAlphaM = 1;
+            double reducedStrengthTransitionAlphaS = 1;
+
+            double frontVelocityCu = 1.1;
+            double criticalFrontVelocity = 4.0;
+            double gravitationalAcceleration = 9.81;
+
+            double slopeForeshore = 0.004;
+            double representativeWaveRunup2P = 1.382803929; // Variable in time
+            double waveHeightHm0 = 0.8; // variable in time
+            double waterLevel = 0; // variable in time
+            double bottomForeshoreZ = 4;
+            double verticalDistanceWaterLevelElevation = 1 - waterLevel;
+            double k1 = 2.0;
+            double k2 = 3.6;
+
+            var input = new GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(increasedLoadTransitionAlphaM,
+                reducedStrengthTransitionAlphaS, frontVelocityCu, criticalFrontVelocity, gravitationalAcceleration, slopeForeshore,
+                representativeWaveRunup2P, waveHeightHm0, waterLevel, bottomForeshoreZ, verticalDistanceWaterLevelElevation, k1, k2);
+
             // Call
-            double cumulativeOverload = GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload();
+            double cumulativeOverload = GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(input);
 
             // Assert
             AssertHelper.AreEqual(double.NaN, cumulativeOverload);
