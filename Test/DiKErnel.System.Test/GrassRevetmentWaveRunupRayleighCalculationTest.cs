@@ -57,7 +57,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                3, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassRevetmentTopLayerType.ClosedSod)
             {
                 CriticalCumulativeOverload = 8000,
                 CriticalFrontVelocity = 6.2
@@ -72,7 +72,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.67645627404328, 35682);
+            AssertOutput(calculator, 1.67514451030233, 35690);
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                3, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassRevetmentTopLayerType.ClosedSod)
             {
                 FixedNumberOfWaves = 500,
                 FrontVelocityCu = 1.15
@@ -97,7 +97,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.79080784328382, 35036);
+            AssertOutput(calculator, 1.78933048403964, 35043);
         }
 
         [Test]
@@ -219,7 +219,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                3, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassRevetmentTopLayerType.ClosedSod)
             {
                 IncreasedLoadTransitionAlphaM = 1.8,
                 ReducedStrengthTransitionAlphaS = 0.9
@@ -234,7 +234,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.51908455307175, 35645);
+            AssertOutput(calculator, 1.51861479666960, 35647);
         }
 
         [Test]
