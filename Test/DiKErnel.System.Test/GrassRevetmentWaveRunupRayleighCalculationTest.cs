@@ -36,7 +36,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                3, GrassRevetmentTopLayerType.ClosedSod);
+                15, GrassRevetmentTopLayerType.ClosedSod);
 
             builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
 
@@ -47,7 +47,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.17424874554865, 40451);
+            AssertOutput(calculator, 1.1731916663879836, 40451);
         }
 
         [Test]
@@ -283,22 +283,22 @@ namespace DiKErnel.System.Test
         {
             var builder = new CalculationInputBuilder(0);
 
-            builder.AddTimeStep(0, 3600, 0, 0.5, 3, 50);
-            builder.AddTimeStep(3600, 7200, 0.1, 0.7, 3.5, 45);
-            builder.AddTimeStep(7200, 10800, 0.2, 1, 4, 40);
-            builder.AddTimeStep(10800, 14400, 0.3, 1.3, 4.3, 35);
-            builder.AddTimeStep(14400, 18000, 0.4, 1.5, 4.5, 30);
-            builder.AddTimeStep(18000, 21600, 0.5, 1.8, 4.8, 25);
-            builder.AddTimeStep(21600, 25200, 0.6, 2.1, 5.2, 20);
-            builder.AddTimeStep(25200, 28800, 0.7, 2.5, 5.5, 15);
-            builder.AddTimeStep(28800, 32400, 0.7, 2.8, 5.8, 10);
-            builder.AddTimeStep(32400, 36000, 0.6, 2.8, 6, 5);
-            builder.AddTimeStep(36000, 39600, 0.5, 2.5, 6, 0);
-            builder.AddTimeStep(39600, 43200, 0.4, 2.1, 5.8, 0);
-            builder.AddTimeStep(43200, 46800, 0.3, 1.8, 5.5, 5);
-            builder.AddTimeStep(46800, 50400, 0.2, 1.5, 5.2, 10);
-            builder.AddTimeStep(50400, 54000, 0.1, 1.3, 4.8, 15);
-            builder.AddTimeStep(54000, 57600, 0, 1, 4.5, 20);
+            builder.AddTimeStep(0, 3600, 3.0, 0.5, 3.0, 50);
+            builder.AddTimeStep(3600, 7200, 3.1, 0.7, 3.5, 45);
+            builder.AddTimeStep(7200, 10800, 3.2, 1.0, 4.0, 40);
+            builder.AddTimeStep(10800, 14400, 3.3, 1.3, 4.3, 35);
+            builder.AddTimeStep(14400, 18000, 3.4, 1.5, 4.5, 30);
+            builder.AddTimeStep(18000, 21600, 3.5, 1.8, 4.8, 25);
+            builder.AddTimeStep(21600, 25200, 3.6, 2.1, 5.2, 20);
+            builder.AddTimeStep(25200, 28800, 3.7, 2.5, 5.5, 15);
+            builder.AddTimeStep(28800, 32400, 3.7, 2.8, 5.8, 10);
+            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6.0, 5);
+            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6.0, 0);
+            builder.AddTimeStep(39600, 43200, 3.4, 2.1, 5.8, 0);
+            builder.AddTimeStep(43200, 46800, 3.3, 1.8, 5.5, 5);
+            builder.AddTimeStep(46800, 50400, 3.2, 1.5, 5.2, 10);
+            builder.AddTimeStep(50400, 54000, 3.1, 1.3, 4.8, 15);
+            builder.AddTimeStep(54000, 57600, 3.0, 1.0, 4.5, 20);
 
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
