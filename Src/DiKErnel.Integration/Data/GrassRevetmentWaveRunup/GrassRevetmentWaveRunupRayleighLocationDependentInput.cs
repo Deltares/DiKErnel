@@ -73,6 +73,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
             return outerCrest.Item2;
         }
 
+        protected override double GetRunupHeight()
+        {
+            return Z;
+        }
+
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation)

@@ -116,6 +116,11 @@ namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
             return calculatedDikeHeight;
         }
 
+        protected override double GetRunupHeight()
+        {
+            return DikeHeight;
+        }
+
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation)

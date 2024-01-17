@@ -33,12 +33,11 @@ namespace DiKErnel.Integration.Data
             X = x;
             InitialDamage = initialDamage;
             FailureNumber = failureNumber;
-            Z = double.NaN;
         }
 
         public double X { get; }
 
-        public double Z { get; private set; }
+        public double Z { get; private set; } = double.NaN;
 
         public double InitialDamage { get; }
 
