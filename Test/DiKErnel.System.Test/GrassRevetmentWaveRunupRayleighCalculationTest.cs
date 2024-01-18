@@ -282,22 +282,22 @@ namespace DiKErnel.System.Test
         {
             var builder = new CalculationInputBuilder(0);
 
-            builder.AddTimeStep(0, 3600, 3.0, 0.5, 3.0, 50);
+            builder.AddTimeStep(0, 3600, 3, 0.5, 3, 50);
             builder.AddTimeStep(3600, 7200, 3.1, 0.7, 3.5, 45);
-            builder.AddTimeStep(7200, 10800, 3.2, 1.0, 4.0, 40);
+            builder.AddTimeStep(7200, 10800, 3.2, 1, 4, 40);
             builder.AddTimeStep(10800, 14400, 3.3, 1.3, 4.3, 35);
             builder.AddTimeStep(14400, 18000, 3.4, 1.5, 4.5, 30);
             builder.AddTimeStep(18000, 21600, 3.5, 1.8, 4.8, 25);
             builder.AddTimeStep(21600, 25200, 3.6, 2.1, 5.2, 20);
             builder.AddTimeStep(25200, 28800, 3.7, 2.5, 5.5, 15);
             builder.AddTimeStep(28800, 32400, 3.7, 2.8, 5.8, 10);
-            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6.0, 5);
-            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6.0, 0);
+            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6, 5);
+            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6, 0);
             builder.AddTimeStep(39600, 43200, 3.4, 2.1, 5.8, 0);
             builder.AddTimeStep(43200, 46800, 3.3, 1.8, 5.5, 5);
             builder.AddTimeStep(46800, 50400, 3.2, 1.5, 5.2, 10);
             builder.AddTimeStep(50400, 54000, 3.1, 1.3, 4.8, 15);
-            builder.AddTimeStep(54000, 57600, 3.0, 1.0, 4.5, 20);
+            builder.AddTimeStep(54000, 57600, 3, 1, 4.5, 20);
 
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
@@ -311,22 +311,22 @@ namespace DiKErnel.System.Test
         {
             var builder = new CalculationInputBuilder(0);
 
-            builder.AddTimeStep(0, 3600, 3.0, 0.3, 3.0, 50);
+            builder.AddTimeStep(0, 3600, 3, 0.3, 3, 50);
             builder.AddTimeStep(3600, 7200, 3.1, 0.4, 3.5, 45);
             builder.AddTimeStep(7200, 10800, 3.2, 0.5, 3.9, 40);
             builder.AddTimeStep(10800, 14400, 3.3, 0.6, 4.2, 35);
             builder.AddTimeStep(14400, 18000, 3.4, 0.7, 4.6, 30);
             builder.AddTimeStep(18000, 21600, 3.5, 0.8, 4.9, 25);
             builder.AddTimeStep(21600, 25200, 3.6, 0.9, 5.2, 20);
-            builder.AddTimeStep(25200, 28800, 3.7, 1.0, 5.5, 15);
+            builder.AddTimeStep(25200, 28800, 3.7, 1, 5.5, 15);
             builder.AddTimeStep(28800, 32400, 3.7, 1.1, 5.7, 10);
             builder.AddTimeStep(32400, 36000, 3.6, 1.1, 5.7, 5);
-            builder.AddTimeStep(36000, 39600, 3.5, 1.0, 5.5, 0);
+            builder.AddTimeStep(36000, 39600, 3.5, 1, 5.5, 0);
             builder.AddTimeStep(39600, 43200, 3.4, 0.9, 5.2, 0);
             builder.AddTimeStep(43200, 46800, 3.3, 0.8, 4.9, 5);
             builder.AddTimeStep(46800, 50400, 3.2, 0.7, 4.6, 10);
             builder.AddTimeStep(50400, 54000, 3.1, 0.6, 4.2, 15);
-            builder.AddTimeStep(54000, 57600, 3.0, 0.5, 3.9, 20);
+            builder.AddTimeStep(54000, 57600, 3, 0.5, 3.9, 20);
 
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
@@ -343,22 +343,22 @@ namespace DiKErnel.System.Test
         {
             var builder = new CalculationInputBuilder(orientation);
 
-            builder.AddTimeStep(0, 3600, 3.0, 0.5, 3.0, 50);
+            builder.AddTimeStep(0, 3600, 3, 0.5, 3, 50);
             builder.AddTimeStep(3600, 7200, 3.1, 0.7, 3.5, 45);
-            builder.AddTimeStep(7200, 10800, 3.2, 1.0, 4.0, 40);
+            builder.AddTimeStep(7200, 10800, 3.2, 1, 4, 40);
             builder.AddTimeStep(10800, 14400, 3.3, 1.3, 4.3, 35);
             builder.AddTimeStep(14400, 18000, 3.4, 1.5, 4.5, 30);
             builder.AddTimeStep(18000, 21600, 3.5, 1.8, 4.8, 25);
             builder.AddTimeStep(21600, 25200, 3.6, 2.1, 5.2, 20);
             builder.AddTimeStep(25200, 28800, 3.7, 2.5, 5.5, 15);
             builder.AddTimeStep(28800, 32400, 3.7, 2.8, 5.8, 10);
-            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6.0, 5);
-            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6.0, 0);
+            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6, 5);
+            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6, 0);
             builder.AddTimeStep(39600, 43200, 3.4, 2.1, 5.8, 0);
             builder.AddTimeStep(43200, 46800, 3.3, 1.8, 5.5, 5);
             builder.AddTimeStep(46800, 50400, 3.2, 1.5, 5.2, 10);
             builder.AddTimeStep(50400, 54000, 3.1, 1.3, 4.8, 15);
-            builder.AddTimeStep(54000, 57600, 3.0, 1.0, 4.5, 20);
+            builder.AddTimeStep(54000, 57600, 3, 1, 4.5, 20);
 
             builder.AddDikeProfileSegment(0, 0, 15, 4, roughnessCoefficient1);
             builder.AddDikeProfileSegment(15, 4, 20, 4.1, roughnessCoefficient2);
@@ -374,22 +374,22 @@ namespace DiKErnel.System.Test
         {
             var builder = new CalculationInputBuilder(0);
 
-            builder.AddTimeStep(0, 3600, 3.5, 2.4, 4.0, 20);
+            builder.AddTimeStep(0, 3600, 3.5, 2.4, 4, 20);
             builder.AddTimeStep(3600, 7200, 3.6, 2.5, 4.2, 20);
             builder.AddTimeStep(7200, 10800, 3.7, 2.7, 4.4, 20);
             builder.AddTimeStep(10800, 14400, 3.8, 2.8, 4.5, 20);
             builder.AddTimeStep(14400, 18000, 3.9, 2.9, 4.8, 20);
-            builder.AddTimeStep(18000, 21600, 3.95, 3.0, 5.0, 20);
-            builder.AddTimeStep(21600, 25200, 4.0, 2.9, 5.2, 20);
+            builder.AddTimeStep(18000, 21600, 3.95, 3, 5, 20);
+            builder.AddTimeStep(21600, 25200, 4, 2.9, 5.2, 20);
             builder.AddTimeStep(25200, 28800, 3.95, 2.9, 5.5, 15);
             builder.AddTimeStep(28800, 32400, 3.8, 2.8, 5.8, 10);
-            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6.0, 5);
-            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6.0, 0);
+            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6, 5);
+            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6, 0);
             builder.AddTimeStep(39600, 43200, 3.4, 2.1, 5.8, 0);
             builder.AddTimeStep(43200, 46800, 3.3, 1.8, 5.5, 5);
             builder.AddTimeStep(46800, 50400, 3.2, 1.5, 5.2, 10);
             builder.AddTimeStep(50400, 54000, 3.1, 1.3, 4.8, 15);
-            builder.AddTimeStep(54000, 57600, 3.0, 1.0, 4.5, 20);
+            builder.AddTimeStep(54000, 57600, 3, 1, 4.5, 20);
 
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
@@ -403,22 +403,22 @@ namespace DiKErnel.System.Test
         {
             var builder = new CalculationInputBuilder(0);
 
-            builder.AddTimeStep(-7200, -6840, 3.0, 0.5, 3.0, 50);
+            builder.AddTimeStep(-7200, -6840, 3, 0.5, 3, 50);
             builder.AddTimeStep(-6840, -6120, 3.1, 0.7, 3.5, 45);
-            builder.AddTimeStep(-6120, -5040, 3.2, 1.0, 4.0, 40);
+            builder.AddTimeStep(-6120, -5040, 3.2, 1, 4, 40);
             builder.AddTimeStep(-5040, -3600, 3.3, 1.3, 4.3, 35);
             builder.AddTimeStep(-3600, -1800, 3.4, 1.5, 4.5, 30);
             builder.AddTimeStep(-1800, 360, 3.5, 1.8, 4.8, 25);
             builder.AddTimeStep(360, 2880, 3.6, 2.1, 5.2, 20);
             builder.AddTimeStep(2880, 5760, 3.7, 2.5, 5.5, 15);
             builder.AddTimeStep(5760, 9000, 3.7, 2.8, 5.8, 10);
-            builder.AddTimeStep(9000, 12600, 3.6, 2.8, 6.0, 5);
-            builder.AddTimeStep(12600, 16560, 3.5, 2.5, 6.0, 0);
+            builder.AddTimeStep(9000, 12600, 3.6, 2.8, 6, 5);
+            builder.AddTimeStep(12600, 16560, 3.5, 2.5, 6, 0);
             builder.AddTimeStep(16560, 20880, 3.4, 2.1, 5.8, 0);
             builder.AddTimeStep(20880, 25560, 3.3, 1.8, 5.5, 5);
             builder.AddTimeStep(25560, 30600, 3.2, 1.5, 5.2, 10);
             builder.AddTimeStep(30600, 36000, 3.1, 1.3, 4.8, 15);
-            builder.AddTimeStep(36000, 43200, 3.0, 1.0, 4.5, 20);
+            builder.AddTimeStep(36000, 43200, 3, 1, 4.5, 20);
 
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
