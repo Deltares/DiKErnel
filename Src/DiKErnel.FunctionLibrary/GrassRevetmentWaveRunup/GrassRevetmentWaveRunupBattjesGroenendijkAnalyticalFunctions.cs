@@ -326,7 +326,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
 
         private static double ProbabilityBattjesGroenendijkAnalytical(double xi, double eta)
         {
-            double probability = Gamma.CDF(1 + 1 / xi, 1, Math.Pow(eta, xi));
+            double probability = SpecialFunctions.GammaLowerRegularized(1 + 1 / xi, Math.Pow(eta, xi));
 
             return (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / SpecialFunctions.Gamma(2 + 1 / xi) +
                    (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / (xi * SpecialFunctions.Gamma(2 + 1 / xi));
