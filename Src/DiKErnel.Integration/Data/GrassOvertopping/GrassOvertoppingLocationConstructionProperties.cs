@@ -21,14 +21,13 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     /// <summary>
-    /// Construction properties to construct grass revetment overtopping location dependent
-    /// input.
+    /// Construction properties to construct grass overtopping location dependent input.
     /// </summary>
-    public class GrassRevetmentOvertoppingLocationConstructionProperties : RevetmentLocationConstructionProperties
+    public class GrassOvertoppingLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
-        public GrassRevetmentOvertoppingLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
+        public GrassOvertoppingLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x)
         {
             TopLayerType = topLayerType;

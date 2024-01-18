@@ -246,10 +246,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassRevetmentOvertoppingLocationConstructionProperties
-            CreateGrassOvertoppingConstructionProperties(
-                JsonInputGrassOvertoppingLocationData locationData,
-                JsonInputGrassOvertoppingCalculationData calculationData)
+        private static GrassOvertoppingLocationConstructionProperties CreateGrassOvertoppingConstructionProperties(
+            JsonInputGrassOvertoppingLocationData locationData,
+            JsonInputGrassOvertoppingCalculationData calculationData)
         {
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData?.TopLayerDefinitionData?
@@ -257,7 +256,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassOvertoppingCalculationAccelerationAlphaAData accelerationAlphaAData =
                 calculationData?.AccelerationAlphaAData;
 
-            return new GrassRevetmentOvertoppingLocationConstructionProperties(
+            return new GrassOvertoppingLocationConstructionProperties(
                 locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,

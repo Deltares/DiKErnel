@@ -43,7 +43,7 @@ namespace DiKErnel.Integration.Factories
                             AsphaltRevetmentWaveImpactLocationDependentInputFactory.CreateLocationDependentInput(
                                 asphaltWaveImpactLocationConstructionProperties));
                         break;
-                    case GrassRevetmentOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties:
+                    case GrassOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties:
                         locationDependentInputItems.Add(
                             GrassRevetmentOvertoppingLocationDependentInputFactory.CreateLocationDependentInput(
                                 grassOvertoppingLocationConstructionProperties));
