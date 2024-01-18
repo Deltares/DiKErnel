@@ -27,56 +27,120 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="averageNumberOfWaves"></param>
-        /// <param name="increasedLoadTransitionAlphaM"></param>
-        /// <param name="reducedStrengthTransitionAlphaS"></param>
-        /// <param name="frontVelocityCu"></param>
-        /// <param name="criticalFrontVelocity"></param>
-        /// <param name="gravitationalAcceleration"></param>
-        /// <param name="slopeForeshore"></param>
-        /// <param name="representativeWaveRunup2P"></param>
-        /// <param name="waveHeightHm0"></param>
-        /// <param name="waterLevel"></param>
-        /// <param name="bottomForeshoreZ"></param>
-        /// <param name="verticalDistanceWaterLevelElevation"></param>
-        /// <param name="k1"></param>
-        /// <param name="k2"></param>
-        public GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
-            double averageNumberOfWaves, double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
-            double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration, double slopeForeshore,
-            double representativeWaveRunup2P, double waveHeightHm0, double waterLevel, double bottomForeshoreZ,
-            double verticalDistanceWaterLevelElevation, double k1, double k2)
+        /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
+        /// <param name="representativeWaveRunup2P">The representative wave run-up
+        /// (2 percent) [m].</param>
+        /// <param name="waterLevel">The water level [m].</param>
+        /// <param name="waveHeightHm0">The wave height [m].</param>
+        /// <param name="verticalDistanceWaterLevelElevation">The vertical distance of the
+        /// water elevation [m].</param>
+        /// <param name="bottomForeshoreZ">The z coordinate at the bottom of the foreshore [m].</param>
+        /// <param name="slopeForeshore">The slope of the foreshore [-].</param>
+        /// <param name="criticalFrontVelocity">The critical front velocity [m/s].</param>
+        /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
+        /// <param name="increasedLoadTransitionAlphaM">The AlphaM value [-].</param>
+        /// <param name="reducedStrengthTransitionAlphaS">The AlphaS value [-].</param>
+        /// <param name="gravitationalAcceleration">The gravitational
+        /// acceleration [m/s^2].</param>
+        /// <param name="k1">The K1 constant [-].</param>
+        /// <param name="k2">The K2 constant [-].</param>
+        public GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(double averageNumberOfWaves,
+                                                                                          double representativeWaveRunup2P,
+                                                                                          double waterLevel, double waveHeightHm0,
+                                                                                          double verticalDistanceWaterLevelElevation,
+                                                                                          double bottomForeshoreZ,
+                                                                                          double slopeForeshore,
+                                                                                          double criticalFrontVelocity,
+                                                                                          double frontVelocityCu,
+                                                                                          double increasedLoadTransitionAlphaM,
+                                                                                          double reducedStrengthTransitionAlphaS,
+                                                                                          double gravitationalAcceleration, double k1,
+                                                                                          double k2)
         {
             AverageNumberOfWaves = averageNumberOfWaves;
+            RepresentativeWaveRunup2P = representativeWaveRunup2P;
+            WaterLevel = waterLevel;
+            WaveHeightHm0 = waveHeightHm0;
+            VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
+            BottomForeshoreZ = bottomForeshoreZ;
+            SlopeForeshore = slopeForeshore;
+            CriticalFrontVelocity = criticalFrontVelocity;
+            FrontVelocityCu = frontVelocityCu;
             IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
             ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
-            FrontVelocityCu = frontVelocityCu;
-            CriticalFrontVelocity = criticalFrontVelocity;
             GravitationalAcceleration = gravitationalAcceleration;
-            SlopeForeshore = slopeForeshore;
-            RepresentativeWaveRunup2P = representativeWaveRunup2P;
-            WaveHeightHm0 = waveHeightHm0;
-            WaterLevel = waterLevel;
-            BottomForeshoreZ = bottomForeshoreZ;
-            VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
             K1 = k1;
             K2 = k2;
         }
 
+        /// <summary>
+        /// Gets the average number of waves [-].
+        /// </summary>
         public double AverageNumberOfWaves { get; }
-        
-        public double IncreasedLoadTransitionAlphaM { get; }
-        public double ReducedStrengthTransitionAlphaS { get; }
-        public double FrontVelocityCu { get; }
-        public double CriticalFrontVelocity { get; }
-        public double GravitationalAcceleration { get; }
-        public double SlopeForeshore { get; }
+
+        /// <summary>
+        /// Gets the representative wave run-up (2 percent) [m].
+        /// </summary>
         public double RepresentativeWaveRunup2P { get; }
-        public double WaveHeightHm0 { get; }
+
+        /// <summary>
+        /// Gets the water level [m].
+        /// </summary>
         public double WaterLevel { get; }
-        public double BottomForeshoreZ { get; }
+
+        /// <summary>
+        /// Gets the wave height [m].
+        /// </summary>
+        public double WaveHeightHm0 { get; }
+
+        /// <summary>
+        /// Gets the vertical distance of the water elevation [m].
+        /// </summary>
         public double VerticalDistanceWaterLevelElevation { get; }
+
+        /// <summary>
+        /// Gets the z coordinate at the bottom of the foreshore [m].
+        /// </summary>
+        public double BottomForeshoreZ { get; }
+
+        /// <summary>
+        /// Gets the slope of the foreshore [-].
+        /// </summary>
+        public double SlopeForeshore { get; }
+
+        /// <summary>
+        /// Gets the critical front velocity [m/s].
+        /// </summary>
+        public double CriticalFrontVelocity { get; }
+
+        /// <summary>
+        /// Gets the Cu coefficient [-].
+        /// </summary>
+        public double FrontVelocityCu { get; }
+
+        /// <summary>
+        /// Gets the AlphaM value [-].
+        /// </summary>
+        public double IncreasedLoadTransitionAlphaM { get; }
+
+        /// <summary>
+        /// Gets the AlphaS value [-].
+        /// </summary>
+        public double ReducedStrengthTransitionAlphaS { get; }
+
+        /// <summary>
+        /// Gets the gravitational acceleration [m/s^2].
+        /// </summary>
+        public double GravitationalAcceleration { get; }
+
+        /// <summary>
+        /// Gets the K1 constant [-].
+        /// </summary>
         public double K1 { get; }
+        
+        /// <summary>
+        /// Gets the K2 constant [-].
+        /// </summary>
         public double K2 { get; }
     }
 }
