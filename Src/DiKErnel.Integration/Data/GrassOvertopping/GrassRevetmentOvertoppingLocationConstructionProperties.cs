@@ -28,8 +28,7 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
-        public GrassRevetmentOvertoppingLocationConstructionProperties(double x,
-                                                                       GrassRevetmentTopLayerType topLayerType)
+        public GrassRevetmentOvertoppingLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x)
         {
             TopLayerType = topLayerType;
@@ -38,7 +37,7 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
         /// <summary>
         /// Gets the type of the top layer.
         /// </summary>
-        public GrassRevetmentTopLayerType TopLayerType { get; }
+        public GrassTopLayerType TopLayerType { get; }
 
         /// <summary>
         /// Gets or sets the critical cumulative overload.

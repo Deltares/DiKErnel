@@ -435,11 +435,10 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateGrassRevetmentTopLayerType(GrassRevetmentTopLayerType topLayerType,
-                                                               double locationX)
+        private static bool ValidateGrassRevetmentTopLayerType(GrassTopLayerType topLayerType, double locationX)
         {
-            if (topLayerType != GrassRevetmentTopLayerType.ClosedSod
-                && topLayerType != GrassRevetmentTopLayerType.OpenSod)
+            if (topLayerType != GrassTopLayerType.ClosedSod
+                && topLayerType != GrassTopLayerType.OpenSod)
             {
                 RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
                                         "invalid top layer type.");

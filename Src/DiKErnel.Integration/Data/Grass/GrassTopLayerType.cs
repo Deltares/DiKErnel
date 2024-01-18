@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Data.Grass
     /// <summary>
     /// The top layer types for grass revetments.
     /// </summary>
-    public enum GrassRevetmentTopLayerType
+    public enum GrassTopLayerType
     {
         ClosedSod,
         OpenSod

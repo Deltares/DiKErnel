@@ -36,7 +36,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
-                11, GrassRevetmentTopLayerType.ClosedSod);
+                11, GrassTopLayerType.ClosedSod);
 
             builder.AddGrassWaveImpactLocation(locationConstructionProperties);
 
@@ -57,7 +57,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
-                11, GrassRevetmentTopLayerType.ClosedSod)
+                11, GrassTopLayerType.ClosedSod)
             {
                 TimeLineAgwi = 1.1,
                 TimeLineBgwi = -0.00003,
@@ -83,7 +83,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
-                11, GrassRevetmentTopLayerType.ClosedSod)
+                11, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = 0.4,
                 FailureNumber = 1.2
@@ -108,7 +108,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
-                11, GrassRevetmentTopLayerType.ClosedSod)
+                11, GrassTopLayerType.ClosedSod)
             {
                 WaveAngleImpactNwa = 0.8,
                 WaveAngleImpactQwa = 0.5,
@@ -134,7 +134,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
-                11, GrassRevetmentTopLayerType.ClosedSod)
+                11, GrassTopLayerType.ClosedSod)
             {
                 UpperLimitLoadingAul = 0.1,
                 LowerLimitLoadingAll = 0.45
@@ -159,7 +159,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
-                11, GrassRevetmentTopLayerType.OpenSod);
+                11, GrassTopLayerType.OpenSod);
 
             builder.AddGrassWaveImpactLocation(locationConstructionProperties);
 
@@ -180,7 +180,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
             var locationConstructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(
-                11, GrassRevetmentTopLayerType.ClosedSod);
+                11, GrassTopLayerType.ClosedSod);
 
             builder.AddGrassWaveImpactLocation(locationConstructionProperties);
 

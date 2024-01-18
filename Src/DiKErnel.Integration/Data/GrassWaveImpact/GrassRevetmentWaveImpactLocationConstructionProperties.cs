@@ -28,8 +28,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
-        public GrassRevetmentWaveImpactLocationConstructionProperties(double x,
-                                                                      GrassRevetmentTopLayerType topLayerType)
+        public GrassRevetmentWaveImpactLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x)
         {
             TopLayerType = topLayerType;
@@ -38,7 +37,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         /// <summary>
         /// Gets the type of the top layer.
         /// </summary>
-        public GrassRevetmentTopLayerType TopLayerType { get; }
+        public GrassTopLayerType TopLayerType { get; }
 
         /// <summary>
         /// Gets or sets the Agwi coefficient.

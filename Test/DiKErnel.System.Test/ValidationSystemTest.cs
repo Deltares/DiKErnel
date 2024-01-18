@@ -43,7 +43,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddGrassWaveImpactLocation(
-                new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassRevetmentTopLayerType.ClosedSod));
+                new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassTopLayerType.ClosedSod));
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -163,7 +163,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties =
-                new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassRevetmentTopLayerType.ClosedSod)
+                new GrassRevetmentWaveImpactLocationConstructionProperties(15, GrassTopLayerType.ClosedSod)
                 {
                     InitialDamage = -0.1,
                     FailureNumber = -1,
@@ -226,7 +226,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = -0.1,
                 FailureNumber = -1,
@@ -280,7 +280,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                25, GrassRevetmentTopLayerType.ClosedSod)
+                25, GrassTopLayerType.ClosedSod)
             {
                 DikeHeight = 15,
                 InitialDamage = -0.1,
@@ -349,7 +349,7 @@ namespace DiKErnel.System.Test
             const double waterLevel = dikeHeight + 0.1;
 
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                25, GrassRevetmentTopLayerType.ClosedSod)
+                25, GrassTopLayerType.ClosedSod)
             {
                 DikeHeight = dikeHeight
             };
@@ -389,7 +389,7 @@ namespace DiKErnel.System.Test
             const double dikeHeight = 10.0;
 
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                25, GrassRevetmentTopLayerType.ClosedSod)
+                25, GrassTopLayerType.ClosedSod)
             {
                 DikeHeight = dikeHeight
             };
@@ -426,7 +426,7 @@ namespace DiKErnel.System.Test
             const double waterLevel = heightOuterCrest + 0.1;
 
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                25, GrassRevetmentTopLayerType.ClosedSod);
+                25, GrassTopLayerType.ClosedSod);
 
             var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
@@ -463,7 +463,7 @@ namespace DiKErnel.System.Test
             const double heightOuterCrest = 10.0;
 
             var constructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                25, GrassRevetmentTopLayerType.ClosedSod);
+                25, GrassTopLayerType.ClosedSod);
 
             var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, heightOuterCrest, 5, 10, 30);
@@ -508,20 +508,17 @@ namespace DiKErnel.System.Test
                     12, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
 
             var grassRevetmentWaveImpactLocationConstructionProperties =
-                new GrassRevetmentWaveImpactLocationConstructionProperties(
-                    14, GrassRevetmentTopLayerType.ClosedSod);
+                new GrassRevetmentWaveImpactLocationConstructionProperties(14, GrassTopLayerType.ClosedSod);
 
             var grassRevetmentWaveRunupRayleighLocationConstructionProperties = new
-                GrassRevetmentWaveRunupRayleighLocationConstructionProperties
-                (19, GrassRevetmentTopLayerType.ClosedSod);
+                GrassRevetmentWaveRunupRayleighLocationConstructionProperties(19, GrassTopLayerType.ClosedSod);
 
             var naturalStoneRevetmentLocationConstructionProperties =
                 new NaturalStoneRevetmentLocationConstructionProperties(
                     15, NaturalStoneRevetmentTopLayerType.NordicStone, 0.5, 4.6);
 
             var grassRevetmentOvertoppingLocationConstructionProperties =
-                new GrassRevetmentOvertoppingLocationConstructionProperties(
-                    25, GrassRevetmentTopLayerType.ClosedSod);
+                new GrassRevetmentOvertoppingLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
 
             builder.AddAsphaltWaveImpactLocation(asphaltRevetmentWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveImpactLocation(grassRevetmentWaveImpactLocationConstructionProperties);

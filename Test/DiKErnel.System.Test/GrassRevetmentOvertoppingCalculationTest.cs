@@ -36,7 +36,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                50, GrassRevetmentTopLayerType.ClosedSod)
+                50, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = 0.02
             };
@@ -60,7 +60,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                33, GrassRevetmentTopLayerType.ClosedSod)
+                33, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = 0.02
             };
@@ -84,7 +84,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                33, GrassRevetmentTopLayerType.ClosedSod)
+                33, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = 0.02,
                 DikeHeight = 8
@@ -109,7 +109,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                33, GrassRevetmentTopLayerType.ClosedSod)
+                33, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = 0.02,
                 DikeHeight = 5.65
@@ -134,7 +134,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                40, GrassRevetmentTopLayerType.OpenSod);
+                40, GrassTopLayerType.OpenSod);
 
             builder.AddGrassOvertoppingLocation(locationConstructionProperties);
 
@@ -155,7 +155,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                30, GrassRevetmentTopLayerType.OpenSod)
+                30, GrassTopLayerType.OpenSod)
             {
                 DikeHeight = 9.5
             };
@@ -179,7 +179,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                35, GrassRevetmentTopLayerType.OpenSod)
+                35, GrassTopLayerType.OpenSod)
             {
                 IncreasedLoadTransitionAlphaM = 1.2,
                 DikeHeight = 9.6
@@ -204,7 +204,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                35, GrassRevetmentTopLayerType.OpenSod)
+                35, GrassTopLayerType.OpenSod)
             {
                 IncreasedLoadTransitionAlphaM = 1.2,
                 ReducedStrengthTransitionAlphaS = 1.3,
@@ -231,7 +231,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                60, GrassRevetmentTopLayerType.OpenSod);
+                60, GrassTopLayerType.OpenSod);
 
             builder.AddGrassOvertoppingLocation(locationConstructionProperties);
 
@@ -252,7 +252,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                50, GrassRevetmentTopLayerType.OpenSod)
+                50, GrassTopLayerType.OpenSod)
             {
                 DikeHeight = 6.7
             };
@@ -276,7 +276,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                50, GrassRevetmentTopLayerType.OpenSod)
+                50, GrassTopLayerType.OpenSod)
             {
                 InitialDamage = 0.9,
                 FixedNumberOfWaves = 15000,
@@ -302,7 +302,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
             var locationConstructionProperties = new GrassRevetmentOvertoppingLocationConstructionProperties(
-                50, GrassRevetmentTopLayerType.OpenSod)
+                50, GrassTopLayerType.OpenSod)
             {
                 CriticalCumulativeOverload = 7500,
                 CriticalFrontVelocity = 5.5,

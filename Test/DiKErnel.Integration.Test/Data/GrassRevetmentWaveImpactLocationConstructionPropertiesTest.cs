@@ -31,7 +31,7 @@ namespace DiKErnel.Integration.Test.Data
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
             double x = Random.NextDouble();
 
             // Call
@@ -59,7 +59,7 @@ namespace DiKErnel.Integration.Test.Data
         public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
         {
             // Given
-            var topLayerType = Random.NextEnumValue<GrassRevetmentTopLayerType>();
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
             double x = Random.NextDouble();
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();

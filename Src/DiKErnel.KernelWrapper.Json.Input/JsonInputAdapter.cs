@@ -348,13 +348,13 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassRevetmentTopLayerType ConvertGrassRevetmentTopLayerType(
+        private static GrassTopLayerType ConvertGrassRevetmentTopLayerType(
             JsonInputGrassRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
             {
-                JsonInputGrassRevetmentTopLayerType.OpenSod => GrassRevetmentTopLayerType.OpenSod,
-                JsonInputGrassRevetmentTopLayerType.ClosedSod => GrassRevetmentTopLayerType.ClosedSod,
+                JsonInputGrassRevetmentTopLayerType.OpenSod => GrassTopLayerType.OpenSod,
+                JsonInputGrassRevetmentTopLayerType.ClosedSod => GrassTopLayerType.ClosedSod,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };
         }

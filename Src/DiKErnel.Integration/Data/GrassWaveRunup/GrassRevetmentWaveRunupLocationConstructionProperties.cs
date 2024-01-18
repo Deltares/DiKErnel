@@ -29,7 +29,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
-        protected GrassRevetmentWaveRunupLocationConstructionProperties(double x, GrassRevetmentTopLayerType topLayerType)
+        protected GrassRevetmentWaveRunupLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x)
         {
             TopLayerType = topLayerType;
@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         /// <summary>
         /// Gets the type of the top layer.
         /// </summary>
-        public GrassRevetmentTopLayerType TopLayerType { get; }
+        public GrassTopLayerType TopLayerType { get; }
 
         /// <summary>
         /// Gets or sets the critical cumulative overload.

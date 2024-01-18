@@ -27,7 +27,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     public class GrassRevetmentWaveRunupRayleighLocationConstructionProperties : GrassRevetmentWaveRunupLocationConstructionProperties
     {
         /// <inheritdoc/>
-        public GrassRevetmentWaveRunupRayleighLocationConstructionProperties(double x, GrassRevetmentTopLayerType topLayerType)
+        public GrassRevetmentWaveRunupRayleighLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x, topLayerType) {}
 
         /// <summary>

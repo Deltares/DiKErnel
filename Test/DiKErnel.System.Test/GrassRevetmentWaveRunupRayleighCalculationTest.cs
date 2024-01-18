@@ -36,7 +36,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod);
+                15, GrassTopLayerType.ClosedSod);
 
             builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
 
@@ -57,7 +57,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassTopLayerType.ClosedSod)
             {
                 CriticalCumulativeOverload = 8000,
                 CriticalFrontVelocity = 6.2
@@ -82,7 +82,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassTopLayerType.ClosedSod)
             {
                 FixedNumberOfWaves = 500,
                 FrontVelocityCu = 1.15
@@ -107,7 +107,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = 0.3
             };
@@ -131,7 +131,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.OpenSod);
+                15, GrassTopLayerType.OpenSod);
 
             builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
 
@@ -152,7 +152,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassTopLayerType.ClosedSod)
             {
                 IncreasedLoadTransitionAlphaM = 1.8,
                 ReducedStrengthTransitionAlphaS = 0.9
@@ -177,7 +177,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod);
+                15, GrassTopLayerType.ClosedSod);
 
             builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
 
@@ -198,7 +198,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3(20);
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.OpenSod);
+                15, GrassTopLayerType.OpenSod);
 
             builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
 
@@ -219,7 +219,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization3(20, 0.5, 0.7, 0.8);
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod)
+                15, GrassTopLayerType.ClosedSod)
             {
                 AverageNumberOfWavesCtm = 1
             };
@@ -243,7 +243,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization4();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod);
+                15, GrassTopLayerType.ClosedSod);
 
             builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
 
@@ -264,7 +264,7 @@ namespace DiKErnel.System.Test
             CalculationInputBuilder builder = CreateBuilderForSchematization5();
 
             var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                15, GrassRevetmentTopLayerType.ClosedSod);
+                15, GrassTopLayerType.ClosedSod);
 
             builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
 
