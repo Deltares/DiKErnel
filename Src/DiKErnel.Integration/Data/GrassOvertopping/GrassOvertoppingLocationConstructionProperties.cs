@@ -23,7 +23,7 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
     /// <summary>
     /// Construction properties to construct grass overtopping location dependent input.
     /// </summary>
-    public class GrassOvertoppingLocationConstructionProperties : RevetmentLocationConstructionProperties
+    public class GrassOvertoppingLocationConstructionProperties : LocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>

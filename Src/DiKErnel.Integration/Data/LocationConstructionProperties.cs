@@ -21,13 +21,13 @@ namespace DiKErnel.Integration.Data
     /// <summary>
     /// Construction properties to construct location dependent input.
     /// </summary>
-    public abstract class RevetmentLocationConstructionProperties
+    public abstract class LocationConstructionProperties
     {
         /// <summary>
         /// Creates a new instance.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
-        protected RevetmentLocationConstructionProperties(double x)
+        protected LocationConstructionProperties(double x)
         {
             X = x;
         }

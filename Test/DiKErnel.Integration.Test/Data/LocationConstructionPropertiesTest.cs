@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data
 {
     [TestFixture]
-    public class RevetmentLocationConstructionPropertiesTest
+    public class LocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Test.Data
             double x = Random.NextDouble();
 
             // Call
-            var constructionProperties = Substitute.For<RevetmentLocationConstructionProperties>(x);
+            var constructionProperties = Substitute.For<LocationConstructionProperties>(x);
 
             // Assert
             Assert.That(constructionProperties.X, Is.EqualTo(x));
@@ -49,7 +49,7 @@ namespace DiKErnel.Integration.Test.Data
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();
 
-            var constructionProperties = Substitute.For<RevetmentLocationConstructionProperties>(x);
+            var constructionProperties = Substitute.For<LocationConstructionProperties>(x);
 
             // When
             constructionProperties.InitialDamage = initialDamage;

@@ -48,8 +48,8 @@ namespace DiKErnel.Integration
         private readonly List<TimeDependentInputFactoryData> timeDependentInputFactoryDataItems =
             new List<TimeDependentInputFactoryData>();
 
-        private readonly List<RevetmentLocationConstructionProperties> locationConstructionPropertiesItems =
-            new List<RevetmentLocationConstructionProperties>();
+        private readonly List<LocationConstructionProperties> locationConstructionPropertiesItems =
+            new List<LocationConstructionProperties>();
 
         private readonly double dikeOrientation;
 
@@ -200,9 +200,9 @@ namespace DiKErnel.Integration
                                                                          roughnessCoefficient));
         }
 
-        private void AddLocation(RevetmentLocationConstructionProperties constructionProperties)
+        private void AddLocation(LocationConstructionProperties locationConstructionProperties)
         {
-            locationConstructionPropertiesItems.Add(constructionProperties);
+            locationConstructionPropertiesItems.Add(locationConstructionProperties);
         }
 
         private bool CanBuildValidCalculationInput()
@@ -324,7 +324,7 @@ namespace DiKErnel.Integration
                 return false;
             }
 
-            foreach (RevetmentLocationConstructionProperties locationConstructionProperties in locationConstructionPropertiesItems)
+            foreach (LocationConstructionProperties locationConstructionProperties in locationConstructionPropertiesItems)
             {
                 switch (locationConstructionProperties)
                 {

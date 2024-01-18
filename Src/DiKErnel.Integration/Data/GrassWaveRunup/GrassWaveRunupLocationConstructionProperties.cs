@@ -23,7 +23,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     /// <summary>
     /// Construction properties to construct grass wave run-up location dependent input.
     /// </summary>
-    public abstract class GrassWaveRunupLocationConstructionProperties : RevetmentLocationConstructionProperties
+    public abstract class GrassWaveRunupLocationConstructionProperties : LocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
