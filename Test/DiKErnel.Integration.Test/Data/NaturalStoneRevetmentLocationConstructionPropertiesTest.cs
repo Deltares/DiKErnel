@@ -30,7 +30,7 @@ namespace DiKErnel.Integration.Test.Data
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var topLayerType = Random.NextEnumValue<NaturalStoneRevetmentTopLayerType>();
+            var topLayerType = Random.NextEnumValue<NaturalStoneTopLayerType>();
             double x = Random.NextDouble();
             double thicknessTopLayer = Random.NextDouble();
             double relativeDensity = Random.NextDouble();
@@ -75,7 +75,7 @@ namespace DiKErnel.Integration.Test.Data
         public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
         {
             // Given
-            var topLayerType = Random.NextEnumValue<NaturalStoneRevetmentTopLayerType>();
+            var topLayerType = Random.NextEnumValue<NaturalStoneTopLayerType>();
             double x = Random.NextDouble();
             double thicknessTopLayer = Random.NextDouble();
             double relativeDensity = Random.NextDouble();

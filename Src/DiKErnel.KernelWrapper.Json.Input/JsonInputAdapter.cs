@@ -409,12 +409,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static NaturalStoneRevetmentTopLayerType ConvertNaturalStoneRevetmentTopLayerType(
+        private static NaturalStoneTopLayerType ConvertNaturalStoneRevetmentTopLayerType(
             JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
             {
-                JsonInputNaturalStoneRevetmentTopLayerType.NordicStone => NaturalStoneRevetmentTopLayerType.NordicStone,
+                JsonInputNaturalStoneRevetmentTopLayerType.NordicStone => NaturalStoneTopLayerType.NordicStone,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };
         }

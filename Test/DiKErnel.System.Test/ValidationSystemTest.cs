@@ -515,7 +515,7 @@ namespace DiKErnel.System.Test
 
             var naturalStoneRevetmentLocationConstructionProperties =
                 new NaturalStoneRevetmentLocationConstructionProperties(
-                    15, NaturalStoneRevetmentTopLayerType.NordicStone, 0.5, 4.6);
+                    15, NaturalStoneTopLayerType.NordicStone, 0.5, 4.6);
 
             var grassRevetmentOvertoppingLocationConstructionProperties =
                 new GrassRevetmentOvertoppingLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
@@ -542,7 +542,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
-                15, NaturalStoneRevetmentTopLayerType.NordicStone, 0, 10)
+                15, NaturalStoneTopLayerType.NordicStone, 0, 10)
             {
                 InitialDamage = -0.1,
                 FailureNumber = -1,

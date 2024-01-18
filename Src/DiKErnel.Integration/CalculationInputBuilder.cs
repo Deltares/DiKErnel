@@ -448,10 +448,10 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateNaturalStoneRevetmentTopLayerType(NaturalStoneRevetmentTopLayerType topLayerType,
+        private static bool ValidateNaturalStoneRevetmentTopLayerType(NaturalStoneTopLayerType topLayerType,
                                                                       double locationX)
         {
-            if (topLayerType != NaturalStoneRevetmentTopLayerType.NordicStone)
+            if (topLayerType != NaturalStoneTopLayerType.NordicStone)
             {
                 RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
                                         "invalid top layer type.");
