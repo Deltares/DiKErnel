@@ -26,7 +26,7 @@ using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     internal class AsphaltRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {

@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
     /// Location dependent output of an asphalt revetment wave impact location.

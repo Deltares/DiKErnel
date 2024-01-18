@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
     /// Construction properties to construct asphalt revetment wave impact location dependent input.

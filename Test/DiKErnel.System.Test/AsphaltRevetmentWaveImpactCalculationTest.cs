@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
-using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Util;
 using NUnit.Framework;
 

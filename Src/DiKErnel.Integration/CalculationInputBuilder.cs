@@ -22,7 +22,7 @@ using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.External.Overtopping;
 using DiKErnel.Integration.Data;
-using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.GrassOvertopping;
 using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Data.GrassWaveImpact;

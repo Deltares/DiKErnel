@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -16,13 +16,18 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
-    /// <summary>
-    /// The top layer types for asphalt revetments.
-    /// </summary>
-    public enum AsphaltRevetmentTopLayerType
+    internal class AsphaltRevetmentWaveImpactFatigue
     {
-        HydraulicAsphaltConcrete
+        public AsphaltRevetmentWaveImpactFatigue(double alpha, double beta)
+        {
+            Alpha = alpha;
+            Beta = beta;
+        }
+
+        public double Alpha { get; }
+
+        public double Beta { get; }
     }
 }

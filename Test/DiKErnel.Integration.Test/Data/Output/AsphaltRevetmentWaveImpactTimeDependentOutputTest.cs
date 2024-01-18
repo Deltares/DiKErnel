@@ -18,7 +18,7 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
-using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 

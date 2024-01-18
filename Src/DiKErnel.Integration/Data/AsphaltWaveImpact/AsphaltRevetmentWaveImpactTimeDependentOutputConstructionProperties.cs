@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -16,18 +16,25 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+using DiKErnel.Core.Data;
+
+namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
-    internal class AsphaltRevetmentWaveImpactFatigue
+    /// <summary>
+    /// Construction properties to construct asphalt revetment wave impact time dependent
+    /// output.
+    /// </summary>
+    public class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+        : TimeDependentOutputConstructionProperties
     {
-        public AsphaltRevetmentWaveImpactFatigue(double alpha, double beta)
-        {
-            Alpha = alpha;
-            Beta = beta;
-        }
+        /// <summary>
+        /// Gets or sets the maximum peak stress.
+        /// </summary>
+        public double? MaximumPeakStress { get; set; }
 
-        public double Alpha { get; }
-
-        public double Beta { get; }
+        /// <summary>
+        /// Gets or sets the average number of waves.
+        /// </summary>
+        public double? AverageNumberOfWaves { get; set; }
     }
 }

@@ -19,7 +19,7 @@
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
     /// Time dependent output of an asphalt revetment wave impact location.

@@ -18,7 +18,7 @@
 
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
-using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {

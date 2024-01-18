@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
-using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.GrassOvertopping;
 using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.Integration.Data.GrassWaveRunup;

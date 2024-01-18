@@ -16,25 +16,13 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.Core.Data;
-
-namespace DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
-    /// Construction properties to construct asphalt revetment wave impact time dependent
-    /// output.
+    /// The top layer types for asphalt revetments.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
-        : TimeDependentOutputConstructionProperties
+    public enum AsphaltRevetmentTopLayerType
     {
-        /// <summary>
-        /// Gets or sets the maximum peak stress.
-        /// </summary>
-        public double? MaximumPeakStress { get; set; }
-
-        /// <summary>
-        /// Gets or sets the average number of waves.
-        /// </summary>
-        public double? AverageNumberOfWaves { get; set; }
+        HydraulicAsphaltConcrete
     }
 }
