@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\NetStandard.targets" />
+    <Import Project="$(SolutionDir)Development\NetStandard.targets"/>
 
     <ItemGroup>
-        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj" />
-        <ProjectReference Include="..\DiKErnel.DomainLibrary\DiKErnel.DomainLibrary.csproj" />
-        <ProjectReference Include="..\DiKErnel.FunctionLibrary\DiKErnel.FunctionLibrary.csproj" />
+        <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj"/>
+        <ProjectReference Include="..\DiKErnel.DomainLibrary\DiKErnel.DomainLibrary.csproj"/>
+        <ProjectReference Include="..\DiKErnel.FunctionLibrary\DiKErnel.FunctionLibrary.csproj"/>
     </ItemGroup>
 
 </Project>
