@@ -16,28 +16,29 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.Integration.Data.GrassRevetment;
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
+namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
-    /// Construction properties to construct grass revetment wave run-up location dependent
-    /// input for the Rayleigh protocol.
+    /// Location dependent output of a grass revetment wave run-up location for the Rayleigh
+    /// protocol.
     /// </summary>
-    public class GrassRevetmentWaveRunupRayleighLocationConstructionProperties : GrassRevetmentWaveRunupLocationConstructionProperties
+    public class GrassRevetmentWaveRunupRayleighLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
-        public GrassRevetmentWaveRunupRayleighLocationConstructionProperties(double x, GrassRevetmentTopLayerType topLayerType)
-            : base(x, topLayerType) {}
+        /// <param name="z">The calculated z.</param>
+        public GrassRevetmentWaveRunupRayleighLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
+            : base(timeDependentOutputItems)
+        {
+            Z = z;
+        }
 
         /// <summary>
-        /// Gets or sets the fixed number of waves.
+        /// Gets the calculated z.
         /// </summary>
-        public int? FixedNumberOfWaves { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Cu coefficient.
-        /// </summary>
-        public double? FrontVelocityCu { get; set; }
+        public double Z { get; }
     }
 }

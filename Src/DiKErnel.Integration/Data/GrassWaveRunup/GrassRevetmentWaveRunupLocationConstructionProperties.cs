@@ -18,7 +18,7 @@
 
 using DiKErnel.Integration.Data.GrassRevetment;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
+namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
     /// Construction properties to construct grass revetment wave run-up location dependent

@@ -19,7 +19,7 @@
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.GrassRevetment;
 using DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup;
-using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Data.GrassWaveRunup;
 
 namespace DiKErnel.Integration.Factories
 {

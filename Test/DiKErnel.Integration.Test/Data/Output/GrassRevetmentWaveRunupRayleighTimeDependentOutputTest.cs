@@ -19,7 +19,7 @@
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.GrassRevetment;
-using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
+using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 

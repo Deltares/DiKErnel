@@ -20,7 +20,7 @@ using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.GrassRevetment;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveRunup
+namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
     /// Time dependent output of a grass revetment wave run-up location for the Rayleigh
