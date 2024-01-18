@@ -16,35 +16,14 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.Core.Data;
-
-namespace DiKErnel.Integration.Data.GrassRevetment
+namespace DiKErnel.Integration.Data.Grass
 {
     /// <summary>
-    /// Construction properties to construct grass revetment time dependent output for the
-    /// Rayleigh Discrete protocol.
+    /// The top layer types for grass revetments.
     /// </summary>
-    public class GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
-        : TimeDependentOutputConstructionProperties
+    public enum GrassRevetmentTopLayerType
     {
-        /// <summary>
-        /// Gets or sets the vertical distance water level elevation.
-        /// </summary>
-        public double? VerticalDistanceWaterLevelElevation { get; set; }
-
-        /// <summary>
-        /// Gets or sets the representative wave run-up 2P.
-        /// </summary>
-        public double? RepresentativeWaveRunup2P { get; set; }
-
-        /// <summary>
-        /// Gets or sets the cumulative overload.
-        /// </summary>
-        public double? CumulativeOverload { get; set; }
-
-        /// <summary>
-        /// Gets or sets the average number of waves.
-        /// </summary>
-        public double? AverageNumberOfWaves { get; set; }
+        ClosedSod,
+        OpenSod
     }
 }

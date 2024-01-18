@@ -18,8 +18,8 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassOvertopping;
-using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 

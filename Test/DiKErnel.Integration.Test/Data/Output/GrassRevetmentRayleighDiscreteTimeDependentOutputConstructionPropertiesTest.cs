@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Core.Data;
-using DiKErnel.Integration.Data.GrassRevetment;
+using DiKErnel.Integration.Data.Grass;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 

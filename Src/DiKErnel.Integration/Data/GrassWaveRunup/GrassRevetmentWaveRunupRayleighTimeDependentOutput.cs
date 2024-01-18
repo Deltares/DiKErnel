@@ -18,7 +18,7 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
-using DiKErnel.Integration.Data.GrassRevetment;
+using DiKErnel.Integration.Data.Grass;
 
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
