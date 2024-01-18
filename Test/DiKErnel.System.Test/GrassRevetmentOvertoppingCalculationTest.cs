@@ -19,8 +19,8 @@
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
+using DiKErnel.Integration.Data.GrassOvertopping;
 using DiKErnel.Integration.Data.GrassRevetment;
-using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.Util;
 using NUnit.Framework;
 

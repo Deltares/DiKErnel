@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using DiKErnel.Integration.Data.GrassOvertopping;
 using NUnit.Framework;
 
 namespace DiKErnel.Integration.Test.Data.Output

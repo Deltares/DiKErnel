@@ -19,7 +19,7 @@
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.GrassRevetment;
 using DiKErnel.DomainLibrary.Defaults.GrassRevetmentOvertopping;
-using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using DiKErnel.Integration.Data.GrassOvertopping;
 
 namespace DiKErnel.Integration.Factories
 {

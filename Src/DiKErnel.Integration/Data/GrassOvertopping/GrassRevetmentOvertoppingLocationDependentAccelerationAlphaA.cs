@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -16,19 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
-using DiKErnel.Core.Data;
-
-namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
+namespace DiKErnel.Integration.Data.GrassOvertopping
 {
-    /// <summary>
-    /// Location dependent output of a grass revetment overtopping location.
-    /// </summary>
-    public class GrassRevetmentOvertoppingLocationDependentOutput : LocationDependentOutput
+    internal class GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA
     {
-        /// <inheritdoc/>
-        public GrassRevetmentOvertoppingLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-            : base(timeDependentOutputItems) {}
+        public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA(double valueAtCrest,
+                                                                            double valueAtInnerSlope)
+        {
+            ValueAtCrest = valueAtCrest;
+            ValueAtInnerSlope = valueAtInnerSlope;
+        }
+
+        public double ValueAtCrest { get; }
+
+        public double ValueAtInnerSlope { get; }
     }
 }

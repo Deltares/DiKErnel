@@ -22,7 +22,7 @@ using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.GrassRevetment;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetment;
-using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
+using DiKErnel.Integration.Data.GrassOvertopping;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 

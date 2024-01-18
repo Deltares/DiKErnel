@@ -27,7 +27,7 @@ using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
+namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     internal class GrassRevetmentOvertoppingLocationDependentInput : GrassRevetmentRayleighDiscreteLocationDependentInput
     {

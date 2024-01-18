@@ -18,7 +18,7 @@
 
 using DiKErnel.Integration.Data.GrassRevetment;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
+namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     /// <summary>
     /// Construction properties to construct grass revetment overtopping location dependent

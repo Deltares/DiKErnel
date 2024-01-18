@@ -20,7 +20,7 @@ using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.GrassRevetment;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentOvertopping
+namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     /// <summary>
     /// Time dependent output of a grass revetment overtopping location.
