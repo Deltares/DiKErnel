@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     /// <summary>
     /// Location dependent output of a grass revetment wave impact location.

@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 

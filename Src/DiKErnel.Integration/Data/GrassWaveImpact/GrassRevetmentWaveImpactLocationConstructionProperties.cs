@@ -18,7 +18,7 @@
 
 using DiKErnel.Integration.Data.GrassRevetment;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     /// <summary>
     /// Construction properties to construct grass revetment wave impact location dependent

@@ -19,7 +19,7 @@
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     /// <summary>
     /// Time dependent output of a grass revetment wave impact location.

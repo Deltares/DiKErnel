@@ -24,7 +24,7 @@ using DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.Integration.Data.GrassRevetmentWaveImpact
+namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     internal class GrassRevetmentWaveImpactLocationDependentInput : LocationDependentInput
     {

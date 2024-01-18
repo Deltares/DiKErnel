@@ -20,7 +20,7 @@ using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.GrassRevetment;
-using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.Util;
 using NUnit.Framework;
 

@@ -18,7 +18,7 @@
 
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact;
-using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
+using DiKErnel.Integration.Data.GrassWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {
