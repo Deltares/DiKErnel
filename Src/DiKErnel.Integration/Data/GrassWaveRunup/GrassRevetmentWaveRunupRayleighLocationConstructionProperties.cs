@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     /// Construction properties to construct grass revetment wave run-up location dependent
     /// input for the Rayleigh protocol.
     /// </summary>
-    public class GrassRevetmentWaveRunupRayleighLocationConstructionProperties : GrassRevetmentWaveRunupLocationConstructionProperties
+    public class GrassRevetmentWaveRunupRayleighLocationConstructionProperties : GrassWaveRunupLocationConstructionProperties
     {
         /// <inheritdoc/>
         public GrassRevetmentWaveRunupRayleighLocationConstructionProperties(double x, GrassTopLayerType topLayerType)

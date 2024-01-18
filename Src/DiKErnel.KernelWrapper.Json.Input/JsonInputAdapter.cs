@@ -140,7 +140,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     case JsonInputAsphaltWaveImpactLocationData asphaltWaveImpactLocationData:
                     {
                         builder.AddAsphaltWaveImpactLocation(
-                            CreateAsphaltWaveImpactConstructionProperties(
+                            CreateAsphaltWaveImpactLocationConstructionProperties(
                                 asphaltWaveImpactLocationData,
                                 GetCalculationDefinition<JsonInputAsphaltWaveImpactCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.AsphaltWaveImpact)));
@@ -149,7 +149,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     case JsonInputGrassOvertoppingLocationData grassOvertoppingLocationData:
                     {
                         builder.AddGrassOvertoppingLocation(
-                            CreateGrassOvertoppingConstructionProperties(
+                            CreateGrassOvertoppingLocationConstructionProperties(
                                 grassOvertoppingLocationData,
                                 GetCalculationDefinition<JsonInputGrassOvertoppingCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassOvertopping)));
@@ -158,7 +158,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     case JsonInputGrassWaveImpactLocationData grassWaveImpactLocationData:
                     {
                         builder.AddGrassWaveImpactLocation(
-                            CreateGrassWaveImpactConstructionProperties(
+                            CreateGrassWaveImpactLocationConstructionProperties(
                                 grassWaveImpactLocationData,
                                 GetCalculationDefinition<JsonInputGrassWaveImpactCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassWaveImpact)));
@@ -166,8 +166,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     }
                     case JsonInputGrassWaveRunupLocationData grassWaveRunupLocationData:
                     {
-                        GrassRevetmentWaveRunupLocationConstructionProperties constructionProperties =
-                            CreateGrassWaveRunupConstructionProperties(
+                        GrassWaveRunupLocationConstructionProperties constructionProperties =
+                            CreateGrassWaveRunupLocationConstructionProperties(
                                 grassWaveRunupLocationData,
                                 GetCalculationDefinition<JsonInputGrassWaveRunupCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassWaveRunup));
@@ -183,7 +183,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     case JsonInputNaturalStoneLocationData naturalStoneLocationData:
                     {
                         builder.AddNaturalStoneLocation(
-                            CreateNaturalStoneConstructionProperties(
+                            CreateNaturalStoneLocationConstructionProperties(
                                 naturalStoneLocationData,
                                 GetCalculationDefinition<JsonInputNaturalStoneCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.NaturalStone)));
@@ -200,7 +200,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             return calculationDataItems?.FirstOrDefault(cd => cd.CalculationMethodType == calculationType) as T;
         }
 
-        private static AsphaltWaveImpactLocationConstructionProperties CreateAsphaltWaveImpactConstructionProperties(
+        private static AsphaltWaveImpactLocationConstructionProperties CreateAsphaltWaveImpactLocationConstructionProperties(
             JsonInputAsphaltWaveImpactLocationData locationData,
             JsonInputAsphaltWaveImpactCalculationData calculationData)
         {
@@ -246,7 +246,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassOvertoppingLocationConstructionProperties CreateGrassOvertoppingConstructionProperties(
+        private static GrassOvertoppingLocationConstructionProperties CreateGrassOvertoppingLocationConstructionProperties(
             JsonInputGrassOvertoppingLocationData locationData,
             JsonInputGrassOvertoppingCalculationData calculationData)
         {
@@ -274,9 +274,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassWaveImpactLocationConstructionProperties CreateGrassWaveImpactConstructionProperties(
-                JsonInputGrassWaveImpactLocationData locationData,
-                JsonInputGrassWaveImpactCalculationData calculationData)
+        private static GrassWaveImpactLocationConstructionProperties CreateGrassWaveImpactLocationConstructionProperties(
+            JsonInputGrassWaveImpactLocationData locationData,
+            JsonInputGrassWaveImpactCalculationData calculationData)
         {
             JsonInputGrassWaveImpactTopLayerTimeLineData timeLineData =
                 calculationData?.TopLayerDefinitionData?
@@ -302,15 +302,15 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassRevetmentWaveRunupLocationConstructionProperties CreateGrassWaveRunupConstructionProperties(
+        private static GrassWaveRunupLocationConstructionProperties CreateGrassWaveRunupLocationConstructionProperties(
             JsonInputGrassWaveRunupLocationData locationData, JsonInputGrassWaveRunupCalculationData calculationData)
         {
-            GrassRevetmentWaveRunupLocationConstructionProperties constructionProperties;
+            GrassWaveRunupLocationConstructionProperties constructionProperties;
 
             switch (calculationData?.CalculationProtocolData?.CalculationProtocolType)
             {
                 case JsonInputGrassWaveRunupCalculationProtocolType.RayleighDiscrete:
-                    constructionProperties = CreateGrassWaveRunupRayleighConstructionProperties(
+                    constructionProperties = CreateGrassWaveRunupRayleighLocationConstructionProperties(
                         locationData, calculationData.CalculationProtocolData);
                     break;
                 default:
@@ -333,7 +333,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         }
 
         private static GrassRevetmentWaveRunupRayleighLocationConstructionProperties
-            CreateGrassWaveRunupRayleighConstructionProperties(
+            CreateGrassWaveRunupRayleighLocationConstructionProperties(
                 JsonInputGrassWaveRunupLocationData locationData,
                 JsonInputGrassWaveRunupCalculationProtocolData calculationProtocolData)
         {
@@ -356,7 +356,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static NaturalStoneRevetmentLocationConstructionProperties CreateNaturalStoneConstructionProperties(
+        private static NaturalStoneRevetmentLocationConstructionProperties CreateNaturalStoneLocationConstructionProperties(
             JsonInputNaturalStoneLocationData locationData, JsonInputNaturalStoneCalculationData calculationData)
         {
             JsonInputNaturalStoneTopLayerStabilityData stabilityData =

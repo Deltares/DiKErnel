@@ -21,15 +21,13 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
-    /// Construction properties to construct grass revetment wave run-up location dependent
-    /// input.
+    /// Construction properties to construct grass wave run-up location dependent input.
     /// </summary>
-    public abstract class GrassRevetmentWaveRunupLocationConstructionProperties : RevetmentLocationConstructionProperties
-
+    public abstract class GrassWaveRunupLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
-        protected GrassRevetmentWaveRunupLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
+        protected GrassWaveRunupLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x)
         {
             TopLayerType = topLayerType;

@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Test.Data
                 x, topLayerType);
 
             // Assert
-            Assert.That(constructionProperties, Is.InstanceOf<GrassRevetmentWaveRunupLocationConstructionProperties>());
+            Assert.That(constructionProperties, Is.InstanceOf<GrassWaveRunupLocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.That(constructionProperties.InitialDamage, Is.Null);

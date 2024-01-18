@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data
             double x = Random.NextDouble();
 
             // Call
-            var constructionProperties = Substitute.For<GrassRevetmentWaveRunupLocationConstructionProperties>(
+            var constructionProperties = Substitute.For<GrassWaveRunupLocationConstructionProperties>(
                 x, topLayerType);
 
             // Assert
@@ -66,7 +66,7 @@ namespace DiKErnel.Integration.Test.Data
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
 
-            var constructionProperties = Substitute.For<GrassRevetmentWaveRunupLocationConstructionProperties>(
+            var constructionProperties = Substitute.For<GrassWaveRunupLocationConstructionProperties>(
                 x, topLayerType);
 
             // When
