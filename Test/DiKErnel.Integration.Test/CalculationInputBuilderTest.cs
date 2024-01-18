@@ -43,7 +43,7 @@ namespace DiKErnel.Integration.Test
             double dikeOrientation = Random.NextDouble();
 
             var builder = new CalculationInputBuilder(dikeOrientation);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    Random.NextDouble(), GrassTopLayerType.ClosedSod));
             AddDefaultProfileAndTimeStep(builder);
 
@@ -186,7 +186,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassTopLayerType.ClosedSod));
             AddDefaultTimeStep(builder);
 
@@ -217,7 +217,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient);
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassTopLayerType.ClosedSod));
             AddDefaultTimeStep(builder);
 
@@ -253,7 +253,7 @@ namespace DiKErnel.Integration.Test
                                           roughnessCoefficient);
             builder.AddDikeProfilePoint(startPointXSegment1, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointXSegment1, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointXSegment1 + Random.NextDouble(),
                                                    GrassTopLayerType.ClosedSod));
             AddDefaultTimeStep(builder);
@@ -497,7 +497,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfileSegment(startPointX, Random.NextDouble(), endPointX, Random.NextDouble());
             builder.AddDikeProfilePoint(startPointX, outerToe);
             builder.AddDikeProfilePoint(endPointX, outerCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassTopLayerType.ClosedSod));
             AddDefaultTimeStep(builder);
 
@@ -535,7 +535,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfileSegment(startPointX, Random.NextDouble(), endPointX, Random.NextDouble());
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassTopLayerType.ClosedSod));
 
             // When
@@ -556,7 +556,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfileSegment(startPointX, Random.NextDouble(), endPointX, Random.NextDouble());
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassTopLayerType.ClosedSod));
 
             double startTimeStep1 = Random.NextDouble();
@@ -587,7 +587,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfileSegment(startPointX, Random.NextDouble(), endPointX, Random.NextDouble());
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassTopLayerType.ClosedSod));
             double beginTime = Random.NextDouble();
             double endTime = beginTime - Random.NextDouble();
@@ -621,7 +621,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfileSegment(startPointX, Random.NextDouble(), endPointX, Random.NextDouble());
             builder.AddDikeProfilePoint(startPointX, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
-            builder.AddGrassWaveImpactLocation(new GrassRevetmentWaveImpactLocationConstructionProperties(
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
                                                    startPointX + Random.NextDouble(), GrassTopLayerType.ClosedSod));
             builder.AddTimeStep(beginTime, endTime, waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection);
 
@@ -1273,8 +1273,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddGrassWaveImpactLocation(
-                        new GrassRevetmentWaveImpactLocationConstructionProperties(
-                            locationX, GrassTopLayerType.ClosedSod));
+                        new GrassWaveImpactLocationConstructionProperties(locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
         }
 
@@ -1287,8 +1286,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddGrassWaveImpactLocation(
-                        new GrassRevetmentWaveImpactLocationConstructionProperties(
-                            locationX, GrassTopLayerType.ClosedSod));
+                        new GrassWaveImpactLocationConstructionProperties(locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
         }
 
@@ -1299,7 +1297,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
 
             double x = Random.NextDouble();
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
+            var constructionProperties = new GrassWaveImpactLocationConstructionProperties(x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -1332,7 +1330,7 @@ namespace DiKErnel.Integration.Test
             double upperLimitLoadingAul = Random.NextDouble();
             double lowerLimitLoadingAll = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType)
+            var constructionProperties = new GrassWaveImpactLocationConstructionProperties(x, topLayerType)
             {
                 InitialDamage = initialDamage,
                 FailureNumber = failureNumber,
@@ -1398,7 +1396,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
             const double x = 5;
 
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
+            var constructionProperties = new GrassWaveImpactLocationConstructionProperties(x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
@@ -1448,7 +1446,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
             const double x = 5;
 
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
+            var constructionProperties = new GrassWaveImpactLocationConstructionProperties(x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);

@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data
 {
     [TestFixture]
-    public class GrassRevetmentWaveImpactLocationConstructionPropertiesTest
+    public class GrassWaveImpactLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.Test.Data
             double x = Random.NextDouble();
 
             // Call
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
+            var constructionProperties = new GrassWaveImpactLocationConstructionProperties(x, topLayerType);
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<RevetmentLocationConstructionProperties>());
@@ -74,7 +74,7 @@ namespace DiKErnel.Integration.Test.Data
             double upperLimitLoadingAul = Random.NextDouble();
             double lowerLimitLoadingAll = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentWaveImpactLocationConstructionProperties(x, topLayerType);
+            var constructionProperties = new GrassWaveImpactLocationConstructionProperties(x, topLayerType);
 
             // When
             constructionProperties.InitialDamage = initialDamage;

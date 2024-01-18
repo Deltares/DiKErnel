@@ -25,7 +25,7 @@ namespace DiKErnel.Integration.Factories
     internal static class GrassRevetmentWaveImpactLocationDependentInputFactory
     {
         public static GrassRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
-            GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties)
+            GrassWaveImpactLocationConstructionProperties constructionProperties)
         {
             IGrassRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
                 GrassRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);

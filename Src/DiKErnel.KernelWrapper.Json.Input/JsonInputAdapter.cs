@@ -274,8 +274,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassRevetmentWaveImpactLocationConstructionProperties
-            CreateGrassWaveImpactConstructionProperties(
+        private static GrassWaveImpactLocationConstructionProperties CreateGrassWaveImpactConstructionProperties(
                 JsonInputGrassWaveImpactLocationData locationData,
                 JsonInputGrassWaveImpactCalculationData calculationData)
         {
@@ -285,7 +284,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassWaveImpactCalculationImpactWaveAngleData impactWaveAngleData = calculationData?.WaveAngleData;
             JsonInputGrassWaveImpactCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
 
-            return new GrassRevetmentWaveImpactLocationConstructionProperties(
+            return new GrassWaveImpactLocationConstructionProperties(
                 locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,

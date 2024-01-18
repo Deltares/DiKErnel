@@ -21,14 +21,13 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     /// <summary>
-    /// Construction properties to construct grass revetment wave impact location dependent
-    /// input.
+    /// Construction properties to construct grass wave impact location dependent input.
     /// </summary>
-    public class GrassRevetmentWaveImpactLocationConstructionProperties : RevetmentLocationConstructionProperties
+    public class GrassWaveImpactLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
-        public GrassRevetmentWaveImpactLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
+        public GrassWaveImpactLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x)
         {
             TopLayerType = topLayerType;

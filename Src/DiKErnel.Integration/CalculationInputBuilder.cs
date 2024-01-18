@@ -144,8 +144,7 @@ namespace DiKErnel.Integration
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass wave
         /// impact location dependent input.</param>
-        public void AddGrassWaveImpactLocation(
-            GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties)
+        public void AddGrassWaveImpactLocation(GrassWaveImpactLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
         }
@@ -335,8 +334,8 @@ namespace DiKErnel.Integration
                     case GrassOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties
                         when !ValidateGrassOvertoppingLocationConstructionProperties(
                                  grassOvertoppingLocationConstructionProperties, outerToe, outerCrest, innerToe):
-                    case GrassRevetmentWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
-                        when !ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
+                    case GrassWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
+                        when !ValidateGrassWaveImpactLocationConstructionProperties(
                                  grassWaveImpactLocationConstructionProperties, outerToe, outerCrest):
                     case GrassRevetmentWaveRunupRayleighLocationConstructionProperties rayleighLocationConstructionProperties
                         when !ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
@@ -352,8 +351,8 @@ namespace DiKErnel.Integration
         }
 
         private static bool ValidateAsphaltWaveImpactLocationConstructionProperties(
-            AsphaltWaveImpactLocationConstructionProperties constructionProperties,
-            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
+            AsphaltWaveImpactLocationConstructionProperties constructionProperties, ProfileDataFactoryPoint outerToe,
+            ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
                    && ValidateAsphaltRevetmentTopLayerType(constructionProperties.TopLayerType,
@@ -361,17 +360,17 @@ namespace DiKErnel.Integration
         }
 
         private bool ValidateGrassOvertoppingLocationConstructionProperties(
-            GrassOvertoppingLocationConstructionProperties constructionProperties,
-            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
+            GrassOvertoppingLocationConstructionProperties constructionProperties, ProfileDataFactoryPoint outerToe,
+            ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
         {
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
                    && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
                    && ValidateOvertoppingAdapterProperties(outerToe, outerCrest, constructionProperties.DikeHeight);
         }
 
-        private static bool ValidateGrassRevetmentWaveImpactLocationConstructionProperties(
-            GrassRevetmentWaveImpactLocationConstructionProperties constructionProperties,
-            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
+        private static bool ValidateGrassWaveImpactLocationConstructionProperties(
+            GrassWaveImpactLocationConstructionProperties constructionProperties, ProfileDataFactoryPoint outerToe,
+            ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
                    && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
