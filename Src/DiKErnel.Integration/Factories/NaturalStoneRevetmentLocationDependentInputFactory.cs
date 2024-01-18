@@ -25,7 +25,7 @@ namespace DiKErnel.Integration.Factories
     internal static class NaturalStoneRevetmentLocationDependentInputFactory
     {
         public static NaturalStoneRevetmentLocationDependentInput CreateLocationDependentInput(
-            NaturalStoneRevetmentLocationConstructionProperties constructionProperties)
+            NaturalStoneWaveImpactLocationConstructionProperties constructionProperties)
         {
             INaturalStoneRevetmentTopLayerDefaults topLayerDefaults =
                 NaturalStoneRevetmentDefaultsFactory.CreateTopLayerDefaults();

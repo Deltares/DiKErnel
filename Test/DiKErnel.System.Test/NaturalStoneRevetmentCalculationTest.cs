@@ -34,7 +34,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.4, 1.65);
 
             builder.AddNaturalStoneLocation(locationConstructionProperties);
@@ -55,7 +55,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.35, 1.6)
             {
                 InitialDamage = 0.6
@@ -79,7 +79,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.25, 1.65)
             {
                 HydraulicLoadXib = 2.1,
@@ -111,7 +111,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.4, 1.65)
             {
                 WaveAngleImpactBetamax = 30
@@ -135,7 +135,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.3, 1.65);
 
             builder.AddNaturalStoneLocation(locationConstructionProperties);
@@ -156,7 +156,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.3, 1.65)
             {
                 SlopeUpperLevelAus = 0.5,
@@ -181,7 +181,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.3, 1.65);
 
             builder.AddNaturalStoneLocation(locationConstructionProperties);
@@ -202,7 +202,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization4();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.3, 1.65)
             {
                 UpperLimitLoadingAul = 0.08,
@@ -235,7 +235,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization5();
 
-            var locationConstructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneTopLayerType.NordicStone, 0.4, 1.65);
 
             builder.AddNaturalStoneLocation(locationConstructionProperties);

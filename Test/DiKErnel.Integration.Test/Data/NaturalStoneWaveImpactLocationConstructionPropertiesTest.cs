@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data
 {
     [TestFixture]
-    public class NaturalStoneRevetmentLocationConstructionPropertiesTest
+    public class NaturalStoneWaveImpactLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data
             double relativeDensity = Random.NextDouble();
 
             // Call
-            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 x, topLayerType, thicknessTopLayer, relativeDensity);
 
             // Assert
@@ -104,7 +104,7 @@ namespace DiKErnel.Integration.Test.Data
             double normativeWidthOfWaveImpactBwi = Random.NextDouble();
             double waveAngleImpactBetamax = Random.NextDouble();
 
-            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 x, topLayerType, thicknessTopLayer, relativeDensity);
 
             // When

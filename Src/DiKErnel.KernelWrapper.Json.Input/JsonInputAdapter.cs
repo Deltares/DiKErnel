@@ -183,7 +183,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     case JsonInputNaturalStoneLocationData naturalStoneLocationData:
                     {
                         builder.AddNaturalStoneLocation(
-                            CreateNaturalStoneLocationConstructionProperties(
+                            CreateNaturalStoneWaveImpactLocationConstructionProperties(
                                 naturalStoneLocationData,
                                 GetCalculationDefinition<JsonInputNaturalStoneCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.NaturalStone)));
@@ -356,7 +356,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static NaturalStoneRevetmentLocationConstructionProperties CreateNaturalStoneLocationConstructionProperties(
+        private static NaturalStoneWaveImpactLocationConstructionProperties CreateNaturalStoneWaveImpactLocationConstructionProperties(
             JsonInputNaturalStoneLocationData locationData, JsonInputNaturalStoneCalculationData calculationData)
         {
             JsonInputNaturalStoneTopLayerStabilityData stabilityData =
@@ -375,7 +375,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputNaturalStoneCalculationNormativeWidthWaveImpactData normativeWidthWaveImpactData =
                 calculationData?.NormativeWidthOfWaveImpact;
 
-            return new NaturalStoneRevetmentLocationConstructionProperties(
+            return new NaturalStoneWaveImpactLocationConstructionProperties(
                 locationData.X, ConvertNaturalStoneRevetmentTopLayerType(locationData.TopLayerType),
                 locationData.ThicknessTopLayer, locationData.RelativeDensity)
             {

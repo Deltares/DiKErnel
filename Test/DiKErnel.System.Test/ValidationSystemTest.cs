@@ -508,20 +508,19 @@ namespace DiKErnel.System.Test
             var grassWaveImpactLocationConstructionProperties =
                 new GrassWaveImpactLocationConstructionProperties(14, GrassTopLayerType.ClosedSod);
 
-            var grassRevetmentWaveRunupRayleighLocationConstructionProperties =
+            var grassWaveRunupRayleighDiscreteLocationConstructionProperties =
                 new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(19, GrassTopLayerType.ClosedSod);
 
-            var naturalStoneRevetmentLocationConstructionProperties =
-                new NaturalStoneRevetmentLocationConstructionProperties(
-                    15, NaturalStoneTopLayerType.NordicStone, 0.5, 4.6);
+            var naturalStoneWaveImpactLocationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
+                15, NaturalStoneTopLayerType.NordicStone, 0.5, 4.6);
 
             var grassOvertoppingLocationConstructionProperties =
                 new GrassOvertoppingLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
 
             builder.AddAsphaltWaveImpactLocation(asphaltWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveImpactLocation(grassWaveImpactLocationConstructionProperties);
-            builder.AddGrassWaveRunupRayleighLocation(grassRevetmentWaveRunupRayleighLocationConstructionProperties);
-            builder.AddNaturalStoneLocation(naturalStoneRevetmentLocationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighLocation(grassWaveRunupRayleighDiscreteLocationConstructionProperties);
+            builder.AddNaturalStoneLocation(naturalStoneWaveImpactLocationConstructionProperties);
             builder.AddGrassOvertoppingLocation(grassOvertoppingLocationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
@@ -539,7 +538,7 @@ namespace DiKErnel.System.Test
         public void GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 15, NaturalStoneTopLayerType.NordicStone, 0, 10)
             {
                 InitialDamage = -0.1,

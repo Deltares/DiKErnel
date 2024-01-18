@@ -19,17 +19,17 @@
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Construction properties to construct natural stone revetment location dependent
+    /// Construction properties to construct natural stone wave impact location dependent
     /// input.
     /// </summary>
-    public class NaturalStoneRevetmentLocationConstructionProperties : RevetmentLocationConstructionProperties
+    public class NaturalStoneWaveImpactLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
         /// <param name="thicknessTopLayer">The thickness of the top layer.</param>
         /// <param name="relativeDensity">The relative density.</param>
-        public NaturalStoneRevetmentLocationConstructionProperties(double x, NaturalStoneTopLayerType topLayerType,
-                                                                   double thicknessTopLayer, double relativeDensity)
+        public NaturalStoneWaveImpactLocationConstructionProperties(double x, NaturalStoneTopLayerType topLayerType,
+                                                                    double thicknessTopLayer, double relativeDensity)
             : base(x)
         {
             TopLayerType = topLayerType;

@@ -164,8 +164,8 @@ namespace DiKErnel.Integration
         /// Adds a natural stone location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the natural
-        /// stone location dependent input.</param>
-        public void AddNaturalStoneLocation(NaturalStoneRevetmentLocationConstructionProperties constructionProperties)
+        /// stone wave impact location dependent input.</param>
+        public void AddNaturalStoneLocation(NaturalStoneWaveImpactLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
         }
@@ -341,9 +341,9 @@ namespace DiKErnel.Integration
                         grassWaveRunupRayleighDiscreteLocationConstructionProperties
                         when !ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                                  grassWaveRunupRayleighDiscreteLocationConstructionProperties, outerToe, outerCrest):
-                    case NaturalStoneRevetmentLocationConstructionProperties naturalStoneLocationConstructionProperties
-                        when !ValidateNaturalStoneRevetmentLocationConstructionProperties(
-                                 naturalStoneLocationConstructionProperties, outerToe, outerCrest):
+                    case NaturalStoneWaveImpactLocationConstructionProperties naturalStoneWaveImpactLocationConstructionProperties
+                        when !ValidateNaturalStoneWaveImpactLocationConstructionProperties(
+                                 naturalStoneWaveImpactLocationConstructionProperties, outerToe, outerCrest):
                         return false;
                 }
             }
@@ -386,8 +386,8 @@ namespace DiKErnel.Integration
                    && ValidateOvertoppingAdapterProperties(outerToe, outerCrest);
         }
 
-        private static bool ValidateNaturalStoneRevetmentLocationConstructionProperties(
-            NaturalStoneRevetmentLocationConstructionProperties constructionProperties,
+        private static bool ValidateNaturalStoneWaveImpactLocationConstructionProperties(
+            NaturalStoneWaveImpactLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)

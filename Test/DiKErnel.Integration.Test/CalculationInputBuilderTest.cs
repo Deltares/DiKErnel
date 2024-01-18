@@ -1794,7 +1794,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddNaturalStoneLocation(
-                        new NaturalStoneRevetmentLocationConstructionProperties(
+                        new NaturalStoneWaveImpactLocationConstructionProperties(
                             locationX, NaturalStoneTopLayerType.NordicStone, Random.NextDouble(), Random.NextDouble()));
                 }, locationX);
         }
@@ -1808,7 +1808,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddNaturalStoneLocation(
-                        new NaturalStoneRevetmentLocationConstructionProperties(
+                        new NaturalStoneWaveImpactLocationConstructionProperties(
                             locationX, NaturalStoneTopLayerType.NordicStone, Random.NextDouble(), Random.NextDouble()));
                 }, locationX);
         }
@@ -1820,7 +1820,7 @@ namespace DiKErnel.Integration.Test
             const NaturalStoneTopLayerType topLayerType = (NaturalStoneTopLayerType) 99;
 
             double x = Random.NextDouble();
-            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 x, topLayerType, Random.NextDouble(), Random.NextDouble());
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
@@ -1868,7 +1868,7 @@ namespace DiKErnel.Integration.Test
             double normativeWidthOfWaveImpactBwi = Random.NextDouble();
             double waveAngleImpactBetamax = Random.NextDouble();
 
-            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 x, topLayerType, thicknessTopLayer, relativeDensity)
             {
                 InitialDamage = initialDamage,
@@ -1959,7 +1959,7 @@ namespace DiKErnel.Integration.Test
             double thicknessTopLayer = Random.NextDouble();
             double relativeDensity = Random.NextDouble();
 
-            var constructionProperties = new NaturalStoneRevetmentLocationConstructionProperties(
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 x, topLayerType, thicknessTopLayer, relativeDensity);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
