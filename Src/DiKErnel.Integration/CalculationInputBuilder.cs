@@ -153,9 +153,9 @@ namespace DiKErnel.Integration
         /// Adds a grass wave run-up location with Rayleigh protocol.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass wave
-        /// run-up Rayleigh location dependent input.</param>
+        /// run-up Rayleigh Discrete location dependent input.</param>
         public void AddGrassWaveRunupRayleighLocation(
-            GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties)
+            GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
         }
@@ -337,9 +337,10 @@ namespace DiKErnel.Integration
                     case GrassWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
                         when !ValidateGrassWaveImpactLocationConstructionProperties(
                                  grassWaveImpactLocationConstructionProperties, outerToe, outerCrest):
-                    case GrassRevetmentWaveRunupRayleighLocationConstructionProperties rayleighLocationConstructionProperties
-                        when !ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-                                 rayleighLocationConstructionProperties, outerToe, outerCrest):
+                    case GrassWaveRunupRayleighDiscreteLocationConstructionProperties
+                        grassWaveRunupRayleighDiscreteLocationConstructionProperties
+                        when !ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
+                                 grassWaveRunupRayleighDiscreteLocationConstructionProperties, outerToe, outerCrest):
                     case NaturalStoneRevetmentLocationConstructionProperties naturalStoneLocationConstructionProperties
                         when !ValidateNaturalStoneRevetmentLocationConstructionProperties(
                                  naturalStoneLocationConstructionProperties, outerToe, outerCrest):
@@ -376,8 +377,8 @@ namespace DiKErnel.Integration
                    && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
         }
 
-        private bool ValidateGrassRevetmentWaveRunupRayleighLocationConstructionProperties(
-            GrassRevetmentWaveRunupRayleighLocationConstructionProperties constructionProperties,
+        private bool ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
+            GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)

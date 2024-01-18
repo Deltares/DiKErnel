@@ -173,9 +173,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
                                     calculationDataItems, JsonInputCalculationType.GrassWaveRunup));
 
                         if (constructionProperties is
-                            GrassRevetmentWaveRunupRayleighLocationConstructionProperties rayleighConstructionProperties)
+                            GrassWaveRunupRayleighDiscreteLocationConstructionProperties rayleighDiscreteLocationConstructionProperties)
                         {
-                            builder.AddGrassWaveRunupRayleighLocation(rayleighConstructionProperties);
+                            builder.AddGrassWaveRunupRayleighLocation(rayleighDiscreteLocationConstructionProperties);
                         }
 
                         break;
@@ -310,7 +310,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             switch (calculationData?.CalculationProtocolData?.CalculationProtocolType)
             {
                 case JsonInputGrassWaveRunupCalculationProtocolType.RayleighDiscrete:
-                    constructionProperties = CreateGrassWaveRunupRayleighLocationConstructionProperties(
+                    constructionProperties = CreateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                         locationData, calculationData.CalculationProtocolData);
                     break;
                 default:
@@ -332,12 +332,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
             return constructionProperties;
         }
 
-        private static GrassRevetmentWaveRunupRayleighLocationConstructionProperties
-            CreateGrassWaveRunupRayleighLocationConstructionProperties(
+        private static GrassWaveRunupRayleighDiscreteLocationConstructionProperties
+            CreateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 JsonInputGrassWaveRunupLocationData locationData,
                 JsonInputGrassWaveRunupCalculationProtocolData calculationProtocolData)
         {
-            return new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+            return new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 FixedNumberOfWaves = calculationProtocolData.FixedNumberOfWaves,

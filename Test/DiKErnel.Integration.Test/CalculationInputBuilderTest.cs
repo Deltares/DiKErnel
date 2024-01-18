@@ -1502,7 +1502,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddGrassWaveRunupRayleighLocation(
-                        new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                        new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
         }
@@ -1516,7 +1516,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddGrassWaveRunupRayleighLocation(
-                        new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                        new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
         }
@@ -1529,7 +1529,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
 
             double x = Random.NextDouble();
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
@@ -1550,7 +1550,8 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(15, topLayerType);
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
+                15, topLayerType);
 
             const double outerToeX = 0;
             const double crestX = 30;
@@ -1588,7 +1589,8 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(15, topLayerType);
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
+                15, topLayerType);
 
             const double outerToeX = 0;
             const double crestX = 30;
@@ -1637,7 +1639,7 @@ namespace DiKErnel.Integration.Test
             int fixedNumberOfWaves = Random.Next();
             double frontVelocityCu = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType)
             {
                 InitialDamage = initialDamage,
@@ -1695,7 +1697,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
             const double x = 5;
 
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
@@ -1741,7 +1743,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
             const double x = 5;
 
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());

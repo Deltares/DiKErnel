@@ -224,7 +224,7 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithInvalidGrassRevetmentWaveRunupRayleighLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            var constructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.ClosedSod)
             {
                 InitialDamage = -0.1,
@@ -508,8 +508,8 @@ namespace DiKErnel.System.Test
             var grassWaveImpactLocationConstructionProperties =
                 new GrassWaveImpactLocationConstructionProperties(14, GrassTopLayerType.ClosedSod);
 
-            var grassRevetmentWaveRunupRayleighLocationConstructionProperties = new
-                GrassRevetmentWaveRunupRayleighLocationConstructionProperties(19, GrassTopLayerType.ClosedSod);
+            var grassRevetmentWaveRunupRayleighLocationConstructionProperties =
+                new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(19, GrassTopLayerType.ClosedSod);
 
             var naturalStoneRevetmentLocationConstructionProperties =
                 new NaturalStoneRevetmentLocationConstructionProperties(

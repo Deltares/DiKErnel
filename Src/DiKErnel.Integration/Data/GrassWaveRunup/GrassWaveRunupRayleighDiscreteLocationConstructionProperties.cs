@@ -21,13 +21,13 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
-    /// Construction properties to construct grass revetment wave run-up location dependent
-    /// input for the Rayleigh protocol.
+    /// Construction properties to construct grass wave run-up Rayleigh Discrete location
+    /// dependent input.
     /// </summary>
-    public class GrassRevetmentWaveRunupRayleighLocationConstructionProperties : GrassWaveRunupLocationConstructionProperties
+    public class GrassWaveRunupRayleighDiscreteLocationConstructionProperties : GrassWaveRunupLocationConstructionProperties
     {
         /// <inheritdoc/>
-        public GrassRevetmentWaveRunupRayleighLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
+        public GrassWaveRunupRayleighDiscreteLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x, topLayerType) {}
 
         /// <summary>
