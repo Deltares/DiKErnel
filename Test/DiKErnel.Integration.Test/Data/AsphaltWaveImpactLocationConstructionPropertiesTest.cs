@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactLocationConstructionPropertiesTest
+    public class AsphaltWaveImpactLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Test.Data
             double elasticModulusUpperLayer = Random.NextDouble();
 
             // Call
-            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
             // Assert
@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Test.Data
                 (Random.NextDouble(), Random.NextDouble())
             };
 
-            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
             // When

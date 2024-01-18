@@ -200,10 +200,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
             return calculationDataItems?.FirstOrDefault(cd => cd.CalculationMethodType == calculationType) as T;
         }
 
-        private static AsphaltRevetmentWaveImpactLocationConstructionProperties
-            CreateAsphaltWaveImpactConstructionProperties(
-                JsonInputAsphaltWaveImpactLocationData locationData,
-                JsonInputAsphaltWaveImpactCalculationData calculationData)
+        private static AsphaltWaveImpactLocationConstructionProperties CreateAsphaltWaveImpactConstructionProperties(
+            JsonInputAsphaltWaveImpactLocationData locationData,
+            JsonInputAsphaltWaveImpactCalculationData calculationData)
         {
             JsonInputAsphaltWaveImpactLocationLayerData upperLayerData = locationData.UpperLayer;
             JsonInputAsphaltWaveImpactLocationLayerData subLayerData = locationData.SubLayerData;
@@ -212,7 +211,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
             JsonInputAsphaltWaveImpactLocationFatigueData fatigueData = locationData.Fatigue;
 
-            return new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            return new AsphaltWaveImpactLocationConstructionProperties(
                 locationData.X, ConvertAsphaltRevetmentTopLayerType(locationData.TopLayerType),
                 locationData.FlexuralStrength, locationData.SoilElasticity, upperLayerData.ThicknessLayer,
                 upperLayerData.ElasticModulusLayer)

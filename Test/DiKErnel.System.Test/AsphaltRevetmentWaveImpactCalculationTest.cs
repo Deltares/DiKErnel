@@ -50,7 +50,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000)
             {
                 DepthFactors = depthFactors
@@ -74,7 +74,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000)
             {
                 InitialDamage = 0.4,
@@ -99,7 +99,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.15, 18000)
             {
                 ThicknessSubLayer = 0.18,
@@ -125,7 +125,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.3, 18000)
             {
                 ImpactFactors = new List<(double, double)>
@@ -167,7 +167,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.38, 18000)
             {
                 DepthFactors = new List<(double, double)>
@@ -208,7 +208,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.45, 18000)
             {
                 WidthFactors = new List<(double, double)>
@@ -250,7 +250,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization1();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.35, 18000)
             {
                 StiffnessRelationNu = 0.3,
@@ -280,7 +280,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization2();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 10, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000)
             {
                 DepthFactors = depthFactors
@@ -304,7 +304,7 @@ namespace DiKErnel.System.Test
             // Given
             CalculationInputBuilder builder = CreateBuilderForSchematization3();
 
-            var locationConstructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var locationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 12.5, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1.6, 55, 0.4, 18000)
             {
                 DepthFactors = depthFactors

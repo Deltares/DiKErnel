@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Factories
             {
                 switch (locationConstructionProperties)
                 {
-                    case AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties:
+                    case AsphaltWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties:
                         locationDependentInputItems.Add(
                             AsphaltRevetmentWaveImpactLocationDependentInputFactory.CreateLocationDependentInput(
                                 asphaltWaveImpactLocationConstructionProperties));

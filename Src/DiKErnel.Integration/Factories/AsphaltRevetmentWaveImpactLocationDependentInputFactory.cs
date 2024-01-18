@@ -25,7 +25,7 @@ namespace DiKErnel.Integration.Factories
     internal static class AsphaltRevetmentWaveImpactLocationDependentInputFactory
     {
         public static AsphaltRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
-            AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties)
+            AsphaltWaveImpactLocationConstructionProperties constructionProperties)
         {
             IAsphaltRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
                 AsphaltRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults();

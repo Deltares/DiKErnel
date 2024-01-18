@@ -21,9 +21,9 @@ using System.Collections.Generic;
 namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
-    /// Construction properties to construct asphalt revetment wave impact location dependent input.
+    /// Construction properties to construct asphalt wave impact location dependent input.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactLocationConstructionProperties : RevetmentLocationConstructionProperties
+    public class AsphaltWaveImpactLocationConstructionProperties : RevetmentLocationConstructionProperties
     {
         /// <inheritdoc/>
         /// <param name="topLayerType">The type of the top layer.</param>
@@ -32,10 +32,10 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         /// <param name="thicknessUpperLayer">The thickness of the upper layer.</param>
         /// <param name="elasticModulusUpperLayer">The elastic modulus of the upper
         /// layer.</param>
-        public AsphaltRevetmentWaveImpactLocationConstructionProperties(double x, AsphaltTopLayerType topLayerType,
-                                                                        double flexuralStrength, double soilElasticity,
-                                                                        double thicknessUpperLayer,
-                                                                        double elasticModulusUpperLayer)
+        public AsphaltWaveImpactLocationConstructionProperties(double x, AsphaltTopLayerType topLayerType,
+                                                               double flexuralStrength, double soilElasticity,
+                                                               double thicknessUpperLayer,
+                                                               double elasticModulusUpperLayer)
             : base(x)
         {
             TopLayerType = topLayerType;

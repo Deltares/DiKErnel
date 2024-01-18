@@ -668,7 +668,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddAsphaltWaveImpactLocation(
-                        new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                        new AsphaltWaveImpactLocationConstructionProperties(
                             locationX, AsphaltTopLayerType.HydraulicAsphaltConcrete, Random.NextDouble(),
                             Random.NextDouble(), Random.NextDouble(), Random.NextDouble()));
                 }, locationX);
@@ -683,7 +683,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     builder.AddAsphaltWaveImpactLocation(
-                        new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+                        new AsphaltWaveImpactLocationConstructionProperties(
                             locationX, AsphaltTopLayerType.HydraulicAsphaltConcrete, Random.NextDouble(),
                             Random.NextDouble(), Random.NextDouble(), Random.NextDouble()));
                 }, locationX);
@@ -697,7 +697,7 @@ namespace DiKErnel.Integration.Test
             const AsphaltTopLayerType topLayerType = (AsphaltTopLayerType) 99;
 
             double x = Random.NextDouble();
-            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 x, topLayerType, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
@@ -744,7 +744,7 @@ namespace DiKErnel.Integration.Test
                 (Random.NextDouble(), Random.NextDouble())
             };
 
-            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer)
             {
                 InitialDamage = initialDamage,
@@ -813,7 +813,7 @@ namespace DiKErnel.Integration.Test
             double thicknessUpperLayer = Random.NextDouble();
             double elasticModulusUpperLayer = Random.NextDouble();
 
-            var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
+            var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
                 x, topLayerType, flexuralStrength, soilElasticity, thicknessUpperLayer, elasticModulusUpperLayer);
 
             var builder = new CalculationInputBuilder(Random.NextDouble());

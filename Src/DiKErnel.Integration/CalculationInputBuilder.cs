@@ -122,8 +122,7 @@ namespace DiKErnel.Integration
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the asphalt wave
         /// impact location dependent input.</param>
-        public void AddAsphaltWaveImpactLocation(
-            AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties)
+        public void AddAsphaltWaveImpactLocation(AsphaltWaveImpactLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
         }
@@ -331,8 +330,8 @@ namespace DiKErnel.Integration
             {
                 switch (locationConstructionProperties)
                 {
-                    case AsphaltRevetmentWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties
-                        when !ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
+                    case AsphaltWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties
+                        when !ValidateAsphaltWaveImpactLocationConstructionProperties(
                                  asphaltWaveImpactLocationConstructionProperties, outerToe, outerCrest):
                     case GrassRevetmentOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties
                         when !ValidateGrassRevetmentOvertoppingLocationConstructionProperties(
@@ -353,8 +352,8 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateAsphaltRevetmentWaveImpactLocationConstructionProperties(
-            AsphaltRevetmentWaveImpactLocationConstructionProperties constructionProperties,
+        private static bool ValidateAsphaltWaveImpactLocationConstructionProperties(
+            AsphaltWaveImpactLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
