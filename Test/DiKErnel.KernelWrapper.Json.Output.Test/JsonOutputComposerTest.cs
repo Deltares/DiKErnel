@@ -25,7 +25,7 @@ using DiKErnel.Integration.Data.GrassRevetment;
 using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
-using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.TestUtil;
 using DiKErnel.Util;
 using NSubstitute;

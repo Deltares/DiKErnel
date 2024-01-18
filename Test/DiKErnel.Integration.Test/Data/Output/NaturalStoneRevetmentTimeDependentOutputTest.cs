@@ -18,7 +18,7 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
-using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 

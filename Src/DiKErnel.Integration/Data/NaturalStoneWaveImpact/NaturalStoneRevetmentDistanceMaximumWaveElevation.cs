@@ -16,19 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.Integration.Data.NaturalStoneRevetment
+namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    internal class NaturalStoneRevetmentNormativeWidthOfWaveImpact
+    internal class NaturalStoneRevetmentDistanceMaximumWaveElevation
     {
-        public NaturalStoneRevetmentNormativeWidthOfWaveImpact(double normativeWidthOfWaveImpactAwi,
-                                                               double normativeWidthOfWaveImpactBwi)
+        public NaturalStoneRevetmentDistanceMaximumWaveElevation(double distanceMaximumWaveElevationAsmax,
+                                                                 double distanceMaximumWaveElevationBsmax)
         {
-            NormativeWidthOfWaveImpactAwi = normativeWidthOfWaveImpactAwi;
-            NormativeWidthOfWaveImpactBwi = normativeWidthOfWaveImpactBwi;
+            DistanceMaximumWaveElevationAsmax = distanceMaximumWaveElevationAsmax;
+            DistanceMaximumWaveElevationBsmax = distanceMaximumWaveElevationBsmax;
         }
 
-        public double NormativeWidthOfWaveImpactAwi { get; }
+        public double DistanceMaximumWaveElevationAsmax { get; }
 
-        public double NormativeWidthOfWaveImpactBwi { get; }
+        public double DistanceMaximumWaveElevationBsmax { get; }
     }
 }

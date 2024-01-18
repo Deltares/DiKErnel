@@ -16,22 +16,18 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.Integration.Data.NaturalStoneRevetment
+namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    internal class NaturalStoneRevetmentUpperLimitLoading
+    internal class NaturalStoneRevetmentSlope
     {
-        public NaturalStoneRevetmentUpperLimitLoading(double upperLimitAul, double upperLimitBul,
-                                                      double upperLimitCul)
+        public NaturalStoneRevetmentSlope(double upperLevelAus, double lowerLevelAls)
         {
-            UpperLimitAul = upperLimitAul;
-            UpperLimitBul = upperLimitBul;
-            UpperLimitCul = upperLimitCul;
+            UpperLevelAus = upperLevelAus;
+            LowerLevelAls = lowerLevelAls;
         }
 
-        public double UpperLimitAul { get; }
+        public double UpperLevelAus { get; }
 
-        public double UpperLimitBul { get; }
-
-        public double UpperLimitCul { get; }
+        public double LowerLevelAls { get; }
     }
 }

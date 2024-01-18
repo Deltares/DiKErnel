@@ -25,7 +25,7 @@ using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.Integration.Data.NaturalStoneRevetment
+namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     internal class NaturalStoneRevetmentLocationDependentInput : LocationDependentInput
     {

@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -16,13 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.Integration.Data.NaturalStoneRevetment
+namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    /// <summary>
-    /// The top layer types for natural stone revetments.
-    /// </summary>
-    public enum NaturalStoneRevetmentTopLayerType
+    internal class NaturalStoneRevetmentNormativeWidthOfWaveImpact
     {
-        NordicStone
+        public NaturalStoneRevetmentNormativeWidthOfWaveImpact(double normativeWidthOfWaveImpactAwi,
+                                                               double normativeWidthOfWaveImpactBwi)
+        {
+            NormativeWidthOfWaveImpactAwi = normativeWidthOfWaveImpactAwi;
+            NormativeWidthOfWaveImpactBwi = normativeWidthOfWaveImpactBwi;
+        }
+
+        public double NormativeWidthOfWaveImpactAwi { get; }
+
+        public double NormativeWidthOfWaveImpactBwi { get; }
     }
 }

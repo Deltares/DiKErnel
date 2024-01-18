@@ -19,7 +19,7 @@
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
-using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.Util;
 using NUnit.Framework;
 

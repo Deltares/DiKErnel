@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 
-namespace DiKErnel.Integration.Data.NaturalStoneRevetment
+namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     /// <summary>
     /// Location dependent output of a natural stone revetment location.

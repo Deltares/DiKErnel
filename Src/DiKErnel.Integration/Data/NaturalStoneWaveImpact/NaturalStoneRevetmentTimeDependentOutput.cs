@@ -19,7 +19,7 @@
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 
-namespace DiKErnel.Integration.Data.NaturalStoneRevetment
+namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     /// <summary>
     /// Time dependent output of a natural stone revetment location.

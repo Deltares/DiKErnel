@@ -18,7 +18,7 @@
 
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment;
-using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {

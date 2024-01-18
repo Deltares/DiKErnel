@@ -23,7 +23,7 @@ using DiKErnel.Integration.Data.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.Data.GrassRevetmentWaveRunup;
-using DiKErnel.Integration.Data.NaturalStoneRevetment;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {
