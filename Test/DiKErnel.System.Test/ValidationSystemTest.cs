@@ -74,7 +74,7 @@ namespace DiKErnel.System.Test
 
             var asphaltRevetmentWaveImpactLocationConstructionProperties =
                 new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                    12, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
+                    12, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
 
             builder.AddAsphaltWaveImpactLocation(asphaltRevetmentWaveImpactLocationConstructionProperties);
 
@@ -98,7 +98,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties = new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                15, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 0, 0, -1, -8)
+                15, AsphaltTopLayerType.HydraulicAsphaltConcrete, 0, 0, -1, -8)
             {
                 InitialDamage = -0.1,
                 FailureNumber = -1,
@@ -505,7 +505,7 @@ namespace DiKErnel.System.Test
 
             var asphaltRevetmentWaveImpactLocationConstructionProperties =
                 new AsphaltRevetmentWaveImpactLocationConstructionProperties(
-                    12, AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
+                    12, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
 
             var grassRevetmentWaveImpactLocationConstructionProperties =
                 new GrassRevetmentWaveImpactLocationConstructionProperties(

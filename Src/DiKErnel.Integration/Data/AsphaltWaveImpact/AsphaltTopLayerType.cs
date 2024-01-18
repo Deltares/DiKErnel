@@ -21,7 +21,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
     /// <summary>
     /// The top layer types for asphalt revetments.
     /// </summary>
-    public enum AsphaltRevetmentTopLayerType
+    public enum AsphaltTopLayerType
     {
         HydraulicAsphaltConcrete
     }

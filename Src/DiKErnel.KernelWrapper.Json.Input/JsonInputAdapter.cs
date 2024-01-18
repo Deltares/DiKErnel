@@ -236,13 +236,13 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static AsphaltRevetmentTopLayerType ConvertAsphaltRevetmentTopLayerType(
+        private static AsphaltTopLayerType ConvertAsphaltRevetmentTopLayerType(
             JsonInputAsphaltRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
             {
                 JsonInputAsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete =>
-                    AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete,
+                    AsphaltTopLayerType.HydraulicAsphaltConcrete,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };
         }

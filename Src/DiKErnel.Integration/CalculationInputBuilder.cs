@@ -423,10 +423,9 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateAsphaltRevetmentTopLayerType(AsphaltRevetmentTopLayerType topLayerType,
-                                                                 double locationX)
+        private static bool ValidateAsphaltRevetmentTopLayerType(AsphaltTopLayerType topLayerType, double locationX)
         {
-            if (topLayerType != AsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete)
+            if (topLayerType != AsphaltTopLayerType.HydraulicAsphaltConcrete)
             {
                 RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
                                         "invalid top layer type.");
