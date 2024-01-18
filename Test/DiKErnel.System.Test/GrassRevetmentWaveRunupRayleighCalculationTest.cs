@@ -101,6 +101,30 @@ namespace DiKErnel.System.Test
         }
 
         [Test]
+        public void GivenCalculationInputForSchematization1Testcase4_WhenCalculating_ThenReturnsExpectedCalculationResult()
+        {
+            // Given
+            CalculationInputBuilder builder = CreateBuilderForSchematization1();
+
+            var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                15, GrassRevetmentTopLayerType.ClosedSod)
+            {
+                InitialDamage = 0.3
+            };
+
+            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            var calculator = new Calculator(calculationInput.Data);
+            calculator.WaitForCompletion();
+
+            // Then
+            AssertOutput(calculator, 1.47319166638799, 35549);
+        }
+
+        [Test]
         public void GivenCalculationInputForSchematization2Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult()
         {
             // Given
@@ -233,6 +257,27 @@ namespace DiKErnel.System.Test
             AssertOutput(calculator, 1.70123523079437, 32693);
         }
 
+        [Test]
+        public void GivenCalculationInputForSchematization5Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult()
+        {
+            // Given
+            CalculationInputBuilder builder = CreateBuilderForSchematization5();
+
+            var locationConstructionProperties = new GrassRevetmentWaveRunupRayleighLocationConstructionProperties(
+                15, GrassRevetmentTopLayerType.ClosedSod);
+
+            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            var calculator = new Calculator(calculationInput.Data);
+            calculator.WaitForCompletion();
+
+            // Then
+            AssertOutput(calculator, 1.17257472297294, 18880);
+        }
+
         private static CalculationInputBuilder CreateBuilderForSchematization1()
         {
             var builder = new CalculationInputBuilder(0);
@@ -345,6 +390,35 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(46800, 50400, 3.2, 1.5, 5.2, 10);
             builder.AddTimeStep(50400, 54000, 3.1, 1.3, 4.8, 15);
             builder.AddTimeStep(54000, 57600, 3.0, 1.0, 4.5, 20);
+
+            builder.AddDikeProfileSegment(0, 0, 25, 7.5);
+
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(25, CharacteristicPointType.OuterCrest);
+
+            return builder;
+        }
+
+        private static CalculationInputBuilder CreateBuilderForSchematization5()
+        {
+            var builder = new CalculationInputBuilder(0);
+
+            builder.AddTimeStep(-7200, -6840, 3.0, 0.5, 3.0, 50);
+            builder.AddTimeStep(-6840, -6120, 3.1, 0.7, 3.5, 45);
+            builder.AddTimeStep(-6120, -5040, 3.2, 1.0, 4.0, 40);
+            builder.AddTimeStep(-5040, -3600, 3.3, 1.3, 4.3, 35);
+            builder.AddTimeStep(-3600, -1800, 3.4, 1.5, 4.5, 30);
+            builder.AddTimeStep(-1800, 360, 3.5, 1.8, 4.8, 25);
+            builder.AddTimeStep(360, 2880, 3.6, 2.1, 5.2, 20);
+            builder.AddTimeStep(2880, 5760, 3.7, 2.5, 5.5, 15);
+            builder.AddTimeStep(5760, 9000, 3.7, 2.8, 5.8, 10);
+            builder.AddTimeStep(9000, 12600, 3.6, 2.8, 6.0, 5);
+            builder.AddTimeStep(12600, 16560, 3.5, 2.5, 6.0, 0);
+            builder.AddTimeStep(16560, 20880, 3.4, 2.1, 5.8, 0);
+            builder.AddTimeStep(20880, 25560, 3.3, 1.8, 5.5, 5);
+            builder.AddTimeStep(25560, 30600, 3.2, 1.5, 5.2, 10);
+            builder.AddTimeStep(30600, 36000, 3.1, 1.3, 4.8, 15);
+            builder.AddTimeStep(36000, 43200, 3.0, 1.0, 4.5, 20);
 
             builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
