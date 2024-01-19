@@ -43,7 +43,7 @@ namespace DiKErnel.Integration.Factories
                 subLayer = new AsphaltRevetmentWaveImpactLayer(thicknessSubLayer.Value, elasticModulusSubLayer.Value);
             }
 
-            var fatigue = new AsphaltRevetmentWaveImpactFatigue(
+            var fatigue = new AsphaltWaveImpactFatigue(
                 constructionProperties.FatigueAlpha ?? AsphaltRevetmentWaveImpactDefaults.FatigueAlpha,
                 constructionProperties.FatigueBeta ?? AsphaltRevetmentWaveImpactDefaults.FatigueBeta);
 

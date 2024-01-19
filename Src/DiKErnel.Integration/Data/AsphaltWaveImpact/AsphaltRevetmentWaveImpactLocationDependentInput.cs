@@ -44,7 +44,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                 AsphaltRevetmentWaveImpactLayer upperLayer,
                                                                 AsphaltRevetmentWaveImpactLayer subLayer,
                                                                 double averageNumberOfWavesCtm,
-                                                                AsphaltRevetmentWaveImpactFatigue fatigue,
+                                                                AsphaltWaveImpactFatigue fatigue,
                                                                 double impactNumberC, double stiffnessRelationNu,
                                                                 IReadOnlyList<(double, double)> widthFactors,
                                                                 IReadOnlyList<(double, double)> depthFactors,
@@ -77,7 +77,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
         public double AverageNumberOfWavesCtm { get; }
 
-        public AsphaltRevetmentWaveImpactFatigue Fatigue { get; }
+        public AsphaltWaveImpactFatigue Fatigue { get; }
 
         public double ImpactNumberC { get; }
 

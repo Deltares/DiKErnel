@@ -43,7 +43,7 @@ namespace DiKErnel.Integration.TestUtil
             Assert.That(layer.ElasticModulus, Is.EqualTo(elasticModulus));
         }
 
-        public static void AssertFatigue(double alpha, double beta, AsphaltRevetmentWaveImpactFatigue fatigue)
+        public static void AssertFatigue(double alpha, double beta, AsphaltWaveImpactFatigue fatigue)
         {
             Assert.That(fatigue.Alpha, Is.EqualTo(alpha));
             Assert.That(fatigue.Beta, Is.EqualTo(beta));
