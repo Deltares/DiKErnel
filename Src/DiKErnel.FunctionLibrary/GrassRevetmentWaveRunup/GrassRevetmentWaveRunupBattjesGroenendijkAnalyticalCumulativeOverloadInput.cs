@@ -42,8 +42,8 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// <param name="reducedStrengthTransitionAlphaS">The AlphaS value [-].</param>
         /// <param name="gravitationalAcceleration">The gravitational
         /// acceleration [m/s^2].</param>
-        /// <param name="k1">The K1 constant [-].</param>
-        /// <param name="k2">The K2 constant [-].</param>
+        /// <param name="k1">The K1 value [-].</param>
+        /// <param name="k2">The K2 value [-].</param>
         public GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(double averageNumberOfWaves,
                                                                                           double representativeWaveRunup2P,
                                                                                           double waterLevel, double waveHeightHm0,
@@ -134,12 +134,12 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         public double GravitationalAcceleration { get; }
 
         /// <summary>
-        /// Gets the K1 constant [-].
+        /// Gets the K1 value [-].
         /// </summary>
         public double K1 { get; }
         
         /// <summary>
-        /// Gets the K2 constant [-].
+        /// Gets the K2 value [-].
         /// </summary>
         public double K2 { get; }
     }
