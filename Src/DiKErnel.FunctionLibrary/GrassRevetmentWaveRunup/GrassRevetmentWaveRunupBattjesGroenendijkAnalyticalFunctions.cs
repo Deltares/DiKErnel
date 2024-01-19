@@ -32,6 +32,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
     {
         private static readonly IReadOnlyList<(double, double)> lambdasRu1 = new[]
         {
+            (0.00, 12.193),
             (0.05, 12.193),
             (0.10, 7.003),
             (0.15, 5.063),
@@ -96,6 +97,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
 
         private static readonly IReadOnlyList<(double, double)> lambdasRu2 = new[]
         {
+            (0.00, 1.060),
             (0.05, 1.060),
             (0.10, 1.060),
             (0.15, 1.060),
