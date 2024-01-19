@@ -22,9 +22,9 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
-    /// Location dependent output of an asphalt revetment wave impact location.
+    /// Location dependent output of an asphalt wave impact calculation.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactLocationDependentOutput : LocationDependentOutput
+    public class AsphaltWaveImpactLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
@@ -33,10 +33,10 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         /// <param name="stiffnessRelation">The calculated stiffness relation.</param>
         /// <param name="computationalThickness">The calculated computational thickness.</param>
         /// <param name="equivalentElasticModulus">The calculated equivalent elastic modulus.</param>
-        public AsphaltRevetmentWaveImpactLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z,
-                                                                 double outerSlope, double logFlexuralStrength,
-                                                                 double stiffnessRelation, double computationalThickness,
-                                                                 double equivalentElasticModulus)
+        public AsphaltWaveImpactLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems,
+                                                        double z, double outerSlope, double logFlexuralStrength,
+                                                        double stiffnessRelation, double computationalThickness,
+                                                        double equivalentElasticModulus)
             : base(timeDependentOutputItems)
         {
             Z = z;

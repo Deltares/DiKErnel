@@ -83,7 +83,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
         {
             switch (locationDependentOutput)
             {
-                case AsphaltRevetmentWaveImpactLocationDependentOutput asphaltRevetmentWaveImpactLocationDependentOutput:
+                case AsphaltWaveImpactLocationDependentOutput asphaltRevetmentWaveImpactLocationDependentOutput:
                 {
                     IReadOnlyList<AsphaltRevetmentWaveImpactTimeDependentOutput> asphaltRevetmentWaveImpactTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems

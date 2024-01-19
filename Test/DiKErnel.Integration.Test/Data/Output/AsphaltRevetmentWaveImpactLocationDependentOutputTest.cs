@@ -40,9 +40,9 @@ namespace DiKErnel.Integration.Test.Data.Output
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new AsphaltRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, z, outerSlope,
-                                                                               logFlexuralStrength, stiffnessRelation,
-                                                                               computationalThickness, equivalentElasticModulus);
+            var output = new AsphaltWaveImpactLocationDependentOutput(timeDependentOutputItems, z, outerSlope,
+                                                                      logFlexuralStrength, stiffnessRelation,
+                                                                      computationalThickness, equivalentElasticModulus);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

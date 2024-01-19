@@ -295,7 +295,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             return new CalculationOutput(new List<LocationDependentOutput>
             {
-                new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
+                new AsphaltWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
                 }, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3),
@@ -377,7 +377,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             return new CalculationOutput(new List<LocationDependentOutput>
             {
-                new AsphaltRevetmentWaveImpactLocationDependentOutput(new[]
+                new AsphaltWaveImpactLocationDependentOutput(new[]
                 {
                     asphaltWaveImpactTimeDependentOutput
                 }, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4),

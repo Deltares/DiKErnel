@@ -121,9 +121,9 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new AsphaltRevetmentWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, outerSlope,
-                                                                         logFlexuralStrength, stiffnessRelation,
-                                                                         computationalThickness, subLayerElasticModulus);
+            return new AsphaltWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, outerSlope,
+                                                                logFlexuralStrength, stiffnessRelation,
+                                                                computationalThickness, subLayerElasticModulus);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
