@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.Util.TestUtil", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.FunctionLibrary.TestUtil", "Test\DiKErnel.FunctionLibrary.TestUtil\DiKErnel.FunctionLibrary.TestUtil.csproj", "{62E9523C-ACCD-4CA5-A830-A76940CB5928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiKErnel.SpecFlow.Test", "Test\DiKErnel.SpecFlow.Test\DiKErnel.SpecFlow.Test.csproj", "{37F95BA6-7219-4724-85CB-B36B6B5BCC80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.SpecFlow.Test", "Test\DiKErnel.SpecFlow.Test\DiKErnel.SpecFlow.Test.csproj", "{37F95BA6-7219-4724-85CB-B36B6B5BCC80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -349,18 +349,18 @@ Global
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928}.Release|x64.Build.0 = Release|x64
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928}.Release|x86.ActiveCfg = Release|x86
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928}.Release|x86.Build.0 = Release|x86
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x64.ActiveCfg = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x64.Build.0 = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x86.ActiveCfg = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x86.Build.0 = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x64.Build.0 = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x86.Build.0 = Debug|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x64.ActiveCfg = Release|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x64.Build.0 = Release|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x86.ActiveCfg = Release|Any CPU
-		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x86.Build.0 = Release|Any CPU
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x64.ActiveCfg = Coverage|x64
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x64.Build.0 = Coverage|x64
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x86.ActiveCfg = Coverage|x86
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Coverage|x86.Build.0 = Coverage|x86
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x64.ActiveCfg = Debug|x64
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x64.Build.0 = Debug|x64
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x86.ActiveCfg = Debug|x86
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Debug|x86.Build.0 = Debug|x86
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x64.ActiveCfg = Release|x64
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x64.Build.0 = Release|x64
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x86.ActiveCfg = Release|x86
+		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
