@@ -240,7 +240,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                                                              input.VerticalDistanceWaterLevelElevation,
                                                              scalingParameterRu1, input.K1);
 
-            double verticalLimitWaveRunup7 = VerticalWaveRunupLimit7(input.VerticalDistanceWaterLevelElevation);
+            double verticalLimitWaveRunup7 = ScaledVerticalDistanceWaterLevelElevation(input.VerticalDistanceWaterLevelElevation);
             double cumulativeOverLoad7 = DeltaCumulativeLoad(input.IncreasedLoadTransitionAlphaM,
                                                              input.ReducedStrengthTransitionAlphaS,
                                                              input.FrontVelocityCu,
@@ -266,18 +266,20 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         private static double VerticalWaveRunupLimit1(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup,
                                                       double waveRunupTransition)
         {
-            return Math.Max(Math.Max((4.0 / 3.0) * verticalDistanceWaterLevelElevation, upperLimitWaveRunup), waveRunupTransition);
+            return Math.Max(Math.Max(ScaledVerticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation), upperLimitWaveRunup),
+                            waveRunupTransition);
         }
 
         private static double VerticalWaveRunupLimit2(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
         {
-            return Math.Max((4.0 / 3.0) * verticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+            return Math.Max(ScaledVerticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation), upperLimitWaveRunup);
         }
 
         private static double VerticalWaveRunupLimit5(double verticalDistanceWaterLevelElevation, double lowerLimitWaveRunup,
                                                       double waveRunupTransition)
         {
-            double scaledVerticalDistancesWaterLevelElevation = (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
+            double scaledVerticalDistancesWaterLevelElevation =
+                ScaledVerticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation);
 
             return Math.Max(Math.Max(Math.Min(scaledVerticalDistancesWaterLevelElevation, lowerLimitWaveRunup),
                                      verticalDistanceWaterLevelElevation),
@@ -286,13 +288,14 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
 
         private static double VerticalWaveRunupLimit6(double verticalDistanceWaterLevelElevation, double lowerLimitWaveRunup)
         {
-            double scaledVerticalDistancesWaterLevelElevation = (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
+            double scaledVerticalDistanceWaterLevelElevation =
+                ScaledVerticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation);
 
-            return Math.Max(Math.Min(scaledVerticalDistancesWaterLevelElevation, lowerLimitWaveRunup),
+            return Math.Max(Math.Min(scaledVerticalDistanceWaterLevelElevation, lowerLimitWaveRunup),
                             verticalDistanceWaterLevelElevation);
         }
 
-        private static double VerticalWaveRunupLimit7(double verticalDistanceWaterLevelElevation)
+        private static double ScaledVerticalDistanceWaterLevelElevation(double verticalDistanceWaterLevelElevation)
         {
             return (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
         }
