@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Output
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactTimeDependentOutputTest
+    public class AsphaltWaveImpactTimeDependentOutputTest
     {
         [Test]
         public void Constructor_WithAllValuesSet_ExpectedValues()
@@ -37,7 +37,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double maximumPeakStress = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
-            var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            var constructionProperties = new AsphaltWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -67,7 +67,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double maximumPeakStress = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
-            var constructionProperties = new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            var constructionProperties = new AsphaltWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -92,7 +92,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_MaximumPeakStressNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+            AsphaltWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.MaximumPeakStress = null;
@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_AverageNumberOfWavesNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+            AsphaltWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.AverageNumberOfWaves = null;
@@ -128,9 +128,9 @@ namespace DiKErnel.Integration.Test.Data.Output
                                                                               "AverageNumberOfWaves must be set.");
         }
 
-        private static AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
+        private static AsphaltWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
-            return new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            return new AsphaltWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),

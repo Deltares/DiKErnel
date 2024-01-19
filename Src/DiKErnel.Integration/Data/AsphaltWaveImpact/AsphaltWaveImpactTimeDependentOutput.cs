@@ -28,7 +28,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
     {
         /// <inheritdoc/>
         public AsphaltWaveImpactTimeDependentOutput(
-            AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
+            AsphaltWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
             MaximumPeakStress = constructionProperties.MaximumPeakStress

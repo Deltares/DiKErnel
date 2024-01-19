@@ -21,10 +21,9 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
-    /// Construction properties to construct asphalt revetment wave impact time dependent
-    /// output.
+    /// Construction properties to construct asphalt wave impact time dependent output.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
+    public class AsphaltWaveImpactTimeDependentOutputConstructionProperties
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>
