@@ -21,10 +21,9 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.Grass
 {
     /// <summary>
-    /// Construction properties to construct grass revetment time dependent output for the
-    /// Rayleigh Discrete protocol.
+    /// Construction properties to construct grass Rayleigh Discrete time dependent output.
     /// </summary>
-    public class GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
+    public class GrassRayleighDiscreteTimeDependentOutputConstructionProperties
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>

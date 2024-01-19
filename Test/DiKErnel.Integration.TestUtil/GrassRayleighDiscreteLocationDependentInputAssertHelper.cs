@@ -21,30 +21,30 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class GrassRevetmentRayleighDiscreteLocationDependentInputAssertHelper
+    internal static class GrassRayleighDiscreteLocationDependentInputAssertHelper
     {
         public static void AssertCumulativeOverload(double criticalCumulativeOverload,
-                                                    GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
+                                                    GrassRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
         }
 
         public static void AssertFrontVelocity(double criticalFrontVelocity,
-                                               GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
+                                               GrassRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
         }
 
         public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
                                                  double reducedStrengthTransitionAlphaS,
-                                                 GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
+                                                 GrassRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(locationDependentInput.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
         }
 
         public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
-                                                      GrassRevetmentRayleighDiscreteLocationDependentInput locationDependentInput)
+                                                      GrassRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
         }

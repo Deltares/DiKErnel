@@ -28,7 +28,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.Grass
 {
-    internal abstract class GrassRevetmentRayleighDiscreteLocationDependentInput : LocationDependentInput
+    internal abstract class GrassRayleighDiscreteLocationDependentInput : LocationDependentInput
     {
         private readonly List<double> xValuesProfile = new List<double>();
         private readonly List<double> zValuesProfile = new List<double>();
@@ -39,14 +39,12 @@ namespace DiKErnel.Integration.Data.Grass
         private double cumulativeOverload = double.NaN;
         private double averageNumberOfWaves = double.NaN;
 
-        protected GrassRevetmentRayleighDiscreteLocationDependentInput(double x, double initialDamage,
-                                                                       double failureNumber,
-                                                                       double criticalCumulativeOverload,
-                                                                       double criticalFrontVelocity,
-                                                                       double increasedLoadTransitionAlphaM,
-                                                                       double reducedStrengthTransitionAlphaS,
-                                                                       double averageNumberOfWavesCtm,
-                                                                       int fixedNumberOfWaves)
+        protected GrassRayleighDiscreteLocationDependentInput(double x, double initialDamage, double failureNumber,
+                                                              double criticalCumulativeOverload,
+                                                              double criticalFrontVelocity,
+                                                              double increasedLoadTransitionAlphaM,
+                                                              double reducedStrengthTransitionAlphaS,
+                                                              double averageNumberOfWavesCtm, int fixedNumberOfWaves)
             : base(x, initialDamage, failureNumber)
         {
             CriticalCumulativeOverload = criticalCumulativeOverload;
@@ -181,10 +179,10 @@ namespace DiKErnel.Integration.Data.Grass
                                                         DikeHeight, profileData.DikeOrientation));
         }
 
-        private GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private GrassRayleighDiscreteTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, double? timeOfFailure)
         {
-            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,

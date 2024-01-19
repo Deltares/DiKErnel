@@ -27,7 +27,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
-    internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRevetmentRayleighDiscreteLocationDependentInput
+    internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRayleighDiscreteLocationDependentInput
     {
         public GrassRevetmentWaveRunupRayleighLocationDependentInput(double x, double initialDamage,
                                                                      double failureNumber,

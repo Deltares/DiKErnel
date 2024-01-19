@@ -40,7 +40,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double cumulativeOverload = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -73,7 +73,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double damage = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -98,7 +98,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_VerticalDistanceWaterLevelElevationNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            var constructionProperties = new GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),

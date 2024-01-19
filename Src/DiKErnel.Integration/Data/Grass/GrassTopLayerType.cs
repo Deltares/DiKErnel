@@ -19,7 +19,7 @@
 namespace DiKErnel.Integration.Data.Grass
 {
     /// <summary>
-    /// The top layer types for grass revetments.
+    /// The top layer types for grass calculations.
     /// </summary>
     public enum GrassTopLayerType
     {

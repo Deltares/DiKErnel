@@ -29,7 +29,7 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
     {
         /// <inheritdoc/>
         public GrassRevetmentOvertoppingTimeDependentOutput(
-            GrassRevetmentRayleighDiscreteTimeDependentOutputConstructionProperties constructionProperties)
+            GrassRayleighDiscreteTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
             VerticalDistanceWaterLevelElevation = constructionProperties.VerticalDistanceWaterLevelElevation

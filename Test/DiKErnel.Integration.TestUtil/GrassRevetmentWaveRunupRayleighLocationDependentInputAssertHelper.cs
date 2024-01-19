@@ -26,7 +26,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertCumulativeOverload(double criticalCumulativeOverload, int fixedNumberOfWaves,
                                                     GrassRevetmentWaveRunupRayleighLocationDependentInput locationDependentInput)
         {
-            GrassRevetmentRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 criticalCumulativeOverload, locationDependentInput);
 
             Assert.That(locationDependentInput.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCu,
                                                GrassRevetmentWaveRunupRayleighLocationDependentInput locationDependentInput)
         {
-            GrassRevetmentRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, locationDependentInput);
 
             Assert.That(locationDependentInput.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
