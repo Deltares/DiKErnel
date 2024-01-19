@@ -6,6 +6,7 @@
   <PropertyGroup> 
     <TargetFrameworks>net48;net7.0</TargetFrameworks>
     <OutDir>$(BuildDir)\Regression\$(TargetFramework)</OutDir>
+    <GenerateDependencyFile>true</GenerateDependencyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">
     <DebugType>none</DebugType>
