@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         /// <param name="thicknessUpperLayer">The thickness of the upper layer.</param>
         /// <param name="elasticModulusUpperLayer">The elastic modulus of the upper
         /// layer.</param>
-        public AsphaltWaveImpactLocationConstructionProperties(double x, AsphaltTopLayerType topLayerType,
+        public AsphaltWaveImpactLocationConstructionProperties(double x, AsphaltWaveImpactTopLayerType topLayerType,
                                                                double flexuralStrength, double soilElasticity,
                                                                double thicknessUpperLayer,
                                                                double elasticModulusUpperLayer)
@@ -48,7 +48,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         /// <summary>
         /// Gets the type of the top layer.
         /// </summary>
-        public AsphaltTopLayerType TopLayerType { get; }
+        public AsphaltWaveImpactTopLayerType TopLayerType { get; }
 
         /// <summary>
         /// Gets the flexural strength.

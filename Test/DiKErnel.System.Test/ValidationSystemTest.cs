@@ -73,7 +73,7 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
 
             var asphaltWaveImpactLocationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
-                12, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
+                12, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
 
             builder.AddAsphaltWaveImpactLocation(asphaltWaveImpactLocationConstructionProperties);
 
@@ -97,7 +97,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
-                15, AsphaltTopLayerType.HydraulicAsphaltConcrete, 0, 0, -1, -8)
+                15, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 0, 0, -1, -8)
             {
                 InitialDamage = -0.1,
                 FailureNumber = -1,
@@ -503,7 +503,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
 
             var asphaltWaveImpactLocationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
-                12, AsphaltTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
+                12, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
 
             var grassWaveImpactLocationConstructionProperties =
                 new GrassWaveImpactLocationConstructionProperties(14, GrassTopLayerType.ClosedSod);

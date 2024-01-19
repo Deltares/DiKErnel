@@ -31,7 +31,7 @@ namespace DiKErnel.Integration.Test.Data
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var topLayerType = Random.NextEnumValue<AsphaltTopLayerType>();
+            var topLayerType = Random.NextEnumValue<AsphaltWaveImpactTopLayerType>();
             double x = Random.NextDouble();
             double flexuralStrength = Random.NextDouble();
             double soilElasticity = Random.NextDouble();
@@ -69,7 +69,7 @@ namespace DiKErnel.Integration.Test.Data
         public void GivenConstructionProperties_WhenAllInputSet_ThenExpectedValues()
         {
             // Given
-            var topLayerType = Random.NextEnumValue<AsphaltTopLayerType>();
+            var topLayerType = Random.NextEnumValue<AsphaltWaveImpactTopLayerType>();
             double x = Random.NextDouble();
             double flexuralStrength = Random.NextDouble();
             double soilElasticity = Random.NextDouble();

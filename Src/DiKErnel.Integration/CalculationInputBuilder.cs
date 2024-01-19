@@ -356,7 +356,7 @@ namespace DiKErnel.Integration
             ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
-                   && ValidateAsphaltRevetmentTopLayerType(constructionProperties.TopLayerType,
+                   && ValidateAsphaltWaveImpactTopLayerType(constructionProperties.TopLayerType,
                                                            constructionProperties.X);
         }
 
@@ -421,9 +421,10 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateAsphaltRevetmentTopLayerType(AsphaltTopLayerType topLayerType, double locationX)
+        private static bool ValidateAsphaltWaveImpactTopLayerType(AsphaltWaveImpactTopLayerType topLayerType,
+                                                                  double locationX)
         {
-            if (topLayerType != AsphaltTopLayerType.HydraulicAsphaltConcrete)
+            if (topLayerType != AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete)
             {
                 RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
                                         "invalid top layer type.");

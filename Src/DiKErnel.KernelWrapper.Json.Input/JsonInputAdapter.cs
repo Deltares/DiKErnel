@@ -212,7 +212,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputAsphaltWaveImpactLocationFatigueData fatigueData = locationData.Fatigue;
 
             return new AsphaltWaveImpactLocationConstructionProperties(
-                locationData.X, ConvertAsphaltRevetmentTopLayerType(locationData.TopLayerType),
+                locationData.X, ConvertAsphaltWaveImpactTopLayerType(locationData.TopLayerType),
                 locationData.FlexuralStrength, locationData.SoilElasticity, upperLayerData.ThicknessLayer,
                 upperLayerData.ElasticModulusLayer)
             {
@@ -235,13 +235,13 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static AsphaltTopLayerType ConvertAsphaltRevetmentTopLayerType(
+        private static AsphaltWaveImpactTopLayerType ConvertAsphaltWaveImpactTopLayerType(
             JsonInputAsphaltRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
             {
                 JsonInputAsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete =>
-                    AsphaltTopLayerType.HydraulicAsphaltConcrete,
+                    AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };
         }

@@ -669,7 +669,7 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddAsphaltWaveImpactLocation(
                         new AsphaltWaveImpactLocationConstructionProperties(
-                            locationX, AsphaltTopLayerType.HydraulicAsphaltConcrete, Random.NextDouble(),
+                            locationX, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, Random.NextDouble(),
                             Random.NextDouble(), Random.NextDouble(), Random.NextDouble()));
                 }, locationX);
         }
@@ -684,7 +684,7 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddAsphaltWaveImpactLocation(
                         new AsphaltWaveImpactLocationConstructionProperties(
-                            locationX, AsphaltTopLayerType.HydraulicAsphaltConcrete, Random.NextDouble(),
+                            locationX, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, Random.NextDouble(),
                             Random.NextDouble(), Random.NextDouble(), Random.NextDouble()));
                 }, locationX);
         }
@@ -694,7 +694,7 @@ namespace DiKErnel.Integration.Test
             GivenBuilderWithAsphaltWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            const AsphaltTopLayerType topLayerType = (AsphaltTopLayerType) 99;
+            const AsphaltWaveImpactTopLayerType topLayerType = (AsphaltWaveImpactTopLayerType) 99;
 
             double x = Random.NextDouble();
             var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
@@ -715,7 +715,7 @@ namespace DiKErnel.Integration.Test
         [Test]
         public void GivenBuilderWithFullyConfiguredAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
-            var topLayerType = Random.NextEnumValue<AsphaltTopLayerType>();
+            var topLayerType = Random.NextEnumValue<AsphaltWaveImpactTopLayerType>();
             const double x = 5;
             double flexuralStrength = Random.NextDouble();
             double soilElasticity = Random.NextDouble();
@@ -806,7 +806,7 @@ namespace DiKErnel.Integration.Test
         public void
             GivenBuilderWithNotFullyConfiguredHydraulicAsphaltConcreteAsphaltWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
-            const AsphaltTopLayerType topLayerType = AsphaltTopLayerType.HydraulicAsphaltConcrete;
+            const AsphaltWaveImpactTopLayerType topLayerType = AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete;
             const double x = 5;
             double flexuralStrength = Random.NextDouble();
             double soilElasticity = Random.NextDouble();
