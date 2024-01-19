@@ -184,15 +184,15 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 25, asphaltWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 1, 0.0098, asphaltWaveImpactLocationDependentInputItem);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 5.6, 0.25, 53, 1.1, 4, 0.58, asphaltWaveImpactLocationDependentInputItem);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 0.16, 18214, asphaltWaveImpactLocationDependentInputItem.UpperLayer);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 0.2, 15000, asphaltWaveImpactLocationDependentInputItem.SubLayer);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
                 0.723, 7.2, asphaltWaveImpactLocationDependentInputItem.Fatigue);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFactors(
                 new List<(double, double)>
                 {
                     (1.6, 1.0392),
@@ -389,14 +389,14 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 39, asphaltWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0, 1, asphaltWaveImpactLocationDependentInputItem);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 1.56, 1025, 56, 1, 1, 0.35, asphaltWaveImpactLocationDependentInputItem);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 0.16, 18214, asphaltWaveImpactLocationDependentInputItem.UpperLayer);
             Assert.That(asphaltWaveImpactLocationDependentInputItem.SubLayer, Is.Null);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
                 0.42, 4.76, asphaltWaveImpactLocationDependentInputItem.Fatigue);
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFactors(
                 new List<(double, double)>
                 {
                     (0.1, 0.0392),

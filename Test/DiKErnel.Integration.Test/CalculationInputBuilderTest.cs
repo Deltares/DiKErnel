@@ -785,20 +785,20 @@ namespace DiKErnel.Integration.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 flexuralStrength, densityOfWater, soilElasticity, averageNumberOfWavesCtm, impactNumberC,
                 stiffnessRelationNu, locationDependentInput);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 thicknessUpperLayer, elasticModulusUpperLayer, locationDependentInput.UpperLayer);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 thicknessSubLayer, elasticModulusSubLayer, locationDependentInput.SubLayer);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
                 fatigueAlpha, fatigueBeta, locationDependentInput.Fatigue);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFactors(
                 widthFactors, depthFactors, impactFactors, locationDependentInput);
         }
 
@@ -838,15 +838,15 @@ namespace DiKErnel.Integration.Test
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 flexuralStrength, 1025, soilElasticity, 1, 1, 0.35, locationDependentInput);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertLayer(
                 thicknessUpperLayer, elasticModulusUpperLayer, locationDependentInput.UpperLayer);
 
             Assert.That(locationDependentInput.SubLayer, Is.Null);
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
                 0.42, 4.76, locationDependentInput.Fatigue);
 
             var expectedWidthFactors = new List<(double, double)>
@@ -937,7 +937,7 @@ namespace DiKErnel.Integration.Test
                 (6.0, 0.001)
             };
 
-            AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
+            AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFactors(
                 expectedWidthFactors, expectedDepthFactors, expectedImpactFactors, locationDependentInput);
         }
 

@@ -22,7 +22,7 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper
+    internal static class AsphaltWaveImpactLocationDependentInputAssertHelper
     {
         public static void AssertGeneralProperties(double flexuralStrength, double densityOfWater,
                                                    double soilElasticity, double averageNumberOfWavesCtm,
