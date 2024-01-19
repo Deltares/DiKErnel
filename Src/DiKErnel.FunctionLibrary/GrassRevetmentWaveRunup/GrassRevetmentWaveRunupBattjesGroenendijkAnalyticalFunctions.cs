@@ -20,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics;
-using MathNet.Numerics.Distributions;
 using MathNet.Numerics.Interpolation;
 
 namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
@@ -181,9 +180,9 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                                                                      input.WaterLevel,
                                                                      input.BottomForeshoreZ);
 
-            double scalingParameterRu1 = ScalingParameterRu1(waveRunupTransition, rootMeanSquareWaveRunup);
+            double scalingParameterRu1 = ScalingParameterRu(waveRunupTransition, rootMeanSquareWaveRunup, LambdaRu1);
 
-            double scalingParameterRu2 = ScalingParameterRu2(waveRunupTransition, rootMeanSquareWaveRunup);
+            double scalingParameterRu2 = ScalingParameterRu(waveRunupTransition, rootMeanSquareWaveRunup, LambdaRu2);
 
             double verticalLimitWaveRunUp1 = VerticalWaveRunupLimit1(input.VerticalDistanceWaterLevelElevation,
                                                                      upperLimitWaveRunup,
@@ -332,9 +331,10 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
                    (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / (xi * SpecialFunctions.Gamma(2 + 1 / xi));
         }
 
-        private static double ScalingParameterRu1(double waveRunupTransition, double rootMeanSquareWaveRunup)
+        private static double ScalingParameterRu(double waveRunupTransition, double rootMeanSquareWaveRunup,
+                                                 Func<double, double> getLambdaRuFunc)
         {
-            return rootMeanSquareWaveRunup * LambdaRu1(waveRunupTransition / rootMeanSquareWaveRunup);
+            return rootMeanSquareWaveRunup * getLambdaRuFunc(waveRunupTransition / rootMeanSquareWaveRunup);
         }
 
         private static double LambdaRu1(double kappa)
@@ -347,11 +347,6 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             IInterpolation interpolator = Interpolate.Linear(lambdasRu1.Select(x => x.Item1), lambdasRu1.Select(x => x.Item2));
 
             return interpolator.Interpolate(kappa);
-        }
-
-        private static double ScalingParameterRu2(double waveRunupTransition, double rootMeanSquareWaveRunup)
-        {
-            return rootMeanSquareWaveRunup * LambdaRu2(waveRunupTransition / rootMeanSquareWaveRunup);
         }
 
         private static double LambdaRu2(double kappa)
