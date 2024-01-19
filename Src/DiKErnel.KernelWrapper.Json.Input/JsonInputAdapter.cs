@@ -149,7 +149,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     case JsonInputGrassOvertoppingLocationData grassOvertoppingLocationData:
                     {
                         builder.AddGrassOvertoppingLocation(
-                            CreateGrassOvertoppingLocationConstructionProperties(
+                            CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
                                 grassOvertoppingLocationData,
                                 GetCalculationDefinition<JsonInputGrassOvertoppingCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassOvertopping)));
@@ -246,9 +246,10 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassOvertoppingLocationConstructionProperties CreateGrassOvertoppingLocationConstructionProperties(
-            JsonInputGrassOvertoppingLocationData locationData,
-            JsonInputGrassOvertoppingCalculationData calculationData)
+        private static GrassOvertoppingRayleighDiscreteLocationConstructionProperties
+            CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                JsonInputGrassOvertoppingLocationData locationData,
+                JsonInputGrassOvertoppingCalculationData calculationData)
         {
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData?.TopLayerDefinitionData?
@@ -256,7 +257,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassOvertoppingCalculationAccelerationAlphaAData accelerationAlphaAData =
                 calculationData?.AccelerationAlphaAData;
 
-            return new GrassOvertoppingLocationConstructionProperties(
+            return new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
                 locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,

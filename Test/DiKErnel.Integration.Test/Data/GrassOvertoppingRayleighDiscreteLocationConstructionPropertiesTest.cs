@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data
 {
     [TestFixture]
-    public class GrassOvertoppingLocationConstructionPropertiesTest
+    public class GrassOvertoppingRayleighDiscreteLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -35,7 +35,8 @@ namespace DiKErnel.Integration.Test.Data
             double x = Random.NextDouble();
 
             // Call
-            var constructionProperties = new GrassOvertoppingLocationConstructionProperties(x, topLayerType);
+            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                x, topLayerType);
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<LocationConstructionProperties>());
@@ -74,7 +75,8 @@ namespace DiKErnel.Integration.Test.Data
             double accelerationAlphaAForInnerSlope = Random.NextDouble();
             double dikeHeight = Random.NextDouble();
 
-            var constructionProperties = new GrassOvertoppingLocationConstructionProperties(x, topLayerType);
+            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                x, topLayerType);
 
             // When
             constructionProperties.InitialDamage = initialDamage;

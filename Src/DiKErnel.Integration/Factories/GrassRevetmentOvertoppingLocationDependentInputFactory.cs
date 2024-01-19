@@ -26,7 +26,7 @@ namespace DiKErnel.Integration.Factories
     internal static class GrassRevetmentOvertoppingLocationDependentInputFactory
     {
         public static GrassRevetmentOvertoppingLocationDependentInput CreateLocationDependentInput(
-            GrassOvertoppingLocationConstructionProperties constructionProperties)
+            GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
                 GrassRevetmentCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(

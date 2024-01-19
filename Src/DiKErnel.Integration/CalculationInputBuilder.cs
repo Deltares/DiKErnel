@@ -132,7 +132,7 @@ namespace DiKErnel.Integration
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass
         /// overtopping location dependent input.</param>
-        public void AddGrassOvertoppingLocation(GrassOvertoppingLocationConstructionProperties constructionProperties)
+        public void AddGrassOvertoppingLocation(GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
 
@@ -331,9 +331,10 @@ namespace DiKErnel.Integration
                     case AsphaltWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties
                         when !ValidateAsphaltWaveImpactLocationConstructionProperties(
                                  asphaltWaveImpactLocationConstructionProperties, outerToe, outerCrest):
-                    case GrassOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties
-                        when !ValidateGrassOvertoppingLocationConstructionProperties(
-                                 grassOvertoppingLocationConstructionProperties, outerToe, outerCrest, innerToe):
+                    case GrassOvertoppingRayleighDiscreteLocationConstructionProperties
+                        grassOvertoppingRayleighDiscreteLocationConstructionProperties
+                        when !ValidateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                                 grassOvertoppingRayleighDiscreteLocationConstructionProperties, outerToe, outerCrest, innerToe):
                     case GrassWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
                         when !ValidateGrassWaveImpactLocationConstructionProperties(
                                  grassWaveImpactLocationConstructionProperties, outerToe, outerCrest):
@@ -360,8 +361,8 @@ namespace DiKErnel.Integration
                                                             constructionProperties.X);
         }
 
-        private bool ValidateGrassOvertoppingLocationConstructionProperties(
-            GrassOvertoppingLocationConstructionProperties constructionProperties, ProfileDataFactoryPoint outerToe,
+        private bool ValidateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties, ProfileDataFactoryPoint outerToe,
             ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
         {
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
