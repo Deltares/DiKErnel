@@ -357,7 +357,7 @@ namespace DiKErnel.Integration
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
                    && ValidateAsphaltWaveImpactTopLayerType(constructionProperties.TopLayerType,
-                                                           constructionProperties.X);
+                                                            constructionProperties.X);
         }
 
         private bool ValidateGrassOvertoppingLocationConstructionProperties(
