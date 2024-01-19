@@ -27,7 +27,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertGeneralProperties(double flexuralStrength, double densityOfWater,
                                                    double soilElasticity, double averageNumberOfWavesCtm,
                                                    double impactNumberC, double stiffnessRelationNu,
-                                                   AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput)
+                                                   AsphaltWaveImpactLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.FlexuralStrength, Is.EqualTo(flexuralStrength));
             Assert.That(locationDependentInput.DensityOfWater, Is.EqualTo(densityOfWater));
@@ -52,7 +52,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertFactors(IReadOnlyList<(double, double)> widthFactors,
                                          IReadOnlyList<(double, double)> depthFactors,
                                          IReadOnlyList<(double, double)> impactFactors,
-                                         AsphaltRevetmentWaveImpactLocationDependentInput locationDependentInput)
+                                         AsphaltWaveImpactLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.WidthFactors, Is.EqualTo(widthFactors));
             Assert.That(locationDependentInput.DepthFactors, Is.EqualTo(depthFactors));

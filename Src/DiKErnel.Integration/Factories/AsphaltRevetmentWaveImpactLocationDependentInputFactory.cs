@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class AsphaltRevetmentWaveImpactLocationDependentInputFactory
     {
-        public static AsphaltRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
+        public static AsphaltWaveImpactLocationDependentInput CreateLocationDependentInput(
             AsphaltWaveImpactLocationConstructionProperties constructionProperties)
         {
             IAsphaltRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
@@ -47,7 +47,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.FatigueAlpha ?? AsphaltRevetmentWaveImpactDefaults.FatigueAlpha,
                 constructionProperties.FatigueBeta ?? AsphaltRevetmentWaveImpactDefaults.FatigueBeta);
 
-            return new AsphaltRevetmentWaveImpactLocationDependentInput(
+            return new AsphaltWaveImpactLocationDependentInput(
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,

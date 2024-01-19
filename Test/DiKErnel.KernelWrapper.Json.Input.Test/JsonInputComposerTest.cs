@@ -177,21 +177,21 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 8.3, 3.5, grassRevetmentWaveRunupRayleighLocationDependentInputItem);
 
-            var asphaltRevetmentWaveImpactLocationDependentInputItem =
-                locationDependentInputItems[3] as AsphaltRevetmentWaveImpactLocationDependentInput;
-            Assert.That(asphaltRevetmentWaveImpactLocationDependentInputItem, Is.Not.Null);
+            var asphaltWaveImpactLocationDependentInputItem =
+                locationDependentInputItems[3] as AsphaltWaveImpactLocationDependentInput;
+            Assert.That(asphaltWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                25, asphaltRevetmentWaveImpactLocationDependentInputItem);
+                25, asphaltWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                1, 0.0098, asphaltRevetmentWaveImpactLocationDependentInputItem);
+                1, 0.0098, asphaltWaveImpactLocationDependentInputItem);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
-                5.6, 0.25, 53, 1.1, 4, 0.58, asphaltRevetmentWaveImpactLocationDependentInputItem);
+                5.6, 0.25, 53, 1.1, 4, 0.58, asphaltWaveImpactLocationDependentInputItem);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
-                0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem.UpperLayer);
+                0.16, 18214, asphaltWaveImpactLocationDependentInputItem.UpperLayer);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
-                0.2, 15000, asphaltRevetmentWaveImpactLocationDependentInputItem.SubLayer);
+                0.2, 15000, asphaltWaveImpactLocationDependentInputItem.SubLayer);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
-                0.723, 7.2, asphaltRevetmentWaveImpactLocationDependentInputItem.Fatigue);
+                0.723, 7.2, asphaltWaveImpactLocationDependentInputItem.Fatigue);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
                 new List<(double, double)>
                 {
@@ -206,7 +206,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                     (6.0, 2.039),
                     (6.4, 2.1)
                 },
-                asphaltRevetmentWaveImpactLocationDependentInputItem);
+                asphaltWaveImpactLocationDependentInputItem);
 
             var grassRevetmentOvertoppingLocationDependentInputItem =
                 locationDependentInputItems[4] as GrassRevetmentOvertoppingLocationDependentInput;
@@ -382,20 +382,20 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.1, grassRevetmentWaveRunupRayleighLocationDependentInputItem2);
 
-            var asphaltRevetmentWaveImpactLocationDependentInputItem =
-                locationDependentInputItems[5] as AsphaltRevetmentWaveImpactLocationDependentInput;
-            Assert.That(asphaltRevetmentWaveImpactLocationDependentInputItem, Is.Not.Null);
+            var asphaltWaveImpactLocationDependentInputItem =
+                locationDependentInputItems[5] as AsphaltWaveImpactLocationDependentInput;
+            Assert.That(asphaltWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                39, asphaltRevetmentWaveImpactLocationDependentInputItem);
+                39, asphaltWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0, 1, asphaltRevetmentWaveImpactLocationDependentInputItem);
+                0, 1, asphaltWaveImpactLocationDependentInputItem);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
-                1.56, 1025, 56, 1, 1, 0.35, asphaltRevetmentWaveImpactLocationDependentInputItem);
+                1.56, 1025, 56, 1, 1, 0.35, asphaltWaveImpactLocationDependentInputItem);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLayer(
-                0.16, 18214, asphaltRevetmentWaveImpactLocationDependentInputItem.UpperLayer);
-            Assert.That(asphaltRevetmentWaveImpactLocationDependentInputItem.SubLayer, Is.Null);
+                0.16, 18214, asphaltWaveImpactLocationDependentInputItem.UpperLayer);
+            Assert.That(asphaltWaveImpactLocationDependentInputItem.SubLayer, Is.Null);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFatigue(
-                0.42, 4.76, asphaltRevetmentWaveImpactLocationDependentInputItem.Fatigue);
+                0.42, 4.76, asphaltWaveImpactLocationDependentInputItem.Fatigue);
             AsphaltRevetmentWaveImpactLocationDependentInputAssertHelper.AssertFactors(
                 new List<(double, double)>
                 {
@@ -480,7 +480,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                     (5.6, 0.005),
                     (6.0, 0.001)
                 },
-                asphaltRevetmentWaveImpactLocationDependentInputItem);
+                asphaltWaveImpactLocationDependentInputItem);
 
             var grassRevetmentOvertoppingLocationDependentInputItem1 =
                 locationDependentInputItems[6] as GrassRevetmentOvertoppingLocationDependentInput;

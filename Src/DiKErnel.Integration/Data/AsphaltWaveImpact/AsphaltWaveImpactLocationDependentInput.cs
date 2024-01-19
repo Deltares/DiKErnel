@@ -28,7 +28,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
-    internal class AsphaltRevetmentWaveImpactLocationDependentInput : LocationDependentInput
+    internal class AsphaltWaveImpactLocationDependentInput : LocationDependentInput
     {
         private double outerSlope = double.NaN;
         private double logFlexuralStrength = double.NaN;
@@ -38,17 +38,17 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         private double averageNumberOfWaves = double.NaN;
         private double maximumPeakStress = double.NaN;
 
-        public AsphaltRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                                double flexuralStrength, double densityOfWater,
-                                                                double soilElasticity,
-                                                                AsphaltWaveImpactLayer upperLayer,
-                                                                AsphaltWaveImpactLayer subLayer,
-                                                                double averageNumberOfWavesCtm,
-                                                                AsphaltWaveImpactFatigue fatigue,
-                                                                double impactNumberC, double stiffnessRelationNu,
-                                                                IReadOnlyList<(double, double)> widthFactors,
-                                                                IReadOnlyList<(double, double)> depthFactors,
-                                                                IReadOnlyList<(double, double)> impactFactors)
+        public AsphaltWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
+                                                       double flexuralStrength, double densityOfWater,
+                                                       double soilElasticity,
+                                                       AsphaltWaveImpactLayer upperLayer,
+                                                       AsphaltWaveImpactLayer subLayer,
+                                                       double averageNumberOfWavesCtm,
+                                                       AsphaltWaveImpactFatigue fatigue,
+                                                       double impactNumberC, double stiffnessRelationNu,
+                                                       IReadOnlyList<(double, double)> widthFactors,
+                                                       IReadOnlyList<(double, double)> depthFactors,
+                                                       IReadOnlyList<(double, double)> impactFactors)
             : base(x, initialDamage, failureNumber)
         {
             FlexuralStrength = flexuralStrength;
