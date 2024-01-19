@@ -22,7 +22,7 @@ using DiKErnel.Integration.Data.AsphaltWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class AsphaltRevetmentWaveImpactLocationDependentInputFactory
+    internal static class AsphaltWaveImpactLocationDependentInputFactory
     {
         public static AsphaltWaveImpactLocationDependentInput CreateLocationDependentInput(
             AsphaltWaveImpactLocationConstructionProperties constructionProperties)

@@ -40,7 +40,7 @@ namespace DiKErnel.Integration.Factories
                 {
                     case AsphaltWaveImpactLocationConstructionProperties asphaltWaveImpactLocationConstructionProperties:
                         locationDependentInputItems.Add(
-                            AsphaltRevetmentWaveImpactLocationDependentInputFactory.CreateLocationDependentInput(
+                            AsphaltWaveImpactLocationDependentInputFactory.CreateLocationDependentInput(
                                 asphaltWaveImpactLocationConstructionProperties));
                         break;
                     case GrassOvertoppingLocationConstructionProperties grassOvertoppingLocationConstructionProperties:
