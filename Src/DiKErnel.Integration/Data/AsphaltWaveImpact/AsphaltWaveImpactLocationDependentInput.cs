@@ -205,7 +205,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                  timeDependentInput.BeginTime);
             }
 
-            return new AsphaltRevetmentWaveImpactTimeDependentOutput(
+            return new AsphaltWaveImpactTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 

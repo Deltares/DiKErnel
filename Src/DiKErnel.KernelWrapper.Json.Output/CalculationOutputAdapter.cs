@@ -83,25 +83,25 @@ namespace DiKErnel.KernelWrapper.Json.Output
         {
             switch (locationDependentOutput)
             {
-                case AsphaltWaveImpactLocationDependentOutput asphaltRevetmentWaveImpactLocationDependentOutput:
+                case AsphaltWaveImpactLocationDependentOutput asphaltWaveImpactLocationDependentOutput:
                 {
-                    IReadOnlyList<AsphaltRevetmentWaveImpactTimeDependentOutput> asphaltRevetmentWaveImpactTimeDependentOutputItems =
+                    IReadOnlyList<AsphaltWaveImpactTimeDependentOutput> asphaltWaveImpactTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
-                                               .Cast<AsphaltRevetmentWaveImpactTimeDependentOutput>()
+                                               .Cast<AsphaltWaveImpactTimeDependentOutput>()
                                                .ToList();
 
                     return new JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(
-                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                        asphaltWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
-                        asphaltRevetmentWaveImpactLocationDependentOutput.Z,
-                        asphaltRevetmentWaveImpactLocationDependentOutput.OuterSlope,
-                        asphaltRevetmentWaveImpactLocationDependentOutput.LogFlexuralStrength,
-                        asphaltRevetmentWaveImpactLocationDependentOutput.StiffnessRelation,
-                        asphaltRevetmentWaveImpactLocationDependentOutput.ComputationalThickness,
-                        asphaltRevetmentWaveImpactLocationDependentOutput.EquivalentElasticModulus,
-                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                        asphaltWaveImpactLocationDependentOutput.Z,
+                        asphaltWaveImpactLocationDependentOutput.OuterSlope,
+                        asphaltWaveImpactLocationDependentOutput.LogFlexuralStrength,
+                        asphaltWaveImpactLocationDependentOutput.StiffnessRelation,
+                        asphaltWaveImpactLocationDependentOutput.ComputationalThickness,
+                        asphaltWaveImpactLocationDependentOutput.EquivalentElasticModulus,
+                        asphaltWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.MaximumPeakStress).ToList(),
-                        asphaltRevetmentWaveImpactTimeDependentOutputItems
+                        asphaltWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
                 case GrassRevetmentOvertoppingLocationDependentOutput _:

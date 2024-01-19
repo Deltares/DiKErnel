@@ -22,12 +22,12 @@ using DiKErnel.Core.Exceptions;
 namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     /// <summary>
-    /// Time dependent output of an asphalt revetment wave impact location.
+    /// Time dependent output of an asphalt wave impact calculation.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactTimeDependentOutput : TimeDependentOutput
+    public class AsphaltWaveImpactTimeDependentOutput : TimeDependentOutput
     {
         /// <inheritdoc/>
-        public AsphaltRevetmentWaveImpactTimeDependentOutput(
+        public AsphaltWaveImpactTimeDependentOutput(
             AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {

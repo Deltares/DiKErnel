@@ -219,7 +219,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
         private static CalculationOutput CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithAllDataSet()
         {
-            var asphaltWaveImpactTimeDependentOutput = new AsphaltRevetmentWaveImpactTimeDependentOutput(
+            var asphaltWaveImpactTimeDependentOutput = new AsphaltWaveImpactTimeDependentOutput(
                 new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.1,
@@ -320,7 +320,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
         private static CalculationOutput CreateCalculationOutputWithRevetmentSpecificTimeDependentOutputWithOnlyMandatoryDataSet()
         {
-            var asphaltWaveImpactTimeDependentOutput = new AsphaltRevetmentWaveImpactTimeDependentOutput(
+            var asphaltWaveImpactTimeDependentOutput = new AsphaltWaveImpactTimeDependentOutput(
                 new AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.1,

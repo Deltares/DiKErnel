@@ -47,7 +47,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            var output = new AsphaltWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -77,7 +77,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            var output = new AsphaltWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -100,7 +100,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+                var output = new AsphaltWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -120,7 +120,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new AsphaltRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+                var output = new AsphaltWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
