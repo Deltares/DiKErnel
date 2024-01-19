@@ -59,10 +59,10 @@ namespace DiKErnel.Integration.TestUtil
 
         public static void AssertAccelerationAlphaA(
             double accelerationAlphaAForCrest, double accelerationAlphaAForInnerSlope,
-            GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA)
+            GrassOvertoppingRayleighDiscreteAccelerationAlphaA accelerationAlphaA)
         {
-            Assert.That(locationDependentAccelerationAlphaA.ValueAtCrest, Is.EqualTo(accelerationAlphaAForCrest));
-            Assert.That(locationDependentAccelerationAlphaA.ValueAtInnerSlope, Is.EqualTo(accelerationAlphaAForInnerSlope));
+            Assert.That(accelerationAlphaA.ValueAtCrest, Is.EqualTo(accelerationAlphaAForCrest));
+            Assert.That(accelerationAlphaA.ValueAtInnerSlope, Is.EqualTo(accelerationAlphaAForInnerSlope));
         }
     }
 }

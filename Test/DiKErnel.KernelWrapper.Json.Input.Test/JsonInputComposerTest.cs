@@ -226,7 +226,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
                 3.6, 45.1, grassRevetmentOvertoppingLocationDependentInputItem);
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1.8, 4.4, grassRevetmentOvertoppingLocationDependentInputItem.LocationDependentAccelerationAlphaA);
+                1.8, 4.4, grassRevetmentOvertoppingLocationDependentInputItem.AccelerationAlphaA);
 
             Assert.That(result.LocationIds, Is.EqualTo(new[]
             {
@@ -500,7 +500,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.45, grassRevetmentOvertoppingLocationDependentInputItem1);
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem1.LocationDependentAccelerationAlphaA);
+                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem1.AccelerationAlphaA);
 
             var grassRevetmentOvertoppingLocationDependentInputItem2 =
                 locationDependentInputItems[7] as GrassRevetmentOvertoppingLocationDependentInput;
@@ -520,7 +520,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.45, grassRevetmentOvertoppingLocationDependentInputItem2);
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2.LocationDependentAccelerationAlphaA);
+                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2.AccelerationAlphaA);
 
             Assert.That(result.LocationIds, Is.Not.Null);
             Assert.That(result.LocationIds.All(lid => !lid.HasValue), Is.True);

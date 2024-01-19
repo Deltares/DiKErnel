@@ -1141,8 +1141,7 @@ namespace DiKErnel.Integration.Test
                 criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
 
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope,
-                locationDependentInput.LocationDependentAccelerationAlphaA);
+                accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput.AccelerationAlphaA);
         }
 
         [Test]
@@ -1200,7 +1199,7 @@ namespace DiKErnel.Integration.Test
                 6.6, 1.45, locationDependentInput);
 
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA);
+                1.0, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 
         [Test]
@@ -1257,7 +1256,7 @@ namespace DiKErnel.Integration.Test
                 4.3, 1.45, locationDependentInput);
 
             GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1.0, 1.4, locationDependentInput.LocationDependentAccelerationAlphaA);
+                1.0, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 
         #endregion

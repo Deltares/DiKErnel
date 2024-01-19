@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Factories
                 GrassRevetmentCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(
                     constructionProperties.TopLayerType);
 
-            var locationDependentAccelerationAlphaA = new GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA(
+            var accelerationAlphaA = new GrassOvertoppingRayleighDiscreteAccelerationAlphaA(
                 constructionProperties.AccelerationAlphaAForCrest
                 ?? GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest,
                 constructionProperties.AccelerationAlphaAForInnerSlope
@@ -53,7 +53,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.FixedNumberOfWaves
                 ?? GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves,
                 constructionProperties.FrontVelocityCwo ?? GrassRevetmentOvertoppingDefaults.FrontVelocityCwo,
-                locationDependentAccelerationAlphaA,
+                accelerationAlphaA,
                 constructionProperties.DikeHeight);
         }
     }

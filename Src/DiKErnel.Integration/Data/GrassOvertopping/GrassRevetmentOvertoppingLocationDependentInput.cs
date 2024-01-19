@@ -37,20 +37,19 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
             double x, double initialDamage, double failureNumber, double criticalCumulativeOverload,
             double criticalFrontVelocity, double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
             double averageNumberOfWavesCtm, int fixedNumberOfWaves, double frontVelocityCwo,
-            GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA locationDependentAccelerationAlphaA,
-            double? enforcedDikeHeight)
+            GrassOvertoppingRayleighDiscreteAccelerationAlphaA accelerationAlphaA, double? enforcedDikeHeight)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
                    fixedNumberOfWaves)
         {
             FrontVelocityCwo = frontVelocityCwo;
-            LocationDependentAccelerationAlphaA = locationDependentAccelerationAlphaA;
+            AccelerationAlphaA = accelerationAlphaA;
             EnforcedDikeHeight = enforcedDikeHeight;
         }
 
         public double FrontVelocityCwo { get; }
 
-        public GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA LocationDependentAccelerationAlphaA { get; }
+        public GrassOvertoppingRayleighDiscreteAccelerationAlphaA AccelerationAlphaA { get; }
 
         public double? EnforcedDikeHeight { get; }
 
@@ -72,9 +71,9 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
             }
 
             validationIssues.Add(GrassRevetmentOvertoppingValidator.AccelerationAlphaA(
-                                     LocationDependentAccelerationAlphaA.ValueAtCrest));
+                                     AccelerationAlphaA.ValueAtCrest));
             validationIssues.Add(GrassRevetmentOvertoppingValidator.AccelerationAlphaA(
-                                     LocationDependentAccelerationAlphaA.ValueAtInnerSlope));
+                                     AccelerationAlphaA.ValueAtInnerSlope));
             validationIssues.Add(GrassRevetmentOvertoppingValidator.FrontVelocityCwo(FrontVelocityCwo));
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
@@ -146,8 +145,8 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
                 profileData.CharacteristicPoints, CharacteristicPointType.InnerCrest);
 
             accelerationAlphaA = X >= outerCrest.Item1 && X <= innerCrest.Item1
-                                     ? LocationDependentAccelerationAlphaA.ValueAtCrest
-                                     : LocationDependentAccelerationAlphaA.ValueAtInnerSlope;
+                                     ? AccelerationAlphaA.ValueAtCrest
+                                     : AccelerationAlphaA.ValueAtInnerSlope;
         }
     }
 }
