@@ -41,8 +41,8 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         public AsphaltRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                 double flexuralStrength, double densityOfWater,
                                                                 double soilElasticity,
-                                                                AsphaltRevetmentWaveImpactLayer upperLayer,
-                                                                AsphaltRevetmentWaveImpactLayer subLayer,
+                                                                AsphaltWaveImpactLayer upperLayer,
+                                                                AsphaltWaveImpactLayer subLayer,
                                                                 double averageNumberOfWavesCtm,
                                                                 AsphaltWaveImpactFatigue fatigue,
                                                                 double impactNumberC, double stiffnessRelationNu,
@@ -71,9 +71,9 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
         public double SoilElasticity { get; }
 
-        public AsphaltRevetmentWaveImpactLayer UpperLayer { get; }
+        public AsphaltWaveImpactLayer UpperLayer { get; }
 
-        public AsphaltRevetmentWaveImpactLayer SubLayer { get; }
+        public AsphaltWaveImpactLayer SubLayer { get; }
 
         public double AverageNumberOfWavesCtm { get; }
 

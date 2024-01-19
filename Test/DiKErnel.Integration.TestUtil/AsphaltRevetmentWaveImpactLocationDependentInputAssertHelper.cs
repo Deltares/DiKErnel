@@ -37,7 +37,7 @@ namespace DiKErnel.Integration.TestUtil
             Assert.That(locationDependentInput.StiffnessRelationNu, Is.EqualTo(stiffnessRelationNu));
         }
 
-        public static void AssertLayer(double thickness, double elasticModulus, AsphaltRevetmentWaveImpactLayer layer)
+        public static void AssertLayer(double thickness, double elasticModulus, AsphaltWaveImpactLayer layer)
         {
             Assert.That(layer.Thickness, Is.EqualTo(thickness));
             Assert.That(layer.ElasticModulus, Is.EqualTo(elasticModulus));

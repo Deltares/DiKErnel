@@ -31,16 +31,16 @@ namespace DiKErnel.Integration.Factories
                 AsphaltRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults();
 
             double elasticModulusUpperLayer = constructionProperties.ElasticModulusUpperLayer;
-            var upperLayer = new AsphaltRevetmentWaveImpactLayer(constructionProperties.ThicknessUpperLayer,
-                                                                 elasticModulusUpperLayer);
+            var upperLayer = new AsphaltWaveImpactLayer(constructionProperties.ThicknessUpperLayer,
+                                                        elasticModulusUpperLayer);
 
-            AsphaltRevetmentWaveImpactLayer subLayer = null;
+            AsphaltWaveImpactLayer subLayer = null;
             double? thicknessSubLayer = constructionProperties.ThicknessSubLayer;
             double? elasticModulusSubLayer = constructionProperties.ElasticModulusSubLayer;
 
             if (thicknessSubLayer != null && elasticModulusSubLayer != null)
             {
-                subLayer = new AsphaltRevetmentWaveImpactLayer(thicknessSubLayer.Value, elasticModulusSubLayer.Value);
+                subLayer = new AsphaltWaveImpactLayer(thicknessSubLayer.Value, elasticModulusSubLayer.Value);
             }
 
             var fatigue = new AsphaltWaveImpactFatigue(
