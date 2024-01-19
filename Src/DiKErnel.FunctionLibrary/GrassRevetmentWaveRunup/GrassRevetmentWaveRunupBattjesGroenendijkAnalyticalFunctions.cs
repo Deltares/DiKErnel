@@ -330,8 +330,12 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         {
             double probability = SpecialFunctions.GammaLowerRegularized(1 + 1 / xi, Math.Pow(eta, xi));
 
-            return (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / SpecialFunctions.Gamma(2 + 1 / xi) +
-                   (SpecialFunctions.Gamma(1 + 1 / xi) * probability) / (xi * SpecialFunctions.Gamma(2 + 1 / xi));
+            double gammaNominator = SpecialFunctions.Gamma(1 + 1 / xi);
+
+            double gammaDenominator = SpecialFunctions.Gamma(2 + 1 / xi);
+
+            return (gammaNominator * probability) / gammaDenominator +
+                   (gammaNominator * probability) / (xi * gammaDenominator);
         }
 
         private static double ScalingParameterRu(double waveRunupTransition, double rootMeanSquareWaveRunup,
