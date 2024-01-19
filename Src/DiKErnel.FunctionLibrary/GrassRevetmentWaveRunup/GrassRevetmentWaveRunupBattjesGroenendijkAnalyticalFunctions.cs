@@ -30,6 +30,8 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
     /// </summary>
     public static class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctions
     {
+        private const double verticalLimitWaveRunup3 = 1000000;
+
         private static readonly IReadOnlyList<(double, double)> lambdasRu1 = new[]
         {
             (0.00, 12.193),
@@ -189,14 +191,13 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             double verticalLimitWaveRunUp1 = VerticalWaveRunupLimit1(input.VerticalDistanceWaterLevelElevation,
                                                                      upperLimitWaveRunup,
                                                                      waveRunupTransition);
-            
+
             double cumulativeOverLoad1 = DeltaCumulativeLoad(input, verticalLimitWaveRunUp1, scalingParameterRu1, input.K1);
 
             double verticalLimitWaveRunUp2 = VerticalWaveRunupLimit2(input.VerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
-            
+
             double cumulativeOverLoad2 = DeltaCumulativeLoad(input, verticalLimitWaveRunUp2, scalingParameterRu1, input.K1);
 
-            const double verticalLimitWaveRunup3 = 1000000;
             double cumulativeOverLoad3 = DeltaCumulativeLoad(input, verticalLimitWaveRunup3, scalingParameterRu2, input.K2);
 
             double cumulativeOverLoad4 = DeltaCumulativeLoad(input, verticalLimitWaveRunUp1, scalingParameterRu2, input.K2);
@@ -204,7 +205,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             double verticalLimitWaveRunup5 = VerticalWaveRunupLimit5(input.VerticalDistanceWaterLevelElevation,
                                                                      lowerLimitWaveRunup, waveRunupTransition);
 
-            double cumulativeOverLoad5 = 
+            double cumulativeOverLoad5 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup5, scalingParameterRu1, input.K1);
 
             double verticalLimitWaveRunup6 = VerticalWaveRunupLimit6(input.VerticalDistanceWaterLevelElevation, lowerLimitWaveRunup);
@@ -227,8 +228,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         private static double VerticalWaveRunupLimit1(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup,
                                                       double waveRunupTransition)
         {
-            return Math.Max(VerticalWaveRunupLimit2(verticalDistanceWaterLevelElevation, upperLimitWaveRunup),
-                            waveRunupTransition);
+            return Math.Max(VerticalWaveRunupLimit2(verticalDistanceWaterLevelElevation, upperLimitWaveRunup), waveRunupTransition);
         }
 
         private static double VerticalWaveRunupLimit2(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
@@ -329,7 +329,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         {
             double depthForeshore = DepthForeshore(waterLevel, bottomForeshoreZ);
 
-            return (0.6725 + (0.2025 * waveHeightHm0) / depthForeshore) * (representativeWaveRunup2P / 1.4);
+            return (0.6725 + 0.2025 * waveHeightHm0 / depthForeshore) * (representativeWaveRunup2P / 1.4);
         }
 
         private static double WaveRunupTransition(double slopeForeshore, double representativeWaveRunup2P, double waveHeightHm0,
@@ -345,17 +345,17 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
             return waterLevel - bottomForeshoreZ;
         }
 
-        private static double LowerLimitWaveRunup(double verticalWaterLevelDistance, double upperLimitWaveRunup)
-        {
-            return (1 / 32.0) * (32 * verticalWaterLevelDistance + upperLimitWaveRunup +
-                                 Math.Sqrt(upperLimitWaveRunup) * Math.Sqrt(64 * verticalWaterLevelDistance + upperLimitWaveRunup));
-        }
-
         private static double UpperLimitWaveRunup(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
                                                   double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration)
         {
             return (reducedStrengthTransitionAlphaS / increasedLoadTransitionAlphaM) *
                    (Math.Pow(criticalFrontVelocity, 2) / (Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration));
+        }
+
+        private static double LowerLimitWaveRunup(double verticalWaterLevelDistance, double upperLimitWaveRunup)
+        {
+            return (1 / 32.0) * (32 * verticalWaterLevelDistance + upperLimitWaveRunup +
+                                 Math.Sqrt(upperLimitWaveRunup) * Math.Sqrt(64 * verticalWaterLevelDistance + upperLimitWaveRunup));
         }
     }
 }
