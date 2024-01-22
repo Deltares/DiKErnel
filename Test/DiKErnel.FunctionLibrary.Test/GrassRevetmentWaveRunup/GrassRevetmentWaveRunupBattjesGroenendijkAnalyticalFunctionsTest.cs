@@ -42,6 +42,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassRevetmentWaveRunup
         [TestCase(2.40, 0.13, 90, 7.06457887192072, 3922.7901327987101)]
         [TestCase(2.40, 0.14, 100, 6.24161575373599, 3773.8629858234135)]
         [TestCase(2.80, 0.15, 90, 8.12578956708121, 4797.4226527254459)]
+        [TestCase(0.01, 0.15, 90, 8.12578956708121, 3413.6086113813335)]
         public void CumulativeOverload_VariousScenarios_ExpectedValue(double waveHeightHm0, double waterLevel, double averageNumberOfWaves,
                                                                       double representativeWaveRunup2P, double expectedCumulativeOverload)
         {
