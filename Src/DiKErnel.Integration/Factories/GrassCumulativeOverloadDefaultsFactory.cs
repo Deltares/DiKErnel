@@ -21,7 +21,7 @@ using DiKErnel.Integration.Data.Grass;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class GrassRevetmentCumulativeOverloadDefaultsFactory
+    internal static class GrassCumulativeOverloadDefaultsFactory
     {
         public static IGrassRevetmentCumulativeOverloadTopLayerDefaults CreateTopLayerDefaults(
             GrassTopLayerType topLayerType)

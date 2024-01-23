@@ -29,8 +29,7 @@ namespace DiKErnel.Integration.Factories
             GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
-                GrassRevetmentCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(
-                    constructionProperties.TopLayerType);
+                GrassCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
 
             return new GrassWaveRunupRayleighDiscreteLocationDependentInput(
                 constructionProperties.X,
