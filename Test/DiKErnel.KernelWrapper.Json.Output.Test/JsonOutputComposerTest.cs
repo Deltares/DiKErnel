@@ -267,7 +267,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     AverageNumberOfWaves = 2.7
                 });
 
-            var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
+            var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneWaveImpactTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 2.8,
@@ -355,7 +355,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     VerticalDistanceWaterLevelElevation = 1.4
                 });
 
-            var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
+            var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneWaveImpactTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 1.5,

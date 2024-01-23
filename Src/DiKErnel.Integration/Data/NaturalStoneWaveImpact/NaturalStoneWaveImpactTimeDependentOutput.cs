@@ -22,12 +22,12 @@ using DiKErnel.Core.Exceptions;
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Time dependent output of a natural stone revetment location.
+    /// Time dependent output of a natural stone wave impact calculation.
     /// </summary>
-    public class NaturalStoneRevetmentTimeDependentOutput : TimeDependentOutput
+    public class NaturalStoneWaveImpactTimeDependentOutput : TimeDependentOutput
     {
         /// <inheritdoc/>
-        public NaturalStoneRevetmentTimeDependentOutput(
+        public NaturalStoneWaveImpactTimeDependentOutput(
             NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {

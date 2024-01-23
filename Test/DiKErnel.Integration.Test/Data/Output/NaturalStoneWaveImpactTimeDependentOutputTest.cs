@@ -79,7 +79,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -152,7 +152,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+            var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -191,7 +191,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -211,7 +211,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -231,7 +231,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -251,7 +251,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -271,7 +271,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -291,7 +291,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -311,7 +311,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -331,7 +331,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -351,7 +351,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -371,7 +371,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -391,7 +391,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new NaturalStoneRevetmentTimeDependentOutput(constructionProperties);
+                var output = new NaturalStoneWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert

@@ -199,7 +199,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 }
             }
 
-            return new NaturalStoneRevetmentTimeDependentOutput(
+            return new NaturalStoneWaveImpactTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 

@@ -173,51 +173,51 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case NaturalStoneWaveImpactLocationDependentOutput naturalStoneWaveImpactLocationDependentOutput:
                 {
-                    IReadOnlyList<NaturalStoneRevetmentTimeDependentOutput> naturalStoneRevetmentTimeDependentOutputItems =
+                    IReadOnlyList<NaturalStoneWaveImpactTimeDependentOutput> naturalStoneWaveImpactTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
-                                               .Cast<NaturalStoneRevetmentTimeDependentOutput>()
+                                               .Cast<NaturalStoneWaveImpactTimeDependentOutput>()
                                                .ToList();
 
                     return new JsonOutputNaturalStoneRevetmentPhysicsLocationData(
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         naturalStoneWaveImpactLocationDependentOutput.Z,
                         naturalStoneWaveImpactLocationDependentOutput.Resistance,
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.OuterSlope).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.SlopeUpperLevel).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.SlopeUpperPosition).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.SlopeLowerLevel).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.SlopeLowerPosition).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.LoadingRevetment).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.SurfSimilarityParameter).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveSteepnessDeepWater).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.UpperLimitLoading).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.LowerLimitLoading).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.DepthMaximumWaveLoad).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.DistanceMaximumWaveElevation).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.NormativeWidthOfWaveImpact).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.HydraulicLoad).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngle).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngleImpact).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.ReferenceTimeDegradation).ToList(),
-                        naturalStoneRevetmentTimeDependentOutputItems
+                        naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.ReferenceDegradation).ToList());
                 }
                 default:
