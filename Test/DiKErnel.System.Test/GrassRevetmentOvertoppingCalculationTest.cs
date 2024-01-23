@@ -41,7 +41,7 @@ namespace DiKErnel.System.Test
                 InitialDamage = 0.02
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -65,7 +65,7 @@ namespace DiKErnel.System.Test
                 InitialDamage = 0.02
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -90,7 +90,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = 8
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -115,7 +115,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = 5.65
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -136,7 +136,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
                 40, GrassTopLayerType.OpenSod);
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -160,7 +160,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = 9.5
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -185,7 +185,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = 9.6
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -212,7 +212,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = 9.7
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -233,7 +233,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
                 60, GrassTopLayerType.OpenSod);
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -257,7 +257,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = 6.7
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -283,7 +283,7 @@ namespace DiKErnel.System.Test
                 DikeHeight = 9
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -315,7 +315,7 @@ namespace DiKErnel.System.Test
                 AccelerationAlphaAForInnerSlope = 1.5
             };
 
-            builder.AddGrassOvertoppingLocation(locationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 

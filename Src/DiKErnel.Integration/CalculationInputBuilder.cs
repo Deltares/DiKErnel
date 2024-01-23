@@ -128,11 +128,12 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
-        /// Adds a grass overtopping location.
+        /// Adds a grass overtopping Rayleigh Discrete location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass
-        /// overtopping location dependent input.</param>
-        public void AddGrassOvertoppingLocation(GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
+        /// overtopping Rayleigh Discrete location dependent input.</param>
+        public void AddGrassOvertoppingRayleighDiscreteLocation(
+            GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
 

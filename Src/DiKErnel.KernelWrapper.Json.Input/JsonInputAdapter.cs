@@ -148,7 +148,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     }
                     case JsonInputGrassOvertoppingLocationData grassOvertoppingLocationData:
                     {
-                        builder.AddGrassOvertoppingLocation(
+                        builder.AddGrassOvertoppingRayleighDiscreteLocation(
                             CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
                                 grassOvertoppingLocationData,
                                 GetCalculationDefinition<JsonInputGrassOvertoppingCalculationData>(

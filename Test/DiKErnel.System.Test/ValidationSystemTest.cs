@@ -304,7 +304,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
-            builder.AddGrassOvertoppingLocation(constructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -363,7 +363,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
-            builder.AddGrassOvertoppingLocation(constructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -403,7 +403,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
-            builder.AddGrassOvertoppingLocation(constructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -437,7 +437,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
-            builder.AddGrassOvertoppingLocation(constructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -474,7 +474,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
-            builder.AddGrassOvertoppingLocation(constructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -521,7 +521,7 @@ namespace DiKErnel.System.Test
             builder.AddGrassWaveImpactLocation(grassWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveRunupRayleighLocation(grassWaveRunupRayleighDiscreteLocationConstructionProperties);
             builder.AddNaturalStoneLocation(naturalStoneWaveImpactLocationConstructionProperties);
-            builder.AddGrassOvertoppingLocation(grassOvertoppingLocationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(grassOvertoppingLocationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
