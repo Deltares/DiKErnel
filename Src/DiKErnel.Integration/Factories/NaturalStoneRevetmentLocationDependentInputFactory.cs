@@ -30,7 +30,7 @@ namespace DiKErnel.Integration.Factories
             INaturalStoneRevetmentTopLayerDefaults topLayerDefaults =
                 NaturalStoneRevetmentDefaultsFactory.CreateTopLayerDefaults();
 
-            var hydraulicLoads = new NaturalStoneRevetmentHydraulicLoads(
+            var hydraulicLoads = new NaturalStoneWaveImpactHydraulicLoads(
                 constructionProperties.HydraulicLoadAp ?? topLayerDefaults.HydraulicLoadAp,
                 constructionProperties.HydraulicLoadBp ?? topLayerDefaults.HydraulicLoadBp,
                 constructionProperties.HydraulicLoadCp ?? topLayerDefaults.HydraulicLoadCp,
@@ -45,17 +45,17 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.SlopeUpperLevelAus ?? NaturalStoneRevetmentDefaults.SlopeUpperLevelAus,
                 constructionProperties.SlopeLowerLevelAls ?? NaturalStoneRevetmentDefaults.SlopeLowerLevelAls);
 
-            var upperLimitLoading = new NaturalStoneRevetmentUpperLimitLoading(
+            var upperLimitLoading = new NaturalStoneWaveImpactUpperLimitLoading(
                 constructionProperties.UpperLimitLoadingAul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingAul,
                 constructionProperties.UpperLimitLoadingBul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingBul,
                 constructionProperties.UpperLimitLoadingCul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingCul);
 
-            var lowerLimitLoading = new NaturalStoneRevetmentLowerLimitLoading(
+            var lowerLimitLoading = new NaturalStoneWaveImpactLowerLimitLoading(
                 constructionProperties.LowerLimitLoadingAll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingAll,
                 constructionProperties.LowerLimitLoadingBll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingBll,
                 constructionProperties.LowerLimitLoadingCll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingCll);
 
-            var distanceMaximumWaveElevation = new NaturalStoneRevetmentDistanceMaximumWaveElevation(
+            var distanceMaximumWaveElevation = new NaturalStoneWaveImpactDistanceMaximumWaveElevation(
                 constructionProperties.DistanceMaximumWaveElevationAsmax
                 ?? NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationAsmax,
                 constructionProperties.DistanceMaximumWaveElevationBsmax

@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertHydraulicLoads(double hydraulicLoadAp, double hydraulicLoadBp, double hydraulicLoadCp,
                                                 double hydraulicLoadNp, double hydraulicLoadAs, double hydraulicLoadBs,
                                                 double hydraulicLoadCs, double hydraulicLoadNs, double hydraulicLoadXib,
-                                                NaturalStoneRevetmentHydraulicLoads hydraulicLoads)
+                                                NaturalStoneWaveImpactHydraulicLoads hydraulicLoads)
         {
             Assert.That(hydraulicLoads.HydraulicLoadAp, Is.EqualTo(hydraulicLoadAp));
             Assert.That(hydraulicLoads.HydraulicLoadBp, Is.EqualTo(hydraulicLoadBp));
@@ -55,7 +55,7 @@ namespace DiKErnel.Integration.TestUtil
 
         public static void AssertUpperLimitLoading(double upperLimitLoadingAul, double upperLimitLoadingBul,
                                                    double upperLimitLoadingCul,
-                                                   NaturalStoneRevetmentUpperLimitLoading upperLimitLoading)
+                                                   NaturalStoneWaveImpactUpperLimitLoading upperLimitLoading)
         {
             Assert.That(upperLimitLoading.UpperLimitAul, Is.EqualTo(upperLimitLoadingAul));
             Assert.That(upperLimitLoading.UpperLimitBul, Is.EqualTo(upperLimitLoadingBul));
@@ -64,7 +64,7 @@ namespace DiKErnel.Integration.TestUtil
 
         public static void AssertLowerLimitLoading(double lowerLimitLoadingAll, double lowerLimitLoadingBll,
                                                    double lowerLimitLoadingCll,
-                                                   NaturalStoneRevetmentLowerLimitLoading lowerLimitLoading)
+                                                   NaturalStoneWaveImpactLowerLimitLoading lowerLimitLoading)
         {
             Assert.That(lowerLimitLoading.LowerLimitAll, Is.EqualTo(lowerLimitLoadingAll));
             Assert.That(lowerLimitLoading.LowerLimitBll, Is.EqualTo(lowerLimitLoadingBll));
@@ -73,7 +73,7 @@ namespace DiKErnel.Integration.TestUtil
 
         public static void AssertDistanceMaximumWaveElevation(
             double distanceMaximumWaveElevationAsmax, double distanceMaximumWaveElevationBsmax,
-            NaturalStoneRevetmentDistanceMaximumWaveElevation distanceMaximumWaveElevation)
+            NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation)
         {
             Assert.That(distanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax, Is.EqualTo(distanceMaximumWaveElevationAsmax));
             Assert.That(distanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax, Is.EqualTo(distanceMaximumWaveElevationBsmax));

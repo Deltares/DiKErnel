@@ -18,10 +18,10 @@
 
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    internal class NaturalStoneRevetmentDistanceMaximumWaveElevation
+    internal class NaturalStoneWaveImpactDistanceMaximumWaveElevation
     {
-        public NaturalStoneRevetmentDistanceMaximumWaveElevation(double distanceMaximumWaveElevationAsmax,
-                                                                 double distanceMaximumWaveElevationBsmax)
+        public NaturalStoneWaveImpactDistanceMaximumWaveElevation(double distanceMaximumWaveElevationAsmax,
+                                                                  double distanceMaximumWaveElevationBsmax)
         {
             DistanceMaximumWaveElevationAsmax = distanceMaximumWaveElevationAsmax;
             DistanceMaximumWaveElevationBsmax = distanceMaximumWaveElevationBsmax;

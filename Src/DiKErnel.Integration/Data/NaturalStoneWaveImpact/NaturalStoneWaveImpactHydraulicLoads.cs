@@ -18,13 +18,13 @@
 
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    internal class NaturalStoneRevetmentHydraulicLoads
+    internal class NaturalStoneWaveImpactHydraulicLoads
     {
-        public NaturalStoneRevetmentHydraulicLoads(double hydraulicLoadAp, double hydraulicLoadBp,
-                                                   double hydraulicLoadCp, double hydraulicLoadNp,
-                                                   double hydraulicLoadAs, double hydraulicLoadBs,
-                                                   double hydraulicLoadCs, double hydraulicLoadNs,
-                                                   double hydraulicLoadXib)
+        public NaturalStoneWaveImpactHydraulicLoads(double hydraulicLoadAp, double hydraulicLoadBp,
+                                                    double hydraulicLoadCp, double hydraulicLoadNp,
+                                                    double hydraulicLoadAs, double hydraulicLoadBs,
+                                                    double hydraulicLoadCs, double hydraulicLoadNs,
+                                                    double hydraulicLoadXib)
         {
             HydraulicLoadAp = hydraulicLoadAp;
             HydraulicLoadBp = hydraulicLoadBp;

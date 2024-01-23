@@ -18,20 +18,20 @@
 
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    internal class NaturalStoneRevetmentLowerLimitLoading
+    internal class NaturalStoneWaveImpactUpperLimitLoading
     {
-        public NaturalStoneRevetmentLowerLimitLoading(double lowerLimitAll, double lowerLimitBll,
-                                                      double lowerLimitCll)
+        public NaturalStoneWaveImpactUpperLimitLoading(double upperLimitAul, double upperLimitBul,
+                                                       double upperLimitCul)
         {
-            LowerLimitAll = lowerLimitAll;
-            LowerLimitBll = lowerLimitBll;
-            LowerLimitCll = lowerLimitCll;
+            UpperLimitAul = upperLimitAul;
+            UpperLimitBul = upperLimitBul;
+            UpperLimitCul = upperLimitCul;
         }
 
-        public double LowerLimitAll { get; }
+        public double UpperLimitAul { get; }
 
-        public double LowerLimitBll { get; }
+        public double UpperLimitBul { get; }
 
-        public double LowerLimitCll { get; }
+        public double UpperLimitCul { get; }
     }
 }

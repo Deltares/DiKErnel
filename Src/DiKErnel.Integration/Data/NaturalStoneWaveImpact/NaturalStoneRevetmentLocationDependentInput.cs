@@ -55,11 +55,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         public NaturalStoneRevetmentLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                            double relativeDensity, double thicknessTopLayer,
-                                                           NaturalStoneRevetmentHydraulicLoads hydraulicLoads,
+                                                           NaturalStoneWaveImpactHydraulicLoads hydraulicLoads,
                                                            NaturalStoneRevetmentSlope slope,
-                                                           NaturalStoneRevetmentUpperLimitLoading upperLimitLoading,
-                                                           NaturalStoneRevetmentLowerLimitLoading lowerLimitLoading,
-                                                           NaturalStoneRevetmentDistanceMaximumWaveElevation distanceMaximumWaveElevation,
+                                                           NaturalStoneWaveImpactUpperLimitLoading upperLimitLoading,
+                                                           NaturalStoneWaveImpactLowerLimitLoading lowerLimitLoading,
+                                                           NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation,
                                                            NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
                                                            NaturalStoneRevetmentWaveAngleImpact waveAngleImpact)
             : base(x, initialDamage, failureNumber)
@@ -79,15 +79,15 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         public double ThicknessTopLayer { get; }
 
-        public NaturalStoneRevetmentHydraulicLoads HydraulicLoads { get; }
+        public NaturalStoneWaveImpactHydraulicLoads HydraulicLoads { get; }
 
         public NaturalStoneRevetmentSlope Slope { get; }
 
-        public NaturalStoneRevetmentUpperLimitLoading UpperLimitLoading { get; }
+        public NaturalStoneWaveImpactUpperLimitLoading UpperLimitLoading { get; }
 
-        public NaturalStoneRevetmentLowerLimitLoading LowerLimitLoading { get; }
+        public NaturalStoneWaveImpactLowerLimitLoading LowerLimitLoading { get; }
 
-        public NaturalStoneRevetmentDistanceMaximumWaveElevation DistanceMaximumWaveElevation { get; }
+        public NaturalStoneWaveImpactDistanceMaximumWaveElevation DistanceMaximumWaveElevation { get; }
 
         public NaturalStoneRevetmentNormativeWidthOfWaveImpact NormativeWidthOfWaveImpact { get; }
 
