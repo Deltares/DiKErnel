@@ -307,7 +307,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     grassWaveImpactTimeDependentOutput
                 }, 5.4, 5.5, 5.6),
-                new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
+                new GrassWaveRunupRayleighDiscreteLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 5.7),
@@ -389,7 +389,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     grassWaveImpactTimeDependentOutput
                 }, 3.5, 3.6, 3.7),
-                new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
+                new GrassWaveRunupRayleighDiscreteLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 3.8),

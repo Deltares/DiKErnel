@@ -22,14 +22,13 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
-    /// Location dependent output of a grass revetment wave run-up location for the Rayleigh
-    /// protocol.
+    /// Location dependent output of a grass wave run-up Rayleigh Discrete calculation.
     /// </summary>
-    public class GrassRevetmentWaveRunupRayleighLocationDependentOutput : LocationDependentOutput
+    public class GrassWaveRunupRayleighDiscreteLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
-        public GrassRevetmentWaveRunupRayleighLocationDependentOutput(
+        public GrassWaveRunupRayleighDiscreteLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
             : base(timeDependentOutputItems)
         {

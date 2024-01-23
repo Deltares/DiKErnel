@@ -150,7 +150,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveHeightImpact).ToList());
                 }
-                case GrassRevetmentWaveRunupRayleighLocationDependentOutput grassRevetmentWaveRunupRayleighLocationDependentOutput:
+                case GrassWaveRunupRayleighDiscreteLocationDependentOutput grassWaveRunupRayleighDiscreteLocationDependentOutput:
                 {
                     IReadOnlyList<GrassWaveRunupRayleighDiscreteTimeDependentOutput>
                         grassWaveRunupRayleighDiscreteTimeDependentOutputItems =
@@ -161,7 +161,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                     return new JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
                         grassWaveRunupRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
-                        grassRevetmentWaveRunupRayleighLocationDependentOutput.Z,
+                        grassWaveRunupRayleighDiscreteLocationDependentOutput.Z,
                         grassWaveRunupRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
                         grassWaveRunupRayleighDiscreteTimeDependentOutputItems

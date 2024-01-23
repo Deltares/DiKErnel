@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Output
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighLocationDependentOutputTest
+    public class GrassWaveRunupRayleighDiscreteLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassRevetmentWaveRunupRayleighLocationDependentOutput(timeDependentOutputItems, z);
+            var output = new GrassWaveRunupRayleighDiscreteLocationDependentOutput(timeDependentOutputItems, z);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
