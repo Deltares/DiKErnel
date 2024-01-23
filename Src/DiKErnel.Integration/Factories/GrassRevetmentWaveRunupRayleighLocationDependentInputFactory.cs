@@ -25,14 +25,14 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class GrassRevetmentWaveRunupRayleighLocationDependentInputFactory
     {
-        public static GrassRevetmentWaveRunupRayleighLocationDependentInput CreateLocationDependentInput(
+        public static GrassWaveRunupRayleighDiscreteLocationDependentInput CreateLocationDependentInput(
             GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
                 GrassRevetmentCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(
                     constructionProperties.TopLayerType);
 
-            return new GrassRevetmentWaveRunupRayleighLocationDependentInput(
+            return new GrassWaveRunupRayleighDiscreteLocationDependentInput(
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,

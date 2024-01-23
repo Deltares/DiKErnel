@@ -1671,7 +1671,7 @@ namespace DiKErnel.Integration.Test
             Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
-                                             as GrassRevetmentWaveRunupRayleighLocationDependentInput;
+                                             as GrassWaveRunupRayleighDiscreteLocationDependentInput;
             Assert.That(locationDependentInput, Is.Not.Null);
 
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
@@ -1718,7 +1718,7 @@ namespace DiKErnel.Integration.Test
             Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
-                                             as GrassRevetmentWaveRunupRayleighLocationDependentInput;
+                                             as GrassWaveRunupRayleighDiscreteLocationDependentInput;
             Assert.That(locationDependentInput, Is.Not.Null);
 
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
@@ -1764,7 +1764,7 @@ namespace DiKErnel.Integration.Test
             Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
             var locationDependentInput = actualLocationDependentInputItems[0]
-                                             as GrassRevetmentWaveRunupRayleighLocationDependentInput;
+                                             as GrassWaveRunupRayleighDiscreteLocationDependentInput;
             Assert.That(locationDependentInput, Is.Not.Null);
 
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);

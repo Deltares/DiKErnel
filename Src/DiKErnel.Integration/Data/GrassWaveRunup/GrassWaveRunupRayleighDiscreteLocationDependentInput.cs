@@ -27,16 +27,16 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
-    internal class GrassRevetmentWaveRunupRayleighLocationDependentInput : GrassRayleighDiscreteLocationDependentInput
+    internal class GrassWaveRunupRayleighDiscreteLocationDependentInput : GrassRayleighDiscreteLocationDependentInput
     {
-        public GrassRevetmentWaveRunupRayleighLocationDependentInput(double x, double initialDamage,
-                                                                     double failureNumber,
-                                                                     double criticalCumulativeOverload,
-                                                                     double criticalFrontVelocity,
-                                                                     double increasedLoadTransitionAlphaM,
-                                                                     double reducedStrengthTransitionAlphaS,
-                                                                     double averageNumberOfWavesCtm,
-                                                                     int fixedNumberOfWaves, double frontVelocityCu)
+        public GrassWaveRunupRayleighDiscreteLocationDependentInput(double x, double initialDamage,
+                                                                    double failureNumber,
+                                                                    double criticalCumulativeOverload,
+                                                                    double criticalFrontVelocity,
+                                                                    double increasedLoadTransitionAlphaM,
+                                                                    double reducedStrengthTransitionAlphaS,
+                                                                    double averageNumberOfWavesCtm,
+                                                                    int fixedNumberOfWaves, double frontVelocityCu)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
                    fixedNumberOfWaves)
