@@ -22,13 +22,13 @@ using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class NaturalStoneRevetmentLocationDependentInputFactory
+    internal static class NaturalStoneWaveImpactLocationDependentInputFactory
     {
         public static NaturalStoneWaveImpactLocationDependentInput CreateLocationDependentInput(
             NaturalStoneWaveImpactLocationConstructionProperties constructionProperties)
         {
             INaturalStoneRevetmentTopLayerDefaults topLayerDefaults =
-                NaturalStoneRevetmentDefaultsFactory.CreateTopLayerDefaults();
+                NaturalStoneWaveImpactDefaultsFactory.CreateTopLayerDefaults();
 
             var hydraulicLoads = new NaturalStoneWaveImpactHydraulicLoads(
                 constructionProperties.HydraulicLoadAp ?? topLayerDefaults.HydraulicLoadAp,

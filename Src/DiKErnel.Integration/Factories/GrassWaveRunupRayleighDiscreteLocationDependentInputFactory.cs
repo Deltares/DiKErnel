@@ -23,7 +23,7 @@ using DiKErnel.Integration.Data.GrassWaveRunup;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class GrassRevetmentWaveRunupRayleighLocationDependentInputFactory
+    internal static class GrassWaveRunupRayleighDiscreteLocationDependentInputFactory
     {
         public static GrassWaveRunupRayleighDiscreteLocationDependentInput CreateLocationDependentInput(
             GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties)

@@ -20,7 +20,7 @@ using DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class NaturalStoneRevetmentDefaultsFactory
+    internal static class NaturalStoneWaveImpactDefaultsFactory
     {
         public static INaturalStoneRevetmentTopLayerDefaults CreateTopLayerDefaults()
         {
