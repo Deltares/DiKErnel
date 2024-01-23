@@ -106,10 +106,11 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case GrassOvertoppingRayleighDiscreteLocationDependentOutput _:
                 {
-                    IReadOnlyList<GrassRevetmentOvertoppingTimeDependentOutput> grassOvertoppingRayleighDiscreteTimeDependentOutputItems =
-                        locationDependentOutput.TimeDependentOutputItems
-                                               .Cast<GrassRevetmentOvertoppingTimeDependentOutput>()
-                                               .ToList();
+                    IReadOnlyList<GrassOvertoppingRayleighDiscreteTimeDependentOutput>
+                        grassOvertoppingRayleighDiscreteTimeDependentOutputItems =
+                            locationDependentOutput.TimeDependentOutputItems
+                                                   .Cast<GrassOvertoppingRayleighDiscreteTimeDependentOutput>()
+                                                   .ToList();
 
                     return new JsonOutputGrassRevetmentOvertoppingPhysicsLocationData(
                         grassOvertoppingRayleighDiscreteTimeDependentOutputItems

@@ -52,7 +52,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+            var output = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -81,7 +81,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+            var output = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new GrassRevetmentOvertoppingTimeDependentOutput(constructionProperties);
+                var output = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(constructionProperties);
             }
 
             // Assert

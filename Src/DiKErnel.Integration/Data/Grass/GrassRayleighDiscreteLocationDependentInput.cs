@@ -127,7 +127,7 @@ namespace DiKErnel.Integration.Data.Grass
                 }
             }
 
-            return new GrassRevetmentOvertoppingTimeDependentOutput(
+            return new GrassOvertoppingRayleighDiscreteTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 

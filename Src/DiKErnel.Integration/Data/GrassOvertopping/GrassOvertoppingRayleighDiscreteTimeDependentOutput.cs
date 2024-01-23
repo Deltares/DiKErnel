@@ -23,12 +23,12 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     /// <summary>
-    /// Time dependent output of a grass revetment overtopping location.
+    /// Time dependent output of a grass overtopping Rayleigh Discrete calculation.
     /// </summary>
-    public class GrassRevetmentOvertoppingTimeDependentOutput : TimeDependentOutput
+    public class GrassOvertoppingRayleighDiscreteTimeDependentOutput : TimeDependentOutput
     {
         /// <inheritdoc/>
-        public GrassRevetmentOvertoppingTimeDependentOutput(
+        public GrassOvertoppingRayleighDiscreteTimeDependentOutput(
             GrassRayleighDiscreteTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {

@@ -229,7 +229,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     AverageNumberOfWaves = 0.5
                 });
 
-            var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(
+            var grassOvertoppingRayleighDiscreteTimeDependentOutput = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(
                 new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.6,
@@ -301,7 +301,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 }, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3),
                 new GrassOvertoppingRayleighDiscreteLocationDependentOutput(new[]
                 {
-                    grassOvertoppingTimeDependentOutput
+                    grassOvertoppingRayleighDiscreteTimeDependentOutput
                 }),
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
@@ -329,7 +329,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     AverageNumberOfWaves = 0.4
                 });
 
-            var grassOvertoppingTimeDependentOutput = new GrassRevetmentOvertoppingTimeDependentOutput(
+            var grassOvertoppingRayleighDiscreteTimeDependentOutput = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(
                 new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.5,
@@ -383,7 +383,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 }, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4),
                 new GrassOvertoppingRayleighDiscreteLocationDependentOutput(new[]
                 {
-                    grassOvertoppingTimeDependentOutput
+                    grassOvertoppingRayleighDiscreteTimeDependentOutput
                 }),
                 new GrassRevetmentWaveImpactLocationDependentOutput(new[]
                 {
