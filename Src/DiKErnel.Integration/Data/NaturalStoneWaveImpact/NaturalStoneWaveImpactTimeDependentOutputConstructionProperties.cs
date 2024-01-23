@@ -21,9 +21,9 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Construction properties to construct natural stone revetment time dependent output.
+    /// Construction properties to construct natural stone wave impact time dependent output.
     /// </summary>
-    public class NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+    public class NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>

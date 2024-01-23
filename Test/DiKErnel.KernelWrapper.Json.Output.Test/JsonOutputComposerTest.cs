@@ -268,7 +268,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var naturalStoneTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
-                new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+                new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 2.8,
                     Damage = 2.9,
@@ -356,7 +356,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var naturalStoneTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
-                new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+                new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 1.5,
                     Damage = 1.6,

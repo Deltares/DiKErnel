@@ -28,7 +28,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
     {
         /// <inheritdoc/>
         public NaturalStoneRevetmentTimeDependentOutput(
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties)
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
             OuterSlope = constructionProperties.OuterSlope

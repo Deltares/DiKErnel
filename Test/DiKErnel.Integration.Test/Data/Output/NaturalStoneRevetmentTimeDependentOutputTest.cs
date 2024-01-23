@@ -53,7 +53,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double referenceTimeDegradation = Random.NextDouble();
             double referenceDegradation = Random.NextDouble();
 
-            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+            var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -126,7 +126,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double distanceMaximumWaveElevation = Random.NextDouble();
             double normativeWidthOfWaveImpact = Random.NextDouble();
 
-            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+            var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -183,7 +183,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_OuterSlopeNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.OuterSlope = null;
@@ -203,7 +203,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_SlopeUpperLevelNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.SlopeUpperLevel = null;
@@ -223,7 +223,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_SlopeUpperPositionNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.SlopeUpperPosition = null;
@@ -243,7 +243,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_SlopeLowerLevelNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.SlopeLowerLevel = null;
@@ -263,7 +263,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_SlopeLowerPositionNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.SlopeLowerPosition = null;
@@ -283,7 +283,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_LoadingRevetmentNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.LoadingRevetment = null;
@@ -303,7 +303,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_SurfSimilarityParameterNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.SurfSimilarityParameter = null;
@@ -323,7 +323,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_LowerLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.LowerLimitLoading = null;
@@ -343,7 +343,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_DepthMaximumWaveLoadNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.DepthMaximumWaveLoad = null;
@@ -363,7 +363,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_DistanceMaximumWaveElevationNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.DistanceMaximumWaveElevation = null;
@@ -383,7 +383,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_NormativeWidthOfWaveImpactNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties =
+            NaturalStoneWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.NormativeWidthOfWaveImpact = null;
@@ -399,9 +399,9 @@ namespace DiKErnel.Integration.Test.Data.Output
                                                                               "NormativeWidthOfWaveImpact must be set.");
         }
 
-        private static NaturalStoneRevetmentTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
+        private static NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
-            return new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+            return new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),

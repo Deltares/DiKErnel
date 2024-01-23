@@ -24,13 +24,13 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Output
 {
     [TestFixture]
-    public class NaturalStoneRevetmentTimeDependentOutputConstructionPropertiesTest
+    public class NaturalStoneWaveImpactTimeDependentOutputConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Call
-            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties();
+            var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties();
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
@@ -84,7 +84,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double referenceDegradation = Random.NextDouble();
 
             // When
-            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+            var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,

@@ -280,10 +280,10 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             return RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
         }
 
-        private NaturalStoneRevetmentTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, double? timeOfFailure)
         {
-            var constructionProperties = new NaturalStoneRevetmentTimeDependentOutputConstructionProperties
+            var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
