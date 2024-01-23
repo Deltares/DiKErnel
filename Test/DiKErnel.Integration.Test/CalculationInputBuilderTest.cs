@@ -105,8 +105,9 @@ namespace DiKErnel.Integration.Test
             AssertResultWithSuccessfulFalseAndEvent(result, expectedMessage);
         }
 
-        private static void GivenGrassOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-            double locationX)
+        private static void
+            GivenGrassOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                double locationX)
         {
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
@@ -949,7 +950,8 @@ namespace DiKErnel.Integration.Test
         #region Grass overtopping
 
         [Test]
-        public void GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void
+            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             GivenGrassOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
         }
@@ -962,7 +964,8 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void
+            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
@@ -989,7 +992,8 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void
+            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1067,7 +1071,8 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithFullyConfiguredGrassOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void
+            GivenBuilderWithFullyConfiguredGrassOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1211,7 +1216,8 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void
+            GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
