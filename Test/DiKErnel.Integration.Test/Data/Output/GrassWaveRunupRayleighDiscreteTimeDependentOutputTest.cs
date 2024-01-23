@@ -26,7 +26,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Output
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighTimeDependentOutputTest
+    public class GrassWaveRunupRayleighDiscreteTimeDependentOutputTest
     {
         [Test]
         public void Constructor_WithAllValuesSet_ExpectedValues()
@@ -52,7 +52,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(constructionProperties);
+            var output = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -81,7 +81,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(constructionProperties);
+            var output = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(constructionProperties);
+                var output = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(constructionProperties);
             }
 
             // Assert

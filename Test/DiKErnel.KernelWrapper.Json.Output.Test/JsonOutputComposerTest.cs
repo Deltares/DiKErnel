@@ -255,7 +255,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     WaveHeightImpact = 2.0
                 });
 
-            var grassWaveRunupRayleighTimeDependentOutput = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
+            var grassWaveRunupRayleighDiscreteTimeDependentOutput = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(
                 new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 2.1,
@@ -309,7 +309,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 }, 5.4, 5.5, 5.6),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
-                    grassWaveRunupRayleighTimeDependentOutput
+                    grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 5.7),
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
@@ -347,7 +347,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     LowerLimitLoading = 1.1
                 });
 
-            var grassWaveRunupRayleighTimeDependentOutput = new GrassRevetmentWaveRunupRayleighTimeDependentOutput(
+            var grassWaveRunupRayleighDiscreteTimeDependentOutput = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(
                 new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 1.2,
@@ -391,7 +391,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 }, 3.5, 3.6, 3.7),
                 new GrassRevetmentWaveRunupRayleighLocationDependentOutput(new[]
                 {
-                    grassWaveRunupRayleighTimeDependentOutput
+                    grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 3.8),
                 new NaturalStoneRevetmentLocationDependentOutput(new[]
                 {
