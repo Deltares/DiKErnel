@@ -18,20 +18,19 @@
 
 namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
-    internal class GrassRevetmentWaveImpactWaveAngleImpact
+    internal class GrassWaveImpactTimeLine
     {
-        public GrassRevetmentWaveImpactWaveAngleImpact(double waveAngleImpactNwa, double waveAngleImpactQwa,
-                                                       double waveAngleImpactRwa)
+        public GrassWaveImpactTimeLine(double timeLineAgwi, double timeLineBgwi, double timeLineCgwi)
         {
-            WaveAngleImpactNwa = waveAngleImpactNwa;
-            WaveAngleImpactQwa = waveAngleImpactQwa;
-            WaveAngleImpactRwa = waveAngleImpactRwa;
+            TimeLineAgwi = timeLineAgwi;
+            TimeLineBgwi = timeLineBgwi;
+            TimeLineCgwi = timeLineCgwi;
         }
 
-        public double WaveAngleImpactNwa { get; }
+        public double TimeLineAgwi { get; }
 
-        public double WaveAngleImpactQwa { get; }
+        public double TimeLineBgwi { get; }
 
-        public double WaveAngleImpactRwa { get; }
+        public double TimeLineCgwi { get; }
     }
 }

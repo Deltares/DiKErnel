@@ -38,10 +38,10 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         private double waveHeightImpact = double.NaN;
 
         public GrassRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                              GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact,
+                                                              GrassWaveImpactWaveAngleImpact waveAngleImpact,
                                                               double minimumWaveHeightTemax,
                                                               double maximumWaveHeightTemin,
-                                                              GrassRevetmentWaveImpactTimeLine timeLine,
+                                                              GrassWaveImpactTimeLine timeLine,
                                                               double upperLimitLoadingAul,
                                                               double lowerLimitLoadingAll)
             : base(x, initialDamage, failureNumber)
@@ -54,13 +54,13 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             LowerLimitLoadingAll = lowerLimitLoadingAll;
         }
 
-        public GrassRevetmentWaveImpactWaveAngleImpact WaveAngleImpact { get; }
+        public GrassWaveImpactWaveAngleImpact WaveAngleImpact { get; }
 
         public double MinimumWaveHeightTemax { get; }
 
         public double MaximumWaveHeightTemin { get; }
 
-        public GrassRevetmentWaveImpactTimeLine TimeLine { get; }
+        public GrassWaveImpactTimeLine TimeLine { get; }
 
         public double UpperLimitLoadingAul { get; }
 

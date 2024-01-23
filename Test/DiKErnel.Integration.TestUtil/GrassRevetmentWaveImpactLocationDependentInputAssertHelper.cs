@@ -37,7 +37,7 @@ namespace DiKErnel.Integration.TestUtil
 
         public static void AssertWaveAngleImpact(double waveAngleImpactNwa, double waveAngleImpactQwa,
                                                  double waveAngleImpactRwa,
-                                                 GrassRevetmentWaveImpactWaveAngleImpact waveAngleImpact)
+                                                 GrassWaveImpactWaveAngleImpact waveAngleImpact)
         {
             Assert.That(waveAngleImpact.WaveAngleImpactNwa, Is.EqualTo(waveAngleImpactNwa));
             Assert.That(waveAngleImpact.WaveAngleImpactQwa, Is.EqualTo(waveAngleImpactQwa));
@@ -45,7 +45,7 @@ namespace DiKErnel.Integration.TestUtil
         }
 
         public static void AssertTimeLine(double timeLineAgwi, double timeLineBgwi, double timeLineCgwi,
-                                          GrassRevetmentWaveImpactTimeLine timeLine)
+                                          GrassWaveImpactTimeLine timeLine)
         {
             Assert.That(timeLine.TimeLineAgwi, Is.EqualTo(timeLineAgwi));
             Assert.That(timeLine.TimeLineBgwi, Is.EqualTo(timeLineBgwi));

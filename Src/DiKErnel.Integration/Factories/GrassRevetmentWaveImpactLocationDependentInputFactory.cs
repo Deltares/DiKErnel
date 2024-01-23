@@ -30,12 +30,12 @@ namespace DiKErnel.Integration.Factories
             IGrassRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
                 GrassRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
 
-            var waveAngleImpact = new GrassRevetmentWaveImpactWaveAngleImpact(
+            var waveAngleImpact = new GrassWaveImpactWaveAngleImpact(
                 constructionProperties.WaveAngleImpactNwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa,
                 constructionProperties.WaveAngleImpactQwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactQwa,
                 constructionProperties.WaveAngleImpactRwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactRwa);
 
-            var timeLine = new GrassRevetmentWaveImpactTimeLine(
+            var timeLine = new GrassWaveImpactTimeLine(
                 constructionProperties.TimeLineAgwi ?? topLayerDefaults.TimeLineAgwi,
                 constructionProperties.TimeLineBgwi ?? topLayerDefaults.TimeLineBgwi,
                 constructionProperties.TimeLineCgwi ?? topLayerDefaults.TimeLineCgwi);
