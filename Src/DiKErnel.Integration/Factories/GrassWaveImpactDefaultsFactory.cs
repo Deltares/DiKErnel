@@ -21,7 +21,7 @@ using DiKErnel.Integration.Data.Grass;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class GrassRevetmentWaveImpactDefaultsFactory
+    internal static class GrassWaveImpactDefaultsFactory
     {
         public static IGrassRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults(GrassTopLayerType topLayerType)
         {

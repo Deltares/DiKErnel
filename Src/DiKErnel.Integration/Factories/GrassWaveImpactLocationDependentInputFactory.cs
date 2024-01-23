@@ -22,13 +22,13 @@ using DiKErnel.Integration.Data.GrassWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class GrassRevetmentWaveImpactLocationDependentInputFactory
+    internal static class GrassWaveImpactLocationDependentInputFactory
     {
         public static GrassWaveImpactLocationDependentInput CreateLocationDependentInput(
             GrassWaveImpactLocationConstructionProperties constructionProperties)
         {
             IGrassRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
-                GrassRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
+                GrassWaveImpactDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
 
             var waveAngleImpact = new GrassWaveImpactWaveAngleImpact(
                 constructionProperties.WaveAngleImpactNwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa,
