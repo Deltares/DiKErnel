@@ -27,7 +27,7 @@ using NUnit.Framework;
 namespace DiKErnel.System.Test
 {
     [TestFixture]
-    public class GrassRevetmentOvertoppingCalculationTest : CalculationTest
+    public class GrassOvertoppingRayleighDiscreteCalculationTest : CalculationTest
     {
         [Test]
         public void GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult()

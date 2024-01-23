@@ -275,7 +275,8 @@ namespace DiKErnel.System.Test
         }
 
         [Test]
-        public void GivenCalculationInputWithInvalidGrassRevetmentOvertoppingLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+        public void
+            GivenCalculationInputWithInvalidGrassOvertoppingRayleighDiscreteLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
@@ -341,7 +342,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelHigherThanEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double dikeHeight = 10.0;
@@ -382,7 +383,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelEqualToEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double dikeHeight = 10.0;
@@ -418,7 +419,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelHigherThanDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double heightOuterCrest = 10.0;
@@ -456,7 +457,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassRevetmentOvertoppingLocationAndWaterLevelEqualToDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double heightOuterCrest = 10.0;
@@ -496,6 +497,7 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(100, 150, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0);
             builder.AddDikeProfileSegment(20, 10, 30, 10);
+            builder.AddDikeProfileSegment(20, 10, 30, 10);
             builder.AddDikeProfileSegment(30, 10, 40, 5);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
@@ -514,14 +516,14 @@ namespace DiKErnel.System.Test
             var naturalStoneWaveImpactLocationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.5, 4.6);
 
-            var grassOvertoppingLocationConstructionProperties =
+            var grassOvertoppingRayleighDiscreteLocationConstructionProperties =
                 new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
 
             builder.AddAsphaltWaveImpactLocation(asphaltWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveImpactLocation(grassWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveRunupRayleighLocation(grassWaveRunupRayleighDiscreteLocationConstructionProperties);
             builder.AddNaturalStoneLocation(naturalStoneWaveImpactLocationConstructionProperties);
-            builder.AddGrassOvertoppingRayleighDiscreteLocation(grassOvertoppingLocationConstructionProperties);
+            builder.AddGrassOvertoppingRayleighDiscreteLocation(grassOvertoppingRayleighDiscreteLocationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
