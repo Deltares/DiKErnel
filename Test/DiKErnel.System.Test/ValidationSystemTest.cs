@@ -93,7 +93,7 @@ namespace DiKErnel.System.Test
         }
 
         [Test]
-        public void GivenCalculationInputWithInvalidAsphaltRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+        public void GivenCalculationInputWithInvalidAsphaltWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             var constructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
@@ -158,7 +158,7 @@ namespace DiKErnel.System.Test
         }
 
         [Test]
-        public void GivenCalculationInputWithInvalidGrassRevetmentWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+        public void GivenCalculationInputWithInvalidGrassWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             var constructionProperties =
@@ -221,7 +221,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithInvalidGrassRevetmentWaveRunupRayleighLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithInvalidGrassWaveRunupRayleighDiscreteLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
@@ -489,6 +489,50 @@ namespace DiKErnel.System.Test
         }
 
         [Test]
+        public void GivenCalculationInputWithInvalidNaturalStoneWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+        {
+            // Given
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
+                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0, 10)
+            {
+                InitialDamage = -0.1,
+                FailureNumber = -1,
+                SlopeUpperLevelAus = 0.3,
+                SlopeLowerLevelAls = 0
+            };
+
+            var builder = new CalculationInputBuilder(0);
+            builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+            builder.AddDikeProfileSegment(10, 5, 20, 10);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddNaturalStoneLocation(constructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
+
+            // Then
+            Assert.That(validationResult.Successful, Is.True);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(6));
+
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("RelativeDensity must be in range {0, 10}."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("ThicknessTopLayer must be in range {0, 1}."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("SlopeUpperLevelAus should be in range [0.01, 0.2]."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("SlopeLowerLevelAls must be larger than 0."));
+        }
+
+        [Test]
         public void GivenValidCalculationInput_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
@@ -534,50 +578,6 @@ namespace DiKErnel.System.Test
             Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
             Assert.That(validationResult.Events, Has.Count.EqualTo(0));
-        }
-
-        [Test]
-        public void GivenCalculationInputWithInvalidNaturalStoneRevetmentLocation_WhenValidating_ThenReturnsExpectedValidationResult()
-        {
-            // Given
-            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
-                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0, 10)
-            {
-                InitialDamage = -0.1,
-                FailureNumber = -1,
-                SlopeUpperLevelAus = 0.3,
-                SlopeLowerLevelAls = 0
-            };
-
-            var builder = new CalculationInputBuilder(0);
-            builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-            builder.AddDikeProfileSegment(10, 5, 20, 10);
-            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
-            builder.AddNaturalStoneLocation(constructionProperties);
-
-            DataResult<ICalculationInput> calculationInput = builder.Build();
-
-            // When
-            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
-
-            // Then
-            Assert.That(validationResult.Successful, Is.True);
-            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events, Has.Count.EqualTo(6));
-
-            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
-            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
-            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[2].Message, Is.EqualTo("RelativeDensity must be in range {0, 10}."));
-            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[3].Message, Is.EqualTo("ThicknessTopLayer must be in range {0, 1}."));
-            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Warning));
-            Assert.That(validationResult.Events[4].Message, Is.EqualTo("SlopeUpperLevelAus should be in range [0.01, 0.2]."));
-            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[5].Message, Is.EqualTo("SlopeLowerLevelAls must be larger than 0."));
         }
     }
 }

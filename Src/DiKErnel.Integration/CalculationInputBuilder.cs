@@ -162,7 +162,7 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
-        /// Adds a natural stone location.
+        /// Adds a natural stone wave impact location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the natural
         /// stone wave impact location dependent input.</param>
