@@ -25,7 +25,7 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class GrassRevetmentOvertoppingLocationDependentInputFactory
     {
-        public static GrassRevetmentOvertoppingLocationDependentInput CreateLocationDependentInput(
+        public static GrassOvertoppingRayleighDiscreteLocationDependentInput CreateLocationDependentInput(
             GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.AccelerationAlphaAForInnerSlope
                 ?? GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForInnerSlope);
 
-            return new GrassRevetmentOvertoppingLocationDependentInput(
+            return new GrassOvertoppingRayleighDiscreteLocationDependentInput(
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,

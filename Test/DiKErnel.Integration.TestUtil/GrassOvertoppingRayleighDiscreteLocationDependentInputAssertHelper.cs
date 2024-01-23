@@ -21,23 +21,23 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class GrassRevetmentOvertoppingLocationDependentInputAssertHelper
+    internal static class GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper
     {
         public static void AssertGeneralProperties(double? dikeHeight,
-                                                   GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+                                                   GrassOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.EnforcedDikeHeight, Is.EqualTo(dikeHeight));
         }
 
         public static void AssertCumulativeOverload(double criticalCumulativeOverload, int fixedNumberOfWaves,
-                                                    GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+                                                    GrassOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
             Assert.That(locationDependentInput.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
         }
 
         public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCwo,
-                                               GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+                                               GrassOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
             Assert.That(locationDependentInput.FrontVelocityCwo, Is.EqualTo(frontVelocityCwo));
@@ -45,14 +45,14 @@ namespace DiKErnel.Integration.TestUtil
 
         public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
                                                  double reducedStrengthTransitionAlphaS,
-                                                 GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+                                                 GrassOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(locationDependentInput.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
         }
 
         public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
-                                                      GrassRevetmentOvertoppingLocationDependentInput locationDependentInput)
+                                                      GrassOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
         }

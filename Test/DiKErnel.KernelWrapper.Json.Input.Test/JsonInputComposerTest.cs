@@ -208,25 +208,25 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 },
                 asphaltWaveImpactLocationDependentInputItem);
 
-            var grassRevetmentOvertoppingLocationDependentInputItem =
-                locationDependentInputItems[4] as GrassRevetmentOvertoppingLocationDependentInput;
-            Assert.That(grassRevetmentOvertoppingLocationDependentInputItem, Is.Not.Null);
+            var grassOvertoppingRayleighDiscreteLocationDependentInput =
+                locationDependentInputItems[4] as GrassOvertoppingRayleighDiscreteLocationDependentInput;
+            Assert.That(grassOvertoppingRayleighDiscreteLocationDependentInput, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                65, grassRevetmentOvertoppingLocationDependentInputItem);
+                65, grassOvertoppingRayleighDiscreteLocationDependentInput);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0.023, 0.3, grassRevetmentOvertoppingLocationDependentInputItem);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-                15.75, grassRevetmentOvertoppingLocationDependentInputItem);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-                0.5, 1.8, grassRevetmentOvertoppingLocationDependentInputItem);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-                0.29, grassRevetmentOvertoppingLocationDependentInputItem);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                7001, 100000, grassRevetmentOvertoppingLocationDependentInputItem);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-                3.6, 45.1, grassRevetmentOvertoppingLocationDependentInputItem);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1.8, 4.4, grassRevetmentOvertoppingLocationDependentInputItem.AccelerationAlphaA);
+                0.023, 0.3, grassOvertoppingRayleighDiscreteLocationDependentInput);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+                15.75, grassOvertoppingRayleighDiscreteLocationDependentInput);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                0.5, 1.8, grassOvertoppingRayleighDiscreteLocationDependentInput);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.29, grassOvertoppingRayleighDiscreteLocationDependentInput);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7001, 100000, grassOvertoppingRayleighDiscreteLocationDependentInput);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+                3.6, 45.1, grassOvertoppingRayleighDiscreteLocationDependentInput);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1.8, 4.4, grassOvertoppingRayleighDiscreteLocationDependentInput.AccelerationAlphaA);
 
             Assert.That(result.LocationIds, Is.EqualTo(new[]
             {
@@ -482,45 +482,45 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 },
                 asphaltWaveImpactLocationDependentInputItem);
 
-            var grassRevetmentOvertoppingLocationDependentInputItem1 =
-                locationDependentInputItems[6] as GrassRevetmentOvertoppingLocationDependentInput;
-            Assert.That(grassRevetmentOvertoppingLocationDependentInputItem1, Is.Not.Null);
+            var grassOvertoppingRayleighDiscreteLocationDependentInput1 =
+                locationDependentInputItems[6] as GrassOvertoppingRayleighDiscreteLocationDependentInput;
+            Assert.That(grassOvertoppingRayleighDiscreteLocationDependentInput1, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                65, grassRevetmentOvertoppingLocationDependentInputItem1);
+                65, grassOvertoppingRayleighDiscreteLocationDependentInput1);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0, 1, grassRevetmentOvertoppingLocationDependentInputItem1);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-                null, grassRevetmentOvertoppingLocationDependentInputItem1);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-                1, 1, grassRevetmentOvertoppingLocationDependentInputItem1);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-                0.92, grassRevetmentOvertoppingLocationDependentInputItem1);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                7000, 10000, grassRevetmentOvertoppingLocationDependentInputItem1);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-                6.6, 1.45, grassRevetmentOvertoppingLocationDependentInputItem1);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem1.AccelerationAlphaA);
+                0, 1, grassOvertoppingRayleighDiscreteLocationDependentInput1);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+                null, grassOvertoppingRayleighDiscreteLocationDependentInput1);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, grassOvertoppingRayleighDiscreteLocationDependentInput1);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, grassOvertoppingRayleighDiscreteLocationDependentInput1);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, grassOvertoppingRayleighDiscreteLocationDependentInput1);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+                6.6, 1.45, grassOvertoppingRayleighDiscreteLocationDependentInput1);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1, 1.4, grassOvertoppingRayleighDiscreteLocationDependentInput1.AccelerationAlphaA);
 
-            var grassRevetmentOvertoppingLocationDependentInputItem2 =
-                locationDependentInputItems[7] as GrassRevetmentOvertoppingLocationDependentInput;
-            Assert.That(grassRevetmentOvertoppingLocationDependentInputItem2, Is.Not.Null);
+            var grassOvertoppingRayleighDiscreteLocationDependentInput2 =
+                locationDependentInputItems[7] as GrassOvertoppingRayleighDiscreteLocationDependentInput;
+            Assert.That(grassOvertoppingRayleighDiscreteLocationDependentInput2, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                85, grassRevetmentOvertoppingLocationDependentInputItem2);
+                85, grassOvertoppingRayleighDiscreteLocationDependentInput2);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0, 1, grassRevetmentOvertoppingLocationDependentInputItem2);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertGeneralProperties(
-                null, grassRevetmentOvertoppingLocationDependentInputItem2);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertTransitionAlpha(
-                1, 1, grassRevetmentOvertoppingLocationDependentInputItem2);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
-                0.92, grassRevetmentOvertoppingLocationDependentInputItem2);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                7000, 10000, grassRevetmentOvertoppingLocationDependentInputItem2);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertFrontVelocity(
-                4.3, 1.45, grassRevetmentOvertoppingLocationDependentInputItem2);
-            GrassRevetmentOvertoppingLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1, 1.4, grassRevetmentOvertoppingLocationDependentInputItem2.AccelerationAlphaA);
+                0, 1, grassOvertoppingRayleighDiscreteLocationDependentInput2);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+                null, grassOvertoppingRayleighDiscreteLocationDependentInput2);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, grassOvertoppingRayleighDiscreteLocationDependentInput2);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, grassOvertoppingRayleighDiscreteLocationDependentInput2);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, grassOvertoppingRayleighDiscreteLocationDependentInput2);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+                4.3, 1.45, grassOvertoppingRayleighDiscreteLocationDependentInput2);
+            GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1, 1.4, grassOvertoppingRayleighDiscreteLocationDependentInput2.AccelerationAlphaA);
 
             Assert.That(result.LocationIds, Is.Not.Null);
             Assert.That(result.LocationIds.All(lid => !lid.HasValue), Is.True);
