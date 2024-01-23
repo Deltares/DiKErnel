@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new NaturalStoneRevetmentLocationDependentOutput(timeDependentOutputItems, Z, resistance);
+            return new NaturalStoneWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, resistance);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)

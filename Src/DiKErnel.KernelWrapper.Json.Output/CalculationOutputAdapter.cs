@@ -171,7 +171,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassWaveRunupRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
-                case NaturalStoneRevetmentLocationDependentOutput naturalStoneRevetmentLocationDependentOutput:
+                case NaturalStoneWaveImpactLocationDependentOutput naturalStoneWaveImpactLocationDependentOutput:
                 {
                     IReadOnlyList<NaturalStoneRevetmentTimeDependentOutput> naturalStoneRevetmentTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
@@ -181,8 +181,8 @@ namespace DiKErnel.KernelWrapper.Json.Output
                     return new JsonOutputNaturalStoneRevetmentPhysicsLocationData(
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
-                        naturalStoneRevetmentLocationDependentOutput.Z,
-                        naturalStoneRevetmentLocationDependentOutput.Resistance,
+                        naturalStoneWaveImpactLocationDependentOutput.Z,
+                        naturalStoneWaveImpactLocationDependentOutput.Resistance,
                         naturalStoneRevetmentTimeDependentOutputItems
                             .Select(tdo => tdo.OuterSlope).ToList(),
                         naturalStoneRevetmentTimeDependentOutputItems

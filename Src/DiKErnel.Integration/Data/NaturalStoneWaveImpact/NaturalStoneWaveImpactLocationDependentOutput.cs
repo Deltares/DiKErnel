@@ -22,14 +22,14 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Location dependent output of a natural stone revetment location.
+    /// Location dependent output of a natural stone wave impact calculation.
     /// </summary>
-    public class NaturalStoneRevetmentLocationDependentOutput : LocationDependentOutput
+    public class NaturalStoneWaveImpactLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
         /// <param name="resistance">The calculated resistance.</param>
-        public NaturalStoneRevetmentLocationDependentOutput(
+        public NaturalStoneWaveImpactLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double resistance)
             : base(timeDependentOutputItems)
         {

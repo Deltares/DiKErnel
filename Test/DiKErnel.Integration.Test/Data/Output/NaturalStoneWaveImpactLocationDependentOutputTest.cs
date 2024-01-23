@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Output
 {
     [TestFixture]
-    public class NaturalStoneRevetmentLocationDependentOutputTest
+    public class NaturalStoneWaveImpactLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new NaturalStoneRevetmentLocationDependentOutput(timeDependentOutputItems, z, resistance);
+            var output = new NaturalStoneWaveImpactLocationDependentOutput(timeDependentOutputItems, z, resistance);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

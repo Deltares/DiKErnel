@@ -267,7 +267,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     AverageNumberOfWaves = 2.7
                 });
 
-            var naturalStoneTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
+            var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 2.8,
@@ -311,9 +311,9 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 5.7),
-                new NaturalStoneRevetmentLocationDependentOutput(new[]
+                new NaturalStoneWaveImpactLocationDependentOutput(new[]
                 {
-                    naturalStoneTimeDependentOutput
+                    naturalStoneWaveImpactTimeDependentOutput
                 }, 5.8, 5.9)
             });
         }
@@ -355,7 +355,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     VerticalDistanceWaterLevelElevation = 1.4
                 });
 
-            var naturalStoneTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
+            var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneRevetmentTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 1.5,
@@ -393,9 +393,9 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 3.8),
-                new NaturalStoneRevetmentLocationDependentOutput(new[]
+                new NaturalStoneWaveImpactLocationDependentOutput(new[]
                 {
-                    naturalStoneTimeDependentOutput
+                    naturalStoneWaveImpactTimeDependentOutput
                 }, 3.9, 4.0)
             });
         }
