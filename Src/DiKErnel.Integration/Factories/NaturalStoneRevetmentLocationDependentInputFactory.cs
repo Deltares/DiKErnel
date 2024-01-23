@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class NaturalStoneRevetmentLocationDependentInputFactory
     {
-        public static NaturalStoneRevetmentLocationDependentInput CreateLocationDependentInput(
+        public static NaturalStoneWaveImpactLocationDependentInput CreateLocationDependentInput(
             NaturalStoneWaveImpactLocationConstructionProperties constructionProperties)
         {
             INaturalStoneRevetmentTopLayerDefaults topLayerDefaults =
@@ -70,7 +70,7 @@ namespace DiKErnel.Integration.Factories
             var waveAngleImpact = new NaturalStoneWaveImpactWaveAngleImpact(
                 constructionProperties.WaveAngleImpactBetamax ?? NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax);
 
-            return new NaturalStoneRevetmentLocationDependentInput(
+            return new NaturalStoneWaveImpactLocationDependentInput(
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,

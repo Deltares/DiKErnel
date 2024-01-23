@@ -27,7 +27,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    internal class NaturalStoneRevetmentLocationDependentInput : LocationDependentInput
+    internal class NaturalStoneWaveImpactLocationDependentInput : LocationDependentInput
     {
         private double outerToeHeight = double.NaN;
         private double outerCrestHeight = double.NaN;
@@ -53,15 +53,15 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         private double referenceTimeDegradation = double.NaN;
         private double referenceDegradation = double.NaN;
 
-        public NaturalStoneRevetmentLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                           double relativeDensity, double thicknessTopLayer,
-                                                           NaturalStoneWaveImpactHydraulicLoads hydraulicLoads,
-                                                           NaturalStoneWaveImpactSlope slope,
-                                                           NaturalStoneWaveImpactUpperLimitLoading upperLimitLoading,
-                                                           NaturalStoneWaveImpactLowerLimitLoading lowerLimitLoading,
-                                                           NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation,
-                                                           NaturalStoneWaveImpactNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
-                                                           NaturalStoneWaveImpactWaveAngleImpact waveAngleImpact)
+        public NaturalStoneWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
+                                                            double relativeDensity, double thicknessTopLayer,
+                                                            NaturalStoneWaveImpactHydraulicLoads hydraulicLoads,
+                                                            NaturalStoneWaveImpactSlope slope,
+                                                            NaturalStoneWaveImpactUpperLimitLoading upperLimitLoading,
+                                                            NaturalStoneWaveImpactLowerLimitLoading lowerLimitLoading,
+                                                            NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation,
+                                                            NaturalStoneWaveImpactNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
+                                                            NaturalStoneWaveImpactWaveAngleImpact waveAngleImpact)
             : base(x, initialDamage, failureNumber)
         {
             RelativeDensity = relativeDensity;

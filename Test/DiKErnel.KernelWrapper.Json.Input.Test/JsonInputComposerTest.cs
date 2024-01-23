@@ -117,29 +117,29 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 calculationInput.LocationDependentInputItems;
             Assert.That(locationDependentInputItems, Has.Count.EqualTo(5));
 
-            var naturalStoneRevetmentLocationDependentInputItem =
-                locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
-            Assert.That(naturalStoneRevetmentLocationDependentInputItem, Is.Not.Null);
+            var naturalStoneWaveImpactLocationDependentInputItem =
+                locationDependentInputItems[0] as NaturalStoneWaveImpactLocationDependentInput;
+            Assert.That(naturalStoneWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                11, naturalStoneRevetmentLocationDependentInputItem);
+                11, naturalStoneWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0.1, 1.06, naturalStoneRevetmentLocationDependentInputItem);
+                0.1, 1.06, naturalStoneWaveImpactLocationDependentInputItem);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
-                1.65, 0.3, naturalStoneRevetmentLocationDependentInputItem);
+                1.65, 0.3, naturalStoneWaveImpactLocationDependentInputItem);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
-                5, 1.3, 1.7, 0.9, -0.8, 10, -8, 6, 4.9, naturalStoneRevetmentLocationDependentInputItem.HydraulicLoads);
+                5, 1.3, 1.7, 0.9, -0.8, 10, -8, 6, 4.9, naturalStoneWaveImpactLocationDependentInputItem.HydraulicLoads);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
-                0.95, 1.8, naturalStoneRevetmentLocationDependentInputItem.Slope);
+                0.95, 1.8, naturalStoneWaveImpactLocationDependentInputItem.Slope);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-                6.1, 3.6, 4.5, naturalStoneRevetmentLocationDependentInputItem.UpperLimitLoading);
+                6.1, 3.6, 4.5, naturalStoneWaveImpactLocationDependentInputItem.UpperLimitLoading);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-                4.1, 8, 0.5, naturalStoneRevetmentLocationDependentInputItem.LowerLimitLoading);
+                4.1, 8, 0.5, naturalStoneWaveImpactLocationDependentInputItem.LowerLimitLoading);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
-                0.7, 0.319, naturalStoneRevetmentLocationDependentInputItem.DistanceMaximumWaveElevation);
+                0.7, 0.319, naturalStoneWaveImpactLocationDependentInputItem.DistanceMaximumWaveElevation);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
-                1, 0.01, naturalStoneRevetmentLocationDependentInputItem.NormativeWidthOfWaveImpact);
+                1, 0.01, naturalStoneWaveImpactLocationDependentInputItem.NormativeWidthOfWaveImpact);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                30, naturalStoneRevetmentLocationDependentInputItem.WaveAngleImpact);
+                30, naturalStoneWaveImpactLocationDependentInputItem.WaveAngleImpact);
 
             var grassWaveImpactLocationDependentInputItem =
                 locationDependentInputItems[1] as GrassWaveImpactLocationDependentInput;
@@ -286,29 +286,29 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 calculationInput.LocationDependentInputItems;
             Assert.That(locationDependentInputItems, Has.Count.EqualTo(8));
 
-            var naturalStoneRevetmentLocationDependentInputItem =
-                locationDependentInputItems[0] as NaturalStoneRevetmentLocationDependentInput;
-            Assert.That(naturalStoneRevetmentLocationDependentInputItem, Is.Not.Null);
+            var naturalStoneWaveImpactLocationDependentInputItem =
+                locationDependentInputItems[0] as NaturalStoneWaveImpactLocationDependentInput;
+            Assert.That(naturalStoneWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                32.79, naturalStoneRevetmentLocationDependentInputItem);
+                32.79, naturalStoneWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0, 1, naturalStoneRevetmentLocationDependentInputItem);
+                0, 1, naturalStoneWaveImpactLocationDependentInputItem);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
-                1.65, 0.7, naturalStoneRevetmentLocationDependentInputItem);
+                1.65, 0.7, naturalStoneWaveImpactLocationDependentInputItem);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
-                4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneRevetmentLocationDependentInputItem.HydraulicLoads);
+                4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneWaveImpactLocationDependentInputItem.HydraulicLoads);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
-                0.05, 1.5, naturalStoneRevetmentLocationDependentInputItem.Slope);
+                0.05, 1.5, naturalStoneWaveImpactLocationDependentInputItem.Slope);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-                0.1, 0.6, 4, naturalStoneRevetmentLocationDependentInputItem.UpperLimitLoading);
+                0.1, 0.6, 4, naturalStoneWaveImpactLocationDependentInputItem.UpperLimitLoading);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-                0.1, 0.2, 4, naturalStoneRevetmentLocationDependentInputItem.LowerLimitLoading);
+                0.1, 0.2, 4, naturalStoneWaveImpactLocationDependentInputItem.LowerLimitLoading);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
-                0.42, 0.9, naturalStoneRevetmentLocationDependentInputItem.DistanceMaximumWaveElevation);
+                0.42, 0.9, naturalStoneWaveImpactLocationDependentInputItem.DistanceMaximumWaveElevation);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
-                0.96, 0.11, naturalStoneRevetmentLocationDependentInputItem.NormativeWidthOfWaveImpact);
+                0.96, 0.11, naturalStoneWaveImpactLocationDependentInputItem.NormativeWidthOfWaveImpact);
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                78, naturalStoneRevetmentLocationDependentInputItem.WaveAngleImpact);
+                78, naturalStoneWaveImpactLocationDependentInputItem.WaveAngleImpact);
 
             var grassWaveImpactLocationDependentInputItem1 =
                 locationDependentInputItems[1] as GrassWaveImpactLocationDependentInput;
