@@ -20,7 +20,7 @@ using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class AsphaltRevetmentWaveImpactDefaultsFactory
+    internal static class AsphaltWaveImpactDefaultsFactory
     {
         public static IAsphaltRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults()
         {

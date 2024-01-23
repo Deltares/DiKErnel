@@ -28,7 +28,7 @@ namespace DiKErnel.Integration.Factories
             AsphaltWaveImpactLocationConstructionProperties constructionProperties)
         {
             IAsphaltRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
-                AsphaltRevetmentWaveImpactDefaultsFactory.CreateTopLayerDefaults();
+                AsphaltWaveImpactDefaultsFactory.CreateTopLayerDefaults();
 
             double elasticModulusUpperLayer = constructionProperties.ElasticModulusUpperLayer;
             var upperLayer = new AsphaltWaveImpactLayer(constructionProperties.ThicknessUpperLayer,
