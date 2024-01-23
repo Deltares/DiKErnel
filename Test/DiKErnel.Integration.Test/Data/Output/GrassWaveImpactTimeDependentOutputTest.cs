@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Output
 {
     [TestFixture]
-    public class GrassRevetmentWaveImpactTimeDependentOutputTest
+    public class GrassWaveImpactTimeDependentOutputTest
     {
         [Test]
         public void Constructor_WithAllValuesSet_ExpectedValues()
@@ -55,7 +55,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            var output = new GrassWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -94,7 +94,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+            var output = new GrassWaveImpactTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -121,7 +121,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+                var output = new GrassWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -141,7 +141,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+                var output = new GrassWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert
@@ -161,7 +161,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new GrassRevetmentWaveImpactTimeDependentOutput(constructionProperties);
+                var output = new GrassWaveImpactTimeDependentOutput(constructionProperties);
             }
 
             // Assert

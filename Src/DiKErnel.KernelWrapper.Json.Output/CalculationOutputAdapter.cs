@@ -126,9 +126,9 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case GrassWaveImpactLocationDependentOutput grassWaveImpactLocationDependentOutput:
                 {
-                    IReadOnlyList<GrassRevetmentWaveImpactTimeDependentOutput> grassWaveImpactTimeDependentOutputItems =
+                    IReadOnlyList<GrassWaveImpactTimeDependentOutput> grassWaveImpactTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
-                                               .Cast<GrassRevetmentWaveImpactTimeDependentOutput>()
+                                               .Cast<GrassWaveImpactTimeDependentOutput>()
                                                .ToList();
 
                     return new JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(

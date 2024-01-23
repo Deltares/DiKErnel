@@ -154,7 +154,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                 }
             }
 
-            return new GrassRevetmentWaveImpactTimeDependentOutput(
+            return new GrassWaveImpactTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 

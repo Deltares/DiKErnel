@@ -22,12 +22,12 @@ using DiKErnel.Core.Exceptions;
 namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     /// <summary>
-    /// Time dependent output of a grass revetment wave impact location.
+    /// Time dependent output of a grass wave impact calculation.
     /// </summary>
-    public class GrassRevetmentWaveImpactTimeDependentOutput : TimeDependentOutput
+    public class GrassWaveImpactTimeDependentOutput : TimeDependentOutput
     {
         /// <inheritdoc/>
-        public GrassRevetmentWaveImpactTimeDependentOutput(
+        public GrassWaveImpactTimeDependentOutput(
             GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {

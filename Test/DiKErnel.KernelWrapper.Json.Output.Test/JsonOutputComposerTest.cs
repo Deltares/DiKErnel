@@ -241,7 +241,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     AverageNumberOfWaves = 1.2
                 });
 
-            var grassWaveImpactTimeDependentOutput = new GrassRevetmentWaveImpactTimeDependentOutput(
+            var grassWaveImpactTimeDependentOutput = new GrassWaveImpactTimeDependentOutput(
                 new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 1.3,
@@ -337,7 +337,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     VerticalDistanceWaterLevelElevation = 0.7
                 });
 
-            var grassWaveImpactTimeDependentOutput = new GrassRevetmentWaveImpactTimeDependentOutput(
+            var grassWaveImpactTimeDependentOutput = new GrassWaveImpactTimeDependentOutput(
                 new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.8,
