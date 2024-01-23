@@ -81,7 +81,7 @@ namespace DiKErnel.Integration.TestUtil
 
         public static void AssertNormativeWidthOfWaveImpact(double normativeWidthOfWaveImpactAwi,
                                                             double normativeWidthOfWaveImpactBwi,
-                                                            NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact)
+                                                            NaturalStoneWaveImpactNormativeWidthOfWaveImpact normativeWidthOfWaveImpact)
         {
             Assert.That(normativeWidthOfWaveImpact.NormativeWidthOfWaveImpactAwi, Is.EqualTo(normativeWidthOfWaveImpactAwi));
             Assert.That(normativeWidthOfWaveImpact.NormativeWidthOfWaveImpactBwi, Is.EqualTo(normativeWidthOfWaveImpactBwi));

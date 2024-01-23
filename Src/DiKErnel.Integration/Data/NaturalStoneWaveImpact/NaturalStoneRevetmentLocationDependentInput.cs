@@ -60,7 +60,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                            NaturalStoneWaveImpactUpperLimitLoading upperLimitLoading,
                                                            NaturalStoneWaveImpactLowerLimitLoading lowerLimitLoading,
                                                            NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation,
-                                                           NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
+                                                           NaturalStoneWaveImpactNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
                                                            NaturalStoneWaveImpactWaveAngleImpact waveAngleImpact)
             : base(x, initialDamage, failureNumber)
         {
@@ -89,7 +89,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         public NaturalStoneWaveImpactDistanceMaximumWaveElevation DistanceMaximumWaveElevation { get; }
 
-        public NaturalStoneRevetmentNormativeWidthOfWaveImpact NormativeWidthOfWaveImpact { get; }
+        public NaturalStoneWaveImpactNormativeWidthOfWaveImpact NormativeWidthOfWaveImpact { get; }
 
         public NaturalStoneWaveImpactWaveAngleImpact WaveAngleImpact { get; }
 

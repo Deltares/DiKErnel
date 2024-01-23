@@ -61,7 +61,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.DistanceMaximumWaveElevationBsmax
                 ?? NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationBsmax);
 
-            var normativeWidthOfWaveImpact = new NaturalStoneRevetmentNormativeWidthOfWaveImpact(
+            var normativeWidthOfWaveImpact = new NaturalStoneWaveImpactNormativeWidthOfWaveImpact(
                 constructionProperties.NormativeWidthOfWaveImpactAwi
                 ?? NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactAwi,
                 constructionProperties.NormativeWidthOfWaveImpactBwi
