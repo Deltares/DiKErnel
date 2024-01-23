@@ -3,7 +3,7 @@
 	As a user I want to perform grass wave runup calculations based on Battjes-Groenendijk Analytical.
 
 Scenario Outline: Testcase 1 - Default with closed sod
-	Given the following <tijdstippen>:
+	Given the following tijdstippen:
 		Examples:
 		| tijdstippen |
 		| 0           |
@@ -23,7 +23,7 @@ Scenario Outline: Testcase 1 - Default with closed sod
 		| 50400       |
 		| 54000       |
 		| 57600       |
- 	And the following <hydraulischeBelastingen>:
+ 	And the following hydraulischeBelastingen:
  		Examples:
  		| waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
 	    | 3            | 0.5            | 3                | 50             |
@@ -42,16 +42,16 @@ Scenario Outline: Testcase 1 - Default with closed sod
 	    | 3.2          | 1.5            | 5.2              | 10             |
 	    | 3.1          | 1.3            | 4.8              | 15             |
 	    | 3            | 1              | 4.5              | 20             |
-    And the following <dijkprofiel>:
+    And the following dijkprofiel:
      	Examples:
      	| dijkorientatie | posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
      	| 0              | 0        | 0       | 1.0                   | 0               | 25               |
      	|                | 25       | 7.5     |                       |                 |                  |
-    And the following <locaties>:
+    And the following locaties:
      	Examples: 
      	| positie | rekenmethode   | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
         | 15      | grasGolfoploop | grasGeslotenZode | 0           | 1                               | 1                             |
-    And  the following <rekenmethoden>:
+    And  the following rekenmethoden:
      	Examples:
      	| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
         | grasGolfoploop | 1         | 0.92      | battjesGroenendijkAnalytisch | 1.1           | -4.0           | 0.004  | grasGeslotenZode | 7000                             | 6.6                   |
