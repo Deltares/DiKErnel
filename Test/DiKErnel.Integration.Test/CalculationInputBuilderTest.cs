@@ -1366,8 +1366,7 @@ namespace DiKErnel.Integration.Test
                 result.Data.LocationDependentInputItems;
             Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
-            var locationDependentInput = actualLocationDependentInputItems[0]
-                                             as GrassRevetmentWaveImpactLocationDependentInput;
+            var locationDependentInput = actualLocationDependentInputItems[0] as GrassWaveImpactLocationDependentInput;
             Assert.That(locationDependentInput, Is.Not.Null);
 
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
@@ -1375,22 +1374,22 @@ namespace DiKErnel.Integration.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
                 minimumWaveHeightTemax, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
                 maximumWaveHeightTemin, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 waveAngleImpactNwa, waveAngleImpactQwa, waveAngleImpactRwa, locationDependentInput.WaveAngleImpact);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
                 timeLineAgwi, timeLineBgwi, timeLineCgwi, locationDependentInput.TimeLine);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 upperLimitLoadingAul, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 lowerLimitLoadingAll, locationDependentInput);
         }
 
@@ -1418,30 +1417,29 @@ namespace DiKErnel.Integration.Test
                 result.Data.LocationDependentInputItems;
             Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
-            var locationDependentInput = actualLocationDependentInputItems[0]
-                                             as GrassRevetmentWaveImpactLocationDependentInput;
+            var locationDependentInput = actualLocationDependentInputItems[0] as GrassWaveImpactLocationDependentInput;
             Assert.That(locationDependentInput, Is.Not.Null);
 
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
                 3600000, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
                 3.6, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 2.0 / 3.0, 0.35, 10, locationDependentInput.WaveAngleImpact);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
                 1, -0.000009722, 0.25, locationDependentInput.TimeLine);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 0, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 0.5, locationDependentInput);
         }
 
@@ -1468,30 +1466,29 @@ namespace DiKErnel.Integration.Test
                 result.Data.LocationDependentInputItems;
             Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
 
-            var locationDependentInput = actualLocationDependentInputItems[0]
-                                             as GrassRevetmentWaveImpactLocationDependentInput;
+            var locationDependentInput = actualLocationDependentInputItems[0] as GrassWaveImpactLocationDependentInput;
             Assert.That(locationDependentInput, Is.Not.Null);
 
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
                 3600000, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
                 3.6, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 2.0 / 3.0, 0.35, 10, locationDependentInput.WaveAngleImpact);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
                 0.8, -0.00001944, 0.25, locationDependentInput.TimeLine);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 0, locationDependentInput);
 
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 0.5, locationDependentInput);
         }
 

@@ -26,7 +26,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
-    internal class GrassRevetmentWaveImpactLocationDependentInput : LocationDependentInput
+    internal class GrassWaveImpactLocationDependentInput : LocationDependentInput
     {
         private double minimumWaveHeight = double.NaN;
         private double maximumWaveHeight = double.NaN;
@@ -37,13 +37,11 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         private double waveAngleImpact = double.NaN;
         private double waveHeightImpact = double.NaN;
 
-        public GrassRevetmentWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                              GrassWaveImpactWaveAngleImpact waveAngleImpact,
-                                                              double minimumWaveHeightTemax,
-                                                              double maximumWaveHeightTemin,
-                                                              GrassWaveImpactTimeLine timeLine,
-                                                              double upperLimitLoadingAul,
-                                                              double lowerLimitLoadingAll)
+        public GrassWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
+                                                     GrassWaveImpactWaveAngleImpact waveAngleImpact,
+                                                     double minimumWaveHeightTemax, double maximumWaveHeightTemin,
+                                                     GrassWaveImpactTimeLine timeLine, double upperLimitLoadingAul,
+                                                     double lowerLimitLoadingAll)
             : base(x, initialDamage, failureNumber)
         {
             WaveAngleImpact = waveAngleImpact;

@@ -141,25 +141,25 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 30, naturalStoneRevetmentLocationDependentInputItem.WaveAngleImpact);
 
-            var grassRevetmentWaveImpactLocationDependentInputItem =
-                locationDependentInputItems[1] as GrassRevetmentWaveImpactLocationDependentInput;
-            Assert.That(grassRevetmentWaveImpactLocationDependentInputItem, Is.Not.Null);
+            var grassWaveImpactLocationDependentInputItem =
+                locationDependentInputItems[1] as GrassWaveImpactLocationDependentInput;
+            Assert.That(grassWaveImpactLocationDependentInputItem, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                1, grassRevetmentWaveImpactLocationDependentInputItem);
+                1, grassWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0.04, 1.07, grassRevetmentWaveImpactLocationDependentInputItem);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
-                2500000, grassRevetmentWaveImpactLocationDependentInputItem);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
-                3.1, grassRevetmentWaveImpactLocationDependentInputItem);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                0.9, 0.1, 8, grassRevetmentWaveImpactLocationDependentInputItem.WaveAngleImpact);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
-                0.3, -0.1, 0.96, grassRevetmentWaveImpactLocationDependentInputItem.TimeLine);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-                1, grassRevetmentWaveImpactLocationDependentInputItem);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-                3.5, grassRevetmentWaveImpactLocationDependentInputItem);
+                0.04, 1.07, grassWaveImpactLocationDependentInputItem);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+                2500000, grassWaveImpactLocationDependentInputItem);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+                3.1, grassWaveImpactLocationDependentInputItem);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                0.9, 0.1, 8, grassWaveImpactLocationDependentInputItem.WaveAngleImpact);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+                0.3, -0.1, 0.96, grassWaveImpactLocationDependentInputItem.TimeLine);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+                1, grassWaveImpactLocationDependentInputItem);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+                3.5, grassWaveImpactLocationDependentInputItem);
 
             var grassRevetmentWaveRunupRayleighLocationDependentInputItem =
                 locationDependentInputItems[2] as GrassRevetmentWaveRunupRayleighLocationDependentInput;
@@ -310,45 +310,45 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 78, naturalStoneRevetmentLocationDependentInputItem.WaveAngleImpact);
 
-            var grassRevetmentWaveImpactLocationDependentInputItem1 =
-                locationDependentInputItems[1] as GrassRevetmentWaveImpactLocationDependentInput;
-            Assert.That(grassRevetmentWaveImpactLocationDependentInputItem1, Is.Not.Null);
+            var grassWaveImpactLocationDependentInputItem1 =
+                locationDependentInputItems[1] as GrassWaveImpactLocationDependentInput;
+            Assert.That(grassWaveImpactLocationDependentInputItem1, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                38.4, grassRevetmentWaveImpactLocationDependentInputItem1);
+                38.4, grassWaveImpactLocationDependentInputItem1);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0, 1, grassRevetmentWaveImpactLocationDependentInputItem1);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
-                3600000, grassRevetmentWaveImpactLocationDependentInputItem1);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
-                3.6, grassRevetmentWaveImpactLocationDependentInputItem1);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                2.0 / 3.0, 0.35, 10, grassRevetmentWaveImpactLocationDependentInputItem1.WaveAngleImpact);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
-                1, -0.000009722, 0.25, grassRevetmentWaveImpactLocationDependentInputItem1.TimeLine);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-                0, grassRevetmentWaveImpactLocationDependentInputItem1);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-                0.5, grassRevetmentWaveImpactLocationDependentInputItem1);
+                0, 1, grassWaveImpactLocationDependentInputItem1);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+                3600000, grassWaveImpactLocationDependentInputItem1);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+                3.6, grassWaveImpactLocationDependentInputItem1);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                2.0 / 3.0, 0.35, 10, grassWaveImpactLocationDependentInputItem1.WaveAngleImpact);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+                1, -0.000009722, 0.25, grassWaveImpactLocationDependentInputItem1.TimeLine);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+                0, grassWaveImpactLocationDependentInputItem1);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+                0.5, grassWaveImpactLocationDependentInputItem1);
 
-            var grassRevetmentWaveImpactLocationDependentInputItem2 =
-                locationDependentInputItems[2] as GrassRevetmentWaveImpactLocationDependentInput;
-            Assert.That(grassRevetmentWaveImpactLocationDependentInputItem2, Is.Not.Null);
+            var grassWaveImpactLocationDependentInputItem2 =
+                locationDependentInputItems[2] as GrassWaveImpactLocationDependentInput;
+            Assert.That(grassWaveImpactLocationDependentInputItem2, Is.Not.Null);
             LocationDependentInputAssertHelper.AssertLocationProperties(
-                40, grassRevetmentWaveImpactLocationDependentInputItem2);
+                40, grassWaveImpactLocationDependentInputItem2);
             LocationDependentInputAssertHelper.AssertDamageProperties(
-                0, 1, grassRevetmentWaveImpactLocationDependentInputItem2);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
-                3600000, grassRevetmentWaveImpactLocationDependentInputItem2);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
-                3.6, grassRevetmentWaveImpactLocationDependentInputItem2);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                2.0 / 3.0, 0.35, 10, grassRevetmentWaveImpactLocationDependentInputItem2.WaveAngleImpact);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
-                0.8, -0.00001944, 0.25, grassRevetmentWaveImpactLocationDependentInputItem2.TimeLine);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
-                0, grassRevetmentWaveImpactLocationDependentInputItem2);
-            GrassRevetmentWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
-                0.5, grassRevetmentWaveImpactLocationDependentInputItem2);
+                0, 1, grassWaveImpactLocationDependentInputItem2);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMinimumWaveHeight(
+                3600000, grassWaveImpactLocationDependentInputItem2);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
+                3.6, grassWaveImpactLocationDependentInputItem2);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+                2.0 / 3.0, 0.35, 10, grassWaveImpactLocationDependentInputItem2.WaveAngleImpact);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
+                0.8, -0.00001944, 0.25, grassWaveImpactLocationDependentInputItem2.TimeLine);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+                0, grassWaveImpactLocationDependentInputItem2);
+            GrassWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+                0.5, grassWaveImpactLocationDependentInputItem2);
 
             var grassRevetmentWaveRunupRayleighLocationDependentInputItem1 =
                 locationDependentInputItems[3] as GrassRevetmentWaveRunupRayleighLocationDependentInput;

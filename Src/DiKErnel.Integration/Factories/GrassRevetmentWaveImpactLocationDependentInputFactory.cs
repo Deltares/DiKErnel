@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class GrassRevetmentWaveImpactLocationDependentInputFactory
     {
-        public static GrassRevetmentWaveImpactLocationDependentInput CreateLocationDependentInput(
+        public static GrassWaveImpactLocationDependentInput CreateLocationDependentInput(
             GrassWaveImpactLocationConstructionProperties constructionProperties)
         {
             IGrassRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
@@ -40,7 +40,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.TimeLineBgwi ?? topLayerDefaults.TimeLineBgwi,
                 constructionProperties.TimeLineCgwi ?? topLayerDefaults.TimeLineCgwi);
 
-            return new GrassRevetmentWaveImpactLocationDependentInput(
+            return new GrassWaveImpactLocationDependentInput(
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,

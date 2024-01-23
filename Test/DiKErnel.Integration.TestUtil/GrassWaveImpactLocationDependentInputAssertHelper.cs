@@ -21,16 +21,16 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class GrassRevetmentWaveImpactLocationDependentInputAssertHelper
+    internal static class GrassWaveImpactLocationDependentInputAssertHelper
     {
         public static void AssertMinimumWaveHeight(double minimumWaveHeightTemax,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+                                                   GrassWaveImpactLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.MinimumWaveHeightTemax, Is.EqualTo(minimumWaveHeightTemax));
         }
 
         public static void AssertMaximumWaveHeight(double maximumWaveHeightTemin,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+                                                   GrassWaveImpactLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.MaximumWaveHeightTemin, Is.EqualTo(maximumWaveHeightTemin));
         }
@@ -53,13 +53,13 @@ namespace DiKErnel.Integration.TestUtil
         }
 
         public static void AssertUpperLimitLoading(double upperLimitLoadingAul,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+                                                   GrassWaveImpactLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.UpperLimitLoadingAul, Is.EqualTo(upperLimitLoadingAul));
         }
 
         public static void AssertLowerLimitLoading(double lowerLimitLoadingAll,
-                                                   GrassRevetmentWaveImpactLocationDependentInput locationDependentInput)
+                                                   GrassWaveImpactLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.LowerLimitLoadingAll, Is.EqualTo(lowerLimitLoadingAll));
         }
