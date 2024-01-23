@@ -27,7 +27,7 @@ using NUnit.Framework;
 namespace DiKErnel.System.Test
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighCalculationTest : CalculationTest
+    public class GrassWaveRunupRayleighDiscreteCalculationTest : CalculationTest
     {
         [Test]
         public void GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult()

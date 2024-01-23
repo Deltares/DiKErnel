@@ -27,7 +27,7 @@ using NUnit.Framework;
 namespace DiKErnel.System.Test
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactCalculationTest : CalculationTest
+    public class AsphaltWaveImpactCalculationTest : CalculationTest
     {
         private readonly IReadOnlyList<(double, double)> depthFactors = new[]
         {

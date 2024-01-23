@@ -26,7 +26,7 @@ using NUnit.Framework;
 namespace DiKErnel.System.Test
 {
     [TestFixture]
-    public class NaturalStoneRevetmentCalculationTest : CalculationTest
+    public class NaturalStoneWaveImpactCalculationTest : CalculationTest
     {
         [Test]
         public void GivenCalculationInputForSchematization1Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult()
