@@ -299,7 +299,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     asphaltWaveImpactTimeDependentOutput
                 }, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3),
-                new GrassRevetmentOvertoppingLocationDependentOutput(new[]
+                new GrassOvertoppingRayleighDiscreteLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput
                 }),
@@ -381,7 +381,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     asphaltWaveImpactTimeDependentOutput
                 }, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4),
-                new GrassRevetmentOvertoppingLocationDependentOutput(new[]
+                new GrassOvertoppingRayleighDiscreteLocationDependentOutput(new[]
                 {
                     grassOvertoppingTimeDependentOutput
                 }),

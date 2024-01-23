@@ -82,7 +82,7 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new GrassRevetmentOvertoppingLocationDependentOutput(timeDependentOutputItems);
+            return new GrassOvertoppingRayleighDiscreteLocationDependentOutput(timeDependentOutputItems);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
