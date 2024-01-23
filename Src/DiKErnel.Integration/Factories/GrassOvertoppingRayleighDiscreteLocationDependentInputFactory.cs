@@ -23,7 +23,7 @@ using DiKErnel.Integration.Data.GrassOvertopping;
 
 namespace DiKErnel.Integration.Factories
 {
-    internal static class GrassRevetmentOvertoppingLocationDependentInputFactory
+    internal static class GrassOvertoppingRayleighDiscreteLocationDependentInputFactory
     {
         public static GrassOvertoppingRayleighDiscreteLocationDependentInput CreateLocationDependentInput(
             GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
