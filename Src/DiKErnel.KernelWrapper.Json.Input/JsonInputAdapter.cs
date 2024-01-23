@@ -377,7 +377,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 calculationData?.NormativeWidthOfWaveImpact;
 
             return new NaturalStoneWaveImpactLocationConstructionProperties(
-                locationData.X, ConvertNaturalStoneRevetmentTopLayerType(locationData.TopLayerType),
+                locationData.X, ConvertNaturalStoneWaveImpactTopLayerType(locationData.TopLayerType),
                 locationData.ThicknessTopLayer, locationData.RelativeDensity)
             {
                 InitialDamage = locationData.InitialDamage,
@@ -407,12 +407,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static NaturalStoneTopLayerType ConvertNaturalStoneRevetmentTopLayerType(
+        private static NaturalStoneWaveImpactTopLayerType ConvertNaturalStoneWaveImpactTopLayerType(
             JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
         {
             return topLayerType switch
             {
-                JsonInputNaturalStoneRevetmentTopLayerType.NordicStone => NaturalStoneTopLayerType.NordicStone,
+                JsonInputNaturalStoneRevetmentTopLayerType.NordicStone => NaturalStoneWaveImpactTopLayerType.NordicStone,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };
         }

@@ -512,7 +512,7 @@ namespace DiKErnel.System.Test
                 new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(19, GrassTopLayerType.ClosedSod);
 
             var naturalStoneWaveImpactLocationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
-                15, NaturalStoneTopLayerType.NordicStone, 0.5, 4.6);
+                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.5, 4.6);
 
             var grassOvertoppingLocationConstructionProperties =
                 new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
@@ -539,7 +539,7 @@ namespace DiKErnel.System.Test
         {
             // Given
             var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
-                15, NaturalStoneTopLayerType.NordicStone, 0, 10)
+                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0, 10)
             {
                 InitialDamage = -0.1,
                 FailureNumber = -1,

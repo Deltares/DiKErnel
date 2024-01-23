@@ -392,8 +392,8 @@ namespace DiKErnel.Integration
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
-                   && ValidateNaturalStoneRevetmentTopLayerType(constructionProperties.TopLayerType,
-                                                                constructionProperties.X);
+                   && ValidateNaturalStoneWaveImpactTopLayerType(constructionProperties.TopLayerType,
+                                                                 constructionProperties.X);
         }
 
         private static bool ValidateLocationOnOuterSlope(ProfileDataFactoryPoint outerToe,
@@ -448,10 +448,10 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateNaturalStoneRevetmentTopLayerType(NaturalStoneTopLayerType topLayerType,
-                                                                      double locationX)
+        private static bool ValidateNaturalStoneWaveImpactTopLayerType(NaturalStoneWaveImpactTopLayerType topLayerType,
+                                                                       double locationX)
         {
-            if (topLayerType != NaturalStoneTopLayerType.NordicStone)
+            if (topLayerType != NaturalStoneWaveImpactTopLayerType.NordicStone)
             {
                 RegisterValidationError($"The location with position {NumericsHelper.ToString(locationX)} has an " +
                                         "invalid top layer type.");

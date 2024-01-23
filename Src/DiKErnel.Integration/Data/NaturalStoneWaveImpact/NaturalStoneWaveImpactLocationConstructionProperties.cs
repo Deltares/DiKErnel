@@ -28,7 +28,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         /// <param name="topLayerType">The type of the top layer.</param>
         /// <param name="thicknessTopLayer">The thickness of the top layer.</param>
         /// <param name="relativeDensity">The relative density.</param>
-        public NaturalStoneWaveImpactLocationConstructionProperties(double x, NaturalStoneTopLayerType topLayerType,
+        public NaturalStoneWaveImpactLocationConstructionProperties(double x,
+                                                                    NaturalStoneWaveImpactTopLayerType topLayerType,
                                                                     double thicknessTopLayer, double relativeDensity)
             : base(x)
         {
@@ -40,7 +41,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         /// <summary>
         /// Gets the type of the top layer.
         /// </summary>
-        public NaturalStoneTopLayerType TopLayerType { get; }
+        public NaturalStoneWaveImpactTopLayerType TopLayerType { get; }
 
         /// <summary>
         /// Gets the thickness of the top layer.

@@ -1798,7 +1798,8 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddNaturalStoneLocation(
                         new NaturalStoneWaveImpactLocationConstructionProperties(
-                            locationX, NaturalStoneTopLayerType.NordicStone, Random.NextDouble(), Random.NextDouble()));
+                            locationX, NaturalStoneWaveImpactTopLayerType.NordicStone, Random.NextDouble(),
+                            Random.NextDouble()));
                 }, locationX);
         }
 
@@ -1812,7 +1813,8 @@ namespace DiKErnel.Integration.Test
                 {
                     builder.AddNaturalStoneLocation(
                         new NaturalStoneWaveImpactLocationConstructionProperties(
-                            locationX, NaturalStoneTopLayerType.NordicStone, Random.NextDouble(), Random.NextDouble()));
+                            locationX, NaturalStoneWaveImpactTopLayerType.NordicStone, Random.NextDouble(),
+                            Random.NextDouble()));
                 }, locationX);
         }
 
@@ -1820,7 +1822,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
-            const NaturalStoneTopLayerType topLayerType = (NaturalStoneTopLayerType) 99;
+            const NaturalStoneWaveImpactTopLayerType topLayerType = (NaturalStoneWaveImpactTopLayerType) 99;
 
             double x = Random.NextDouble();
             var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
@@ -1842,7 +1844,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
-            var topLayerType = Random.NextEnumValue<NaturalStoneTopLayerType>();
+            var topLayerType = Random.NextEnumValue<NaturalStoneWaveImpactTopLayerType>();
             const double x = 5;
             double thicknessTopLayer = Random.NextDouble();
             double relativeDensity = Random.NextDouble();
@@ -1957,7 +1959,7 @@ namespace DiKErnel.Integration.Test
         public void GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
-            const NaturalStoneTopLayerType topLayerType = NaturalStoneTopLayerType.NordicStone;
+            const NaturalStoneWaveImpactTopLayerType topLayerType = NaturalStoneWaveImpactTopLayerType.NordicStone;
             const double x = 5;
             double thicknessTopLayer = Random.NextDouble();
             double relativeDensity = Random.NextDouble();
