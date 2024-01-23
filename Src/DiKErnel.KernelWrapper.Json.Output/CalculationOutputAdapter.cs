@@ -124,30 +124,30 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
-                case GrassRevetmentWaveImpactLocationDependentOutput grassRevetmentWaveImpactLocationDependentOutput:
+                case GrassWaveImpactLocationDependentOutput grassWaveImpactLocationDependentOutput:
                 {
-                    IReadOnlyList<GrassRevetmentWaveImpactTimeDependentOutput> grassRevetmentWaveImpactTimeDependentOutputItems =
+                    IReadOnlyList<GrassRevetmentWaveImpactTimeDependentOutput> grassWaveImpactTimeDependentOutputItems =
                         locationDependentOutput.TimeDependentOutputItems
                                                .Cast<GrassRevetmentWaveImpactTimeDependentOutput>()
                                                .ToList();
 
                     return new JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+                        grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
-                        grassRevetmentWaveImpactLocationDependentOutput.Z,
-                        grassRevetmentWaveImpactLocationDependentOutput.MinimumWaveHeight,
-                        grassRevetmentWaveImpactLocationDependentOutput.MaximumWaveHeight,
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+                        grassWaveImpactLocationDependentOutput.Z,
+                        grassWaveImpactLocationDependentOutput.MinimumWaveHeight,
+                        grassWaveImpactLocationDependentOutput.MaximumWaveHeight,
+                        grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.LoadingRevetment).ToList(),
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+                        grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.UpperLimitLoading).ToList(),
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+                        grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.LowerLimitLoading).ToList(),
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+                        grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngle).ToList(),
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+                        grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveAngleImpact).ToList(),
-                        grassRevetmentWaveImpactTimeDependentOutputItems
+                        grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveHeightImpact).ToList());
                 }
                 case GrassRevetmentWaveRunupRayleighLocationDependentOutput grassRevetmentWaveRunupRayleighLocationDependentOutput:

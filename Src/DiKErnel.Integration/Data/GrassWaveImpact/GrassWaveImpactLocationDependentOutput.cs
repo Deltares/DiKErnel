@@ -22,17 +22,16 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     /// <summary>
-    /// Location dependent output of a grass revetment wave impact location.
+    /// Location dependent output of a grass wave impact calculation.
     /// </summary>
-    public class GrassRevetmentWaveImpactLocationDependentOutput : LocationDependentOutput
+    public class GrassWaveImpactLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
         /// <param name="minimumWaveHeight">The calculated minimum wave height.</param>
         /// <param name="maximumWaveHeight">The calculated maximum wave height.</param>
-        public GrassRevetmentWaveImpactLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double minimumWaveHeight,
-            double maximumWaveHeight)
+        public GrassWaveImpactLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems,
+                                                      double z, double minimumWaveHeight, double maximumWaveHeight)
             : base(timeDependentOutputItems)
         {
             Z = z;
