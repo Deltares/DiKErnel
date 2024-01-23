@@ -1,6 +1,6 @@
 ﻿Feature: BattjesGroenendijkAnalytical
-	@DIKERNEL-377
 	As a user I want to perform grass wave runup calculations based on Battjes-Groenendijk Analytical.
+	@DIKERNEL-377
 
 Scenario Outline: Testcase 1 - Default with closed sod
 	Given the following tijdstippen:
