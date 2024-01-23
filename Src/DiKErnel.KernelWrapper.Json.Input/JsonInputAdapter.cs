@@ -175,7 +175,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                         if (constructionProperties is
                             GrassWaveRunupRayleighDiscreteLocationConstructionProperties rayleighDiscreteLocationConstructionProperties)
                         {
-                            builder.AddGrassWaveRunupRayleighLocation(rayleighDiscreteLocationConstructionProperties);
+                            builder.AddGrassWaveRunupRayleighDiscreteLocation(rayleighDiscreteLocationConstructionProperties);
                         }
 
                         break;

@@ -151,11 +151,11 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
-        /// Adds a grass wave run-up location with Rayleigh protocol.
+        /// Adds a grass wave run-up Rayleigh Discrete location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass wave
         /// run-up Rayleigh Discrete location dependent input.</param>
-        public void AddGrassWaveRunupRayleighLocation(
+        public void AddGrassWaveRunupRayleighDiscreteLocation(
             GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);

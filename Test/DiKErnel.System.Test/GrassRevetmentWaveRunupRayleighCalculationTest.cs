@@ -38,7 +38,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.ClosedSod);
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -63,7 +63,7 @@ namespace DiKErnel.System.Test
                 CriticalFrontVelocity = 6.2
             };
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -88,7 +88,7 @@ namespace DiKErnel.System.Test
                 FrontVelocityCu = 1.15
             };
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -112,7 +112,7 @@ namespace DiKErnel.System.Test
                 InitialDamage = 0.3
             };
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -133,7 +133,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.OpenSod);
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -158,7 +158,7 @@ namespace DiKErnel.System.Test
                 ReducedStrengthTransitionAlphaS = 0.9
             };
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -179,7 +179,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.ClosedSod);
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -200,7 +200,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.OpenSod);
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -224,7 +224,7 @@ namespace DiKErnel.System.Test
                 AverageNumberOfWavesCtm = 1
             };
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -245,7 +245,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.ClosedSod);
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -266,7 +266,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.ClosedSod);
 
-            builder.AddGrassWaveRunupRayleighLocation(locationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 

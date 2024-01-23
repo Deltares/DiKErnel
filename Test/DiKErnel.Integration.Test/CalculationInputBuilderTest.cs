@@ -1512,7 +1512,7 @@ namespace DiKErnel.Integration.Test
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
-                    builder.AddGrassWaveRunupRayleighLocation(
+                    builder.AddGrassWaveRunupRayleighDiscreteLocation(
                         new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
@@ -1526,7 +1526,7 @@ namespace DiKErnel.Integration.Test
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
-                    builder.AddGrassWaveRunupRayleighLocation(
+                    builder.AddGrassWaveRunupRayleighDiscreteLocation(
                         new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
@@ -1545,7 +1545,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1580,7 +1580,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
-            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1618,7 +1618,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
-            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1666,7 +1666,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1713,7 +1713,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1759,7 +1759,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddGrassWaveRunupRayleighLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
