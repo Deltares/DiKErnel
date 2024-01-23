@@ -947,7 +947,7 @@ namespace DiKErnel.Integration.Test
 
         #endregion
 
-        #region Grass overtopping
+        #region Grass overtopping Rayleigh Discrete
 
         [Test]
         public void
@@ -1502,10 +1502,10 @@ namespace DiKErnel.Integration.Test
 
         #endregion
 
-        #region Grass wave run-up Rayleigh
+        #region Grass wave run-up Rayleigh Discrete
 
         [Test]
-        public void GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 0;
 
@@ -1519,7 +1519,7 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithGrassWaveRunupRayleighLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 10;
 
@@ -1534,7 +1534,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
@@ -1557,7 +1557,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1596,7 +1596,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupRayleighLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1635,7 +1635,7 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1702,7 +1702,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInpu()
+            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInpu()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
@@ -1748,7 +1748,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupRayleighLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+            GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
@@ -1794,7 +1794,7 @@ namespace DiKErnel.Integration.Test
 
         #endregion
 
-        #region Natural stone
+        #region Natural stone wave impact
 
         [Test]
         public void GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
