@@ -124,21 +124,21 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 11, naturalStoneWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0.1, 1.06, naturalStoneWaveImpactLocationDependentInputItem);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 1.65, 0.3, naturalStoneWaveImpactLocationDependentInputItem);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertHydraulicLoads(
                 5, 1.3, 1.7, 0.9, -0.8, 10, -8, 6, 4.9, naturalStoneWaveImpactLocationDependentInputItem.HydraulicLoads);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertSlope(
                 0.95, 1.8, naturalStoneWaveImpactLocationDependentInputItem.Slope);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 6.1, 3.6, 4.5, naturalStoneWaveImpactLocationDependentInputItem.UpperLimitLoading);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 4.1, 8, 0.5, naturalStoneWaveImpactLocationDependentInputItem.LowerLimitLoading);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
                 0.7, 0.319, naturalStoneWaveImpactLocationDependentInputItem.DistanceMaximumWaveElevation);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
                 1, 0.01, naturalStoneWaveImpactLocationDependentInputItem.NormativeWidthOfWaveImpact);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 30, naturalStoneWaveImpactLocationDependentInputItem.WaveAngleImpact);
 
             var grassWaveImpactLocationDependentInputItem =
@@ -172,9 +172,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 1.5, 0.8, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
             GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.99, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7213, 5000, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
                 8.3, 3.5, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
 
             var asphaltWaveImpactLocationDependentInputItem =
@@ -293,21 +293,21 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 32.79, naturalStoneWaveImpactLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0, 1, naturalStoneWaveImpactLocationDependentInputItem);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 1.65, 0.7, naturalStoneWaveImpactLocationDependentInputItem);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertHydraulicLoads(
                 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, naturalStoneWaveImpactLocationDependentInputItem.HydraulicLoads);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertSlope(
                 0.05, 1.5, naturalStoneWaveImpactLocationDependentInputItem.Slope);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 0.1, 0.6, 4, naturalStoneWaveImpactLocationDependentInputItem.UpperLimitLoading);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 0.1, 0.2, 4, naturalStoneWaveImpactLocationDependentInputItem.LowerLimitLoading);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
                 0.42, 0.9, naturalStoneWaveImpactLocationDependentInputItem.DistanceMaximumWaveElevation);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
                 0.96, 0.11, naturalStoneWaveImpactLocationDependentInputItem.NormativeWidthOfWaveImpact);
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 78, naturalStoneWaveImpactLocationDependentInputItem.WaveAngleImpact);
 
             var grassWaveImpactLocationDependentInputItem1 =
@@ -361,9 +361,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 1, 1, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
             GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.1, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
 
             var grassWaveRunupRayleighDiscreteLocationDependentInputItem2 =
@@ -377,9 +377,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 1, 1, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
             GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.1, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
 
             var asphaltWaveImpactLocationDependentInputItem =

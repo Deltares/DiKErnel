@@ -1693,10 +1693,10 @@ namespace DiKErnel.Integration.Test
             GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 averageNumberOfWavesCtm, locationDependentInput);
 
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
 
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, frontVelocityCu, locationDependentInput);
         }
 
@@ -1739,10 +1739,10 @@ namespace DiKErnel.Integration.Test
             GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, locationDependentInput);
 
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, locationDependentInput);
 
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.1, locationDependentInput);
         }
 
@@ -1785,10 +1785,10 @@ namespace DiKErnel.Integration.Test
             GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, locationDependentInput);
 
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertCumulativeOverload(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, locationDependentInput);
 
-            GrassRevetmentWaveRunupRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.1, locationDependentInput);
         }
 
@@ -1933,33 +1933,33 @@ namespace DiKErnel.Integration.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 relativeDensity, thicknessTopLayer, locationDependentInput);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertHydraulicLoads(
                 hydraulicLoadAp, hydraulicLoadBp, hydraulicLoadCp, hydraulicLoadNp, hydraulicLoadAs, hydraulicLoadBs,
                 hydraulicLoadCs, hydraulicLoadNs, hydraulicLoadXib, locationDependentInput.HydraulicLoads);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertSlope(
                 slopeUpperLevelAus, slopeLowerLevelAls, locationDependentInput.Slope);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 upperLimitLoadingAul, upperLimitLoadingBul, upperLimitLoadingCul,
                 locationDependentInput.UpperLimitLoading);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 lowerLimitLoadingAll, lowerLimitLoadingBll, lowerLimitLoadingCll,
                 locationDependentInput.LowerLimitLoading);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
                 distanceMaximumWaveElevationAsmax, distanceMaximumWaveElevationBsmax,
                 locationDependentInput.DistanceMaximumWaveElevation);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
                 normativeWidthOfWaveImpactAwi, normativeWidthOfWaveImpactBwi,
                 locationDependentInput.NormativeWidthOfWaveImpact);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 waveAngleImpactBetamax, locationDependentInput.WaveAngleImpact);
         }
 
@@ -1997,28 +1997,28 @@ namespace DiKErnel.Integration.Test
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertGeneralProperties(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertGeneralProperties(
                 relativeDensity, thicknessTopLayer, locationDependentInput);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertHydraulicLoads(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertHydraulicLoads(
                 4, 0, 0, -0.9, 0.8, 0, 0, 0.6, 2.9, locationDependentInput.HydraulicLoads);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertSlope(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertSlope(
                 0.05, 1.5, locationDependentInput.Slope);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertUpperLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
                 0.1, 0.6, 4, locationDependentInput.UpperLimitLoading);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertLowerLimitLoading(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertLowerLimitLoading(
                 0.1, 0.2, 4, locationDependentInput.LowerLimitLoading);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertDistanceMaximumWaveElevation(
                 0.42, 0.9, locationDependentInput.DistanceMaximumWaveElevation);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertNormativeWidthOfWaveImpact(
                 0.96, 0.11, locationDependentInput.NormativeWidthOfWaveImpact);
 
-            NaturalStoneRevetmentLocationDependentInputAssertHelper.AssertWaveAngleImpact(
+            NaturalStoneWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
                 78, locationDependentInput.WaveAngleImpact);
         }
 

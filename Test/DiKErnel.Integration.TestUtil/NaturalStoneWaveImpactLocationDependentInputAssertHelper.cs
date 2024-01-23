@@ -21,7 +21,7 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class NaturalStoneRevetmentLocationDependentInputAssertHelper
+    internal static class NaturalStoneWaveImpactLocationDependentInputAssertHelper
     {
         public static void AssertGeneralProperties(double relativeDensity, double thicknessTopLayer,
                                                    NaturalStoneWaveImpactLocationDependentInput locationDependentInput)
