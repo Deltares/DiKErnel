@@ -297,6 +297,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 52
     testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 53
+ testRunner.Then("the schadegetal is 5.964275964074604", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
