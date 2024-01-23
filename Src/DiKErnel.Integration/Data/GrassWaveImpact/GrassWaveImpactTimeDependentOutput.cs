@@ -28,7 +28,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
     {
         /// <inheritdoc/>
         public GrassWaveImpactTimeDependentOutput(
-            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
+            GrassWaveImpactTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
             LoadingRevetment = constructionProperties.LoadingRevetment

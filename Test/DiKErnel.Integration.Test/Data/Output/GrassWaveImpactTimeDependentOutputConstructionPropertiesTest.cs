@@ -24,13 +24,13 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Output
 {
     [TestFixture]
-    public class GrassRevetmentWaveImpactTimeDependentOutputConstructionPropertiesTest
+    public class GrassWaveImpactTimeDependentOutputConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Call
-            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties();
+            var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties();
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
@@ -60,7 +60,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double waveHeightImpact = Random.NextDouble();
 
             // When
-            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,

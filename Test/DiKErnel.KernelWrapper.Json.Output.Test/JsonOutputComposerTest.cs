@@ -242,7 +242,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var grassWaveImpactTimeDependentOutput = new GrassWaveImpactTimeDependentOutput(
-                new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+                new GrassWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 1.3,
                     Damage = 1.4,
@@ -338,7 +338,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 });
 
             var grassWaveImpactTimeDependentOutput = new GrassWaveImpactTimeDependentOutput(
-                new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+                new GrassWaveImpactTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = 0.8,
                     Damage = 0.9,

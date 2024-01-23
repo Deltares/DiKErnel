@@ -41,7 +41,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double waveAngleImpact = Random.NextDouble();
             double waveHeightImpact = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -80,7 +80,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             double upperLimitLoading = Random.NextDouble();
             double lowerLimitLoading = Random.NextDouble();
 
-            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
@@ -113,7 +113,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_LoadingRevetmentNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+            GrassWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.LoadingRevetment = null;
@@ -133,7 +133,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_UpperLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+            GrassWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.UpperLimitLoading = null;
@@ -153,7 +153,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         public void Constructor_LowerLimitLoadingNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
-            GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
+            GrassWaveImpactTimeDependentOutputConstructionProperties constructionProperties =
                 CreateFullyConfiguredConstructionProperties();
 
             constructionProperties.LowerLimitLoading = null;
@@ -169,9 +169,9 @@ namespace DiKErnel.Integration.Test.Data.Output
                                                                               "LowerLimitLoading must be set.");
         }
 
-        private static GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
+        private static GrassWaveImpactTimeDependentOutputConstructionProperties CreateFullyConfiguredConstructionProperties()
         {
-            return new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            return new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),

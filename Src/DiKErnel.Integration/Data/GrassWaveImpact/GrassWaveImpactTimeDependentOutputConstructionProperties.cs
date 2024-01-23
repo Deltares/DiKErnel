@@ -21,10 +21,9 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.GrassWaveImpact
 {
     /// <summary>
-    /// Construction properties to construct grass revetment wave impact time dependent
-    /// output.
+    /// Construction properties to construct grass wave impact time dependent output.
     /// </summary>
-    public class GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+    public class GrassWaveImpactTimeDependentOutputConstructionProperties
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>

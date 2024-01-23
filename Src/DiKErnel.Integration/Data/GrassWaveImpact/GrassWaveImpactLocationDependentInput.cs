@@ -168,10 +168,10 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }
 
-        private GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, double? timeOfFailure)
         {
-            var constructionProperties = new GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
