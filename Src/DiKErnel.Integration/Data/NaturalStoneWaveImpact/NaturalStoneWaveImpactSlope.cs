@@ -18,9 +18,9 @@
 
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
-    internal class NaturalStoneRevetmentSlope
+    internal class NaturalStoneWaveImpactSlope
     {
-        public NaturalStoneRevetmentSlope(double upperLevelAus, double lowerLevelAls)
+        public NaturalStoneWaveImpactSlope(double upperLevelAus, double lowerLevelAls)
         {
             UpperLevelAus = upperLevelAus;
             LowerLevelAls = lowerLevelAls;

@@ -41,7 +41,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.HydraulicLoadNs ?? topLayerDefaults.HydraulicLoadNs,
                 constructionProperties.HydraulicLoadXib ?? topLayerDefaults.HydraulicLoadXib);
 
-            var slope = new NaturalStoneRevetmentSlope(
+            var slope = new NaturalStoneWaveImpactSlope(
                 constructionProperties.SlopeUpperLevelAus ?? NaturalStoneRevetmentDefaults.SlopeUpperLevelAus,
                 constructionProperties.SlopeLowerLevelAls ?? NaturalStoneRevetmentDefaults.SlopeLowerLevelAls);
 
@@ -67,7 +67,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.NormativeWidthOfWaveImpactBwi
                 ?? NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactBwi);
 
-            var waveAngleImpact = new NaturalStoneRevetmentWaveAngleImpact(
+            var waveAngleImpact = new NaturalStoneWaveImpactWaveAngleImpact(
                 constructionProperties.WaveAngleImpactBetamax ?? NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax);
 
             return new NaturalStoneRevetmentLocationDependentInput(

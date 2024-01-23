@@ -47,7 +47,7 @@ namespace DiKErnel.Integration.TestUtil
         }
 
         public static void AssertSlope(double slopeUpperLevelAus, double slopeLowerLevelAls,
-                                       NaturalStoneRevetmentSlope slope)
+                                       NaturalStoneWaveImpactSlope slope)
         {
             Assert.That(slope.UpperLevelAus, Is.EqualTo(slopeUpperLevelAus));
             Assert.That(slope.LowerLevelAls, Is.EqualTo(slopeLowerLevelAls));
@@ -88,7 +88,7 @@ namespace DiKErnel.Integration.TestUtil
         }
 
         public static void AssertWaveAngleImpact(double waveAngleImpactBetamax,
-                                                 NaturalStoneRevetmentWaveAngleImpact waveAngleImpact)
+                                                 NaturalStoneWaveImpactWaveAngleImpact waveAngleImpact)
         {
             Assert.That(waveAngleImpact.Betamax, Is.EqualTo(waveAngleImpactBetamax));
         }

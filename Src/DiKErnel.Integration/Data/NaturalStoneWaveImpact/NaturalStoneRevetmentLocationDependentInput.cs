@@ -56,12 +56,12 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         public NaturalStoneRevetmentLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                            double relativeDensity, double thicknessTopLayer,
                                                            NaturalStoneWaveImpactHydraulicLoads hydraulicLoads,
-                                                           NaturalStoneRevetmentSlope slope,
+                                                           NaturalStoneWaveImpactSlope slope,
                                                            NaturalStoneWaveImpactUpperLimitLoading upperLimitLoading,
                                                            NaturalStoneWaveImpactLowerLimitLoading lowerLimitLoading,
                                                            NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation,
                                                            NaturalStoneRevetmentNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
-                                                           NaturalStoneRevetmentWaveAngleImpact waveAngleImpact)
+                                                           NaturalStoneWaveImpactWaveAngleImpact waveAngleImpact)
             : base(x, initialDamage, failureNumber)
         {
             RelativeDensity = relativeDensity;
@@ -81,7 +81,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         public NaturalStoneWaveImpactHydraulicLoads HydraulicLoads { get; }
 
-        public NaturalStoneRevetmentSlope Slope { get; }
+        public NaturalStoneWaveImpactSlope Slope { get; }
 
         public NaturalStoneWaveImpactUpperLimitLoading UpperLimitLoading { get; }
 
@@ -91,7 +91,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         public NaturalStoneRevetmentNormativeWidthOfWaveImpact NormativeWidthOfWaveImpact { get; }
 
-        public NaturalStoneRevetmentWaveAngleImpact WaveAngleImpact { get; }
+        public NaturalStoneWaveImpactWaveAngleImpact WaveAngleImpact { get; }
 
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
