@@ -137,7 +137,7 @@ namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
         /// Gets the K1 value [-].
         /// </summary>
         public double K1 { get; }
-        
+
         /// <summary>
         /// Gets the K2 value [-].
         /// </summary>

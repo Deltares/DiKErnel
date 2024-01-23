@@ -1505,7 +1505,8 @@ namespace DiKErnel.Integration.Test
         #region Grass wave run-up Rayleigh Discrete
 
         [Test]
-        public void GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void
+            GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 0;
 
@@ -1519,7 +1520,8 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void
+            GivenBuilderWithGrassWaveRunupRayleighDiscreteLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 10;
 
@@ -1635,7 +1637,8 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void
+            GivenBuilderWithFullyConfiguredGrassWaveRunupRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();

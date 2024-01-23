@@ -541,7 +541,6 @@ namespace DiKErnel.System.Test
             builder.AddTimeStep(100, 150, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0);
             builder.AddDikeProfileSegment(20, 10, 30, 10);
-            builder.AddDikeProfileSegment(20, 10, 30, 10);
             builder.AddDikeProfileSegment(30, 10, 40, 5);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);

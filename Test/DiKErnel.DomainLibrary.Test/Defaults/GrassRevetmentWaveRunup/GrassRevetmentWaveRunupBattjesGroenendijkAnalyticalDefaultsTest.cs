@@ -37,7 +37,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
             // Call & Assert
             Assert.That(GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalDefaults.K1, Is.EqualTo(2));
         }
-        
+
         [Test]
         public void K2_ExpectedValue()
         {
