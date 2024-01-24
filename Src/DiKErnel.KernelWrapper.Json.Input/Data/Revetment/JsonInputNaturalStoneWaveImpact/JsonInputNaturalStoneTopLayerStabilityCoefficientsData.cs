@@ -20,7 +20,7 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact
 {
     internal class JsonInputNaturalStoneTopLayerStabilityCoefficientsData
     {

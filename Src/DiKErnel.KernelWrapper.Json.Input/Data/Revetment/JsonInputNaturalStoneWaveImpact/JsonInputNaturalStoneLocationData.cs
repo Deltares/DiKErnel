@@ -16,22 +16,22 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact
 {
-    internal class JsonInputNaturalStoneTopLayerStabilityData
+    internal class JsonInputNaturalStoneLocationData : JsonInputLocationData
     {
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.Xib)]
-        public double? StabilityXib { get; private set; }
+        [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
+        public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilityPlunging)]
-        public JsonInputNaturalStoneTopLayerStabilityCoefficientsData
-            JsonInputNaturalStoneTopLayerPlungingData { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.RelativeDensity)]
+        public double RelativeDensity { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilitySurging)]
-        public JsonInputNaturalStoneTopLayerStabilityCoefficientsData
-            JsonInputNaturalStoneTopLayerSurgingData { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.ThicknessTopLayer)]
+        public double ThicknessTopLayer { get; private set; }
     }
 }

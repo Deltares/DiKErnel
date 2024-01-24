@@ -17,16 +17,17 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact
 {
-    internal class JsonInputNaturalStoneCalculationMaximumWaveElevationData
+    internal class JsonInputNaturalStoneTopLayerData
     {
-        [JsonProperty(JsonInputDefinitions.A)]
-        public double? DistanceMaximumWaveElevationA { get; private set; }
+        [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
+        public JsonInputNaturalStoneRevetmentTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B)]
-        public double? DistanceMaximumWaveElevationB { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.Stability)]
+        public JsonInputNaturalStoneTopLayerStabilityData Stability { get; private set; }
     }
 }

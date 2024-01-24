@@ -32,7 +32,7 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpac
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup;
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Exceptions;
 using DiKErnel.Util;
 
