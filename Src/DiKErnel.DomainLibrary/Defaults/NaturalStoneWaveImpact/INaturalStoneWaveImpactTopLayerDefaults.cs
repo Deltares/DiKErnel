@@ -19,10 +19,10 @@
 namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Interface that contains default value definitions for natural stone revetment top
+    /// Interface that contains default value definitions for natural stone wave impact top
     /// layers.
     /// </summary>
-    public interface INaturalStoneRevetmentTopLayerDefaults
+    public interface INaturalStoneWaveImpactTopLayerDefaults
     {
         /// <summary>
         /// Gets the default value of the Xib coefficient [-].

@@ -27,7 +27,7 @@ namespace DiKErnel.Integration.Factories
         public static NaturalStoneWaveImpactLocationDependentInput CreateLocationDependentInput(
             NaturalStoneWaveImpactLocationConstructionProperties constructionProperties)
         {
-            INaturalStoneRevetmentTopLayerDefaults topLayerDefaults =
+            INaturalStoneWaveImpactTopLayerDefaults topLayerDefaults =
                 NaturalStoneWaveImpactDefaultsFactory.CreateTopLayerDefaults();
 
             var hydraulicLoads = new NaturalStoneWaveImpactHydraulicLoads(
@@ -42,33 +42,33 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.HydraulicLoadXib ?? topLayerDefaults.HydraulicLoadXib);
 
             var slope = new NaturalStoneWaveImpactSlope(
-                constructionProperties.SlopeUpperLevelAus ?? NaturalStoneRevetmentDefaults.SlopeUpperLevelAus,
-                constructionProperties.SlopeLowerLevelAls ?? NaturalStoneRevetmentDefaults.SlopeLowerLevelAls);
+                constructionProperties.SlopeUpperLevelAus ?? NaturalStoneWaveImpactDefaults.SlopeUpperLevelAus,
+                constructionProperties.SlopeLowerLevelAls ?? NaturalStoneWaveImpactDefaults.SlopeLowerLevelAls);
 
             var upperLimitLoading = new NaturalStoneWaveImpactUpperLimitLoading(
-                constructionProperties.UpperLimitLoadingAul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingAul,
-                constructionProperties.UpperLimitLoadingBul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingBul,
-                constructionProperties.UpperLimitLoadingCul ?? NaturalStoneRevetmentDefaults.UpperLimitLoadingCul);
+                constructionProperties.UpperLimitLoadingAul ?? NaturalStoneWaveImpactDefaults.UpperLimitLoadingAul,
+                constructionProperties.UpperLimitLoadingBul ?? NaturalStoneWaveImpactDefaults.UpperLimitLoadingBul,
+                constructionProperties.UpperLimitLoadingCul ?? NaturalStoneWaveImpactDefaults.UpperLimitLoadingCul);
 
             var lowerLimitLoading = new NaturalStoneWaveImpactLowerLimitLoading(
-                constructionProperties.LowerLimitLoadingAll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingAll,
-                constructionProperties.LowerLimitLoadingBll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingBll,
-                constructionProperties.LowerLimitLoadingCll ?? NaturalStoneRevetmentDefaults.LowerLimitLoadingCll);
+                constructionProperties.LowerLimitLoadingAll ?? NaturalStoneWaveImpactDefaults.LowerLimitLoadingAll,
+                constructionProperties.LowerLimitLoadingBll ?? NaturalStoneWaveImpactDefaults.LowerLimitLoadingBll,
+                constructionProperties.LowerLimitLoadingCll ?? NaturalStoneWaveImpactDefaults.LowerLimitLoadingCll);
 
             var distanceMaximumWaveElevation = new NaturalStoneWaveImpactDistanceMaximumWaveElevation(
                 constructionProperties.DistanceMaximumWaveElevationAsmax
-                ?? NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationAsmax,
+                ?? NaturalStoneWaveImpactDefaults.DistanceMaximumWaveElevationAsmax,
                 constructionProperties.DistanceMaximumWaveElevationBsmax
-                ?? NaturalStoneRevetmentDefaults.DistanceMaximumWaveElevationBsmax);
+                ?? NaturalStoneWaveImpactDefaults.DistanceMaximumWaveElevationBsmax);
 
             var normativeWidthOfWaveImpact = new NaturalStoneWaveImpactNormativeWidthOfWaveImpact(
                 constructionProperties.NormativeWidthOfWaveImpactAwi
-                ?? NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactAwi,
+                ?? NaturalStoneWaveImpactDefaults.NormativeWidthOfWaveImpactAwi,
                 constructionProperties.NormativeWidthOfWaveImpactBwi
-                ?? NaturalStoneRevetmentDefaults.NormativeWidthOfWaveImpactBwi);
+                ?? NaturalStoneWaveImpactDefaults.NormativeWidthOfWaveImpactBwi);
 
             var waveAngleImpact = new NaturalStoneWaveImpactWaveAngleImpact(
-                constructionProperties.WaveAngleImpactBetamax ?? NaturalStoneRevetmentDefaults.WaveAngleImpactBetamax);
+                constructionProperties.WaveAngleImpactBetamax ?? NaturalStoneWaveImpactDefaults.WaveAngleImpactBetamax);
 
             return new NaturalStoneWaveImpactLocationDependentInput(
                 constructionProperties.X,

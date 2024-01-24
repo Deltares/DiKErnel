@@ -22,9 +22,9 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class NaturalStoneWaveImpactDefaultsFactory
     {
-        public static INaturalStoneRevetmentTopLayerDefaults CreateTopLayerDefaults()
+        public static INaturalStoneWaveImpactTopLayerDefaults CreateTopLayerDefaults()
         {
-            return NaturalStoneRevetmentNordicStoneTopLayerDefaults.Instance;
+            return NaturalStoneNordicStoneTopLayerDefaults.Instance;
         }
     }
 }

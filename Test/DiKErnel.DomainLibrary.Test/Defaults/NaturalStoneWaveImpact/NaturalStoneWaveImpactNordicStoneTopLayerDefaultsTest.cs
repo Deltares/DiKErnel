@@ -22,16 +22,16 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneRevetmentNordicStoneTopLayerDefaultsTest
+    public class NaturalStoneWaveImpactNordicStoneTopLayerDefaultsTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var defaults = NaturalStoneRevetmentNordicStoneTopLayerDefaults.Instance;
+            var defaults = NaturalStoneNordicStoneTopLayerDefaults.Instance;
 
             // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<INaturalStoneRevetmentTopLayerDefaults>());
+            Assert.That(defaults, Is.InstanceOf<INaturalStoneWaveImpactTopLayerDefaults>());
             Assert.That(defaults.HydraulicLoadXib, Is.EqualTo(2.9));
             Assert.That(defaults.HydraulicLoadAp, Is.EqualTo(4));
             Assert.That(defaults.HydraulicLoadBp, Is.EqualTo(0));

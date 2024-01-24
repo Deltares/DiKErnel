@@ -19,20 +19,20 @@
 namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for natural stone revetments with a nordic stone
-    /// top layer.
+    /// Class that contains default values for natural stone wave impact calculations with a
+    /// nordic stone top layer.
     /// </summary>
-    public class NaturalStoneRevetmentNordicStoneTopLayerDefaults : INaturalStoneRevetmentTopLayerDefaults
+    public class NaturalStoneNordicStoneTopLayerDefaults : INaturalStoneWaveImpactTopLayerDefaults
     {
-        private static NaturalStoneRevetmentNordicStoneTopLayerDefaults instance;
+        private static NaturalStoneNordicStoneTopLayerDefaults instance;
 
-        private NaturalStoneRevetmentNordicStoneTopLayerDefaults() {}
+        private NaturalStoneNordicStoneTopLayerDefaults() {}
 
         /// <summary>
         /// Gets the (one and only) instance of this class.
         /// </summary> 
-        public static NaturalStoneRevetmentNordicStoneTopLayerDefaults Instance =>
-            instance ??= new NaturalStoneRevetmentNordicStoneTopLayerDefaults();
+        public static NaturalStoneNordicStoneTopLayerDefaults Instance =>
+            instance ??= new NaturalStoneNordicStoneTopLayerDefaults();
 
         public double HydraulicLoadXib => 2.9;
 

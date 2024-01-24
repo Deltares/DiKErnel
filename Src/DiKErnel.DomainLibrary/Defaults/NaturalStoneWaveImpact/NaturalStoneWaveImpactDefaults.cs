@@ -19,9 +19,9 @@
 namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for natural stone revetments.
+    /// Class that contains default values for natural stone wave impact calculations.
     /// </summary>
-    public static class NaturalStoneRevetmentDefaults
+    public static class NaturalStoneWaveImpactDefaults
     {
         /// <summary>
         /// Gets the default value of the Aus coefficient [-].
