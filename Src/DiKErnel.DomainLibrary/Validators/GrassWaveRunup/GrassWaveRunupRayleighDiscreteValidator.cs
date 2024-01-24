@@ -21,10 +21,9 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.GrassWaveRunup
 {
     /// <summary>
-    /// Class that holds grass revetment wave run-up validation routines for the
-    /// Rayleigh protocol.
+    /// Class that holds grass wave run-up Rayleigh Discrete validation routines.
     /// </summary>
-    public static class GrassRevetmentWaveRunupRayleighValidator
+    public static class GrassWaveRunupRayleighDiscreteValidator
     {
         /// <summary>
         /// Validates the Cu coefficient.
