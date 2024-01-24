@@ -206,12 +206,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputAsphaltWaveImpactLocationData locationData,
             JsonInputAsphaltWaveImpactCalculationData calculationData)
         {
-            JsonInputAsphaltWaveImpactLocationLayerData upperLayerData = locationData.UpperLayer;
-            JsonInputAsphaltWaveImpactLocationLayerData subLayerData = locationData.SubLayerData;
+            JsonInputAsphaltWaveImpactLayerData upperLayerData = locationData.UpperLayerData;
+            JsonInputAsphaltWaveImpactLayerData subLayerData = locationData.SubLayerData;
             JsonInputAsphaltWaveImpactTopLayerData topLayerData =
-                calculationData?.TopLayerDefinitionData?
-                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
-            JsonInputAsphaltWaveImpactLocationFatigueData fatigueData = locationData.Fatigue;
+                calculationData?.TopLayerData?.FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
+            JsonInputAsphaltWaveImpactFatigueData fatigueData = locationData.FatigueData;
 
             return new AsphaltWaveImpactLocationConstructionProperties(
                 locationData.X, ConvertAsphaltWaveImpactTopLayerType(locationData.TopLayerType),
