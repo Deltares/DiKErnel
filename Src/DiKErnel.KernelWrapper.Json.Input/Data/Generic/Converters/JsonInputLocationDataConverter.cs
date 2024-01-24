@@ -45,11 +45,16 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
 
             JsonInputLocationData jsonInputCalculationDefinitionData = typeDiscriminator switch
             {
-                JsonInputCalculationType.AsphaltWaveImpact => calculationData.ToObject<JsonInputAsphaltWaveImpactLocationData>(),
-                JsonInputCalculationType.GrassOvertopping => calculationData.ToObject<JsonInputGrassOvertoppingLocationData>(),
-                JsonInputCalculationType.GrassWaveImpact => calculationData.ToObject<JsonInputGrassWaveImpactLocationData>(),
-                JsonInputCalculationType.GrassWaveRunup => calculationData.ToObject<JsonInputGrassWaveRunupLocationData>(),
-                JsonInputCalculationType.NaturalStone => calculationData.ToObject<JsonInputNaturalStoneLocationData>(),
+                JsonInputCalculationType.AsphaltWaveImpact =>
+                    calculationData.ToObject<JsonInputAsphaltWaveImpactLocationData>(),
+                JsonInputCalculationType.GrassOvertopping =>
+                    calculationData.ToObject<JsonInputGrassOvertoppingLocationData>(),
+                JsonInputCalculationType.GrassWaveImpact =>
+                    calculationData.ToObject<JsonInputGrassWaveImpactLocationData>(),
+                JsonInputCalculationType.GrassWaveRunup =>
+                    calculationData.ToObject<JsonInputGrassWaveRunupLocationData>(),
+                JsonInputCalculationType.NaturalStone =>
+                    calculationData.ToObject<JsonInputNaturalStoneLocationData>(),
                 _ => null
             };
 

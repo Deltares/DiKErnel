@@ -209,7 +209,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputAsphaltWaveImpactLayerData upperLayerData = locationData.UpperLayerData;
             JsonInputAsphaltWaveImpactLayerData subLayerData = locationData.SubLayerData;
             JsonInputAsphaltWaveImpactTopLayerData topLayerData =
-                calculationData?.TopLayerData?.FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
+                calculationData?.TopLayerData?.FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
             JsonInputAsphaltWaveImpactFatigueData fatigueData = locationData.FatigueData;
 
             return new AsphaltWaveImpactLocationConstructionProperties(
@@ -254,7 +254,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         {
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData?.TopLayerDefinitionData?
-                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
+                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
             JsonInputGrassOvertoppingCalculationAccelerationAlphaAData accelerationAlphaAData =
                 calculationData?.AccelerationAlphaAData;
 
@@ -282,7 +282,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         {
             JsonInputGrassWaveImpactTopLayerTimeLineData timeLineData =
                 calculationData?.TopLayerDefinitionData?
-                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType)?.TimeLine;
+                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.TimeLine;
             JsonInputGrassWaveImpactCalculationImpactWaveAngleData impactWaveAngleData = calculationData?.WaveAngleData;
             JsonInputGrassWaveImpactCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
 
@@ -321,7 +321,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData.TopLayerDefinitionData?
-                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType);
+                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
 
             constructionProperties.InitialDamage = locationData.InitialDamage;
             constructionProperties.FailureNumber = calculationData.FailureNumber;
@@ -363,7 +363,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         {
             JsonInputNaturalStoneTopLayerStabilityData stabilityData =
                 calculationData?.TopLayerDefinitionData?
-                    .FirstOrDefault(tldd => tldd.TopLayerType == locationData.TopLayerType)?.Stability;
+                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.Stability;
             JsonInputNaturalStoneTopLayerStabilityCoefficientsData plungingData =
                 stabilityData?.JsonInputNaturalStoneTopLayerPlungingData;
             JsonInputNaturalStoneTopLayerStabilityCoefficientsData surgingData =
