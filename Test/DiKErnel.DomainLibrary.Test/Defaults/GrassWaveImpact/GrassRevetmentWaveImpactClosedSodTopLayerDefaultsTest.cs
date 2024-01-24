@@ -16,19 +16,25 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
+using DiKErnel.DomainLibrary.Defaults.GrassWaveImpact;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighDefaultsTest
+    public class GrassRevetmentWaveImpactClosedSodTopLayerDefaultsTest
     {
         [Test]
-        public void FrontVelocityCu_ExpectedValue()
+        public void Constructor_ExpectedValues()
         {
+            // Setup
+            var defaults = GrassRevetmentWaveImpactClosedSodTopLayerDefaults.Instance;
+
             // Call & Assert
-            Assert.That(GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu, Is.EqualTo(1.1));
+            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>());
+            Assert.That(defaults.TimeLineAgwi, Is.EqualTo(1));
+            Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.000009722));
+            Assert.That(defaults.TimeLineCgwi, Is.EqualTo(0.25));
         }
     }
 }

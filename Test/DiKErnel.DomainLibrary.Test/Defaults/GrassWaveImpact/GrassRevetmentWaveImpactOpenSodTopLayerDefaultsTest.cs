@@ -19,7 +19,7 @@
 using DiKErnel.DomainLibrary.Defaults.GrassWaveImpact;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveImpact
 {
     [TestFixture]
     public class GrassRevetmentWaveImpactOpenSodTopLayerDefaultsTest

@@ -19,21 +19,37 @@
 using DiKErnel.DomainLibrary.Defaults.Grass;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
+namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
     [TestFixture]
-    public class GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaultsTest
+    public class GrassRevetmentCumulativeOverloadDefaultsTest
     {
         [Test]
-        public void Constructor_ExpectedValues()
+        public void IncreasedLoadTransitionAlphaM_ExpectedValue()
         {
-            // Setup
-            var defaults = GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.Instance;
-
             // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>());
-            Assert.That(defaults.CriticalCumulativeOverload, Is.EqualTo(7000));
-            Assert.That(defaults.CriticalFrontVelocity, Is.EqualTo(6.6));
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ReducedStrengthTransitionAlphaS_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void AverageNumberOfWavesCtm_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm, Is.EqualTo(0.92));
+        }
+
+        [Test]
+        public void FixedNumberOfWaves_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves, Is.EqualTo(10000));
         }
     }
 }

@@ -19,7 +19,7 @@
 using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveRunupRayleighDiscrete
 {
     [TestFixture]
     public class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalDefaultsTest

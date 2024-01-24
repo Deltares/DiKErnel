@@ -19,7 +19,7 @@
 using DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
 {
     [TestFixture]
     public class AsphaltRevetmentWaveImpactDefaultsTest

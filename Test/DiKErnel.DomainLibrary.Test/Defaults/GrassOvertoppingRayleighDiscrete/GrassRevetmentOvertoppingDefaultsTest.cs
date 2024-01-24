@@ -16,25 +16,33 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassWaveImpact;
+using DiKErnel.DomainLibrary.Defaults.GrassOvertoppingRayleighDiscrete;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassOvertoppingRayleighDiscrete
 {
     [TestFixture]
-    public class GrassRevetmentWaveImpactClosedSodTopLayerDefaultsTest
+    public class GrassRevetmentOvertoppingDefaultsTest
     {
         [Test]
-        public void Constructor_ExpectedValues()
+        public void FrontVelocityCwo_ExpectedValue()
         {
-            // Setup
-            var defaults = GrassRevetmentWaveImpactClosedSodTopLayerDefaults.Instance;
-
             // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>());
-            Assert.That(defaults.TimeLineAgwi, Is.EqualTo(1));
-            Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.000009722));
-            Assert.That(defaults.TimeLineCgwi, Is.EqualTo(0.25));
+            Assert.That(GrassRevetmentOvertoppingDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
+        }
+
+        [Test]
+        public void AccelerationAlphaAForCrest_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void AccelerationAlphaAForInnerSlope_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
         }
     }
 }

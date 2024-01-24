@@ -19,7 +19,7 @@
 using DiKErnel.DomainLibrary.Defaults.NaturalStoneWaveImpact;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneRevetment
+namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneWaveImpact
 {
     [TestFixture]
     public class NaturalStoneRevetmentNordicStoneTopLayerDefaultsTest

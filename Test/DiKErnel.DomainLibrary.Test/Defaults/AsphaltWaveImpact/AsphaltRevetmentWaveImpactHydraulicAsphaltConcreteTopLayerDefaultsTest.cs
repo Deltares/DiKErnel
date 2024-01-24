@@ -16,33 +16,23 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassOvertoppingRayleighDiscrete;
+using DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentOvertopping
+namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
 {
     [TestFixture]
-    public class GrassRevetmentOvertoppingDefaultsTest
+    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaultsTest
     {
         [Test]
-        public void FrontVelocityCwo_ExpectedValue()
+        public void Constructor_ExpectedValues()
         {
-            // Call & Assert
-            Assert.That(GrassRevetmentOvertoppingDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
-        }
+            // Setup
+            var defaults = AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
 
-        [Test]
-        public void AccelerationAlphaAForCrest_ExpectedValue()
-        {
             // Call & Assert
-            Assert.That(GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
-        }
-
-        [Test]
-        public void AccelerationAlphaAForInnerSlope_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentOvertoppingDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
+            Assert.That(defaults, Is.InstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>());
+            Assert.That(defaults.StiffnessRelationNu, Is.EqualTo(0.35));
         }
     }
 }

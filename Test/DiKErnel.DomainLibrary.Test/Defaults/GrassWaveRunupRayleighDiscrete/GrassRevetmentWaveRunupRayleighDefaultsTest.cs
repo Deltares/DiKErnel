@@ -16,40 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.Grass;
+using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveRunupRayleighDiscrete
 {
     [TestFixture]
-    public class GrassRevetmentCumulativeOverloadDefaultsTest
+    public class GrassRevetmentWaveRunupRayleighDefaultsTest
     {
         [Test]
-        public void IncreasedLoadTransitionAlphaM_ExpectedValue()
+        public void FrontVelocityCu_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM, Is.EqualTo(1));
-        }
-
-        [Test]
-        public void ReducedStrengthTransitionAlphaS_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS, Is.EqualTo(1));
-        }
-
-        [Test]
-        public void AverageNumberOfWavesCtm_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm, Is.EqualTo(0.92));
-        }
-
-        [Test]
-        public void FixedNumberOfWaves_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves, Is.EqualTo(10000));
+            Assert.That(GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu, Is.EqualTo(1.1));
         }
     }
 }

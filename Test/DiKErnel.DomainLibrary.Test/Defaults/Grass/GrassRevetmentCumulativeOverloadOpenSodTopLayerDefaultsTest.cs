@@ -19,7 +19,7 @@
 using DiKErnel.DomainLibrary.Defaults.Grass;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetment
+namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
     [TestFixture]
     public class GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaultsTest

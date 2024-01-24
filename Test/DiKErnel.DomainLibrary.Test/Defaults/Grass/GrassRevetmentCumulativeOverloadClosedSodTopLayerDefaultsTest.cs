@@ -16,23 +16,24 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact;
+using DiKErnel.DomainLibrary.Defaults.Grass;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaultsTest
+    public class GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaultsTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var defaults = AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
+            var defaults = GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.Instance;
 
             // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>());
-            Assert.That(defaults.StiffnessRelationNu, Is.EqualTo(0.35));
+            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>());
+            Assert.That(defaults.CriticalCumulativeOverload, Is.EqualTo(7000));
+            Assert.That(defaults.CriticalFrontVelocity, Is.EqualTo(6.6));
         }
     }
 }
