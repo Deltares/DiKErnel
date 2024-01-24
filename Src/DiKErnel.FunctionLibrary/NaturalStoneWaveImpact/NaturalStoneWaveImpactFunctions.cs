@@ -300,9 +300,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
 
         private static double OuterSlopeWithBerm(NaturalStoneWaveImpactOuterSlopeInput input,
                                                  bool slopeLowerLevelOnLowerSlope, bool slopeUpperLevelOnLowerSlope,
-                                                 bool slopeLowerLevelOnBerm,
-                                                 bool slopeUpperLevelOnBerm, bool slopeLowerLevelOnUpperSlope,
-                                                 bool slopeUpperLevelOnUpperSlope)
+                                                 bool slopeLowerLevelOnBerm, bool slopeUpperLevelOnBerm,
+                                                 bool slopeLowerLevelOnUpperSlope, bool slopeUpperLevelOnUpperSlope)
         {
             if (slopeLowerLevelOnLowerSlope && slopeUpperLevelOnLowerSlope
                 || slopeLowerLevelOnBerm && slopeUpperLevelOnBerm

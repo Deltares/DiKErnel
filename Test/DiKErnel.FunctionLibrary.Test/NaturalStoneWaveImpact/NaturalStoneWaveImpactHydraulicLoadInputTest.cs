@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneRevetmentHydraulicLoadInputTest
+    public class NaturalStoneWaveImpactHydraulicLoadInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()

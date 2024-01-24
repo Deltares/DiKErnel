@@ -99,8 +99,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -130,8 +131,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -161,8 +163,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -192,8 +195,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -223,8 +227,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -254,8 +259,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -285,8 +291,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -316,8 +323,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -380,8 +388,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double b = 0.6;
             const double c = 4;
 
-            var input = new NaturalStoneWaveImpactLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                    waveHeightHm0, a, b, c);
+            var input = new NaturalStoneWaveImpactLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter,
+                                                                    waterLevel, waveHeightHm0, a, b, c);
 
             // Call
             double upperLimitLoading = NaturalStoneWaveImpactFunctions.UpperLimitLoading(input);
@@ -402,8 +410,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double b = 0.2;
             const double c = 4;
 
-            var input = new NaturalStoneWaveImpactLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                    waveHeightHm0, a, b, c);
+            var input = new NaturalStoneWaveImpactLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter,
+                                                                    waterLevel, waveHeightHm0, a, b, c);
 
             // Call
             double lowerLimitLoading = NaturalStoneWaveImpactFunctions.LowerLimitLoading(input);

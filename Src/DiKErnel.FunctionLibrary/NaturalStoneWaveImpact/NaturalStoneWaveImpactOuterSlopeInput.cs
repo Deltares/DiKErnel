@@ -33,8 +33,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// <param name="outerToeHeight">The outer toe height [m]</param>
         /// <param name="outerCrestHeight">The outer crest height [m]</param>
         public NaturalStoneWaveImpactOuterSlopeInput(double slopeLowerPosition, double slopeLowerLevel,
-                                                    double slopeUpperPosition, double slopeUpperLevel,
-                                                    double outerToeHeight, double outerCrestHeight)
+                                                     double slopeUpperPosition, double slopeUpperLevel,
+                                                     double outerToeHeight, double outerCrestHeight)
         {
             SlopeLowerPosition = slopeLowerPosition;
             SlopeLowerLevel = slopeLowerLevel;

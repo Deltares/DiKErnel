@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneRevetmentOuterSlopeInputTest
+    public class NaturalStoneWaveImpactOuterSlopeInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -37,8 +37,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             double outerCrestHeight = Random.NextDouble();
 
             // Call
-            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight);
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel, outerToeHeight,
+                                                                  outerCrestHeight);
 
             // Assert
             Assert.That(input.SlopeLowerPosition, Is.EqualTo(slopeLowerPosition));
