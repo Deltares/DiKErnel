@@ -22,7 +22,7 @@ using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.AsphaltWaveImpact;
 using DiKErnel.FunctionLibrary;
-using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
+using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 

@@ -21,7 +21,7 @@ using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators.NaturalStoneWaveImpact;
 using DiKErnel.FunctionLibrary;
-using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
+using DiKErnel.FunctionLibrary.NaturalStoneWaveImpact;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 

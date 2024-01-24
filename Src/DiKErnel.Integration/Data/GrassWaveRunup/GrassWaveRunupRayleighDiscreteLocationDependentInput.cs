@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators.GrassWaveRunup;
-using DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup;
+using DiKErnel.FunctionLibrary.GrassWaveRunup;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;

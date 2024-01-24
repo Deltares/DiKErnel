@@ -22,7 +22,7 @@ using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators.GrassOvertopping;
-using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
+using DiKErnel.FunctionLibrary.GrassOvertopping;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
