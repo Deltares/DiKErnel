@@ -21,7 +21,7 @@ using System;
 namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Class that holds natural stone revetment specific calculation routines.
+    /// Class that holds natural stone revetment calculation routines.
     /// </summary>
     public static class NaturalStoneRevetmentFunctions
     {

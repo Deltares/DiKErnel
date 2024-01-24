@@ -25,7 +25,7 @@ using MathNet.Numerics.Interpolation;
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
-    /// Class that holds grass revetment wave run-up specific calculation routines for
+    /// Class that holds grass revetment wave run-up calculation routines for
     /// the Battjes-Groenendijk analytical protocol.
     /// </summary>
     public static class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctions

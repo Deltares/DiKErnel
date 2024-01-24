@@ -21,7 +21,7 @@ using System;
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
     /// <summary>
-    /// Class that holds asphalt revetment wave impact specific calculation routines.
+    /// Class that holds asphalt revetment wave impact calculation routines.
     /// </summary>
     public static class AsphaltRevetmentWaveImpactFunctions
     {
