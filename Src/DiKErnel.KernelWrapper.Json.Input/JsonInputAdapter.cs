@@ -237,11 +237,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
         }
 
         private static AsphaltWaveImpactTopLayerType ConvertAsphaltWaveImpactTopLayerType(
-            JsonInputAsphaltRevetmentTopLayerType topLayerType)
+            JsonInputAsphaltWaveImpactTopLayerType topLayerType)
         {
             return topLayerType switch
             {
-                JsonInputAsphaltRevetmentTopLayerType.HydraulicAsphaltConcrete =>
+                JsonInputAsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete =>
                     AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };

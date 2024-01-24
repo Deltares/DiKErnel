@@ -19,9 +19,9 @@
 using System.Runtime.Serialization;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact
 {
-    internal enum JsonInputAsphaltRevetmentTopLayerType
+    internal enum JsonInputAsphaltWaveImpactTopLayerType
     {
         [EnumMember(Value = JsonInputAsphaltWaveImpactDefinitions.TopLayerTypeHydraulicAsphaltConcrete)]
         HydraulicAsphaltConcrete

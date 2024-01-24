@@ -26,7 +26,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveI
     internal class JsonInputAsphaltWaveImpactLocationData : JsonInputLocationData
     {
         [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
-        public JsonInputAsphaltRevetmentTopLayerType TopLayerType { get; private set; }
+        public JsonInputAsphaltWaveImpactTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputAsphaltWaveImpactDefinitions.FlexuralStrength)]
         public double FlexuralStrength { get; private set; }
