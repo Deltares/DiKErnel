@@ -48,7 +48,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
                 JsonInputCalculationType.AsphaltWaveImpact =>
                     calculationData.ToObject<JsonInputAsphaltWaveImpactCalculationData>(),
                 JsonInputCalculationType.GrassOvertopping =>
-                    calculationData.ToObject<JsonInputGrassOvertoppingCalculationData>(),
+                    calculationData.ToObject<JsonInputGrassOvertoppingRayleighDiscreteCalculationData>(),
                 JsonInputCalculationType.GrassWaveImpact =>
                     calculationData.ToObject<JsonInputGrassWaveImpactCalculationData>(),
                 JsonInputCalculationType.GrassWaveRunup =>

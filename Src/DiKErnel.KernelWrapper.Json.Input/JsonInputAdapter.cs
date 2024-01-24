@@ -146,12 +146,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
                                     calculationDataItems, JsonInputCalculationType.AsphaltWaveImpact)));
                         break;
                     }
-                    case JsonInputGrassOvertoppingLocationData grassOvertoppingLocationData:
+                    case JsonInputGrassOvertoppingRayleighDiscreteLocationData grassOvertoppingRayleighDiscreteLocationData:
                     {
                         builder.AddGrassOvertoppingRayleighDiscreteLocation(
                             CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
-                                grassOvertoppingLocationData,
-                                GetCalculationDefinition<JsonInputGrassOvertoppingCalculationData>(
+                                grassOvertoppingRayleighDiscreteLocationData,
+                                GetCalculationDefinition<JsonInputGrassOvertoppingRayleighDiscreteCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassOvertopping)));
                         break;
                     }
@@ -249,12 +249,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
         private static GrassOvertoppingRayleighDiscreteLocationConstructionProperties
             CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
-                JsonInputGrassOvertoppingLocationData locationData,
-                JsonInputGrassOvertoppingCalculationData calculationData)
+                JsonInputGrassOvertoppingRayleighDiscreteLocationData locationData,
+                JsonInputGrassOvertoppingRayleighDiscreteCalculationData calculationData)
         {
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData?.TopLayerData?.FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
-            JsonInputGrassOvertoppingCalculationAccelerationAlphaAData accelerationAlphaAData =
+            JsonInputGrassOvertoppingRayleighDiscreteAccelerationAlphaAData accelerationAlphaAData =
                 calculationData?.AccelerationAlphaAData;
 
             return new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
