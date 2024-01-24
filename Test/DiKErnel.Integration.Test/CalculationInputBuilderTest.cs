@@ -1800,14 +1800,14 @@ namespace DiKErnel.Integration.Test
         #region Natural stone wave impact
 
         [Test]
-        public void GivenBuilderWithNaturalStoneLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenBuilderWithNaturalStoneWaveImpactLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 0;
 
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
-                    builder.AddNaturalStoneLocation(
+                    builder.AddNaturalStoneWaveImpactLocation(
                         new NaturalStoneWaveImpactLocationConstructionProperties(
                             locationX, NaturalStoneWaveImpactTopLayerType.NordicStone, Random.NextDouble(),
                             Random.NextDouble()));
@@ -1815,14 +1815,14 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithNaturalStoneLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenBuilderWithNaturalStoneWaveImpactLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 10;
 
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
-                    builder.AddNaturalStoneLocation(
+                    builder.AddNaturalStoneWaveImpactLocation(
                         new NaturalStoneWaveImpactLocationConstructionProperties(
                             locationX, NaturalStoneWaveImpactTopLayerType.NordicStone, Random.NextDouble(),
                             Random.NextDouble()));
@@ -1830,7 +1830,7 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithNaturalStoneLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenBuilderWithNaturalStoneWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const NaturalStoneWaveImpactTopLayerType topLayerType = (NaturalStoneWaveImpactTopLayerType) 99;
@@ -1841,7 +1841,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddNaturalStoneLocation(constructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1852,7 +1852,7 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void GivenBuilderWithFullyConfiguredNaturalStoneWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             var topLayerType = Random.NextEnumValue<NaturalStoneWaveImpactTopLayerType>();
@@ -1915,7 +1915,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddNaturalStoneLocation(constructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1967,7 +1967,7 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithNotFullyConfiguredNaturalStoneLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void GivenBuilderWithNotFullyConfiguredNaturalStoneWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const NaturalStoneWaveImpactTopLayerType topLayerType = NaturalStoneWaveImpactTopLayerType.NordicStone;
@@ -1980,7 +1980,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddNaturalStoneLocation(constructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();

@@ -37,7 +37,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65);
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -61,7 +61,7 @@ namespace DiKErnel.System.Test
                 InitialDamage = 0.6
             };
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -93,7 +93,7 @@ namespace DiKErnel.System.Test
                 HydraulicLoadNs = -1.5
             };
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -117,7 +117,7 @@ namespace DiKErnel.System.Test
                 WaveAngleImpactBetamax = 30
             };
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -138,7 +138,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.3, 1.65);
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -163,7 +163,7 @@ namespace DiKErnel.System.Test
                 SlopeLowerLevelAls = 1
             };
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -184,7 +184,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.3, 1.65);
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -217,7 +217,7 @@ namespace DiKErnel.System.Test
                 NormativeWidthOfWaveImpactBwi = 0.15
             };
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -238,7 +238,7 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 6, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65);
 
-            builder.AddNaturalStoneLocation(locationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(locationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 

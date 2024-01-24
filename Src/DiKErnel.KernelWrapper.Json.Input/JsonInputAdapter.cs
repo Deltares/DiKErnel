@@ -184,7 +184,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     }
                     case JsonInputNaturalStoneLocationData naturalStoneLocationData:
                     {
-                        builder.AddNaturalStoneLocation(
+                        builder.AddNaturalStoneWaveImpactLocation(
                             CreateNaturalStoneWaveImpactLocationConstructionProperties(
                                 naturalStoneLocationData,
                                 GetCalculationDefinition<JsonInputNaturalStoneCalculationData>(
