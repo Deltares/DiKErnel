@@ -71,15 +71,15 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassRevetmentWaveImpactValidator.TimeLineAgwi(TimeLine.TimeLineAgwi, TimeLine.TimeLineCgwi),
-                GrassRevetmentWaveImpactValidator.TimeLineBgwi(TimeLine.TimeLineBgwi),
-                GrassRevetmentWaveImpactValidator.TimeLineCgwi(TimeLine.TimeLineCgwi),
-                GrassRevetmentWaveImpactValidator.MinimumWaveHeightTemax(MinimumWaveHeightTemax),
-                GrassRevetmentWaveImpactValidator.MaximumWaveHeightTemin(MaximumWaveHeightTemin),
-                GrassRevetmentWaveImpactValidator.WaveAngleImpactNwa(WaveAngleImpact.WaveAngleImpactNwa),
-                GrassRevetmentWaveImpactValidator.WaveAngleImpactQwa(WaveAngleImpact.WaveAngleImpactQwa),
-                GrassRevetmentWaveImpactValidator.WaveAngleImpactRwa(WaveAngleImpact.WaveAngleImpactRwa),
-                GrassRevetmentWaveImpactValidator.UpperLimitLoadingAul(UpperLimitLoadingAul, LowerLimitLoadingAll)
+                GrassWaveImpactValidator.TimeLineAgwi(TimeLine.TimeLineAgwi, TimeLine.TimeLineCgwi),
+                GrassWaveImpactValidator.TimeLineBgwi(TimeLine.TimeLineBgwi),
+                GrassWaveImpactValidator.TimeLineCgwi(TimeLine.TimeLineCgwi),
+                GrassWaveImpactValidator.MinimumWaveHeightTemax(MinimumWaveHeightTemax),
+                GrassWaveImpactValidator.MaximumWaveHeightTemin(MaximumWaveHeightTemin),
+                GrassWaveImpactValidator.WaveAngleImpactNwa(WaveAngleImpact.WaveAngleImpactNwa),
+                GrassWaveImpactValidator.WaveAngleImpactQwa(WaveAngleImpact.WaveAngleImpactQwa),
+                GrassWaveImpactValidator.WaveAngleImpactRwa(WaveAngleImpact.WaveAngleImpactRwa),
+                GrassWaveImpactValidator.UpperLimitLoadingAul(UpperLimitLoadingAul, LowerLimitLoadingAll)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

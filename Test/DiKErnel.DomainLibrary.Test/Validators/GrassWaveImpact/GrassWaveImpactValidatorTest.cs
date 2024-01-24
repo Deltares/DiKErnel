@@ -25,12 +25,12 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassRevetmentWaveImpactValidatorTest
+    public class GrassWaveImpactValidatorTest
     {
         [Test]
         public void TimeLineAgwi_VariousScenarios_ExpectedValues()
         {
-            ValidationIssue ValidationFunc(double timeLineAgwi) => GrassRevetmentWaveImpactValidator.TimeLineAgwi(timeLineAgwi, 3);
+            ValidationIssue ValidationFunc(double timeLineAgwi) => GrassWaveImpactValidator.TimeLineAgwi(timeLineAgwi, 3);
 
             const string errorMessage = "TimeLineAgwi must be larger than TimeLineCgwi.";
 
@@ -46,7 +46,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         [Test]
         public void TimeLineBgwi_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.TimeLineBgwi;
+            Func<double, ValidationIssue> validationFunc = GrassWaveImpactValidator.TimeLineBgwi;
 
             const string errorMessage = "TimeLineBgwi must be smaller than 0.";
 
@@ -62,7 +62,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         [Test]
         public void TimeLineCgwi_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.TimeLineCgwi;
+            Func<double, ValidationIssue> validationFunc = GrassWaveImpactValidator.TimeLineCgwi;
 
             const string errorMessage = "TimeLineCgwi must be equal to 0 or larger.";
 
@@ -78,7 +78,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         [Test]
         public void MinimumWaveHeightTemax_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.MinimumWaveHeightTemax;
+            Func<double, ValidationIssue> validationFunc = GrassWaveImpactValidator.MinimumWaveHeightTemax;
 
             const string errorMessage = "MinimumWaveHeightTemax must be equal to 3600000 or smaller.";
             const string warningMessage = "MinimumWaveHeightTemax should be in range {1000000, 3600000].";
@@ -101,7 +101,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         [Test]
         public void MaximumWaveHeightTemin_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.MaximumWaveHeightTemin;
+            Func<double, ValidationIssue> validationFunc = GrassWaveImpactValidator.MaximumWaveHeightTemin;
 
             const string errorMessage = "MaximumWaveHeightTemin must be equal to 3.6 or larger.";
             const string warningMessage = "MaximumWaveHeightTemin should be in range [3.6, 10}.";
@@ -123,7 +123,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         [Test]
         public void WaveAngleImpactNwa_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.WaveAngleImpactNwa;
+            Func<double, ValidationIssue> validationFunc = GrassWaveImpactValidator.WaveAngleImpactNwa;
 
             const string errorMessage = "WaveAngleImpactNwa must be equal to 1 or smaller.";
 
@@ -139,7 +139,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         [Test]
         public void WaveAngleImpactQwa_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.WaveAngleImpactQwa;
+            Func<double, ValidationIssue> validationFunc = GrassWaveImpactValidator.WaveAngleImpactQwa;
 
             const string errorMessage = "WaveAngleImpactQwa must be in range [0, 1].";
 
@@ -159,7 +159,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         [Test]
         public void WaveAngleImpactRwa_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRevetmentWaveImpactValidator.WaveAngleImpactRwa;
+            Func<double, ValidationIssue> validationFunc = GrassWaveImpactValidator.WaveAngleImpactRwa;
 
             const string errorMessage = "WaveAngleImpactRwa must be larger than 0.";
 
@@ -176,7 +176,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
         public void UpperLimitLoadingAul_VariousScenarios_ExpectedValues()
         {
             ValidationIssue ValidationFunc(double upperLimitLoadingAul) =>
-                GrassRevetmentWaveImpactValidator.UpperLimitLoadingAul(upperLimitLoadingAul, 2);
+                GrassWaveImpactValidator.UpperLimitLoadingAul(upperLimitLoadingAul, 2);
 
             const string errorMessage = "UpperLimitLoadingAul must be smaller than LowerLimitLoadingAll.";
 
