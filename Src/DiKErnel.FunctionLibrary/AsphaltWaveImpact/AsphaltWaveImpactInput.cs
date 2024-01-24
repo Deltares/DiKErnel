@@ -21,9 +21,9 @@ using System.Collections.Generic;
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
     /// <summary>
-    /// Input for the asphalt wave impact functions.
+    /// Input for the asphalt wave impact calculations.
     /// </summary>
-    public class AsphaltWaveImpactFunctionsInput
+    public class AsphaltWaveImpactInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -44,14 +44,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <param name="fatigueAlpha">The fatigue alpha coefficient [-].</param>
         /// <param name="fatigueBeta">The fatigue beta coefficient [-].</param>
         /// <param name="impactNumberC">The impact number c coefficient [-].</param>
-        public AsphaltWaveImpactFunctionsInput(double logFlexuralStrength, double averageNumberOfWaves,
-                                                        double maximumPeakStress, double stiffnessRelation,
-                                                        double computationalThickness, double outerSlope,
-                                                        IReadOnlyList<(double, double)> widthFactors,
-                                                        IReadOnlyList<(double, double)> depthFactors,
-                                                        IReadOnlyList<(double, double)> impactFactors,
-                                                        double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
-                                                        double fatigueBeta, double impactNumberC)
+        public AsphaltWaveImpactInput(double logFlexuralStrength, double averageNumberOfWaves, double maximumPeakStress,
+                                      double stiffnessRelation, double computationalThickness, double outerSlope,
+                                      IReadOnlyList<(double, double)> widthFactors,
+                                      IReadOnlyList<(double, double)> depthFactors,
+                                      IReadOnlyList<(double, double)> impactFactors,
+                                      double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
+                                      double fatigueBeta, double impactNumberC)
         {
             LogFlexuralStrength = logFlexuralStrength;
             AverageNumberOfWaves = averageNumberOfWaves;

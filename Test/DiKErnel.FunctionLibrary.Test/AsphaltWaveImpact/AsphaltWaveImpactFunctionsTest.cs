@@ -92,11 +92,10 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             const double fatigueBeta = 4.76;
             const double impactNumberC = 1;
 
-            var input = new AsphaltWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves,
-                                                            maximumPeakStress, stiffnessRelation,
-                                                            computationalThickness, outerSlope, widthFactors,
-                                                            depthFactors, impactFactors, z, waterLevel, waveHeightHm0,
-                                                            fatigueAlpha, fatigueBeta, impactNumberC);
+            var input = new AsphaltWaveImpactInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
+                                                   stiffnessRelation, computationalThickness, outerSlope, widthFactors,
+                                                   depthFactors, impactFactors, z, waterLevel, waveHeightHm0,
+                                                   fatigueAlpha, fatigueBeta, impactNumberC);
 
             // Call
             double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
