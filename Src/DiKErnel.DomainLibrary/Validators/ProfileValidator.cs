@@ -21,7 +21,7 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators
 {
     /// <summary>
-    /// Class that holds profile related validation routines.
+    /// Class that holds profile validation routines.
     /// </summary>
     public static class ProfileValidator
     {

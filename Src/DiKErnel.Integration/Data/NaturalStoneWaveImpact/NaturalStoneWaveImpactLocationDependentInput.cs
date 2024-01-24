@@ -100,10 +100,10 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
             var validationIssues = new List<ValidationIssue>
             {
-                NaturalStoneRevetmentValidator.RelativeDensity(RelativeDensity),
-                NaturalStoneRevetmentValidator.ThicknessTopLayer(ThicknessTopLayer),
-                NaturalStoneRevetmentValidator.SlopeUpperLevelAus(Slope.UpperLevelAus),
-                NaturalStoneRevetmentValidator.SlopeLowerLevelAls(Slope.LowerLevelAls)
+                NaturalStoneWaveImpactValidator.RelativeDensity(RelativeDensity),
+                NaturalStoneWaveImpactValidator.ThicknessTopLayer(ThicknessTopLayer),
+                NaturalStoneWaveImpactValidator.SlopeUpperLevelAus(Slope.UpperLevelAus),
+                NaturalStoneWaveImpactValidator.SlopeLowerLevelAls(Slope.LowerLevelAls)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

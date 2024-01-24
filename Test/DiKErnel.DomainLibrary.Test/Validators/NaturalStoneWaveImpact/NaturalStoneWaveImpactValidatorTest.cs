@@ -25,12 +25,12 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneRevetmentValidatorTest
+    public class NaturalStoneWaveImpactValidatorTest
     {
         [Test]
         public void RelativeDensity_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = NaturalStoneRevetmentValidator.RelativeDensity;
+            Func<double, ValidationIssue> validationFunc = NaturalStoneWaveImpactValidator.RelativeDensity;
 
             const string errorMessage = "RelativeDensity must be in range {0, 10}.";
             const string warningMessage = "RelativeDensity should be in range [0.1, 5].";
@@ -64,7 +64,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneWaveImpact
         [Test]
         public void ThicknessTopLayer_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = NaturalStoneRevetmentValidator.ThicknessTopLayer;
+            Func<double, ValidationIssue> validationFunc = NaturalStoneWaveImpactValidator.ThicknessTopLayer;
 
             const string errorMessage = "ThicknessTopLayer must be in range {0, 1}.";
             const string warningMessage = "ThicknessTopLayer should be in range [0.04, 0.6].";
@@ -97,7 +97,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneWaveImpact
         [Test]
         public void SlopeUpperLevelAus_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = NaturalStoneRevetmentValidator.SlopeUpperLevelAus;
+            Func<double, ValidationIssue> validationFunc = NaturalStoneWaveImpactValidator.SlopeUpperLevelAus;
 
             const string errorMessage = "SlopeUpperLevelAus must be larger than 0.";
             const string warningMessage = "SlopeUpperLevelAus should be in range [0.01, 0.2].";
@@ -125,7 +125,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneWaveImpact
         [Test]
         public void SlopeLowerLevelAls_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = NaturalStoneRevetmentValidator.SlopeLowerLevelAls;
+            Func<double, ValidationIssue> validationFunc = NaturalStoneWaveImpactValidator.SlopeLowerLevelAls;
 
             const string errorMessage = "SlopeLowerLevelAls must be larger than 0.";
             const string warningMessage = "SlopeLowerLevelAls should be in range [1, 2].";
