@@ -19,7 +19,7 @@
 namespace DiKErnel.FunctionLibrary
 {
     /// <summary>
-    /// Class that holds all generic revetment calculation routines.
+    /// Class that holds generic revetment calculation routines.
     /// </summary>
     public static class RevetmentFunctions
     {

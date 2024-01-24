@@ -21,7 +21,7 @@ using System;
 namespace DiKErnel.FunctionLibrary
 {
     /// <summary>
-    /// Class that holds all generic calculation routines.
+    /// Class that holds generic calculation routines.
     /// </summary>
     public static class GenericFunctions
     {

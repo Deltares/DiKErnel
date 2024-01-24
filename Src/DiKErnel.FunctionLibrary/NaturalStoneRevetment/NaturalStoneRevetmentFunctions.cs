@@ -21,7 +21,7 @@ using System;
 namespace DiKErnel.FunctionLibrary.NaturalStoneRevetment
 {
     /// <summary>
-    /// Class that holds all natural stone revetment specific calculation routines.
+    /// Class that holds natural stone revetment specific calculation routines.
     /// </summary>
     public static class NaturalStoneRevetmentFunctions
     {

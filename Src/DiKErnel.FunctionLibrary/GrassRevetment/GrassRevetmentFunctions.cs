@@ -23,7 +23,7 @@ using DiKErnel.External.Overtopping;
 namespace DiKErnel.FunctionLibrary.GrassRevetment
 {
     /// <summary>
-    /// Class that holds all generic grass revetment calculation routines.
+    /// Class that holds generic grass revetment calculation routines.
     /// </summary>
     public static class GrassRevetmentFunctions
     {

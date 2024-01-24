@@ -21,7 +21,7 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators
 {
     /// <summary>
-    /// Class that holds all hydraulic loads validation routines.
+    /// Class that holds hydraulic loads validation routines.
     /// </summary>
     public static class HydraulicLoadsValidator
     {

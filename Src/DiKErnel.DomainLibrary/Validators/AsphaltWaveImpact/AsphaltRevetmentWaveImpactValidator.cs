@@ -21,7 +21,7 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.AsphaltWaveImpact
 {
     /// <summary>
-    /// Class that holds all asphalt revetment wave impact specific validation routines.
+    /// Class that holds asphalt revetment wave impact validation routines.
     /// </summary>
     public static class AsphaltRevetmentWaveImpactValidator
     {

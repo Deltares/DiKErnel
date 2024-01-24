@@ -21,7 +21,7 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Class that holds all natural stone revetment specific validation routines.
+    /// Class that holds natural stone revetment validation routines.
     /// </summary>
     public static class NaturalStoneRevetmentValidator
     {

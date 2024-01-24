@@ -21,7 +21,7 @@ using System;
 namespace DiKErnel.FunctionLibrary
 {
     /// <summary>
-    /// Class that holds all generic hydraulic load calculation routines.
+    /// Class that holds generic hydraulic load calculation routines.
     /// </summary>
     public static class HydraulicLoadFunctions
     {

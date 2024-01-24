@@ -21,7 +21,7 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.GrassOvertopping
 {
     /// <summary>
-    /// Class that holds all grass revetment overtopping validation routines.
+    /// Class that holds grass revetment overtopping validation routines.
     /// </summary>
     public static class GrassRevetmentOvertoppingValidator
     {

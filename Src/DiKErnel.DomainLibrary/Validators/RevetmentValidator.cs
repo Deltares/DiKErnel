@@ -21,7 +21,7 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators
 {
     /// <summary>
-    /// Class that holds all generic revetment validation routines.
+    /// Class that holds generic revetment validation routines.
     /// </summary>
     public static class RevetmentValidator
     {

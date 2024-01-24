@@ -21,7 +21,7 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.GrassWaveImpact
 {
     /// <summary>
-    /// Class that holds all grass revetment wave impact specific validation routines.
+    /// Class that holds grass revetment wave impact validation routines.
     /// </summary>
     public static class GrassRevetmentWaveImpactValidator
     {

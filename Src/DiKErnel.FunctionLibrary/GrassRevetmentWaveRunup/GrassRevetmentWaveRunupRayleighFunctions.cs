@@ -22,7 +22,7 @@ using DiKErnel.FunctionLibrary.GrassRevetment;
 namespace DiKErnel.FunctionLibrary.GrassRevetmentWaveRunup
 {
     /// <summary>
-    /// Class that holds all grass revetment wave run-up specific calculation routines for
+    /// Class that holds grass revetment wave run-up specific calculation routines for
     /// the Rayleigh protocol.
     /// </summary>
     public static class GrassRevetmentWaveRunupRayleighFunctions
