@@ -30,18 +30,18 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         public IReadOnlyList<JsonInputNaturalStoneWaveImpactTopLayerData> TopLayerData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.LoadingArea)]
-        public JsonInputNaturalStoneWaveImpactLoadingAreaData LoadingArea { get; private set; }
+        public JsonInputNaturalStoneWaveImpactLoadingAreaData LoadingAreaData { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.Slope)]
-        public JsonInputNaturalStoneWaveImpactSlopeData Slope { get; private set; }
+        public JsonInputNaturalStoneWaveImpactSlopeData SlopeData { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.DistanceMaximumWaveElevation)]
-        public JsonInputNaturalStoneWaveImpactMaximumWaveElevationData DistanceMaximumWaveElevation { get; private set; }
+        public JsonInputNaturalStoneWaveImpactMaximumWaveElevationData MaximumWaveElevationData { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.NormativeWidthOfWaveImpact)]
-        public JsonInputNaturalStoneWaveImpactNormativeWidthWaveImpactData NormativeWidthOfWaveImpact { get; private set; }
+        public JsonInputNaturalStoneWaveImpactNormativeWidthData NormativeWidthData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.WaveAngleImpact)]
-        public JsonInputNaturalStoneWaveImpactWaveAngleData WaveAngleImpact { get; private set; }
+        public JsonInputNaturalStoneWaveImpactWaveAngleData WaveAngleData { get; private set; }
     }
 }

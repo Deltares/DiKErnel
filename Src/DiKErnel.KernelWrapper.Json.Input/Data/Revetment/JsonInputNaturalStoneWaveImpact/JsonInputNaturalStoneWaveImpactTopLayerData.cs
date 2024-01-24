@@ -28,6 +28,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         public JsonInputNaturalStoneWaveImpactTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.Stability)]
-        public JsonInputNaturalStoneWaveImpactTopLayerStabilityData Stability { get; private set; }
+        public JsonInputNaturalStoneWaveImpactStabilityData StabilityData { get; private set; }
     }
 }
