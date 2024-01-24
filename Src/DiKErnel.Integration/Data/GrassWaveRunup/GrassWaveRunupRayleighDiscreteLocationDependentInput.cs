@@ -84,14 +84,14 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         {
             return GrassWaveRunupRayleighDiscreteFunctions.CumulativeOverload(
                 new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
-                                                                           representativeWaveRunup2P,
-                                                                           FixedNumberOfWaves,
-                                                                           verticalDistanceWaterLevelElevation,
-                                                                           CriticalFrontVelocity,
-                                                                           IncreasedLoadTransitionAlphaM,
-                                                                           ReducedStrengthTransitionAlphaS,
-                                                                           Constants.GravitationalAcceleration,
-                                                                           FrontVelocityCu));
+                                                                          representativeWaveRunup2P,
+                                                                          FixedNumberOfWaves,
+                                                                          verticalDistanceWaterLevelElevation,
+                                                                          CriticalFrontVelocity,
+                                                                          IncreasedLoadTransitionAlphaM,
+                                                                          ReducedStrengthTransitionAlphaS,
+                                                                          Constants.GravitationalAcceleration,
+                                                                          FrontVelocityCu));
         }
     }
 }

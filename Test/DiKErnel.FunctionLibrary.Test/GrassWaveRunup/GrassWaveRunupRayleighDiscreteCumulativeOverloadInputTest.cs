@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighCumulativeOverloadInputTest
+    public class GrassWaveRunupRayleighDiscreteCumulativeOverloadInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -42,14 +42,14 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 
             // Call
             var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
-                                                                                   representativeWaveRunup2P,
-                                                                                   fixedNumberOfWaves,
-                                                                                   verticalDistanceWaterLevelElevation,
-                                                                                   criticalFrontVelocity,
-                                                                                   increasedLoadTransitionAlphaM,
-                                                                                   reducedStrengthTransitionAlphaS,
-                                                                                   gravitationalAcceleration,
-                                                                                   frontVelocityCu);
+                                                                                  representativeWaveRunup2P,
+                                                                                  fixedNumberOfWaves,
+                                                                                  verticalDistanceWaterLevelElevation,
+                                                                                  criticalFrontVelocity,
+                                                                                  increasedLoadTransitionAlphaM,
+                                                                                  reducedStrengthTransitionAlphaS,
+                                                                                  gravitationalAcceleration,
+                                                                                  frontVelocityCu);
 
             // Assert
             Assert.That(input, Is.InstanceOf<GrassCumulativeOverloadInput>());

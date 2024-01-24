@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighFunctionsTest
+    public class GrassWaveRunupRayleighDiscreteFunctionsTest
     {
         [Test]
         public void CumulativeOverload_ValidInput_ExpectedValue()
@@ -39,13 +39,15 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             const double gravitationalAcceleration = 9.81;
             const double frontVelocityCu = 1.3;
 
-            var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                                   fixedNumberOfWaves,
-                                                                                   verticalDistanceWaterLevelElevation,
-                                                                                   criticalFrontVelocity,
-                                                                                   increasedLoadTransitionAlphaM,
-                                                                                   reducedStrengthTransitionAlphaS,
-                                                                                   gravitationalAcceleration, frontVelocityCu);
+            var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
+                                                                                  representativeWaveRunup2P,
+                                                                                  fixedNumberOfWaves,
+                                                                                  verticalDistanceWaterLevelElevation,
+                                                                                  criticalFrontVelocity,
+                                                                                  increasedLoadTransitionAlphaM,
+                                                                                  reducedStrengthTransitionAlphaS,
+                                                                                  gravitationalAcceleration,
+                                                                                  frontVelocityCu);
 
             // Call
             double cumulativeOverload = GrassWaveRunupRayleighDiscreteFunctions.CumulativeOverload(input);
