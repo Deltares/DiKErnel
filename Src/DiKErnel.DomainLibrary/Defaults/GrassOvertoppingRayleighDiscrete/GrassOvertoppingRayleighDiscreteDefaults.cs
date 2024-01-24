@@ -19,9 +19,9 @@
 namespace DiKErnel.DomainLibrary.Defaults.GrassOvertoppingRayleighDiscrete
 {
     /// <summary>
-    /// Class that contains default values for grass revetment overtopping.
+    /// Class that contains default values for grass overtopping Rayleigh Discrete.
     /// </summary>
-    public static class GrassRevetmentOvertoppingDefaults
+    public static class GrassOvertoppingRayleighDiscreteDefaults
     {
         /// <summary>
         /// Gets the default value of the Cwo coefficient [-].
