@@ -22,16 +22,16 @@ using DiKErnel.FunctionLibrary.Grass;
 namespace DiKErnel.FunctionLibrary.GrassOvertopping
 {
     /// <summary>
-    /// Class that holds grass revetment overtopping calculation routines.
+    /// Class that holds grass overtopping Rayleigh Discrete calculation routines.
     /// </summary>
-    public static class GrassRevetmentOvertoppingFunctions
+    public static class GrassOvertoppingRayleighDiscreteFunctions
     {
         /// <summary>
         /// Calculates the cumulative overload.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The cumulative overload [m^2/s^2].</returns>
-        public static double CumulativeOverload(GrassRevetmentOvertoppingCumulativeOverloadInput input)
+        public static double CumulativeOverload(GrassOvertoppingRayleighDiscreteCumulativeOverloadInput input)
         {
             return GrassFunctions.CumulativeOverload(
                 input, waveRunup => FrontVelocity(waveRunup, input.VerticalDistanceWaterLevelElevation,

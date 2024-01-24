@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassOvertopping
 {
     [TestFixture]
-    public class GrassRevetmentOvertoppingFunctionsTest
+    public class GrassOvertoppingRayleighDiscreteFunctionsTest
     {
         [Test]
         public void CumulativeOverload_ValidInput_ExpectedValue()
@@ -40,16 +40,19 @@ namespace DiKErnel.FunctionLibrary.Test.GrassOvertopping
             const double accelerationAlphaA = 1.4;
             const double frontVelocityCwo = 1.45;
 
-            var input = new GrassRevetmentOvertoppingCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                             fixedNumberOfWaves,
-                                                                             verticalDistanceWaterLevelElevation,
-                                                                             criticalFrontVelocity, increasedLoadTransitionAlphaM,
-                                                                             reducedStrengthTransitionAlphaS,
-                                                                             gravitationalAcceleration, accelerationAlphaA,
-                                                                             frontVelocityCwo);
+            var input = new GrassOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
+                                                                                    representativeWaveRunup2P,
+                                                                                    fixedNumberOfWaves,
+                                                                                    verticalDistanceWaterLevelElevation,
+                                                                                    criticalFrontVelocity,
+                                                                                    increasedLoadTransitionAlphaM,
+                                                                                    reducedStrengthTransitionAlphaS,
+                                                                                    gravitationalAcceleration,
+                                                                                    accelerationAlphaA,
+                                                                                    frontVelocityCwo);
 
             // Call
-            double cumulativeOverload = GrassRevetmentOvertoppingFunctions.CumulativeOverload(input);
+            double cumulativeOverload = GrassOvertoppingRayleighDiscreteFunctions.CumulativeOverload(input);
 
             // Assert
             AssertHelper.AreEqual(14.88390482811014, cumulativeOverload);

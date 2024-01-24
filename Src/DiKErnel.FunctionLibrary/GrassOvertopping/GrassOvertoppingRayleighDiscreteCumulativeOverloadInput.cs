@@ -21,9 +21,9 @@ using DiKErnel.FunctionLibrary.Grass;
 namespace DiKErnel.FunctionLibrary.GrassOvertopping
 {
     /// <summary>
-    /// Input for grass overtopping cumulative overload calculations.
+    /// Input for grass overtopping Rayleigh Discrete cumulative overload calculations.
     /// </summary>
-    public class GrassRevetmentOvertoppingCumulativeOverloadInput : GrassCumulativeOverloadInput
+    public class GrassOvertoppingRayleighDiscreteCumulativeOverloadInput : GrassCumulativeOverloadInput
     {
         /// <inheritdoc/>
         /// <summary>
@@ -31,12 +31,16 @@ namespace DiKErnel.FunctionLibrary.GrassOvertopping
         /// </summary>
         /// <param name="accelerationAlphaA">The AlphaA coefficient [-].</param>
         /// <param name="frontVelocityCwo">The Cwo coefficient [-].</param>
-        public GrassRevetmentOvertoppingCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
-                                                                int fixedNumberOfWaves, double verticalDistanceWaterLevelElevation,
-                                                                double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
-                                                                double reducedStrengthTransitionAlphaS,
-                                                                double gravitationalAcceleration, double accelerationAlphaA,
-                                                                double frontVelocityCwo)
+        public GrassOvertoppingRayleighDiscreteCumulativeOverloadInput(double averageNumberOfWaves,
+                                                                       double representativeWaveRunup2P,
+                                                                       int fixedNumberOfWaves,
+                                                                       double verticalDistanceWaterLevelElevation,
+                                                                       double criticalFrontVelocity,
+                                                                       double increasedLoadTransitionAlphaM,
+                                                                       double reducedStrengthTransitionAlphaS,
+                                                                       double gravitationalAcceleration,
+                                                                       double accelerationAlphaA,
+                                                                       double frontVelocityCwo)
             : base(averageNumberOfWaves, representativeWaveRunup2P, fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
                    criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                    gravitationalAcceleration)

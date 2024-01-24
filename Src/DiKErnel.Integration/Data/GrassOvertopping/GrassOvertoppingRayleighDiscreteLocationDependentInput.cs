@@ -124,17 +124,17 @@ namespace DiKErnel.Integration.Data.GrassOvertopping
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation)
         {
-            return GrassRevetmentOvertoppingFunctions.CumulativeOverload(
-                new GrassRevetmentOvertoppingCumulativeOverloadInput(averageNumberOfWaves,
-                                                                     representativeWaveRunup2P,
-                                                                     FixedNumberOfWaves,
-                                                                     verticalDistanceWaterLevelElevation,
-                                                                     CriticalFrontVelocity,
-                                                                     IncreasedLoadTransitionAlphaM,
-                                                                     ReducedStrengthTransitionAlphaS,
-                                                                     Constants.GravitationalAcceleration,
-                                                                     accelerationAlphaA,
-                                                                     FrontVelocityCwo));
+            return GrassOvertoppingRayleighDiscreteFunctions.CumulativeOverload(
+                new GrassOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
+                                                                            representativeWaveRunup2P,
+                                                                            FixedNumberOfWaves,
+                                                                            verticalDistanceWaterLevelElevation,
+                                                                            CriticalFrontVelocity,
+                                                                            IncreasedLoadTransitionAlphaM,
+                                                                            ReducedStrengthTransitionAlphaS,
+                                                                            Constants.GravitationalAcceleration,
+                                                                            accelerationAlphaA,
+                                                                            FrontVelocityCwo));
         }
 
         private void InitializeAccelerationAlphaA(IProfileData profileData)
