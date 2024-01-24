@@ -25,7 +25,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.FunctionLibrary.Test.Grass
 {
     [TestFixture]
-    public class GrassRevetmentRepresentative2PInputTest
+    public class GrassRepresentative2PInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -42,9 +42,9 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
             double dikeOrientation = Random.NextDouble();
 
             // Call
-            var input = new GrassRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
-                                                                waveDirection, xValuesProfile, zValuesProfile,
-                                                                roughnessCoefficients, dikeHeight, dikeOrientation);
+            var input = new GrassRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
+                                                       xValuesProfile, zValuesProfile, roughnessCoefficients,
+                                                       dikeHeight, dikeOrientation);
 
             // Assert
             Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));

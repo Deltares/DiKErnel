@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.Grass
 {
     [TestFixture]
-    public class GrassRevetmentFunctionsTest
+    public class GrassFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()
@@ -74,9 +74,9 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
 
             const double dikeHeight = 7.7;
 
-            var input = new GrassRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
-                                                                waveDirection, xValuesProfile, zValuesProfile,
-                                                                roughnessCoefficients, dikeHeight, dikeOrientation);
+            var input = new GrassRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10, waveDirection,
+                                                       xValuesProfile, zValuesProfile, roughnessCoefficients,
+                                                       dikeHeight, dikeOrientation);
 
             // Call
             double representativeWaveRunup2P = GrassFunctions.RepresentativeWaveRunup2P(input);

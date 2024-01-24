@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.Grass
 {
     [TestFixture]
-    public class GrassRevetmentCumulativeOverloadInputTest
+    public class GrassCumulativeOverloadInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -40,9 +40,9 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
 
             // Call
             var input = new GrassCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                  fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
-                                                                  criticalFrontVelocity, increasedLoadTransitionAlphaM,
-                                                                  reducedStrengthTransitionAlphaS, gravitationalAcceleration);
+                                                         fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
+                                                         criticalFrontVelocity, increasedLoadTransitionAlphaM,
+                                                         reducedStrengthTransitionAlphaS, gravitationalAcceleration);
 
             // Assert
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
