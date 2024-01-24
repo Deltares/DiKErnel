@@ -533,7 +533,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GivenInvalidJsonInputFile_WhenGetInputDataFromJson_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 "GrassRevetmentWaveRunupNoCalculationMethod.json",
                 "An unhandled error occurred while composing calculation data from the Json input. See stack trace " +
-                $"for more information:{Environment.NewLine}Cannot convert calculation protocol type.");
+                $"for more information:{Environment.NewLine}Cannot convert protocol type.");
         }
 
         [Test]

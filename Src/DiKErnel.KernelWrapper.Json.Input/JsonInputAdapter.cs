@@ -308,14 +308,14 @@ namespace DiKErnel.KernelWrapper.Json.Input
         {
             GrassWaveRunupLocationConstructionProperties constructionProperties;
 
-            switch (calculationData?.CalculationProtocolData?.ProtocolType)
+            switch (calculationData?.ProtocolData?.ProtocolType)
             {
                 case JsonInputGrassWaveRunupProtocolType.RayleighDiscrete:
                     constructionProperties = CreateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
-                        locationData, calculationData.CalculationProtocolData);
+                        locationData, calculationData.ProtocolData);
                     break;
                 default:
-                    throw new JsonInputConversionException("Cannot convert calculation protocol type.");
+                    throw new JsonInputConversionException("Cannot convert protocol type.");
             }
 
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
@@ -335,13 +335,13 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static GrassWaveRunupRayleighDiscreteLocationConstructionProperties
             CreateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 JsonInputGrassWaveRunupLocationData locationData,
-                JsonInputGrassWaveRunupProtocolData calculationProtocolData)
+                JsonInputGrassWaveRunupProtocolData protocolData)
         {
             return new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
             {
-                FixedNumberOfWaves = calculationProtocolData.FixedNumberOfWaves,
-                FrontVelocityCu = calculationProtocolData.FrontVelocity
+                FixedNumberOfWaves = protocolData.FixedNumberOfWaves,
+                FrontVelocityCu = protocolData.FrontVelocity
             };
         }
 
