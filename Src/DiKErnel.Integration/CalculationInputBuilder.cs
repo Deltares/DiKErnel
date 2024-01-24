@@ -368,7 +368,7 @@ namespace DiKErnel.Integration
             ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
         {
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
-                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
+                   && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
                    && ValidateOvertoppingAdapterProperties(outerToe, outerCrest, constructionProperties.DikeHeight);
         }
 
@@ -377,7 +377,7 @@ namespace DiKErnel.Integration
             ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
-                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
+                   && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
         }
 
         private bool ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
@@ -385,7 +385,7 @@ namespace DiKErnel.Integration
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
-                   && ValidateGrassRevetmentTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
+                   && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
                    && ValidateOvertoppingAdapterProperties(outerToe, outerCrest);
         }
 
@@ -437,7 +437,7 @@ namespace DiKErnel.Integration
             return true;
         }
 
-        private static bool ValidateGrassRevetmentTopLayerType(GrassTopLayerType topLayerType, double locationX)
+        private static bool ValidateGrassTopLayerType(GrassTopLayerType topLayerType, double locationX)
         {
             if (topLayerType != GrassTopLayerType.ClosedSod
                 && topLayerType != GrassTopLayerType.OpenSod)
