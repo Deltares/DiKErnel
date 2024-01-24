@@ -53,7 +53,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
                     calculationData.ToObject<JsonInputGrassWaveImpactCalculationData>(),
                 JsonInputCalculationType.GrassWaveRunup =>
                     calculationData.ToObject<JsonInputGrassWaveRunupCalculationData>(),
-                JsonInputCalculationType.NaturalStone =>
+                JsonInputCalculationType.NaturalStoneWaveImpact =>
                     calculationData.ToObject<JsonInputNaturalStoneWaveImpactCalculationData>(),
                 _ => null
             };

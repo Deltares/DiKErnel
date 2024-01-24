@@ -35,7 +35,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeGrassWaveRunup)]
         GrassWaveRunup,
 
-        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeNaturalStone)]
-        NaturalStone
+        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeNaturalStoneWaveImpact)]
+        NaturalStoneWaveImpact
     }
 }

@@ -188,7 +188,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                             CreateNaturalStoneWaveImpactLocationConstructionProperties(
                                 naturalStoneWaveImpactLocationData,
                                 GetCalculationDefinition<JsonInputNaturalStoneWaveImpactCalculationData>(
-                                    calculationDataItems, JsonInputCalculationType.NaturalStone)));
+                                    calculationDataItems, JsonInputCalculationType.NaturalStoneWaveImpact)));
                         break;
                     }
                 }

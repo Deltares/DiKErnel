@@ -54,7 +54,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions
         public const string CalculationMethodTypeGrassOvertopping = "grasGolfoverslag";
         public const string CalculationMethodTypeGrassWaveImpact = "grasGolfklap";
         public const string CalculationMethodTypeGrassWaveRunup = "grasGolfoploop";
-        public const string CalculationMethodTypeNaturalStone = "natuursteen";
+        public const string CalculationMethodTypeNaturalStoneWaveImpact = "natuursteen";
 
         public const string TopLayers = "toplagen";
         public const string TypeTopLayer = "typeToplaag";
