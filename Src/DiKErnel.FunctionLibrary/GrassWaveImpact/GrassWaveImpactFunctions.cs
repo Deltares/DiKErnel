@@ -21,9 +21,9 @@ using System;
 namespace DiKErnel.FunctionLibrary.GrassWaveImpact
 {
     /// <summary>
-    /// Class that holds grass revetment wave impact calculation routines.
+    /// Class that holds grass wave impact calculation routines.
     /// </summary>
-    public static class GrassRevetmentWaveImpactFunctions
+    public static class GrassWaveImpactFunctions
     {
         /// <summary>
         /// Calculates the increment of damage.

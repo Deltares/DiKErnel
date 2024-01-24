@@ -100,12 +100,10 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             double timeLineBgwi = TimeLine.TimeLineBgwi;
             double timeLineCgwi = TimeLine.TimeLineCgwi;
 
-            minimumWaveHeight = GrassRevetmentWaveImpactFunctions.MinimumWaveHeight(timeLineAgwi, timeLineBgwi,
-                                                                                    timeLineCgwi,
-                                                                                    MinimumWaveHeightTemax);
-            maximumWaveHeight = GrassRevetmentWaveImpactFunctions.MaximumWaveHeight(timeLineAgwi, timeLineBgwi,
-                                                                                    timeLineCgwi,
-                                                                                    MaximumWaveHeightTemin);
+            minimumWaveHeight = GrassWaveImpactFunctions.MinimumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
+                                                                           MinimumWaveHeightTemax);
+            maximumWaveHeight = GrassWaveImpactFunctions.MaximumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
+                                                                           MaximumWaveHeightTemin);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
@@ -126,21 +124,19 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
 
                 waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
-                waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle,
-                                                                                    WaveAngleImpact.WaveAngleImpactNwa,
-                                                                                    WaveAngleImpact.WaveAngleImpactQwa,
-                                                                                    WaveAngleImpact.WaveAngleImpactRwa);
+                waveAngleImpact = GrassWaveImpactFunctions.WaveAngleImpact(waveAngle,
+                                                                           WaveAngleImpact.WaveAngleImpactNwa,
+                                                                           WaveAngleImpact.WaveAngleImpactQwa,
+                                                                           WaveAngleImpact.WaveAngleImpactRwa);
 
-                waveHeightImpact = GrassRevetmentWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight,
-                                                                                      maximumWaveHeight,
-                                                                                      waveAngleImpact,
-                                                                                      timeDependentInput.WaveHeightHm0);
+                waveHeightImpact = GrassWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight, maximumWaveHeight,
+                                                                             waveAngleImpact,
+                                                                             timeDependentInput.WaveHeightHm0);
 
-                double timeLine = GrassRevetmentWaveImpactFunctions.TimeLine(waveHeightImpact, TimeLine.TimeLineAgwi,
-                                                                             TimeLine.TimeLineBgwi,
-                                                                             TimeLine.TimeLineCgwi);
+                double timeLine = GrassWaveImpactFunctions.TimeLine(waveHeightImpact, TimeLine.TimeLineAgwi,
+                                                                    TimeLine.TimeLineBgwi, TimeLine.TimeLineCgwi);
 
-                incrementDamage = GrassRevetmentWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
+                incrementDamage = GrassWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
 
                 damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
 
@@ -160,10 +156,10 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
 
         private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
         {
-            lowerLimitLoading = GrassRevetmentWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0,
-                                                                                    LowerLimitLoadingAll);
-            upperLimitLoading = GrassRevetmentWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0,
-                                                                                    UpperLimitLoadingAul);
+            lowerLimitLoading = GrassWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0,
+                                                                           LowerLimitLoadingAll);
+            upperLimitLoading = GrassWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0,
+                                                                           UpperLimitLoadingAul);
 
             return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }

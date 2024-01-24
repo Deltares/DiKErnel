@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassRevetmentWaveImpactFunctionsTest
+    public class GrassWaveImpactFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()
@@ -33,7 +33,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double timeLine = 3319.12;
 
             // Call
-            double incrementDamage = GrassRevetmentWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
+            double incrementDamage = GrassWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
 
             // Assert
             AssertHelper.AreEqual(0.27115621007978, incrementDamage);
@@ -49,8 +49,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double timeLineCgwi = 0.25;
 
             // Call
-            double timeLine = GrassRevetmentWaveImpactFunctions.TimeLine(waveHeightImpact, timeLineAgwi, timeLineBgwi,
-                                                                         timeLineCgwi);
+            double timeLine = GrassWaveImpactFunctions.TimeLine(waveHeightImpact, timeLineAgwi, timeLineBgwi,
+                                                                timeLineCgwi);
 
             // Assert
             AssertHelper.AreEqual(3319.8827745664184, timeLine);
@@ -66,8 +66,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double waveHeightHm0 = 1;
 
             // Call
-            double waveHeightImpact = GrassRevetmentWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight, maximumWaveHeight,
-                                                                                         waveAngleImpact, waveHeightHm0);
+            double waveHeightImpact = GrassWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight, maximumWaveHeight,
+                                                                                waveAngleImpact, waveHeightHm0);
 
             // Assert
             AssertHelper.AreEqual(0.79, waveHeightImpact);
@@ -83,8 +83,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double minimumWaveHeightTemax = 3600000;
 
             // Call
-            double minimumWaveHeight = GrassRevetmentWaveImpactFunctions.MinimumWaveHeight(timeLineAgwi, timeLineBgwi,
-                                                                                           timeLineCgwi, minimumWaveHeightTemax);
+            double minimumWaveHeight = GrassWaveImpactFunctions.MinimumWaveHeight(timeLineAgwi, timeLineBgwi,
+                                                                                  timeLineCgwi, minimumWaveHeightTemax);
 
             // Assert
             AssertHelper.AreEqual(0.25, minimumWaveHeight);
@@ -100,8 +100,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double maximumWaveHeightTemin = 3.6;
 
             // Call
-            double maximumWaveHeight = GrassRevetmentWaveImpactFunctions.MaximumWaveHeight(timeLineAgwi, timeLineBgwi,
-                                                                                           timeLineCgwi, maximumWaveHeightTemin);
+            double maximumWaveHeight = GrassWaveImpactFunctions.MaximumWaveHeight(timeLineAgwi, timeLineBgwi,
+                                                                                  timeLineCgwi, maximumWaveHeightTemin);
 
             // Assert
             AssertHelper.AreEqual(1.04994401475905, maximumWaveHeight);
@@ -117,8 +117,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double waveAngleImpactRwa = 10;
 
             // Call
-            double waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa,
-                                                                                       waveAngleImpactQwa, waveAngleImpactRwa);
+            double waveAngleImpact = GrassWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa,
+                                                                              waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
             AssertHelper.AreEqual(0.79278413661028, waveAngleImpact);
@@ -134,8 +134,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double waveAngleImpactRwa = 10;
 
             // Call
-            double waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa,
-                                                                                       waveAngleImpactQwa, waveAngleImpactRwa);
+            double waveAngleImpact = GrassWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa,
+                                                                              waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
             AssertHelper.AreEqual(0.35, waveAngleImpact);
@@ -151,8 +151,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double waveAngleImpactRwa = 10;
 
             // Call
-            double waveAngleImpact = GrassRevetmentWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa,
-                                                                                       waveAngleImpactQwa, waveAngleImpactRwa);
+            double waveAngleImpact = GrassWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactNwa,
+                                                                              waveAngleImpactQwa, waveAngleImpactRwa);
 
             // Assert
             AssertHelper.AreEqual(0.315, waveAngleImpact);
@@ -167,8 +167,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double upperLimitLoadingAul = 0.001;
 
             // Call
-            double upperLimitLoading = GrassRevetmentWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0,
-                                                                                           upperLimitLoadingAul);
+            double upperLimitLoading = GrassWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0,
+                                                                                  upperLimitLoadingAul);
 
             // Assert
             AssertHelper.AreEqual(0.029, upperLimitLoading);
@@ -183,8 +183,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
             const double lowerLimitLoadingAll = 0.5;
 
             // Call
-            double lowerLimitLoading = GrassRevetmentWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0,
-                                                                                           lowerLimitLoadingAll);
+            double lowerLimitLoading = GrassWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0,
+                                                                                  lowerLimitLoadingAll);
 
             // Assert
             AssertHelper.AreEqual(-0.47, lowerLimitLoading);
