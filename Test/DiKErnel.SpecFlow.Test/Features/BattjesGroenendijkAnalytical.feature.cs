@@ -74,6 +74,205 @@ namespace DiKErnel.SpecFlow.Test.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 4
+ #line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "tijdstippen"});
+            table1.AddRow(new string[] {
+                        "0"});
+            table1.AddRow(new string[] {
+                        "3600"});
+            table1.AddRow(new string[] {
+                        "7200"});
+            table1.AddRow(new string[] {
+                        "10800"});
+            table1.AddRow(new string[] {
+                        "14400"});
+            table1.AddRow(new string[] {
+                        "18000"});
+            table1.AddRow(new string[] {
+                        "21600"});
+            table1.AddRow(new string[] {
+                        "25200"});
+            table1.AddRow(new string[] {
+                        "28800"});
+            table1.AddRow(new string[] {
+                        "32400"});
+            table1.AddRow(new string[] {
+                        "36000"});
+            table1.AddRow(new string[] {
+                        "39600"});
+            table1.AddRow(new string[] {
+                        "43200"});
+            table1.AddRow(new string[] {
+                        "46800"});
+            table1.AddRow(new string[] {
+                        "50400"});
+            table1.AddRow(new string[] {
+                        "54000"});
+            table1.AddRow(new string[] {
+                        "57600"});
+#line 5
+  testRunner.Given("the following tijdstippen:", ((string)(null)), table1, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "waterstanden",
+                        "golfhoogtenHm0",
+                        "golfperiodenTm10",
+                        "golfrichtingen"});
+            table2.AddRow(new string[] {
+                        "3",
+                        "0.5",
+                        "3",
+                        "50"});
+            table2.AddRow(new string[] {
+                        "3.1",
+                        "0.7",
+                        "3.5",
+                        "45"});
+            table2.AddRow(new string[] {
+                        "3.2",
+                        "1",
+                        "4",
+                        "40"});
+            table2.AddRow(new string[] {
+                        "3.3",
+                        "1.3",
+                        "4.3",
+                        "35"});
+            table2.AddRow(new string[] {
+                        "3.4",
+                        "1.5",
+                        "4.5",
+                        "30"});
+            table2.AddRow(new string[] {
+                        "3.5",
+                        "1.8",
+                        "4.8",
+                        "25"});
+            table2.AddRow(new string[] {
+                        "3.6",
+                        "2.1",
+                        "5.2",
+                        "20"});
+            table2.AddRow(new string[] {
+                        "3.7",
+                        "2.5",
+                        "5.5",
+                        "15"});
+            table2.AddRow(new string[] {
+                        "3.7",
+                        "2.8",
+                        "5.8",
+                        "10"});
+            table2.AddRow(new string[] {
+                        "3.6",
+                        "2.8",
+                        "6",
+                        "5"});
+            table2.AddRow(new string[] {
+                        "3.5",
+                        "2.5",
+                        "6",
+                        "0"});
+            table2.AddRow(new string[] {
+                        "3.4",
+                        "2.1",
+                        "5.8",
+                        "0"});
+            table2.AddRow(new string[] {
+                        "3.3",
+                        "1.8",
+                        "5.5",
+                        "5"});
+            table2.AddRow(new string[] {
+                        "3.2",
+                        "1.5",
+                        "5.2",
+                        "10"});
+            table2.AddRow(new string[] {
+                        "3.1",
+                        "1.3",
+                        "4.8",
+                        "15"});
+            table2.AddRow(new string[] {
+                        "3",
+                        "1",
+                        "4.5",
+                        "20"});
+#line 24
+   testRunner.And("the following hydraulischeBelastingen:", ((string)(null)), table2, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "dijkorientatie",
+                        "posities",
+                        "hoogten",
+                        "ruwheidscoefficienten",
+                        "teenBuitenzijde",
+                        "kruinBuitenzijde"});
+            table3.AddRow(new string[] {
+                        "0",
+                        "0",
+                        "0",
+                        "1.0",
+                        "0",
+                        "25"});
+            table3.AddRow(new string[] {
+                        "",
+                        "25",
+                        "7.5",
+                        "",
+                        "",
+                        ""});
+#line 42
+     testRunner.And("the following dijkprofiel:", ((string)(null)), table3, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "positie",
+                        "rekenmethode",
+                        "typeToplaag",
+                        "beginschade",
+                        "verhogingBelastingOvergangAlfaM",
+                        "verlagingSterkteOvergangAlfaS"});
+            table4.AddRow(new string[] {
+                        "15",
+                        "grasGolfoploop",
+                        "grasGeslotenZode",
+                        "0",
+                        "1",
+                        "1"});
+#line 46
+     testRunner.And("the following locaties:", ((string)(null)), table4, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "rekenmethode",
+                        "faalgetal",
+                        "factorCtm",
+                        "typeRekenprotocol",
+                        "frontsnelheid",
+                        "bodemVoorlandZ",
+                        "tanAvl",
+                        "typeToplaag",
+                        "kritiekeCumulatieveOverbelasting",
+                        "kritiekeFrontsnelheid"});
+            table5.AddRow(new string[] {
+                        "grasGolfoploop",
+                        "1",
+                        "0.92",
+                        "battjesGroenendijkAnalytisch",
+                        "1.1",
+                        "-4.0",
+                        "0.004",
+                        "grasGeslotenZode",
+                        "7000",
+                        "6.6"});
+#line 49
+     testRunner.And("the following rekenmethoden:", ((string)(null)), table5, "And ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Testcase 1 - Default with closed sod")]
         public virtual void Testcase1_DefaultWithClosedSod()
@@ -81,8 +280,8 @@ namespace DiKErnel.SpecFlow.Test.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 1 - Default with closed sod", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 4
-this.ScenarioInitialize(scenarioInfo);
+#line 53
+ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -101,204 +300,576 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "tijdstippen"});
-                table1.AddRow(new string[] {
-                            "0"});
-                table1.AddRow(new string[] {
-                            "3600"});
-                table1.AddRow(new string[] {
-                            "7200"});
-                table1.AddRow(new string[] {
-                            "10800"});
-                table1.AddRow(new string[] {
-                            "14400"});
-                table1.AddRow(new string[] {
-                            "18000"});
-                table1.AddRow(new string[] {
-                            "21600"});
-                table1.AddRow(new string[] {
-                            "25200"});
-                table1.AddRow(new string[] {
-                            "28800"});
-                table1.AddRow(new string[] {
-                            "32400"});
-                table1.AddRow(new string[] {
-                            "36000"});
-                table1.AddRow(new string[] {
-                            "39600"});
-                table1.AddRow(new string[] {
-                            "43200"});
-                table1.AddRow(new string[] {
-                            "46800"});
-                table1.AddRow(new string[] {
-                            "50400"});
-                table1.AddRow(new string[] {
-                            "54000"});
-                table1.AddRow(new string[] {
-                            "57600"});
-#line 5
- testRunner.Given("the following tijdstippen:", ((string)(null)), table1, "Given ");
+#line 4
+ this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+#line 54
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 55
+  testRunner.Then("the schadegetal is 5.964275964074604", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 2 - Default with open sod")]
+        public virtual void Testcase2_DefaultWithOpenSod()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 2 - Default with open sod", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 57
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "typeToplaag"});
+                table6.AddRow(new string[] {
+                            "grasOpenZode"});
+#line 58
+  testRunner.Given("the following is adjusted:", ((string)(null)), table6, "Given ");
+#line hidden
+#line 61
+     testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 3")]
+        public virtual void Testcase3()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 3", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 64
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "kritiekeCumulatieveOverbelasting",
+                            "kritiekeFrontsnelheid"});
+#line 65
+     testRunner.Given("the following is adjusted:", ((string)(null)), table7, "Given ");
+#line hidden
+#line 67
+     testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 4")]
+        public virtual void Testcase4()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 4", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 70
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "kritiekeFrontsnelheid"});
+#line 71
+  testRunner.Given("the following is adjusted:", ((string)(null)), table8, "Given ");
+#line hidden
+#line 73
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 5")]
+        public virtual void Testcase5()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 5", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 76
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "verhogingBelastingOvergangAlfaM",
+                            "verlagingSterkteOvergangAlfaS"});
+#line 77
+  testRunner.Given("the following is adjusted:", ((string)(null)), table9, "Given ");
+#line hidden
+#line 79
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 6")]
+        public virtual void Testcase6()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 6", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 82
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "bodemVoorlandZ",
+                            "tanAvl"});
+#line 83
+  testRunner.Given("the following is adjusted:", ((string)(null)), table10, "Given ");
+#line hidden
+#line 85
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 7")]
+        public virtual void Testcase7()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 7", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 88
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "beginschade",
+                            "faalgetal"});
+#line 89
+  testRunner.Given("the following is adjusted:", ((string)(null)), table11, "Given ");
+#line hidden
+#line 91
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 8")]
+        public virtual void Testcase8()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 8", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 94
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "posities",
+                            "hoogten",
+                            "dijkorientatie",
+                            "ruwheidscoefficienten",
+                            "positie"});
+#line 95
+  testRunner.Given("the following is adjusted:", ((string)(null)), table12, "Given ");
+#line hidden
+#line 97
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 9")]
+        public virtual void Testcase9()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 9", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 100
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "posities",
+                            "hoogten",
+                            "dijkorientatie",
+                            "ruwheidscoefficienten",
+                            "positie",
+                            "bodemVoorlandZ",
+                            "tanAvl"});
+#line 101
+  testRunner.Given("the following is adjusted:", ((string)(null)), table13, "Given ");
+#line hidden
+#line 103
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 10")]
+        public virtual void Testcase10()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 10", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 106
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                            "tijdstippen",
                             "waterstanden",
                             "golfhoogtenHm0",
                             "golfperiodenTm10",
                             "golfrichtingen"});
-                table2.AddRow(new string[] {
-                            "3",
-                            "0.5",
-                            "3",
-                            "50"});
-                table2.AddRow(new string[] {
-                            "3.1",
-                            "0.7",
-                            "3.5",
-                            "45"});
-                table2.AddRow(new string[] {
-                            "3.2",
-                            "1",
-                            "4",
-                            "40"});
-                table2.AddRow(new string[] {
-                            "3.3",
-                            "1.3",
-                            "4.3",
-                            "35"});
-                table2.AddRow(new string[] {
-                            "3.4",
-                            "1.5",
-                            "4.5",
-                            "30"});
-                table2.AddRow(new string[] {
-                            "3.5",
-                            "1.8",
-                            "4.8",
-                            "25"});
-                table2.AddRow(new string[] {
-                            "3.6",
-                            "2.1",
-                            "5.2",
-                            "20"});
-                table2.AddRow(new string[] {
-                            "3.7",
-                            "2.5",
-                            "5.5",
-                            "15"});
-                table2.AddRow(new string[] {
-                            "3.7",
-                            "2.8",
-                            "5.8",
-                            "10"});
-                table2.AddRow(new string[] {
-                            "3.6",
-                            "2.8",
-                            "6",
-                            "5"});
-                table2.AddRow(new string[] {
-                            "3.5",
-                            "2.5",
-                            "6",
-                            "0"});
-                table2.AddRow(new string[] {
-                            "3.4",
-                            "2.1",
-                            "5.8",
-                            "0"});
-                table2.AddRow(new string[] {
-                            "3.3",
-                            "1.8",
-                            "5.5",
-                            "5"});
-                table2.AddRow(new string[] {
-                            "3.2",
-                            "1.5",
-                            "5.2",
-                            "10"});
-                table2.AddRow(new string[] {
-                            "3.1",
-                            "1.3",
-                            "4.8",
-                            "15"});
-                table2.AddRow(new string[] {
-                            "3",
-                            "1",
-                            "4.5",
-                            "20"});
-#line 24
-  testRunner.And("the following hydraulischeBelastingen:", ((string)(null)), table2, "And ");
+#line 107
+  testRunner.Given("the following is adjusted:", ((string)(null)), table14, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "dijkorientatie",
+#line 109
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 11")]
+        public virtual void Testcase11()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 11", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 112
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                            "tijdstippen",
+                            "waterstanden",
+                            "golfhoogtenHm0",
+                            "golfperiodenTm10",
+                            "golfrichtingen"});
+#line 113
+  testRunner.Given("the following is adjusted:", ((string)(null)), table15, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "posities",
                             "hoogten",
+                            "dijkorientatie",
                             "ruwheidscoefficienten",
-                            "teenBuitenzijde",
-                            "kruinBuitenzijde"});
-                table3.AddRow(new string[] {
-                            "0",
-                            "0",
-                            "0",
-                            "1.0",
-                            "0",
-                            "25"});
-                table3.AddRow(new string[] {
-                            "",
-                            "25",
-                            "7.5",
-                            "",
-                            "",
-                            ""});
-#line 42
-    testRunner.And("the following dijkprofiel:", ((string)(null)), table3, "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "positie",
-                            "rekenmethode",
-                            "typeToplaag",
+                            "bodemVoorlandZ",
+                            "tanAvl"});
+#line 115
+     testRunner.And("the following is adjusted:", ((string)(null)), table16, "And ");
+#line hidden
+#line 117
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 12")]
+        public virtual void Testcase12()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 12", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 120
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "tijdstippen",
+                            "waterstanden",
+                            "golfhoogtenHm0",
+                            "golfperiodenTm10",
+                            "golfrichtingen"});
+#line 121
+  testRunner.Given("the following is adjusted:", ((string)(null)), table17, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "posities",
+                            "hoogten",
+                            "dijkorientatie",
+                            "ruwheidscoefficienten"});
+#line 123
+  testRunner.And("the following is adjusted:", ((string)(null)), table18, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "positie",
                             "beginschade",
                             "verhogingBelastingOvergangAlfaM",
                             "verlagingSterkteOvergangAlfaS"});
-                table4.AddRow(new string[] {
-                            "15",
-                            "grasGolfoploop",
-                            "grasGeslotenZode",
-                            "0",
-                            "1",
-                            "1"});
-#line 46
-    testRunner.And("the following locaties:", ((string)(null)), table4, "And ");
+#line 125
+     testRunner.And("the following is adjusted:", ((string)(null)), table19, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                            "rekenmethode",
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "faalgetal",
                             "factorCtm",
-                            "typeRekenprotocol",
                             "frontsnelheid",
-                            "bodemVoorlandZ",
-                            "tanAvl",
-                            "typeToplaag",
                             "kritiekeCumulatieveOverbelasting",
-                            "kritiekeFrontsnelheid"});
-                table5.AddRow(new string[] {
-                            "grasGolfoploop",
-                            "1",
-                            "0.92",
-                            "battjesGroenendijkAnalytisch",
-                            "1.1",
-                            "-4.0",
-                            "0.004",
-                            "grasGeslotenZode",
-                            "7000",
-                            "6.6"});
-#line 49
-    testRunner.And("the following rekenmethoden:", ((string)(null)), table5, "And ");
+                            "kritiekeFrontsnelheid",
+                            "bodemVoorlandZ",
+                            "tanAvl"});
+#line 127
+      testRunner.And("the following is adjusted:", ((string)(null)), table20, "And ");
 #line hidden
-#line 52
-    testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 129
+  testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 53
- testRunner.Then("the schadegetal is 5.964275964074604", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Testcase 13")]
+        public virtual void Testcase13()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 13", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 132
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
 #line hidden
             }
             this.ScenarioCleanup();
