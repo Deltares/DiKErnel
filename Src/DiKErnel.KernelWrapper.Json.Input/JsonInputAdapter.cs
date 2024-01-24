@@ -29,6 +29,7 @@ using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup;
@@ -346,12 +347,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
         }
 
         private static GrassTopLayerType ConvertGrassRevetmentTopLayerType(
-            JsonInputGrassRevetmentTopLayerType topLayerType)
+            JsonInputGrassTopLayerType topLayerType)
         {
             return topLayerType switch
             {
-                JsonInputGrassRevetmentTopLayerType.OpenSod => GrassTopLayerType.OpenSod,
-                JsonInputGrassRevetmentTopLayerType.ClosedSod => GrassTopLayerType.ClosedSod,
+                JsonInputGrassTopLayerType.OpenSod => GrassTopLayerType.OpenSod,
+                JsonInputGrassTopLayerType.ClosedSod => GrassTopLayerType.ClosedSod,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };
         }

@@ -20,12 +20,12 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass
 {
     internal class JsonInputGrassCumulativeOverloadTopLayerData
     {
         [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
+        public JsonInputGrassTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputGrassDefinitions.CriticalCumulativeOverload)]
         public double? CriticalCumulativeOverload { get; private set; }

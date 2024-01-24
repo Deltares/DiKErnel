@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup

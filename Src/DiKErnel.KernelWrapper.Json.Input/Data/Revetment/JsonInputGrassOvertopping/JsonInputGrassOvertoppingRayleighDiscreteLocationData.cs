@@ -19,6 +19,7 @@
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
@@ -26,7 +27,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertop
     internal class JsonInputGrassOvertoppingRayleighDiscreteLocationData : JsonInputLocationData
     {
         [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
+        public JsonInputGrassTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputGrassDefinitions.IncreasedLoadTransitionAlphaM)]
         public double? IncreasedLoadTransitionAlphaM { get; private set; }

@@ -18,6 +18,7 @@
 
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
@@ -25,7 +26,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
     internal class JsonInputGrassWaveImpactTopLayerData
     {
         [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
-        public JsonInputGrassRevetmentTopLayerType TopLayerType { get; private set; }
+        public JsonInputGrassTopLayerType TopLayerType { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.TimeLine)]
         public JsonInputGrassWaveImpactTimeLineData TimeLineData { get; private set; }
