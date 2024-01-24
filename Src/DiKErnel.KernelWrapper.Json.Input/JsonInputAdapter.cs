@@ -182,11 +182,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
                         break;
                     }
-                    case JsonInputNaturalStoneWaveImpactLocationData naturalStoneLocationData:
+                    case JsonInputNaturalStoneWaveImpactLocationData naturalStoneWaveImpactLocationData:
                     {
                         builder.AddNaturalStoneWaveImpactLocation(
                             CreateNaturalStoneWaveImpactLocationConstructionProperties(
-                                naturalStoneLocationData,
+                                naturalStoneWaveImpactLocationData,
                                 GetCalculationDefinition<JsonInputNaturalStoneWaveImpactCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.NaturalStone)));
                         break;
@@ -356,16 +356,18 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static NaturalStoneWaveImpactLocationConstructionProperties CreateNaturalStoneWaveImpactLocationConstructionProperties(
-            JsonInputNaturalStoneWaveImpactLocationData locationData, JsonInputNaturalStoneWaveImpactCalculationData calculationData)
+        private static NaturalStoneWaveImpactLocationConstructionProperties
+            CreateNaturalStoneWaveImpactLocationConstructionProperties(
+                JsonInputNaturalStoneWaveImpactLocationData locationData,
+                JsonInputNaturalStoneWaveImpactCalculationData calculationData)
         {
             JsonInputNaturalStoneWaveImpactStabilityData stabilityData =
                 calculationData?.TopLayerData?
                     .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.StabilityData;
-            JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData plungingData =
-                stabilityData?.JsonInputNaturalStoneTopLayerPlungingData;
-            JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData surgingData =
-                stabilityData?.JsonInputNaturalStoneTopLayerSurgingData;
+            JsonInputNaturalStoneWaveImpactStabilityCoefficientsData plungingData =
+                stabilityData?.PlungingData;
+            JsonInputNaturalStoneWaveImpactStabilityCoefficientsData surgingData =
+                stabilityData?.SurgingData;
             JsonInputNaturalStoneWaveImpactSlopeData slopeData = calculationData?.SlopeData;
             JsonInputNaturalStoneWaveImpactLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
             JsonInputNaturalStoneWaveImpactLimitData upperLimitData = loadingAreaData?.UpperLimitData;

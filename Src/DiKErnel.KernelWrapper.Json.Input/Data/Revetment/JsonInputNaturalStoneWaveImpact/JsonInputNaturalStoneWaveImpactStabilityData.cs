@@ -27,11 +27,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         public double? StabilityXib { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilityPlunging)]
-        public JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData
-            JsonInputNaturalStoneTopLayerPlungingData { get; private set; }
+        public JsonInputNaturalStoneWaveImpactStabilityCoefficientsData PlungingData { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilitySurging)]
-        public JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData
-            JsonInputNaturalStoneTopLayerSurgingData { get; private set; }
+        public JsonInputNaturalStoneWaveImpactStabilityCoefficientsData SurgingData { get; private set; }
     }
 }
