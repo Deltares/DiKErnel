@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup;
+using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
 using NUnit.Framework;
 
 namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup

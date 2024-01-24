@@ -16,24 +16,27 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Defaults.GrassWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for asphalt revetment wave impact with a hydraulic
-    /// asphalt concrete top layer.
+    /// Interface that contains default value definitions for grass revetment wave impact top
+    /// layers.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults : IAsphaltRevetmentWaveImpactTopLayerDefaults
+    public interface IGrassRevetmentWaveImpactTopLayerDefaults
     {
-        private static AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults instance;
-
-        private AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults() {}
+        /// <summary>
+        /// Gets the default value of the Agwi coefficient [m].
+        /// </summary>
+        public double TimeLineAgwi { get; }
 
         /// <summary>
-        /// Gets the (one and only) instance of this class.
-        /// </summary> 
-        public static AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults Instance =>
-            instance ??= new AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults();
+        /// Gets the default value of the Bgwi coefficient [s^-1].
+        /// </summary>
+        public double TimeLineBgwi { get; }
 
-        public double StiffnessRelationNu => 0.35;
+        /// <summary>
+        /// Gets the default value of the Cgwi coefficient [m].
+        /// </summary>
+        public double TimeLineCgwi { get; }
     }
 }

@@ -16,17 +16,26 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
     /// <summary>
-    /// Interface that contains default value definitions for asphalt revetment wave impact
-    /// top layers.
+    /// Class that contains default values for grass revetment cumulative overload
+    /// calculations with an open sod top layer.
     /// </summary>
-    public interface IAsphaltRevetmentWaveImpactTopLayerDefaults
+    public class GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults : IGrassRevetmentCumulativeOverloadTopLayerDefaults
     {
+        private static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults instance;
+
+        private GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults() {}
+
         /// <summary>
-        /// Gets the default value of the stiffness relation Nu coefficient [-].
-        /// </summary>
-        public double StiffnessRelationNu { get; }
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults Instance =>
+            instance ??= new GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults();
+
+        public double CriticalCumulativeOverload => 7000;
+
+        public double CriticalFrontVelocity => 4.3;
     }
 }

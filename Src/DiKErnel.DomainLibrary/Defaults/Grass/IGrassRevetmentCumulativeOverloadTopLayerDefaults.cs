@@ -16,17 +16,22 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup
+namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
     /// <summary>
-    /// Class that contains default values for grass revetment wave run-up for the Rayleigh
-    /// protocol.
+    /// Interface that contains cumulative overload related default value definitions for
+    /// grass revetment top layers.
     /// </summary>
-    public static class GrassRevetmentWaveRunupRayleighDefaults
+    public interface IGrassRevetmentCumulativeOverloadTopLayerDefaults
     {
         /// <summary>
-        /// Gets the default value of the Cu coefficient [-].
+        /// Gets the default value of the critical cumulative overload [m^2/s^2].
         /// </summary>
-        public static double FrontVelocityCu => 1.1;
+        public double CriticalCumulativeOverload { get; }
+
+        /// <summary>
+        /// Gets the default value of the critical front velocity [m/s].
+        /// </summary>
+        public double CriticalFrontVelocity { get; }
     }
 }

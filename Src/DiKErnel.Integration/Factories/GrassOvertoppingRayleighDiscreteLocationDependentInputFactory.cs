@@ -17,8 +17,8 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.DomainLibrary.Defaults;
-using DiKErnel.DomainLibrary.Defaults.GrassRevetment;
-using DiKErnel.DomainLibrary.Defaults.GrassRevetmentOvertopping;
+using DiKErnel.DomainLibrary.Defaults.Grass;
+using DiKErnel.DomainLibrary.Defaults.GrassOvertoppingRayleighDiscrete;
 using DiKErnel.Integration.Data.GrassOvertopping;
 
 namespace DiKErnel.Integration.Factories

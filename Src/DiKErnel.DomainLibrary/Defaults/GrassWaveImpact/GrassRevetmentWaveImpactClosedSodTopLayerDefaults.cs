@@ -16,22 +16,28 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassRevetment
+namespace DiKErnel.DomainLibrary.Defaults.GrassWaveImpact
 {
     /// <summary>
-    /// Interface that contains cumulative overload related default value definitions for
-    /// grass revetment top layers.
+    /// Class that contains default values for grass revetment wave impact with a closed sod
+    /// top layer.
     /// </summary>
-    public interface IGrassRevetmentCumulativeOverloadTopLayerDefaults
+    public class GrassRevetmentWaveImpactClosedSodTopLayerDefaults : IGrassRevetmentWaveImpactTopLayerDefaults
     {
-        /// <summary>
-        /// Gets the default value of the critical cumulative overload [m^2/s^2].
-        /// </summary>
-        public double CriticalCumulativeOverload { get; }
+        private static GrassRevetmentWaveImpactClosedSodTopLayerDefaults instance;
+
+        private GrassRevetmentWaveImpactClosedSodTopLayerDefaults() {}
 
         /// <summary>
-        /// Gets the default value of the critical front velocity [m/s].
-        /// </summary>
-        public double CriticalFrontVelocity { get; }
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static GrassRevetmentWaveImpactClosedSodTopLayerDefaults Instance =>
+            instance ??= new GrassRevetmentWaveImpactClosedSodTopLayerDefaults();
+
+        public double TimeLineAgwi => 1;
+
+        public double TimeLineBgwi => -0.000009722;
+
+        public double TimeLineCgwi => 0.25;
     }
 }

@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.DomainLibrary.Defaults;
-using DiKErnel.DomainLibrary.Defaults.NaturalStoneRevetment;
+using DiKErnel.DomainLibrary.Defaults.NaturalStoneWaveImpact;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 
 namespace DiKErnel.Integration.Factories

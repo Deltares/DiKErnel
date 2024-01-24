@@ -16,19 +16,32 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
-using NUnit.Framework;
-
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassRevetmentWaveRunup
+namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
-    [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighDefaultsTest
+    /// <summary>
+    /// Class that contains default values for grass revetment cumulative overload
+    /// calculations.
+    /// </summary>
+    public static class GrassRevetmentCumulativeOverloadDefaults
     {
-        [Test]
-        public void FrontVelocityCu_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu, Is.EqualTo(1.1));
-        }
+        /// <summary>
+        /// Gets the default value of the increased load transition alpha M [-].
+        /// </summary>
+        public static double IncreasedLoadTransitionAlphaM => 1;
+
+        /// <summary>
+        /// Gets the default value of the reduced strength transition alpha S [-].
+        /// </summary>
+        public static double ReducedStrengthTransitionAlphaS => 1;
+
+        /// <summary>
+        /// Gets the default value of the Ctm coefficient [-].
+        /// </summary>
+        public static double AverageNumberOfWavesCtm => 0.92;
+
+        /// <summary>
+        /// Gets the default value of the fixed number of waves [-].
+        /// </summary>
+        public static int FixedNumberOfWaves => 10000;
     }
 }

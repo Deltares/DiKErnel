@@ -16,27 +16,17 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
 {
     /// <summary>
-    /// Interface that contains default value definitions for grass revetment wave impact top
-    /// layers.
+    /// Interface that contains default value definitions for asphalt revetment wave impact
+    /// top layers.
     /// </summary>
-    public interface IGrassRevetmentWaveImpactTopLayerDefaults
+    public interface IAsphaltRevetmentWaveImpactTopLayerDefaults
     {
         /// <summary>
-        /// Gets the default value of the Agwi coefficient [m].
+        /// Gets the default value of the stiffness relation Nu coefficient [-].
         /// </summary>
-        public double TimeLineAgwi { get; }
-
-        /// <summary>
-        /// Gets the default value of the Bgwi coefficient [s^-1].
-        /// </summary>
-        public double TimeLineBgwi { get; }
-
-        /// <summary>
-        /// Gets the default value of the Cgwi coefficient [m].
-        /// </summary>
-        public double TimeLineCgwi { get; }
+        public double StiffnessRelationNu { get; }
     }
 }

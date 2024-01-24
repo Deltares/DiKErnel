@@ -17,7 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.DomainLibrary.Defaults;
-using DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact;
+using DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 
 namespace DiKErnel.Integration.Factories

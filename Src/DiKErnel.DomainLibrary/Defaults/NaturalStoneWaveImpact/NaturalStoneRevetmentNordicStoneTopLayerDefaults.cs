@@ -16,26 +16,40 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassRevetment
+namespace DiKErnel.DomainLibrary.Defaults.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for grass revetment cumulative overload
-    /// calculations with an open sod top layer.
+    /// Class that contains default values for natural stone revetments with a nordic stone
+    /// top layer.
     /// </summary>
-    public class GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults : IGrassRevetmentCumulativeOverloadTopLayerDefaults
+    public class NaturalStoneRevetmentNordicStoneTopLayerDefaults : INaturalStoneRevetmentTopLayerDefaults
     {
-        private static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults instance;
+        private static NaturalStoneRevetmentNordicStoneTopLayerDefaults instance;
 
-        private GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults() {}
+        private NaturalStoneRevetmentNordicStoneTopLayerDefaults() {}
 
         /// <summary>
         /// Gets the (one and only) instance of this class.
         /// </summary> 
-        public static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults Instance =>
-            instance ??= new GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults();
+        public static NaturalStoneRevetmentNordicStoneTopLayerDefaults Instance =>
+            instance ??= new NaturalStoneRevetmentNordicStoneTopLayerDefaults();
 
-        public double CriticalCumulativeOverload => 7000;
+        public double HydraulicLoadXib => 2.9;
 
-        public double CriticalFrontVelocity => 4.3;
+        public double HydraulicLoadAp => 4;
+
+        public double HydraulicLoadBp => 0;
+
+        public double HydraulicLoadCp => 0;
+
+        public double HydraulicLoadNp => -0.9;
+
+        public double HydraulicLoadAs => 0.8;
+
+        public double HydraulicLoadBs => 0;
+
+        public double HydraulicLoadCs => 0;
+
+        public double HydraulicLoadNs => 0.6;
     }
 }

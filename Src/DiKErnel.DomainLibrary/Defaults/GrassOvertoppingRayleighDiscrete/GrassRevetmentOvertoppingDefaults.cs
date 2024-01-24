@@ -16,28 +16,26 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Defaults.GrassOvertoppingRayleighDiscrete
 {
     /// <summary>
-    /// Class that contains default values for grass revetment wave impact with a closed sod
-    /// top layer.
+    /// Class that contains default values for grass revetment overtopping.
     /// </summary>
-    public class GrassRevetmentWaveImpactClosedSodTopLayerDefaults : IGrassRevetmentWaveImpactTopLayerDefaults
+    public static class GrassRevetmentOvertoppingDefaults
     {
-        private static GrassRevetmentWaveImpactClosedSodTopLayerDefaults instance;
-
-        private GrassRevetmentWaveImpactClosedSodTopLayerDefaults() {}
+        /// <summary>
+        /// Gets the default value of the Cwo coefficient [-].
+        /// </summary>
+        public static double FrontVelocityCwo => 1.45;
 
         /// <summary>
-        /// Gets the (one and only) instance of this class.
-        /// </summary> 
-        public static GrassRevetmentWaveImpactClosedSodTopLayerDefaults Instance =>
-            instance ??= new GrassRevetmentWaveImpactClosedSodTopLayerDefaults();
+        /// Gets the default value of the alpha A coefficient for the crest [-].
+        /// </summary>
+        public static double AccelerationAlphaAForCrest => 1;
 
-        public double TimeLineAgwi => 1;
-
-        public double TimeLineBgwi => -0.000009722;
-
-        public double TimeLineCgwi => 0.25;
+        /// <summary>
+        /// Gets the default value of the alpha A coefficient for the inner slope [-].
+        /// </summary>
+        public static double AccelerationAlphaAForInnerSlope => 1.4;
     }
 }

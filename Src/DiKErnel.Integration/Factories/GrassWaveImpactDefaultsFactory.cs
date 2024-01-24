@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveImpact;
+using DiKErnel.DomainLibrary.Defaults.GrassWaveImpact;
 using DiKErnel.Integration.Data.Grass;
 
 namespace DiKErnel.Integration.Factories

@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 
-namespace DiKErnel.DomainLibrary.Defaults.AsphaltRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
 {
     /// <summary>
     /// Class that contains default values for asphalt revetments.

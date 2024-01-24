@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassRevetmentWaveRunup
+namespace DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete
 {
     /// <summary>
     /// Class that contains default values for grass revetment wave run-up for the 
