@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Validators;
-using DiKErnel.DomainLibrary.Validators.GrassRevetment;
+using DiKErnel.DomainLibrary.Validators.Grass;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetment;
 using DiKErnel.Integration.Data.GrassOvertopping;

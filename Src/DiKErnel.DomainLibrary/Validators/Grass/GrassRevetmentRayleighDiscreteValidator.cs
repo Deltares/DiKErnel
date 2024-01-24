@@ -18,7 +18,7 @@
 
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.DomainLibrary.Validators.GrassRevetment
+namespace DiKErnel.DomainLibrary.Validators.Grass
 {
     /// <summary>
     /// Class that holds all grass revetment Rayleigh Discrete specific validation routines.

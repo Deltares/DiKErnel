@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
-using DiKErnel.DomainLibrary.Validators.GrassRevetmentOvertopping;
+using DiKErnel.DomainLibrary.Validators.GrassOvertopping;
 using DiKErnel.FunctionLibrary.GrassRevetmentOvertopping;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Helpers;

@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact;
+using DiKErnel.DomainLibrary.Validators.GrassWaveImpact;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.GrassRevetmentWaveImpact;
 using DiKErnel.Integration.Helpers;

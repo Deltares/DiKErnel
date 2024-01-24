@@ -18,7 +18,7 @@
 
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveRunup
+namespace DiKErnel.DomainLibrary.Validators.GrassWaveRunup
 {
     /// <summary>
     /// Class that holds all grass revetment wave run-up specific validation routines for the

@@ -17,12 +17,12 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment;
+using DiKErnel.DomainLibrary.Validators.NaturalStoneWaveImpact;
 using DiKErnel.Util.TestUtil;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneRevetment
+namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneWaveImpact
 {
     [TestFixture]
     public class NaturalStoneRevetmentValidatorTest

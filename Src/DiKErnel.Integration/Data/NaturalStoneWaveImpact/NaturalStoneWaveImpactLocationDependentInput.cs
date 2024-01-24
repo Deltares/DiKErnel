@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
-using DiKErnel.DomainLibrary.Validators.NaturalStoneRevetment;
+using DiKErnel.DomainLibrary.Validators.NaturalStoneWaveImpact;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.NaturalStoneRevetment;
 using DiKErnel.Integration.Helpers;

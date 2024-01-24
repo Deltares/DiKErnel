@@ -17,12 +17,12 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using DiKErnel.DomainLibrary.Validators.GrassRevetmentWaveImpact;
+using DiKErnel.DomainLibrary.Validators.GrassWaveImpact;
 using DiKErnel.Util.TestUtil;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Validators.GrassRevetmentWaveImpact
+namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
 {
     [TestFixture]
     public class GrassRevetmentWaveImpactValidatorTest

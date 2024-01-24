@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators;
-using DiKErnel.DomainLibrary.Validators.AsphaltRevetmentWaveImpact;
+using DiKErnel.DomainLibrary.Validators.AsphaltWaveImpact;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.AsphaltRevetmentWaveImpact;
 using DiKErnel.Integration.Helpers;
