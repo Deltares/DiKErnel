@@ -308,9 +308,9 @@ namespace DiKErnel.KernelWrapper.Json.Input
         {
             GrassWaveRunupLocationConstructionProperties constructionProperties;
 
-            switch (calculationData?.CalculationProtocolData?.CalculationProtocolType)
+            switch (calculationData?.CalculationProtocolData?.ProtocolType)
             {
-                case JsonInputGrassWaveRunupCalculationProtocolType.RayleighDiscrete:
+                case JsonInputGrassWaveRunupProtocolType.RayleighDiscrete:
                     constructionProperties = CreateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                         locationData, calculationData.CalculationProtocolData);
                     break;
@@ -335,7 +335,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static GrassWaveRunupRayleighDiscreteLocationConstructionProperties
             CreateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 JsonInputGrassWaveRunupLocationData locationData,
-                JsonInputGrassWaveRunupCalculationProtocolData calculationProtocolData)
+                JsonInputGrassWaveRunupProtocolData calculationProtocolData)
         {
             return new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))

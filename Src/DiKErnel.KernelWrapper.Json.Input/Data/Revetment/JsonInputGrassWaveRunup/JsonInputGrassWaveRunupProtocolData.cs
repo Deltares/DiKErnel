@@ -21,10 +21,10 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup
 {
-    internal class JsonInputGrassWaveRunupCalculationProtocolData
+    internal class JsonInputGrassWaveRunupProtocolData
     {
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.CalculationProtocolType)]
-        public JsonInputGrassWaveRunupCalculationProtocolType CalculationProtocolType { get; private set; }
+        public JsonInputGrassWaveRunupProtocolType ProtocolType { get; private set; }
 
         [JsonProperty(JsonInputGrassDefinitions.FixedNumberOfWaves)]
         public int? FixedNumberOfWaves { get; private set; }

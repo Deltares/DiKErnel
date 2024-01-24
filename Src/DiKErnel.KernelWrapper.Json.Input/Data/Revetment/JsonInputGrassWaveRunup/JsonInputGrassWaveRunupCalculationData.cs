@@ -27,7 +27,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRun
     internal class JsonInputGrassWaveRunupCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputGrassWaveRunupDefinitions.CalculationProtocol)]
-        public JsonInputGrassWaveRunupCalculationProtocolData CalculationProtocolData { get; private set; }
+        public JsonInputGrassWaveRunupProtocolData CalculationProtocolData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.TopLayers)]
         public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerData { get; private set; }
