@@ -16,24 +16,31 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.Grass;
-using NUnit.Framework;
-
-namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
+namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
-    [TestFixture]
-    public class GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaultsTest
+    /// <summary>
+    /// Class that contains default values for grass cumulative overload calculations.
+    /// </summary>
+    public static class GrassCumulativeOverloadDefaults
     {
-        [Test]
-        public void Constructor_ExpectedValues()
-        {
-            // Setup
-            var defaults = GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults.Instance;
+        /// <summary>
+        /// Gets the default value of the increased load transition alpha M [-].
+        /// </summary>
+        public static double IncreasedLoadTransitionAlphaM => 1;
 
-            // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>());
-            Assert.That(defaults.CriticalCumulativeOverload, Is.EqualTo(7000));
-            Assert.That(defaults.CriticalFrontVelocity, Is.EqualTo(4.3));
-        }
+        /// <summary>
+        /// Gets the default value of the reduced strength transition alpha S [-].
+        /// </summary>
+        public static double ReducedStrengthTransitionAlphaS => 1;
+
+        /// <summary>
+        /// Gets the default value of the Ctm coefficient [-].
+        /// </summary>
+        public static double AverageNumberOfWavesCtm => 0.92;
+
+        /// <summary>
+        /// Gets the default value of the fixed number of waves [-].
+        /// </summary>
+        public static int FixedNumberOfWaves => 10000;
     }
 }

@@ -19,20 +19,20 @@
 namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
     /// <summary>
-    /// Class that contains default values for grass revetment cumulative overload
-    /// calculations with an open sod top layer.
+    /// Class that contains default values for grass cumulative overload calculations with an
+    /// open sod top layer.
     /// </summary>
-    public class GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults : IGrassRevetmentCumulativeOverloadTopLayerDefaults
+    public class GrassCumulativeOverloadOpenSodTopLayerDefaults : IGrassCumulativeOverloadTopLayerDefaults
     {
-        private static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults instance;
+        private static GrassCumulativeOverloadOpenSodTopLayerDefaults instance;
 
-        private GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults() {}
+        private GrassCumulativeOverloadOpenSodTopLayerDefaults() {}
 
         /// <summary>
         /// Gets the (one and only) instance of this class.
         /// </summary> 
-        public static GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults Instance =>
-            instance ??= new GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults();
+        public static GrassCumulativeOverloadOpenSodTopLayerDefaults Instance =>
+            instance ??= new GrassCumulativeOverloadOpenSodTopLayerDefaults();
 
         public double CriticalCumulativeOverload => 7000;
 

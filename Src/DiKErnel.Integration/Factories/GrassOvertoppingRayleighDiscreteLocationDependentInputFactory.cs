@@ -28,7 +28,7 @@ namespace DiKErnel.Integration.Factories
         public static GrassOvertoppingRayleighDiscreteLocationDependentInput CreateLocationDependentInput(
             GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
-            IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
+            IGrassCumulativeOverloadTopLayerDefaults topLayerDefaults =
                 GrassCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
 
             var accelerationAlphaA = new GrassOvertoppingRayleighDiscreteAccelerationAlphaA(
@@ -44,13 +44,13 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.CriticalCumulativeOverload ?? topLayerDefaults.CriticalCumulativeOverload,
                 constructionProperties.CriticalFrontVelocity ?? topLayerDefaults.CriticalFrontVelocity,
                 constructionProperties.IncreasedLoadTransitionAlphaM
-                ?? GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM,
+                ?? GrassCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM,
                 constructionProperties.ReducedStrengthTransitionAlphaS
-                ?? GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
+                ?? GrassCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
                 constructionProperties.AverageNumberOfWavesCtm
-                ?? GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
+                ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
                 constructionProperties.FixedNumberOfWaves
-                ?? GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves,
+                ?? GrassCumulativeOverloadDefaults.FixedNumberOfWaves,
                 constructionProperties.FrontVelocityCwo ?? GrassRevetmentOvertoppingDefaults.FrontVelocityCwo,
                 accelerationAlphaA,
                 constructionProperties.DikeHeight);

@@ -22,16 +22,16 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
     [TestFixture]
-    public class GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaultsTest
+    public class GrassCumulativeOverloadClosedSodTopLayerDefaultsTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var defaults = GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.Instance;
+            var defaults = GrassCumulativeOverloadClosedSodTopLayerDefaults.Instance;
 
             // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentCumulativeOverloadTopLayerDefaults>());
+            Assert.That(defaults, Is.InstanceOf<IGrassCumulativeOverloadTopLayerDefaults>());
             Assert.That(defaults.CriticalCumulativeOverload, Is.EqualTo(7000));
             Assert.That(defaults.CriticalFrontVelocity, Is.EqualTo(6.6));
         }

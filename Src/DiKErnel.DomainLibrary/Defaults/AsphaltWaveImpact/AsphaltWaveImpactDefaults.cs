@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for asphalt wave impact.
+    /// Class that contains default values for asphalt wave impact calculations.
     /// </summary>
     public static class AsphaltWaveImpactDefaults
     {

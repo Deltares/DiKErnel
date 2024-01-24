@@ -28,7 +28,7 @@ namespace DiKErnel.Integration.Factories
         public static GrassWaveRunupRayleighDiscreteLocationDependentInput CreateLocationDependentInput(
             GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
-            IGrassRevetmentCumulativeOverloadTopLayerDefaults topLayerDefaults =
+            IGrassCumulativeOverloadTopLayerDefaults topLayerDefaults =
                 GrassCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
 
             return new GrassWaveRunupRayleighDiscreteLocationDependentInput(
@@ -38,12 +38,12 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.CriticalCumulativeOverload ?? topLayerDefaults.CriticalCumulativeOverload,
                 constructionProperties.CriticalFrontVelocity ?? topLayerDefaults.CriticalFrontVelocity,
                 constructionProperties.IncreasedLoadTransitionAlphaM ??
-                GrassRevetmentCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM,
+                GrassCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM,
                 constructionProperties.ReducedStrengthTransitionAlphaS ??
-                GrassRevetmentCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
+                GrassCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
                 constructionProperties.AverageNumberOfWavesCtm
-                ?? GrassRevetmentCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
-                constructionProperties.FixedNumberOfWaves ?? GrassRevetmentCumulativeOverloadDefaults.FixedNumberOfWaves,
+                ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
+                constructionProperties.FixedNumberOfWaves ?? GrassCumulativeOverloadDefaults.FixedNumberOfWaves,
                 constructionProperties.FrontVelocityCu ?? GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu);
         }
     }

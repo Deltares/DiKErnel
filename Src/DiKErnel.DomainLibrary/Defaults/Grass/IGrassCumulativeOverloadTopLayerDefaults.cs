@@ -19,23 +19,19 @@
 namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
     /// <summary>
-    /// Class that contains default values for grass revetment cumulative overload
-    /// calculations with a closed sod top layer.
+    /// Interface that contains cumulative overload related default value definitions for
+    /// grass top layers.
     /// </summary>
-    public class GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults : IGrassRevetmentCumulativeOverloadTopLayerDefaults
+    public interface IGrassCumulativeOverloadTopLayerDefaults
     {
-        private static GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults instance;
-
-        private GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults() {}
+        /// <summary>
+        /// Gets the default value of the critical cumulative overload [m^2/s^2].
+        /// </summary>
+        public double CriticalCumulativeOverload { get; }
 
         /// <summary>
-        /// Gets the (one and only) instance of this class.
-        /// </summary> 
-        public static GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults Instance =>
-            instance ??= new GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults();
-
-        public double CriticalCumulativeOverload => 7000;
-
-        public double CriticalFrontVelocity => 6.6;
+        /// Gets the default value of the critical front velocity [m/s].
+        /// </summary>
+        public double CriticalFrontVelocity { get; }
     }
 }

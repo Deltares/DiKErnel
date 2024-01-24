@@ -19,8 +19,8 @@
 namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for asphalt wave impact with a hydraulic asphalt
-    /// concrete top layer.
+    /// Class that contains default values for asphalt wave impact calculations with a
+    /// hydraulic asphalt concrete top layer.
     /// </summary>
     public class AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults : IAsphaltWaveImpactTopLayerDefaults
     {

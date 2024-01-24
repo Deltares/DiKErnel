@@ -19,29 +19,23 @@
 namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
     /// <summary>
-    /// Class that contains default values for grass revetment cumulative overload
-    /// calculations.
+    /// Class that contains default values for grass cumulative overload calculations with a
+    /// closed sod top layer.
     /// </summary>
-    public static class GrassRevetmentCumulativeOverloadDefaults
+    public class GrassCumulativeOverloadClosedSodTopLayerDefaults : IGrassCumulativeOverloadTopLayerDefaults
     {
-        /// <summary>
-        /// Gets the default value of the increased load transition alpha M [-].
-        /// </summary>
-        public static double IncreasedLoadTransitionAlphaM => 1;
+        private static GrassCumulativeOverloadClosedSodTopLayerDefaults instance;
+
+        private GrassCumulativeOverloadClosedSodTopLayerDefaults() {}
 
         /// <summary>
-        /// Gets the default value of the reduced strength transition alpha S [-].
-        /// </summary>
-        public static double ReducedStrengthTransitionAlphaS => 1;
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static GrassCumulativeOverloadClosedSodTopLayerDefaults Instance =>
+            instance ??= new GrassCumulativeOverloadClosedSodTopLayerDefaults();
 
-        /// <summary>
-        /// Gets the default value of the Ctm coefficient [-].
-        /// </summary>
-        public static double AverageNumberOfWavesCtm => 0.92;
+        public double CriticalCumulativeOverload => 7000;
 
-        /// <summary>
-        /// Gets the default value of the fixed number of waves [-].
-        /// </summary>
-        public static int FixedNumberOfWaves => 10000;
+        public double CriticalFrontVelocity => 6.6;
     }
 }

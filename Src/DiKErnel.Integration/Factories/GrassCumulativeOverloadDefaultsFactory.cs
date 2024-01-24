@@ -23,15 +23,15 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class GrassCumulativeOverloadDefaultsFactory
     {
-        public static IGrassRevetmentCumulativeOverloadTopLayerDefaults CreateTopLayerDefaults(
+        public static IGrassCumulativeOverloadTopLayerDefaults CreateTopLayerDefaults(
             GrassTopLayerType topLayerType)
         {
             if (topLayerType == GrassTopLayerType.ClosedSod)
             {
-                return GrassRevetmentCumulativeOverloadClosedSodTopLayerDefaults.Instance;
+                return GrassCumulativeOverloadClosedSodTopLayerDefaults.Instance;
             }
 
-            return GrassRevetmentCumulativeOverloadOpenSodTopLayerDefaults.Instance;
+            return GrassCumulativeOverloadOpenSodTopLayerDefaults.Instance;
         }
     }
 }
