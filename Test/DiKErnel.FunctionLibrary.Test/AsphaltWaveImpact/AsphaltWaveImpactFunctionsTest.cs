@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactFunctionsTest
+    public class AsphaltWaveImpactFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()
@@ -92,13 +92,14 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             const double fatigueBeta = 4.76;
             const double impactNumberC = 1;
 
-            var input = new AsphaltRevetmentWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
-                                                                     stiffnessRelation, computationalThickness, outerSlope,
-                                                                     widthFactors, depthFactors, impactFactors, z, waterLevel,
-                                                                     waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
+            var input = new AsphaltWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves,
+                                                            maximumPeakStress, stiffnessRelation,
+                                                            computationalThickness, outerSlope, widthFactors,
+                                                            depthFactors, impactFactors, z, waterLevel, waveHeightHm0,
+                                                            fatigueAlpha, fatigueBeta, impactNumberC);
 
             // Call
-            double incrementDamage = AsphaltRevetmentWaveImpactFunctions.IncrementDamage(input);
+            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
 
             // Assert
             AssertHelper.AreEqual(7.94813500019044, incrementDamage);
@@ -111,7 +112,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             const double flexuralStrength = 1.56;
 
             // Call
-            double logFlexuralStrength = AsphaltRevetmentWaveImpactFunctions.LogFlexuralStrength(flexuralStrength);
+            double logFlexuralStrength = AsphaltWaveImpactFunctions.LogFlexuralStrength(flexuralStrength);
 
             // Assert
             AssertHelper.AreEqual(0.19312459835446, logFlexuralStrength);
@@ -126,7 +127,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             const double densityOfWater = 1025;
 
             // Call
-            double maximumPeakStress = AsphaltRevetmentWaveImpactFunctions.MaximumPeakStress(
+            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(
                 waveHeightHm0, gravitationalAcceleration, densityOfWater);
 
             // Assert
@@ -143,7 +144,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             const double stiffnessRelationNu = 0.35;
 
             // Call
-            double stiffnessRelation = AsphaltRevetmentWaveImpactFunctions.StiffnessRelation(
+            double stiffnessRelation = AsphaltWaveImpactFunctions.StiffnessRelation(
                 computationalThickness, equivalentElasticModulus, soilElasticity, stiffnessRelationNu);
 
             // Assert
@@ -160,7 +161,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             const double elasticModulusSubLayer = 19214;
 
             // Call
-            double computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(
+            double computationalThickness = AsphaltWaveImpactFunctions.ComputationalThickness(
                 thicknessUpperLayer, thicknessSubLayer, elasticModulusUpperLayer, elasticModulusSubLayer);
 
             // Assert
@@ -177,7 +178,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             const double slopeUpperLevel = 2.95;
 
             // Call
-            double outerSlope = AsphaltRevetmentWaveImpactFunctions.OuterSlope(
+            double outerSlope = AsphaltWaveImpactFunctions.OuterSlope(
                 slopeLowerPosition, slopeLowerLevel, slopeUpperPosition, slopeUpperLevel);
 
             // Assert

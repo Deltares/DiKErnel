@@ -21,9 +21,9 @@ using System.Collections.Generic;
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
     /// <summary>
-    /// Input for the asphalt revetment wave impact functions.
+    /// Input for the asphalt wave impact functions.
     /// </summary>
-    public class AsphaltRevetmentWaveImpactFunctionsInput
+    public class AsphaltWaveImpactFunctionsInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -44,7 +44,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <param name="fatigueAlpha">The fatigue alpha coefficient [-].</param>
         /// <param name="fatigueBeta">The fatigue beta coefficient [-].</param>
         /// <param name="impactNumberC">The impact number c coefficient [-].</param>
-        public AsphaltRevetmentWaveImpactFunctionsInput(double logFlexuralStrength, double averageNumberOfWaves,
+        public AsphaltWaveImpactFunctionsInput(double logFlexuralStrength, double averageNumberOfWaves,
                                                         double maximumPeakStress, double stiffnessRelation,
                                                         double computationalThickness, double outerSlope,
                                                         IReadOnlyList<(double, double)> widthFactors,

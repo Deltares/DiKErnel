@@ -25,7 +25,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactFunctionsInputTest
+    public class AsphaltWaveImpactFunctionsInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -50,10 +50,11 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             double impactNumberC = Random.NextDouble();
 
             // Call
-            var input = new AsphaltRevetmentWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
-                                                                     stiffnessRelation, computationalThickness, outerSlope,
-                                                                     widthFactors, depthFactors, impactFactors, z, waterLevel,
-                                                                     waveHeightHm0, fatigueAlpha, fatigueBeta, impactNumberC);
+            var input = new AsphaltWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves,
+                                                            maximumPeakStress, stiffnessRelation,
+                                                            computationalThickness, outerSlope, widthFactors,
+                                                            depthFactors, impactFactors, z, waterLevel, waveHeightHm0,
+                                                            fatigueAlpha, fatigueBeta, impactNumberC);
 
             // Assert
             Assert.That(input.LogFlexuralStrength, Is.EqualTo(logFlexuralStrength));

@@ -21,16 +21,16 @@ using System;
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
     /// <summary>
-    /// Class that holds asphalt revetment wave impact calculation routines.
+    /// Class that holds asphalt wave impact calculation routines.
     /// </summary>
-    public static class AsphaltRevetmentWaveImpactFunctions
+    public static class AsphaltWaveImpactFunctions
     {
         /// <summary>
         /// Calculates the increment of damage.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The increment of damage [-].</returns>
-        public static double IncrementDamage(AsphaltRevetmentWaveImpactFunctionsInput input)
+        public static double IncrementDamage(AsphaltWaveImpactFunctionsInput input)
         {
             double result = 0;
 
@@ -118,7 +118,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
         }
 
-        private static double DepthFactorAccumulation(AsphaltRevetmentWaveImpactFunctionsInput input,
+        private static double DepthFactorAccumulation(AsphaltWaveImpactFunctionsInput input,
                                                       double relativeWidthWaveImpact, double sinA)
         {
             double result = 0;
@@ -134,7 +134,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return result;
         }
 
-        private static double ImpactFactorAccumulation(AsphaltRevetmentWaveImpactFunctionsInput input, double bendingStress)
+        private static double ImpactFactorAccumulation(AsphaltWaveImpactFunctionsInput input, double bendingStress)
         {
             double result = 0;
 
@@ -148,7 +148,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return result;
         }
 
-        private static double Fatigue(AsphaltRevetmentWaveImpactFunctionsInput input, double bendingStress,
+        private static double Fatigue(AsphaltWaveImpactFunctionsInput input, double bendingStress,
                                       double impactFactorValue)
         {
             double logTension = LogTension(bendingStress, input.OuterSlope, impactFactorValue, input.ImpactNumberC);
@@ -169,7 +169,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return 4 * impactNumberC * outerSlope * impactFactorValue;
         }
 
-        private static double BendingStress(AsphaltRevetmentWaveImpactFunctionsInput input, double relativeWidthWaveImpact,
+        private static double BendingStress(AsphaltWaveImpactFunctionsInput input, double relativeWidthWaveImpact,
                                             double sinA, double depthFactorValue)
         {
             double spatialDistributionBendingStress = SpatialDistributionBendingStress(input, relativeWidthWaveImpact, sinA,
@@ -181,7 +181,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                             * spatialDistributionBendingStress);
         }
 
-        private static double SpatialDistributionBendingStress(AsphaltRevetmentWaveImpactFunctionsInput input,
+        private static double SpatialDistributionBendingStress(AsphaltWaveImpactFunctionsInput input,
                                                                double relativeWidthWaveImpact, double sinA,
                                                                double depthFactorValue)
         {
@@ -226,7 +226,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return Math.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
         }
 
-        private static double RelativeDistanceCenterWaveImpact(AsphaltRevetmentWaveImpactFunctionsInput input,
+        private static double RelativeDistanceCenterWaveImpact(AsphaltWaveImpactFunctionsInput input,
                                                                double depthFactorValue, double sinA)
         {
             return Math.Min(85, input.StiffnessRelation

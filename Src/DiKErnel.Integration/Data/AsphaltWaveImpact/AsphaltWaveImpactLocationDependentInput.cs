@@ -143,17 +143,16 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                 subLayerElasticModulus = UpperLayer.ElasticModulus;
             }
 
-            logFlexuralStrength = AsphaltRevetmentWaveImpactFunctions.LogFlexuralStrength(FlexuralStrength);
+            logFlexuralStrength = AsphaltWaveImpactFunctions.LogFlexuralStrength(FlexuralStrength);
 
-            computationalThickness = AsphaltRevetmentWaveImpactFunctions.ComputationalThickness(UpperLayer.Thickness,
-                subLayerThickness,
-                UpperLayer.ElasticModulus,
-                subLayerElasticModulus);
+            computationalThickness = AsphaltWaveImpactFunctions.ComputationalThickness(UpperLayer.Thickness,
+                                                                                       subLayerThickness,
+                                                                                       UpperLayer.ElasticModulus,
+                                                                                       subLayerElasticModulus);
 
-            stiffnessRelation = AsphaltRevetmentWaveImpactFunctions.StiffnessRelation(computationalThickness,
-                                                                                      subLayerElasticModulus,
-                                                                                      SoilElasticity,
-                                                                                      StiffnessRelationNu);
+            stiffnessRelation = AsphaltWaveImpactFunctions.StiffnessRelation(computationalThickness,
+                                                                             subLayerElasticModulus,
+                                                                             SoilElasticity, StiffnessRelationNu);
 
             (double, double)? notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
                 profileData.CharacteristicPoints, CharacteristicPointType.NotchOuterBerm);
@@ -169,10 +168,8 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
             ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
 
-            outerSlope = AsphaltRevetmentWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X,
-                                                                        profileSegment.StartPoint.Z,
-                                                                        profileSegment.EndPoint.X,
-                                                                        profileSegment.EndPoint.Z);
+            outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
+                                                               profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
@@ -186,13 +183,13 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                            timeDependentInput.WavePeriodTm10,
                                                                            AverageNumberOfWavesCtm);
 
-            maximumPeakStress = AsphaltRevetmentWaveImpactFunctions.MaximumPeakStress(timeDependentInput.WaveHeightHm0,
-                                                                                      Constants.GravitationalAcceleration,
-                                                                                      DensityOfWater);
+            maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(timeDependentInput.WaveHeightHm0,
+                                                                             Constants.GravitationalAcceleration,
+                                                                             DensityOfWater);
 
-            AsphaltRevetmentWaveImpactFunctionsInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel,
-                                                                                        timeDependentInput.WaveHeightHm0);
-            double incrementDamage = AsphaltRevetmentWaveImpactFunctions.IncrementDamage(input);
+            AsphaltWaveImpactFunctionsInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel,
+                                                                               timeDependentInput.WaveHeightHm0);
+            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
             double damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
 
             double? timeOfFailure = null;
@@ -209,15 +206,12 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
-        private AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(double waterLevel,
-                                                                                    double waveHeightHm0)
+        private AsphaltWaveImpactFunctionsInput CreateIncrementDamageInput(double waterLevel, double waveHeightHm0)
         {
-            return new AsphaltRevetmentWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves,
-                                                                maximumPeakStress, stiffnessRelation,
-                                                                computationalThickness, outerSlope, WidthFactors,
-                                                                DepthFactors, ImpactFactors, Z, waterLevel,
-                                                                waveHeightHm0, Fatigue.Alpha, Fatigue.Beta,
-                                                                ImpactNumberC);
+            return new AsphaltWaveImpactFunctionsInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
+                                                       stiffnessRelation, computationalThickness, outerSlope,
+                                                       WidthFactors, DepthFactors, ImpactFactors, Z, waterLevel,
+                                                       waveHeightHm0, Fatigue.Alpha, Fatigue.Beta, ImpactNumberC);
         }
 
         private AsphaltWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
