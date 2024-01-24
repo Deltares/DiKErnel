@@ -16,24 +16,23 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
+using DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact;
+using NUnit.Framework;
+
+namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
 {
-    /// <summary>
-    /// Class that contains default values for asphalt revetment wave impact with a hydraulic
-    /// asphalt concrete top layer.
-    /// </summary>
-    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults : IAsphaltRevetmentWaveImpactTopLayerDefaults
+    [TestFixture]
+    public class AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaultsTest
     {
-        private static AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults instance;
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            var defaults = AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
 
-        private AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults() {}
-
-        /// <summary>
-        /// Gets the (one and only) instance of this class.
-        /// </summary> 
-        public static AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults Instance =>
-            instance ??= new AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults();
-
-        public double StiffnessRelationNu => 0.35;
+            // Call & Assert
+            Assert.That(defaults, Is.InstanceOf<IAsphaltWaveImpactTopLayerDefaults>());
+            Assert.That(defaults.StiffnessRelationNu, Is.EqualTo(0.35));
+        }
     }
 }

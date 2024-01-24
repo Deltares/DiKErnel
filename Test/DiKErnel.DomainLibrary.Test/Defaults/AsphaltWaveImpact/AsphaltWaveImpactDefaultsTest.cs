@@ -22,34 +22,34 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactDefaultsTest
+    public class AsphaltWaveImpactDefaultsTest
     {
         [Test]
         public void DensityOfWater_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.DensityOfWater, Is.EqualTo(1025));
+            Assert.That(AsphaltWaveImpactDefaults.DensityOfWater, Is.EqualTo(1025));
         }
 
         [Test]
         public void AverageNumberOfWavesCtm_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.AverageNumberOfWavesCtm, Is.EqualTo(1));
+            Assert.That(AsphaltWaveImpactDefaults.AverageNumberOfWavesCtm, Is.EqualTo(1));
         }
 
         [Test]
         public void ImpactNumberC_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.ImpactNumberC, Is.EqualTo(1));
+            Assert.That(AsphaltWaveImpactDefaults.ImpactNumberC, Is.EqualTo(1));
         }
 
         [Test]
         public void WidthFactors_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.WidthFactors, Is.EqualTo(new[]
+            Assert.That(AsphaltWaveImpactDefaults.WidthFactors, Is.EqualTo(new[]
             {
                 (0.1, 0.0392),
                 (0.2, 0.0738),
@@ -73,7 +73,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
         public void DepthFactors_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.DepthFactors, Is.EqualTo(new[]
+            Assert.That(AsphaltWaveImpactDefaults.DepthFactors, Is.EqualTo(new[]
             {
                 (-1.0, 0.005040816326530646),
                 (-0.9744897959183674, 0.00596482278562177),
@@ -132,7 +132,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
         public void ImpactFactors_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.ImpactFactors, Is.EqualTo(new[]
+            Assert.That(AsphaltWaveImpactDefaults.ImpactFactors, Is.EqualTo(new[]
             {
                 (2, 0.039),
                 (2.4, 0.1),
@@ -152,14 +152,14 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
         public void FatigueAlpha_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.FatigueAlpha, Is.EqualTo(0.42));
+            Assert.That(AsphaltWaveImpactDefaults.FatigueAlpha, Is.EqualTo(0.42));
         }
 
         [Test]
         public void FatigueBeta_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(AsphaltRevetmentWaveImpactDefaults.FatigueBeta, Is.EqualTo(4.76));
+            Assert.That(AsphaltWaveImpactDefaults.FatigueBeta, Is.EqualTo(4.76));
         }
     }
 }

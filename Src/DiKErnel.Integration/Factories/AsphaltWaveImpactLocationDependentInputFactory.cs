@@ -27,7 +27,7 @@ namespace DiKErnel.Integration.Factories
         public static AsphaltWaveImpactLocationDependentInput CreateLocationDependentInput(
             AsphaltWaveImpactLocationConstructionProperties constructionProperties)
         {
-            IAsphaltRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
+            IAsphaltWaveImpactTopLayerDefaults topLayerDefaults =
                 AsphaltWaveImpactDefaultsFactory.CreateTopLayerDefaults();
 
             double elasticModulusUpperLayer = constructionProperties.ElasticModulusUpperLayer;
@@ -44,25 +44,25 @@ namespace DiKErnel.Integration.Factories
             }
 
             var fatigue = new AsphaltWaveImpactFatigue(
-                constructionProperties.FatigueAlpha ?? AsphaltRevetmentWaveImpactDefaults.FatigueAlpha,
-                constructionProperties.FatigueBeta ?? AsphaltRevetmentWaveImpactDefaults.FatigueBeta);
+                constructionProperties.FatigueAlpha ?? AsphaltWaveImpactDefaults.FatigueAlpha,
+                constructionProperties.FatigueBeta ?? AsphaltWaveImpactDefaults.FatigueBeta);
 
             return new AsphaltWaveImpactLocationDependentInput(
                 constructionProperties.X,
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
                 constructionProperties.FlexuralStrength,
-                constructionProperties.DensityOfWater ?? AsphaltRevetmentWaveImpactDefaults.DensityOfWater,
+                constructionProperties.DensityOfWater ?? AsphaltWaveImpactDefaults.DensityOfWater,
                 constructionProperties.SoilElasticity,
                 upperLayer,
                 subLayer,
-                constructionProperties.AverageNumberOfWavesCtm ?? AsphaltRevetmentWaveImpactDefaults.AverageNumberOfWavesCtm,
+                constructionProperties.AverageNumberOfWavesCtm ?? AsphaltWaveImpactDefaults.AverageNumberOfWavesCtm,
                 fatigue,
-                constructionProperties.ImpactNumberC ?? AsphaltRevetmentWaveImpactDefaults.ImpactNumberC,
+                constructionProperties.ImpactNumberC ?? AsphaltWaveImpactDefaults.ImpactNumberC,
                 constructionProperties.StiffnessRelationNu ?? topLayerDefaults.StiffnessRelationNu,
-                constructionProperties.WidthFactors ?? AsphaltRevetmentWaveImpactDefaults.WidthFactors,
-                constructionProperties.DepthFactors ?? AsphaltRevetmentWaveImpactDefaults.DepthFactors,
-                constructionProperties.ImpactFactors ?? AsphaltRevetmentWaveImpactDefaults.ImpactFactors);
+                constructionProperties.WidthFactors ?? AsphaltWaveImpactDefaults.WidthFactors,
+                constructionProperties.DepthFactors ?? AsphaltWaveImpactDefaults.DepthFactors,
+                constructionProperties.ImpactFactors ?? AsphaltWaveImpactDefaults.ImpactFactors);
         }
     }
 }

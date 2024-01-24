@@ -19,10 +19,9 @@
 namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
 {
     /// <summary>
-    /// Interface that contains default value definitions for asphalt revetment wave impact
-    /// top layers.
+    /// Interface that contains default value definitions for asphalt wave impact top layers.
     /// </summary>
-    public interface IAsphaltRevetmentWaveImpactTopLayerDefaults
+    public interface IAsphaltWaveImpactTopLayerDefaults
     {
         /// <summary>
         /// Gets the default value of the stiffness relation Nu coefficient [-].

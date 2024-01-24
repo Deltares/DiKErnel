@@ -16,23 +16,24 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact;
-using NUnit.Framework;
-
-namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
+namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
 {
-    [TestFixture]
-    public class AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaultsTest
+    /// <summary>
+    /// Class that contains default values for asphalt wave impact with a hydraulic asphalt
+    /// concrete top layer.
+    /// </summary>
+    public class AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults : IAsphaltWaveImpactTopLayerDefaults
     {
-        [Test]
-        public void Constructor_ExpectedValues()
-        {
-            // Setup
-            var defaults = AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
+        private static AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults instance;
 
-            // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IAsphaltRevetmentWaveImpactTopLayerDefaults>());
-            Assert.That(defaults.StiffnessRelationNu, Is.EqualTo(0.35));
-        }
+        private AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults() {}
+
+        /// <summary>
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults Instance =>
+            instance ??= new AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults();
+
+        public double StiffnessRelationNu => 0.35;
     }
 }

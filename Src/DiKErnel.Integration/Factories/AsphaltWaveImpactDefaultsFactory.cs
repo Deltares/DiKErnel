@@ -22,9 +22,9 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class AsphaltWaveImpactDefaultsFactory
     {
-        public static IAsphaltRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults()
+        public static IAsphaltWaveImpactTopLayerDefaults CreateTopLayerDefaults()
         {
-            return AsphaltRevetmentWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
+            return AsphaltWaveImpactHydraulicAsphaltConcreteTopLayerDefaults.Instance;
         }
     }
 }

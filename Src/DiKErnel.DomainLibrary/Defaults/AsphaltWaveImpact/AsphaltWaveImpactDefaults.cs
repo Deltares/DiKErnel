@@ -21,9 +21,9 @@ using System.Collections.Generic;
 namespace DiKErnel.DomainLibrary.Defaults.AsphaltWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for asphalt revetments.
+    /// Class that contains default values for asphalt wave impact.
     /// </summary>
-    public static class AsphaltRevetmentWaveImpactDefaults
+    public static class AsphaltWaveImpactDefaults
     {
         /// <summary>
         /// Gets the default value of the density of water [kg/m^3].
