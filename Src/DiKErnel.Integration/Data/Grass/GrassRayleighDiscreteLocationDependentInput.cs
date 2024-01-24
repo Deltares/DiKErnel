@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Data.Grass
                 cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves, representativeWaveRunup2P,
                                                                  verticalDistanceWaterLevelElevation);
 
-                incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
+                incrementDamage = GrassFunctions.IncrementDamage(cumulativeOverload,
                                                                           CriticalCumulativeOverload);
 
                 damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
@@ -172,8 +172,8 @@ namespace DiKErnel.Integration.Data.Grass
         private double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
                                                           IProfileData profileData)
         {
-            return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+            return GrassFunctions.RepresentativeWaveRunup2P(
+                new GrassRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                                                         timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
                                                         xValuesProfile, zValuesProfile, roughnessCoefficients,
                                                         DikeHeight, profileData.DikeOrientation));

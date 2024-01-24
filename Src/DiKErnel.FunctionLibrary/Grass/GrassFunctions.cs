@@ -25,7 +25,7 @@ namespace DiKErnel.FunctionLibrary.Grass
     /// <summary>
     /// Class that holds generic grass revetment calculation routines.
     /// </summary>
-    public static class GrassRevetmentFunctions
+    public static class GrassFunctions
     {
         /// <summary>
         /// Calculates the increment of damage.
@@ -44,14 +44,14 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The representative wave run-up (2 percent) [m].</returns>
-        public static double RepresentativeWaveRunup2P(GrassRevetmentRepresentative2PInput input)
+        public static double RepresentativeWaveRunup2P(GrassRepresentative2PInput input)
         {
             return OvertoppingAdapter.CalculateZ2(input.WaterLevel, input.WaveHeightHm0, input.WavePeriodTm10, input.WaveDirection,
                                                   input.XValuesProfile.ToArray(), input.ZValuesProfile.ToArray(),
                                                   input.RoughnessCoefficients.ToArray(), input.DikeHeight, input.DikeOrientation);
         }
 
-        internal static double CumulativeOverload(GrassRevetmentCumulativeOverloadInput input,
+        internal static double CumulativeOverload(GrassCumulativeOverloadInput input,
                                                   Func<double, double> getFrontVelocityFunc)
         {
             double cumulativeFrontVelocity = 0;

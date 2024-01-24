@@ -19,7 +19,7 @@
 namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Input for a natural stone revetment outer slope calculation.
+    /// Input for natural stone wave impact outer slope calculations.
     /// </summary>
     public class NaturalStoneRevetmentOuterSlopeInput
     {

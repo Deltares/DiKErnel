@@ -21,9 +21,9 @@ using System.Collections.Generic;
 namespace DiKErnel.FunctionLibrary.Grass
 {
     /// <summary>
-    /// Input for a grass revetment representative 2P calculation.
+    /// Input for grass representative 2P calculations.
     /// </summary>
-    public class GrassRevetmentRepresentative2PInput
+    public class GrassRepresentative2PInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -40,7 +40,7 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// <param name="dikeHeight">The dike height [m].</param>
         /// <param name="dikeOrientation">The dike orientation with respect to the
         /// North [deg].</param>
-        public GrassRevetmentRepresentative2PInput(double waterLevel, double waveHeightHm0, double wavePeriodTm10,
+        public GrassRepresentative2PInput(double waterLevel, double waveHeightHm0, double wavePeriodTm10,
                                                    double waveDirection, IReadOnlyList<double> xValuesProfile,
                                                    IReadOnlyList<double> zValuesProfile,
                                                    IReadOnlyList<double> roughnessCoefficients, double dikeHeight,

@@ -19,7 +19,7 @@
 namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Input for a natural stone revetment hydraulic load calculation.
+    /// Input for natural stone wave impact hydraulic load calculations.
     /// </summary>
     public class NaturalStoneRevetmentHydraulicLoadInput
     {

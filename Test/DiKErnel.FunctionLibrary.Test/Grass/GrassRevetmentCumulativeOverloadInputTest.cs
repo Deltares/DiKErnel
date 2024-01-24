@@ -39,7 +39,7 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
             double gravitationalAcceleration = Random.NextDouble();
 
             // Call
-            var input = new GrassRevetmentCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
+            var input = new GrassCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
                                                                   fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
                                                                   criticalFrontVelocity, increasedLoadTransitionAlphaM,
                                                                   reducedStrengthTransitionAlphaS, gravitationalAcceleration);

@@ -21,9 +21,9 @@ using DiKErnel.FunctionLibrary.Grass;
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
-    /// Input for a grass revetment wave run-up Rayleigh cumulative overload calculation.
+    /// Input for grass revetment wave run-up Rayleigh cumulative overload calculations.
     /// </summary>
-    public class GrassRevetmentWaveRunupRayleighCumulativeOverloadInput : GrassRevetmentCumulativeOverloadInput
+    public class GrassRevetmentWaveRunupRayleighCumulativeOverloadInput : GrassCumulativeOverloadInput
     {
         /// <inheritdoc/>
         /// <summary>

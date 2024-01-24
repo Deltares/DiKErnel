@@ -19,9 +19,9 @@
 namespace DiKErnel.FunctionLibrary.Grass
 {
     /// <summary>
-    /// Input for a grass revetment cumulative overload calculation.
+    /// Input for grass cumulative overload calculations.
     /// </summary>
-    public class GrassRevetmentCumulativeOverloadInput
+    public class GrassCumulativeOverloadInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -37,10 +37,10 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// <param name="reducedStrengthTransitionAlphaS">The AlphaS value [-].</param>
         /// <param name="gravitationalAcceleration">The gravitational
         /// acceleration [m/s^2].</param>
-        public GrassRevetmentCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
-                                                     int fixedNumberOfWaves, double verticalDistanceWaterLevelElevation,
-                                                     double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
-                                                     double reducedStrengthTransitionAlphaS, double gravitationalAcceleration)
+        public GrassCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
+                                            int fixedNumberOfWaves, double verticalDistanceWaterLevelElevation,
+                                            double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
+                                            double reducedStrengthTransitionAlphaS, double gravitationalAcceleration)
         {
             AverageNumberOfWaves = averageNumberOfWaves;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;

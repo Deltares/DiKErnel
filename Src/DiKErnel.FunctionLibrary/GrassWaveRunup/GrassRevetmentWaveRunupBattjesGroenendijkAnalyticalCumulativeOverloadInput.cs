@@ -19,8 +19,8 @@
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
-    /// Input for a grass revetment wave run-up Battjes-Groenendijk analytical cumulative
-    /// overload calculation.
+    /// Input for grass revetment wave run-up Battjes-Groenendijk analytical cumulative
+    /// overload calculations.
     /// </summary>
     public class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput
     {

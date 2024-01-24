@@ -42,7 +42,7 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
             double dikeOrientation = Random.NextDouble();
 
             // Call
-            var input = new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
+            var input = new GrassRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
                                                                 waveDirection, xValuesProfile, zValuesProfile,
                                                                 roughnessCoefficients, dikeHeight, dikeOrientation);
 

@@ -33,7 +33,7 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
             const double criticalCumulativeOverload = 7000;
 
             // Call
-            double incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
+            double incrementDamage = GrassFunctions.IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
 
             // Assert
             AssertHelper.AreEqual(0.15198428571428, incrementDamage);
@@ -74,12 +74,12 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
 
             const double dikeHeight = 7.7;
 
-            var input = new GrassRevetmentRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
+            var input = new GrassRepresentative2PInput(waterLevel, waveHeightHm0, wavePeriodTm10,
                                                                 waveDirection, xValuesProfile, zValuesProfile,
                                                                 roughnessCoefficients, dikeHeight, dikeOrientation);
 
             // Call
-            double representativeWaveRunup2P = GrassRevetmentFunctions.RepresentativeWaveRunup2P(input);
+            double representativeWaveRunup2P = GrassFunctions.RepresentativeWaveRunup2P(input);
 
             // Assert
             AssertHelper.AreEqual(2.79696767501212, representativeWaveRunup2P);
