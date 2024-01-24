@@ -19,7 +19,8 @@
 namespace DiKErnel.DomainLibrary.Defaults.GrassOvertopping
 {
     /// <summary>
-    /// Class that contains default values for grass overtopping Rayleigh Discrete.
+    /// Class that contains default values for grass overtopping Rayleigh Discrete
+    /// calculations.
     /// </summary>
     public static class GrassOvertoppingRayleighDiscreteDefaults
     {
