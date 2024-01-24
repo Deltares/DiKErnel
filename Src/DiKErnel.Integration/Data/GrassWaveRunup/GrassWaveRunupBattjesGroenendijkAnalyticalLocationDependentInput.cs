@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Defaults.GrassWaveRunup;
@@ -126,8 +125,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
                 cumulativeOverload = CalculateCumulativeOverload(timeDependentInput, profileData);
 
-                incrementDamage = GrassRevetmentFunctions.IncrementDamage(cumulativeOverload,
-                                                                          CriticalCumulativeOverload);
+                incrementDamage = GrassFunctions.IncrementDamage(cumulativeOverload, CriticalCumulativeOverload);
 
                 damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
 
@@ -141,7 +139,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                 }
             }
 
-            return null;
+            return new GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
         private double CalculateCumulativeOverload(ITimeDependentInput timeDependentInput, IProfileData profileData)
@@ -150,13 +149,19 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
             double bottomForeshoreZ = double.NaN;
             double slopeForeshore = double.NaN;
 
-            return GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(
-                new GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(averageNumberOfWaves,
-                    representativeWaveRunup2P, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                    verticalDistanceWaterLevelElevation, bottomForeshoreZ, slopeForeshore, CriticalFrontVelocity,
-                    FrontVelocityCu, IncreasedLoadTransitionAlphaM, ReducedStrengthTransitionAlphaS,
-                    Constants.GravitationalConstant, GrassWaveRunupBattjesGroenendijkAnalyticalDefaults.K1,
-                    GrassWaveRunupBattjesGroenendijkAnalyticalDefaults.K2));
+            return GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(
+                new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(averageNumberOfWaves,
+                                                                                      representativeWaveRunup2P,
+                                                                                      timeDependentInput.WaterLevel,
+                                                                                      timeDependentInput.WaveHeightHm0,
+                                                                                      verticalDistanceWaterLevelElevation, bottomForeshoreZ,
+                                                                                      slopeForeshore, CriticalFrontVelocity,
+                                                                                      FrontVelocityCu, IncreasedLoadTransitionAlphaM,
+                                                                                      ReducedStrengthTransitionAlphaS,
+                                                                                      Constants.GravitationalConstant,
+                                                                                      GrassWaveRunupBattjesGroenendijkAnalyticalDefaults.K1,
+                                                                                      GrassWaveRunupBattjesGroenendijkAnalyticalDefaults
+                                                                                          .K2));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)
@@ -183,11 +188,32 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         private double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
                                                           IProfileData profileData)
         {
-            return GrassRevetmentFunctions.RepresentativeWaveRunup2P(
-                new GrassRevetmentRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                                                        timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
-                                                        xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                                        Z, profileData.DikeOrientation));
+            return GrassFunctions.RepresentativeWaveRunup2P(
+                new GrassRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                                               timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
+                                               xValuesProfile, zValuesProfile, roughnessCoefficients,
+                                               Z, profileData.DikeOrientation));
+        }
+
+        private GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties CreateConstructionProperties(
+            double incrementDamage, double damage, double? timeOfFailure)
+        {
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                Damage = damage,
+                TimeOfFailure = timeOfFailure,
+                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
+            };
+
+            if (verticalDistanceWaterLevelElevation >= 0.0)
+            {
+                constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
+                constructionProperties.CumulativeOverload = cumulativeOverload;
+                constructionProperties.AverageNumberOfWaves = averageNumberOfWaves;
+            }
+
+            return constructionProperties;
         }
     }
 }
