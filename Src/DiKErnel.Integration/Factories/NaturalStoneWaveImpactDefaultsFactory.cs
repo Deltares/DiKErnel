@@ -24,7 +24,7 @@ namespace DiKErnel.Integration.Factories
     {
         public static INaturalStoneWaveImpactTopLayerDefaults CreateTopLayerDefaults()
         {
-            return NaturalStoneNordicStoneTopLayerDefaults.Instance;
+            return NaturalStoneWaveImpactNordicStoneTopLayerDefaults.Instance;
         }
     }
 }

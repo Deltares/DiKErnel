@@ -44,7 +44,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.AverageNumberOfWavesCtm
                 ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
                 constructionProperties.FixedNumberOfWaves ?? GrassCumulativeOverloadDefaults.FixedNumberOfWaves,
-                constructionProperties.FrontVelocityCu ?? GrassWaveRunupRayleighDefaults.FrontVelocityCu);
+                constructionProperties.FrontVelocityCu ?? GrassWaveRunupRayleighDiscreteDefaults.FrontVelocityCu);
         }
     }
 }

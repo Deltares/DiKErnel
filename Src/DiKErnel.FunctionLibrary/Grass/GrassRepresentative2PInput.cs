@@ -41,10 +41,10 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// <param name="dikeOrientation">The dike orientation with respect to the
         /// North [deg].</param>
         public GrassRepresentative2PInput(double waterLevel, double waveHeightHm0, double wavePeriodTm10,
-                                                   double waveDirection, IReadOnlyList<double> xValuesProfile,
-                                                   IReadOnlyList<double> zValuesProfile,
-                                                   IReadOnlyList<double> roughnessCoefficients, double dikeHeight,
-                                                   double dikeOrientation)
+                                          double waveDirection, IReadOnlyList<double> xValuesProfile,
+                                          IReadOnlyList<double> zValuesProfile,
+                                          IReadOnlyList<double> roughnessCoefficients, double dikeHeight,
+                                          double dikeOrientation)
         {
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;

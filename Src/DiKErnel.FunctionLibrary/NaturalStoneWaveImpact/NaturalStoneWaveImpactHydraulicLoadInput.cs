@@ -32,8 +32,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// <param name="b">The b coefficient [-].</param>
         /// <param name="c">The c coefficient [-].</param>
         /// <param name="n">The n coefficient [-].</param>
-        public NaturalStoneWaveImpactHydraulicLoadInput(double surfSimilarityParameter, double waveHeightHm0, double a, double b,
-                                                       double c, double n)
+        public NaturalStoneWaveImpactHydraulicLoadInput(double surfSimilarityParameter, double waveHeightHm0, double a,
+                                                        double b, double c, double n)
         {
             SurfSimilarityParameter = surfSimilarityParameter;
             WaveHeightHm0 = waveHeightHm0;

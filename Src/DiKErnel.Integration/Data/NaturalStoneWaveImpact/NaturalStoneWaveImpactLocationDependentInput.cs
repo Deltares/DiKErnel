@@ -254,18 +254,18 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
             return NaturalStoneWaveImpactFunctions.HydraulicLoad(
                 new NaturalStoneWaveImpactHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0,
-                                                            usePlungingBreakers
-                                                                ? HydraulicLoads.HydraulicLoadAp
-                                                                : HydraulicLoads.HydraulicLoadAs,
-                                                            usePlungingBreakers
-                                                                ? HydraulicLoads.HydraulicLoadBp
-                                                                : HydraulicLoads.HydraulicLoadBs,
-                                                            usePlungingBreakers
-                                                                ? HydraulicLoads.HydraulicLoadCp
-                                                                : HydraulicLoads.HydraulicLoadCs,
-                                                            usePlungingBreakers
-                                                                ? HydraulicLoads.HydraulicLoadNp
-                                                                : HydraulicLoads.HydraulicLoadNs));
+                                                             usePlungingBreakers
+                                                                 ? HydraulicLoads.HydraulicLoadAp
+                                                                 : HydraulicLoads.HydraulicLoadAs,
+                                                             usePlungingBreakers
+                                                                 ? HydraulicLoads.HydraulicLoadBp
+                                                                 : HydraulicLoads.HydraulicLoadBs,
+                                                             usePlungingBreakers
+                                                                 ? HydraulicLoads.HydraulicLoadCp
+                                                                 : HydraulicLoads.HydraulicLoadCs,
+                                                             usePlungingBreakers
+                                                                 ? HydraulicLoads.HydraulicLoadNp
+                                                                 : HydraulicLoads.HydraulicLoadNs));
         }
 
         private double CalculateTimeOfFailure(double wavePeriodTm10, double beginTime)

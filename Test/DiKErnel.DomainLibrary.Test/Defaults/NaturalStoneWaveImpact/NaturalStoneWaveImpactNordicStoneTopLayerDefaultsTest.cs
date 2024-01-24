@@ -28,7 +28,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneWaveImpact
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var defaults = NaturalStoneNordicStoneTopLayerDefaults.Instance;
+            var defaults = NaturalStoneWaveImpactNordicStoneTopLayerDefaults.Instance;
 
             // Call & Assert
             Assert.That(defaults, Is.InstanceOf<INaturalStoneWaveImpactTopLayerDefaults>());
