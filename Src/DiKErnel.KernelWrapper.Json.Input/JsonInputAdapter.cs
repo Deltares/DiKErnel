@@ -27,7 +27,6 @@ using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping;
@@ -259,7 +258,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 calculationData?.AccelerationAlphaAData;
 
             return new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
-                locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
+                locationData.X, ConvertGrassTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,
                 IncreasedLoadTransitionAlphaM = locationData.IncreasedLoadTransitionAlphaM,
@@ -287,7 +286,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassWaveImpactLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
 
             return new GrassWaveImpactLocationConstructionProperties(
-                locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
+                locationData.X, ConvertGrassTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,
                 FailureNumber = calculationData?.FailureNumber,
@@ -339,15 +338,14 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassWaveRunupProtocolData protocolData)
         {
             return new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
-                locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
+                locationData.X, ConvertGrassTopLayerType(locationData.TopLayerType))
             {
                 FixedNumberOfWaves = protocolData.FixedNumberOfWaves,
                 FrontVelocityCu = protocolData.FrontVelocity
             };
         }
 
-        private static GrassTopLayerType ConvertGrassRevetmentTopLayerType(
-            JsonInputGrassTopLayerType topLayerType)
+        private static GrassTopLayerType ConvertGrassTopLayerType(JsonInputGrassTopLayerType topLayerType)
         {
             return topLayerType switch
             {
