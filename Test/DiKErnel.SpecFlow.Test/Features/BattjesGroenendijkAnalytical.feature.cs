@@ -874,6 +874,344 @@ namespace DiKErnel.SpecFlow.Test.Features
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 14")]
+        [NUnit.Framework.TestCaseAttribute("3.5", "698.151", null)]
+        [NUnit.Framework.TestCaseAttribute("4", "588.395", null)]
+        [NUnit.Framework.TestCaseAttribute("5.5", "7.156", null)]
+        [NUnit.Framework.TestCaseAttribute("6.5", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("8", "0.000", null)]
+        public virtual void BMGrasBenchmark14(string kritiekeFrontsnelheid, string cumulatieveOverbelastingTijdstap, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("kritiekeFrontsnelheid", kritiekeFrontsnelheid);
+            argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 14", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 135
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                            "bodemVoorlandZ",
+                            "golfhoogtenHm0",
+                            "d",
+                            "tan",
+                            "factorCtm",
+                            "kritiekeCumulatieveOverbelasting"});
+                table21.AddRow(new string[] {
+                            "0.1",
+                            "1.5",
+                            "3",
+                            "0.004",
+                            "3.85",
+                            "7000"});
+#line 136
+  testRunner.Given("the following constant inputs:", ((string)(null)), table21, "Given ");
+#line hidden
+#line 139
+  testRunner.When(string.Format("I change the value of {0}", kritiekeFrontsnelheid), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 140
+  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 141
+  testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 15")]
+        [NUnit.Framework.TestCaseAttribute("0", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("2", "1.134", null)]
+        [NUnit.Framework.TestCaseAttribute("2", "1.134", null)]
+        [NUnit.Framework.TestCaseAttribute("3", "0.139", null)]
+        [NUnit.Framework.TestCaseAttribute("4", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("5", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("6", "0.000", null)]
+        public virtual void BMGrasBenchmark15(string bodemVoorlandZ, string cumulatieveOverbelastingTijdstap, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("bodemVoorlandZ", bodemVoorlandZ);
+            argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 15", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 151
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                            "kritiekeFrontsnelheid",
+                            "golfhoogtenHm0",
+                            "d",
+                            "tan",
+                            "factorCtm",
+                            "kritiekeCumulatieveOverbelasting"});
+                table22.AddRow(new string[] {
+                            "6.6",
+                            "1.5",
+                            "3",
+                            "0.004",
+                            "3.85",
+                            "7000"});
+#line 152
+  testRunner.Given("the following constant inputs:", ((string)(null)), table22, "Given ");
+#line hidden
+#line 155
+     testRunner.When(string.Format("I change the value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 156
+     testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 157
+     testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 16")]
+        [NUnit.Framework.TestCaseAttribute("0.004", "1.134", null)]
+        [NUnit.Framework.TestCaseAttribute("0.04", "13.406", null)]
+        public virtual void BMGrasBenchmark16(string tan, string cumulatieveOverbelastingTijdstap, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("tan", tan);
+            argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 16", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 169
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                            "kritiekeFrontsnelheid",
+                            "golfhoogtenHm0",
+                            "d",
+                            "bodemVoorlandZ",
+                            "factorCtm",
+                            "kritiekeCumulatieveOverbelasting"});
+                table23.AddRow(new string[] {
+                            "6.6",
+                            "1.5",
+                            "3",
+                            "0.1",
+                            "3.85",
+                            "7000"});
+#line 170
+  testRunner.Given("the following constant inputs:", ((string)(null)), table23, "Given ");
+#line hidden
+#line 173
+     testRunner.When(string.Format("I change the value of {0}", tan), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 174
+     testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 175
+     testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 17")]
+        [NUnit.Framework.TestCaseAttribute("0.04", "13755.272", null)]
+        [NUnit.Framework.TestCaseAttribute("0.1", "5759.070", null)]
+        [NUnit.Framework.TestCaseAttribute("0.4", "1031.437", null)]
+        [NUnit.Framework.TestCaseAttribute("10", "21.453", null)]
+        public virtual void BMGrasBenchmark17(string d, string cumulatieveOverbelastingTijdstap, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("d", d);
+            argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 17", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 182
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                            "kritiekeFrontsnelheid",
+                            "golfhoogtenHm0",
+                            "tan",
+                            "bodemVoorlandZ",
+                            "factorCtm",
+                            "kritiekeCumulatieveOverbelasting"});
+                table24.AddRow(new string[] {
+                            "6.6",
+                            "1.5",
+                            "0.004",
+                            "0.1",
+                            "3.85",
+                            "7000"});
+#line 183
+  testRunner.Given("the following constant inputs:", ((string)(null)), table24, "Given ");
+#line hidden
+#line 186
+     testRunner.When(string.Format("I change the value of {0}", d), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 187
+     testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 188
+     testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 18")]
+        [NUnit.Framework.TestCaseAttribute("0.04", "100", "13755.272", "0.007", null)]
+        [NUnit.Framework.TestCaseAttribute("0.1", "10", "5759.070", "0.002", null)]
+        [NUnit.Framework.TestCaseAttribute("0.4", "1", "1031.437", "0.001", null)]
+        [NUnit.Framework.TestCaseAttribute("10", "1", "21.453", "0.047", null)]
+        public virtual void BMGrasBenchmark18(string d, string dcrit, string cumulatieveOverbelastingTijdstap, string fos, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("d", d);
+            argumentsOfScenario.Add("Dcrit", dcrit);
+            argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
+            argumentsOfScenario.Add("Fos", fos);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 18", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 197
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+ this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                            "kritiekeFrontsnelheid",
+                            "golfhoogtenHm0",
+                            "tan",
+                            "bodemVoorlandZ",
+                            "factorCtm"});
+                table25.AddRow(new string[] {
+                            "6.6",
+                            "1.5",
+                            "0.004",
+                            "0.1",
+                            "3.85"});
+#line 198
+  testRunner.Given("the following constant inputs:", ((string)(null)), table25, "Given ");
+#line hidden
+#line 201
+     testRunner.When(string.Format("I change the value of {0}", d), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 202
+     testRunner.And(string.Format("I change the value of {0}", dcrit), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 203
+  testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 204
+  testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 205
+  testRunner.And("the output value for <FoS> is", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

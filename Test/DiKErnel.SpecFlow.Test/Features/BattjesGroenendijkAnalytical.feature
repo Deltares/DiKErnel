@@ -63,31 +63,31 @@
    		
    	Scenario: Testcase 3
 	    Given the following is adjusted:
-	      | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
+	      	| kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
 	    When I run the calculation
 		#Then the schadegetal is
 	
 	Scenario: Testcase 4
 		Given the following is adjusted:
-		  | kritiekeFrontsnelheid|
+			| kritiekeFrontsnelheid|
 		When I run the calculation
 		#Then the schadegetal is
 	
 	Scenario: Testcase 5
 		Given the following is adjusted:
-		  | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+			| verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 6
 		Given the following is adjusted:
-		  | bodemVoorlandZ | tanAvl |
+			| bodemVoorlandZ | tanAvl |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 7
 		Given the following is adjusted:
-		  | beginschade | faalgetal |
+			| beginschade | faalgetal |
 		When I run the calculation
 		#Then the schadegetal is
 		
@@ -99,35 +99,114 @@
 		
 	Scenario: Testcase 9
 		Given the following is adjusted:
-		  | posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie | bodemVoorlandZ | tanAvl |
+			| posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie | bodemVoorlandZ | tanAvl |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 10
 		Given the following is adjusted:
-		  | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+			| tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 11
 		Given the following is adjusted:
-		  | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+			| tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
     	And the following is adjusted:
-    	| posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie | bodemVoorlandZ | tanAvl |
+			| posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie | bodemVoorlandZ | tanAvl |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 12
 		Given the following is adjusted:
-		  | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+			| tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
 		And the following is adjusted:
-		  | posities | hoogten | dijkorientatie | ruwheidscoefficienten |
+			| posities | hoogten | dijkorientatie | ruwheidscoefficienten |
     	And the following is adjusted:
-    	| positie | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+    		| positie | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
      	And the following is adjusted:
-     	| faalgetal | factorCtm | frontsnelheid | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid | bodemVoorlandZ | tanAvl |
+     		| faalgetal | factorCtm | frontsnelheid | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid | bodemVoorlandZ | tanAvl |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 13
 		#all parameters changed with unrealistic values to test robustness
+		
+	Scenario Outline: BM Gras benchmark 14
+		Given the following constant inputs:
+			| bodemVoorlandZ | golfhoogtenHm0 | d | tan   | factorCtm | kritiekeCumulatieveOverbelasting |
+			| 0.1            | 1.5            | 3 | 0.004 | 3.85      | 7000                             |
+		When I change the value of <kritiekeFrontsnelheid>
+		And I run the calculation
+		Then the output value for <cumulatieveOverbelastingTijdstap> is
+		
+		Examples: 
+		  	| kritiekeFrontsnelheid | cumulatieveOverbelastingTijdstap |
+			| 3.5                   | 698.151                          |
+			| 4                     | 588.395                          |
+			| 5.5                   | 7.156                            |
+			| 6.5                   | 0.000                            |
+			| 8                     | 0.000                            |
+    
+	Scenario Outline: BM Gras benchmark 15
+		Given the following constant inputs:
+			| kritiekeFrontsnelheid | golfhoogtenHm0 | d | tan   | factorCtm | kritiekeCumulatieveOverbelasting |
+			| 6.6                   | 1.5            | 3 | 0.004 | 3.85      | 7000                             |
+   		When I change the value of <bodemVoorlandZ>
+   		And I run the calculation
+   		Then the output value for <cumulatieveOverbelastingTijdstap> is
+   		
+   		Examples: 
+   			| bodemVoorlandZ | cumulatieveOverbelastingTijdstap |
+		    | 0              | 0.000                            |
+		    | 2              | 1.134                            |
+		    | 2              | 1.134                            |
+		    | 3              | 0.139                            |
+		    | 4              | 0.000                            |
+		    | 5              | 0.000                            |
+		    | 6              | 0.000                            |
+      
+	Scenario Outline: BM Gras benchmark 16
+		Given the following constant inputs:
+			| kritiekeFrontsnelheid | golfhoogtenHm0 | d | bodemVoorlandZ | factorCtm | kritiekeCumulatieveOverbelasting |
+			| 6.6                   | 1.5            | 3 | 0.1            | 3.85      | 7000                             |
+   		When I change the value of <tan>
+   		And I run the calculation
+   		Then the output value for <cumulatieveOverbelastingTijdstap> is
+   		
+   		Examples: 
+   			| tan   | cumulatieveOverbelastingTijdstap |
+		    | 0.004 | 1.134                            |
+		    | 0.04  | 13.406                           |
+
+	Scenario Outline: BM Gras benchmark 17
+		Given the following constant inputs:
+			| kritiekeFrontsnelheid | golfhoogtenHm0 | tan   | bodemVoorlandZ | factorCtm | kritiekeCumulatieveOverbelasting |
+			| 6.6                   | 1.5            | 0.004 | 0.1            | 3.85      | 7000                             |
+   		When I change the value of <d>
+   		And I run the calculation
+   		Then the output value for <cumulatieveOverbelastingTijdstap> is
+   		
+   		Examples: 
+   			| d    | cumulatieveOverbelastingTijdstap |
+		    | 0.04 | 13755.272                        |
+		    | 0.1  | 5759.070                         |
+		    | 0.4  | 1031.437                         |
+		    | 10   | 21.453                           |
+      
+	Scenario Outline: BM Gras benchmark 18
+		Given the following constant inputs:
+			| kritiekeFrontsnelheid | golfhoogtenHm0 | tan   | bodemVoorlandZ | factorCtm |
+			| 6.6                   | 1.5            | 0.004 | 0.1            | 3.85      |
+   		When I change the value of <d>
+   		And I change the value of <Dcrit>
+		And I run the calculation
+		Then the output value for <cumulatieveOverbelastingTijdstap> is
+		And the output value for <FoS> is
+		
+		Examples: 
+			| d | Dcrit | cumulatieveOverbelastingTijdstap | Fos   |
+			| 0.04 | 100   | 13755.272 | 0.007 |
+			| 0.1  | 10    | 5759.070  | 0.002 |
+			| 0.4  | 1     | 1031.437  | 0.001 |
+			| 10   | 1     | 21.453    | 0.047 |

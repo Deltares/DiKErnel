@@ -46,5 +46,29 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             ScenarioContext.StepIsPending();
         }
+
+        [Then(@"the schadegetal is (.*)")]
+        public void ThenTheSchadegetalIs(decimal p0)
+        {
+            ScenarioContext.StepIsPending();
+        }
+
+        [Given(@"the following constant inputs:")]
+        public void GivenTheFollowingConstantInputs(Table table)
+        {
+            ScenarioContext.StepIsPending();
+        }
+
+        [When(@"I change the value of (.*)")]
+        public void WhenIChangeTheValueOf(string uc)
+        {
+            ScenarioContext.StepIsPending();
+        }
+
+        [Then(@"the output value for (.*) is")]
+        public void ThenTheOutputValueForIs(string dload, Table table)
+        {
+            ScenarioContext.StepIsPending();
+        }
     }
 }
