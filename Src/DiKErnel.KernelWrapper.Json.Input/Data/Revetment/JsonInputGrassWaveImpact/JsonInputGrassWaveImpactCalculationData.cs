@@ -36,9 +36,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
         public double? Temin { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.WaveAngleImpact)]
-        public JsonInputGrassWaveImpactCalculationImpactWaveAngleData WaveAngleData { get; private set; }
+        public JsonInputGrassWaveImpactWaveAngleData WaveAngleData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.LoadingArea)]
-        public JsonInputGrassWaveImpactCalculationLoadingAreaData LoadingAreaData { get; private set; }
+        public JsonInputGrassWaveImpactLoadingAreaData LoadingAreaData { get; private set; }
     }
 }

@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    internal class JsonInputGrassWaveImpactCalculationImpactWaveAngleData
+    internal class JsonInputGrassWaveImpactWaveAngleData
     {
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.N)]
         public double? WaveAngleImpactN { get; private set; }

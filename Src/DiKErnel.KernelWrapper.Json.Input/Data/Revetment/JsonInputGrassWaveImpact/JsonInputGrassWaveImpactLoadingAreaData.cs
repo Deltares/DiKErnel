@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    internal class JsonInputGrassWaveImpactCalculationLoadingAreaData
+    internal class JsonInputGrassWaveImpactLoadingAreaData
     {
         [JsonProperty(JsonInputDefinitions.UpperLimit)]
-        public JsonInputGrassWaveImpactCalculationLoadingAreaLimitData UpperLimit { get; private set; }
+        public JsonInputGrassWaveImpactLoadingAreaLimitData UpperLimitData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.LowerLimit)]
-        public JsonInputGrassWaveImpactCalculationLoadingAreaLimitData LowerLimit { get; private set; }
+        public JsonInputGrassWaveImpactLoadingAreaLimitData LowerLimitData { get; private set; }
     }
 }

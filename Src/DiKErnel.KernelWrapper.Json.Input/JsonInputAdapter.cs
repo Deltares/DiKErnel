@@ -279,11 +279,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassWaveImpactLocationData locationData,
             JsonInputGrassWaveImpactCalculationData calculationData)
         {
-            JsonInputGrassWaveImpactTopLayerTimeLineData timeLineData =
+            JsonInputGrassWaveImpactTimeLineData timeLineData =
                 calculationData?.TopLayerData?
-                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.TimeLine;
-            JsonInputGrassWaveImpactCalculationImpactWaveAngleData impactWaveAngleData = calculationData?.WaveAngleData;
-            JsonInputGrassWaveImpactCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
+                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.TimeLineData;
+            JsonInputGrassWaveImpactWaveAngleData waveAngleData = calculationData?.WaveAngleData;
+            JsonInputGrassWaveImpactLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
 
             return new GrassWaveImpactLocationConstructionProperties(
                 locationData.X, ConvertGrassRevetmentTopLayerType(locationData.TopLayerType))
@@ -295,11 +295,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 TimeLineCgwi = timeLineData?.TimeLineC,
                 MinimumWaveHeightTemax = calculationData?.Temax,
                 MaximumWaveHeightTemin = calculationData?.Temin,
-                WaveAngleImpactNwa = impactWaveAngleData?.WaveAngleImpactN,
-                WaveAngleImpactQwa = impactWaveAngleData?.WaveAngleImpactQ,
-                WaveAngleImpactRwa = impactWaveAngleData?.WaveAngleImpactR,
-                UpperLimitLoadingAul = loadingAreaData?.UpperLimit?.LimitLoading,
-                LowerLimitLoadingAll = loadingAreaData?.LowerLimit?.LimitLoading
+                WaveAngleImpactNwa = waveAngleData?.WaveAngleImpactN,
+                WaveAngleImpactQwa = waveAngleData?.WaveAngleImpactQ,
+                WaveAngleImpactRwa = waveAngleData?.WaveAngleImpactR,
+                UpperLimitLoadingAul = loadingAreaData?.UpperLimitData?.LimitLoading,
+                LowerLimitLoadingAll = loadingAreaData?.LowerLimitData?.LimitLoading
             };
         }
 

@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    internal class JsonInputGrassWaveImpactTopLayerTimeLineData
+    internal class JsonInputGrassWaveImpactTimeLineData
     {
         [JsonProperty(JsonInputDefinitions.A)]
         public double? TimeLineA { get; private set; }
