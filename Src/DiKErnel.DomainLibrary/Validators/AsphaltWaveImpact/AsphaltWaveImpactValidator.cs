@@ -21,9 +21,9 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.AsphaltWaveImpact
 {
     /// <summary>
-    /// Class that holds asphalt revetment wave impact validation routines.
+    /// Class that holds asphalt wave impact validation routines.
     /// </summary>
-    public static class AsphaltRevetmentWaveImpactValidator
+    public static class AsphaltWaveImpactValidator
     {
         /// <summary>
         /// Validates the fatigue alpha coefficient.

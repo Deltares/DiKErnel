@@ -25,12 +25,12 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltRevetmentWaveImpactValidatorTest
+    public class AsphaltWaveImpactValidatorTest
     {
         [Test]
         public void FatigueAlpha_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.FatigueAlpha;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.FatigueAlpha;
 
             const string errorMessage = "FatigueAlpha must be larger than 0.";
 
@@ -46,7 +46,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void FatigueBeta_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.FatigueBeta;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.FatigueBeta;
 
             const string errorMessage = "FatigueBeta must be larger than 0.";
 
@@ -62,7 +62,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void FlexuralStrength_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.FlexuralStrength;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.FlexuralStrength;
 
             const string errorMessage = "FlexuralStrength must be larger than 0.";
 
@@ -78,7 +78,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void ImpactNumberC_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.ImpactNumberC;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.ImpactNumberC;
 
             const string errorMessage = "ImpactNumberC must be larger than 0.";
 
@@ -94,7 +94,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void DensityOfWater_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.DensityOfWater;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.DensityOfWater;
 
             const string errorMessage = "DensityOfWater must be in range [950, 1050].";
 
@@ -116,7 +116,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void SoilElasticity_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.SoilElasticity;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.SoilElasticity;
 
             const string errorMessage = "SoilElasticity must be larger than 0.";
 
@@ -132,7 +132,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void StiffnessRelationNu_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.StiffnessRelationNu;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.StiffnessRelationNu;
 
             const string errorMessage = "StiffnessRelationNu must be larger than 0.";
 
@@ -148,7 +148,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void Thickness_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.Thickness;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.Thickness;
 
             const string errorMessage = "Thickness must be larger than 0.";
 
@@ -164,7 +164,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
         [Test]
         public void ElasticModulus_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = AsphaltRevetmentWaveImpactValidator.ElasticModulus;
+            Func<double, ValidationIssue> validationFunc = AsphaltWaveImpactValidator.ElasticModulus;
 
             const string errorMessage = "ElasticModulus must be larger than 0.";
 

@@ -96,21 +96,21 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
             var validationIssues = new List<ValidationIssue>
             {
-                AsphaltRevetmentWaveImpactValidator.FatigueAlpha(Fatigue.Alpha),
-                AsphaltRevetmentWaveImpactValidator.FatigueBeta(Fatigue.Beta),
-                AsphaltRevetmentWaveImpactValidator.FlexuralStrength(FlexuralStrength),
-                AsphaltRevetmentWaveImpactValidator.ImpactNumberC(ImpactNumberC),
-                AsphaltRevetmentWaveImpactValidator.DensityOfWater(DensityOfWater),
-                AsphaltRevetmentWaveImpactValidator.SoilElasticity(SoilElasticity),
-                AsphaltRevetmentWaveImpactValidator.StiffnessRelationNu(StiffnessRelationNu),
-                AsphaltRevetmentWaveImpactValidator.Thickness(UpperLayer.Thickness),
-                AsphaltRevetmentWaveImpactValidator.ElasticModulus(UpperLayer.ElasticModulus)
+                AsphaltWaveImpactValidator.FatigueAlpha(Fatigue.Alpha),
+                AsphaltWaveImpactValidator.FatigueBeta(Fatigue.Beta),
+                AsphaltWaveImpactValidator.FlexuralStrength(FlexuralStrength),
+                AsphaltWaveImpactValidator.ImpactNumberC(ImpactNumberC),
+                AsphaltWaveImpactValidator.DensityOfWater(DensityOfWater),
+                AsphaltWaveImpactValidator.SoilElasticity(SoilElasticity),
+                AsphaltWaveImpactValidator.StiffnessRelationNu(StiffnessRelationNu),
+                AsphaltWaveImpactValidator.Thickness(UpperLayer.Thickness),
+                AsphaltWaveImpactValidator.ElasticModulus(UpperLayer.ElasticModulus)
             };
 
             if (SubLayer != null)
             {
-                validationIssues.Add(AsphaltRevetmentWaveImpactValidator.Thickness(SubLayer.Thickness));
-                validationIssues.Add(AsphaltRevetmentWaveImpactValidator.ElasticModulus(SubLayer.ElasticModulus));
+                validationIssues.Add(AsphaltWaveImpactValidator.Thickness(SubLayer.Thickness));
+                validationIssues.Add(AsphaltWaveImpactValidator.ElasticModulus(SubLayer.ElasticModulus));
             }
 
             validationIssues.Add(RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm));
