@@ -1830,7 +1830,8 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithNaturalStoneWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void
+            GivenBuilderWithNaturalStoneWaveImpactLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const NaturalStoneWaveImpactTopLayerType topLayerType = (NaturalStoneWaveImpactTopLayerType) 99;
