@@ -92,7 +92,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            throw new NotImplementedException();
+            return new GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
