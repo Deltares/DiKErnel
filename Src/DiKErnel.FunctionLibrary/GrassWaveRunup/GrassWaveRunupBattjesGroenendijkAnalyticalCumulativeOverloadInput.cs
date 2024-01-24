@@ -19,10 +19,10 @@
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
-    /// Input for grass revetment wave run-up Battjes-Groenendijk analytical cumulative
-    /// overload calculations.
+    /// Input for grass wave run-up Battjes-Groenendijk analytical cumulative overload
+    /// calculations.
     /// </summary>
-    public class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput
+    public class GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -44,18 +44,19 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         /// acceleration [m/s^2].</param>
         /// <param name="k1">The K1 value [-].</param>
         /// <param name="k2">The K2 value [-].</param>
-        public GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(double averageNumberOfWaves,
-                                                                                          double representativeWaveRunup2P,
-                                                                                          double waterLevel, double waveHeightHm0,
-                                                                                          double verticalDistanceWaterLevelElevation,
-                                                                                          double bottomForeshoreZ,
-                                                                                          double slopeForeshore,
-                                                                                          double criticalFrontVelocity,
-                                                                                          double frontVelocityCu,
-                                                                                          double increasedLoadTransitionAlphaM,
-                                                                                          double reducedStrengthTransitionAlphaS,
-                                                                                          double gravitationalAcceleration, double k1,
-                                                                                          double k2)
+        public GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(double averageNumberOfWaves,
+                                                                                 double representativeWaveRunup2P,
+                                                                                 double waterLevel,
+                                                                                 double waveHeightHm0,
+                                                                                 double verticalDistanceWaterLevelElevation,
+                                                                                 double bottomForeshoreZ,
+                                                                                 double slopeForeshore,
+                                                                                 double criticalFrontVelocity,
+                                                                                 double frontVelocityCu,
+                                                                                 double increasedLoadTransitionAlphaM,
+                                                                                 double reducedStrengthTransitionAlphaS,
+                                                                                 double gravitationalAcceleration,
+                                                                                 double k1, double k2)
         {
             AverageNumberOfWaves = averageNumberOfWaves;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;

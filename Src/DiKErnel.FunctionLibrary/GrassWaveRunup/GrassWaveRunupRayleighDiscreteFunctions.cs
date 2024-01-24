@@ -25,14 +25,14 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
     /// Class that holds grass revetment wave run-up calculation routines for
     /// the Rayleigh protocol.
     /// </summary>
-    public static class GrassRevetmentWaveRunupRayleighFunctions
+    public static class GrassWaveRunupRayleighDiscreteFunctions
     {
         /// <summary>
         /// Calculates the cumulative overload.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The cumulative overload [m^2/s^2].</returns>
-        public static double CumulativeOverload(GrassRevetmentWaveRunupRayleighCumulativeOverloadInput input)
+        public static double CumulativeOverload(GrassWaveRunupRayleighDiscreteCumulativeOverloadInput input)
         {
             return GrassFunctions.CumulativeOverload(
                 input, waveRunup => FrontVelocity(waveRunup, input.VerticalDistanceWaterLevelElevation,

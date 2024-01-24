@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInputTest
+    public class GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -45,10 +45,11 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             double k2 = Random.NextDouble();
 
             // Call
-            var input = new GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
-                averageNumberOfWaves, representativeWaveRunup2P, waterLevel, waveHeightHm0, verticalDistanceWaterLevelElevation,
-                bottomForeshoreZ, slopeForeshore, criticalFrontVelocity, frontVelocityCu, increasedLoadTransitionAlphaM,
-                reducedStrengthTransitionAlphaS, gravitationalAcceleration, k1, k2);
+            var input = new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
+                averageNumberOfWaves, representativeWaveRunup2P, waterLevel, waveHeightHm0,
+                verticalDistanceWaterLevelElevation, bottomForeshoreZ, slopeForeshore, criticalFrontVelocity,
+                frontVelocityCu, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                gravitationalAcceleration, k1, k2);
 
             // Assert
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));

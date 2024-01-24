@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctionsTest
+    public class GrassWaveRunupBattjesGroenendijkAnalyticalFunctionsTest
     {
         [Test]
         [TestCase(0.80, 0.00, 300, 1.38280392857274, 95.12417141759073)]
@@ -61,13 +61,14 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 
             double verticalDistanceWaterLevelElevation = 1 - waterLevel;
 
-            var input = new GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
-                averageNumberOfWaves, representativeWaveRunup2P, waterLevel, waveHeightHm0, verticalDistanceWaterLevelElevation,
-                bottomForeshoreZ, slopeForeshore, criticalFrontVelocity, frontVelocityCu, increasedLoadTransitionAlphaM,
-                reducedStrengthTransitionAlphaS, gravitationalAcceleration, k1, k2);
+            var input = new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
+                averageNumberOfWaves, representativeWaveRunup2P, waterLevel, waveHeightHm0,
+                verticalDistanceWaterLevelElevation, bottomForeshoreZ, slopeForeshore, criticalFrontVelocity,
+                frontVelocityCu, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                gravitationalAcceleration, k1, k2);
 
             // Call
-            double cumulativeOverload = GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(input);
+            double cumulativeOverload = GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(input);
 
             // Assert
             AssertHelper.AreEqual(expectedCumulativeOverload, cumulativeOverload);

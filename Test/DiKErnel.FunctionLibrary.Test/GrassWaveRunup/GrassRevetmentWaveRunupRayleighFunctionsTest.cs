@@ -39,7 +39,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             const double gravitationalAcceleration = 9.81;
             const double frontVelocityCu = 1.3;
 
-            var input = new GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
+            var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
                                                                                    fixedNumberOfWaves,
                                                                                    verticalDistanceWaterLevelElevation,
                                                                                    criticalFrontVelocity,
@@ -48,7 +48,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
                                                                                    gravitationalAcceleration, frontVelocityCu);
 
             // Call
-            double cumulativeOverload = GrassRevetmentWaveRunupRayleighFunctions.CumulativeOverload(input);
+            double cumulativeOverload = GrassWaveRunupRayleighDiscreteFunctions.CumulativeOverload(input);
 
             // Assert
             AssertHelper.AreEqual(735.67446176679459, cumulativeOverload);

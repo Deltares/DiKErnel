@@ -25,10 +25,10 @@ using MathNet.Numerics.Interpolation;
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
-    /// Class that holds grass revetment wave run-up calculation routines for
-    /// the Battjes-Groenendijk analytical protocol.
+    /// Class that holds grass wave run-up Battjes-Groenendijk analytical calculation
+    /// routines.
     /// </summary>
-    public static class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalFunctions
+    public static class GrassWaveRunupBattjesGroenendijkAnalyticalFunctions
     {
         private const double verticalLimitWaveRunup3 = 1000000;
 
@@ -162,7 +162,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (3.00, 1.630)
         };
 
-        public static double CumulativeOverload(GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input)
+        public static double CumulativeOverload(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input)
         {
             double upperLimitWaveRunup = UpperLimitWaveRunup(input.IncreasedLoadTransitionAlphaM,
                                                              input.ReducedStrengthTransitionAlphaS,
@@ -260,7 +260,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             return (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
         }
 
-        private static double DeltaCumulativeLoad(GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
+        private static double DeltaCumulativeLoad(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
                                                   double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
             return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration *
@@ -270,7 +270,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         }
 
         private static double DeltaCumulativeLoadWithVerticalDistanceWaterLevel(
-            GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
+            GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
             double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
             return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *

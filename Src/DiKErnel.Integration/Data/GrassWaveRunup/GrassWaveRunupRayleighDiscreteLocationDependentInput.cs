@@ -82,8 +82,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation)
         {
-            return GrassRevetmentWaveRunupRayleighFunctions.CumulativeOverload(
-                new GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(averageNumberOfWaves,
+            return GrassWaveRunupRayleighDiscreteFunctions.CumulativeOverload(
+                new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
                                                                            representativeWaveRunup2P,
                                                                            FixedNumberOfWaves,
                                                                            verticalDistanceWaterLevelElevation,

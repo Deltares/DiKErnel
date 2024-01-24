@@ -41,7 +41,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             double frontVelocityCu = Random.NextDouble();
 
             // Call
-            var input = new GrassRevetmentWaveRunupRayleighCumulativeOverloadInput(averageNumberOfWaves,
+            var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
                                                                                    representativeWaveRunup2P,
                                                                                    fixedNumberOfWaves,
                                                                                    verticalDistanceWaterLevelElevation,
