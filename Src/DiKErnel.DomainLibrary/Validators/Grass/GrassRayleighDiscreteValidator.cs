@@ -21,9 +21,9 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.Grass
 {
     /// <summary>
-    /// Class that holds grass revetment Rayleigh Discrete validation routines.
+    /// Class that holds grass Rayleigh Discrete validation routines.
     /// </summary>
-    public static class GrassRevetmentRayleighDiscreteValidator
+    public static class GrassRayleighDiscreteValidator
     {
         /// <summary>
         /// Validates the critical cumulative overload.
