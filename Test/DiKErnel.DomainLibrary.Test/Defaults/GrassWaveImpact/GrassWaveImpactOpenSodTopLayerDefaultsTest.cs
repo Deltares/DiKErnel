@@ -22,18 +22,18 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassRevetmentWaveImpactClosedSodTopLayerDefaultsTest
+    public class GrassWaveImpactOpenSodTopLayerDefaultsTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
-            var defaults = GrassRevetmentWaveImpactClosedSodTopLayerDefaults.Instance;
+            var defaults = GrassWaveImpactOpenSodTopLayerDefaults.Instance;
 
             // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>());
-            Assert.That(defaults.TimeLineAgwi, Is.EqualTo(1));
-            Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.000009722));
+            Assert.That(defaults, Is.InstanceOf<IGrassWaveImpactTopLayerDefaults>());
+            Assert.That(defaults.TimeLineAgwi, Is.EqualTo(0.8));
+            Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.00001944));
             Assert.That(defaults.TimeLineCgwi, Is.EqualTo(0.25));
         }
     }

@@ -19,24 +19,25 @@
 namespace DiKErnel.DomainLibrary.Defaults.GrassWaveImpact
 {
     /// <summary>
-    /// Interface that contains default value definitions for grass revetment wave impact top
-    /// layers.
+    /// Class that contains default values for grass wave impact calculations with a closed
+    /// sod top layer.
     /// </summary>
-    public interface IGrassRevetmentWaveImpactTopLayerDefaults
+    public class GrassWaveImpactClosedSodTopLayerDefaults : IGrassWaveImpactTopLayerDefaults
     {
-        /// <summary>
-        /// Gets the default value of the Agwi coefficient [m].
-        /// </summary>
-        public double TimeLineAgwi { get; }
+        private static GrassWaveImpactClosedSodTopLayerDefaults instance;
+
+        private GrassWaveImpactClosedSodTopLayerDefaults() {}
 
         /// <summary>
-        /// Gets the default value of the Bgwi coefficient [s^-1].
-        /// </summary>
-        public double TimeLineBgwi { get; }
+        /// Gets the (one and only) instance of this class.
+        /// </summary> 
+        public static GrassWaveImpactClosedSodTopLayerDefaults Instance =>
+            instance ??= new GrassWaveImpactClosedSodTopLayerDefaults();
 
-        /// <summary>
-        /// Gets the default value of the Cgwi coefficient [m].
-        /// </summary>
-        public double TimeLineCgwi { get; }
+        public double TimeLineAgwi => 1;
+
+        public double TimeLineBgwi => -0.000009722;
+
+        public double TimeLineCgwi => 0.25;
     }
 }

@@ -19,20 +19,20 @@
 namespace DiKErnel.DomainLibrary.Defaults.GrassWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for grass revetment wave impact with an open sod
-    /// top layer.
+    /// Class that contains default values for grass wave impact calculations with an open
+    /// sod top layer.
     /// </summary>
-    public class GrassRevetmentWaveImpactOpenSodTopLayerDefaults : IGrassRevetmentWaveImpactTopLayerDefaults
+    public class GrassWaveImpactOpenSodTopLayerDefaults : IGrassWaveImpactTopLayerDefaults
     {
-        private static GrassRevetmentWaveImpactOpenSodTopLayerDefaults instance;
+        private static GrassWaveImpactOpenSodTopLayerDefaults instance;
 
-        private GrassRevetmentWaveImpactOpenSodTopLayerDefaults() {}
+        private GrassWaveImpactOpenSodTopLayerDefaults() {}
 
         /// <summary>
         /// Gets the (one and only) instance of this class.
         /// </summary> 
-        public static GrassRevetmentWaveImpactOpenSodTopLayerDefaults Instance =>
-            instance ??= new GrassRevetmentWaveImpactOpenSodTopLayerDefaults();
+        public static GrassWaveImpactOpenSodTopLayerDefaults Instance =>
+            instance ??= new GrassWaveImpactOpenSodTopLayerDefaults();
 
         public double TimeLineAgwi => 0.8;
 

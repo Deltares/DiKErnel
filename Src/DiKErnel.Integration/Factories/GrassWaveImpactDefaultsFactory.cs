@@ -23,14 +23,14 @@ namespace DiKErnel.Integration.Factories
 {
     internal static class GrassWaveImpactDefaultsFactory
     {
-        public static IGrassRevetmentWaveImpactTopLayerDefaults CreateTopLayerDefaults(GrassTopLayerType topLayerType)
+        public static IGrassWaveImpactTopLayerDefaults CreateTopLayerDefaults(GrassTopLayerType topLayerType)
         {
             if (topLayerType == GrassTopLayerType.ClosedSod)
             {
-                return GrassRevetmentWaveImpactClosedSodTopLayerDefaults.Instance;
+                return GrassWaveImpactClosedSodTopLayerDefaults.Instance;
             }
 
-            return GrassRevetmentWaveImpactOpenSodTopLayerDefaults.Instance;
+            return GrassWaveImpactOpenSodTopLayerDefaults.Instance;
         }
     }
 }

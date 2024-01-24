@@ -16,25 +16,26 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassWaveImpact;
-using NUnit.Framework;
-
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveImpact
+namespace DiKErnel.DomainLibrary.Defaults.GrassWaveImpact
 {
-    [TestFixture]
-    public class GrassRevetmentWaveImpactOpenSodTopLayerDefaultsTest
+    /// <summary>
+    /// Interface that contains default value definitions for grass wave impact top layers.
+    /// </summary>
+    public interface IGrassWaveImpactTopLayerDefaults
     {
-        [Test]
-        public void Constructor_ExpectedValues()
-        {
-            // Setup
-            var defaults = GrassRevetmentWaveImpactOpenSodTopLayerDefaults.Instance;
+        /// <summary>
+        /// Gets the default value of the Agwi coefficient [m].
+        /// </summary>
+        public double TimeLineAgwi { get; }
 
-            // Call & Assert
-            Assert.That(defaults, Is.InstanceOf<IGrassRevetmentWaveImpactTopLayerDefaults>());
-            Assert.That(defaults.TimeLineAgwi, Is.EqualTo(0.8));
-            Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.00001944));
-            Assert.That(defaults.TimeLineCgwi, Is.EqualTo(0.25));
-        }
+        /// <summary>
+        /// Gets the default value of the Bgwi coefficient [s^-1].
+        /// </summary>
+        public double TimeLineBgwi { get; }
+
+        /// <summary>
+        /// Gets the default value of the Cgwi coefficient [m].
+        /// </summary>
+        public double TimeLineCgwi { get; }
     }
 }

@@ -27,13 +27,13 @@ namespace DiKErnel.Integration.Factories
         public static GrassWaveImpactLocationDependentInput CreateLocationDependentInput(
             GrassWaveImpactLocationConstructionProperties constructionProperties)
         {
-            IGrassRevetmentWaveImpactTopLayerDefaults topLayerDefaults =
+            IGrassWaveImpactTopLayerDefaults topLayerDefaults =
                 GrassWaveImpactDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
 
             var waveAngleImpact = new GrassWaveImpactWaveAngleImpact(
-                constructionProperties.WaveAngleImpactNwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactNwa,
-                constructionProperties.WaveAngleImpactQwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactQwa,
-                constructionProperties.WaveAngleImpactRwa ?? GrassRevetmentWaveImpactDefaults.WaveAngleImpactRwa);
+                constructionProperties.WaveAngleImpactNwa ?? GrassWaveImpactDefaults.WaveAngleImpactNwa,
+                constructionProperties.WaveAngleImpactQwa ?? GrassWaveImpactDefaults.WaveAngleImpactQwa,
+                constructionProperties.WaveAngleImpactRwa ?? GrassWaveImpactDefaults.WaveAngleImpactRwa);
 
             var timeLine = new GrassWaveImpactTimeLine(
                 constructionProperties.TimeLineAgwi ?? topLayerDefaults.TimeLineAgwi,
@@ -45,11 +45,11 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
                 waveAngleImpact,
-                constructionProperties.MinimumWaveHeightTemax ?? GrassRevetmentWaveImpactDefaults.MinimumWaveHeightTemax,
-                constructionProperties.MaximumWaveHeightTemin ?? GrassRevetmentWaveImpactDefaults.MaximumWaveHeightTemin,
+                constructionProperties.MinimumWaveHeightTemax ?? GrassWaveImpactDefaults.MinimumWaveHeightTemax,
+                constructionProperties.MaximumWaveHeightTemin ?? GrassWaveImpactDefaults.MaximumWaveHeightTemin,
                 timeLine,
-                constructionProperties.UpperLimitLoadingAul ?? GrassRevetmentWaveImpactDefaults.UpperLimitLoadingAul,
-                constructionProperties.LowerLimitLoadingAll ?? GrassRevetmentWaveImpactDefaults.LowerLimitLoadingAll);
+                constructionProperties.UpperLimitLoadingAul ?? GrassWaveImpactDefaults.UpperLimitLoadingAul,
+                constructionProperties.LowerLimitLoadingAll ?? GrassWaveImpactDefaults.LowerLimitLoadingAll);
         }
     }
 }

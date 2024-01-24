@@ -19,9 +19,9 @@
 namespace DiKErnel.DomainLibrary.Defaults.GrassWaveImpact
 {
     /// <summary>
-    /// Class that contains default values for grass revetment wave impact.
+    /// Class that contains default values for grass wave impact calculations.
     /// </summary>
-    public static class GrassRevetmentWaveImpactDefaults
+    public static class GrassWaveImpactDefaults
     {
         /// <summary>
         /// Gets the default value of the Temax coefficient [s].

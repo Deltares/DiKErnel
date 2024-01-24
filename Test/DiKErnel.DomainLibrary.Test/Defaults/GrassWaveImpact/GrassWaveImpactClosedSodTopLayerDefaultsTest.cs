@@ -16,28 +16,25 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassWaveImpact
+using DiKErnel.DomainLibrary.Defaults.GrassWaveImpact;
+using NUnit.Framework;
+
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveImpact
 {
-    /// <summary>
-    /// Class that contains default values for grass revetment wave impact with a closed sod
-    /// top layer.
-    /// </summary>
-    public class GrassRevetmentWaveImpactClosedSodTopLayerDefaults : IGrassRevetmentWaveImpactTopLayerDefaults
+    [TestFixture]
+    public class GrassWaveImpactClosedSodTopLayerDefaultsTest
     {
-        private static GrassRevetmentWaveImpactClosedSodTopLayerDefaults instance;
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            var defaults = GrassWaveImpactClosedSodTopLayerDefaults.Instance;
 
-        private GrassRevetmentWaveImpactClosedSodTopLayerDefaults() {}
-
-        /// <summary>
-        /// Gets the (one and only) instance of this class.
-        /// </summary> 
-        public static GrassRevetmentWaveImpactClosedSodTopLayerDefaults Instance =>
-            instance ??= new GrassRevetmentWaveImpactClosedSodTopLayerDefaults();
-
-        public double TimeLineAgwi => 1;
-
-        public double TimeLineBgwi => -0.000009722;
-
-        public double TimeLineCgwi => 0.25;
+            // Call & Assert
+            Assert.That(defaults, Is.InstanceOf<IGrassWaveImpactTopLayerDefaults>());
+            Assert.That(defaults.TimeLineAgwi, Is.EqualTo(1));
+            Assert.That(defaults.TimeLineBgwi, Is.EqualTo(-0.000009722));
+            Assert.That(defaults.TimeLineCgwi, Is.EqualTo(0.25));
+        }
     }
 }
