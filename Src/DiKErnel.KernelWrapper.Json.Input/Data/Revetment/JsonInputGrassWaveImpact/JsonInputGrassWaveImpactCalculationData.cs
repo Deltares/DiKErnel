@@ -27,7 +27,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
     internal class JsonInputGrassWaveImpactCalculationData : JsonInputCalculationData
     {
         [JsonProperty(JsonInputDefinitions.TopLayers)]
-        public IReadOnlyList<JsonInputGrassWaveImpactTopLayerData> TopLayerDefinitionData { get; private set; }
+        public IReadOnlyList<JsonInputGrassWaveImpactTopLayerData> TopLayerData { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.Temax)]
         public double? Temax { get; private set; }

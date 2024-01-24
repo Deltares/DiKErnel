@@ -253,8 +253,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 JsonInputGrassOvertoppingCalculationData calculationData)
         {
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
-                calculationData?.TopLayerDefinitionData?
-                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
+                calculationData?.TopLayerData?.FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
             JsonInputGrassOvertoppingCalculationAccelerationAlphaAData accelerationAlphaAData =
                 calculationData?.AccelerationAlphaAData;
 
@@ -281,7 +280,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassWaveImpactCalculationData calculationData)
         {
             JsonInputGrassWaveImpactTopLayerTimeLineData timeLineData =
-                calculationData?.TopLayerDefinitionData?
+                calculationData?.TopLayerData?
                     .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.TimeLine;
             JsonInputGrassWaveImpactCalculationImpactWaveAngleData impactWaveAngleData = calculationData?.WaveAngleData;
             JsonInputGrassWaveImpactCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingAreaData;
@@ -320,8 +319,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             }
 
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
-                calculationData.TopLayerDefinitionData?
-                    .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
+                calculationData.TopLayerData?.FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
 
             constructionProperties.InitialDamage = locationData.InitialDamage;
             constructionProperties.FailureNumber = calculationData.FailureNumber;
@@ -362,7 +360,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputNaturalStoneLocationData locationData, JsonInputNaturalStoneCalculationData calculationData)
         {
             JsonInputNaturalStoneTopLayerStabilityData stabilityData =
-                calculationData?.TopLayerDefinitionData?
+                calculationData?.TopLayerData?
                     .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.Stability;
             JsonInputNaturalStoneTopLayerStabilityCoefficientsData plungingData =
                 stabilityData?.JsonInputNaturalStoneTopLayerPlungingData;
