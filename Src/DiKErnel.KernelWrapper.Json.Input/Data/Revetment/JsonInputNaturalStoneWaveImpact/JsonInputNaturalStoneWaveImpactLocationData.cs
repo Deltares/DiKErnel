@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
@@ -24,24 +23,15 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact
 {
-    internal class JsonInputNaturalStoneCalculationData : JsonInputCalculationData
+    internal class JsonInputNaturalStoneWaveImpactLocationData : JsonInputLocationData
     {
-        [JsonProperty(JsonInputDefinitions.TopLayers)]
-        public IReadOnlyList<JsonInputNaturalStoneTopLayerData> TopLayerData { get; private set; }
+        [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
+        public JsonInputNaturalStoneWaveImpactTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.LoadingArea)]
-        public JsonInputNaturalStoneCalculationLoadingAreaData LoadingArea { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.RelativeDensity)]
+        public double RelativeDensity { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.Slope)]
-        public JsonInputNaturalStoneCalculationSlopeData Slope { get; private set; }
-
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.DistanceMaximumWaveElevation)]
-        public JsonInputNaturalStoneCalculationMaximumWaveElevationData DistanceMaximumWaveElevation { get; private set; }
-
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.NormativeWidthOfWaveImpact)]
-        public JsonInputNaturalStoneCalculationNormativeWidthWaveImpactData NormativeWidthOfWaveImpact { get; private set; }
-
-        [JsonProperty(JsonInputDefinitions.WaveAngleImpact)]
-        public JsonInputNaturalStoneCalculationWaveImpactData WaveAngleImpact { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.ThicknessTopLayer)]
+        public double ThicknessTopLayer { get; private set; }
     }
 }

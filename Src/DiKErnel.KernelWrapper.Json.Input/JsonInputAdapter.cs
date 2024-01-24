@@ -182,12 +182,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
                         break;
                     }
-                    case JsonInputNaturalStoneLocationData naturalStoneLocationData:
+                    case JsonInputNaturalStoneWaveImpactLocationData naturalStoneLocationData:
                     {
                         builder.AddNaturalStoneWaveImpactLocation(
                             CreateNaturalStoneWaveImpactLocationConstructionProperties(
                                 naturalStoneLocationData,
-                                GetCalculationDefinition<JsonInputNaturalStoneCalculationData>(
+                                GetCalculationDefinition<JsonInputNaturalStoneWaveImpactCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.NaturalStone)));
                         break;
                     }
@@ -357,22 +357,22 @@ namespace DiKErnel.KernelWrapper.Json.Input
         }
 
         private static NaturalStoneWaveImpactLocationConstructionProperties CreateNaturalStoneWaveImpactLocationConstructionProperties(
-            JsonInputNaturalStoneLocationData locationData, JsonInputNaturalStoneCalculationData calculationData)
+            JsonInputNaturalStoneWaveImpactLocationData locationData, JsonInputNaturalStoneWaveImpactCalculationData calculationData)
         {
-            JsonInputNaturalStoneTopLayerStabilityData stabilityData =
+            JsonInputNaturalStoneWaveImpactTopLayerStabilityData stabilityData =
                 calculationData?.TopLayerData?
                     .FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType)?.Stability;
-            JsonInputNaturalStoneTopLayerStabilityCoefficientsData plungingData =
+            JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData plungingData =
                 stabilityData?.JsonInputNaturalStoneTopLayerPlungingData;
-            JsonInputNaturalStoneTopLayerStabilityCoefficientsData surgingData =
+            JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData surgingData =
                 stabilityData?.JsonInputNaturalStoneTopLayerSurgingData;
-            JsonInputNaturalStoneCalculationSlopeData slopeData = calculationData?.Slope;
-            JsonInputNaturalStoneCalculationLoadingAreaData loadingAreaData = calculationData?.LoadingArea;
-            JsonInputNaturalStoneCalculationLimitData upperLimitLoadingData = loadingAreaData?.UpperLimitLoading;
-            JsonInputNaturalStoneCalculationLimitData lowerLimitLoadingData = loadingAreaData?.LowerLimitLoading;
-            JsonInputNaturalStoneCalculationMaximumWaveElevationData maximumWaveElevationData =
+            JsonInputNaturalStoneWaveImpactSlopeData slopeData = calculationData?.Slope;
+            JsonInputNaturalStoneWaveImpactLoadingAreaData loadingAreaData = calculationData?.LoadingArea;
+            JsonInputNaturalStoneWaveImpactLimitData upperLimitLoadingData = loadingAreaData?.UpperLimitLoading;
+            JsonInputNaturalStoneWaveImpactLimitData lowerLimitLoadingData = loadingAreaData?.LowerLimitLoading;
+            JsonInputNaturalStoneWaveImpactMaximumWaveElevationData maximumWaveElevationData =
                 calculationData?.DistanceMaximumWaveElevation;
-            JsonInputNaturalStoneCalculationNormativeWidthWaveImpactData normativeWidthWaveImpactData =
+            JsonInputNaturalStoneWaveImpactNormativeWidthWaveImpactData normativeWidthWaveImpactData =
                 calculationData?.NormativeWidthOfWaveImpact;
 
             return new NaturalStoneWaveImpactLocationConstructionProperties(
@@ -407,11 +407,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
         }
 
         private static NaturalStoneWaveImpactTopLayerType ConvertNaturalStoneWaveImpactTopLayerType(
-            JsonInputNaturalStoneRevetmentTopLayerType topLayerType)
+            JsonInputNaturalStoneWaveImpactTopLayerType topLayerType)
         {
             return topLayerType switch
             {
-                JsonInputNaturalStoneRevetmentTopLayerType.NordicStone => NaturalStoneWaveImpactTopLayerType.NordicStone,
+                JsonInputNaturalStoneWaveImpactTopLayerType.NordicStone => NaturalStoneWaveImpactTopLayerType.NordicStone,
                 _ => throw new JsonInputConversionException("Cannot convert top layer type.")
             };
         }

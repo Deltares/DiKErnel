@@ -16,22 +16,14 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact
 {
-    internal class JsonInputNaturalStoneTopLayerStabilityData
+    internal class JsonInputGrassWaveImpactLimitData
     {
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.Xib)]
-        public double? StabilityXib { get; private set; }
-
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilityPlunging)]
-        public JsonInputNaturalStoneTopLayerStabilityCoefficientsData
-            JsonInputNaturalStoneTopLayerPlungingData { get; private set; }
-
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilitySurging)]
-        public JsonInputNaturalStoneTopLayerStabilityCoefficientsData
-            JsonInputNaturalStoneTopLayerSurgingData { get; private set; }
+        [JsonProperty(JsonInputDefinitions.A)]
+        public double? LimitLoading { get; private set; }
     }
 }

@@ -21,12 +21,17 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact
 {
-    internal class JsonInputNaturalStoneCalculationSlopeData
+    internal class JsonInputNaturalStoneWaveImpactTopLayerStabilityData
     {
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.SlopeUpperLevel)]
-        public double? SlopeUpperLevel { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.Xib)]
+        public double? StabilityXib { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.SlopeLowerLevel)]
-        public double? SlopeLowerLevel { get; private set; }
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilityPlunging)]
+        public JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData
+            JsonInputNaturalStoneTopLayerPlungingData { get; private set; }
+
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.StabilitySurging)]
+        public JsonInputNaturalStoneWaveImpactTopLayerStabilityCoefficientsData
+            JsonInputNaturalStoneTopLayerSurgingData { get; private set; }
     }
 }

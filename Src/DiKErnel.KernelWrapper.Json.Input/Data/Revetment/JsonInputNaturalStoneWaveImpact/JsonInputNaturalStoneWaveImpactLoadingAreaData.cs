@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact
 {
-    internal class JsonInputNaturalStoneCalculationMaximumWaveElevationData
+    internal class JsonInputNaturalStoneWaveImpactLoadingAreaData
     {
-        [JsonProperty(JsonInputDefinitions.A)]
-        public double? DistanceMaximumWaveElevationA { get; private set; }
+        [JsonProperty(JsonInputDefinitions.UpperLimit)]
+        public JsonInputNaturalStoneWaveImpactLimitData UpperLimitLoading { get; private set; }
 
-        [JsonProperty(JsonInputDefinitions.B)]
-        public double? DistanceMaximumWaveElevationB { get; private set; }
+        [JsonProperty(JsonInputDefinitions.LowerLimit)]
+        public JsonInputNaturalStoneWaveImpactLimitData LowerLimitLoading { get; private set; }
     }
 }
