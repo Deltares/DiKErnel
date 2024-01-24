@@ -18,28 +18,14 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    internal static class JsonInputNaturalStoneDefinitions
+    internal static class JsonInputGrassOvertoppingRayleighDiscreteDefinitions
     {
-        public const string TopLayerTypeNordicStone = "noorseSteen";
+        public const string AccelerationAlphaA = "versnellingAlfaA";
+        public const string AccelerationAlphaACrest = "kruin";
+        public const string AccelerationAlphaAInnerSlope = "binnentalud";
 
-        public const string RelativeDensity = "relatieveDichtheid";
-        public const string ThicknessTopLayer = "dikteToplaag";
+        public const string FrontVelocityCwo = "frontsnelheidCwo";
 
-        public const string Stability = "stabiliteit";
-        public const string StabilityPlunging = "plunging";
-        public const string StabilitySurging = "surging";
-
-        public const string N = "n";
-        public const string Xib = "xib";
-
-        public const string Slope = "hellingvlak";
-        public const string SlopeUpperLevel = "bovenzijde";
-        public const string SlopeLowerLevel = "onderzijde";
-
-        public const string DistanceMaximumWaveElevation = "afstandMaximaleStijghoogte";
-
-        public const string NormativeWidthOfWaveImpact = "maatgevendeBreedteGolfklap";
-
-        public const string BetaMax = "betaMax";
+        public const string DikeHeight = "dijkHoogte";
     }
 }

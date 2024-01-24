@@ -23,7 +23,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
 {
     internal enum JsonInputNaturalStoneRevetmentTopLayerType
     {
-        [EnumMember(Value = JsonInputNaturalStoneDefinitions.TopLayerTypeNordicStone)]
+        [EnumMember(Value = JsonInputNaturalStoneWaveImpactDefinitions.TopLayerTypeNordicStone)]
         NordicStone
     }
 }

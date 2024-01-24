@@ -18,14 +18,17 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    internal static class JsonInputGrassOvertoppingDefinitions
+    internal static class JsonInputGrassDefinitions
     {
-        public const string AccelerationAlphaA = "versnellingAlfaA";
-        public const string AccelerationAlphaACrest = "kruin";
-        public const string AccelerationAlphaAInnerSlope = "binnentalud";
+        public const string TopLayerTypeClosedSod = "grasGeslotenZode";
+        public const string TopLayerTypeOpenSod = "grasOpenZode";
 
-        public const string FrontVelocityCwo = "frontsnelheidCwo";
+        public const string IncreasedLoadTransitionAlphaM = "verhogingBelastingOvergangAlfaM";
+        public const string ReducedStrengthTransitionAlphaS = "verlagingSterkteOvergangAlfaS";
 
-        public const string DikeHeight = "dijkHoogte";
+        public const string CriticalCumulativeOverload = "kritiekeCumulatieveOverbelasting";
+        public const string CriticalFrontVelocity = "kritiekeFrontsnelheid";
+
+        public const string FixedNumberOfWaves = "aantalGolvenVast";
     }
 }

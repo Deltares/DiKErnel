@@ -23,10 +23,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment
 {
     internal enum JsonInputGrassRevetmentTopLayerType
     {
-        [EnumMember(Value = JsonInputGrassRevetmentDefinitions.TopLayerTypeOpenSod)]
+        [EnumMember(Value = JsonInputGrassDefinitions.TopLayerTypeOpenSod)]
         OpenSod,
 
-        [EnumMember(Value = JsonInputGrassRevetmentDefinitions.TopLayerTypeClosedSod)]
+        [EnumMember(Value = JsonInputGrassDefinitions.TopLayerTypeClosedSod)]
         ClosedSod
     }
 }

@@ -33,7 +33,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
         [JsonProperty(JsonInputDefinitions.C)]
         public double? C { get; private set; }
 
-        [JsonProperty(JsonInputNaturalStoneDefinitions.N)]
+        [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.N)]
         public double? N { get; private set; }
     }
 }

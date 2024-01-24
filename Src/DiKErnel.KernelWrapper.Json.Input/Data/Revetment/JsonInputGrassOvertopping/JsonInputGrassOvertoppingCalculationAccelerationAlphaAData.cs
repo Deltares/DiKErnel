@@ -23,10 +23,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertop
 {
     internal class JsonInputGrassOvertoppingCalculationAccelerationAlphaAData
     {
-        [JsonProperty(JsonInputGrassOvertoppingDefinitions.AccelerationAlphaACrest)]
+        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaACrest)]
         public double? AccelerationAlphaAForCrest { get; private set; }
 
-        [JsonProperty(JsonInputGrassOvertoppingDefinitions.AccelerationAlphaAInnerSlope)]
+        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaAInnerSlope)]
         public double? AccelerationAlphaAForInnerSlope { get; private set; }
     }
 }
