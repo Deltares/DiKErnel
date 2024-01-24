@@ -16,19 +16,33 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
+using DiKErnel.DomainLibrary.Defaults.GrassOvertopping;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveRunupRayleighDiscrete
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassOvertopping
 {
     [TestFixture]
-    public class GrassRevetmentWaveRunupRayleighDefaultsTest
+    public class GrassOvertoppingRayleighDiscreteDefaultsTest
     {
         [Test]
-        public void FrontVelocityCu_ExpectedValue()
+        public void FrontVelocityCwo_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassRevetmentWaveRunupRayleighDefaults.FrontVelocityCu, Is.EqualTo(1.1));
+            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
+        }
+
+        [Test]
+        public void AccelerationAlphaAForCrest_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void AccelerationAlphaAForInnerSlope_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
         }
     }
 }

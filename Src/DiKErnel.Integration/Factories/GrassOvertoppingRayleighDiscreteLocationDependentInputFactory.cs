@@ -18,7 +18,7 @@
 
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.Grass;
-using DiKErnel.DomainLibrary.Defaults.GrassOvertoppingRayleighDiscrete;
+using DiKErnel.DomainLibrary.Defaults.GrassOvertopping;
 using DiKErnel.Integration.Data.GrassOvertopping;
 
 namespace DiKErnel.Integration.Factories

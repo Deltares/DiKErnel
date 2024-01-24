@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassOvertoppingRayleighDiscrete
+namespace DiKErnel.DomainLibrary.Defaults.GrassOvertopping
 {
     /// <summary>
     /// Class that contains default values for grass overtopping Rayleigh Discrete.

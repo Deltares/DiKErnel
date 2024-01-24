@@ -18,7 +18,7 @@
 
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.Grass;
-using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
+using DiKErnel.DomainLibrary.Defaults.GrassWaveRunup;
 using DiKErnel.Integration.Data.GrassWaveRunup;
 
 namespace DiKErnel.Integration.Factories

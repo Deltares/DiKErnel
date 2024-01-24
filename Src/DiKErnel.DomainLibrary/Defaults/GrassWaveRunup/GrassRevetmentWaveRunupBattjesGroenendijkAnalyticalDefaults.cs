@@ -16,33 +16,27 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassWaveRunupRayleighDiscrete;
-using NUnit.Framework;
-
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveRunupRayleighDiscrete
+namespace DiKErnel.DomainLibrary.Defaults.GrassWaveRunup
 {
-    [TestFixture]
-    public class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalDefaultsTest
+    /// <summary>
+    /// Class that contains default values for grass revetment wave run-up for the 
+    /// Battjes-Groenendijk analytical protocol.
+    /// </summary>
+    public static class GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalDefaults
     {
-        [Test]
-        public void FrontVelocityCu_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalDefaults.FrontVelocityCu, Is.EqualTo(1.1));
-        }
+        /// <summary>
+        /// Gets the default value of the Cu coefficient [-].
+        /// </summary>
+        public static double FrontVelocityCu => 1.1;
 
-        [Test]
-        public void K1_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalDefaults.K1, Is.EqualTo(2));
-        }
+        /// <summary>
+        /// Gets the default value of the K1 constant [-].
+        /// </summary>
+        public static double K1 => 2;
 
-        [Test]
-        public void K2_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassRevetmentWaveRunupBattjesGroenendijkAnalyticalDefaults.K2, Is.EqualTo(3.6));
-        }
+        /// <summary>
+        /// Gets the default value of the K2 constant [-].
+        /// </summary>
+        public static double K2 => 3.6;
     }
 }
