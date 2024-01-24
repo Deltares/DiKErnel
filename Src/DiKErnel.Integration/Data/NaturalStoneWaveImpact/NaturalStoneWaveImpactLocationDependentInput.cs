@@ -128,7 +128,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             crestOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
                 profileData.CharacteristicPoints, CharacteristicPointType.CrestOuterBerm);
 
-            resistance = NaturalStoneRevetmentFunctions.Resistance(RelativeDensity, ThicknessTopLayer);
+            resistance = NaturalStoneWaveImpactFunctions.Resistance(RelativeDensity, ThicknessTopLayer);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
@@ -144,7 +144,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
                 Constants.GravitationalAcceleration);
 
-            distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions.DistanceMaximumWaveElevation(
+            distanceMaximumWaveElevation = NaturalStoneWaveImpactFunctions.DistanceMaximumWaveElevation(
                 1.0, waveSteepnessDeepWater, timeDependentInput.WaveHeightHm0,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax);
@@ -153,12 +153,12 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 outerSlope, timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
                 Constants.GravitationalAcceleration);
 
-            normativeWidthWaveImpact = NaturalStoneRevetmentFunctions.NormativeWidthWaveImpact(
+            normativeWidthWaveImpact = NaturalStoneWaveImpactFunctions.NormativeWidthWaveImpact(
                 surfSimilarityParameter, timeDependentInput.WaveHeightHm0,
                 NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactAwi,
                 NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactBwi);
 
-            depthMaximumWaveLoad = NaturalStoneRevetmentFunctions.DepthMaximumWaveLoad(
+            depthMaximumWaveLoad = NaturalStoneWaveImpactFunctions.DepthMaximumWaveLoad(
                 distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
 
             loadingRevetment = CalculateLoadingRevetment(
@@ -174,21 +174,21 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
                 waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
-                waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(waveAngle, WaveAngleImpact.Betamax);
+                waveAngleImpact = NaturalStoneWaveImpactFunctions.WaveAngleImpact(waveAngle, WaveAngleImpact.Betamax);
 
-                referenceDegradation = NaturalStoneRevetmentFunctions.ReferenceDegradation(
+                referenceDegradation = NaturalStoneWaveImpactFunctions.ReferenceDegradation(
                     resistance, hydraulicLoad, waveAngleImpact, initialDamage);
 
-                referenceTimeDegradation = NaturalStoneRevetmentFunctions.ReferenceTimeDegradation(
+                referenceTimeDegradation = NaturalStoneWaveImpactFunctions.ReferenceTimeDegradation(
                     referenceDegradation, timeDependentInput.WavePeriodTm10);
 
                 double incrementTime = RevetmentFunctions.IncrementTime(
                     timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
-                double incrementDegradation = NaturalStoneRevetmentFunctions.IncrementDegradation(
+                double incrementDegradation = NaturalStoneWaveImpactFunctions.IncrementDegradation(
                     referenceTimeDegradation, incrementTime, timeDependentInput.WavePeriodTm10);
 
-                incrementDamage = NaturalStoneRevetmentFunctions.IncrementDamage(
+                incrementDamage = NaturalStoneWaveImpactFunctions.IncrementDamage(
                     hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
 
                 damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
@@ -205,20 +205,20 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
         {
-            slopeUpperLevel = NaturalStoneRevetmentFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
-                                                                             waterLevel, waveHeightHm0,
-                                                                             Slope.UpperLevelAus);
+            slopeUpperLevel = NaturalStoneWaveImpactFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
+                                                                              waterLevel, waveHeightHm0,
+                                                                              Slope.UpperLevelAus);
 
             slopeUpperPosition = profileData.GetHorizontalPosition(slopeUpperLevel);
 
-            slopeLowerLevel = NaturalStoneRevetmentFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
-                                                                             waveHeightHm0, Slope.LowerLevelAls);
+            slopeLowerLevel = NaturalStoneWaveImpactFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
+                                                                              waveHeightHm0, Slope.LowerLevelAls);
 
             slopeLowerPosition = profileData.GetHorizontalPosition(slopeLowerLevel);
 
-            var outerSlopeInput = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
-                                                                           slopeUpperPosition, slopeUpperLevel,
-                                                                           outerToeHeight, outerCrestHeight);
+            var outerSlopeInput = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                            slopeUpperPosition, slopeUpperLevel,
+                                                                            outerToeHeight, outerCrestHeight);
 
             if (notchOuterBerm != null && crestOuterBerm != null)
             {
@@ -228,22 +228,22 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 outerSlopeInput.CrestOuterBermHeight = crestOuterBerm.Value.Item2;
             }
 
-            return NaturalStoneRevetmentFunctions.OuterSlope(outerSlopeInput);
+            return NaturalStoneWaveImpactFunctions.OuterSlope(outerSlopeInput);
         }
 
         private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
         {
-            var lowerLimitLoadingInput = new NaturalStoneRevetmentLimitLoadingInput(
+            var lowerLimitLoadingInput = new NaturalStoneWaveImpactLimitLoadingInput(
                 depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0,
                 LowerLimitLoading.LowerLimitAll, LowerLimitLoading.LowerLimitBll, LowerLimitLoading.LowerLimitCll);
 
-            lowerLimitLoading = NaturalStoneRevetmentFunctions.LowerLimitLoading(lowerLimitLoadingInput);
+            lowerLimitLoading = NaturalStoneWaveImpactFunctions.LowerLimitLoading(lowerLimitLoadingInput);
 
-            var upperLimitLoadingInput = new NaturalStoneRevetmentLimitLoadingInput(
+            var upperLimitLoadingInput = new NaturalStoneWaveImpactLimitLoadingInput(
                 depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0,
                 UpperLimitLoading.UpperLimitAul, UpperLimitLoading.UpperLimitBul, UpperLimitLoading.UpperLimitCul);
 
-            upperLimitLoading = NaturalStoneRevetmentFunctions.UpperLimitLoading(upperLimitLoadingInput);
+            upperLimitLoading = NaturalStoneWaveImpactFunctions.UpperLimitLoading(upperLimitLoadingInput);
 
             return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }
@@ -252,8 +252,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         {
             bool usePlungingBreakers = HydraulicLoads.HydraulicLoadXib >= surfSimilarityParameter;
 
-            return NaturalStoneRevetmentFunctions.HydraulicLoad(
-                new NaturalStoneRevetmentHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0,
+            return NaturalStoneWaveImpactFunctions.HydraulicLoad(
+                new NaturalStoneWaveImpactHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0,
                                                             usePlungingBreakers
                                                                 ? HydraulicLoads.HydraulicLoadAp
                                                                 : HydraulicLoads.HydraulicLoadAs,
@@ -270,11 +270,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         private double CalculateTimeOfFailure(double wavePeriodTm10, double beginTime)
         {
-            double referenceFailure = NaturalStoneRevetmentFunctions.ReferenceFailure(
+            double referenceFailure = NaturalStoneWaveImpactFunctions.ReferenceFailure(
                 resistance, hydraulicLoad, waveAngleImpact, FailureNumber);
-            double referenceTimeFailure = NaturalStoneRevetmentFunctions.ReferenceTimeFailure(
+            double referenceTimeFailure = NaturalStoneWaveImpactFunctions.ReferenceTimeFailure(
                 referenceFailure, wavePeriodTm10);
-            double durationInTimeStepFailure = NaturalStoneRevetmentFunctions.DurationInTimeStepFailure(
+            double durationInTimeStepFailure = NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
                 referenceTimeFailure, referenceTimeDegradation);
 
             return RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);

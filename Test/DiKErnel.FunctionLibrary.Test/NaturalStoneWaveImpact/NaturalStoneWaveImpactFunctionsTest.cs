@@ -24,7 +24,7 @@ using AssertHelper = DiKErnel.FunctionLibrary.TestUtil.AssertHelper;
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneRevetmentFunctionsTest
+    public class NaturalStoneWaveImpactFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()
@@ -36,8 +36,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double waveAngleImpact = 0.997;
 
             // Call
-            double incrementDamage = NaturalStoneRevetmentFunctions.IncrementDamage(hydraulicLoad, resistance, incrementDegradation,
-                                                                                    waveAngleImpact);
+            double incrementDamage = NaturalStoneWaveImpactFunctions.IncrementDamage(hydraulicLoad, resistance,
+                                                                                     incrementDegradation,
+                                                                                     waveAngleImpact);
 
             // Assert
             AssertHelper.AreEqual(0.08797769696969, incrementDamage);
@@ -54,10 +55,10 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double c = 0.3;
             const double n = -0.9;
 
-            var input = new NaturalStoneRevetmentHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0, a, b, c, n);
+            var input = new NaturalStoneWaveImpactHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0, a, b, c, n);
 
             // Call
-            double hydraulicLoad = NaturalStoneRevetmentFunctions.HydraulicLoad(input);
+            double hydraulicLoad = NaturalStoneWaveImpactFunctions.HydraulicLoad(input);
 
             // Assert
             AssertHelper.AreEqual(0.49571702636245, hydraulicLoad);
@@ -72,12 +73,12 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double slopeUpperPosition = 30.3;
             const double slopeUpperLevel = 5.425;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
-                                                                 slopeUpperPosition, slopeUpperLevel,
-                                                                 Random.NextDouble(), Random.NextDouble());
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                  slopeUpperPosition, slopeUpperLevel,
+                                                                  Random.NextDouble(), Random.NextDouble());
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             AssertHelper.AreEqual(0.25, outerSlope);
@@ -98,8 +99,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -108,7 +109,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             AssertHelper.AreEqual(0.32, outerSlope);
@@ -129,8 +130,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -139,7 +140,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             AssertHelper.AreEqual(0.28, outerSlope);
@@ -160,8 +161,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -170,7 +171,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             AssertHelper.AreEqual(0.08, outerSlope);
@@ -191,8 +192,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -201,7 +202,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             AssertHelper.AreEqual(0.22, outerSlope);
@@ -222,8 +223,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -232,7 +233,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             AssertHelper.AreEqual(0.19333333333333, outerSlope);
@@ -253,8 +254,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -263,7 +264,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             AssertHelper.AreEqual(0.20871481028151, outerSlope);
@@ -284,8 +285,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -294,7 +295,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             Assert.That(outerSlope, Is.NaN);
@@ -315,8 +316,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double crestOuterBermPosition = 15;
             const double crestOuterBermHeight = 3.5;
 
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
-                                                                 slopeUpperLevel, outerToeHeight, outerCrestHeight)
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight)
             {
                 NotchOuterBermPosition = notchOuterBermPosition,
                 NotchOuterBermHeight = notchOuterBermHeight,
@@ -325,7 +326,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             };
 
             // Call
-            double outerSlope = NaturalStoneRevetmentFunctions.OuterSlope(input);
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(input);
 
             // Assert
             Assert.That(outerSlope, Is.NaN);
@@ -342,8 +343,9 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double slopeUpperLevelAus = 0.05;
 
             // Call
-            double slopeUpperLevel = NaturalStoneRevetmentFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight, waterLevel,
-                                                                                    waveHeightHm0, slopeUpperLevelAus);
+            double slopeUpperLevel = NaturalStoneWaveImpactFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
+                                                                                     waterLevel, waveHeightHm0,
+                                                                                     slopeUpperLevelAus);
 
             // Assert
             AssertHelper.AreEqual(5.425, slopeUpperLevel);
@@ -359,8 +361,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double slopeLowerLevelAls = 1.5;
 
             // Call
-            double slopeLowerLevel = NaturalStoneRevetmentFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
-                                                                                    waveHeightHm0, slopeLowerLevelAls);
+            double slopeLowerLevel = NaturalStoneWaveImpactFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
+                                                                                     waveHeightHm0, slopeLowerLevelAls);
 
             // Assert
             AssertHelper.AreEqual(5.35, slopeLowerLevel);
@@ -378,11 +380,11 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double b = 0.6;
             const double c = 4;
 
-            var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                   waveHeightHm0, a, b, c);
+            var input = new NaturalStoneWaveImpactLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+                                                                    waveHeightHm0, a, b, c);
 
             // Call
-            double upperLimitLoading = NaturalStoneRevetmentFunctions.UpperLimitLoading(input);
+            double upperLimitLoading = NaturalStoneWaveImpactFunctions.UpperLimitLoading(input);
 
             // Assert
             AssertHelper.AreEqual(2.3924, upperLimitLoading);
@@ -400,11 +402,11 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double b = 0.2;
             const double c = 4;
 
-            var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
-                                                                   waveHeightHm0, a, b, c);
+            var input = new NaturalStoneWaveImpactLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+                                                                    waveHeightHm0, a, b, c);
 
             // Call
-            double lowerLimitLoading = NaturalStoneRevetmentFunctions.LowerLimitLoading(input);
+            double lowerLimitLoading = NaturalStoneWaveImpactFunctions.LowerLimitLoading(input);
 
             // Assert
             AssertHelper.AreEqual(1.29, lowerLimitLoading);
@@ -419,9 +421,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double slopeAngle = 14.037;
 
             // Call
-            double depthMaximumWaveLoad = NaturalStoneRevetmentFunctions.DepthMaximumWaveLoad(distanceMaximumWaveElevation,
-                normativeWidthWaveImpact,
-                slopeAngle);
+            double depthMaximumWaveLoad = NaturalStoneWaveImpactFunctions.DepthMaximumWaveLoad(
+                distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
 
             // Assert
             AssertHelper.AreEqual(0.38425846631481, depthMaximumWaveLoad);
@@ -438,7 +439,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double distanceMaximumWaveElevationBsmax = 0.9;
 
             // Call
-            double distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions.DistanceMaximumWaveElevation(
+            double distanceMaximumWaveElevation = NaturalStoneWaveImpactFunctions.DistanceMaximumWaveElevation(
                 impactShallowWater, waveSteepnessDeepWater, waveHeightHm0, distanceMaximumWaveElevationAsmax,
                 distanceMaximumWaveElevationBsmax);
 
@@ -456,7 +457,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double normativeWidthWaveImpactBwi = 0.11;
 
             // Call
-            double normativeWidthWaveImpact = NaturalStoneRevetmentFunctions.NormativeWidthWaveImpact(
+            double normativeWidthWaveImpact = NaturalStoneWaveImpactFunctions.NormativeWidthWaveImpact(
                 surfSimilarityParameter, waveHeightHm0, normativeWidthWaveImpactAwi, normativeWidthWaveImpactBwi);
 
             // Assert
@@ -471,7 +472,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double waveAngleImpactBetamax = 78;
 
             // Call
-            double waveAngleImpact = NaturalStoneRevetmentFunctions.WaveAngleImpact(waveAngle, waveAngleImpactBetamax);
+            double waveAngleImpact = NaturalStoneWaveImpactFunctions.WaveAngleImpact(waveAngle, waveAngleImpactBetamax);
 
             // Assert
             AssertHelper.AreEqual(0.99746152040928, waveAngleImpact);
@@ -485,7 +486,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double thicknessTopLayer = 0.3;
 
             // Call
-            double resistance = NaturalStoneRevetmentFunctions.Resistance(relativeDensity, thicknessTopLayer);
+            double resistance = NaturalStoneWaveImpactFunctions.Resistance(relativeDensity, thicknessTopLayer);
 
             // Assert
             AssertHelper.AreEqual(0.495, resistance);
@@ -500,8 +501,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double wavePeriodTm10 = 5.5;
 
             // Call
-            double incrementDegradation = NaturalStoneRevetmentFunctions.IncrementDegradation(referenceTimeDegradation,
-                incrementTime, wavePeriodTm10);
+            double incrementDegradation = NaturalStoneWaveImpactFunctions.IncrementDegradation(
+                referenceTimeDegradation, incrementTime, wavePeriodTm10);
 
             // Assert
             AssertHelper.AreEqual(0.07844247200477, incrementDegradation);
@@ -515,8 +516,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double wavePeriodTm10 = 5.5;
 
             // Call
-            double referenceTimeDegradation = NaturalStoneRevetmentFunctions.ReferenceTimeDegradation(referenceDegradation,
-                wavePeriodTm10);
+            double referenceTimeDegradation = NaturalStoneWaveImpactFunctions.ReferenceTimeDegradation(
+                referenceDegradation, wavePeriodTm10);
 
             // Assert
             AssertHelper.AreEqual(605.48915987364103, referenceTimeDegradation);
@@ -532,8 +533,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double initialDamage = 0.905;
 
             // Call
-            double referenceDegradation = NaturalStoneRevetmentFunctions.ReferenceDegradation(resistance, hydraulicLoad,
-                waveAngleImpact, initialDamage);
+            double referenceDegradation = NaturalStoneWaveImpactFunctions.ReferenceDegradation(
+                resistance, hydraulicLoad, waveAngleImpact, initialDamage);
 
             // Assert
             AssertHelper.AreEqual(0.80236244447628, referenceDegradation);
@@ -547,8 +548,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double referenceTimeDegradation = 497.7;
 
             // Call
-            double durationInTimeStepFailure = NaturalStoneRevetmentFunctions.DurationInTimeStepFailure(referenceTimeFailure,
-                referenceTimeDegradation);
+            double durationInTimeStepFailure = NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
+                referenceTimeFailure, referenceTimeDegradation);
 
             // Assert
             AssertHelper.AreEqual(348.2, durationInTimeStepFailure);
@@ -562,7 +563,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double wavePeriodTm10 = 5.5;
 
             // Call
-            double referenceTimeFailure = NaturalStoneRevetmentFunctions.ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
+            double referenceTimeFailure = NaturalStoneWaveImpactFunctions.ReferenceTimeFailure(
+                referenceFailure, wavePeriodTm10);
 
             // Assert
             AssertHelper.AreEqual(961.95675821289467, referenceTimeFailure);
@@ -578,8 +580,8 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             const double failureNumber = 0.95;
 
             // Call
-            double referenceFailure = NaturalStoneRevetmentFunctions.ReferenceFailure(resistance, hydraulicLoad, waveAngleImpact,
-                                                                                      failureNumber);
+            double referenceFailure = NaturalStoneWaveImpactFunctions.ReferenceFailure(
+                resistance, hydraulicLoad, waveAngleImpact, failureNumber);
 
             // Assert
             AssertHelper.AreEqual(0.84225891961599, referenceFailure);

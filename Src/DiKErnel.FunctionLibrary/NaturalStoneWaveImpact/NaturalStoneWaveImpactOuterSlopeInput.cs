@@ -21,7 +21,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
     /// <summary>
     /// Input for natural stone wave impact outer slope calculations.
     /// </summary>
-    public class NaturalStoneRevetmentOuterSlopeInput
+    public class NaturalStoneWaveImpactOuterSlopeInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -32,7 +32,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// <param name="slopeUpperLevel">The slope upper level [m].</param>
         /// <param name="outerToeHeight">The outer toe height [m]</param>
         /// <param name="outerCrestHeight">The outer crest height [m]</param>
-        public NaturalStoneRevetmentOuterSlopeInput(double slopeLowerPosition, double slopeLowerLevel,
+        public NaturalStoneWaveImpactOuterSlopeInput(double slopeLowerPosition, double slopeLowerLevel,
                                                     double slopeUpperPosition, double slopeUpperLevel,
                                                     double outerToeHeight, double outerCrestHeight)
         {

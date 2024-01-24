@@ -38,7 +38,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             double c = Random.NextDouble();
 
             // Call
-            var input = new NaturalStoneRevetmentLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
+            var input = new NaturalStoneWaveImpactLimitLoadingInput(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel,
                                                                    waveHeightHm0, a, b, c);
 
             // Assert

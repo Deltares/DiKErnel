@@ -21,9 +21,9 @@ using System;
 namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Class that holds natural stone revetment calculation routines.
+    /// Class that holds natural stone wave impact calculation routines.
     /// </summary>
-    public static class NaturalStoneRevetmentFunctions
+    public static class NaturalStoneWaveImpactFunctions
     {
         /// <summary>
         /// Calculates the increment of damage.
@@ -45,7 +45,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The hydraulic load [m].</returns>
-        public static double HydraulicLoad(NaturalStoneRevetmentHydraulicLoadInput input)
+        public static double HydraulicLoad(NaturalStoneWaveImpactHydraulicLoadInput input)
         {
             return input.WaveHeightHm0 / (input.A * Math.Pow(input.SurfSimilarityParameter, input.N)
                                           + input.B * input.SurfSimilarityParameter
@@ -57,7 +57,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The outer slope [-].</returns>
-        public static double OuterSlope(NaturalStoneRevetmentOuterSlopeInput input)
+        public static double OuterSlope(NaturalStoneWaveImpactOuterSlopeInput input)
         {
             return !HasBerm(input)
                        ? SingleSlopePart(input.SlopeUpperLevel, input.SlopeLowerLevel, input.SlopeUpperPosition,
@@ -99,7 +99,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The upper limit of loading [m].</returns>
-        public static double UpperLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
+        public static double UpperLimitLoading(NaturalStoneWaveImpactLimitLoadingInput input)
         {
             return input.WaterLevel - 2 * input.DepthMaximumWaveLoad
                    + Math.Max(input.DepthMaximumWaveLoad + input.A,
@@ -111,7 +111,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The lower limit of loading [m].</returns>
-        public static double LowerLimitLoading(NaturalStoneRevetmentLimitLoadingInput input)
+        public static double LowerLimitLoading(NaturalStoneWaveImpactLimitLoadingInput input)
         {
             return input.WaterLevel
                    - 2 * input.DepthMaximumWaveLoad
@@ -278,7 +278,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
             return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
         }
 
-        private static double OuterSlopeWithBerm(NaturalStoneRevetmentOuterSlopeInput input)
+        private static double OuterSlopeWithBerm(NaturalStoneWaveImpactOuterSlopeInput input)
         {
             bool slopeLowerLevelOnLowerSlope = input.OuterToeHeight <= input.SlopeLowerLevel
                                                && input.SlopeLowerLevel < input.CrestOuterBermHeight;
@@ -298,7 +298,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
                                       slopeUpperLevelOnUpperSlope);
         }
 
-        private static double OuterSlopeWithBerm(NaturalStoneRevetmentOuterSlopeInput input,
+        private static double OuterSlopeWithBerm(NaturalStoneWaveImpactOuterSlopeInput input,
                                                  bool slopeLowerLevelOnLowerSlope, bool slopeUpperLevelOnLowerSlope,
                                                  bool slopeLowerLevelOnBerm,
                                                  bool slopeUpperLevelOnBerm, bool slopeLowerLevelOnUpperSlope,
@@ -388,7 +388,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
             return value * (resistance / hydraulicLoad) * (1 / waveAngleImpact);
         }
 
-        private static bool HasBerm(NaturalStoneRevetmentOuterSlopeInput input)
+        private static bool HasBerm(NaturalStoneWaveImpactOuterSlopeInput input)
         {
             return !double.IsNaN(input.NotchOuterBermPosition)
                    && !double.IsNaN(input.NotchOuterBermHeight)

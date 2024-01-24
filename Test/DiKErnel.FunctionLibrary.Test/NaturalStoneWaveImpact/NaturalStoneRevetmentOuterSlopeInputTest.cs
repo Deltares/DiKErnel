@@ -37,7 +37,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             double outerCrestHeight = Random.NextDouble();
 
             // Call
-            var input = new NaturalStoneRevetmentOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
+            var input = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel, slopeUpperPosition,
                                                                  slopeUpperLevel, outerToeHeight, outerCrestHeight);
 
             // Assert

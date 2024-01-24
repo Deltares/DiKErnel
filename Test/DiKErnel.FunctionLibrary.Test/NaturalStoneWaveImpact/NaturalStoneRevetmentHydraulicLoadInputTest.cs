@@ -37,7 +37,7 @@ namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
             double n = Random.NextDouble();
 
             // Call
-            var input = new NaturalStoneRevetmentHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0, a, b, c, n);
+            var input = new NaturalStoneWaveImpactHydraulicLoadInput(surfSimilarityParameter, waveHeightHm0, a, b, c, n);
 
             // Assert
             Assert.That(input.SurfSimilarityParameter, Is.EqualTo(surfSimilarityParameter));

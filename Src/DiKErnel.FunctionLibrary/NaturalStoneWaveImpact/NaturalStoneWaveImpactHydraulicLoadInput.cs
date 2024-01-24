@@ -19,47 +19,34 @@
 namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// Input for natural stone wave impact limit loading calculations.
+    /// Input for natural stone wave impact hydraulic load calculations.
     /// </summary>
-    public class NaturalStoneRevetmentLimitLoadingInput
+    public class NaturalStoneWaveImpactHydraulicLoadInput
     {
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="depthMaximumWaveLoad">The depth of the maximum wave
-        /// load [m].</param>
         /// <param name="surfSimilarityParameter">The surf similarity parameter [-].</param>
-        /// <param name="waterLevel">The water level [m].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>
         /// <param name="a">The a coefficient [-].</param>
         /// <param name="b">The b coefficient [-].</param>
         /// <param name="c">The c coefficient [-].</param>
-        public NaturalStoneRevetmentLimitLoadingInput(double depthMaximumWaveLoad, double surfSimilarityParameter,
-                                                      double waterLevel, double waveHeightHm0, double a, double b, double c)
+        /// <param name="n">The n coefficient [-].</param>
+        public NaturalStoneWaveImpactHydraulicLoadInput(double surfSimilarityParameter, double waveHeightHm0, double a, double b,
+                                                       double c, double n)
         {
-            DepthMaximumWaveLoad = depthMaximumWaveLoad;
             SurfSimilarityParameter = surfSimilarityParameter;
-            WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
             A = a;
             B = b;
             C = c;
+            N = n;
         }
-
-        /// <summary>
-        /// Gets the depth of the maximum wave load [m].
-        /// </summary>
-        public double DepthMaximumWaveLoad { get; }
 
         /// <summary>
         /// Gets the surf similarity parameter [-].
         /// </summary>
         public double SurfSimilarityParameter { get; }
-
-        /// <summary>
-        /// Gets the water level [m].
-        /// </summary>
-        public double WaterLevel { get; }
 
         /// <summary>
         /// Gets the wave height [m].
@@ -80,5 +67,10 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// Gets the c coefficient [-].
         /// </summary>
         public double C { get; }
+
+        /// <summary>
+        /// Gets the n coefficient [-].
+        /// </summary>
+        public double N { get; }
     }
 }
