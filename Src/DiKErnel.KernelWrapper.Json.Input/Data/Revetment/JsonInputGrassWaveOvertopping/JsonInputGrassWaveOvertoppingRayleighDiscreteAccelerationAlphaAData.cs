@@ -24,9 +24,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOve
     internal class JsonInputGrassWaveOvertoppingRayleighDiscreteAccelerationAlphaAData
     {
         [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaACrest)]
-        public double? AccelerationAlphaAForCrest { get; private set; }
+        public double? AForCrest { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaAInnerSlope)]
-        public double? AccelerationAlphaAForInnerSlope { get; private set; }
+        public double? AForInnerSlope { get; private set; }
     }
 }

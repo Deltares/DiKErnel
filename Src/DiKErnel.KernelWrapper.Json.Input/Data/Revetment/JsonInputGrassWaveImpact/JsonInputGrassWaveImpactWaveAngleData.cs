@@ -24,12 +24,12 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImp
     internal class JsonInputGrassWaveImpactWaveAngleData
     {
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.N)]
-        public double? WaveAngleImpactN { get; private set; }
+        public double? N { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.Q)]
-        public double? WaveAngleImpactQ { get; private set; }
+        public double? Q { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveImpactDefinitions.R)]
-        public double? WaveAngleImpactR { get; private set; }
+        public double? R { get; private set; }
     }
 }

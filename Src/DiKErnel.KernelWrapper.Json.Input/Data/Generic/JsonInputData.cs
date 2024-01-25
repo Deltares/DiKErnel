@@ -37,6 +37,6 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         public IReadOnlyList<JsonInputLocationData> LocationData { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.CalculationMethods)]
-        public IReadOnlyList<JsonInputCalculationData> CalculationDefinitionData { get; private set; }
+        public IReadOnlyList<JsonInputCalculationData> CalculationData { get; private set; }
     }
 }

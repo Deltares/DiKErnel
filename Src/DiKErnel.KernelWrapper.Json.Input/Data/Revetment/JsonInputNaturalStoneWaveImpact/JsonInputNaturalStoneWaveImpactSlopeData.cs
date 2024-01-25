@@ -24,9 +24,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStone
     internal class JsonInputNaturalStoneWaveImpactSlopeData
     {
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.SlopeUpperLevel)]
-        public double? SlopeUpperLevel { get; private set; }
+        public double? UpperLevel { get; private set; }
 
         [JsonProperty(JsonInputNaturalStoneWaveImpactDefinitions.SlopeLowerLevel)]
-        public double? SlopeLowerLevel { get; private set; }
+        public double? LowerLevel { get; private set; }
     }
 }

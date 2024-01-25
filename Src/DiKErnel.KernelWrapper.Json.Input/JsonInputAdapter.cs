@@ -131,7 +131,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
         private static void AdaptLocationData(JsonInputData jsonInputData, CalculationInputBuilder builder)
         {
             IReadOnlyList<JsonInputLocationData> locationDataItems = jsonInputData.LocationData;
-            IReadOnlyList<JsonInputCalculationData> calculationDataItems = jsonInputData.CalculationDefinitionData;
+            IReadOnlyList<JsonInputCalculationData> calculationDataItems = jsonInputData.CalculationData;
 
             foreach (JsonInputLocationData locationData in locationDataItems)
             {
@@ -267,8 +267,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 CriticalCumulativeOverload = topLayerData?.CriticalCumulativeOverload,
                 CriticalFrontVelocity = topLayerData?.CriticalFrontVelocity,
                 DikeHeight = calculationData?.DikeHeight,
-                AccelerationAlphaAForCrest = accelerationAlphaAData?.AccelerationAlphaAForCrest,
-                AccelerationAlphaAForInnerSlope = accelerationAlphaAData?.AccelerationAlphaAForInnerSlope,
+                AccelerationAlphaAForCrest = accelerationAlphaAData?.AForCrest,
+                AccelerationAlphaAForInnerSlope = accelerationAlphaAData?.AForInnerSlope,
                 FixedNumberOfWaves = calculationData?.FixedNumberOfWaves,
                 FrontVelocityCwo = calculationData?.FrontVelocity,
                 AverageNumberOfWavesCtm = calculationData?.FactorCtm
@@ -290,14 +290,14 @@ namespace DiKErnel.KernelWrapper.Json.Input
             {
                 InitialDamage = locationData.InitialDamage,
                 FailureNumber = calculationData?.FailureNumber,
-                TimeLineAgwi = timeLineData?.TimeLineA,
-                TimeLineBgwi = timeLineData?.TimeLineB,
-                TimeLineCgwi = timeLineData?.TimeLineC,
+                TimeLineAgwi = timeLineData?.A,
+                TimeLineBgwi = timeLineData?.B,
+                TimeLineCgwi = timeLineData?.C,
                 MinimumWaveHeightTemax = calculationData?.Temax,
                 MaximumWaveHeightTemin = calculationData?.Temin,
-                WaveAngleImpactNwa = waveAngleData?.WaveAngleImpactN,
-                WaveAngleImpactQwa = waveAngleData?.WaveAngleImpactQ,
-                WaveAngleImpactRwa = waveAngleData?.WaveAngleImpactR,
+                WaveAngleImpactNwa = waveAngleData?.N,
+                WaveAngleImpactQwa = waveAngleData?.Q,
+                WaveAngleImpactRwa = waveAngleData?.R,
                 UpperLimitLoadingAul = loadingAreaData?.UpperLimitData?.LimitLoading,
                 LowerLimitLoadingAll = loadingAreaData?.LowerLimitData?.LimitLoading
             };
@@ -390,19 +390,19 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 HydraulicLoadCs = surgingData?.C,
                 HydraulicLoadNs = surgingData?.N,
                 HydraulicLoadXib = stabilityData?.StabilityXib,
-                SlopeUpperLevelAus = slopeData?.SlopeUpperLevel,
-                SlopeLowerLevelAls = slopeData?.SlopeLowerLevel,
+                SlopeUpperLevelAus = slopeData?.UpperLevel,
+                SlopeLowerLevelAls = slopeData?.LowerLevel,
                 UpperLimitLoadingAul = upperLimitData?.A,
                 UpperLimitLoadingBul = upperLimitData?.B,
                 UpperLimitLoadingCul = upperLimitData?.C,
                 LowerLimitLoadingAll = lowerLimitData?.A,
                 LowerLimitLoadingBll = lowerLimitData?.B,
                 LowerLimitLoadingCll = lowerLimitData?.C,
-                DistanceMaximumWaveElevationAsmax = maximumWaveElevationData?.DistanceMaximumWaveElevationA,
-                DistanceMaximumWaveElevationBsmax = maximumWaveElevationData?.DistanceMaximumWaveElevationB,
-                NormativeWidthOfWaveImpactAwi = normativeWidthData?.NormativeWidthOfWaveImpactA,
-                NormativeWidthOfWaveImpactBwi = normativeWidthData?.NormativeWidthOfWaveImpactB,
-                WaveAngleImpactBetamax = calculationData?.WaveAngleData?.WaveAngleImpactBetaMax
+                DistanceMaximumWaveElevationAsmax = maximumWaveElevationData?.A,
+                DistanceMaximumWaveElevationBsmax = maximumWaveElevationData?.B,
+                NormativeWidthOfWaveImpactAwi = normativeWidthData?.A,
+                NormativeWidthOfWaveImpactBwi = normativeWidthData?.B,
+                WaveAngleImpactBetamax = calculationData?.WaveAngleData?.BetaMax
             };
         }
 
