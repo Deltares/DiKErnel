@@ -19,7 +19,7 @@
 using System;
 using DiKErnel.FunctionLibrary.Grass;
 
-namespace DiKErnel.FunctionLibrary.GrassOvertopping
+namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 {
     /// <summary>
     /// Class that holds grass overtopping Rayleigh discrete calculation routines.

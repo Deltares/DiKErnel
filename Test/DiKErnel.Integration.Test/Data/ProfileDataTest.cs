@@ -108,7 +108,7 @@ namespace DiKErnel.Integration.Test.Data
                 new ProfileSegment(profilePoint2, profilePoint3, Random.NextDouble())
             };
 
-            var profileData = new ProfileData(Random.NextDouble(), profileSegmentsWithDescendingHeight, 
+            var profileData = new ProfileData(Random.NextDouble(), profileSegmentsWithDescendingHeight,
                                               new List<CharacteristicPoint>(), CreateDefaultForeshore());
 
             // Call

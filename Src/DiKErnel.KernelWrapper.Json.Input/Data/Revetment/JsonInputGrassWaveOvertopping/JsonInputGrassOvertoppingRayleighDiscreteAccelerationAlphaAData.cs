@@ -16,23 +16,17 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOvertopping
 {
-    internal class JsonInputGrassOvertoppingRayleighDiscreteLocationData : JsonInputLocationData
+    internal class JsonInputGrassOvertoppingRayleighDiscreteAccelerationAlphaAData
     {
-        [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
-        public JsonInputGrassTopLayerType TopLayerType { get; private set; }
+        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaACrest)]
+        public double? AccelerationAlphaAForCrest { get; private set; }
 
-        [JsonProperty(JsonInputGrassDefinitions.IncreasedLoadTransitionAlphaM)]
-        public double? IncreasedLoadTransitionAlphaM { get; private set; }
-
-        [JsonProperty(JsonInputGrassDefinitions.ReducedStrengthTransitionAlphaS)]
-        public double? ReducedStrengthTransitionAlphaS { get; private set; }
+        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaAInnerSlope)]
+        public double? AccelerationAlphaAForInnerSlope { get; private set; }
     }
 }

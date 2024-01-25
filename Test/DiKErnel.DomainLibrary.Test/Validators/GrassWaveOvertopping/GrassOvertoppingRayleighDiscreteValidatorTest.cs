@@ -17,12 +17,12 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using DiKErnel.DomainLibrary.Validators.GrassOvertopping;
+using DiKErnel.DomainLibrary.Validators.GrassWaveOvertopping;
 using DiKErnel.Util.TestUtil;
 using DiKErnel.Util.Validation;
 using NUnit.Framework;
 
-namespace DiKErnel.DomainLibrary.Test.Validators.GrassOvertopping
+namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveOvertopping
 {
     [TestFixture]
     public class GrassOvertoppingRayleighDiscreteValidatorTest

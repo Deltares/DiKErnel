@@ -24,8 +24,8 @@ using DiKErnel.External.Overtopping;
 using DiKErnel.Integration.Data;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.Grass;
-using DiKErnel.Integration.Data.GrassOvertopping;
 using DiKErnel.Integration.Data.GrassWaveImpact;
+using DiKErnel.Integration.Data.GrassWaveOvertopping;
 using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.Integration.Factories;
@@ -111,7 +111,7 @@ namespace DiKErnel.Integration
         {
             foreshore = new Foreshore(slope, bottomZ);
         }
-        
+
         /// <summary>
         /// Adds a time step.
         /// </summary>

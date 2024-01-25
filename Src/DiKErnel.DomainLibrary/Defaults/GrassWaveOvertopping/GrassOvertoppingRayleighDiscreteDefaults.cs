@@ -16,33 +16,27 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.DomainLibrary.Defaults.GrassOvertopping;
-using NUnit.Framework;
-
-namespace DiKErnel.DomainLibrary.Test.Defaults.GrassOvertopping
+namespace DiKErnel.DomainLibrary.Defaults.GrassWaveOvertopping
 {
-    [TestFixture]
-    public class GrassOvertoppingRayleighDiscreteDefaultsTest
+    /// <summary>
+    /// Class that contains default values for grass overtopping Rayleigh discrete
+    /// calculations.
+    /// </summary>
+    public static class GrassOvertoppingRayleighDiscreteDefaults
     {
-        [Test]
-        public void FrontVelocityCwo_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
-        }
+        /// <summary>
+        /// Gets the default value of the Cwo coefficient [-].
+        /// </summary>
+        public static double FrontVelocityCwo => 1.45;
 
-        [Test]
-        public void AccelerationAlphaAForCrest_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
-        }
+        /// <summary>
+        /// Gets the default value of the alpha A coefficient for the crest [-].
+        /// </summary>
+        public static double AccelerationAlphaAForCrest => 1;
 
-        [Test]
-        public void AccelerationAlphaAForInnerSlope_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
-        }
+        /// <summary>
+        /// Gets the default value of the alpha A coefficient for the inner slope [-].
+        /// </summary>
+        public static double AccelerationAlphaAForInnerSlope => 1.4;
     }
 }

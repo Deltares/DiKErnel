@@ -23,7 +23,7 @@ using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using Newtonsoft.Json;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOvertopping
 {
     internal class JsonInputGrassOvertoppingRayleighDiscreteCalculationData : JsonInputCalculationData
     {

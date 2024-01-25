@@ -1,4 +1,4 @@
-// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -16,17 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using DiKErnel.Core.Data;
 
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassOvertopping
+namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 {
-    internal class JsonInputGrassOvertoppingRayleighDiscreteAccelerationAlphaAData
+    /// <summary>
+    /// Location dependent output of a grass overtopping Rayleigh discrete calculation.
+    /// </summary>
+    public class GrassOvertoppingRayleighDiscreteLocationDependentOutput : LocationDependentOutput
     {
-        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaACrest)]
-        public double? AccelerationAlphaAForCrest { get; private set; }
-
-        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaAInnerSlope)]
-        public double? AccelerationAlphaAForInnerSlope { get; private set; }
+        /// <inheritdoc/>
+        public GrassOvertoppingRayleighDiscreteLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+            : base(timeDependentOutputItems) {}
     }
 }

@@ -17,11 +17,11 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.FunctionLibrary.Grass;
-using DiKErnel.FunctionLibrary.GrassOvertopping;
+using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.FunctionLibrary.Test.GrassOvertopping
+namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
 {
     [TestFixture]
     public class GrassOvertoppingRayleighDiscreteCumulativeOverloadInputTest

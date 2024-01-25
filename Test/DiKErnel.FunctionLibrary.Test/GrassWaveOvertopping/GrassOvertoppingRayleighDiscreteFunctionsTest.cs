@@ -16,11 +16,11 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.FunctionLibrary.GrassOvertopping;
+using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
 using DiKErnel.FunctionLibrary.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.FunctionLibrary.Test.GrassOvertopping
+namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
 {
     [TestFixture]
     public class GrassOvertoppingRayleighDiscreteFunctionsTest

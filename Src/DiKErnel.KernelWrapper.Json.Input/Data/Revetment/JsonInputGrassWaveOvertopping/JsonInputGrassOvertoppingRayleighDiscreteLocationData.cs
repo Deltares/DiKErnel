@@ -16,28 +16,23 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
-using DiKErnel.Core.Data;
-using DiKErnel.Integration.Data.GrassOvertopping;
-using NUnit.Framework;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
+using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
+using Newtonsoft.Json;
 
-namespace DiKErnel.Integration.Test.Data.GrassOvertopping
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOvertopping
 {
-    [TestFixture]
-    public class GrassOvertoppingRayleighDiscreteLocationDependentOutputTest
+    internal class JsonInputGrassOvertoppingRayleighDiscreteLocationData : JsonInputLocationData
     {
-        [Test]
-        public void Constructor_ExpectedValues()
-        {
-            // Setup
-            var timeDependentOutputItems = new List<TimeDependentOutput>();
+        [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
+        public JsonInputGrassTopLayerType TopLayerType { get; private set; }
 
-            // Call
-            var output = new GrassOvertoppingRayleighDiscreteLocationDependentOutput(timeDependentOutputItems);
+        [JsonProperty(JsonInputGrassDefinitions.IncreasedLoadTransitionAlphaM)]
+        public double? IncreasedLoadTransitionAlphaM { get; private set; }
 
-            // Assert
-            Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
-            Assert.That(output.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
-        }
+        [JsonProperty(JsonInputGrassDefinitions.ReducedStrengthTransitionAlphaS)]
+        public double? ReducedStrengthTransitionAlphaS { get; private set; }
     }
 }

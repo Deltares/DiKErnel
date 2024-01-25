@@ -21,13 +21,13 @@ using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
-using DiKErnel.DomainLibrary.Validators.GrassOvertopping;
-using DiKErnel.FunctionLibrary.GrassOvertopping;
+using DiKErnel.DomainLibrary.Validators.GrassWaveOvertopping;
+using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.Integration.Data.GrassOvertopping
+namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 {
     internal class GrassOvertoppingRayleighDiscreteLocationDependentInput : GrassRayleighDiscreteLocationDependentInput
     {

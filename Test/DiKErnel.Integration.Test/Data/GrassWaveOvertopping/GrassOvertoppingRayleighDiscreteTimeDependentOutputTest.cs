@@ -19,11 +19,11 @@
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.Grass;
-using DiKErnel.Integration.Data.GrassOvertopping;
+using DiKErnel.Integration.Data.GrassWaveOvertopping;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data.GrassOvertopping
+namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
 {
     [TestFixture]
     public class GrassOvertoppingRayleighDiscreteTimeDependentOutputTest

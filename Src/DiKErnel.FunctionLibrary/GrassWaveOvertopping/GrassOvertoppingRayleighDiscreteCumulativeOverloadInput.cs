@@ -18,7 +18,7 @@
 
 using DiKErnel.FunctionLibrary.Grass;
 
-namespace DiKErnel.FunctionLibrary.GrassOvertopping
+namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 {
     /// <summary>
     /// Input for grass overtopping Rayleigh discrete cumulative overload calculations.

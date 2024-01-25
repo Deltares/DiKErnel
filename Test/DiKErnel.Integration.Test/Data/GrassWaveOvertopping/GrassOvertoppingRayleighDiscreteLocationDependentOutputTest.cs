@@ -1,4 +1,4 @@
-﻿// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
+// Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
 //
 // This file is part of DiKErnel.
 //
@@ -18,17 +18,26 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data.GrassWaveOvertopping;
+using NUnit.Framework;
 
-namespace DiKErnel.Integration.Data.GrassOvertopping
+namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
 {
-    /// <summary>
-    /// Location dependent output of a grass overtopping Rayleigh discrete calculation.
-    /// </summary>
-    public class GrassOvertoppingRayleighDiscreteLocationDependentOutput : LocationDependentOutput
+    [TestFixture]
+    public class GrassOvertoppingRayleighDiscreteLocationDependentOutputTest
     {
-        /// <inheritdoc/>
-        public GrassOvertoppingRayleighDiscreteLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-            : base(timeDependentOutputItems) {}
+        [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Setup
+            var timeDependentOutputItems = new List<TimeDependentOutput>();
+
+            // Call
+            var output = new GrassOvertoppingRayleighDiscreteLocationDependentOutput(timeDependentOutputItems);
+
+            // Assert
+            Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
+            Assert.That(output.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
+        }
     }
 }

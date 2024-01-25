@@ -20,7 +20,7 @@ using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.Grass;
 
-namespace DiKErnel.Integration.Data.GrassOvertopping
+namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 {
     /// <summary>
     /// Time dependent output of a grass overtopping Rayleigh discrete calculation.

@@ -18,7 +18,7 @@
 
 using DiKErnel.Util.Validation;
 
-namespace DiKErnel.DomainLibrary.Validators.GrassOvertopping
+namespace DiKErnel.DomainLibrary.Validators.GrassWaveOvertopping
 {
     /// <summary>
     /// Class that holds grass overtopping Rayleigh discrete validation routines.

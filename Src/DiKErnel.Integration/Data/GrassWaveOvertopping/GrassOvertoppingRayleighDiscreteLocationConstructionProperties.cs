@@ -18,7 +18,7 @@
 
 using DiKErnel.Integration.Data.Grass;
 
-namespace DiKErnel.Integration.Data.GrassOvertopping
+namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 {
     /// <summary>
     /// Construction properties to construct grass overtopping Rayleigh discrete location

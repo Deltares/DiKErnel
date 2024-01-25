@@ -18,8 +18,8 @@
 
 using DiKErnel.DomainLibrary.Defaults;
 using DiKErnel.DomainLibrary.Defaults.Grass;
-using DiKErnel.DomainLibrary.Defaults.GrassOvertopping;
-using DiKErnel.Integration.Data.GrassOvertopping;
+using DiKErnel.DomainLibrary.Defaults.GrassWaveOvertopping;
+using DiKErnel.Integration.Data.GrassWaveOvertopping;
 
 namespace DiKErnel.Integration.Factories
 {
