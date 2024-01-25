@@ -276,7 +276,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithInvalidGrassOvertoppingRayleighDiscreteLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithInvalidGrassWaveOvertoppingRayleighDiscreteLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
@@ -342,7 +342,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double dikeHeight = 10.0;
@@ -383,7 +383,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double dikeHeight = 10.0;
@@ -419,7 +419,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double heightOuterCrest = 10.0;
@@ -457,7 +457,7 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
-            GivenCalculationInputWithGrassOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
             const double heightOuterCrest = 10.0;
