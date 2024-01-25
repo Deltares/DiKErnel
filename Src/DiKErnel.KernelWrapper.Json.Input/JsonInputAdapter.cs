@@ -146,11 +146,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
                                     calculationDataItems, JsonInputCalculationType.AsphaltWaveImpact)));
                         break;
                     }
-                    case JsonInputGrassOvertoppingRayleighDiscreteLocationData grassOvertoppingRayleighDiscreteLocationData:
+                    case JsonInputGrassOvertoppingRayleighDiscreteLocationData grassWaveOvertoppingRayleighDiscreteLocationData:
                     {
-                        builder.AddGrassOvertoppingRayleighDiscreteLocation(
+                        builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
                             CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
-                                grassOvertoppingRayleighDiscreteLocationData,
+                                grassWaveOvertoppingRayleighDiscreteLocationData,
                                 GetCalculationDefinition<JsonInputGrassOvertoppingRayleighDiscreteCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassOvertopping)));
                         break;

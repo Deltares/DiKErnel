@@ -55,7 +55,7 @@ namespace DiKErnel.Integration
 
         private Foreshore foreshore = new Foreshore(double.NaN, double.NaN);
 
-        private bool grassOvertoppingLocationAdded;
+        private bool grassWaveOvertoppingLocationAdded;
 
         /// <summary>
         /// Creates a new instance.
@@ -140,16 +140,16 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
-        /// Adds a grass overtopping Rayleigh discrete location.
+        /// Adds a grass wave overtopping Rayleigh discrete location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass
-        /// overtopping Rayleigh discrete location dependent input.</param>
-        public void AddGrassOvertoppingRayleighDiscreteLocation(
+        /// wave overtopping Rayleigh discrete location dependent input.</param>
+        public void AddGrassWaveOvertoppingRayleighDiscreteLocation(
             GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
 
-            grassOvertoppingLocationAdded = true;
+            grassWaveOvertoppingLocationAdded = true;
         }
 
         /// <summary>
@@ -287,8 +287,8 @@ namespace DiKErnel.Integration
                    && ValidateCharacteristicPoint(crestOuterBerm, "crest outer berm", false)
                    && ValidateCharacteristicPoint(notchOuterBerm, "notch outer berm", false)
                    && ValidateCharacteristicPoint(outerCrest, "outer crest", true)
-                   && ValidateCharacteristicPoint(innerCrest, "inner crest", grassOvertoppingLocationAdded)
-                   && ValidateCharacteristicPoint(innerToe, "inner toe", grassOvertoppingLocationAdded);
+                   && ValidateCharacteristicPoint(innerCrest, "inner crest", grassWaveOvertoppingLocationAdded)
+                   && ValidateCharacteristicPoint(innerToe, "inner toe", grassWaveOvertoppingLocationAdded);
         }
 
         private bool ValidateCharacteristicPoint(ProfileDataFactoryPoint characteristicPoint,
