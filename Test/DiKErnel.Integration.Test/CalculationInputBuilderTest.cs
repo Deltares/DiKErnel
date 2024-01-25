@@ -991,7 +991,7 @@ namespace DiKErnel.Integration.Test
 
         #endregion
 
-        #region Grass overtopping Rayleigh discrete
+        #region Grass wave overtopping Rayleigh discrete
 
         [Test]
         public void
