@@ -82,6 +82,11 @@ namespace DiKErnel.Integration.Test
             builder.AddTimeStep(1.1, 2.2, Random.NextDouble(), Random.NextDouble(), Random.NextDouble(), Random.NextDouble());
         }
 
+        private static void AddDefaultForeshore(CalculationInputBuilder builder)
+        {
+            builder.AddForeshore(Random.NextDouble(), Random.NextDouble());
+        }
+
         private static void GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
             Action<CalculationInputBuilder> addLocationAction, double locationX)
         {
@@ -1852,6 +1857,7 @@ namespace DiKErnel.Integration.Test
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
+                    AddDefaultForeshore(builder);
                     builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
                         new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
@@ -1867,6 +1873,7 @@ namespace DiKErnel.Integration.Test
             GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 builder =>
                 {
+                    AddDefaultForeshore(builder);
                     builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
                         new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
@@ -1886,6 +1893,8 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
+            AddDefaultForeshore(builder);
+
             builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
 
             // When
@@ -1911,6 +1920,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultTimeStep(builder);
+            AddDefaultForeshore(builder);
 
             builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
             builder.AddDikeProfileSegment(10, 20, 20, 20);
@@ -1950,6 +1960,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultTimeStep(builder);
+            AddDefaultForeshore(builder);
 
             builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
             builder.AddDikeProfileSegment(10, 20, crestX, 25, 1.1);
@@ -1975,6 +1986,29 @@ namespace DiKErnel.Integration.Test
             Assert.That(events[1].Message, Is.Not.Empty);
         }
 
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithoutForeshore_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
+            const double x = 5;
+
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                x, topLayerType);
+            
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndEvent(
+                result, "Foreshore must be added.");
+        }
+        
         [Test]
         public void
             GivenBuilderWithFullyConfiguredGrassWaveRunupBattjesGroenenDijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
@@ -2006,6 +2040,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
+            AddDefaultForeshore(builder);
             builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
 
             // When
@@ -2053,6 +2088,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
+            AddDefaultForeshore(builder);
             builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
 
             // When
@@ -2099,6 +2135,7 @@ namespace DiKErnel.Integration.Test
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
+            AddDefaultForeshore(builder);
             builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
 
             // When

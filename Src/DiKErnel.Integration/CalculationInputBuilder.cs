@@ -53,9 +53,10 @@ namespace DiKErnel.Integration
 
         private readonly double dikeOrientation;
 
-        private Foreshore foreshore = new Foreshore(double.NaN, double.NaN);
+        private Foreshore foreshore;
 
         private bool grassWaveOvertoppingLocationAdded;
+        private bool grassWaveRunupBattjesGroenendijkAnalyticalLocationAdded;
 
         /// <summary>
         /// Creates a new instance.
@@ -182,8 +183,10 @@ namespace DiKErnel.Integration
             GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
+
+            grassWaveRunupBattjesGroenendijkAnalyticalLocationAdded = true;
         }
-        
+
         /// <summary>
         /// Adds a natural stone wave impact location.
         /// </summary>
@@ -206,6 +209,7 @@ namespace DiKErnel.Integration
                 return new DataResult<ICalculationInput>(EventRegistry.Flush());
             }
 
+            foreshore ??= new Foreshore(double.NaN, double.NaN);
             ProfileData profileData = ProfileDataFactory.Create(dikeOrientation, profileDataFactorySegments,
                                                                 profileDataFactoryPoints, foreshore);
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
@@ -241,6 +245,7 @@ namespace DiKErnel.Integration
 
             return ValidateProfileSegments()
                    && ValidateCharacteristicPoints(outerToe, outerCrest, innerToe)
+                   && ValidateForeshore(grassWaveRunupBattjesGroenendijkAnalyticalLocationAdded)
                    && ValidateLocations(outerToe, outerCrest, innerToe)
                    && ValidateTimeSteps();
         }
@@ -333,6 +338,22 @@ namespace DiKErnel.Integration
             return false;
         }
 
+        private bool ValidateForeshore(bool isRequired)
+        {
+            if (!isRequired)
+            {
+                return true;
+            }
+
+            if (foreshore == null)
+            {
+                RegisterValidationError("Foreshore must be added.");
+                return false;
+            }
+
+            return true;
+        }
+
         private ProfileDataFactoryPoint GetProfileDataFactoryPointForCharacteristicPointType(
             CharacteristicPointType characteristicPointType)
         {
@@ -416,7 +437,7 @@ namespace DiKErnel.Integration
                    && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
                    && ValidateOvertoppingAdapterProperties(outerToe, outerCrest);
         }
-        
+
         private bool ValidateGrassWaveRunupBattjesGroenenDijkAnalyticalLocationConstructionProperties(
             GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
