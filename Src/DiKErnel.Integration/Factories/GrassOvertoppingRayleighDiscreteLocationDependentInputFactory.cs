@@ -26,7 +26,7 @@ namespace DiKErnel.Integration.Factories
     internal static class GrassOvertoppingRayleighDiscreteLocationDependentInputFactory
     {
         public static GrassOvertoppingRayleighDiscreteLocationDependentInput CreateLocationDependentInput(
-            GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
+            GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
             IGrassCumulativeOverloadTopLayerDefaults topLayerDefaults =
                 GrassCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);

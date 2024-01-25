@@ -247,7 +247,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassOvertoppingRayleighDiscreteLocationConstructionProperties
+        private static GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties
             CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
                 JsonInputGrassOvertoppingRayleighDiscreteLocationData locationData,
                 JsonInputGrassOvertoppingRayleighDiscreteCalculationData calculationData)
@@ -257,7 +257,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
             JsonInputGrassOvertoppingRayleighDiscreteAccelerationAlphaAData accelerationAlphaAData =
                 calculationData?.AccelerationAlphaAData;
 
-            return new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            return new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 locationData.X, ConvertGrassTopLayerType(locationData.TopLayerType))
             {
                 InitialDamage = locationData.InitialDamage,

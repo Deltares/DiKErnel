@@ -117,7 +117,7 @@ namespace DiKErnel.Integration.Test
                     builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
                     builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
                     builder.AddGrassOvertoppingRayleighDiscreteLocation(
-                        new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                        new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                             locationX, Random.NextEnumValue<GrassTopLayerType>()));
                 },
                 "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
@@ -454,7 +454,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.InnerCrest);
             builder.AddGrassOvertoppingRayleighDiscreteLocation(
-                new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                     endPointX - Random.NextDouble(), GrassTopLayerType.ClosedSod));
 
             // When
@@ -477,7 +477,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.InnerToe);
             builder.AddGrassOvertoppingRayleighDiscreteLocation(
-                new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                     endPointX - Random.NextDouble(), GrassTopLayerType.ClosedSod));
 
             // When
@@ -1013,7 +1013,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 45, topLayerType);
 
             const double innerCrestX = 30;
@@ -1041,7 +1041,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 45, topLayerType);
 
             const double outerToeX = 0;
@@ -1080,7 +1080,7 @@ namespace DiKErnel.Integration.Test
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 45, topLayerType);
 
             const double outerToeX = 0;
@@ -1134,7 +1134,7 @@ namespace DiKErnel.Integration.Test
             double accelerationAlphaAForInnerSlope = Random.NextDouble();
             double dikeHeight = Random.NextDouble();
 
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType)
             {
                 InitialDamage = initialDamage,
@@ -1208,7 +1208,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
             const double x = 45;
 
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
 
             const double innerCrestX = 30;
@@ -1267,7 +1267,7 @@ namespace DiKErnel.Integration.Test
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
             const double x = 45;
 
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
 
             const double innerCrestX = 30;

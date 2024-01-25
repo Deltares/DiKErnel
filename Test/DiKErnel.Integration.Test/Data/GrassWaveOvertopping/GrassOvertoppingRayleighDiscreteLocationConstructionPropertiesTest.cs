@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
             double x = Random.NextDouble();
 
             // Call
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
 
             // Assert
@@ -75,7 +75,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
             double accelerationAlphaAForInnerSlope = Random.NextDouble();
             double dikeHeight = Random.NextDouble();
 
-            var constructionProperties = new GrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
 
             // When
