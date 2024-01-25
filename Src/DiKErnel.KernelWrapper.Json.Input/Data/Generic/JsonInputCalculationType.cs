@@ -26,8 +26,8 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic
         [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeAsphaltWaveImpact)]
         AsphaltWaveImpact,
 
-        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeGrassOvertopping)]
-        GrassOvertopping,
+        [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeGrassWaveOvertopping)]
+        GrassWaveOvertopping,
 
         [EnumMember(Value = JsonInputDefinitions.CalculationMethodTypeGrassWaveImpact)]
         GrassWaveImpact,

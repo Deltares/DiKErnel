@@ -347,7 +347,7 @@ namespace DiKErnel.Integration
                                  asphaltWaveImpactLocationConstructionProperties, outerToe, outerCrest):
                     case GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties
                         grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties
-                        when !ValidateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+                        when !ValidateGrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                                  grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties, outerToe,
                                  outerCrest, innerToe):
                     case GrassWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
@@ -376,7 +376,7 @@ namespace DiKErnel.Integration
                                                             constructionProperties.X);
         }
 
-        private bool ValidateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
+        private bool ValidateGrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
             GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
         {
