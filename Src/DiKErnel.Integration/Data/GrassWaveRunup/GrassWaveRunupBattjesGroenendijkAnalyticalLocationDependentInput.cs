@@ -144,22 +144,20 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
         private double CalculateCumulativeOverload(ITimeDependentInput timeDependentInput, IProfileData profileData)
         {
-            // Get bottom foreshore z and slope foreshore from the IProfileData
-            double bottomForeshoreZ = double.NaN;
-            double slopeForeshore = double.NaN;
+            Foreshore foreshore = profileData.Foreshore;
 
             return GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(
                 new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(averageNumberOfWaves,
                                                                                       representativeWaveRunup2P,
                                                                                       timeDependentInput.WaterLevel,
                                                                                       timeDependentInput.WaveHeightHm0,
-                                                                                      verticalDistanceWaterLevelElevation, bottomForeshoreZ,
-                                                                                      slopeForeshore, CriticalFrontVelocity,
-                                                                                      FrontVelocityCu, IncreasedLoadTransitionAlphaM,
+                                                                                      verticalDistanceWaterLevelElevation, 
+                                                                                      foreshore.Slope, foreshore.Slope,
+                                                                                      CriticalFrontVelocity, FrontVelocityCu,
+                                                                                      IncreasedLoadTransitionAlphaM,
                                                                                       ReducedStrengthTransitionAlphaS,
                                                                                       Constants.GravitationalAcceleration,
-                                                                                      Constants.K1,
-                                                                                      Constants.K2));
+                                                                                      Constants.K1, Constants.K2));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)
