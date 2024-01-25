@@ -30,19 +30,5 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveRunup
             // Call & Assert
             Assert.That(GrassWaveRunupBattjesGroenendijkAnalyticalDefaults.FrontVelocityCu, Is.EqualTo(1.1));
         }
-
-        [Test]
-        public void K1_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassWaveRunupBattjesGroenendijkAnalyticalDefaults.K1, Is.EqualTo(2));
-        }
-
-        [Test]
-        public void K2_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassWaveRunupBattjesGroenendijkAnalyticalDefaults.K2, Is.EqualTo(3.6));
-        }
     }
 }

@@ -27,5 +27,15 @@ namespace DiKErnel.DomainLibrary
         /// Gets the gravitational acceleration [m/s^2].
         /// </summary>
         public static double GravitationalAcceleration => 9.81;
+
+        /// <summary>
+        /// Gets the default value of the K1 constant [-].
+        /// </summary>
+        public static double K1 => 2;
+
+        /// <summary>
+        /// Gets the default value of the K2 constant [-].
+        /// </summary>
+        public static double K2 => 3.6;
     }
 }

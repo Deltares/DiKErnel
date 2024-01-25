@@ -28,15 +28,5 @@ namespace DiKErnel.DomainLibrary.Defaults.GrassWaveRunup
         /// Gets the default value of the Cu coefficient [-].
         /// </summary>
         public static double FrontVelocityCu => 1.1;
-
-        /// <summary>
-        /// Gets the default value of the K1 constant [-].
-        /// </summary>
-        public static double K1 => 2;
-
-        /// <summary>
-        /// Gets the default value of the K2 constant [-].
-        /// </summary>
-        public static double K2 => 3.6;
     }
 }

@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.DomainLibrary.Defaults.GrassWaveRunup;
+using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.Grass;
 using DiKErnel.DomainLibrary.Validators.GrassWaveRunup;
@@ -27,7 +27,6 @@ using DiKErnel.FunctionLibrary.Grass;
 using DiKErnel.FunctionLibrary.GrassWaveRunup;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
-using MathNet.Numerics;
 
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
@@ -158,10 +157,9 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                                                       slopeForeshore, CriticalFrontVelocity,
                                                                                       FrontVelocityCu, IncreasedLoadTransitionAlphaM,
                                                                                       ReducedStrengthTransitionAlphaS,
-                                                                                      Constants.GravitationalConstant,
-                                                                                      GrassWaveRunupBattjesGroenendijkAnalyticalDefaults.K1,
-                                                                                      GrassWaveRunupBattjesGroenendijkAnalyticalDefaults
-                                                                                          .K2));
+                                                                                      Constants.GravitationalAcceleration,
+                                                                                      Constants.K1,
+                                                                                      Constants.K2));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)

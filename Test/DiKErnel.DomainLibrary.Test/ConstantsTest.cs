@@ -29,5 +29,19 @@ namespace DiKErnel.DomainLibrary.Test
             // Call & Assert
             Assert.That(Constants.GravitationalAcceleration, Is.EqualTo(9.81));
         }
+
+        [Test]
+        public void K1_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(Constants.K1, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void K2_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(Constants.K2, Is.EqualTo(3.6));
+        }
     }
 }
