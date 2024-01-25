@@ -276,6 +276,62 @@ namespace DiKErnel.System.Test
 
         [Test]
         public void
+            GivenCalculationInputWithInvalidGrassWaveRunupBattjesGroenendijkAnalyticalLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+        {
+            // Given
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                15, GrassTopLayerType.ClosedSod)
+            {
+                InitialDamage = -0.1,
+                FailureNumber = -1,
+                CriticalCumulativeOverload = -2,
+                CriticalFrontVelocity = -1,
+                IncreasedLoadTransitionAlphaM = -11,
+                ReducedStrengthTransitionAlphaS = -3,
+                AverageNumberOfWavesCtm = 0,
+                FrontVelocityCu = -1
+            };
+
+            var builder = new CalculationInputBuilder(0);
+            builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+            builder.AddDikeProfileSegment(10, 5, 20, 10);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddForeshore(1, -10);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
+
+            // Then
+            Assert.That(validationResult.Successful, Is.True);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(9));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("ForeshoreSlope must be in range [0.004, 0.05]."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("CriticalCumulativeOverload must be larger than 0."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("FrontVelocityCu must be larger than 0."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("CriticalFrontVelocity must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[6].Message, Is.EqualTo("IncreasedLoadTransitionAlphaM must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("ReducedStrengthTransitionAlphaS must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
+
+        }
+
+        [Test]
+        public void
             GivenCalculationInputWithInvalidGrassWaveOvertoppingRayleighDiscreteLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
