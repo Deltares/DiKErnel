@@ -1841,6 +1841,299 @@ namespace DiKErnel.Integration.Test
 
         #endregion
 
+        #region Grass wave run-up Battjes-Groenendijk analytical
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 0;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
+                        new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                            locationX, GrassTopLayerType.ClosedSod));
+                }, locationX);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            const double locationX = 10;
+
+            GivenOuterSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
+                        new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                            locationX, GrassTopLayerType.ClosedSod));
+                }, locationX);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
+
+            double x = Random.NextDouble();
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                x, topLayerType);
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndEvent(
+                result, $"The location with position {NumericsHelper.ToString(x)} has an invalid top layer type.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                15, topLayerType);
+
+            const double outerToeX = 0;
+            const double crestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultTimeStep(builder);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
+            builder.AddDikeProfileSegment(10, 20, 20, 20);
+            builder.AddDikeProfileSegment(20, 20, crestX, 10);
+            builder.AddDikeProfileSegment(crestX, 10, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, innerToeX, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.False);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.That(events, Has.Count.EqualTo(1));
+            Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[0].Message, Is.Not.Empty);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                15, topLayerType);
+
+            const double outerToeX = 0;
+            const double crestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultTimeStep(builder);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
+            builder.AddDikeProfileSegment(10, 20, crestX, 25, 1.1);
+            builder.AddDikeProfileSegment(crestX, 25, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, 50, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.False);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.That(events, Has.Count.EqualTo(2));
+            Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[0].Message, Is.Not.Empty);
+            Assert.That(events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[1].Message, Is.Not.Empty);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithFullyConfiguredGrassWaveRunupBattjesGroenenDijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
+            const double x = 5;
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
+            double criticalCumulativeOverload = Random.NextDouble();
+            double criticalFrontVelocity = Random.NextDouble();
+            double increasedLoadTransitionAlphaM = Random.NextDouble();
+            double reducedStrengthTransitionAlphaS = Random.NextDouble();
+            double averageNumberOfWavesCtm = Random.NextDouble();
+            double frontVelocityCu = Random.NextDouble();
+
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                x, topLayerType)
+            {
+                InitialDamage = initialDamage,
+                FailureNumber = failureNumber,
+                CriticalCumulativeOverload = criticalCumulativeOverload,
+                CriticalFrontVelocity = criticalFrontVelocity,
+                IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM,
+                ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS,
+                AverageNumberOfWavesCtm = averageNumberOfWavesCtm,
+                FrontVelocityCu = frontVelocityCu
+            };
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput;
+            Assert.That(locationDependentInput, Is.Not.Null);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                initialDamage, failureNumber, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                averageNumberOfWavesCtm, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertFrontVelocity(
+                criticalFrontVelocity, frontVelocityCu, locationDependentInput);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupBattjesGroenenDijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInpu()
+        {
+            // Given
+            const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
+            const double x = 5;
+
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                x, topLayerType);
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput;
+            Assert.That(locationDependentInput, Is.Not.Null);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertFrontVelocity(
+                6.6, 1.1, locationDependentInput);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithNotFullyConfiguredOpenSodGrasWaveRunupBattjesGroenenDijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
+            const double x = 5;
+
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                x, topLayerType);
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput;
+            Assert.That(locationDependentInput, Is.Not.Null);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, locationDependentInput);
+
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertFrontVelocity(
+                4.3, 1.1, locationDependentInput);
+        }
+
+        #endregion
+
         #region Natural stone wave impact
 
         [Test]

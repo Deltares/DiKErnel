@@ -174,6 +174,17 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
+        /// Adds a grass wave run-up Battjes-Groenendijk analytical location.
+        /// </summary>
+        /// <param name="constructionProperties">The properties to construct the grass wave
+        /// run-up Battjes-Groenendijk analytical location dependent input.</param>
+        public void AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties constructionProperties)
+        {
+            AddLocation(constructionProperties);
+        }
+        
+        /// <summary>
         /// Adds a natural stone wave impact location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the natural
