@@ -18,10 +18,10 @@
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Definitions
 {
-    internal static class JsonOutputGrassRevetmentDefinitions
+    internal static class JsonOutputGrassWaveImpactDefinitions
     {
-        public const string VerticalDistanceWaterLevelElevation = "verticaleAfstandWaterstandHoogteLocatie";
-        public const string RepresentativeWaveRunup2P = "representatieve2p";
-        public const string CumulativeOverload = "cumulatieveOverbelasting";
+        public const string MaximumWaveHeight = "maximumGolfhoogte";
+        public const string MinimumWaveHeight = "minimumGolfhoogte";
+        public const string WaveHeightImpact = "impactGolfhoogte";
     }
 }

@@ -71,31 +71,31 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
         public double Z { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.Resistance, Order = -2)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.Resistance, Order = -2)]
         public double Resistance { get; }
 
         [JsonProperty(JsonOutputDefinitions.OuterSlope)]
         public IReadOnlyList<double> OuterSlope { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeUpperLevel)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.SlopeUpperLevel)]
         public IReadOnlyList<double> SlopeUpperLevel { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeUpperPosition)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.SlopeUpperPosition)]
         public IReadOnlyList<double> SlopeUpperPosition { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeLowerLevel)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.SlopeLowerLevel)]
         public IReadOnlyList<double> SlopeLowerLevel { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SlopeLowerPosition)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.SlopeLowerPosition)]
         public IReadOnlyList<double> SlopeLowerPosition { get; }
 
         [JsonProperty(JsonOutputDefinitions.HydraulicLoad)]
         public IReadOnlyList<bool> LoadingRevetment { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.SurfSimilarityParameter)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.SurfSimilarityParameter)]
         public IReadOnlyList<double> SurfSimilarityParameter { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.WaveSteepnessDeepWater)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.WaveSteepnessDeepWater)]
         public IReadOnlyList<double> WaveSteepnessDeepWater { get; }
 
         [JsonProperty(JsonOutputDefinitions.UpperLimitLoading)]
@@ -104,16 +104,16 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.LowerLimitLoading)]
         public IReadOnlyList<double> LowerLimitLoading { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.DepthMaximumWaveLoad)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.DepthMaximumWaveLoad)]
         public IReadOnlyList<double> DepthMaximumWaveLoad { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.DistanceMaximumWaveElevation)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.DistanceMaximumWaveElevation)]
         public IReadOnlyList<double> DistanceMaximumWaveElevation { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.NormativeWidthWaveImpact)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.NormativeWidthWaveImpact)]
         public IReadOnlyList<double> NormativeWidthOfWaveImpact { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.HydraulicLoad)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.HydraulicLoad)]
         public IReadOnlyList<double?> HydraulicLoad { get; }
 
         [JsonProperty(JsonOutputDefinitions.WaveAngle)]
@@ -122,10 +122,10 @@ namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
         [JsonProperty(JsonOutputDefinitions.WaveAngleImpact)]
         public IReadOnlyList<double?> WaveAngleImpact { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.ReferenceTimeDegradation)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.ReferenceTimeDegradation)]
         public IReadOnlyList<double?> ReferenceTimeDegradation { get; }
 
-        [JsonProperty(JsonOutputNaturalStoneRevetmentDefinitions.ReferenceDegradation)]
+        [JsonProperty(JsonOutputNaturalStoneWaveImpactDefinitions.ReferenceDegradation)]
         public IReadOnlyList<double?> ReferenceDegradation { get; }
     }
 }
