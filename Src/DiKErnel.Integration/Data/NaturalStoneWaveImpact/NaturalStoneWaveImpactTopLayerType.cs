@@ -19,7 +19,7 @@
 namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     /// <summary>
-    /// The top layer types for natural stone wave impact revetments.
+    /// The top layer types for natural stone wave impact calculations.
     /// </summary>
     public enum NaturalStoneWaveImpactTopLayerType
     {
