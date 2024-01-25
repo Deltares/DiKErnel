@@ -28,10 +28,10 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         : GrassWaveRunupLocationConstructionProperties
     {
         /// <inheritdoc/>
-        public GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(double x, 
+        public GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(double x,
                                                                                         GrassTopLayerType topLayerType)
             : base(x, topLayerType) {}
-        
+
         /// <summary>
         /// Gets or sets the Cu coefficient.
         /// </summary>

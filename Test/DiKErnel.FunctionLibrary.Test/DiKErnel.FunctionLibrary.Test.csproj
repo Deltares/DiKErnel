@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\Test.targets" />
+    <Import Project="$(SolutionDir)Development\Test.targets"/>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Src\DiKErnel.FunctionLibrary\DiKErnel.FunctionLibrary.csproj" />
-        <ProjectReference Include="..\DiKErnel.FunctionLibrary.TestUtil\DiKErnel.FunctionLibrary.TestUtil.csproj" />
-        <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj" />
+        <ProjectReference Include="..\..\Src\DiKErnel.FunctionLibrary\DiKErnel.FunctionLibrary.csproj"/>
+        <ProjectReference Include="..\DiKErnel.FunctionLibrary.TestUtil\DiKErnel.FunctionLibrary.TestUtil.csproj"/>
+        <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj"/>
     </ItemGroup>
 
 </Project>
