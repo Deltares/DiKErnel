@@ -28,21 +28,21 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveOvertopping
         public void FrontVelocityCwo_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
+            Assert.That(GrassWaveOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
         }
 
         [Test]
         public void AccelerationAlphaAForCrest_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
+            Assert.That(GrassWaveOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
         }
 
         [Test]
         public void AccelerationAlphaAForInnerSlope_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
+            Assert.That(GrassWaveOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
         }
     }
 }
