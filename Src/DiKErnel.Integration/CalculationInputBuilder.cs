@@ -224,7 +224,7 @@ namespace DiKErnel.Integration
 
         private bool ValidateProfileSegments()
         {
-            if (!profileDataFactorySegments.Any())
+            if (profileDataFactorySegments.Count == 0)
             {
                 RegisterValidationError("At least 1 profile segment is required.");
                 return false;
@@ -320,7 +320,7 @@ namespace DiKErnel.Integration
         private bool ValidateLocations(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
                                        ProfileDataFactoryPoint innerToe)
         {
-            if (!locationConstructionPropertiesItems.Any())
+            if (locationConstructionPropertiesItems.Count == 0)
             {
                 RegisterValidationError("At least 1 location is required.");
                 return false;
@@ -512,7 +512,7 @@ namespace DiKErnel.Integration
 
         private bool ValidateTimeSteps()
         {
-            if (!timeDependentInputFactoryDataItems.Any())
+            if (timeDependentInputFactoryDataItems.Count == 0)
             {
                 RegisterValidationError("At least 1 time step is required.");
                 return false;
