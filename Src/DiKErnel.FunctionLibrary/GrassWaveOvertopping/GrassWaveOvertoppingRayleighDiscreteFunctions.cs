@@ -22,9 +22,9 @@ using DiKErnel.FunctionLibrary.Grass;
 namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 {
     /// <summary>
-    /// Class that holds grass overtopping Rayleigh discrete calculation routines.
+    /// Class that holds grass wave overtopping Rayleigh discrete calculation routines.
     /// </summary>
-    public static class GrassOvertoppingRayleighDiscreteFunctions
+    public static class GrassWaveOvertoppingRayleighDiscreteFunctions
     {
         /// <summary>
         /// Calculates the cumulative overload.
