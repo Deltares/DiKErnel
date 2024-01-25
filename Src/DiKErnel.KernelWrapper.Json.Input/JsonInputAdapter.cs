@@ -223,8 +223,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
                 FailureNumber = calculationData?.FailureNumber,
                 DensityOfWater = calculationData?.DensityOfWater,
                 AverageNumberOfWavesCtm = calculationData?.FactorCtm,
-                FatigueAlpha = fatigueData?.FatigueAlpha,
-                FatigueBeta = fatigueData?.FatigueBeta,
+                FatigueAlpha = fatigueData?.Alpha,
+                FatigueBeta = fatigueData?.Beta,
                 StiffnessRelationNu = topLayerData?.StiffnessRelationNu,
                 ImpactNumberC = calculationData?.ImpactNumberC,
                 WidthFactors = calculationData?.WidthFactors?
