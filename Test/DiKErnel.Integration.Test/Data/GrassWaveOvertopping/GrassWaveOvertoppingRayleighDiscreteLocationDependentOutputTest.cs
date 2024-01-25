@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
 {
     [TestFixture]
-    public class GrassOvertoppingRayleighDiscreteLocationDependentOutputTest
+    public class GrassWaveOvertoppingRayleighDiscreteLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -33,7 +33,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassOvertoppingRayleighDiscreteLocationDependentOutput(timeDependentOutputItems);
+            var output = new GrassWaveOvertoppingRayleighDiscreteLocationDependentOutput(timeDependentOutputItems);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

@@ -22,12 +22,12 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 {
     /// <summary>
-    /// Location dependent output of a grass overtopping Rayleigh discrete calculation.
+    /// Location dependent output of a grass wave overtopping Rayleigh discrete calculation.
     /// </summary>
-    public class GrassOvertoppingRayleighDiscreteLocationDependentOutput : LocationDependentOutput
+    public class GrassWaveOvertoppingRayleighDiscreteLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
-        public GrassOvertoppingRayleighDiscreteLocationDependentOutput(
+        public GrassWaveOvertoppingRayleighDiscreteLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
             : base(timeDependentOutputItems) {}
     }

@@ -104,7 +104,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         asphaltWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
-                case GrassOvertoppingRayleighDiscreteLocationDependentOutput _:
+                case GrassWaveOvertoppingRayleighDiscreteLocationDependentOutput _:
                 {
                     IReadOnlyList<GrassWaveOvertoppingRayleighDiscreteTimeDependentOutput>
                         grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems =
