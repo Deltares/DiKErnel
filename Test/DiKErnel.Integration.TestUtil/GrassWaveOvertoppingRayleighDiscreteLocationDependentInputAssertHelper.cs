@@ -21,7 +21,7 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class GrassOvertoppingRayleighDiscreteLocationDependentInputAssertHelper
+    internal static class GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper
     {
         public static void AssertGeneralProperties(double? dikeHeight,
                                                    GrassWaveOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
