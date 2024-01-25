@@ -41,6 +41,12 @@ namespace DiKErnel.Integration.TestUtil
             Assert.That(actualCharacteristicPoint.CharacteristicPointType, Is.EqualTo(expectedCharacteristicPointType));
         }
 
+        public static void AssertForeshore(double slope, double bottomZ, Foreshore actualForeshore)
+        {
+            Assert.That(actualForeshore.Slope, Is.EqualTo(slope));
+            Assert.That(actualForeshore.BottomZ, Is.EqualTo(bottomZ));
+        }
+
         private static void AssertProfilePoint(double expectedX, double expectedZ, ProfilePoint actualProfilePoint)
         {
             Assert.That(actualProfilePoint.X, Is.EqualTo(expectedX));

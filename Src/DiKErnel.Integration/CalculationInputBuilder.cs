@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
@@ -52,6 +53,8 @@ namespace DiKErnel.Integration
             new List<LocationConstructionProperties>();
 
         private readonly double dikeOrientation;
+
+        private Foreshore foreshore = new Foreshore(double.NaN, double.NaN);
 
         private bool grassOvertoppingLocationAdded;
 
@@ -100,6 +103,16 @@ namespace DiKErnel.Integration
             AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, (double?) roughnessCoefficient);
         }
 
+        /// <summary>
+        /// Adds a foreshore.
+        /// </summary>
+        /// <param name="slope">The slope of the foreshore.</param>
+        /// <param name="bottomZ">The z coordinate at bottom of the foreshore.</param>
+        public void AddForeshore(double slope, double bottomZ)
+        {
+            foreshore = new Foreshore(slope, bottomZ);
+        }
+        
         /// <summary>
         /// Adds a time step.
         /// </summary>
@@ -184,7 +197,7 @@ namespace DiKErnel.Integration
             }
 
             ProfileData profileData = ProfileDataFactory.Create(dikeOrientation, profileDataFactorySegments,
-                                                                profileDataFactoryPoints);
+                                                                profileDataFactoryPoints, foreshore);
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems =
                 LocationDependentInputFactory.Create(locationConstructionPropertiesItems);
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems =

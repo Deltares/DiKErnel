@@ -31,11 +31,12 @@ namespace DiKErnel.Integration.Data
         private readonly List<ProfilePoint> profilePoints = new List<ProfilePoint>();
 
         public ProfileData(double dikeOrientation, IReadOnlyList<ProfileSegment> profileSegments,
-                           IReadOnlyList<CharacteristicPoint> characteristicPoints)
+                           IReadOnlyList<CharacteristicPoint> characteristicPoints, Foreshore foreshore)
         {
             DikeOrientation = dikeOrientation;
             ProfileSegments = profileSegments;
             CharacteristicPoints = characteristicPoints;
+            Foreshore = foreshore;
 
             profilePoints.Add(ProfileSegments[0].StartPoint);
             profilePoints.AddRange(ProfileSegments.Select(profileSegment => profileSegment.EndPoint));
@@ -46,6 +47,8 @@ namespace DiKErnel.Integration.Data
         public IReadOnlyList<ProfileSegment> ProfileSegments { get; }
 
         public IReadOnlyList<CharacteristicPoint> CharacteristicPoints { get; }
+
+        public Foreshore Foreshore { get; }
 
         public bool Validate()
         {

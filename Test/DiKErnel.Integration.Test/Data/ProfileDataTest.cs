@@ -108,7 +108,8 @@ namespace DiKErnel.Integration.Test.Data
                 new ProfileSegment(profilePoint2, profilePoint3, Random.NextDouble())
             };
 
-            var profileData = new ProfileData(Random.NextDouble(), profileSegmentsWithDescendingHeight, new List<CharacteristicPoint>());
+            var profileData = new ProfileData(Random.NextDouble(), profileSegmentsWithDescendingHeight, 
+                                              new List<CharacteristicPoint>(), CreateDefaultForeshore());
 
             // Call
             double verticalHeight = profileData.GetVerticalHeight(2.5);
@@ -307,7 +308,12 @@ namespace DiKErnel.Integration.Test.Data
                 new ProfileSegment(profilePoint2, profilePoint3, Random.NextDouble())
             };
 
-            return new ProfileData(Random.NextDouble(), profileSegments, new List<CharacteristicPoint>());
+            return new ProfileData(Random.NextDouble(), profileSegments, new List<CharacteristicPoint>(), CreateDefaultForeshore());
+        }
+
+        private static Foreshore CreateDefaultForeshore()
+        {
+            return new Foreshore(0.004, -4);
         }
     }
 }

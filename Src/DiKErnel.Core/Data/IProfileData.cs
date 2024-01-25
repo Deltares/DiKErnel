@@ -41,6 +41,11 @@ namespace DiKErnel.Core.Data
         IReadOnlyList<CharacteristicPoint> CharacteristicPoints { get; }
 
         /// <summary>
+        /// Gets the foreshore to use in the calculation.
+        /// </summary>
+        public Foreshore Foreshore { get; }
+
+        /// <summary>
         /// Performs validation on the data.
         /// </summary>
         /// <returns>Whether the validation was successful.</returns>

@@ -526,6 +526,50 @@ namespace DiKErnel.Integration.Test
 
         #endregion
 
+        #region Foreshore
+
+        [Test]
+        public void GivenBuilderWithForeshoreAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            double slope = Random.NextDouble();
+            double bottomZ = Random.NextDouble();
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
+                                                   Random.NextDouble(), GrassTopLayerType.ClosedSod));
+            builder.AddForeshore(slope, bottomZ);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            ProfileDataAssertHelper.AssertForeshore(slope, bottomZ, result.Data.ProfileData.Foreshore);
+        }
+
+        [Test]
+        public void GivenBuilderWithoutForeshoreAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddGrassWaveImpactLocation(new GrassWaveImpactLocationConstructionProperties(
+                                                   Random.NextDouble(), GrassTopLayerType.ClosedSod));
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            ProfileDataAssertHelper.AssertForeshore(double.NaN, double.NaN, result.Data.ProfileData.Foreshore);
+        }
+
+        #endregion
+
         #region Time steps
 
         [Test]
