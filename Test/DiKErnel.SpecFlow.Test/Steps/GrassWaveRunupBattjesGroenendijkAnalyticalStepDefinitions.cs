@@ -3,7 +3,7 @@
 namespace DiKErnel.SpecFlow.Test.Steps
 {
     [Binding]
-    public class BattjesGroenendijkAnalyticalStepDefinitions
+    public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions
     {
         [Given(@"the following tijdstippen:")]
         public void GivenTheFollowingTijdstippen(Table table)

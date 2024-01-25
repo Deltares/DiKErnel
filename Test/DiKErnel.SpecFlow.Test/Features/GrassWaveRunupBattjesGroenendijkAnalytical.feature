@@ -1,5 +1,5 @@
-﻿Feature: BattjesGroenendijkAnalytical
-	As a user I want to perform grass wave runup calculations based on Battjes-Groenendijk Analytical.
+﻿Feature: GrassWaveRunupBattjesGroenendijkAnalytical
+	As a user I want to perform grass wave run-up calculations based on Battjes-Groenendijk Analytical.
 	
 	Background: 
 		Given the following tijdstippen:
@@ -205,8 +205,8 @@
 		And the output value for <FoS> is
 		
 		Examples: 
-			| d | Dcrit | cumulatieveOverbelastingTijdstap | Fos   |
-			| 0.04 | 100   | 13755.272 | 0.007 |
-			| 0.1  | 10    | 5759.070  | 0.002 |
-			| 0.4  | 1     | 1031.437  | 0.001 |
-			| 10   | 1     | 21.453    | 0.047 |
+			| d    | Dcrit | cumulatieveOverbelastingTijdstap | Fos   |
+			| 0.04 | 100   | 13755.272                        | 0.007 |
+			| 0.1  | 10    | 5759.070                         | 0.002 |
+			| 0.4  | 1     | 1031.437                         | 0.001 |
+			| 10   | 1     | 21.453                           | 0.047 |
