@@ -23,16 +23,17 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
-    internal class JsonOutputGrassRevetmentWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
+    internal class JsonOutputGrassWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
     {
-        public JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
-                                                                     double minimumWaveHeight, double maximumWaveHeight,
-                                                                     IReadOnlyList<bool> loadingRevetment,
-                                                                     IReadOnlyList<double> upperLimitLoading,
-                                                                     IReadOnlyList<double> lowerLimitLoading,
-                                                                     IReadOnlyList<double?> waveAngle,
-                                                                     IReadOnlyList<double?> waveAngleImpact,
-                                                                     IReadOnlyList<double?> waveHeightImpact) : base(incrementDamage)
+        public JsonOutputGrassWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
+                                                            double minimumWaveHeight, double maximumWaveHeight,
+                                                            IReadOnlyList<bool> loadingRevetment,
+                                                            IReadOnlyList<double> upperLimitLoading,
+                                                            IReadOnlyList<double> lowerLimitLoading,
+                                                            IReadOnlyList<double?> waveAngle,
+                                                            IReadOnlyList<double?> waveAngleImpact,
+                                                            IReadOnlyList<double?> waveHeightImpact)
+            : base(incrementDamage)
         {
             Z = z;
             MinimumWaveHeight = minimumWaveHeight;

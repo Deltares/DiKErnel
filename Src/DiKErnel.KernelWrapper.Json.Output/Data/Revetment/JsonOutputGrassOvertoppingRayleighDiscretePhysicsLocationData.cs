@@ -23,24 +23,20 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
-    internal class JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData : JsonOutputPhysicsLocationData
+    internal class JsonOutputGrassOvertoppingRayleighDiscretePhysicsLocationData : JsonOutputPhysicsLocationData
     {
-        public JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
-                                                                            IReadOnlyList<double> verticalDistanceWaterLevelElevation,
-                                                                            IReadOnlyList<double?> representativeWaveRunup2P,
-                                                                            IReadOnlyList<double?> cumulativeOverload,
-                                                                            IReadOnlyList<double?> averageNumberOfWaves)
+        public JsonOutputGrassOvertoppingRayleighDiscretePhysicsLocationData(IReadOnlyList<double> incrementDamage,
+                                                                             IReadOnlyList<double> verticalDistanceWaterLevelElevation,
+                                                                             IReadOnlyList<double?> representativeWaveRunup2P,
+                                                                             IReadOnlyList<double?> cumulativeOverload,
+                                                                             IReadOnlyList<double?> averageNumberOfWaves)
             : base(incrementDamage)
         {
-            Z = z;
             VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;
             CumulativeOverload = cumulativeOverload;
             AverageNumberOfWaves = averageNumberOfWaves;
         }
-
-        [JsonProperty(JsonOutputDefinitions.Z, Order = -2)]
-        public double Z { get; }
 
         [JsonProperty(JsonOutputGrassDefinitions.VerticalDistanceWaterLevelElevation)]
         public IReadOnlyList<double> VerticalDistanceWaterLevelElevation { get; }

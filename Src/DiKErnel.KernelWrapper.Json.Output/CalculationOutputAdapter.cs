@@ -90,7 +90,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                .Cast<AsphaltWaveImpactTimeDependentOutput>()
                                                .ToList();
 
-                    return new JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(
+                    return new JsonOutputAsphaltWaveImpactPhysicsLocationData(
                         asphaltWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         asphaltWaveImpactLocationDependentOutput.Z,
@@ -112,7 +112,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                    .Cast<GrassOvertoppingRayleighDiscreteTimeDependentOutput>()
                                                    .ToList();
 
-                    return new JsonOutputGrassRevetmentOvertoppingPhysicsLocationData(
+                    return new JsonOutputGrassOvertoppingRayleighDiscretePhysicsLocationData(
                         grassOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         grassOvertoppingRayleighDiscreteTimeDependentOutputItems
@@ -131,7 +131,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                .Cast<GrassWaveImpactTimeDependentOutput>()
                                                .ToList();
 
-                    return new JsonOutputGrassRevetmentWaveImpactPhysicsLocationData(
+                    return new JsonOutputGrassWaveImpactPhysicsLocationData(
                         grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         grassWaveImpactLocationDependentOutput.Z,
@@ -158,7 +158,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                    .Cast<GrassWaveRunupRayleighDiscreteTimeDependentOutput>()
                                                    .ToList();
 
-                    return new JsonOutputGrassRevetmentWaveRunupRayleighPhysicsLocationData(
+                    return new JsonOutputGrassWaveRunupRayleighDiscretePhysicsLocationData(
                         grassWaveRunupRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         grassWaveRunupRayleighDiscreteLocationDependentOutput.Z,
@@ -178,7 +178,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                .Cast<NaturalStoneWaveImpactTimeDependentOutput>()
                                                .ToList();
 
-                    return new JsonOutputNaturalStoneRevetmentPhysicsLocationData(
+                    return new JsonOutputNaturalStoneWaveImpactPhysicsLocationData(
                         naturalStoneWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         naturalStoneWaveImpactLocationDependentOutput.Z,

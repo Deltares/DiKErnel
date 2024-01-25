@@ -23,28 +23,29 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
-    internal class JsonOutputNaturalStoneRevetmentPhysicsLocationData : JsonOutputPhysicsLocationData
+    internal class JsonOutputNaturalStoneWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
     {
-        public JsonOutputNaturalStoneRevetmentPhysicsLocationData(IReadOnlyList<double> incrementDamage,
-                                                                  double z, double resistance,
-                                                                  IReadOnlyList<double> outerSlope,
-                                                                  IReadOnlyList<double> slopeUpperLevel,
-                                                                  IReadOnlyList<double> slopeUpperPosition,
-                                                                  IReadOnlyList<double> slopeLowerLevel,
-                                                                  IReadOnlyList<double> slopeLowerPosition,
-                                                                  IReadOnlyList<bool> loadingRevetment,
-                                                                  IReadOnlyList<double> surfSimilarityParameter,
-                                                                  IReadOnlyList<double> waveSteepnessDeepWater,
-                                                                  IReadOnlyList<double> upperLimitLoading,
-                                                                  IReadOnlyList<double> lowerLimitLoading,
-                                                                  IReadOnlyList<double> depthMaximumWaveLoad,
-                                                                  IReadOnlyList<double> distanceMaximumWaveElevation,
-                                                                  IReadOnlyList<double> normativeWidthOfWaveImpact,
-                                                                  IReadOnlyList<double?> hydraulicLoad,
-                                                                  IReadOnlyList<double?> waveAngle,
-                                                                  IReadOnlyList<double?> waveAngleImpact,
-                                                                  IReadOnlyList<double?> referenceTimeDegradation,
-                                                                  IReadOnlyList<double?> referenceDegradation) : base(incrementDamage)
+        public JsonOutputNaturalStoneWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage,
+                                                                   double z, double resistance,
+                                                                   IReadOnlyList<double> outerSlope,
+                                                                   IReadOnlyList<double> slopeUpperLevel,
+                                                                   IReadOnlyList<double> slopeUpperPosition,
+                                                                   IReadOnlyList<double> slopeLowerLevel,
+                                                                   IReadOnlyList<double> slopeLowerPosition,
+                                                                   IReadOnlyList<bool> loadingRevetment,
+                                                                   IReadOnlyList<double> surfSimilarityParameter,
+                                                                   IReadOnlyList<double> waveSteepnessDeepWater,
+                                                                   IReadOnlyList<double> upperLimitLoading,
+                                                                   IReadOnlyList<double> lowerLimitLoading,
+                                                                   IReadOnlyList<double> depthMaximumWaveLoad,
+                                                                   IReadOnlyList<double> distanceMaximumWaveElevation,
+                                                                   IReadOnlyList<double> normativeWidthOfWaveImpact,
+                                                                   IReadOnlyList<double?> hydraulicLoad,
+                                                                   IReadOnlyList<double?> waveAngle,
+                                                                   IReadOnlyList<double?> waveAngleImpact,
+                                                                   IReadOnlyList<double?> referenceTimeDegradation,
+                                                                   IReadOnlyList<double?> referenceDegradation)
+            : base(incrementDamage)
         {
             Z = z;
             Resistance = resistance;

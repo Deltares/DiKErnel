@@ -23,13 +23,14 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
-    internal class JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
+    internal class JsonOutputAsphaltWaveImpactPhysicsLocationData : JsonOutputPhysicsLocationData
     {
-        public JsonOutputAsphaltRevetmentWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z, double outerSlope,
-                                                                       double logFlexuralStrength, double stiffnessRelation,
-                                                                       double computationalThickness, double equivalentElasticModulus,
-                                                                       IReadOnlyList<double> maximumPeakStress,
-                                                                       IReadOnlyList<double> averageNumberOfWaves)
+        public JsonOutputAsphaltWaveImpactPhysicsLocationData(IReadOnlyList<double> incrementDamage, double z,
+                                                              double outerSlope, double logFlexuralStrength,
+                                                              double stiffnessRelation, double computationalThickness,
+                                                              double equivalentElasticModulus,
+                                                              IReadOnlyList<double> maximumPeakStress,
+                                                              IReadOnlyList<double> averageNumberOfWaves)
             : base(incrementDamage)
         {
             Z = z;
