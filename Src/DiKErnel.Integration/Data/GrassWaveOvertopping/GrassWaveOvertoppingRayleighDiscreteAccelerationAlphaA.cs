@@ -18,9 +18,9 @@
 
 namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 {
-    internal class GrassOvertoppingRayleighDiscreteAccelerationAlphaA
+    internal class GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA
     {
-        public GrassOvertoppingRayleighDiscreteAccelerationAlphaA(double valueAtCrest, double valueAtInnerSlope)
+        public GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA(double valueAtCrest, double valueAtInnerSlope)
         {
             ValueAtCrest = valueAtCrest;
             ValueAtInnerSlope = valueAtInnerSlope;
