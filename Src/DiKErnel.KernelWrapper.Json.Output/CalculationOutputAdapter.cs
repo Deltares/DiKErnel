@@ -106,22 +106,22 @@ namespace DiKErnel.KernelWrapper.Json.Output
                 }
                 case GrassOvertoppingRayleighDiscreteLocationDependentOutput _:
                 {
-                    IReadOnlyList<GrassOvertoppingRayleighDiscreteTimeDependentOutput>
-                        grassOvertoppingRayleighDiscreteTimeDependentOutputItems =
+                    IReadOnlyList<GrassWaveOvertoppingRayleighDiscreteTimeDependentOutput>
+                        grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems =
                             locationDependentOutput.TimeDependentOutputItems
-                                                   .Cast<GrassOvertoppingRayleighDiscreteTimeDependentOutput>()
+                                                   .Cast<GrassWaveOvertoppingRayleighDiscreteTimeDependentOutput>()
                                                    .ToList();
 
                     return new JsonOutputGrassOvertoppingRayleighDiscretePhysicsLocationData(
-                        grassOvertoppingRayleighDiscreteTimeDependentOutputItems
+                        grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
-                        grassOvertoppingRayleighDiscreteTimeDependentOutputItems
+                        grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
-                        grassOvertoppingRayleighDiscreteTimeDependentOutputItems
+                        grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),
-                        grassOvertoppingRayleighDiscreteTimeDependentOutputItems
+                        grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.CumulativeOverload).ToList(),
-                        grassOvertoppingRayleighDiscreteTimeDependentOutputItems
+                        grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
                 case GrassWaveImpactLocationDependentOutput grassWaveImpactLocationDependentOutput:
