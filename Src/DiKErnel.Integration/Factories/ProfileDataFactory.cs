@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.Factories
             return new ProfileData(dikeOrientation, segments, CreateCharacteristicPoints(profilePoints, segments));
         }
 
-        private static IReadOnlyList<ProfileSegment> CreateProfileSegments(
+        private static List<ProfileSegment> CreateProfileSegments(
             IReadOnlyList<ProfileDataFactorySegment> profileSegments)
         {
             var segments = new List<ProfileSegment>();
@@ -59,9 +59,8 @@ namespace DiKErnel.Integration.Factories
             return segments;
         }
 
-        private static IReadOnlyList<CharacteristicPoint> CreateCharacteristicPoints(
-            IReadOnlyList<ProfileDataFactoryPoint> profilePoints,
-            IReadOnlyList<ProfileSegment> profileSegments)
+        private static List<CharacteristicPoint> CreateCharacteristicPoints(
+            IReadOnlyList<ProfileDataFactoryPoint> profilePoints, IReadOnlyList<ProfileSegment> profileSegments)
         {
             return profilePoints.Select(profilePoint => new CharacteristicPoint(
                                             GetMatchingPointOnSegment(profilePoint, profileSegments),
