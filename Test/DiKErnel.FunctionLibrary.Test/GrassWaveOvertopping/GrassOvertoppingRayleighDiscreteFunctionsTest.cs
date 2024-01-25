@@ -40,16 +40,16 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             const double accelerationAlphaA = 1.4;
             const double frontVelocityCwo = 1.45;
 
-            var input = new GrassOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
-                                                                                    representativeWaveRunup2P,
-                                                                                    fixedNumberOfWaves,
-                                                                                    verticalDistanceWaterLevelElevation,
-                                                                                    criticalFrontVelocity,
-                                                                                    increasedLoadTransitionAlphaM,
-                                                                                    reducedStrengthTransitionAlphaS,
-                                                                                    gravitationalAcceleration,
-                                                                                    accelerationAlphaA,
-                                                                                    frontVelocityCwo);
+            var input = new GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
+                                                                                        representativeWaveRunup2P,
+                                                                                        fixedNumberOfWaves,
+                                                                                        verticalDistanceWaterLevelElevation,
+                                                                                        criticalFrontVelocity,
+                                                                                        increasedLoadTransitionAlphaM,
+                                                                                        reducedStrengthTransitionAlphaS,
+                                                                                        gravitationalAcceleration,
+                                                                                        accelerationAlphaA,
+                                                                                        frontVelocityCwo);
 
             // Call
             double cumulativeOverload = GrassOvertoppingRayleighDiscreteFunctions.CumulativeOverload(input);

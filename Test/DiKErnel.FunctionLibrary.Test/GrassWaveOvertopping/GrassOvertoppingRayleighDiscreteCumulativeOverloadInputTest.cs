@@ -42,16 +42,16 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             double frontVelocityCwo = Random.NextDouble();
 
             // Call
-            var input = new GrassOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
-                                                                                    representativeWaveRunup2P,
-                                                                                    fixedNumberOfWaves,
-                                                                                    verticalDistanceWaterLevelElevation,
-                                                                                    criticalFrontVelocity,
-                                                                                    increasedLoadTransitionAlphaM,
-                                                                                    reducedStrengthTransitionAlphaS,
-                                                                                    gravitationalAcceleration,
-                                                                                    accelerationAlphaA,
-                                                                                    frontVelocityCwo);
+            var input = new GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
+                                                                                        representativeWaveRunup2P,
+                                                                                        fixedNumberOfWaves,
+                                                                                        verticalDistanceWaterLevelElevation,
+                                                                                        criticalFrontVelocity,
+                                                                                        increasedLoadTransitionAlphaM,
+                                                                                        reducedStrengthTransitionAlphaS,
+                                                                                        gravitationalAcceleration,
+                                                                                        accelerationAlphaA,
+                                                                                        frontVelocityCwo);
 
             // Assert
             Assert.That(input, Is.InstanceOf<GrassCumulativeOverloadInput>());
