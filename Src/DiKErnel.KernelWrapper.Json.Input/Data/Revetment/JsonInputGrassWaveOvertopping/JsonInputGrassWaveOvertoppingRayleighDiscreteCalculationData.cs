@@ -30,16 +30,16 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOve
         [JsonProperty(JsonInputDefinitions.TopLayers)]
         public IReadOnlyList<JsonInputGrassCumulativeOverloadTopLayerData> TopLayerData { get; private set; }
 
-        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.DikeHeight)]
+        [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.DikeHeight)]
         public double? DikeHeight { get; private set; }
 
-        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaA)]
-        public JsonInputGrassOvertoppingRayleighDiscreteAccelerationAlphaAData AccelerationAlphaAData { get; private set; }
+        [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaA)]
+        public JsonInputGrassWaveOvertoppingRayleighDiscreteAccelerationAlphaAData AccelerationAlphaAData { get; private set; }
 
         [JsonProperty(JsonInputGrassDefinitions.FixedNumberOfWaves)]
         public int? FixedNumberOfWaves { get; private set; }
 
-        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.FrontVelocityCwo)]
+        [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.FrontVelocityCwo)]
         public double? FrontVelocity { get; private set; }
 
         [JsonProperty(JsonInputDefinitions.FactorCtm)]

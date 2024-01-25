@@ -112,7 +112,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                    .Cast<GrassWaveOvertoppingRayleighDiscreteTimeDependentOutput>()
                                                    .ToList();
 
-                    return new JsonOutputGrassOvertoppingRayleighDiscretePhysicsLocationData(
+                    return new JsonOutputGrassWaveOvertoppingRayleighDiscretePhysicsLocationData(
                         grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         grassWaveOvertoppingRayleighDiscreteTimeDependentOutputItems

@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOvertopping
 {
-    internal class JsonInputGrassOvertoppingRayleighDiscreteAccelerationAlphaAData
+    internal class JsonInputGrassWaveOvertoppingRayleighDiscreteAccelerationAlphaAData
     {
-        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaACrest)]
+        [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaACrest)]
         public double? AccelerationAlphaAForCrest { get; private set; }
 
-        [JsonProperty(JsonInputGrassOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaAInnerSlope)]
+        [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaAInnerSlope)]
         public double? AccelerationAlphaAForInnerSlope { get; private set; }
     }
 }

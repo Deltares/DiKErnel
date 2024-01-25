@@ -23,13 +23,13 @@ using Newtonsoft.Json;
 
 namespace DiKErnel.KernelWrapper.Json.Output.Data.Revetment
 {
-    internal class JsonOutputGrassOvertoppingRayleighDiscretePhysicsLocationData : JsonOutputPhysicsLocationData
+    internal class JsonOutputGrassWaveOvertoppingRayleighDiscretePhysicsLocationData : JsonOutputPhysicsLocationData
     {
-        public JsonOutputGrassOvertoppingRayleighDiscretePhysicsLocationData(IReadOnlyList<double> incrementDamage,
-                                                                             IReadOnlyList<double> verticalDistanceWaterLevelElevation,
-                                                                             IReadOnlyList<double?> representativeWaveRunup2P,
-                                                                             IReadOnlyList<double?> cumulativeOverload,
-                                                                             IReadOnlyList<double?> averageNumberOfWaves)
+        public JsonOutputGrassWaveOvertoppingRayleighDiscretePhysicsLocationData(IReadOnlyList<double> incrementDamage,
+                                                                                 IReadOnlyList<double> verticalDistanceWaterLevelElevation,
+                                                                                 IReadOnlyList<double?> representativeWaveRunup2P,
+                                                                                 IReadOnlyList<double?> cumulativeOverload,
+                                                                                 IReadOnlyList<double?> averageNumberOfWaves)
             : base(incrementDamage)
         {
             VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;

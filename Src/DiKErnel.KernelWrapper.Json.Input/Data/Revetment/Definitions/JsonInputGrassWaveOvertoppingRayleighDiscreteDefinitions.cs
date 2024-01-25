@@ -18,7 +18,7 @@
 
 namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    internal static class JsonInputGrassOvertoppingRayleighDiscreteDefinitions
+    internal static class JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions
     {
         public const string AccelerationAlphaA = "versnellingAlfaA";
         public const string AccelerationAlphaACrest = "kruin";
