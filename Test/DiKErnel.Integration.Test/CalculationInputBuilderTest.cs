@@ -106,7 +106,7 @@ namespace DiKErnel.Integration.Test
         }
 
         private static void
-            GivenGrassOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+            GivenGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 double locationX)
         {
             GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
@@ -443,7 +443,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const double endPointX = 10;
@@ -466,7 +466,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const double endPointX = 10;
@@ -995,21 +995,21 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            GivenGrassOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
+            GivenGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
         }
 
         [Test]
         public void
-            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            GivenGrassOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
+            GivenGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
         }
 
         [Test]
         public void
-            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
@@ -1037,7 +1037,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1076,7 +1076,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassOvertoppingRayleighDiscreteLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1116,7 +1116,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithFullyConfiguredGrassOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+            GivenBuilderWithFullyConfiguredGrassWaveOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1202,7 +1202,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithNotFullyConfiguredClosedSodGrassOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
@@ -1261,7 +1261,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithNotFullyConfiguredOpenSodGrassOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+            GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveOvertoppingRayleighDiscreteLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
