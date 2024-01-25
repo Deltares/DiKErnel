@@ -22,7 +22,7 @@ using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data.Output
+namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
 {
     [TestFixture]
     public class GrassWaveRunupRayleighDiscreteLocationDependentOutputTest

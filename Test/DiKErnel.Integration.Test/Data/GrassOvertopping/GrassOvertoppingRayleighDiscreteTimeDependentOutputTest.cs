@@ -19,14 +19,14 @@
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
 using DiKErnel.Integration.Data.Grass;
-using DiKErnel.Integration.Data.GrassWaveRunup;
+using DiKErnel.Integration.Data.GrassOvertopping;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data.Output
+namespace DiKErnel.Integration.Test.Data.GrassOvertopping
 {
     [TestFixture]
-    public class GrassWaveRunupRayleighDiscreteTimeDependentOutputTest
+    public class GrassOvertoppingRayleighDiscreteTimeDependentOutputTest
     {
         [Test]
         public void Constructor_WithAllValuesSet_ExpectedValues()
@@ -52,7 +52,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(constructionProperties);
+            var output = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -81,7 +81,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             };
 
             // Call
-            var output = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(constructionProperties);
+            var output = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(constructionProperties);
 
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
@@ -95,7 +95,7 @@ namespace DiKErnel.Integration.Test.Data.Output
         }
 
         [Test]
-        public void Constructor_VerticalDistanceWaterLevelElevationNull_ThrowsInvalidTimeDependentOutputException()
+        public void ConstructorVerticalDistanceWaterLevelElevationNull_ThrowsInvalidTimeDependentOutputException()
         {
             // Setup
             var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
@@ -112,7 +112,7 @@ namespace DiKErnel.Integration.Test.Data.Output
             // Call
             void Call()
             {
-                var output = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(constructionProperties);
+                var output = new GrassOvertoppingRayleighDiscreteTimeDependentOutput(constructionProperties);
             }
 
             // Assert

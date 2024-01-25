@@ -22,7 +22,7 @@ using DiKErnel.Integration.Data.GrassOvertopping;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data
+namespace DiKErnel.Integration.Test.Data.GrassOvertopping
 {
     [TestFixture]
     public class GrassOvertoppingRayleighDiscreteLocationConstructionPropertiesTest

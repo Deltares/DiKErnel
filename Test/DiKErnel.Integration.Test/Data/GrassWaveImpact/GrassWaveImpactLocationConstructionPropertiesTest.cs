@@ -22,7 +22,7 @@ using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data
+namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
 {
     [TestFixture]
     public class GrassWaveImpactLocationConstructionPropertiesTest

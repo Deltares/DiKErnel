@@ -1,30 +1,32 @@
 // Copyright (C) Stichting Deltares and State of the Netherlands 2023. All rights reserved.
-// 
+//
 // This file is part of DiKErnel.
-// 
-// DiKErnel is free software: you can redistribute it and/or modify it under the terms of the
-// GNU Lesser General Public License as published by the Free Software Foundation, either
+//
+// This program is free software; you can redistribute it and/or modify it under the terms of
+// the GNU Lesser General Public License as published by the Free Software Foundation; either
 // version 3 of the License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 // without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License along with this
-// program. If not, see <http://www.gnu.org/licenses/>.
-// 
+// program; if not, see <https://www.gnu.org/licenses/>.
+//
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.Integration.Data;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.TestUtil;
+using NSubstitute;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data
+namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionPropertiesTest
+    public class GrassWaveRunupLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -34,11 +36,11 @@ namespace DiKErnel.Integration.Test.Data
             double x = Random.NextDouble();
 
             // Call
-            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+            var constructionProperties = Substitute.For<GrassWaveRunupLocationConstructionProperties>(
                 x, topLayerType);
 
             // Assert
-            Assert.That(constructionProperties, Is.InstanceOf<GrassWaveRunupLocationConstructionProperties>());
+            Assert.That(constructionProperties, Is.InstanceOf<LocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.That(constructionProperties.InitialDamage, Is.Null);
@@ -48,7 +50,6 @@ namespace DiKErnel.Integration.Test.Data
             Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.Null);
             Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.Null);
             Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.Null);
-            Assert.That(constructionProperties.FrontVelocityCu, Is.Null);
         }
 
         [Test]
@@ -64,10 +65,8 @@ namespace DiKErnel.Integration.Test.Data
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
-            double frontVelocityCu = Random.NextDouble();
 
-            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+            var constructionProperties = Substitute.For<GrassWaveRunupLocationConstructionProperties>(
                 x, topLayerType);
 
             // When
@@ -78,7 +77,6 @@ namespace DiKErnel.Integration.Test.Data
             constructionProperties.IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
             constructionProperties.ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
             constructionProperties.AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
-            constructionProperties.FrontVelocityCu = frontVelocityCu;
 
             // Then
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
@@ -90,7 +88,6 @@ namespace DiKErnel.Integration.Test.Data
             Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
             Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
-            Assert.That(constructionProperties.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
         }
     }
 }

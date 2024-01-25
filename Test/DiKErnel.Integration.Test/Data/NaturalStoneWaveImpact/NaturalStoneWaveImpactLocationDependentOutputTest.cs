@@ -18,41 +18,31 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.Integration.Data.AsphaltWaveImpact;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data.Output
+namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class AsphaltWaveImpactLocationDependentOutputTest
+    public class NaturalStoneWaveImpactLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
             double z = Random.NextDouble();
-            double outerSlope = Random.NextDouble();
-            double logFlexuralStrength = Random.NextDouble();
-            double stiffnessRelation = Random.NextDouble();
-            double computationalThickness = Random.NextDouble();
-            double equivalentElasticModulus = Random.NextDouble();
+            double resistance = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new AsphaltWaveImpactLocationDependentOutput(timeDependentOutputItems, z, outerSlope,
-                                                                      logFlexuralStrength, stiffnessRelation,
-                                                                      computationalThickness, equivalentElasticModulus);
+            var output = new NaturalStoneWaveImpactLocationDependentOutput(timeDependentOutputItems, z, resistance);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
             Assert.That(output.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
             Assert.That(output.Z, Is.EqualTo(z));
-            Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
-            Assert.That(output.LogFlexuralStrength, Is.EqualTo(logFlexuralStrength));
-            Assert.That(output.StiffnessRelation, Is.EqualTo(stiffnessRelation));
-            Assert.That(output.ComputationalThickness, Is.EqualTo(computationalThickness));
-            Assert.That(output.EquivalentElasticModulus, Is.EqualTo(equivalentElasticModulus));
+            Assert.That(output.Resistance, Is.EqualTo(resistance));
         }
     }
 }

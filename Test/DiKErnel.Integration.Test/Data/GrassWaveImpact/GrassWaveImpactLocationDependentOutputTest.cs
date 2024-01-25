@@ -18,26 +18,34 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.Integration.Data.GrassOvertopping;
+using DiKErnel.Integration.Data.GrassWaveImpact;
+using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data.Output
+namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassOvertoppingRayleighDiscreteLocationDependentOutputTest
+    public class GrassWaveImpactLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
+            double z = Random.NextDouble();
+            double minimumWaveHeight = Random.NextDouble();
+            double maximumWaveHeight = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassOvertoppingRayleighDiscreteLocationDependentOutput(timeDependentOutputItems);
+            var output = new GrassWaveImpactLocationDependentOutput(timeDependentOutputItems, z, minimumWaveHeight,
+                                                                    maximumWaveHeight);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
             Assert.That(output.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
+            Assert.That(output.Z, Is.EqualTo(z));
+            Assert.That(output.MinimumWaveHeight, Is.EqualTo(minimumWaveHeight));
+            Assert.That(output.MaximumWaveHeight, Is.EqualTo(maximumWaveHeight));
         }
     }
 }

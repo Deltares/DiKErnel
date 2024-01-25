@@ -21,7 +21,7 @@ using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data.Output
+namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
 {
     [TestFixture]
     public class NaturalStoneWaveImpactTimeDependentOutputConstructionPropertiesTest

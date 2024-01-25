@@ -18,34 +18,41 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.Integration.Data.GrassWaveImpact;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
 
-namespace DiKErnel.Integration.Test.Data.Output
+namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
 {
     [TestFixture]
-    public class GrassWaveImpactLocationDependentOutputTest
+    public class AsphaltWaveImpactLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Setup
             double z = Random.NextDouble();
-            double minimumWaveHeight = Random.NextDouble();
-            double maximumWaveHeight = Random.NextDouble();
+            double outerSlope = Random.NextDouble();
+            double logFlexuralStrength = Random.NextDouble();
+            double stiffnessRelation = Random.NextDouble();
+            double computationalThickness = Random.NextDouble();
+            double equivalentElasticModulus = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassWaveImpactLocationDependentOutput(timeDependentOutputItems, z, minimumWaveHeight,
-                                                                    maximumWaveHeight);
+            var output = new AsphaltWaveImpactLocationDependentOutput(timeDependentOutputItems, z, outerSlope,
+                                                                      logFlexuralStrength, stiffnessRelation,
+                                                                      computationalThickness, equivalentElasticModulus);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
             Assert.That(output.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
             Assert.That(output.Z, Is.EqualTo(z));
-            Assert.That(output.MinimumWaveHeight, Is.EqualTo(minimumWaveHeight));
-            Assert.That(output.MaximumWaveHeight, Is.EqualTo(maximumWaveHeight));
+            Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
+            Assert.That(output.LogFlexuralStrength, Is.EqualTo(logFlexuralStrength));
+            Assert.That(output.StiffnessRelation, Is.EqualTo(stiffnessRelation));
+            Assert.That(output.ComputationalThickness, Is.EqualTo(computationalThickness));
+            Assert.That(output.EquivalentElasticModulus, Is.EqualTo(equivalentElasticModulus));
         }
     }
 }
