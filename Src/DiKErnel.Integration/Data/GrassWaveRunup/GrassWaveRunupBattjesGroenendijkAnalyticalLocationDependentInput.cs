@@ -76,6 +76,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
+                GrassWaveRunupBattjesGroenendijkAnalyticalValidator.ForeshoreSlope(profileData.Foreshore.Slope),
                 GrassRayleighDiscreteValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
                 GrassWaveRunupRayleighDiscreteValidator.FrontVelocityCu(FrontVelocityCu),
                 GrassRayleighDiscreteValidator.CriticalFrontVelocity(CriticalFrontVelocity),
