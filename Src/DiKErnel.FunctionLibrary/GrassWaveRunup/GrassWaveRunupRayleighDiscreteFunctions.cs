@@ -22,7 +22,7 @@ using DiKErnel.FunctionLibrary.Grass;
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
-    /// Class that holds grass wave run-up Rayleigh Discrete calculation routines.
+    /// Class that holds grass wave run-up Rayleigh discrete calculation routines.
     /// </summary>
     public static class GrassWaveRunupRayleighDiscreteFunctions
     {

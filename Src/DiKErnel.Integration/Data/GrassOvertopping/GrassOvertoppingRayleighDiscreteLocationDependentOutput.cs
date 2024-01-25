@@ -22,7 +22,7 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     /// <summary>
-    /// Location dependent output of a grass overtopping Rayleigh Discrete calculation.
+    /// Location dependent output of a grass overtopping Rayleigh discrete calculation.
     /// </summary>
     public class GrassOvertoppingRayleighDiscreteLocationDependentOutput : LocationDependentOutput
     {

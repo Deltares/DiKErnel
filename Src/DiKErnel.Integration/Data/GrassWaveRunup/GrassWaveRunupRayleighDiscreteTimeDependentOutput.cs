@@ -23,7 +23,7 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
-    /// Time dependent output of a grass wave run-up Rayleigh Discrete calculation.
+    /// Time dependent output of a grass wave run-up Rayleigh discrete calculation.
     /// </summary>
     public class GrassWaveRunupRayleighDiscreteTimeDependentOutput : TimeDependentOutput
     {

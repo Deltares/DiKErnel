@@ -21,7 +21,7 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     /// <summary>
-    /// Construction properties to construct grass overtopping Rayleigh Discrete location
+    /// Construction properties to construct grass overtopping Rayleigh discrete location
     /// dependent input.
     /// </summary>
     public class GrassOvertoppingRayleighDiscreteLocationConstructionProperties : LocationConstructionProperties

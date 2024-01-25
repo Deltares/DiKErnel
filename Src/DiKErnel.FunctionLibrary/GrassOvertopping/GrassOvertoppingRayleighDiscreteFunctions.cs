@@ -22,7 +22,7 @@ using DiKErnel.FunctionLibrary.Grass;
 namespace DiKErnel.FunctionLibrary.GrassOvertopping
 {
     /// <summary>
-    /// Class that holds grass overtopping Rayleigh Discrete calculation routines.
+    /// Class that holds grass overtopping Rayleigh discrete calculation routines.
     /// </summary>
     public static class GrassOvertoppingRayleighDiscreteFunctions
     {

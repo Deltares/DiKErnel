@@ -19,7 +19,7 @@
 namespace DiKErnel.DomainLibrary.Defaults.GrassWaveRunup
 {
     /// <summary>
-    /// Class that contains default values for grass wave run-up Rayleigh Discrete
+    /// Class that contains default values for grass wave run-up Rayleigh discrete
     /// calculations.
     /// </summary>
     public static class GrassWaveRunupRayleighDiscreteDefaults

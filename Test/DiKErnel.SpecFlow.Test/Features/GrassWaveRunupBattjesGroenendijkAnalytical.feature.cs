@@ -36,7 +36,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "GrassWaveRunupBattjesGroenendijkAnalytical", "\tAs a user I want to perform grass wave run-up calculations based on Battjes-Groe" +
-                    "nendijk Analytical.", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "nendijk analytical.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

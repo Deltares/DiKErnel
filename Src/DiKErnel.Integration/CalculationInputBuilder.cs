@@ -128,10 +128,10 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
-        /// Adds a grass overtopping Rayleigh Discrete location.
+        /// Adds a grass overtopping Rayleigh discrete location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass
-        /// overtopping Rayleigh Discrete location dependent input.</param>
+        /// overtopping Rayleigh discrete location dependent input.</param>
         public void AddGrassOvertoppingRayleighDiscreteLocation(
             GrassOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties)
         {
@@ -151,10 +151,10 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
-        /// Adds a grass wave run-up Rayleigh Discrete location.
+        /// Adds a grass wave run-up Rayleigh discrete location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass wave
-        /// run-up Rayleigh Discrete location dependent input.</param>
+        /// run-up Rayleigh discrete location dependent input.</param>
         public void AddGrassWaveRunupRayleighDiscreteLocation(
             GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties)
         {

@@ -21,7 +21,7 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
     /// <summary>
-    /// Construction properties to construct grass wave run-up Rayleigh Discrete location
+    /// Construction properties to construct grass wave run-up Rayleigh discrete location
     /// dependent input.
     /// </summary>
     public class GrassWaveRunupRayleighDiscreteLocationConstructionProperties : GrassWaveRunupLocationConstructionProperties

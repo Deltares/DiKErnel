@@ -23,7 +23,7 @@ using DiKErnel.Integration.Data.Grass;
 namespace DiKErnel.Integration.Data.GrassOvertopping
 {
     /// <summary>
-    /// Time dependent output of a grass overtopping Rayleigh Discrete calculation.
+    /// Time dependent output of a grass overtopping Rayleigh discrete calculation.
     /// </summary>
     public class GrassOvertoppingRayleighDiscreteTimeDependentOutput : TimeDependentOutput
     {
