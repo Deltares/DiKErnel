@@ -368,6 +368,10 @@ namespace DiKErnel.Integration
                         grassWaveRunupRayleighDiscreteLocationConstructionProperties
                         when !ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                                  grassWaveRunupRayleighDiscreteLocationConstructionProperties, outerToe, outerCrest):
+                    case GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
+                        grassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
+                        when !ValidateGrassWaveRunupBattjesGroenenDijkAnalyticalLocationConstructionProperties(
+                                 grassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties, outerToe, outerCrest):
                     case NaturalStoneWaveImpactLocationConstructionProperties naturalStoneWaveImpactLocationConstructionProperties
                         when !ValidateNaturalStoneWaveImpactLocationConstructionProperties(
                                  naturalStoneWaveImpactLocationConstructionProperties, outerToe, outerCrest):
@@ -406,6 +410,15 @@ namespace DiKErnel.Integration
 
         private bool ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
             GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties,
+            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
+        {
+            return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
+                   && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
+                   && ValidateOvertoppingAdapterProperties(outerToe, outerCrest);
+        }
+        
+        private bool ValidateGrassWaveRunupBattjesGroenenDijkAnalyticalLocationConstructionProperties(
+            GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
