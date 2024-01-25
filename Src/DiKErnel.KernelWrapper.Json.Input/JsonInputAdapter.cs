@@ -146,12 +146,12 @@ namespace DiKErnel.KernelWrapper.Json.Input
                                     calculationDataItems, JsonInputCalculationType.AsphaltWaveImpact)));
                         break;
                     }
-                    case JsonInputGrassOvertoppingRayleighDiscreteLocationData grassWaveOvertoppingRayleighDiscreteLocationData:
+                    case JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData grassWaveOvertoppingRayleighDiscreteLocationData:
                     {
                         builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
                             CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
                                 grassWaveOvertoppingRayleighDiscreteLocationData,
-                                GetCalculationDefinition<JsonInputGrassOvertoppingRayleighDiscreteCalculationData>(
+                                GetCalculationDefinition<JsonInputGrassWaveOvertoppingRayleighDiscreteCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassWaveOvertopping)));
                         break;
                     }
@@ -249,8 +249,8 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
         private static GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties
             CreateGrassOvertoppingRayleighDiscreteLocationConstructionProperties(
-                JsonInputGrassOvertoppingRayleighDiscreteLocationData locationData,
-                JsonInputGrassOvertoppingRayleighDiscreteCalculationData calculationData)
+                JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData locationData,
+                JsonInputGrassWaveOvertoppingRayleighDiscreteCalculationData calculationData)
         {
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
                 calculationData?.TopLayerData?.FirstOrDefault(tld => tld.TopLayerType == locationData.TopLayerType);
