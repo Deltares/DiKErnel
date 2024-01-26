@@ -107,7 +107,7 @@ namespace DiKErnel.Integration
         /// Adds a foreshore.
         /// </summary>
         /// <param name="slope">The slope of the foreshore.</param>
-        /// <param name="bottomZ">The z coordinate at bottom of the foreshore.</param>
+        /// <param name="bottomZ">The z coordinate at the bottom of the foreshore.</param>
         public void AddForeshore(double slope, double bottomZ)
         {
             foreshore = new Foreshore(slope, bottomZ);

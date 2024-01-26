@@ -37,9 +37,8 @@ namespace DiKErnel.Integration.TestUtil
             Assert.That(locationDependentInput.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
         }
 
-        public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
-                                                      GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput
-                                                          locationDependentInput)
+        public static void AssertAverageNumberOfWaves(
+            double averageNumberOfWavesCtm, GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
         }
