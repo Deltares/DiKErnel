@@ -30,7 +30,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
     /// </summary>
     public static class GrassWaveRunupBattjesGroenendijkAnalyticalFunctions
     {
-        private const double verticalLimitWaveRunup3 = 1000000;
+        private const double verticalWaveRunupLimit3 = 1000000;
 
         private static readonly IReadOnlyList<(double, double)> lambdasRu1 = new[]
         {
@@ -191,37 +191,37 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             double scaledVerticalDistanceWaterLevelElevation =
                 ScaledVerticalDistanceWaterLevelElevation(input.VerticalDistanceWaterLevelElevation);
 
-            double verticalLimitWaveRunup2 = VerticalWaveRunupLimit2(scaledVerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+            double verticalWaveRunupLimit2 = VerticalWaveRunupLimit2(scaledVerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
 
-            double verticalLimitWaveRunup1 = VerticalWaveRunupLimit1(waveRunupTransition, verticalLimitWaveRunup2);
+            double verticalWaveRunupLimit1 = VerticalWaveRunupLimit1(waveRunupTransition, verticalWaveRunupLimit2);
 
-            double verticalLimitWaveRunup6 = VerticalWaveRunupLimit6(input.VerticalDistanceWaterLevelElevation,
+            double verticalWaveRunupLimit6 = VerticalWaveRunupLimit6(input.VerticalDistanceWaterLevelElevation,
                                                                      scaledVerticalDistanceWaterLevelElevation,
                                                                      lowerLimitWaveRunup);
 
-            double verticalLimitWaveRunup5 = VerticalWaveRunupLimit5(scaledVerticalDistanceWaterLevelElevation,
-                                                                     waveRunupTransition, verticalLimitWaveRunup6);
+            double verticalWaveRunupLimit5 = VerticalWaveRunupLimit5(scaledVerticalDistanceWaterLevelElevation,
+                                                                     waveRunupTransition, verticalWaveRunupLimit6);
 
-            double cumulativeOverLoad1 = DeltaCumulativeLoad(input, verticalLimitWaveRunup1, scalingParameterRu1, input.K1);
+            double cumulativeOverLoad1 = DeltaCumulativeLoad(input, verticalWaveRunupLimit1, scalingParameterRu1, input.K1);
 
-            double cumulativeOverLoad2 = DeltaCumulativeLoad(input, verticalLimitWaveRunup2, scalingParameterRu1, input.K1);
+            double cumulativeOverLoad2 = DeltaCumulativeLoad(input, verticalWaveRunupLimit2, scalingParameterRu1, input.K1);
 
-            double cumulativeOverLoad3 = DeltaCumulativeLoad(input, verticalLimitWaveRunup3, scalingParameterRu2, input.K2);
+            double cumulativeOverLoad3 = DeltaCumulativeLoad(input, verticalWaveRunupLimit3, scalingParameterRu2, input.K2);
 
-            double cumulativeOverLoad4 = DeltaCumulativeLoad(input, verticalLimitWaveRunup1, scalingParameterRu2, input.K2);
+            double cumulativeOverLoad4 = DeltaCumulativeLoad(input, verticalWaveRunupLimit1, scalingParameterRu2, input.K2);
 
             double cumulativeOverLoad5 =
-                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup5, scalingParameterRu1, input.K1);
+                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalWaveRunupLimit5, scalingParameterRu1, input.K1);
 
             double cumulativeOverLoad6 =
-                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup6, scalingParameterRu1, input.K1);
+                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalWaveRunupLimit6, scalingParameterRu1, input.K1);
 
             double cumulativeOverLoad7 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, scaledVerticalDistanceWaterLevelElevation, scalingParameterRu2,
                                                                   input.K2);
 
             double cumulativeOverLoad8 =
-                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup5, scalingParameterRu2, input.K2);
+                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalWaveRunupLimit5, scalingParameterRu2, input.K2);
 
             return input.AverageNumberOfWaves * (cumulativeOverLoad1 - cumulativeOverLoad2 +
                                                  cumulativeOverLoad3 - cumulativeOverLoad4 +
@@ -262,7 +262,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                   double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
             return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration *
-                   scalingParameterRu * ProbabilityBattjesGroenendijkAnalytical(k, verticalWaveRunupLimit / scalingParameterRu) +
+                   scalingParameterRu * Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
                    ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
@@ -273,14 +273,14 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         {
             return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *
                    ((4.0 * scalingParameterRu) / k *
-                    ProbabilityBattjesGroenendijkAnalytical(k, verticalWaveRunupLimit / scalingParameterRu) +
+                    Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
                     ((4.0 * input.VerticalDistanceWaterLevelElevation) / k) *
                     Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
                    ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
-        private static double ProbabilityBattjesGroenendijkAnalytical(double xi, double eta)
+        private static double Probability(double xi, double eta)
         {
             double probability = SpecialFunctions.GammaLowerRegularized(1 + 1 / xi, Math.Pow(eta, xi));
 
