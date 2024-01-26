@@ -188,33 +188,37 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
             double scalingParameterRu2 = ScalingParameterRu(waveRunupTransition, rootMeanSquareWaveRunup, LambdaRu2);
 
-            double verticalLimitWaveRunUp1 = VerticalWaveRunupLimit1(input.VerticalDistanceWaterLevelElevation,
-                                                                     upperLimitWaveRunup,
-                                                                     waveRunupTransition);
+            double scaledVerticalDistanceWaterLevelElevation =
+                ScaledVerticalDistanceWaterLevelElevation(input.VerticalDistanceWaterLevelElevation);
 
-            double cumulativeOverLoad1 = DeltaCumulativeLoad(input, verticalLimitWaveRunUp1, scalingParameterRu1, input.K1);
+            double verticalLimitWaveRunup2 = VerticalWaveRunupLimit2(scaledVerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
 
-            double verticalLimitWaveRunUp2 = VerticalWaveRunupLimit2(input.VerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+            double verticalLimitWaveRunup1 = VerticalWaveRunupLimit1(waveRunupTransition, verticalLimitWaveRunup2);
 
-            double cumulativeOverLoad2 = DeltaCumulativeLoad(input, verticalLimitWaveRunUp2, scalingParameterRu1, input.K1);
+            double verticalLimitWaveRunup6 = VerticalWaveRunupLimit6(input.VerticalDistanceWaterLevelElevation,
+                                                                     scaledVerticalDistanceWaterLevelElevation,
+                                                                     lowerLimitWaveRunup);
+
+            double verticalLimitWaveRunup5 = VerticalWaveRunupLimit5(scaledVerticalDistanceWaterLevelElevation,
+                                                                     waveRunupTransition, verticalLimitWaveRunup6);
+
+            double cumulativeOverLoad1 = DeltaCumulativeLoad(input, verticalLimitWaveRunup1, scalingParameterRu1, input.K1);
+
+            double cumulativeOverLoad2 = DeltaCumulativeLoad(input, verticalLimitWaveRunup2, scalingParameterRu1, input.K1);
 
             double cumulativeOverLoad3 = DeltaCumulativeLoad(input, verticalLimitWaveRunup3, scalingParameterRu2, input.K2);
 
-            double cumulativeOverLoad4 = DeltaCumulativeLoad(input, verticalLimitWaveRunUp1, scalingParameterRu2, input.K2);
-
-            double verticalLimitWaveRunup5 = VerticalWaveRunupLimit5(input.VerticalDistanceWaterLevelElevation,
-                                                                     lowerLimitWaveRunup, waveRunupTransition);
+            double cumulativeOverLoad4 = DeltaCumulativeLoad(input, verticalLimitWaveRunup1, scalingParameterRu2, input.K2);
 
             double cumulativeOverLoad5 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup5, scalingParameterRu1, input.K1);
 
-            double verticalLimitWaveRunup6 = VerticalWaveRunupLimit6(input.VerticalDistanceWaterLevelElevation, lowerLimitWaveRunup);
             double cumulativeOverLoad6 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup6, scalingParameterRu1, input.K1);
 
-            double verticalLimitWaveRunup7 = ScaledVerticalDistanceWaterLevelElevation(input.VerticalDistanceWaterLevelElevation);
             double cumulativeOverLoad7 =
-                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup7, scalingParameterRu2, input.K2);
+                DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, scaledVerticalDistanceWaterLevelElevation, scalingParameterRu2,
+                                                                  input.K2);
 
             double cumulativeOverLoad8 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalLimitWaveRunup5, scalingParameterRu2, input.K2);
@@ -225,32 +229,26 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                  cumulativeOverLoad7 - cumulativeOverLoad8);
         }
 
-        private static double VerticalWaveRunupLimit1(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup,
-                                                      double waveRunupTransition)
+        private static double VerticalWaveRunupLimit1(double waveRunupTransition, double verticalWaveRunupLimit2)
         {
-            return Math.Max(VerticalWaveRunupLimit2(verticalDistanceWaterLevelElevation, upperLimitWaveRunup), waveRunupTransition);
+            return Math.Max(verticalWaveRunupLimit2, waveRunupTransition);
         }
 
-        private static double VerticalWaveRunupLimit2(double verticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
+        private static double VerticalWaveRunupLimit2(double scaledVerticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
         {
-            return Math.Max(ScaledVerticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation), upperLimitWaveRunup);
+            return Math.Max(scaledVerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
         }
 
-        private static double VerticalWaveRunupLimit5(double verticalDistanceWaterLevelElevation, double lowerLimitWaveRunup,
-                                                      double waveRunupTransition)
+        private static double VerticalWaveRunupLimit5(double scaledVerticalDistanceWaterLevelElevation, double waveRunupTransition,
+                                                      double verticalWaveRunupLimit6)
         {
-            double scaledVerticalDistancesWaterLevelElevation =
-                ScaledVerticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation);
-
-            return Math.Max(VerticalWaveRunupLimit6(verticalDistanceWaterLevelElevation, lowerLimitWaveRunup),
-                            Math.Min(scaledVerticalDistancesWaterLevelElevation, waveRunupTransition));
+            return Math.Max(verticalWaveRunupLimit6, Math.Min(scaledVerticalDistanceWaterLevelElevation, waveRunupTransition));
         }
 
-        private static double VerticalWaveRunupLimit6(double verticalDistanceWaterLevelElevation, double lowerLimitWaveRunup)
+        private static double VerticalWaveRunupLimit6(double verticalDistanceWaterLevelElevation,
+                                                      double scaledVerticalDistanceWaterLevelElevation,
+                                                      double lowerLimitWaveRunup)
         {
-            double scaledVerticalDistanceWaterLevelElevation =
-                ScaledVerticalDistanceWaterLevelElevation(verticalDistanceWaterLevelElevation);
-
             return Math.Max(Math.Min(scaledVerticalDistanceWaterLevelElevation, lowerLimitWaveRunup),
                             verticalDistanceWaterLevelElevation);
         }
