@@ -1850,7 +1850,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupBattjesGroenendijkAnalyticalLocationWithXOnOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 0;
 
@@ -1858,7 +1858,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     AddDefaultForeshore(builder);
-                    builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
+                    builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(
                         new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
@@ -1866,7 +1866,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupBattjesGroenendijkAnalyticalLocationWithXOnOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             const double locationX = 10;
 
@@ -1874,7 +1874,7 @@ namespace DiKErnel.Integration.Test
                 builder =>
                 {
                     AddDefaultForeshore(builder);
-                    builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
+                    builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(
                         new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                             locationX, GrassTopLayerType.ClosedSod));
                 }, locationX);
@@ -1882,7 +1882,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupBattjesGroenendijkAnalyticalLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
@@ -1895,7 +1895,7 @@ namespace DiKErnel.Integration.Test
             AddDefaultProfileAndTimeStep(builder);
             AddDefaultForeshore(builder);
 
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1907,7 +1907,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupBattjesGroenendijkAnalyticalLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1931,7 +1931,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1947,7 +1947,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupBattjesGroenendijkAnalyticalLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1970,7 +1970,7 @@ namespace DiKErnel.Integration.Test
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -1988,7 +1988,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithGrassWaveRunupBattjesGroenenDijkAnalyticalLocationWithoutForeshore_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+            GivenBuilderWithGrassWaveRunupBattjesGroenendijkAnalyticalLocationWithoutForeshore_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -1999,7 +1999,7 @@ namespace DiKErnel.Integration.Test
             
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -2011,7 +2011,7 @@ namespace DiKErnel.Integration.Test
         
         [Test]
         public void
-            GivenBuilderWithFullyConfiguredGrassWaveRunupBattjesGroenenDijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+            GivenBuilderWithFullyConfiguredGrassWaveRunupBattjesGroenendijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
@@ -2041,7 +2041,7 @@ namespace DiKErnel.Integration.Test
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
             AddDefaultForeshore(builder);
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -2077,7 +2077,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupBattjesGroenenDijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInpu()
+            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveRunupBattjesGroenendijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInpu()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
@@ -2089,7 +2089,7 @@ namespace DiKErnel.Integration.Test
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
             AddDefaultForeshore(builder);
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();
@@ -2124,7 +2124,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithNotFullyConfiguredOpenSodGrasWaveRunupBattjesGroenenDijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+            GivenBuilderWithNotFullyConfiguredOpenSodGrasWaveRunupBattjesGroenendijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
@@ -2136,7 +2136,7 @@ namespace DiKErnel.Integration.Test
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
             AddDefaultForeshore(builder);
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             // When
             DataResult<ICalculationInput> result = builder.Build();

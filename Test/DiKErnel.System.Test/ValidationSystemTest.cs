@@ -298,7 +298,7 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddForeshore(1, -10);
-            builder.AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(constructionProperties);
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 

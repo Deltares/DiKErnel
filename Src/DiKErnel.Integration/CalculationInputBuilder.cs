@@ -179,7 +179,7 @@ namespace DiKErnel.Integration
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass wave
         /// run-up Battjes-Groenendijk analytical location dependent input.</param>
-        public void AddGrassWaveRunupBattjesGroenenDijkAnalyticalLocation(
+        public void AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(
             GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties constructionProperties)
         {
             AddLocation(constructionProperties);
@@ -391,7 +391,7 @@ namespace DiKErnel.Integration
                                  grassWaveRunupRayleighDiscreteLocationConstructionProperties, outerToe, outerCrest):
                     case GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
                         grassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
-                        when !ValidateGrassWaveRunupBattjesGroenenDijkAnalyticalLocationConstructionProperties(
+                        when !ValidateGrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                                  grassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties, outerToe, outerCrest):
                     case NaturalStoneWaveImpactLocationConstructionProperties naturalStoneWaveImpactLocationConstructionProperties
                         when !ValidateNaturalStoneWaveImpactLocationConstructionProperties(
@@ -438,7 +438,7 @@ namespace DiKErnel.Integration
                    && ValidateOvertoppingAdapterProperties(outerToe, outerCrest);
         }
 
-        private bool ValidateGrassWaveRunupBattjesGroenenDijkAnalyticalLocationConstructionProperties(
+        private bool ValidateGrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
             GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
