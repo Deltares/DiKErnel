@@ -162,6 +162,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (3.00, 1.630)
         };
 
+        private static readonly IInterpolation lambdaRu1Interpolator =
+            Interpolate.Linear(lambdasRu1.Select(x => x.Item1), lambdasRu1.Select(x => x.Item2));
+
+        private static readonly IInterpolation lambdaRu2Interpolator =
+            Interpolate.Linear(lambdasRu2.Select(x => x.Item1), lambdasRu2.Select(x => x.Item2));
+
         public static double CumulativeOverload(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input)
         {
             double upperLimitWaveRunup = UpperLimitWaveRunup(input.IncreasedLoadTransitionAlphaM,
@@ -300,26 +306,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static double LambdaRu1(double kappa)
         {
-            if (kappa > 3.0)
-            {
-                return 1.0;
-            }
-
-            IInterpolation interpolator = Interpolate.Linear(lambdasRu1.Select(x => x.Item1), lambdasRu1.Select(x => x.Item2));
-
-            return interpolator.Interpolate(kappa);
+            return kappa > 3.0 ? 1.0 : lambdaRu1Interpolator.Interpolate(kappa);
         }
 
         private static double LambdaRu2(double kappa)
         {
-            if (kappa > 3.0)
-            {
-                return Math.Pow(kappa, 4.0 / 9.0);
-            }
-
-            IInterpolation interpolator = Interpolate.Linear(lambdasRu2.Select(x => x.Item1), lambdasRu2.Select(x => x.Item2));
-
-            return interpolator.Interpolate(kappa);
+            return kappa > 3.0 ? Math.Pow(kappa, 4.0 / 9.0) : lambdaRu2Interpolator.Interpolate(kappa);
         }
 
         private static double RootMeanSquareWaveRunup(double representativeWaveRunup2P, double waveHeightHm0, double waterLevel,
