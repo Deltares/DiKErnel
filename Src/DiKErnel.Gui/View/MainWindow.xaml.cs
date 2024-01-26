@@ -120,7 +120,7 @@ namespace DiKErnel.Gui.View
         private void OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             // Set scroll position to end
-            if (e.OriginalSource is ScrollViewer scrollViewer && Math.Abs(e.ExtentHeightChange) > 0.0)
+            if (e.OriginalSource is ScrollViewer scrollViewer && Math.Abs(e.ExtentHeightChange) > 0d)
             {
                 scrollViewer.ScrollToBottom();
             }

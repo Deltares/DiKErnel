@@ -33,12 +33,12 @@ namespace DiKErnel.DomainLibrary.Validators
         /// otherwise.</returns>
         public static ValidationIssue InitialDamage(double initialDamage)
         {
-            if (initialDamage < 0.0)
+            if (initialDamage < 0d)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "InitialDamage must be equal to 0 or larger.");
             }
 
-            if (initialDamage >= 1.0)
+            if (initialDamage >= 1d)
             {
                 return new ValidationIssue(ValidationIssueType.Warning, "InitialDamage should be in range [0, 1}.");
             }
@@ -71,7 +71,7 @@ namespace DiKErnel.DomainLibrary.Validators
         /// otherwise.</returns>
         public static ValidationIssue AverageNumberOfWavesCtm(double averageNumberOfWavesCtm)
         {
-            if (averageNumberOfWavesCtm <= 0.0)
+            if (averageNumberOfWavesCtm <= 0d)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "AverageNumberOfWavesCtm must be larger than 0.");
             }

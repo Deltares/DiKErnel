@@ -113,7 +113,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel,
                                                          timeDependentInput.WaveHeightHm0);
 
-            var incrementDamage = 0.0;
+            var incrementDamage = 0d;
             double damage = initialDamage;
             double? timeOfFailure = null;
 

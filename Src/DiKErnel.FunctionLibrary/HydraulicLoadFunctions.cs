@@ -35,12 +35,12 @@ namespace DiKErnel.FunctionLibrary
         {
             double waveAngle = waveDirection - dikeOrientation;
 
-            if (waveAngle > 180.0)
+            if (waveAngle > 180d)
             {
                 return waveAngle - 360;
             }
 
-            if (waveAngle < -180.0)
+            if (waveAngle < -180d)
             {
                 return waveAngle + 360;
             }

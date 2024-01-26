@@ -33,7 +33,7 @@ namespace DiKErnel.DomainLibrary.Validators
         /// otherwise.</returns>
         public static ValidationIssue DikeOrientation(double dikeOrientation)
         {
-            if (dikeOrientation < 0.0 || dikeOrientation > 360.0)
+            if (dikeOrientation < 0d || dikeOrientation > 360d)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "Dike orientation must be in range [0, 360].");
             }
@@ -49,7 +49,7 @@ namespace DiKErnel.DomainLibrary.Validators
         /// <c>null</c> otherwise.</returns>
         public static ValidationIssue RoughnessCoefficient(double roughnessCoefficient)
         {
-            if (roughnessCoefficient < 0.5 || roughnessCoefficient > 1.0)
+            if (roughnessCoefficient < 0.5 || roughnessCoefficient > 1d)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "Roughness coefficient must be in range [0.5, 1].");
             }

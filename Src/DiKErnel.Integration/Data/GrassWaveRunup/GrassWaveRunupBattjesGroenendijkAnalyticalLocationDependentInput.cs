@@ -105,14 +105,14 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                                             ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
-            var incrementDamage = 0.0;
+            var incrementDamage = 0d;
             double damage = initialDamage;
             double? timeOfFailure = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 Z, timeDependentInput.WaterLevel);
 
-            if (verticalDistanceWaterLevelElevation >= 0.0)
+            if (verticalDistanceWaterLevelElevation >= 0d)
             {
                 double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                         timeDependentInput.EndTime);
@@ -203,7 +203,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
-            if (verticalDistanceWaterLevelElevation >= 0.0)
+            if (verticalDistanceWaterLevelElevation >= 0d)
             {
                 constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
                 constructionProperties.CumulativeOverload = cumulativeOverload;

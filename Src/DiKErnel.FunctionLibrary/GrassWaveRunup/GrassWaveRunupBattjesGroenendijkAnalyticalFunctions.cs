@@ -242,7 +242,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static double LowerLimitWaveRunup(double verticalWaterLevelDistance, double upperLimitWaveRunup)
         {
-            return (1 / 32.0) * (32 * verticalWaterLevelDistance + upperLimitWaveRunup +
+            return (1d / 32) * (32 * verticalWaterLevelDistance + upperLimitWaveRunup +
                                  Math.Sqrt(upperLimitWaveRunup) * Math.Sqrt(64 * verticalWaterLevelDistance + upperLimitWaveRunup));
         }
 
@@ -270,12 +270,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static double LambdaRu1(double kappa)
         {
-            return kappa > 3.0 ? 1.0 : lambdaRu1Interpolator.Interpolate(kappa);
+            return kappa > 3d ? 1 : lambdaRu1Interpolator.Interpolate(kappa);
         }
 
         private static double LambdaRu2(double kappa)
         {
-            return kappa > 3.0 ? Math.Pow(kappa, 4.0 / 9.0) : lambdaRu2Interpolator.Interpolate(kappa);
+            return kappa > 3d ? Math.Pow(kappa, 4d / 9) : lambdaRu2Interpolator.Interpolate(kappa);
         }
 
         private static double VerticalWaveRunupLimit2(double scaledVerticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
@@ -304,7 +304,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static double ScaledVerticalDistanceWaterLevelElevation(double verticalDistanceWaterLevelElevation)
         {
-            return (4.0 / 3.0) * verticalDistanceWaterLevelElevation;
+            return (4d / 3) * verticalDistanceWaterLevelElevation;
         }
 
         private static double DeltaCumulativeLoad(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
@@ -321,9 +321,9 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
             return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *
-                   ((4.0 * scalingParameterRu) / k *
+                   ((4 * scalingParameterRu) / k *
                     Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
-                    ((4.0 * input.VerticalDistanceWaterLevelElevation) / k) *
+                    ((4 * input.VerticalDistanceWaterLevelElevation) / k) *
                     Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
                    ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));

@@ -145,7 +145,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 Constants.GravitationalAcceleration);
 
             distanceMaximumWaveElevation = NaturalStoneWaveImpactFunctions.DistanceMaximumWaveElevation(
-                1.0, waveSteepnessDeepWater, timeDependentInput.WaveHeightHm0,
+                1d, waveSteepnessDeepWater, timeDependentInput.WaveHeightHm0,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax);
 
@@ -164,7 +164,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             loadingRevetment = CalculateLoadingRevetment(
                 timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0);
 
-            var incrementDamage = 0.0;
+            var incrementDamage = 0d;
             double damage = initialDamage;
             double? timeOfFailure = null;
 

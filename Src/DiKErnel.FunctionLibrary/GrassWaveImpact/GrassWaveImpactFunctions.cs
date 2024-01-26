@@ -104,7 +104,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveImpact
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactNwa, double waveAngleImpactQwa,
                                              double waveAngleImpactRwa)
         {
-            if (Math.Abs(waveAngle) <= 90.0)
+            if (Math.Abs(waveAngle) <= 90d)
             {
                 return Math.Max(Math.Pow(Math.Cos(GenericFunctions.Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
             }

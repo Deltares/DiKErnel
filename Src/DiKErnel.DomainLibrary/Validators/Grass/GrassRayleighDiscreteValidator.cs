@@ -34,7 +34,7 @@ namespace DiKErnel.DomainLibrary.Validators.Grass
         /// <c>null</c> otherwise.</returns>
         public static ValidationIssue CriticalCumulativeOverload(double criticalCumulativeOverload)
         {
-            if (criticalCumulativeOverload <= 0.0)
+            if (criticalCumulativeOverload <= 0d)
             {
                 return new ValidationIssue(ValidationIssueType.Error, "CriticalCumulativeOverload must be larger than 0.");
             }
@@ -94,7 +94,7 @@ namespace DiKErnel.DomainLibrary.Validators.Grass
 
         private static ValidationIssue ValidateEqualToOrLargerThanZero(double propertyToValidate, string propertyName)
         {
-            if (propertyToValidate < 0.0)
+            if (propertyToValidate < 0d)
             {
                 return new ValidationIssue(ValidationIssueType.Error, propertyName + " must be equal to 0 or larger.");
             }
