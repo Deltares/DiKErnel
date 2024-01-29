@@ -166,7 +166,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     }
                     case JsonInputGrassWaveRunupLocationData grassWaveRunupLocationData:
                     {
-                        GrassWaveRunupLocationConstructionProperties constructionProperties =
+                        GrassCumulativeOverloadLocationConstructionProperties constructionProperties =
                             CreateGrassWaveRunupLocationConstructionProperties(
                                 grassWaveRunupLocationData,
                                 GetCalculationDefinition<JsonInputGrassWaveRunupCalculationData>(
@@ -303,10 +303,10 @@ namespace DiKErnel.KernelWrapper.Json.Input
             };
         }
 
-        private static GrassWaveRunupLocationConstructionProperties CreateGrassWaveRunupLocationConstructionProperties(
+        private static GrassCumulativeOverloadLocationConstructionProperties CreateGrassWaveRunupLocationConstructionProperties(
             JsonInputGrassWaveRunupLocationData locationData, JsonInputGrassWaveRunupCalculationData calculationData)
         {
-            GrassWaveRunupLocationConstructionProperties constructionProperties;
+            GrassCumulativeOverloadLocationConstructionProperties constructionProperties;
 
             switch (calculationData?.ProtocolData?.ProtocolType)
             {

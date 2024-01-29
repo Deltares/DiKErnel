@@ -25,7 +25,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     /// analytical location dependent input.
     /// </summary>
     public class GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
-        : GrassWaveRunupLocationConstructionProperties
+        : GrassCumulativeOverloadLocationConstructionProperties
     {
         /// <inheritdoc/>
         public GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(double x,
