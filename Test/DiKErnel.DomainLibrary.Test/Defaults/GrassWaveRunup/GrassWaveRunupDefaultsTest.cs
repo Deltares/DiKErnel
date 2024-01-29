@@ -16,17 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.GrassWaveRunup
+using DiKErnel.DomainLibrary.Defaults.GrassWaveRunup;
+using NUnit.Framework;
+
+namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveRunup
 {
-    /// <summary>
-    /// Class that contains default values for grass wave run-up Rayleigh discrete
-    /// calculations.
-    /// </summary>
-    public static class GrassWaveRunupRayleighDiscreteDefaults
+    [TestFixture]
+    public class GrassWaveRunupDefaultsTest
     {
-        /// <summary>
-        /// Gets the default value of the Cu coefficient [-].
-        /// </summary>
-        public static double FrontVelocityCu => 1.1;
+        [Test]
+        public void FrontVelocityCu_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassWaveRunupDefaults.FrontVelocityCu, Is.EqualTo(1.1));
+        }
     }
 }
