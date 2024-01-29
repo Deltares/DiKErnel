@@ -50,7 +50,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.AverageNumberOfWavesCtm
                 ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
                 constructionProperties.FixedNumberOfWaves
-                ?? GrassCumulativeOverloadDefaults.FixedNumberOfWaves,
+                ?? GrassRayleighDiscreteDefaults.FixedNumberOfWaves,
                 constructionProperties.FrontVelocityCwo
                 ?? GrassWaveOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo,
                 accelerationAlphaA,

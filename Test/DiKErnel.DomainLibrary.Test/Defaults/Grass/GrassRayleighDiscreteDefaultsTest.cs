@@ -16,26 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-namespace DiKErnel.DomainLibrary.Defaults.Grass
+using DiKErnel.DomainLibrary.Defaults.Grass;
+using NUnit.Framework;
+
+namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
-    /// <summary>
-    /// Class that contains default values for grass cumulative overload calculations.
-    /// </summary>
-    public static class GrassCumulativeOverloadDefaults
+    [TestFixture]
+    public class GrassRayleighDiscreteDefaultsTest
     {
-        /// <summary>
-        /// Gets the default value of the increased load transition alpha M [-].
-        /// </summary>
-        public static double IncreasedLoadTransitionAlphaM => 1;
-
-        /// <summary>
-        /// Gets the default value of the reduced strength transition alpha S [-].
-        /// </summary>
-        public static double ReducedStrengthTransitionAlphaS => 1;
-
-        /// <summary>
-        /// Gets the default value of the Ctm coefficient [-].
-        /// </summary>
-        public static double AverageNumberOfWavesCtm => 0.92;
+        [Test]
+        public void FixedNumberOfWaves_ExpectedValue()
+        {
+            // Call & Assert
+            Assert.That(GrassRayleighDiscreteDefaults.FixedNumberOfWaves, Is.EqualTo(10000));
+        }
     }
 }

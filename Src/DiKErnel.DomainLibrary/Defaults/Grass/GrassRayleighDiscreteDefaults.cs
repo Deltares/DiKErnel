@@ -19,23 +19,13 @@
 namespace DiKErnel.DomainLibrary.Defaults.Grass
 {
     /// <summary>
-    /// Class that contains default values for grass cumulative overload calculations.
+    /// Class that contains default values for grass Rayleigh discrete calculations.
     /// </summary>
-    public static class GrassCumulativeOverloadDefaults
+    public static class GrassRayleighDiscreteDefaults
     {
         /// <summary>
-        /// Gets the default value of the increased load transition alpha M [-].
+        /// Gets the default value of the fixed number of waves [-].
         /// </summary>
-        public static double IncreasedLoadTransitionAlphaM => 1;
-
-        /// <summary>
-        /// Gets the default value of the reduced strength transition alpha S [-].
-        /// </summary>
-        public static double ReducedStrengthTransitionAlphaS => 1;
-
-        /// <summary>
-        /// Gets the default value of the Ctm coefficient [-].
-        /// </summary>
-        public static double AverageNumberOfWavesCtm => 0.92;
+        public static int FixedNumberOfWaves => 10000;
     }
 }

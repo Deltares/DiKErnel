@@ -44,12 +44,5 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
             // Call & Assert
             Assert.That(GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm, Is.EqualTo(0.92));
         }
-
-        [Test]
-        public void FixedNumberOfWaves_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(GrassCumulativeOverloadDefaults.FixedNumberOfWaves, Is.EqualTo(10000));
-        }
     }
 }
