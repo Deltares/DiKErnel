@@ -24,46 +24,13 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
     /// Construction properties to construct grass wave overtopping Rayleigh discrete
     /// location dependent input.
     /// </summary>
-    public class GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties : LocationConstructionProperties
+    public class GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties
+        : GrassCumulativeOverloadLocationConstructionProperties
     {
         /// <inheritdoc/>
-        /// <param name="topLayerType">The type of the top layer.</param>
         public GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(double x,
                                                                                   GrassTopLayerType topLayerType)
-            : base(x)
-        {
-            TopLayerType = topLayerType;
-        }
-
-        /// <summary>
-        /// Gets the type of the top layer.
-        /// </summary>
-        public GrassTopLayerType TopLayerType { get; }
-
-        /// <summary>
-        /// Gets or sets the critical cumulative overload.
-        /// </summary>
-        public double? CriticalCumulativeOverload { get; set; }
-
-        /// <summary>
-        /// Gets or sets the critical front velocity.
-        /// </summary>
-        public double? CriticalFrontVelocity { get; set; }
-
-        /// <summary>
-        /// Gets or sets the alpha M coefficient.
-        /// </summary>
-        public double? IncreasedLoadTransitionAlphaM { get; set; }
-
-        /// <summary>
-        /// Gets or sets the alpha S coefficient.
-        /// </summary>
-        public double? ReducedStrengthTransitionAlphaS { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Ctm coefficient.
-        /// </summary>
-        public double? AverageNumberOfWavesCtm { get; set; }
+            : base(x, topLayerType) {}
 
         /// <summary>
         /// Gets or sets the fixed number of waves.

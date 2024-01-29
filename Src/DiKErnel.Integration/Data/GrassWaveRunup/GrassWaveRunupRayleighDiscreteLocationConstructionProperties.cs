@@ -24,7 +24,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     /// Construction properties to construct grass wave run-up Rayleigh discrete location
     /// dependent input.
     /// </summary>
-    public class GrassWaveRunupRayleighDiscreteLocationConstructionProperties : GrassCumulativeOverloadLocationConstructionProperties
+    public class GrassWaveRunupRayleighDiscreteLocationConstructionProperties
+        : GrassCumulativeOverloadLocationConstructionProperties
     {
         /// <inheritdoc/>
         public GrassWaveRunupRayleighDiscreteLocationConstructionProperties(double x, GrassTopLayerType topLayerType)

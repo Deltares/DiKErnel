@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
                 x, topLayerType);
 
             // Assert
-            Assert.That(constructionProperties, Is.InstanceOf<LocationConstructionProperties>());
+            Assert.That(constructionProperties, Is.InstanceOf<GrassCumulativeOverloadLocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.That(constructionProperties.InitialDamage, Is.Null);
