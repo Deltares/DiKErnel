@@ -79,11 +79,11 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
             var validationIssues = new List<ValidationIssue>
             {
                 GrassWaveRunupBattjesGroenendijkAnalyticalValidator.ForeshoreSlope(profileData.Foreshore.Slope),
-                GrassRayleighDiscreteValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
-                GrassWaveRunupRayleighDiscreteValidator.FrontVelocityCu(FrontVelocityCu),
-                GrassRayleighDiscreteValidator.CriticalFrontVelocity(CriticalFrontVelocity),
-                GrassRayleighDiscreteValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
-                GrassRayleighDiscreteValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
+                GrassCumulativeOverloadValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
+                GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu),
+                GrassCumulativeOverloadValidator.CriticalFrontVelocity(CriticalFrontVelocity),
+                GrassCumulativeOverloadValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
+                GrassCumulativeOverloadValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
                 RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm)
             };
 

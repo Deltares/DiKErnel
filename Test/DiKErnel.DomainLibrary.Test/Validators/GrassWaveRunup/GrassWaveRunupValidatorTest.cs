@@ -25,12 +25,12 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassWaveRunupRayleighDiscreteValidatorTest
+    public class GrassWaveRunupValidatorTest
     {
         [Test]
         public void FrontVelocityCu_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassWaveRunupRayleighDiscreteValidator.FrontVelocityCu;
+            Func<double, ValidationIssue> validationFunc = GrassWaveRunupValidator.FrontVelocityCu;
 
             const string errorMessage = "FrontVelocityCu must be larger than 0.";
 

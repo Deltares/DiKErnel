@@ -25,12 +25,12 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.Grass
 {
     [TestFixture]
-    public class GrassRayleighDiscreteValidatorTest
+    public class GrassCumulativeOverloadValidatorTest
     {
         [Test]
         public void CriticalCumulativeOverload_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRayleighDiscreteValidator.CriticalCumulativeOverload;
+            Func<double, ValidationIssue> validationFunc = GrassCumulativeOverloadValidator.CriticalCumulativeOverload;
 
             const string errorMessage = "CriticalCumulativeOverload must be larger than 0.";
 
@@ -46,7 +46,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.Grass
         [Test]
         public void FixedNumberOfWaves_VariousScenarios_ExpectedValues()
         {
-            Func<int, ValidationIssue> validationFunc = GrassRayleighDiscreteValidator.FixedNumberOfWaves;
+            Func<int, ValidationIssue> validationFunc = GrassCumulativeOverloadValidator.FixedNumberOfWaves;
 
             const string errorMessage = "FixedNumberOfWaves must be larger than 0.";
 
@@ -62,7 +62,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.Grass
         [Test]
         public void CriticalFrontVelocity_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRayleighDiscreteValidator.CriticalFrontVelocity;
+            Func<double, ValidationIssue> validationFunc = GrassCumulativeOverloadValidator.CriticalFrontVelocity;
 
             const string errorMessage = "CriticalFrontVelocity must be equal to 0 or larger.";
 
@@ -78,7 +78,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.Grass
         [Test]
         public void IncreasedLoadTransitionAlphaM_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRayleighDiscreteValidator.IncreasedLoadTransitionAlphaM;
+            Func<double, ValidationIssue> validationFunc = GrassCumulativeOverloadValidator.IncreasedLoadTransitionAlphaM;
 
             const string errorMessage = "IncreasedLoadTransitionAlphaM must be equal to 0 or larger.";
 
@@ -94,7 +94,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.Grass
         [Test]
         public void ReducedStrengthTransitionAlphaS_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassRayleighDiscreteValidator.ReducedStrengthTransitionAlphaS;
+            Func<double, ValidationIssue> validationFunc = GrassCumulativeOverloadValidator.ReducedStrengthTransitionAlphaS;
 
             const string errorMessage = "ReducedStrengthTransitionAlphaS must be equal to 0 or larger.";
 

@@ -74,12 +74,12 @@ namespace DiKErnel.Integration.Data.Grass
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassRayleighDiscreteValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
-                GrassRayleighDiscreteValidator.CriticalFrontVelocity(CriticalFrontVelocity),
-                GrassRayleighDiscreteValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
-                GrassRayleighDiscreteValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
+                GrassCumulativeOverloadValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
+                GrassCumulativeOverloadValidator.CriticalFrontVelocity(CriticalFrontVelocity),
+                GrassCumulativeOverloadValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
+                GrassCumulativeOverloadValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
                 RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm),
-                GrassRayleighDiscreteValidator.FixedNumberOfWaves(FixedNumberOfWaves)
+                GrassCumulativeOverloadValidator.FixedNumberOfWaves(FixedNumberOfWaves)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

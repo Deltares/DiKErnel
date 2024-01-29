@@ -53,7 +53,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassWaveRunupRayleighDiscreteValidator.FrontVelocityCu(FrontVelocityCu)
+                GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
