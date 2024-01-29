@@ -64,7 +64,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double frontVelocityCu = Random.NextDouble();
 
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(

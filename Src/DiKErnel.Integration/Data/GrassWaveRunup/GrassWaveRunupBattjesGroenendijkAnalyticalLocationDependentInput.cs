@@ -60,7 +60,9 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         }
 
         public double CriticalCumulativeOverload { get; }
+
         public double FrontVelocityCu { get; }
+
         public double CriticalFrontVelocity { get; }
 
         public double IncreasedLoadTransitionAlphaM { get; }

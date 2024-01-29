@@ -2124,7 +2124,7 @@ namespace DiKErnel.Integration.Test
 
         [Test]
         public void
-            GivenBuilderWithNotFullyConfiguredOpenSodGrasWaveRunupBattjesGroenendijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+            GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveRunupBattjesGroenendijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
