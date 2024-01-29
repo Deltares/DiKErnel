@@ -347,7 +347,7 @@ namespace DiKErnel.Integration
 
             if (foreshore == null)
             {
-                RegisterValidationError("Foreshore must be added.");
+                RegisterValidationError("Foreshore is required.");
                 return false;
             }
 

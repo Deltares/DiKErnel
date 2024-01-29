@@ -2006,7 +2006,7 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(
-                result, "Foreshore must be added.");
+                result, "Foreshore is required.");
         }
         
         [Test]
