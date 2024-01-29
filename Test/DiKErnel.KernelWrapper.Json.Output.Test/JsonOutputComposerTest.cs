@@ -231,7 +231,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             var grassWaveOvertoppingRayleighDiscreteTimeDependentOutput =
                 new GrassWaveOvertoppingRayleighDiscreteTimeDependentOutput(
-                    new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
+                    new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
                     {
                         IncrementDamage = 0.6,
                         Damage = 0.7,
@@ -256,17 +256,18 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     WaveHeightImpact = 2.0
                 });
 
-            var grassWaveRunupRayleighDiscreteTimeDependentOutput = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(
-                new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
-                {
-                    IncrementDamage = 2.1,
-                    Damage = 2.2,
-                    TimeOfFailure = 2.3,
-                    VerticalDistanceWaterLevelElevation = 2.4,
-                    RepresentativeWaveRunup2P = 2.5,
-                    CumulativeOverload = 2.6,
-                    AverageNumberOfWaves = 2.7
-                });
+            var grassWaveRunupRayleighDiscreteTimeDependentOutput =
+                new GrassWaveRunupRayleighDiscreteTimeDependentOutput(
+                    new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
+                    {
+                        IncrementDamage = 2.1,
+                        Damage = 2.2,
+                        TimeOfFailure = 2.3,
+                        VerticalDistanceWaterLevelElevation = 2.4,
+                        RepresentativeWaveRunup2P = 2.5,
+                        CumulativeOverload = 2.6,
+                        AverageNumberOfWaves = 2.7
+                    });
 
             var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneWaveImpactTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
@@ -332,7 +333,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
 
             var grassWaveOvertoppingRayleighDiscreteTimeDependentOutput =
                 new GrassWaveOvertoppingRayleighDiscreteTimeDependentOutput(
-                    new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
+                    new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
                     {
                         IncrementDamage = 0.5,
                         Damage = 0.6,
@@ -349,13 +350,14 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     LowerLimitLoading = 1.1
                 });
 
-            var grassWaveRunupRayleighDiscreteTimeDependentOutput = new GrassWaveRunupRayleighDiscreteTimeDependentOutput(
-                new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
-                {
-                    IncrementDamage = 1.2,
-                    Damage = 1.3,
-                    VerticalDistanceWaterLevelElevation = 1.4
-                });
+            var grassWaveRunupRayleighDiscreteTimeDependentOutput =
+                new GrassWaveRunupRayleighDiscreteTimeDependentOutput(
+                    new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
+                    {
+                        IncrementDamage = 1.2,
+                        Damage = 1.3,
+                        VerticalDistanceWaterLevelElevation = 1.4
+                    });
 
             var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneWaveImpactTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties

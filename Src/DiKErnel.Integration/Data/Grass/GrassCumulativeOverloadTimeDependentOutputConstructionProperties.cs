@@ -21,9 +21,9 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.Grass
 {
     /// <summary>
-    /// Construction properties to construct grass Rayleigh discrete time dependent output.
+    /// Construction properties to construct grass cumulative overload time dependent output.
     /// </summary>
-    public class GrassRayleighDiscreteTimeDependentOutputConstructionProperties
+    public class GrassCumulativeOverloadTimeDependentOutputConstructionProperties
         : TimeDependentOutputConstructionProperties
     {
         /// <summary>

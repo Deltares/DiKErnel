@@ -174,10 +174,10 @@ namespace DiKErnel.Integration.Data.Grass
                                                profileData.DikeOrientation));
         }
 
-        private GrassRayleighDiscreteTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, double? timeOfFailure)
         {
-            var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,

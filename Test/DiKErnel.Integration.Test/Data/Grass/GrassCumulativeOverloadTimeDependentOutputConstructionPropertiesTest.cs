@@ -24,13 +24,13 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Grass
 {
     [TestFixture]
-    public class GrassRayleighDiscreteTimeDependentOutputConstructionPropertiesTest
+    public class GrassCumulativeOverloadTimeDependentOutputConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()
         {
             // Call
-            var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties();
+            var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties();
 
             // Assert
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
@@ -56,7 +56,7 @@ namespace DiKErnel.Integration.Test.Data.Grass
             double averageNumberOfWaves = Random.NextDouble();
 
             // When
-            var constructionProperties = new GrassRayleighDiscreteTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
