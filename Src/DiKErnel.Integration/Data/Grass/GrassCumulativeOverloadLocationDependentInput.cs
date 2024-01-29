@@ -22,7 +22,6 @@ using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.Grass;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.Grass;
-using DiKErnel.Integration.Data.GrassWaveOvertopping;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
@@ -122,7 +121,7 @@ namespace DiKErnel.Integration.Data.Grass
                 }
             }
 
-            return new GrassWaveOvertoppingRayleighDiscreteTimeDependentOutput(
+            return new GrassCumulativeOverloadTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
