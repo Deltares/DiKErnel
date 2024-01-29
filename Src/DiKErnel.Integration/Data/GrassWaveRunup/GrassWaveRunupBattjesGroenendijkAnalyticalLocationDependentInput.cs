@@ -142,7 +142,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                 }
             }
 
-            return new GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutput(
+            return new GrassCumulativeOverloadTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
         }
 
