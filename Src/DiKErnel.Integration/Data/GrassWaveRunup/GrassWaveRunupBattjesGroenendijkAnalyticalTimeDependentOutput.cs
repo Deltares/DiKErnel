@@ -18,6 +18,7 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.Grass;
 
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
@@ -28,7 +29,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     public class GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutput : TimeDependentOutput
     {
         public GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutput(
-            GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties constructionProperties)
+            GrassCumulativeOverloadTimeDependentOutputConstructionProperties constructionProperties)
             : base(constructionProperties)
         {
             VerticalDistanceWaterLevelElevation = constructionProperties.VerticalDistanceWaterLevelElevation

@@ -18,6 +18,7 @@
 
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Exceptions;
+using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
@@ -40,7 +41,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
             double averageNumberOfWaves = Random.NextDouble();
 
             var constructionProperties =
-                new GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties
+                new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = incrementDamage,
                     Damage = damage,
@@ -74,7 +75,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
 
             var constructionProperties =
-                new GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties
+                new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = incrementDamage,
                     Damage = damage,
@@ -100,7 +101,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
         {
             // Setup
             var constructionProperties =
-                new GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties
+                new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
                 {
                     IncrementDamage = Random.NextDouble(),
                     Damage = Random.NextDouble(),

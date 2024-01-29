@@ -25,6 +25,7 @@ using DiKErnel.DomainLibrary.Validators.GrassWaveRunup;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.Grass;
 using DiKErnel.FunctionLibrary.GrassWaveRunup;
+using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
@@ -188,10 +189,10 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                Z, profileData.DikeOrientation));
         }
 
-        private GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties CreateConstructionProperties(
+        private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(
             double incrementDamage, double damage, double? timeOfFailure)
         {
-            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalTimeDependentOutputConstructionProperties
+            var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
