@@ -18,7 +18,6 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.Grass;
@@ -149,17 +148,11 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
             Foreshore foreshore = profileData.Foreshore;
 
             return GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(
-                new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(averageNumberOfWaves,
-                                                                                      representativeWaveRunup2P,
-                                                                                      timeDependentInput.WaterLevel,
-                                                                                      timeDependentInput.WaveHeightHm0,
-                                                                                      verticalDistanceWaterLevelElevation, 
-                                                                                      foreshore.Slope, foreshore.Slope,
-                                                                                      CriticalFrontVelocity, FrontVelocityCu,
-                                                                                      IncreasedLoadTransitionAlphaM,
-                                                                                      ReducedStrengthTransitionAlphaS,
-                                                                                      NaturalConstants.GravitationalAcceleration,
-                                                                                      NaturalConstants.K1, NaturalConstants.K2));
+                new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
+                    averageNumberOfWaves, representativeWaveRunup2P, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                    verticalDistanceWaterLevelElevation, foreshore.Slope, foreshore.Slope, CriticalFrontVelocity, FrontVelocityCu,
+                    IncreasedLoadTransitionAlphaM, ReducedStrengthTransitionAlphaS, NaturalConstants.GravitationalAcceleration,
+                    GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K1, GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K2));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)
