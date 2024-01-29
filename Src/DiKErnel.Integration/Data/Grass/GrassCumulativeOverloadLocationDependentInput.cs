@@ -28,7 +28,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.Grass
 {
-    internal abstract class GrassRayleighDiscreteLocationDependentInput : LocationDependentInput
+    internal abstract class GrassCumulativeOverloadLocationDependentInput : LocationDependentInput
     {
         private readonly List<double> xValuesProfile = new List<double>();
         private readonly List<double> zValuesProfile = new List<double>();
@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Data.Grass
         private double cumulativeOverload = double.NaN;
         private double averageNumberOfWaves = double.NaN;
 
-        protected GrassRayleighDiscreteLocationDependentInput(double x, double initialDamage, double failureNumber,
+        protected GrassCumulativeOverloadLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                               double criticalCumulativeOverload,
                                                               double criticalFrontVelocity,
                                                               double increasedLoadTransitionAlphaM,

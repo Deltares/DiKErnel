@@ -168,9 +168,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 64.9, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0.0006, 0.45, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
-            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1.5, 0.8, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
-            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.99, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7213, 5000, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
@@ -357,9 +357,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 50.98, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0, 1, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
-            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
-            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
@@ -373,9 +373,9 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 57.698, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 0, 1, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
-            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
-            GrassRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
