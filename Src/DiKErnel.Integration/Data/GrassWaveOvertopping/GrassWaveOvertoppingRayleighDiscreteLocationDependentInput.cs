@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Constants;
+using DiKErnel.DomainLibrary.Validators.Grass;
 using DiKErnel.DomainLibrary.Validators.GrassWaveOvertopping;
 using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
 using DiKErnel.Integration.Data.Grass;
@@ -40,14 +41,16 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             double averageNumberOfWavesCtm, int fixedNumberOfWaves, double frontVelocityCwo,
             GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA accelerationAlphaA, double? enforcedDikeHeight)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
-                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
-                   fixedNumberOfWaves)
+                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
+            FixedNumberOfWaves = fixedNumberOfWaves;
             FrontVelocityCwo = frontVelocityCwo;
             AccelerationAlphaA = accelerationAlphaA;
             EnforcedDikeHeight = enforcedDikeHeight;
         }
 
+        public int FixedNumberOfWaves { get; }
+        
         public double FrontVelocityCwo { get; }
 
         public GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA AccelerationAlphaA { get; }
@@ -71,11 +74,12 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
                                                          "time steps."));
             }
 
+            validationIssues.Add(GrassCumulativeOverloadValidator.FixedNumberOfWaves(FixedNumberOfWaves));
+            validationIssues.Add(GrassWaveOvertoppingRayleighDiscreteValidator.FrontVelocityCwo(FrontVelocityCwo));
             validationIssues.Add(GrassWaveOvertoppingRayleighDiscreteValidator.AccelerationAlphaA(
                                      AccelerationAlphaA.ValueAtCrest));
             validationIssues.Add(GrassWaveOvertoppingRayleighDiscreteValidator.AccelerationAlphaA(
                                      AccelerationAlphaA.ValueAtInnerSlope));
-            validationIssues.Add(GrassWaveOvertoppingRayleighDiscreteValidator.FrontVelocityCwo(FrontVelocityCwo));
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }

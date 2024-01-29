@@ -44,7 +44,7 @@ namespace DiKErnel.Integration.Data.Grass
                                                               double criticalFrontVelocity,
                                                               double increasedLoadTransitionAlphaM,
                                                               double reducedStrengthTransitionAlphaS,
-                                                              double averageNumberOfWavesCtm, int fixedNumberOfWaves)
+                                                              double averageNumberOfWavesCtm)
             : base(x, initialDamage, failureNumber)
         {
             CriticalCumulativeOverload = criticalCumulativeOverload;
@@ -52,7 +52,6 @@ namespace DiKErnel.Integration.Data.Grass
             IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
             ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
             AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
-            FixedNumberOfWaves = fixedNumberOfWaves;
         }
 
         public double CriticalCumulativeOverload { get; }
@@ -65,8 +64,6 @@ namespace DiKErnel.Integration.Data.Grass
 
         public double AverageNumberOfWavesCtm { get; }
 
-        public int FixedNumberOfWaves { get; }
-
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
         {
@@ -78,8 +75,7 @@ namespace DiKErnel.Integration.Data.Grass
                 GrassCumulativeOverloadValidator.CriticalFrontVelocity(CriticalFrontVelocity),
                 GrassCumulativeOverloadValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
                 GrassCumulativeOverloadValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
-                RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm),
-                GrassCumulativeOverloadValidator.FixedNumberOfWaves(FixedNumberOfWaves)
+                RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

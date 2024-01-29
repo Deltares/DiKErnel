@@ -19,6 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Constants;
+using DiKErnel.DomainLibrary.Validators.Grass;
 using DiKErnel.DomainLibrary.Validators.GrassWaveRunup;
 using DiKErnel.FunctionLibrary.GrassWaveRunup;
 using DiKErnel.Integration.Data.Grass;
@@ -38,11 +39,13 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                                     double averageNumberOfWavesCtm,
                                                                     int fixedNumberOfWaves, double frontVelocityCu)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
-                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
-                   fixedNumberOfWaves)
+                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
+            FixedNumberOfWaves = fixedNumberOfWaves;
             FrontVelocityCu = frontVelocityCu;
         }
+
+        public int FixedNumberOfWaves { get; }
 
         public double FrontVelocityCu { get; }
 
@@ -53,6 +56,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
+                GrassCumulativeOverloadValidator.FixedNumberOfWaves(FixedNumberOfWaves),
                 GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu)
             };
 
