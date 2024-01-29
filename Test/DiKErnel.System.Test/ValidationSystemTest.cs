@@ -327,7 +327,6 @@ namespace DiKErnel.System.Test
             Assert.That(validationResult.Events[7].Message, Is.EqualTo("ReducedStrengthTransitionAlphaS must be equal to 0 or larger."));
             Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[8].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
-
         }
 
         [Test]
