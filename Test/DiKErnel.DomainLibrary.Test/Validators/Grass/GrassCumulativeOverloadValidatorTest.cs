@@ -44,22 +44,6 @@ namespace DiKErnel.DomainLibrary.Test.Validators.Grass
         }
 
         [Test]
-        public void FixedNumberOfWaves_VariousScenarios_ExpectedValues()
-        {
-            Func<int, ValidationIssue> validationFunc = GrassCumulativeOverloadValidator.FixedNumberOfWaves;
-
-            const string errorMessage = "FixedNumberOfWaves must be larger than 0.";
-
-            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.IntegerMin, ValidationIssueType.Error, errorMessage);
-
-            ValidatorAssertHelper.AssertValue(validationFunc, -1, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 0, ValidationIssueType.Error, errorMessage);
-            ValidatorAssertHelper.AssertValue(validationFunc, 1);
-
-            ValidatorAssertHelper.AssertValue(validationFunc, ValidatorAssertHelper.IntegerMax);
-        }
-
-        [Test]
         public void CriticalFrontVelocity_VariousScenarios_ExpectedValues()
         {
             Func<double, ValidationIssue> validationFunc = GrassCumulativeOverloadValidator.CriticalFrontVelocity;

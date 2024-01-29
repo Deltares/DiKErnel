@@ -54,22 +54,6 @@ namespace DiKErnel.DomainLibrary.Validators.Grass
         }
 
         /// <summary>
-        /// Validates the fixed number of waves.
-        /// </summary>
-        /// <param name="fixedNumberOfWaves">The fixed number of waves [-].</param>
-        /// <returns>A validation issue when the fixed number of waves is not valid;
-        /// <c>null</c> otherwise.</returns>
-        public static ValidationIssue FixedNumberOfWaves(int fixedNumberOfWaves)
-        {
-            if (fixedNumberOfWaves <= 0)
-            {
-                return new ValidationIssue(ValidationIssueType.Error, "FixedNumberOfWaves must be larger than 0.");
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Validates the alpha M coefficient.
         /// </summary>
         /// <param name="increasedLoadTransitionAlphaM">The alpha M coefficient [-].</param>

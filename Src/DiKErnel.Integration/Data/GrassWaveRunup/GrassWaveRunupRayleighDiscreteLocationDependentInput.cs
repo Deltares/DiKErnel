@@ -56,7 +56,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassCumulativeOverloadValidator.FixedNumberOfWaves(FixedNumberOfWaves),
+                GrassRayleighDiscreteValidator.FixedNumberOfWaves(FixedNumberOfWaves),
                 GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu)
             };
 
