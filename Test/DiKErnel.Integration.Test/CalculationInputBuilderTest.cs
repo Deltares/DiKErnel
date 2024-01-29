@@ -1996,7 +1996,7 @@ namespace DiKErnel.Integration.Test
 
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                 x, topLayerType);
-            
+
             var builder = new CalculationInputBuilder(Random.NextDouble());
             AddDefaultProfileAndTimeStep(builder);
             builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
@@ -2008,7 +2008,7 @@ namespace DiKErnel.Integration.Test
             AssertResultWithSuccessfulFalseAndEvent(
                 result, "Foreshore is required.");
         }
-        
+
         [Test]
         public void
             GivenBuilderWithFullyConfiguredGrassWaveRunupBattjesGroenendijkAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()

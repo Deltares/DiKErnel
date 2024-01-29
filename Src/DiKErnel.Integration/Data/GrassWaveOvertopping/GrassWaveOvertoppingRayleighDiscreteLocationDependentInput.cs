@@ -20,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
-using DiKErnel.DomainLibrary;
 using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators.GrassWaveOvertopping;
 using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
@@ -30,7 +29,7 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 {
-    internal class GrassWaveOvertoppingRayleighDiscreteLocationDependentInput 
+    internal class GrassWaveOvertoppingRayleighDiscreteLocationDependentInput
         : GrassRayleighDiscreteLocationDependentInput
     {
         private double accelerationAlphaA = double.NaN;

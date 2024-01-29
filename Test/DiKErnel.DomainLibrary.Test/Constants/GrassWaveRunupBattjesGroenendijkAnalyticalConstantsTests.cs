@@ -24,7 +24,6 @@ namespace DiKErnel.DomainLibrary.Test.Constants
     [TestFixture]
     public class GrassWaveRunupBattjesGroenendijkAnalyticalConstantsTests
     {
-        
         [Test]
         public void K1_ExpectedValue()
         {

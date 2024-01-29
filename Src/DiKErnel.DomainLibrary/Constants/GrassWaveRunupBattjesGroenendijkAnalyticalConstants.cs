@@ -23,7 +23,6 @@ namespace DiKErnel.DomainLibrary.Constants
     /// </summary>
     public static class GrassWaveRunupBattjesGroenendijkAnalyticalConstants
     {
-        
         /// <summary>
         /// Gets the default value of the K1 constant [-].
         /// </summary>
