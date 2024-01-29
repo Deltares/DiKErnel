@@ -16,32 +16,26 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using NUnit.Framework;
-
-namespace DiKErnel.DomainLibrary.Test
+namespace DiKErnel.DomainLibrary.Constants
 {
-    [TestFixture]
-    public class ConstantsTest
+    /// <summary>
+    /// Class that contains domain constants.
+    /// </summary>
+    public static class NaturalConstants
     {
-        [Test]
-        public void GravitationalAcceleration_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(Constants.GravitationalAcceleration, Is.EqualTo(9.81));
-        }
+        /// <summary>
+        /// Gets the gravitational acceleration [m/s^2].
+        /// </summary>
+        public static double GravitationalAcceleration => 9.81;
 
-        [Test]
-        public void K1_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(Constants.K1, Is.EqualTo(2));
-        }
+        /// <summary>
+        /// Gets the default value of the K1 constant [-].
+        /// </summary>
+        public static double K1 => 2;
 
-        [Test]
-        public void K2_ExpectedValue()
-        {
-            // Call & Assert
-            Assert.That(Constants.K2, Is.EqualTo(3.6));
-        }
+        /// <summary>
+        /// Gets the default value of the K2 constant [-].
+        /// </summary>
+        public static double K2 => 3.6;
     }
 }

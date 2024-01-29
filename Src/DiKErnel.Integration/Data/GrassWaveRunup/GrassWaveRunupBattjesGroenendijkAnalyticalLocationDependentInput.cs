@@ -19,6 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
+using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.Grass;
 using DiKErnel.DomainLibrary.Validators.GrassWaveRunup;
@@ -157,8 +158,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                                                       CriticalFrontVelocity, FrontVelocityCu,
                                                                                       IncreasedLoadTransitionAlphaM,
                                                                                       ReducedStrengthTransitionAlphaS,
-                                                                                      Constants.GravitationalAcceleration,
-                                                                                      Constants.K1, Constants.K2));
+                                                                                      NaturalConstants.GravitationalAcceleration,
+                                                                                      NaturalConstants.K1, NaturalConstants.K2));
         }
 
         private void InitializeCalculationProfile(IProfileData profileData)

@@ -19,6 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
+using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators;
 using DiKErnel.DomainLibrary.Validators.AsphaltWaveImpact;
 using DiKErnel.FunctionLibrary;
@@ -184,7 +185,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                            AverageNumberOfWavesCtm);
 
             maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(timeDependentInput.WaveHeightHm0,
-                                                                             Constants.GravitationalAcceleration,
+                                                                             NaturalConstants.GravitationalAcceleration,
                                                                              DensityOfWater);
 
             AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel,

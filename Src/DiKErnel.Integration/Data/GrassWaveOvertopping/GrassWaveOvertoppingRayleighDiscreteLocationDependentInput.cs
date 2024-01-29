@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
+using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators.GrassWaveOvertopping;
 using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
 using DiKErnel.Integration.Data.Grass;
@@ -133,7 +134,7 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
                                                                                 CriticalFrontVelocity,
                                                                                 IncreasedLoadTransitionAlphaM,
                                                                                 ReducedStrengthTransitionAlphaS,
-                                                                                Constants.GravitationalAcceleration,
+                                                                                NaturalConstants.GravitationalAcceleration,
                                                                                 accelerationAlphaA,
                                                                                 FrontVelocityCwo));
         }

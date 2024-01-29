@@ -19,6 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary;
+using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators.NaturalStoneWaveImpact;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.NaturalStoneWaveImpact;
@@ -142,7 +143,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
             waveSteepnessDeepWater = HydraulicLoadFunctions.WaveSteepnessDeepWater(
                 timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
-                Constants.GravitationalAcceleration);
+                NaturalConstants.GravitationalAcceleration);
 
             distanceMaximumWaveElevation = NaturalStoneWaveImpactFunctions.DistanceMaximumWaveElevation(
                 1d, waveSteepnessDeepWater, timeDependentInput.WaveHeightHm0,
@@ -151,7 +152,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
             surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
                 outerSlope, timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
-                Constants.GravitationalAcceleration);
+                NaturalConstants.GravitationalAcceleration);
 
             normativeWidthWaveImpact = NaturalStoneWaveImpactFunctions.NormativeWidthWaveImpact(
                 surfSimilarityParameter, timeDependentInput.WaveHeightHm0,
