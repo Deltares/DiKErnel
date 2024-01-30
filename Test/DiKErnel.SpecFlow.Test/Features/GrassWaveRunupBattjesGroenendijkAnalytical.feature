@@ -201,7 +201,12 @@
 		#Then the schadegetal is
 		
 	Scenario: Testcase 13
-		#all parameters changed with unrealistic values to test robustness
+		Given the following is adjusted:
+			| waterstanden |
+			| -3.9         |
+			| 8            |
+   		When I run the calculation
+   		#Then the schadegetal is .*
 		
 	Scenario Outline: BM Gras benchmark 14
 		Given the following constant inputs:
