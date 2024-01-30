@@ -21,13 +21,12 @@ using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators.GrassWaveRunup;
 using DiKErnel.FunctionLibrary.GrassWaveRunup;
-using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
-    internal class GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput : GrassCumulativeOverloadLocationDependentInput
+    internal class GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput : GrassWaveRunupLocationDependentInput
     {
         public GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput(double x, double initialDamage,
                                                                                 double failureNumber,
@@ -38,12 +37,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                                                 double averageNumberOfWavesCtm,
                                                                                 double frontVelocityCu)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
-                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
-        {
-            FrontVelocityCu = frontVelocityCu;
-        }
-
-        public double FrontVelocityCu { get; }
+                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
+                   frontVelocityCu) {}
 
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
@@ -52,30 +47,10 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu),
                 GrassWaveRunupBattjesGroenendijkAnalyticalValidator.ForeshoreSlope(profileData.Foreshore.Slope)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
-        }
-
-        public override LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            return new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, Z);
-        }
-
-        protected override double CalculateDikeHeight(IProfileData profileData)
-        {
-            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
-
-            return outerCrest.Item2;
-        }
-
-        protected override double GetRunupHeight()
-        {
-            return Z;
         }
 
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
