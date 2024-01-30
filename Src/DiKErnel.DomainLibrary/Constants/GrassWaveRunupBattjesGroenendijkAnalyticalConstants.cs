@@ -24,12 +24,12 @@ namespace DiKErnel.DomainLibrary.Constants
     public static class GrassWaveRunupBattjesGroenendijkAnalyticalConstants
     {
         /// <summary>
-        /// Gets the default value of the K1 constant [-].
+        /// Gets the K1 value [-].
         /// </summary>
         public static double K1 => 2;
 
         /// <summary>
-        /// Gets the default value of the K2 constant [-].
+        /// Gets the K2 value [-].
         /// </summary>
         public static double K2 => 3.6;
     }
