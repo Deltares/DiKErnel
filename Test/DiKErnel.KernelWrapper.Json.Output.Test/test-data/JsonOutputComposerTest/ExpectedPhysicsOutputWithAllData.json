@@ -40,6 +40,7 @@
                     ]
                 },
                 "fysica": {
+                    "hoogteLocatie": 5.4,
                     "toenameSchade": [
                         0.6
                     ],
@@ -68,9 +69,9 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 5.4,
-                    "minimumGolfhoogte": 5.5,
-                    "maximumGolfhoogte": 5.6,
+                    "hoogteLocatie": 5.5,
+                    "minimumGolfhoogte": 5.6,
+                    "maximumGolfhoogte": 5.7,
                     "toenameSchade": [
                         1.3
                     ],
@@ -105,7 +106,7 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 5.7,
+                    "hoogteLocatie": 5.8,
                     "toenameSchade": [
                         2.1
                     ],
@@ -134,8 +135,8 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 5.8,
-                    "sterkteBekleding": 5.9,
+                    "hoogteLocatie": 5.9,
+                    "sterkteBekleding": 6.0,
                     "toenameSchade": [
                         2.8
                     ],
