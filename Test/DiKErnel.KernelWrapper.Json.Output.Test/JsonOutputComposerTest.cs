@@ -227,7 +227,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     AverageNumberOfWaves = 0.5
                 });
 
-            var grassWaveOvertoppingRayleighDiscreteTimeDependentOutput =
+            var grassCumulativeOverloadTimeDependentOutput =
                 new GrassCumulativeOverloadTimeDependentOutput(
                     new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
                     {
@@ -253,19 +253,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     WaveAngleImpact = 1.9,
                     WaveHeightImpact = 2.0
                 });
-
-            var grassWaveRunupRayleighDiscreteTimeDependentOutput =
-                new GrassCumulativeOverloadTimeDependentOutput(
-                    new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
-                    {
-                        IncrementDamage = 2.1,
-                        Damage = 2.2,
-                        TimeOfFailure = 2.3,
-                        VerticalDistanceWaterLevelElevation = 2.4,
-                        RepresentativeWaveRunup2P = 2.5,
-                        CumulativeOverload = 2.6,
-                        AverageNumberOfWaves = 2.7
-                    });
 
             var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneWaveImpactTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
@@ -301,20 +288,16 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 }, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3),
                 new GrassCumulativeOverloadLocationDependentOutput(new[]
                 {
-                    grassWaveOvertoppingRayleighDiscreteTimeDependentOutput
+                    grassCumulativeOverloadTimeDependentOutput
                 }, 5.4),
                 new GrassWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
                 }, 5.5, 5.6, 5.7),
-                new GrassCumulativeOverloadLocationDependentOutput(new[]
-                {
-                    grassWaveRunupRayleighDiscreteTimeDependentOutput
-                }, 5.8),
                 new NaturalStoneWaveImpactLocationDependentOutput(new[]
                 {
                     naturalStoneWaveImpactTimeDependentOutput
-                }, 5.9, 6.0)
+                }, 5.8, 5.9)
             });
         }
 
@@ -329,7 +312,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     AverageNumberOfWaves = 0.4
                 });
 
-            var grassWaveOvertoppingRayleighDiscreteTimeDependentOutput =
+            var grassCumulativeOverloadTimeDependentOutput =
                 new GrassCumulativeOverloadTimeDependentOutput(
                     new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
                     {
@@ -347,15 +330,6 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                     UpperLimitLoading = 1.0,
                     LowerLimitLoading = 1.1
                 });
-
-            var grassWaveRunupRayleighDiscreteTimeDependentOutput =
-                new GrassCumulativeOverloadTimeDependentOutput(
-                    new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
-                    {
-                        IncrementDamage = 1.2,
-                        Damage = 1.3,
-                        VerticalDistanceWaterLevelElevation = 1.4
-                    });
 
             var naturalStoneWaveImpactTimeDependentOutput = new NaturalStoneWaveImpactTimeDependentOutput(
                 new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
@@ -385,20 +359,16 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 }, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4),
                 new GrassCumulativeOverloadLocationDependentOutput(new[]
                 {
-                    grassWaveOvertoppingRayleighDiscreteTimeDependentOutput
+                    grassCumulativeOverloadTimeDependentOutput
                 }, 3.5),
                 new GrassWaveImpactLocationDependentOutput(new[]
                 {
                     grassWaveImpactTimeDependentOutput
                 }, 3.6, 3.7, 3.8),
-                new GrassCumulativeOverloadLocationDependentOutput(new[]
-                {
-                    grassWaveRunupRayleighDiscreteTimeDependentOutput
-                }, 3.9),
                 new NaturalStoneWaveImpactLocationDependentOutput(new[]
                 {
                     naturalStoneWaveImpactTimeDependentOutput
-                }, 4.0, 4.1)
+                }, 3.9, 4.0)
             });
         }
     }
