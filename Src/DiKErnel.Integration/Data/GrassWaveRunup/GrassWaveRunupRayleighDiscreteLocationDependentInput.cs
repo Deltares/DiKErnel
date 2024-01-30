@@ -37,17 +37,17 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                                     double increasedLoadTransitionAlphaM,
                                                                     double reducedStrengthTransitionAlphaS,
                                                                     double averageNumberOfWavesCtm,
-                                                                    int fixedNumberOfWaves, double frontVelocityCu)
+                                                                    double frontVelocityCu, int fixedNumberOfWaves)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
-            FixedNumberOfWaves = fixedNumberOfWaves;
             FrontVelocityCu = frontVelocityCu;
+            FixedNumberOfWaves = fixedNumberOfWaves;
         }
 
-        public int FixedNumberOfWaves { get; }
-
         public double FrontVelocityCu { get; }
+
+        public int FixedNumberOfWaves { get; }
 
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
@@ -56,8 +56,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassRayleighDiscreteValidator.FixedNumberOfWaves(FixedNumberOfWaves),
-                GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu)
+                GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu),
+                GrassRayleighDiscreteValidator.FixedNumberOfWaves(FixedNumberOfWaves)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

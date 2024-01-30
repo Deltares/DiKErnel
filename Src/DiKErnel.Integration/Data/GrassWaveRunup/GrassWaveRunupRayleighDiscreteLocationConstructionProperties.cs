@@ -32,13 +32,13 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
             : base(x, topLayerType) {}
 
         /// <summary>
-        /// Gets or sets the fixed number of waves.
-        /// </summary>
-        public int? FixedNumberOfWaves { get; set; }
-
-        /// <summary>
         /// Gets or sets the Cu coefficient.
         /// </summary>
         public double? FrontVelocityCu { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the fixed number of waves.
+        /// </summary>
+        public int? FixedNumberOfWaves { get; set; }
     }
 }

@@ -48,8 +48,8 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
             Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.Null);
             Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.Null);
             Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.Null);
-            Assert.That(constructionProperties.FixedNumberOfWaves, Is.Null);
             Assert.That(constructionProperties.FrontVelocityCu, Is.Null);
+            Assert.That(constructionProperties.FixedNumberOfWaves, Is.Null);
         }
 
         [Test]
@@ -65,8 +65,8 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double frontVelocityCu = Random.NextDouble();
+            int fixedNumberOfWaves = Random.Next();
 
             var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
@@ -79,8 +79,8 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
             constructionProperties.IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
             constructionProperties.ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
             constructionProperties.AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
-            constructionProperties.FixedNumberOfWaves = fixedNumberOfWaves;
             constructionProperties.FrontVelocityCu = frontVelocityCu;
+            constructionProperties.FixedNumberOfWaves = fixedNumberOfWaves;
 
             // Then
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
@@ -92,8 +92,8 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
             Assert.That(constructionProperties.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
             Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
-            Assert.That(constructionProperties.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
             Assert.That(constructionProperties.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
+            Assert.That(constructionProperties.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
         }
     }
 }

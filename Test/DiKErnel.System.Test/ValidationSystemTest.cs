@@ -269,9 +269,9 @@ namespace DiKErnel.System.Test
             Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[6].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
             Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[7].Message, Is.EqualTo("FixedNumberOfWaves must be larger than 0."));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("FrontVelocityCu must be larger than 0."));
             Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[8].Message, Is.EqualTo("FrontVelocityCu must be larger than 0."));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("FixedNumberOfWaves must be larger than 0."));
         }
 
         [Test]
