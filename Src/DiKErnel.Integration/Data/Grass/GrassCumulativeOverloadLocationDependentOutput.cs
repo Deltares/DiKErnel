@@ -22,13 +22,13 @@ using DiKErnel.Core.Data;
 namespace DiKErnel.Integration.Data.Grass
 {
     /// <summary>
-    /// Location dependent output of a grass calculation.
+    /// Location dependent output of a grass cumulative overload calculation.
     /// </summary>
-    public class GrassLocationDependentOutput : LocationDependentOutput
+    public class GrassCumulativeOverloadLocationDependentOutput : LocationDependentOutput
     {
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
-        public GrassLocationDependentOutput(
+        public GrassCumulativeOverloadLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
             : base(timeDependentOutputItems)
         {

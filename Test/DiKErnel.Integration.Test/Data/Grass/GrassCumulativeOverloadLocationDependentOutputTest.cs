@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Grass
 {
     [TestFixture]
-    public class GrassLocationDependentOutputTest
+    public class GrassCumulativeOverloadLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()
@@ -35,7 +35,7 @@ namespace DiKErnel.Integration.Test.Data.Grass
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassLocationDependentOutput(timeDependentOutputItems, z);
+            var output = new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, z);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

@@ -150,7 +150,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveHeightImpact).ToList());
                 }
-                case GrassLocationDependentOutput grassLocationDependentOutput:
+                case GrassCumulativeOverloadLocationDependentOutput grassCumulativeOverloadLocationDependentOutput:
                 {
                     IReadOnlyList<GrassCumulativeOverloadTimeDependentOutput>
                         grassCumulativeOverloadTimeDependentOutputItems =
@@ -161,7 +161,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                     return new JsonOutputGrassPhysicsLocationData(
                         grassCumulativeOverloadTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
-                        grassLocationDependentOutput.Z,
+                        grassCumulativeOverloadLocationDependentOutput.Z,
                         grassCumulativeOverloadTimeDependentOutputItems
                             .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
                         grassCumulativeOverloadTimeDependentOutputItems
