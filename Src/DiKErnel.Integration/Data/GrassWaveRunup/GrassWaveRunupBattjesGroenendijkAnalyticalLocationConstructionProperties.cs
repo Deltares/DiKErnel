@@ -25,16 +25,11 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     /// analytical location dependent input.
     /// </summary>
     public class GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
-        : GrassCumulativeOverloadLocationConstructionProperties
+        : GrassWaveRunupLocationConstructionProperties
     {
         /// <inheritdoc/>
         public GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(double x,
                                                                                         GrassTopLayerType topLayerType)
             : base(x, topLayerType) {}
-
-        /// <summary>
-        /// Gets or sets the Cu coefficient.
-        /// </summary>
-        public double? FrontVelocityCu { get; set; }
     }
 }
