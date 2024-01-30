@@ -39,11 +39,11 @@ namespace DiKErnel.Integration.Data.Grass
         private double averageNumberOfWaves = double.NaN;
 
         protected GrassCumulativeOverloadLocationDependentInput(double x, double initialDamage, double failureNumber,
-                                                              double criticalCumulativeOverload,
-                                                              double criticalFrontVelocity,
-                                                              double increasedLoadTransitionAlphaM,
-                                                              double reducedStrengthTransitionAlphaS,
-                                                              double averageNumberOfWavesCtm)
+                                                                double criticalCumulativeOverload,
+                                                                double criticalFrontVelocity,
+                                                                double increasedLoadTransitionAlphaM,
+                                                                double reducedStrengthTransitionAlphaS,
+                                                                double averageNumberOfWavesCtm)
             : base(x, initialDamage, failureNumber)
         {
             CriticalCumulativeOverload = criticalCumulativeOverload;
@@ -105,7 +105,8 @@ namespace DiKErnel.Integration.Data.Grass
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput, profileData);
 
                 cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                 verticalDistanceWaterLevelElevation);
+                                                                 verticalDistanceWaterLevelElevation,
+                                                                 timeDependentInput, profileData);
 
                 incrementDamage = GrassFunctions.IncrementDamage(cumulativeOverload, CriticalCumulativeOverload);
 
@@ -140,7 +141,9 @@ namespace DiKErnel.Integration.Data.Grass
 
         protected abstract double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
-                                                              double verticalDistanceWaterLevelElevation);
+                                                              double verticalDistanceWaterLevelElevation,
+                                                              ITimeDependentInput timeDependentInput,
+                                                              IProfileData profileData);
 
         private void InitializeCalculationProfile(IProfileData profileData)
         {

@@ -50,7 +50,7 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
         }
 
         public int FixedNumberOfWaves { get; }
-        
+
         public double FrontVelocityCwo { get; }
 
         public GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA AccelerationAlphaA { get; }
@@ -127,7 +127,9 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
-                                                              double verticalDistanceWaterLevelElevation)
+                                                              double verticalDistanceWaterLevelElevation,
+                                                              ITimeDependentInput timeDependentInput,
+                                                              IProfileData profileData)
         {
             return GrassWaveOvertoppingRayleighDiscreteFunctions.CumulativeOverload(
                 new GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,

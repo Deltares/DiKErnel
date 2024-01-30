@@ -84,7 +84,9 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
-                                                              double verticalDistanceWaterLevelElevation)
+                                                              double verticalDistanceWaterLevelElevation,
+                                                              ITimeDependentInput timeDependentInput,
+                                                              IProfileData profileData)
         {
             return GrassWaveRunupRayleighDiscreteFunctions.CumulativeOverload(
                 new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
