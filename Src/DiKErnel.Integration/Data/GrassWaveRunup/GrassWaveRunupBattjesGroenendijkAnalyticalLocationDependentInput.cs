@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentOutput(timeDependentOutputItems, Z);
+            return new GrassLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
         protected override double CalculateDikeHeight(IProfileData profileData)
