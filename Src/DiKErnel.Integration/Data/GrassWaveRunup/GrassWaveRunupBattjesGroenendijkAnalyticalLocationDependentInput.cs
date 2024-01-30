@@ -19,11 +19,7 @@
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Constants;
-using DiKErnel.DomainLibrary.Validators;
-using DiKErnel.DomainLibrary.Validators.Grass;
 using DiKErnel.DomainLibrary.Validators.GrassWaveRunup;
-using DiKErnel.FunctionLibrary;
-using DiKErnel.FunctionLibrary.Grass;
 using DiKErnel.FunctionLibrary.GrassWaveRunup;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Helpers;
@@ -31,17 +27,8 @@ using DiKErnel.Util.Validation;
 
 namespace DiKErnel.Integration.Data.GrassWaveRunup
 {
-    internal class GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput : LocationDependentInput
+    internal class GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput : GrassCumulativeOverloadLocationDependentInput
     {
-        private readonly List<double> xValuesProfile = new List<double>();
-        private readonly List<double> zValuesProfile = new List<double>();
-        private readonly List<double> roughnessCoefficients = new List<double>();
-
-        private double verticalDistanceWaterLevelElevation = double.NaN;
-        private double averageNumberOfWaves = double.NaN;
-        private double representativeWaveRunup2P = double.NaN;
-        private double cumulativeOverload = double.NaN;
-
         public GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput(double x, double initialDamage,
                                                                                 double failureNumber,
                                                                                 double criticalCumulativeOverload,
@@ -50,27 +37,13 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                                                                                 double increasedLoadTransitionAlphaM,
                                                                                 double reducedStrengthTransitionAlphaS,
                                                                                 double averageNumberOfWavesCtm)
-            : base(x, initialDamage, failureNumber)
+            : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
+                   increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
-            CriticalCumulativeOverload = criticalCumulativeOverload;
             FrontVelocityCu = frontVelocityCu;
-            CriticalFrontVelocity = criticalFrontVelocity;
-            IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
-            ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
-            AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
         }
 
-        public double CriticalCumulativeOverload { get; }
-
         public double FrontVelocityCu { get; }
-
-        public double CriticalFrontVelocity { get; }
-
-        public double IncreasedLoadTransitionAlphaM { get; }
-
-        public double ReducedStrengthTransitionAlphaS { get; }
-
-        public double AverageNumberOfWavesCtm { get; }
 
         public override bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                       IProfileData profileData)
@@ -79,13 +52,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             var validationIssues = new List<ValidationIssue>
             {
-                GrassWaveRunupBattjesGroenendijkAnalyticalValidator.ForeshoreSlope(profileData.Foreshore.Slope),
-                GrassCumulativeOverloadValidator.CriticalCumulativeOverload(CriticalCumulativeOverload),
                 GrassWaveRunupValidator.FrontVelocityCu(FrontVelocityCu),
-                GrassCumulativeOverloadValidator.CriticalFrontVelocity(CriticalFrontVelocity),
-                GrassCumulativeOverloadValidator.IncreasedLoadTransitionAlphaM(IncreasedLoadTransitionAlphaM),
-                GrassCumulativeOverloadValidator.ReducedStrengthTransitionAlphaS(ReducedStrengthTransitionAlphaS),
-                RevetmentValidator.AverageNumberOfWavesCtm(AverageNumberOfWavesCtm)
+                GrassWaveRunupBattjesGroenendijkAnalyticalValidator.ForeshoreSlope(profileData.Foreshore.Slope)
             };
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
@@ -97,56 +65,24 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
             return new GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
-        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        protected override double CalculateDikeHeight(IProfileData profileData)
         {
-            base.InitializeDerivedLocationDependentInput(profileData);
+            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
 
-            InitializeCalculationProfile(profileData);
+            return outerCrest.Item2;
         }
 
-        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
-                                                                            ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
+        protected override double GetRunupHeight()
         {
-            var incrementDamage = 0d;
-            double damage = initialDamage;
-            double? timeOfFailure = null;
-
-            verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
-                Z, timeDependentInput.WaterLevel);
-
-            if (verticalDistanceWaterLevelElevation >= 0d)
-            {
-                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                        timeDependentInput.EndTime);
-
-                averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
-                                                                               timeDependentInput.WavePeriodTm10,
-                                                                               AverageNumberOfWavesCtm);
-
-                representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput, profileData);
-
-                cumulativeOverload = CalculateCumulativeOverload(timeDependentInput, profileData);
-
-                incrementDamage = GrassFunctions.IncrementDamage(cumulativeOverload, CriticalCumulativeOverload);
-
-                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
-
-                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
-                {
-                    double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
-                        incrementTime, incrementDamage, FailureNumber, initialDamage);
-
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
-                                                                     timeDependentInput.BeginTime);
-                }
-            }
-
-            return new GrassCumulativeOverloadTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+            return Z;
         }
 
-        private double CalculateCumulativeOverload(ITimeDependentInput timeDependentInput, IProfileData profileData)
+        protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
+                                                              double representativeWaveRunup2P,
+                                                              double verticalDistanceWaterLevelElevation,
+                                                              ITimeDependentInput timeDependentInput,
+                                                              IProfileData profileData)
         {
             Foreshore foreshore = profileData.Foreshore;
 
@@ -156,58 +92,6 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                     verticalDistanceWaterLevelElevation, foreshore.Slope, foreshore.Slope, CriticalFrontVelocity, FrontVelocityCu,
                     IncreasedLoadTransitionAlphaM, ReducedStrengthTransitionAlphaS, NaturalConstants.GravitationalAcceleration,
                     GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K1, GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K2));
-        }
-
-        private void InitializeCalculationProfile(IProfileData profileData)
-        {
-            (double, double) outerToe = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterToe);
-            (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.OuterCrest);
-
-            foreach (ProfileSegment profileSegment in profileData.ProfileSegments)
-            {
-                if (profileSegment.StartPoint.X >= outerToe.Item1 && profileSegment.StartPoint.X < outerCrest.Item1)
-                {
-                    xValuesProfile.Add(profileSegment.StartPoint.X);
-                    zValuesProfile.Add(profileSegment.StartPoint.Z);
-                    roughnessCoefficients.Add(profileSegment.RoughnessCoefficient);
-                }
-            }
-
-            xValuesProfile.Add(outerCrest.Item1);
-            zValuesProfile.Add(outerCrest.Item2);
-        }
-
-        private double CalculateRepresentativeWaveRunup2P(ITimeDependentInput timeDependentInput,
-                                                          IProfileData profileData)
-        {
-            return GrassFunctions.RepresentativeWaveRunup2P(
-                new GrassRepresentative2PInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                                               timeDependentInput.WavePeriodTm10, timeDependentInput.WaveDirection,
-                                               xValuesProfile, zValuesProfile, roughnessCoefficients,
-                                               Z, profileData.DikeOrientation));
-        }
-
-        private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, double? timeOfFailure)
-        {
-            var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
-            {
-                IncrementDamage = incrementDamage,
-                Damage = damage,
-                TimeOfFailure = timeOfFailure,
-                VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
-            };
-
-            if (verticalDistanceWaterLevelElevation >= 0d)
-            {
-                constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
-                constructionProperties.CumulativeOverload = cumulativeOverload;
-                constructionProperties.AverageNumberOfWaves = averageNumberOfWaves;
-            }
-
-            return constructionProperties;
         }
     }
 }
