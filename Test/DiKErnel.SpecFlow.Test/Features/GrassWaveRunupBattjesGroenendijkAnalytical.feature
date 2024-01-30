@@ -47,8 +47,8 @@
      		| positie | rekenmethode   | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
 	        | 15      | grasGolfoploop | grasGeslotenZode | 0           | 1                               | 1                             |
 	    And  the following rekenmethoden:
-     		| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
-	        | grasGolfoploop | 1         | 0.92      | battjesGroenendijkAnalytisch | 1.1           | -4.0           | 0.004  | grasGeslotenZode | 7000                             | 6.6                   |
+     		| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
+	        | grasGolfoploop | 1         | 0.92      | battjesGroenendijkAnalytisch | 1.1           | -4.0           | 0.004  | grasGeslotenZode |
 	    
 	Scenario: Testcase 1 - Default with closed sod
 		When I run the calculation

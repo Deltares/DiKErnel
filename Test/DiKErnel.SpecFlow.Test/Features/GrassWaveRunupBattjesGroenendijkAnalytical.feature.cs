@@ -254,9 +254,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "frontsnelheid",
                         "bodemVoorlandZ",
                         "tanAvl",
-                        "typeToplaag",
-                        "kritiekeCumulatieveOverbelasting",
-                        "kritiekeFrontsnelheid"});
+                        "typeToplaag"});
             table5.AddRow(new string[] {
                         "grasGolfoploop",
                         "1",
@@ -265,9 +263,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "1.1",
                         "-4.0",
                         "0.004",
-                        "grasGeslotenZode",
-                        "7000",
-                        "6.6"});
+                        "grasGeslotenZode"});
 #line 49
      testRunner.And("the following rekenmethoden:", ((string)(null)), table5, "And ");
 #line hidden
