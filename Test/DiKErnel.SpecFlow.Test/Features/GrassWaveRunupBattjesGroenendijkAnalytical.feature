@@ -64,68 +64,139 @@
    	Scenario: Testcase 3
 	    Given the following is adjusted:
 	      	| kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
+	        | 8000                             | 6.2                   |
 	    When I run the calculation
 		#Then the schadegetal is
 	
 	Scenario: Testcase 4
 		Given the following is adjusted:
-			| kritiekeFrontsnelheid|
+			| kritiekeFrontsnelheid |
+			| 1.15                  |
 		When I run the calculation
 		#Then the schadegetal is
 	
 	Scenario: Testcase 5
 		Given the following is adjusted:
 			| verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+			| 1.8                             | 0.9                           |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 6
 		Given the following is adjusted:
 			| bodemVoorlandZ | tanAvl |
+			| 0              | 0.05   |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 7
 		Given the following is adjusted:
 			| beginschade | faalgetal |
+			| 0.3         | 1.2       |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 8
 		Given the following is adjusted:
 			| posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie |
+			| 0        | 0       | 20             | 0.85                  | 15      |
+			| 15       | 4       |                | 0.5                   |         |
+			| 20       | 4.1     |                | 0.95                  |         |
+			| 25       | 7.5     |                |                       |         |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 9
 		Given the following is adjusted:
 			| posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie | bodemVoorlandZ | tanAvl |
+			| 0        | 0       | 30             | 0.7                   | 18      | 1              | 0.009  |
+			| 15       | 5       |                | 0.8                   |         |                |        |
+			| 20       | 5.1     |                | 1                     |         |                |        |
+			| 30       | 7.5     |                |                       |         |                |        |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 10
 		Given the following is adjusted:
 			| tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+			| -6840       | 3.5          | 2.4            | 4                | 20             |
+			| -6120       | 3.6          | 2.5            | 4.2              | 20             |
+			| -5040       | 3.7          | 2.7            | 4.4              | 20             |
+			| -3600       | 3.8          | 2.8            | 4.5              | 20             |
+			| -1800       | 3.9          | 2.9            | 4.8              | 20             |
+			| 360         | 3.95         | 3              | 5                | 20             |
+			| 2880        | 4            | 2.9            | 5.2              | 20             |
+			| 5760        | 3.95         | 2.9            | 5.5              | 15             |
+			| 9000        | 3.8          | 2.8            | 5.8              | 10             |
+			| 12600       | 3.6          | 2.8            | 6                | 5              |
+			| 16560       | 3.5          | 2.5            | 6                | 0              |
+			| 20880       | 3.4          | 2.1            | 5.8              | 0              |
+			| 25560       | 3.3          | 1.8            | 5.5              | 5              |
+			| 30600       | 3.2          | 1.5            | 5.2              | 10             |
+			| 36000       | 3.1          | 1.3            | 4.8              | 15             |
+			| 43200       | 3            | 1              | 4.5              | 20             |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 11
 		Given the following is adjusted:
 			| tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+			| -6840       | 3.5          | 2.4            | 4                | 20             |
+			| -6120       | 3.6          | 2.5            | 4.2              | 20             |
+			| -5040       | 3.7          | 2.7            | 4.4              | 20             |
+			| -3600       | 3.8          | 2.8            | 4.5              | 20             |
+			| -1800       | 3.9          | 2.9            | 4.8              | 20             |
+			| 360         | 3.95         | 3              | 5                | 20             |
+			| 2880        | 4            | 2.9            | 5.2              | 20             |
+			| 5760        | 3.95         | 2.9            | 5.5              | 15             |
+			| 9000        | 3.8          | 2.8            | 5.8              | 10             |
+			| 12600       | 3.6          | 2.8            | 6                | 5              |
+			| 16560       | 3.5          | 2.5            | 6                | 0              |
+			| 20880       | 3.4          | 2.1            | 5.8              | 0              |
+			| 25560       | 3.3          | 1.8            | 5.5              | 5              |
+			| 30600       | 3.2          | 1.5            | 5.2              | 10             |
+			| 36000       | 3.1          | 1.3            | 4.8              | 15             |
+			| 43200       | 3            | 1              | 4.5              | 20             |
     	And the following is adjusted:
 			| posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie | bodemVoorlandZ | tanAvl |
+			| 0        | 0       | 20             | 0.85                  | 15      | 0.5            | 0.01   |
+			| 15       | 4       |                | 0.5                   |         |                |        |
+			| 20       | 4.1     |                | 0.95                  |         |                |        |
+			| 25       | 7.5     |                |                       |         |                |        |
 		When I run the calculation
 		#Then the schadegetal is
 		
 	Scenario: Testcase 12
 		Given the following is adjusted:
 			| tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+			| -6840       | 3.5          | 2.4            | 4                | 20             |
+			| -6120       | 3.6          | 2.5            | 4.2              | 20             |
+			| -5040       | 3.7          | 2.7            | 4.4              | 20             |
+			| -3600       | 3.8          | 2.8            | 4.5              | 20             |
+			| -1800       | 3.9          | 2.9            | 4.8              | 20             |
+			| 360         | 3.95         | 3              | 5                | 20             |
+			| 2880        | 4            | 2.9            | 5.2              | 20             |
+			| 5760        | 3.95         | 2.9            | 5.5              | 15             |
+			| 9000        | 3.8          | 2.8            | 5.8              | 10             |
+			| 12600       | 3.6          | 2.8            | 6                | 5              |
+			| 16560       | 3.5          | 2.5            | 6                | 0              |
+			| 20880       | 3.4          | 2.1            | 5.8              | 0              |
+			| 25560       | 3.3          | 1.8            | 5.5              | 5              |
+			| 30600       | 3.2          | 1.5            | 5.2              | 10             |
+			| 36000       | 3.1          | 1.3            | 4.8              | 15             |
+			| 43200       | 3            | 1              | 4.5              | 20             |
 		And the following is adjusted:
-			| posities | hoogten | dijkorientatie | ruwheidscoefficienten |
+			| posities | hoogten | dijkorientatie | ruwheidscoefficienten | positie |
+			| 0        | 0       | 20             | 0.85                  | 15      |
+			| 15       | 4       |                | 0.5                   |         |
+			| 20       | 4.1     |                | 0.95                  |         |
+			| 25       | 7.5     |                |                       |         |
     	And the following is adjusted:
-    		| positie | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+    		| beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+		    | 0.1         | 1.7                             | 0.85                          |
      	And the following is adjusted:
      		| faalgetal | factorCtm | frontsnelheid | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid | bodemVoorlandZ | tanAvl |
+	        | 1.1       | 0.89      | 1.2           | 7500                             | 5                     | -1             | 0.008  |
 		When I run the calculation
 		#Then the schadegetal is
 		
