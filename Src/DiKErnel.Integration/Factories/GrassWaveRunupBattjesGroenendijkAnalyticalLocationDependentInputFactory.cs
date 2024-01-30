@@ -36,13 +36,13 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.InitialDamage ?? RevetmentDefaults.InitialDamage,
                 constructionProperties.FailureNumber ?? RevetmentDefaults.FailureNumber,
                 constructionProperties.CriticalCumulativeOverload ?? topLayerDefaults.CriticalCumulativeOverload,
-                constructionProperties.FrontVelocityCu ?? GrassWaveRunupDefaults.FrontVelocityCu,
                 constructionProperties.CriticalFrontVelocity ?? topLayerDefaults.CriticalFrontVelocity,
                 constructionProperties.IncreasedLoadTransitionAlphaM ??
                 GrassCumulativeOverloadDefaults.IncreasedLoadTransitionAlphaM,
                 constructionProperties.ReducedStrengthTransitionAlphaS ??
                 GrassCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
-                constructionProperties.AverageNumberOfWavesCtm ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm);
+                constructionProperties.AverageNumberOfWavesCtm ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
+                constructionProperties.FrontVelocityCu ?? GrassWaveRunupDefaults.FrontVelocityCu);
         }
     }
 }

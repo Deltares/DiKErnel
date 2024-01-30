@@ -32,11 +32,11 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         public GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput(double x, double initialDamage,
                                                                                 double failureNumber,
                                                                                 double criticalCumulativeOverload,
-                                                                                double frontVelocityCu,
                                                                                 double criticalFrontVelocity,
                                                                                 double increasedLoadTransitionAlphaM,
                                                                                 double reducedStrengthTransitionAlphaS,
-                                                                                double averageNumberOfWavesCtm)
+                                                                                double averageNumberOfWavesCtm,
+                                                                                double frontVelocityCu)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
