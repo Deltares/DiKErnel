@@ -87,7 +87,7 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new GrassWaveOvertoppingRayleighDiscreteLocationDependentOutput(timeDependentOutputItems);
+            return new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)

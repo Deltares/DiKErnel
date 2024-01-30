@@ -23,7 +23,6 @@ using DiKErnel.Core.Extensions;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveImpact;
-using DiKErnel.Integration.Data.GrassWaveOvertopping;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.KernelWrapper.Json.Output.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Output.Data.Revetment;
@@ -102,26 +101,6 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         asphaltWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.MaximumPeakStress).ToList(),
                         asphaltWaveImpactTimeDependentOutputItems
-                            .Select(tdo => tdo.AverageNumberOfWaves).ToList());
-                }
-                case GrassWaveOvertoppingRayleighDiscreteLocationDependentOutput _:
-                {
-                    IReadOnlyList<GrassCumulativeOverloadTimeDependentOutput>
-                        grassCumulativeOverloadTimeDependentOutputItems =
-                            locationDependentOutput.TimeDependentOutputItems
-                                                   .Cast<GrassCumulativeOverloadTimeDependentOutput>()
-                                                   .ToList();
-
-                    return new JsonOutputGrassWaveOvertoppingRayleighDiscretePhysicsLocationData(
-                        grassCumulativeOverloadTimeDependentOutputItems
-                            .Select(tdo => tdo.IncrementDamage).ToList(),
-                        grassCumulativeOverloadTimeDependentOutputItems
-                            .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
-                        grassCumulativeOverloadTimeDependentOutputItems
-                            .Select(tdo => tdo.RepresentativeWaveRunup2P).ToList(),
-                        grassCumulativeOverloadTimeDependentOutputItems
-                            .Select(tdo => tdo.CumulativeOverload).ToList(),
-                        grassCumulativeOverloadTimeDependentOutputItems
                             .Select(tdo => tdo.AverageNumberOfWaves).ToList());
                 }
                 case GrassWaveImpactLocationDependentOutput grassWaveImpactLocationDependentOutput:
