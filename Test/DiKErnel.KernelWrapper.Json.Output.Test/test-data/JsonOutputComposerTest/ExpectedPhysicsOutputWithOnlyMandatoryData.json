@@ -102,41 +102,12 @@
                 },
                 "schade": {
                     "schadegetalPerTijdstap": [
-                        1.3
-                    ]
-                },
-                "fysica": {
-                    "hoogteLocatie": 3.9,
-                    "toenameSchade": [
-                        1.2
-                    ],
-                    "verticaleAfstandWaterstandHoogteLocatie": [
-                        1.4
-                    ],
-                    "representatieve2p": [
-                        null
-                    ],
-                    "cumulatieveOverbelasting": [
-                        null
-                    ],
-                    "gemiddeldAantalGolven": [
-                        null
-                    ]
-                }
-            },
-            {
-                "falen": {
-                    "faalgebeurtenis": false,
-                    "faaltijd": null
-                },
-                "schade": {
-                    "schadegetalPerTijdstap": [
                         1.6
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 4.0,
-                    "sterkteBekleding": 4.1,
+                    "hoogteLocatie": 3.9,
+                    "sterkteBekleding": 4.0,
                     "toenameSchade": [
                         1.5
                     ],
