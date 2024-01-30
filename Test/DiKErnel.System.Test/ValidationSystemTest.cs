@@ -314,19 +314,19 @@ namespace DiKErnel.System.Test
             Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
             Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[2].Message, Is.EqualTo("ForeshoreSlope must be in range [0.004, 0.05]."));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("CriticalCumulativeOverload must be larger than 0."));
             Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[3].Message, Is.EqualTo("CriticalCumulativeOverload must be larger than 0."));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("CriticalFrontVelocity must be equal to 0 or larger."));
             Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[4].Message, Is.EqualTo("FrontVelocityCu must be larger than 0."));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("IncreasedLoadTransitionAlphaM must be equal to 0 or larger."));
             Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[5].Message, Is.EqualTo("CriticalFrontVelocity must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("ReducedStrengthTransitionAlphaS must be equal to 0 or larger."));
             Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[6].Message, Is.EqualTo("IncreasedLoadTransitionAlphaM must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[6].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
             Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[7].Message, Is.EqualTo("ReducedStrengthTransitionAlphaS must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("FrontVelocityCu must be larger than 0."));
             Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[8].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("ForeshoreSlope must be in range [0.004, 0.05]."));
         }
 
         [Test]
