@@ -25,16 +25,11 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     /// dependent input.
     /// </summary>
     public class GrassWaveRunupRayleighDiscreteLocationConstructionProperties
-        : GrassCumulativeOverloadLocationConstructionProperties
+        : GrassWaveRunupLocationConstructionProperties
     {
         /// <inheritdoc/>
         public GrassWaveRunupRayleighDiscreteLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x, topLayerType) {}
-
-        /// <summary>
-        /// Gets or sets the Cu coefficient.
-        /// </summary>
-        public double? FrontVelocityCu { get; set; }
         
         /// <summary>
         /// Gets or sets the fixed number of waves.
