@@ -33,14 +33,14 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             : base(x, topLayerType) {}
 
         /// <summary>
-        /// Gets or sets the fixed number of waves.
-        /// </summary>
-        public int? FixedNumberOfWaves { get; set; }
-
-        /// <summary>
         /// Gets or sets the Cwo coefficient.
         /// </summary>
         public double? FrontVelocityCwo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the fixed number of waves.
+        /// </summary>
+        public int? FixedNumberOfWaves { get; set; }
 
         /// <summary>
         /// Gets or sets the acceleration alpha A for the crest.

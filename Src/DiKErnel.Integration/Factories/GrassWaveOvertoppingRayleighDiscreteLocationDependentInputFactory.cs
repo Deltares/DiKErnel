@@ -49,10 +49,10 @@ namespace DiKErnel.Integration.Factories
                 ?? GrassCumulativeOverloadDefaults.ReducedStrengthTransitionAlphaS,
                 constructionProperties.AverageNumberOfWavesCtm
                 ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
-                constructionProperties.FixedNumberOfWaves
-                ?? GrassRayleighDiscreteDefaults.FixedNumberOfWaves,
                 constructionProperties.FrontVelocityCwo
                 ?? GrassWaveOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo,
+                constructionProperties.FixedNumberOfWaves
+                ?? GrassRayleighDiscreteDefaults.FixedNumberOfWaves,
                 accelerationAlphaA,
                 constructionProperties.DikeHeight);
         }
