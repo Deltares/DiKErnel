@@ -53,12 +53,6 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            return new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, Z);
-        }
-
         protected override double CalculateDikeHeight(IProfileData profileData)
         {
             (double, double) outerCrest = CharacteristicPointsHelper.GetCoordinatesForType(

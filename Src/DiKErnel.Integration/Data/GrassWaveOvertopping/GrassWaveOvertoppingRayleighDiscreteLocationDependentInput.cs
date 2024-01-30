@@ -84,12 +84,6 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            return new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, Z);
-        }
-
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
