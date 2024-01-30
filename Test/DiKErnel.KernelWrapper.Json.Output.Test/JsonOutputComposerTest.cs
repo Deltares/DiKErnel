@@ -24,7 +24,6 @@ using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.Integration.Data.GrassWaveOvertopping;
-using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.TestUtil;
 using DiKErnel.Util;
@@ -309,7 +308,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     grassWaveImpactTimeDependentOutput
                 }, 5.4, 5.5, 5.6),
-                new GrassWaveRunupRayleighDiscreteLocationDependentOutput(new[]
+                new GrassCumulativeOverloadLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 5.7),
@@ -393,7 +392,7 @@ namespace DiKErnel.KernelWrapper.Json.Output.Test
                 {
                     grassWaveImpactTimeDependentOutput
                 }, 3.5, 3.6, 3.7),
-                new GrassWaveRunupRayleighDiscreteLocationDependentOutput(new[]
+                new GrassCumulativeOverloadLocationDependentOutput(new[]
                 {
                     grassWaveRunupRayleighDiscreteTimeDependentOutput
                 }, 3.8),

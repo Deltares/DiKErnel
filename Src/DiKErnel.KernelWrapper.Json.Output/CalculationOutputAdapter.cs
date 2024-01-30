@@ -158,7 +158,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                    .Cast<GrassCumulativeOverloadTimeDependentOutput>()
                                                    .ToList();
 
-                    return new JsonOutputGrassPhysicsLocationData(
+                    return new JsonOutputGrassCumulativeOverloadPhysicsLocationData(
                         grassCumulativeOverloadTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
                         grassCumulativeOverloadLocationDependentOutput.Z,
