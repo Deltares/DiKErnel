@@ -24,7 +24,6 @@ using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.Integration.Data.GrassWaveOvertopping;
-using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.KernelWrapper.Json.Output.Data.Generic;
 using DiKErnel.KernelWrapper.Json.Output.Data.Revetment;
@@ -151,7 +150,7 @@ namespace DiKErnel.KernelWrapper.Json.Output
                         grassWaveImpactTimeDependentOutputItems
                             .Select(tdo => tdo.WaveHeightImpact).ToList());
                 }
-                case GrassWaveRunupRayleighDiscreteLocationDependentOutput grassWaveRunupRayleighDiscreteLocationDependentOutput:
+                case GrassLocationDependentOutput grassLocationDependentOutput:
                 {
                     IReadOnlyList<GrassCumulativeOverloadTimeDependentOutput>
                         grassCumulativeOverloadTimeDependentOutputItems =
@@ -159,10 +158,10 @@ namespace DiKErnel.KernelWrapper.Json.Output
                                                    .Cast<GrassCumulativeOverloadTimeDependentOutput>()
                                                    .ToList();
 
-                    return new JsonOutputGrassWaveRunupRayleighDiscretePhysicsLocationData(
+                    return new JsonOutputGrassPhysicsLocationData(
                         grassCumulativeOverloadTimeDependentOutputItems
                             .Select(tdo => tdo.IncrementDamage).ToList(),
-                        grassWaveRunupRayleighDiscreteLocationDependentOutput.Z,
+                        grassLocationDependentOutput.Z,
                         grassCumulativeOverloadTimeDependentOutputItems
                             .Select(tdo => tdo.VerticalDistanceWaterLevelElevation).ToList(),
                         grassCumulativeOverloadTimeDependentOutputItems
