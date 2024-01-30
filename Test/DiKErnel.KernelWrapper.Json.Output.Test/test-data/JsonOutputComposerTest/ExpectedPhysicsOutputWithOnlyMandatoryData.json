@@ -69,9 +69,9 @@
                     ]
                 },
                 "fysica": {
-                    "hoogteLocatie": 3.6,
-                    "minimumGolfhoogte": 3.7,
-                    "maximumGolfhoogte": 3.8,
+                    "hoogteLocatie": 3.3,
+                    "minimumGolfhoogte": 3.4,
+                    "maximumGolfhoogte": 3.5,
                     "toenameSchade": [
                         0.8
                     ],
