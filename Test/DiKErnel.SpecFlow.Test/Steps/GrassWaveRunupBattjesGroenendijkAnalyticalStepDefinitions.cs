@@ -26,24 +26,24 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following tijdstippen:")]
         public void GivenTheFollowingTijdstippen(Table table)
         {
-            context["tijdstippen"] = table.Rows.Select(row => row.GetDouble("tijdstippen")).ToArray();
+            context["tijdstippen"] = table.Rows.Select(row => row.GetString("tijdstippen")).ToArray();
         }
 
         [Given(@"the following hydraulischeBelastingen:")]
         public void GivenTheFollowingHydraulischeBelastingen(Table table)
         {
-            context["waterstanden"] = table.Rows.Select(row => row.GetDouble("waterstanden")).ToArray();
-            context["golfhoogtenHm0"] = table.Rows.Select(row => row.GetDouble("golfhoogtenHm0")).ToArray();
-            context["golfperiodenTm10"] = table.Rows.Select(row => row.GetDouble("golfperiodenTm10")).ToArray();
-            context["golfrichtingen"] = table.Rows.Select(row => row.GetDouble("golfrichtingen")).ToArray();
+            context["waterstanden"] = table.Rows.Select(row => row.GetString("waterstanden")).ToArray();
+            context["golfhoogtenHm0"] = table.Rows.Select(row => row.GetString("golfhoogtenHm0")).ToArray();
+            context["golfperiodenTm10"] = table.Rows.Select(row => row.GetString("golfperiodenTm10")).ToArray();
+            context["golfrichtingen"] = table.Rows.Select(row => row.GetString("golfrichtingen")).ToArray();
         }
 
         [Given(@"the following dijkprofiel:")]
         public void GivenTheFollowingDijkprofiel(Table table)
         {
-            context["dijkorientatie"] = table.Rows[0].GetDouble("dijkorientatie");
-            context["teenBuitenZijde"] = table.Rows[0].GetDouble("teenBuitenzijde");
-            context["kruinBuitenzijde"] = table.Rows[0].GetDouble("kruinBuitenzijde");
+            context["dijkorientatie"] = table.Rows[0].GetString("dijkorientatie");
+            context["teenBuitenzijde"] = table.Rows[0].GetString("teenBuitenzijde");
+            context["kruinBuitenzijde"] = table.Rows[0].GetString("kruinBuitenzijde");
 
             IReadOnlyList<SegmentData> segmentData = table.CreateSet<SegmentData>().ToArray();
             context["posities"] = segmentData.Select(sd => sd.Posities).ToArray();
@@ -78,7 +78,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [When(@"I run the calculation")]
         public void WhenIRunTheCalculation()
         {
-            var builder = new CalculationInputBuilder(GetValueFromContext<double>("dijkOrientatie"));
+            var builder = new CalculationInputBuilder(GetDouble("dijkorientatie"));
             AddTimeSteps(builder);
             AddDikeProfile(builder);
             AddProfilePoints(builder);
@@ -123,23 +123,61 @@ namespace DiKErnel.SpecFlow.Test.Steps
             ScenarioContext.StepIsPending();
         }
 
-        private T GetValueFromContext<T>(string id)
+        private GrassTopLayerType GetGrassTopLayerType()
         {
-            if (!context.ContainsKey(id))
+            var value = (string) context["typeToplaag"];
+            return value == "grasGeslotenZode" ? GrassTopLayerType.ClosedSod : GrassTopLayerType.OpenSod;
+        }
+
+        private double GetDouble(string id)
+        {
+            var value = (string) context[id];
+            return double.Parse(value);
+        }
+
+        private double? GetNullableDouble(string id)
+        {
+            if (context.TryGetValue(id, out object? retrievedValue))
             {
-                return default;
+                var value = (string) retrievedValue;
+                return string.IsNullOrWhiteSpace(value) ? (double?) null : double.Parse(value);
             }
 
-            return (T) context[id];
+            return null;
+        }
+
+        private IReadOnlyList<double> GetDoubleCollection(string id)
+        {
+            var values = (IReadOnlyList<string>) context[id];
+            return values.Select(double.Parse).ToList();
+        }
+
+        private IReadOnlyList<double?> GetNullableDoubleCollection(string id)
+        {
+            var values = (IReadOnlyList<string>) context[id];
+            var parsedValues = new List<double?>();
+            foreach (string value in values)
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    parsedValues.Add(null);
+                }
+                else
+                {
+                    parsedValues.Add(double.Parse(value));
+                }
+            }
+
+            return parsedValues;
         }
 
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
-            var times = GetValueFromContext<IReadOnlyList<double>>("tijdstippen");
-            var waterLevels = GetValueFromContext<IReadOnlyList<double>>("waterstanden");
-            var waveHeightsHm0 = GetValueFromContext<IReadOnlyList<double>>("golfhoogtenHm0");
-            var wavePeriodsTm10 = GetValueFromContext<IReadOnlyList<double>>("golfperiodenTm10");
-            var waveDirections = GetValueFromContext<IReadOnlyList<double>>("golfrichtingen");
+            IReadOnlyList<double> times = GetDoubleCollection("tijdstippen");
+            IReadOnlyList<double> waterLevels = GetDoubleCollection("waterstanden");
+            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection("golfhoogtenHm0");
+            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection("golfperiodenTm10");
+            IReadOnlyList<double> waveDirections = GetDoubleCollection("golfrichtingen");
 
             for (var i = 0; i < times.Count - 1; i++)
             {
@@ -150,9 +188,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddDikeProfile(CalculationInputBuilder builder)
         {
-            var xLocations = GetValueFromContext<IReadOnlyList<double>>("posities");
-            var zLocations = GetValueFromContext<IReadOnlyList<double>>("hoogten");
-            var roughnessCoefficients = GetValueFromContext<IReadOnlyList<double?>>("ruwheidscoefficienten");
+            IReadOnlyList<double> xLocations = GetDoubleCollection("posities");
+            IReadOnlyList<double> zLocations = GetDoubleCollection("hoogten");
+            IReadOnlyList<double?> roughnessCoefficients = GetNullableDoubleCollection("ruwheidscoefficienten");
+
             for (var i = 0; i < xLocations.Count - 1; i++)
             {
                 double startPointX = xLocations[i];
@@ -175,37 +214,35 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddProfilePoints(CalculationInputBuilder builder)
         {
-            builder.AddDikeProfilePoint(GetValueFromContext<double>("teenbuitenzijde"),
+            builder.AddDikeProfilePoint(GetDouble("teenBuitenzijde"),
                                         CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(GetValueFromContext<double>("kruinBuitenzijde"),
+            builder.AddDikeProfilePoint(GetDouble("kruinBuitenzijde"),
                                         CharacteristicPointType.OuterCrest);
         }
 
         private void AddForeshore(CalculationInputBuilder builder)
         {
-            var foreshoreSlope = GetValueFromContext<double>("tanAvl");
-            var bottomForeshoreZ = GetValueFromContext<double>("bodemVoorlandZ");
+            double foreshoreSlope = GetDouble("tanAvl");
+            double bottomForeshoreZ = GetDouble("bodemVoorlandZ");
 
             builder.AddForeshore(foreshoreSlope, bottomForeshoreZ);
         }
 
         private void AddLocation(CalculationInputBuilder builder)
         {
-            GrassTopLayerType topLayerType = GetValueFromContext<string>("typeToplaag") == "grasGeslotenZode"
-                                                 ? GrassTopLayerType.ClosedSod
-                                                 : GrassTopLayerType.OpenSod;
+            GrassTopLayerType topLayerType = GetGrassTopLayerType();
 
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
-                GetValueFromContext<double>("positie"), topLayerType)
+                GetDouble("positie"), topLayerType)
             {
-                FailureNumber = GetValueFromContext<double?>("faalGetal"),
-                InitialDamage = GetValueFromContext<double?>("beginSchade"),
-                AverageNumberOfWavesCtm = GetValueFromContext<double?>("factorCtm"),
-                CriticalFrontVelocity = GetValueFromContext<double?>("kritiekeFrontSnelheid"),
-                FrontVelocityCu = GetValueFromContext<double?>("frontsnelheid"),
-                CriticalCumulativeOverload = GetValueFromContext<double?>("kritiekeFrontsnelheid"),
-                IncreasedLoadTransitionAlphaM = GetValueFromContext<double?>("verhogingBelastingOvergangAlfaM"),
-                ReducedStrengthTransitionAlphaS = GetValueFromContext<double?>("verlagingSterkteOvergangAlfaS")
+                FailureNumber = GetNullableDouble("faalGetal"),
+                InitialDamage = GetNullableDouble("beginSchade"),
+                AverageNumberOfWavesCtm = GetNullableDouble("factorCtm"),
+                CriticalFrontVelocity = GetNullableDouble("kritiekeFrontSnelheid"),
+                FrontVelocityCu = GetNullableDouble("frontsnelheid"),
+                CriticalCumulativeOverload = GetNullableDouble("kritiekeFrontsnelheid"),
+                IncreasedLoadTransitionAlphaM = GetNullableDouble("verhogingBelastingOvergangAlfaM"),
+                ReducedStrengthTransitionAlphaS = GetNullableDouble("verlagingSterkteOvergangAlfaS")
             };
 
             builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
@@ -213,27 +250,27 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private class SegmentData
         {
-            public double Posities { get; set; }
-            public double Hoogten { get; set; }
-            public double? Ruwheidscoefficienten { get; set; }
+            public string Posities { get; set; }
+            public string Hoogten { get; set; }
+            public string Ruwheidscoefficienten { get; set; }
         }
 
         private class CalculationMethod
         {
-            public double Faalgetal { get; set; }
-            public double FactorCtm { get; set; }
-            public double Frontsnelheid { get; set; }
-            public double BodemVoorlandZ { get; set; }
-            public double TanAvl { get; set; }
+            public string Faalgetal { get; set; }
+            public string FactorCtm { get; set; }
+            public string Frontsnelheid { get; set; }
+            public string BodemVoorlandZ { get; set; }
+            public string TanAvl { get; set; }
         }
 
         private class Location
         {
-            public double Positie { get; set; }
+            public string Positie { get; set; }
             public string TypeToplaag { get; set; }
             public string Beginschade { get; set; }
-            public double VerhogingBelastingOvergangAlfaM { get; set; }
-            public double VerlagingSterkteOvergangAlfaS { get; set; }
+            public string VerhogingBelastingOvergangAlfaM { get; set; }
+            public string VerlagingSterkteOvergangAlfaS { get; set; }
         }
     }
 }
