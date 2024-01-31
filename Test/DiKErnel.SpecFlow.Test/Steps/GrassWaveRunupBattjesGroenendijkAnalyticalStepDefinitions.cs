@@ -1,4 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DiKErnel.Core;
+using DiKErnel.Core.Data;
+using DiKErnel.Core.Extensions;
+using DiKErnel.Integration;
+using DiKErnel.Integration.Data.Grass;
+using DiKErnel.Integration.Data.GrassWaveRunup;
+using DiKErnel.Util;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -36,9 +45,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context["teenBuitenZijde"] = table.Rows[0].GetDouble("teenBuitenzijde");
             context["kruinBuitenzijde"] = table.Rows[0].GetDouble("kruinBuitenzijde");
 
-            context["posities"] = table.Rows.Select(row => row.GetDouble("posities")).ToArray();
-            context["hoogten"] = table.Rows.Select(row => row.GetDouble("hoogten")).ToArray();
-            context["ruwheidscoefficienten"] = table.Rows.Select(row => row.GetDouble("ruwheidscoefficienten")).ToArray();
+            IReadOnlyList<SegmentData> segmentData = table.CreateSet<SegmentData>().ToArray();
+            context["posities"] = segmentData.Select(sd => sd.Posities).ToArray();
+            context["hoogten"] = segmentData.Select(sd => sd.Hoogten).ToArray();
+            context["ruwheidscoefficienten"] = segmentData.Select(sd => sd.Ruwheidscoefficienten).ToArray();
         }
 
         [Given(@"the following locaties:")]
@@ -68,7 +78,19 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [When(@"I run the calculation")]
         public void WhenIRunTheCalculation()
         {
-            ScenarioContext.StepIsPending();
+            var builder = new CalculationInputBuilder(GetValueFromContext<double>("dijkOrientatie"));
+            AddTimeSteps(builder);
+            AddDikeProfile(builder);
+            AddProfilePoints(builder);
+            AddForeshore(builder);
+            AddLocation(builder);
+
+            DataResult<ICalculationInput>? result = builder.Build();
+            var calculator = new Calculator(result.Data);
+            calculator.WaitForCompletion();
+
+            IReadOnlyList<double> damages = calculator.Result.Data.LocationDependentOutputItems[0].GetDamages();
+            context["damage"] = damages.Last();
         }
 
         [Given(@"the following is adjusted:")]
@@ -80,7 +102,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the schadegetal is (.*)")]
         public void ThenTheSchadegetalIs(decimal p0)
         {
-            ScenarioContext.StepIsPending();
+            Assert.That(context["damage"], Is.EqualTo(p0));
         }
 
         [Given(@"the following constant inputs:")]
@@ -125,6 +147,75 @@ namespace DiKErnel.SpecFlow.Test.Steps
                                     waveDirections[i]);
             }
         }
+
+        private void AddDikeProfile(CalculationInputBuilder builder)
+        {
+            var xLocations = GetValueFromContext<IReadOnlyList<double>>("posities");
+            var zLocations = GetValueFromContext<IReadOnlyList<double>>("hoogten");
+            var roughnessCoefficients = GetValueFromContext<IReadOnlyList<double?>>("ruwheidscoefficienten");
+            for (var i = 0; i < xLocations.Count - 1; i++)
+            {
+                double startPointX = xLocations[i];
+                double startPointZ = zLocations[i];
+                double endPointX = xLocations[i + 1];
+                double endPointZ = zLocations[i + 1];
+
+                double? roughnessCoefficient = roughnessCoefficients[i];
+                if (roughnessCoefficient.HasValue)
+                {
+                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ,
+                                                  roughnessCoefficient.Value);
+                }
+                else
+                {
+                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
+                }
+            }
+        }
+
+        private void AddProfilePoints(CalculationInputBuilder builder)
+        {
+            builder.AddDikeProfilePoint(GetValueFromContext<double>("teenbuitenzijde"),
+                                        CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(GetValueFromContext<double>("kruinBuitenzijde"),
+                                        CharacteristicPointType.OuterCrest);
+        }
+
+        private void AddForeshore(CalculationInputBuilder builder)
+        {
+            var foreshoreSlope = GetValueFromContext<double>("tanAvl");
+            var bottomForeshoreZ = GetValueFromContext<double>("bodemVoorlandZ");
+
+            builder.AddForeshore(foreshoreSlope, bottomForeshoreZ);
+        }
+
+        private void AddLocation(CalculationInputBuilder builder)
+        {
+            GrassTopLayerType topLayerType = GetValueFromContext<string>("typeToplaag") == "grasGeslotenZode"
+                                                 ? GrassTopLayerType.ClosedSod
+                                                 : GrassTopLayerType.OpenSod;
+
+            var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                GetValueFromContext<double>("positie"), topLayerType)
+            {
+                FailureNumber = GetValueFromContext<double?>("faalGetal"),
+                InitialDamage = GetValueFromContext<double?>("beginSchade"),
+                AverageNumberOfWavesCtm = GetValueFromContext<double?>("factorCtm"),
+                CriticalFrontVelocity = GetValueFromContext<double?>("kritiekeFrontSnelheid"),
+                FrontVelocityCu = GetValueFromContext<double?>("frontsnelheid"),
+                CriticalCumulativeOverload = GetValueFromContext<double?>("kritiekeFrontsnelheid"),
+                IncreasedLoadTransitionAlphaM = GetValueFromContext<double?>("verhogingBelastingOvergangAlfaM"),
+                ReducedStrengthTransitionAlphaS = GetValueFromContext<double?>("verlagingSterkteOvergangAlfaS")
+            };
+
+            builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
+        }
+
+        private class SegmentData
+        {
+            public double Posities { get; set; }
+            public double Hoogten { get; set; }
+            public double? Ruwheidscoefficienten { get; set; }
         }
 
         private class CalculationMethod
@@ -134,6 +225,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
             public double Frontsnelheid { get; set; }
             public double BodemVoorlandZ { get; set; }
             public double TanAvl { get; set; }
+        }
+
+        private class Location
+        {
+            public double Positie { get; set; }
+            public string TypeToplaag { get; set; }
+            public string Beginschade { get; set; }
+            public double VerhogingBelastingOvergangAlfaM { get; set; }
+            public double VerlagingSterkteOvergangAlfaS { get; set; }
         }
     }
 }
