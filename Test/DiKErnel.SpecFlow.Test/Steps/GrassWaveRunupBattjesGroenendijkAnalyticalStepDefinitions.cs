@@ -23,13 +23,20 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following hydraulischeBelastingen:")]
         public void GivenTheFollowingHydraulischeBelastingen(Table table)
         {
-            ScenarioContext.StepIsPending();
+            context["hydraulischeBelastingen"] = table.CreateSet<HydraulicLoads>();
         }
 
         [Given(@"the following dijkprofiel:")]
         public void GivenTheFollowingDijkprofiel(Table table)
         {
-            ScenarioContext.StepIsPending();
+            context["dijkorientatie"] = table.Rows[0].GetDouble("dijkorientatie");
+            context["teenBuitenZijde"] = table.Rows[0].GetDouble("teenBuitenzijde");
+            context["kruinBuitenzijde"] = table.Rows[0].GetDouble("kruinBuitenzijde");
+
+            context["posities"] = table.Rows.Select(row => row.GetDouble("posities")).ToArray();
+            context["hoogten"] = table.Rows.Select(row => row.GetDouble("hoogten")).ToArray();
+            context["ruwheidscoefficienten"] = table.Rows.Select(row => row.GetDouble("ruwheidscoefficienten")).ToArray();
+            
         }
 
         [Given(@"the following locaties:")]
@@ -78,6 +85,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public void ThenTheOutputValueForIs(string dload, Table table)
         {
             ScenarioContext.StepIsPending();
+        }
+
+        private class HydraulicLoads
+        {
+            public double Waterstanden { get; set; }
+            public double GolfhoogtenHm0 { get; set; }
+            public double GolfperiodenTm10 { get; set; }
+            public double Golfrichtingen { get; set; }
         }
     }
 }
