@@ -96,7 +96,21 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following is adjusted:")]
         public void GivenTheFollowingIsAdjusted(Table table)
         {
-            ScenarioContext.StepIsPending();
+            // Check row count, if row count == 1, then read as a single line
+            if (table.RowCount == 1)
+            {
+                foreach (string property in table.Header)
+                {
+                    context[property] = table.Rows[0].GetString(property);
+                }
+            }
+            else
+            {
+                foreach (string property in table.Header)
+                {
+                    context[property] = table.Rows.Select(r => r.GetString(property)).ToArray();
+                }
+            }
         }
 
         [Then(@"the schadegetal is (.*)")]
