@@ -36,13 +36,18 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context["posities"] = table.Rows.Select(row => row.GetDouble("posities")).ToArray();
             context["hoogten"] = table.Rows.Select(row => row.GetDouble("hoogten")).ToArray();
             context["ruwheidscoefficienten"] = table.Rows.Select(row => row.GetDouble("ruwheidscoefficienten")).ToArray();
-            
         }
 
         [Given(@"the following locaties:")]
         public void GivenTheFollowingLocaties(Table table)
         {
-            ScenarioContext.StepIsPending();
+            var locationData = table.CreateInstance<Location>();
+
+            context["positie"] = locationData.Positie;
+            context["typeToplaag"] = locationData.TypeToplaag;
+            context["beginschade"] = locationData.Beginschade;
+            context["verhogingBelastingOvergangAlfaM"] = locationData.VerhogingBelastingOvergangAlfaM;
+            context["verlagingSterkteOvergangAlfaS"] = locationData.VerlagingSterkteOvergangAlfaS;
         }
 
         [Given(@"the following rekenmethoden:")]
@@ -93,6 +98,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
             public double GolfhoogtenHm0 { get; set; }
             public double GolfperiodenTm10 { get; set; }
             public double Golfrichtingen { get; set; }
+        }
+
+        private class Location
+        {
+            public double Positie { get; set; }
+            public string TypeToplaag { get; set; }
+            public string Beginschade { get; set; }
+            public double VerhogingBelastingOvergangAlfaM { get; set; }
+            public double VerlagingSterkteOvergangAlfaS { get; set; }
         }
     }
 }
