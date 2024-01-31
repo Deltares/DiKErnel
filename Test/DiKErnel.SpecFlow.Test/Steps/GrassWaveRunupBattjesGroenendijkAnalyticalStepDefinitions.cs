@@ -23,7 +23,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following hydraulischeBelastingen:")]
         public void GivenTheFollowingHydraulischeBelastingen(Table table)
         {
-            context["hydraulischeBelastingen"] = table.CreateSet<HydraulicLoads>();
+            context["waterstanden"] = table.Rows.Select(row => row.GetDouble("waterstanden")).ToArray();
+            context["golfhoogtenHm0"] = table.Rows.Select(row => row.GetDouble("golfhoogtenHm0")).ToArray();
+            context["golfperiodenTm10"] = table.Rows.Select(row => row.GetDouble("golfperiodenTm10")).ToArray();
+            context["golfrichtingen"] = table.Rows.Select(row => row.GetDouble("golfrichtingen")).ToArray();
         }
 
         [Given(@"the following dijkprofiel:")]
@@ -54,7 +57,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public void GivenTheFollowingRekenmethoden(Table table)
         {
             var calculationMethodData = table.CreateInstance<CalculationMethod>();
-            
+
             context["faalgetal"] = calculationMethodData.Faalgetal;
             context["factorCtm"] = calculationMethodData.FactorCtm;
             context["frontsnelheid"] = calculationMethodData.Frontsnelheid;
@@ -98,21 +101,30 @@ namespace DiKErnel.SpecFlow.Test.Steps
             ScenarioContext.StepIsPending();
         }
 
-        private class HydraulicLoads
+        private T GetValueFromContext<T>(string id)
         {
-            public double Waterstanden { get; set; }
-            public double GolfhoogtenHm0 { get; set; }
-            public double GolfperiodenTm10 { get; set; }
-            public double Golfrichtingen { get; set; }
+            if (!context.ContainsKey(id))
+            {
+                return default;
+            }
+
+            return (T) context[id];
         }
 
-        private class Location
+        private void AddTimeSteps(CalculationInputBuilder builder)
         {
-            public double Positie { get; set; }
-            public string TypeToplaag { get; set; }
-            public string Beginschade { get; set; }
-            public double VerhogingBelastingOvergangAlfaM { get; set; }
-            public double VerlagingSterkteOvergangAlfaS { get; set; }
+            var times = GetValueFromContext<IReadOnlyList<double>>("tijdstippen");
+            var waterLevels = GetValueFromContext<IReadOnlyList<double>>("waterstanden");
+            var waveHeightsHm0 = GetValueFromContext<IReadOnlyList<double>>("golfhoogtenHm0");
+            var wavePeriodsTm10 = GetValueFromContext<IReadOnlyList<double>>("golfperiodenTm10");
+            var waveDirections = GetValueFromContext<IReadOnlyList<double>>("golfrichtingen");
+
+            for (var i = 0; i < times.Count - 1; i++)
+            {
+                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeightsHm0[i], wavePeriodsTm10[i],
+                                    waveDirections[i]);
+            }
+        }
         }
 
         private class CalculationMethod
