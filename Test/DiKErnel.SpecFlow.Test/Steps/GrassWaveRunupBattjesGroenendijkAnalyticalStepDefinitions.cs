@@ -53,7 +53,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following rekenmethoden:")]
         public void GivenTheFollowingRekenmethoden(Table table)
         {
-            ScenarioContext.StepIsPending();
+            var calculationMethodData = table.CreateInstance<CalculationMethod>();
+            
+            context["faalgetal"] = calculationMethodData.Faalgetal;
+            context["factorCtm"] = calculationMethodData.FactorCtm;
+            context["frontsnelheid"] = calculationMethodData.Frontsnelheid;
+            context["bodemVoorlandZ"] = calculationMethodData.BodemVoorlandZ;
+            context["tanAvl"] = calculationMethodData.TanAvl;
         }
 
         [When(@"I run the calculation")]
@@ -107,6 +113,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
             public string Beginschade { get; set; }
             public double VerhogingBelastingOvergangAlfaM { get; set; }
             public double VerlagingSterkteOvergangAlfaS { get; set; }
+        }
+
+        private class CalculationMethod
+        {
+            public double Faalgetal { get; set; }
+            public double FactorCtm { get; set; }
+            public double Frontsnelheid { get; set; }
+            public double BodemVoorlandZ { get; set; }
+            public double TanAvl { get; set; }
         }
     }
 }
