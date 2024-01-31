@@ -1,14 +1,23 @@
-﻿using TechTalk.SpecFlow;
+﻿using System.Linq;
+using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace DiKErnel.SpecFlow.Test.Steps
 {
     [Binding]
     public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions
     {
+        private readonly ScenarioContext context;
+
+        public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context)
+        {
+            this.context = context;
+        }
+
         [Given(@"the following tijdstippen:")]
         public void GivenTheFollowingTijdstippen(Table table)
         {
-            ScenarioContext.StepIsPending();
+            context["tijdstippen"] = table.Rows.Select(row => row.GetDouble("tijdstippen")).ToArray();
         }
 
         [Given(@"the following hydraulischeBelastingen:")]
