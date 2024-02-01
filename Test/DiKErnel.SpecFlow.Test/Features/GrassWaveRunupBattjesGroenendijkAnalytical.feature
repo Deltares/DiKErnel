@@ -1,4 +1,4 @@
-﻿Feature: GrassWaveRunupBattjesGroenendijkAnalytical
+Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 	As a user I want to perform grass wave run-up calculations based on Battjes-Groenendijk analytical.
 	
 	Background: 
