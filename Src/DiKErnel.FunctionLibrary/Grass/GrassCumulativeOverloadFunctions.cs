@@ -23,9 +23,9 @@ using DiKErnel.External.Overtopping;
 namespace DiKErnel.FunctionLibrary.Grass
 {
     /// <summary>
-    /// Class that holds generic grass calculation routines.
+    /// Class that holds grass cumulative overload calculation routines.
     /// </summary>
-    public static class GrassFunctions
+    public static class GrassCumulativeOverloadFunctions
     {
         /// <summary>
         /// Calculates the increment of damage.

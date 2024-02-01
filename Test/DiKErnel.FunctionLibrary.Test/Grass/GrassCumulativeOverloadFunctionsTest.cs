@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.Grass
 {
     [TestFixture]
-    public class GrassFunctionsTest
+    public class GrassCumulativeOverloadFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()
@@ -33,7 +33,8 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
             const double criticalCumulativeOverload = 7000;
 
             // Call
-            double incrementDamage = GrassFunctions.IncrementDamage(cumulativeOverload, criticalCumulativeOverload);
+            double incrementDamage = GrassCumulativeOverloadFunctions.IncrementDamage(cumulativeOverload,
+                                                                                      criticalCumulativeOverload);
 
             // Assert
             AssertHelper.AreEqual(0.15198428571428, incrementDamage);
@@ -79,7 +80,7 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
                                                        dikeHeight, dikeOrientation);
 
             // Call
-            double representativeWaveRunup2P = GrassFunctions.RepresentativeWaveRunup2P(input);
+            double representativeWaveRunup2P = GrassCumulativeOverloadFunctions.RepresentativeWaveRunup2P(input);
 
             // Assert
             AssertHelper.AreEqual(2.79696767501212, representativeWaveRunup2P);
