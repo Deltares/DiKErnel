@@ -32,14 +32,14 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             // Setup
             double averageNumberOfWaves = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double criticalFrontVelocity = Random.NextDouble();
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double gravitationalAcceleration = Random.NextDouble();
-            double accelerationAlphaA = Random.NextDouble();
             double frontVelocityCwo = Random.NextDouble();
+            int fixedNumberOfWaves = Random.Next();
+            double accelerationAlphaA = Random.NextDouble();
 
             // Call
             var input = new GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
@@ -57,14 +57,14 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             Assert.That(input, Is.InstanceOf<GrassCumulativeOverloadInput>());
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
             Assert.That(input.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
-            Assert.That(input.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
             Assert.That(input.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
             Assert.That(input.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
             Assert.That(input.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(input.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
             Assert.That(input.GravitationalAcceleration, Is.EqualTo(gravitationalAcceleration));
-            Assert.That(input.AccelerationAlphaA, Is.EqualTo(accelerationAlphaA));
             Assert.That(input.FrontVelocityCwo, Is.EqualTo(frontVelocityCwo));
+            Assert.That(input.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
+            Assert.That(input.AccelerationAlphaA, Is.EqualTo(accelerationAlphaA));
         }
     }
 }
