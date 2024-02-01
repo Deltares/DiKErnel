@@ -41,13 +41,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 
             var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
                                                                                   representativeWaveRunup2P,
-                                                                                  fixedNumberOfWaves,
                                                                                   verticalDistanceWaterLevelElevation,
                                                                                   criticalFrontVelocity,
                                                                                   increasedLoadTransitionAlphaM,
                                                                                   reducedStrengthTransitionAlphaS,
                                                                                   gravitationalAcceleration,
-                                                                                  frontVelocityCu);
+                                                                                  frontVelocityCu,
+                                                                                  fixedNumberOfWaves);
 
             // Call
             double cumulativeOverload = GrassWaveRunupRayleighDiscreteFunctions.CumulativeOverload(input);

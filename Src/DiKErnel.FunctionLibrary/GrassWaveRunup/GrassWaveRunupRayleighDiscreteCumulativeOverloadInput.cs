@@ -32,13 +32,13 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
         public GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(double averageNumberOfWaves,
                                                                      double representativeWaveRunup2P,
-                                                                     int fixedNumberOfWaves,
                                                                      double verticalDistanceWaterLevelElevation,
                                                                      double criticalFrontVelocity,
                                                                      double increasedLoadTransitionAlphaM,
                                                                      double reducedStrengthTransitionAlphaS,
                                                                      double gravitationalAcceleration,
-                                                                     double frontVelocityCu)
+                                                                     double frontVelocityCu,
+                                                                     int fixedNumberOfWaves)
             : base(averageNumberOfWaves, representativeWaveRunup2P, fixedNumberOfWaves,
                    verticalDistanceWaterLevelElevation, criticalFrontVelocity, increasedLoadTransitionAlphaM,
                    reducedStrengthTransitionAlphaS, gravitationalAcceleration)
