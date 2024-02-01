@@ -44,12 +44,12 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             // Call
             var input = new GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
                                                                                         representativeWaveRunup2P,
-                                                                                        fixedNumberOfWaves,
                                                                                         verticalDistanceWaterLevelElevation,
                                                                                         criticalFrontVelocity,
                                                                                         increasedLoadTransitionAlphaM,
                                                                                         reducedStrengthTransitionAlphaS,
                                                                                         gravitationalAcceleration,
+                                                                                        fixedNumberOfWaves,
                                                                                         accelerationAlphaA,
                                                                                         frontVelocityCwo);
 

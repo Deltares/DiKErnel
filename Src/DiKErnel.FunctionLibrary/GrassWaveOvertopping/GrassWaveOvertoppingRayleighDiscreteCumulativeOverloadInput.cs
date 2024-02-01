@@ -33,12 +33,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         /// <param name="frontVelocityCwo">The Cwo coefficient [-].</param>
         public GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(double averageNumberOfWaves,
                                                                            double representativeWaveRunup2P,
-                                                                           int fixedNumberOfWaves,
                                                                            double verticalDistanceWaterLevelElevation,
                                                                            double criticalFrontVelocity,
                                                                            double increasedLoadTransitionAlphaM,
                                                                            double reducedStrengthTransitionAlphaS,
                                                                            double gravitationalAcceleration,
+                                                                           int fixedNumberOfWaves,
                                                                            double accelerationAlphaA,
                                                                            double frontVelocityCwo)
             : base(averageNumberOfWaves, representativeWaveRunup2P, fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
