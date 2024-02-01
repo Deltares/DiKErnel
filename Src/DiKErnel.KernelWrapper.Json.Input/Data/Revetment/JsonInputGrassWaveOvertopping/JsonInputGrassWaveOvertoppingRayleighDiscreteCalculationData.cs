@@ -36,7 +36,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOve
         [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.AccelerationAlphaA)]
         public JsonInputGrassWaveOvertoppingRayleighDiscreteAccelerationAlphaAData AccelerationAlphaAData { get; private set; }
 
-        [JsonProperty(JsonInputGrassDefinitions.FixedNumberOfWaves)]
+        [JsonProperty(JsonInputGrassRayleighDiscreteDefinitions.FixedNumberOfWaves)]
         public int? FixedNumberOfWaves { get; private set; }
 
         [JsonProperty(JsonInputGrassWaveOvertoppingRayleighDiscreteDefinitions.FrontVelocityCwo)]

@@ -16,23 +16,13 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic;
-using DiKErnel.KernelWrapper.Json.Input.Data.Generic.Definitions;
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions;
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
-using Newtonsoft.Json;
-
-namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOvertopping
+namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
 {
-    internal class JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData : JsonInputLocationData
+    internal static class JsonInputGrassCumulativeOverloadDefinitions
     {
-        [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
-        public JsonInputGrassTopLayerType TopLayerType { get; private set; }
-
-        [JsonProperty(JsonInputGrassCumulativeOverloadDefinitions.IncreasedLoadTransitionAlphaM)]
-        public double? IncreasedLoadTransitionAlphaM { get; private set; }
-
-        [JsonProperty(JsonInputGrassCumulativeOverloadDefinitions.ReducedStrengthTransitionAlphaS)]
-        public double? ReducedStrengthTransitionAlphaS { get; private set; }
+        public const string CriticalFrontVelocity = "kritiekeFrontsnelheid";
+        public const string CriticalCumulativeOverload = "kritiekeCumulatieveOverbelasting";
+        public const string IncreasedLoadTransitionAlphaM = "verhogingBelastingOvergangAlfaM";
+        public const string ReducedStrengthTransitionAlphaS = "verlagingSterkteOvergangAlfaS";
     }
 }

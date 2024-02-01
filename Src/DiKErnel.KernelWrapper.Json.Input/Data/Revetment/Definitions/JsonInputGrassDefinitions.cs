@@ -22,13 +22,5 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.Definitions
     {
         public const string TopLayerTypeClosedSod = "grasGeslotenZode";
         public const string TopLayerTypeOpenSod = "grasOpenZode";
-
-        public const string IncreasedLoadTransitionAlphaM = "verhogingBelastingOvergangAlfaM";
-        public const string ReducedStrengthTransitionAlphaS = "verlagingSterkteOvergangAlfaS";
-
-        public const string CriticalCumulativeOverload = "kritiekeCumulatieveOverbelasting";
-        public const string CriticalFrontVelocity = "kritiekeFrontsnelheid";
-
-        public const string FixedNumberOfWaves = "aantalGolvenVast";
     }
 }

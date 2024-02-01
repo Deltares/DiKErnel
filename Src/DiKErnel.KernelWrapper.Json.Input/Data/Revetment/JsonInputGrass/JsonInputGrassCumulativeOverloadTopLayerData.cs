@@ -27,10 +27,10 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass
         [JsonProperty(JsonInputDefinitions.TypeTopLayer)]
         public JsonInputGrassTopLayerType TopLayerType { get; private set; }
 
-        [JsonProperty(JsonInputGrassDefinitions.CriticalCumulativeOverload)]
+        [JsonProperty(JsonInputGrassCumulativeOverloadDefinitions.CriticalCumulativeOverload)]
         public double? CriticalCumulativeOverload { get; private set; }
 
-        [JsonProperty(JsonInputGrassDefinitions.CriticalFrontVelocity)]
+        [JsonProperty(JsonInputGrassCumulativeOverloadDefinitions.CriticalFrontVelocity)]
         public double? CriticalFrontVelocity { get; private set; }
     }
 }
