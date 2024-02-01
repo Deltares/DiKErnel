@@ -64,10 +64,20 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
 
             return GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(
                 new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
-                    averageNumberOfWaves, representativeWaveRunup2P, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                    verticalDistanceWaterLevelElevation, foreshore.Slope, foreshore.Slope, CriticalFrontVelocity, FrontVelocityCu,
-                    IncreasedLoadTransitionAlphaM, ReducedStrengthTransitionAlphaS, NaturalConstants.GravitationalAcceleration,
-                    GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K1, GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K2));
+                    averageNumberOfWaves,
+                    representativeWaveRunup2P,
+                    verticalDistanceWaterLevelElevation,
+                    CriticalFrontVelocity,
+                    IncreasedLoadTransitionAlphaM,
+                    ReducedStrengthTransitionAlphaS,
+                    NaturalConstants.GravitationalAcceleration,
+                    FrontVelocityCu,
+                    timeDependentInput.WaterLevel,
+                    timeDependentInput.WaveHeightHm0,
+                    foreshore.BottomZ,
+                    foreshore.Slope,
+                    GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K1,
+                    GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K2));
         }
     }
 }

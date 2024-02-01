@@ -46,16 +46,16 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         /// <param name="k2">The K2 value [-].</param>
         public GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(double averageNumberOfWaves,
                                                                                  double representativeWaveRunup2P,
-                                                                                 double waterLevel,
-                                                                                 double waveHeightHm0,
                                                                                  double verticalDistanceWaterLevelElevation,
-                                                                                 double bottomForeshoreZ,
-                                                                                 double slopeForeshore,
                                                                                  double criticalFrontVelocity,
-                                                                                 double frontVelocityCu,
                                                                                  double increasedLoadTransitionAlphaM,
                                                                                  double reducedStrengthTransitionAlphaS,
                                                                                  double gravitationalAcceleration,
+                                                                                 double frontVelocityCu,
+                                                                                 double waterLevel,
+                                                                                 double waveHeightHm0,
+                                                                                 double bottomForeshoreZ,
+                                                                                 double slopeForeshore,
                                                                                  double k1, double k2)
         {
             AverageNumberOfWaves = averageNumberOfWaves;
