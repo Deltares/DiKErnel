@@ -30,7 +30,7 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         /// <inheritdoc/>
         public GrassWaveRunupRayleighDiscreteLocationConstructionProperties(double x, GrassTopLayerType topLayerType)
             : base(x, topLayerType) {}
-        
+
         /// <summary>
         /// Gets or sets the fixed number of waves.
         /// </summary>

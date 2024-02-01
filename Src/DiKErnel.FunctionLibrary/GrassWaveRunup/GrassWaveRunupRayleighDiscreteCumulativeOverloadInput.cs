@@ -49,7 +49,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         /// Gets the Cu coefficient [-].
         /// </summary>
         public double FrontVelocityCu { get; }
-        
+
         /// <summary>
         /// Gets the fixed number of waves [-].
         /// </summary>
