@@ -168,6 +168,11 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         private static readonly IInterpolation lambdaRu2Interpolator =
             Interpolate.Linear(lambdasRu2.Select(x => x.Item1), lambdasRu2.Select(x => x.Item2));
 
+        /// <summary>
+        /// Calculates the cumulative overload.
+        /// </summary>
+        /// <param name="input">The input to use for the calculation.</param>
+        /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input)
         {
             double upperLimitWaveRunup = UpperLimitWaveRunup(input.IncreasedLoadTransitionAlphaM,
