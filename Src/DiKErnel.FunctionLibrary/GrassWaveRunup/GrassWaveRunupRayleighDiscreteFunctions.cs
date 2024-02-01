@@ -33,7 +33,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassWaveRunupRayleighDiscreteCumulativeOverloadInput input)
         {
-            return GrassCumulativeOverloadFunctions.CumulativeOverload(
+            return GrassRayleighDiscreteFunctions.CumulativeOverload(
                 input, input.FixedNumberOfWaves,
                 waveRunup => FrontVelocity(waveRunup, input.VerticalDistanceWaterLevelElevation,
                                            input.FrontVelocityCu, input.GravitationalAcceleration));
