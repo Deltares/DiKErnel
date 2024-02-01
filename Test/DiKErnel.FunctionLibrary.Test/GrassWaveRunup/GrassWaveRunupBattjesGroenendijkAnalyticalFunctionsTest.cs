@@ -32,15 +32,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
                                                                       double representativeWaveRunup2P, double expectedCumulativeOverload)
         {
             // Setup
+            const double criticalFrontVelocity = 4.0;
             const double increasedLoadTransitionAlphaM = 1;
             const double reducedStrengthTransitionAlphaS = 1;
-
-            const double frontVelocityCu = 1.1;
-            const double criticalFrontVelocity = 4.0;
             const double gravitationalAcceleration = 9.81;
-
-            const double slopeForeshore = 0.004;
+            const double frontVelocityCu = 1.1;
             const double bottomForeshoreZ = -4;
+            const double slopeForeshore = 0.004;
             const double k1 = 2.0;
             const double k2 = 3.6;
 

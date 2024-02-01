@@ -31,13 +31,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             // Setup
             const double averageNumberOfWaves = 225;
             const double representativeWaveRunup2P = 2.258;
-            const int fixedNumberOfWaves = 10000;
             const double verticalDistanceWaterLevelElevation = 0.97;
             const double criticalFrontVelocity = 4;
             const double increasedLoadTransitionAlphaM = 1.1;
             const double reducedStrengthTransitionAlphaS = 1.2;
             const double gravitationalAcceleration = 9.81;
             const double frontVelocityCu = 1.3;
+            const int fixedNumberOfWaves = 10000;
 
             var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
                                                                                   representativeWaveRunup2P,

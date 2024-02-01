@@ -32,13 +32,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             // Setup
             double averageNumberOfWaves = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double criticalFrontVelocity = Random.NextDouble();
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double gravitationalAcceleration = Random.NextDouble();
             double frontVelocityCu = Random.NextDouble();
+            int fixedNumberOfWaves = Random.Next();
 
             // Call
             var input = new GrassWaveRunupRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
@@ -55,13 +55,13 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             Assert.That(input, Is.InstanceOf<GrassCumulativeOverloadInput>());
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
             Assert.That(input.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
-            Assert.That(input.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
             Assert.That(input.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
             Assert.That(input.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
             Assert.That(input.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(input.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
             Assert.That(input.GravitationalAcceleration, Is.EqualTo(gravitationalAcceleration));
             Assert.That(input.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
+            Assert.That(input.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
         }
     }
 }
