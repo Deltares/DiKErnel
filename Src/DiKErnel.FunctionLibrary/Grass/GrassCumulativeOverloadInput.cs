@@ -29,7 +29,6 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
         /// <param name="representativeWaveRunup2P">The representative wave run-up
         /// (2 percent) [m].</param>
-        /// <param name="fixedNumberOfWaves">The fixed number of waves [-].</param>
         /// <param name="verticalDistanceWaterLevelElevation">The vertical distance of the
         /// water elevation [m].</param>
         /// <param name="criticalFrontVelocity">The critical front velocity [m/s].</param>
@@ -38,13 +37,12 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// <param name="gravitationalAcceleration">The gravitational
         /// acceleration [m/s^2].</param>
         public GrassCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
-                                            int fixedNumberOfWaves, double verticalDistanceWaterLevelElevation,
-                                            double criticalFrontVelocity, double increasedLoadTransitionAlphaM,
+                                            double verticalDistanceWaterLevelElevation, double criticalFrontVelocity,
+                                            double increasedLoadTransitionAlphaM,
                                             double reducedStrengthTransitionAlphaS, double gravitationalAcceleration)
         {
             AverageNumberOfWaves = averageNumberOfWaves;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;
-            FixedNumberOfWaves = fixedNumberOfWaves;
             VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
             CriticalFrontVelocity = criticalFrontVelocity;
             IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
@@ -61,11 +59,6 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// Gets the representative wave run-up (2 percent) [m].
         /// </summary>
         public double RepresentativeWaveRunup2P { get; }
-
-        /// <summary>
-        /// Gets the fixed number of waves [-].
-        /// </summary>
-        public int FixedNumberOfWaves { get; }
 
         /// <summary>
         /// Gets the vertical distance of the water elevation [m].

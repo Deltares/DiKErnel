@@ -29,8 +29,9 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="accelerationAlphaA">The AlphaA coefficient [-].</param>
         /// <param name="frontVelocityCwo">The Cwo coefficient [-].</param>
+        /// <param name="fixedNumberOfWaves">The fixed number of waves [-].</param>
+        /// <param name="accelerationAlphaA">The AlphaA coefficient [-].</param>
         public GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(double averageNumberOfWaves,
                                                                            double representativeWaveRunup2P,
                                                                            double verticalDistanceWaterLevelElevation,
@@ -41,22 +42,28 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
                                                                            double frontVelocityCwo,
                                                                            int fixedNumberOfWaves,
                                                                            double accelerationAlphaA)
-            : base(averageNumberOfWaves, representativeWaveRunup2P, fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
+            : base(averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
                    criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                    gravitationalAcceleration)
         {
-            AccelerationAlphaA = accelerationAlphaA;
             FrontVelocityCwo = frontVelocityCwo;
+            FixedNumberOfWaves = fixedNumberOfWaves;
+            AccelerationAlphaA = accelerationAlphaA;
         }
-
-        /// <summary>
-        /// Gets the AlphaA coefficient [-].
-        /// </summary>
-        public double AccelerationAlphaA { get; }
 
         /// <summary>
         /// Gets the Cwo coefficient [-].
         /// </summary>
         public double FrontVelocityCwo { get; }
+
+        /// <summary>
+        /// Gets the fixed number of waves [-].
+        /// </summary>
+        public int FixedNumberOfWaves { get; }
+
+        /// <summary>
+        /// Gets the AlphaA coefficient [-].
+        /// </summary>
+        public double AccelerationAlphaA { get; }
     }
 }
