@@ -93,36 +93,37 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context["damage"] = damages.Last();
         }
 
-        [Given(@"the following is adjusted:")]
-        public void GivenTheFollowingIsAdjusted(Table table)
+        [Given(@"the following series are adjusted:")]
+        public void GivenTheFollowingSeriesAreAdjusted(Table table)
         {
-            // Check row count, if row count == 1, then read as a single line
-            if (table.RowCount == 1)
+            foreach (string property in table.Header)
             {
-                foreach (string property in table.Header)
-                {
-                    context[property] = table.Rows[0].GetString(property);
-                }
+                context[property] = table.Rows.Select(r => r.GetString(property)).ToArray();
             }
-            else
+        }
+
+        [Given(@"the following values are adjusted:")]
+        public void GivenTheFollowingValuesAreAdjusted(Table table)
+        {
+            foreach (string property in table.Header)
             {
-                foreach (string property in table.Header)
-                {
-                    context[property] = table.Rows.Select(r => r.GetString(property)).ToArray();
-                }
+                context[property] = table.Rows[0].GetString(property);
             }
         }
 
         [Then(@"the schadegetal is (.*)")]
-        public void ThenTheSchadegetalIs(decimal p0)
+        public void ThenTheSchadegetalIs(decimal expectedDamage)
         {
-            Assert.That(context["damage"], Is.EqualTo(p0));
+            Assert.That(context["damage"], Is.EqualTo(expectedDamage).Within(1e-14));
         }
 
         [Given(@"the following constant inputs:")]
         public void GivenTheFollowingConstantInputs(Table table)
         {
-            ScenarioContext.StepIsPending();
+            foreach (string property in table.Header)
+            {
+                context[property] = table.Rows[0].GetString(property);
+            }
         }
 
         [When(@"I change the value of (.*)")]
