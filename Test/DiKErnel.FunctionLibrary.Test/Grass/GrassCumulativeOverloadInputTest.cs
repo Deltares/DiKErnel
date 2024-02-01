@@ -31,7 +31,6 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
             // Setup
             double averageNumberOfWaves = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double criticalFrontVelocity = Random.NextDouble();
             double increasedLoadTransitionAlphaM = Random.NextDouble();
@@ -40,14 +39,13 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
 
             // Call
             var input = new GrassCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
-                                                         fixedNumberOfWaves, verticalDistanceWaterLevelElevation,
-                                                         criticalFrontVelocity, increasedLoadTransitionAlphaM,
-                                                         reducedStrengthTransitionAlphaS, gravitationalAcceleration);
+                                                         verticalDistanceWaterLevelElevation, criticalFrontVelocity,
+                                                         increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                         gravitationalAcceleration);
 
             // Assert
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
             Assert.That(input.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
-            Assert.That(input.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
             Assert.That(input.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
             Assert.That(input.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
             Assert.That(input.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));

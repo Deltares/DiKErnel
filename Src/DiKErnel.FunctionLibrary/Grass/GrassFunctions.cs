@@ -52,13 +52,14 @@ namespace DiKErnel.FunctionLibrary.Grass
         }
 
         internal static double CumulativeOverload(GrassCumulativeOverloadInput input,
+                                                  int fixedNumberOfWaves,
                                                   Func<double, double> getFrontVelocityFunc)
         {
             double cumulativeFrontVelocity = 0;
 
-            for (var k = 1; k <= input.FixedNumberOfWaves; k++)
+            for (var k = 1; k <= fixedNumberOfWaves; k++)
             {
-                double waveRunup = WaveRunup(input.RepresentativeWaveRunup2P, input.FixedNumberOfWaves, k);
+                double waveRunup = WaveRunup(input.RepresentativeWaveRunup2P, fixedNumberOfWaves, k);
                 double frontVelocity = getFrontVelocityFunc(waveRunup);
 
                 cumulativeFrontVelocity += Math.Max(0, input.IncreasedLoadTransitionAlphaM * Math.Pow(frontVelocity, 2)
@@ -66,7 +67,7 @@ namespace DiKErnel.FunctionLibrary.Grass
                                                        * Math.Pow(input.CriticalFrontVelocity, 2));
             }
 
-            return input.AverageNumberOfWaves / input.FixedNumberOfWaves * cumulativeFrontVelocity;
+            return input.AverageNumberOfWaves / fixedNumberOfWaves * cumulativeFrontVelocity;
         }
 
         private static double WaveRunup(double representativeWaveRunup2P, int fixedNumberOfWaves, int waveNumber)
