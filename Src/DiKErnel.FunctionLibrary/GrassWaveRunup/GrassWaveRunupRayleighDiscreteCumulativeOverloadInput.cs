@@ -16,14 +16,12 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.FunctionLibrary.Grass;
-
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
     /// Input for grass wave run-up Rayleigh discrete cumulative overload calculations.
     /// </summary>
-    public class GrassWaveRunupRayleighDiscreteCumulativeOverloadInput : GrassCumulativeOverloadInput
+    public class GrassWaveRunupRayleighDiscreteCumulativeOverloadInput : GrassWaveRunupCumulativeOverloadInput
     {
         /// <inheritdoc/>
         /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
@@ -39,17 +37,11 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                                      int fixedNumberOfWaves)
             : base(averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
                    criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                   gravitationalAcceleration)
+                   gravitationalAcceleration, frontVelocityCu)
         {
-            FrontVelocityCu = frontVelocityCu;
             FixedNumberOfWaves = fixedNumberOfWaves;
         }
-
-        /// <summary>
-        /// Gets the Cu coefficient [-].
-        /// </summary>
-        public double FrontVelocityCu { get; }
-
+        
         /// <summary>
         /// Gets the fixed number of waves [-].
         /// </summary>

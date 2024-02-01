@@ -16,15 +16,13 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.FunctionLibrary.Grass;
-
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
     /// Input for grass wave run-up Battjes-Groenendijk analytical cumulative overload
     /// calculations.
     /// </summary>
-    public class GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput : GrassCumulativeOverloadInput
+    public class GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput : GrassWaveRunupCumulativeOverloadInput
     {
         /// <inheritdoc/>
         /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
@@ -49,9 +47,8 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                                                  double k1, double k2)
             : base(averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
                    criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                   gravitationalAcceleration)
+                   gravitationalAcceleration, frontVelocityCu)
         {
-            FrontVelocityCu = frontVelocityCu;
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
             BottomForeshoreZ = bottomForeshoreZ;
@@ -59,11 +56,6 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             K1 = k1;
             K2 = k2;
         }
-
-        /// <summary>
-        /// Gets the Cu coefficient [-].
-        /// </summary>
-        public double FrontVelocityCu { get; }
 
         /// <summary>
         /// Gets the water level [m].
