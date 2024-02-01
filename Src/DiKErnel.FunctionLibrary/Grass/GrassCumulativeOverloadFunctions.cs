@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Linq;
 using DiKErnel.External.Overtopping;
 
@@ -49,31 +48,6 @@ namespace DiKErnel.FunctionLibrary.Grass
             return OvertoppingAdapter.CalculateZ2(input.WaterLevel, input.WaveHeightHm0, input.WavePeriodTm10, input.WaveDirection,
                                                   input.XValuesProfile.ToArray(), input.ZValuesProfile.ToArray(),
                                                   input.RoughnessCoefficients.ToArray(), input.DikeHeight, input.DikeOrientation);
-        }
-
-        internal static double CumulativeOverload(GrassCumulativeOverloadInput input,
-                                                  int fixedNumberOfWaves,
-                                                  Func<double, double> getFrontVelocityFunc)
-        {
-            double cumulativeFrontVelocity = 0;
-
-            for (var k = 1; k <= fixedNumberOfWaves; k++)
-            {
-                double waveRunup = WaveRunup(input.RepresentativeWaveRunup2P, fixedNumberOfWaves, k);
-                double frontVelocity = getFrontVelocityFunc(waveRunup);
-
-                cumulativeFrontVelocity += Math.Max(0, input.IncreasedLoadTransitionAlphaM * Math.Pow(frontVelocity, 2)
-                                                       - input.ReducedStrengthTransitionAlphaS
-                                                       * Math.Pow(input.CriticalFrontVelocity, 2));
-            }
-
-            return input.AverageNumberOfWaves / fixedNumberOfWaves * cumulativeFrontVelocity;
-        }
-
-        private static double WaveRunup(double representativeWaveRunup2P, int fixedNumberOfWaves, int waveNumber)
-        {
-            return representativeWaveRunup2P * Math.Sqrt(Math.Log(1 - waveNumber / (fixedNumberOfWaves + 1d))
-                                                         / Math.Log(0.02));
         }
     }
 }
