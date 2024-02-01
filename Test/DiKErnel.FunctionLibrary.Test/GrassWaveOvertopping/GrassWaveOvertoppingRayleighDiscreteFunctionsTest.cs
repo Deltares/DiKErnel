@@ -47,9 +47,9 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
                                                                                         increasedLoadTransitionAlphaM,
                                                                                         reducedStrengthTransitionAlphaS,
                                                                                         gravitationalAcceleration,
+                                                                                        frontVelocityCwo,
                                                                                         fixedNumberOfWaves,
-                                                                                        accelerationAlphaA,
-                                                                                        frontVelocityCwo);
+                                                                                        accelerationAlphaA);
 
             // Call
             double cumulativeOverload = GrassWaveOvertoppingRayleighDiscreteFunctions.CumulativeOverload(input);

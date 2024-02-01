@@ -49,9 +49,9 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
                                                                                         increasedLoadTransitionAlphaM,
                                                                                         reducedStrengthTransitionAlphaS,
                                                                                         gravitationalAcceleration,
+                                                                                        frontVelocityCwo,
                                                                                         fixedNumberOfWaves,
-                                                                                        accelerationAlphaA,
-                                                                                        frontVelocityCwo);
+                                                                                        accelerationAlphaA);
 
             // Assert
             Assert.That(input, Is.InstanceOf<GrassCumulativeOverloadInput>());

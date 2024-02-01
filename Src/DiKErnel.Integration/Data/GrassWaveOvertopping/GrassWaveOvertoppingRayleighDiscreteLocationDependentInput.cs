@@ -133,9 +133,9 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
                                                                                 IncreasedLoadTransitionAlphaM,
                                                                                 ReducedStrengthTransitionAlphaS,
                                                                                 NaturalConstants.GravitationalAcceleration,
+                                                                                FrontVelocityCwo,
                                                                                 FixedNumberOfWaves,
-                                                                                accelerationAlphaA,
-                                                                                FrontVelocityCwo));
+                                                                                accelerationAlphaA));
         }
 
         private void InitializeAccelerationAlphaA(IProfileData profileData)
