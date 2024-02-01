@@ -27,21 +27,11 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
     public class GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput : GrassCumulativeOverloadInput
     {
         /// <inheritdoc/>
-        /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
-        /// <param name="representativeWaveRunup2P">The representative wave run-up
-        /// (2 percent) [m].</param>
+        /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
         /// <param name="waterLevel">The water level [m].</param>
         /// <param name="waveHeightHm0">The wave height [m].</param>
-        /// <param name="verticalDistanceWaterLevelElevation">The vertical distance of the
-        /// water elevation [m].</param>
         /// <param name="bottomForeshoreZ">The z coordinate at the bottom of the foreshore [m].</param>
         /// <param name="slopeForeshore">The slope of the foreshore [-].</param>
-        /// <param name="criticalFrontVelocity">The critical front velocity [m/s].</param>
-        /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
-        /// <param name="increasedLoadTransitionAlphaM">The AlphaM value [-].</param>
-        /// <param name="reducedStrengthTransitionAlphaS">The AlphaS value [-].</param>
-        /// <param name="gravitationalAcceleration">The gravitational
-        /// acceleration [m/s^2].</param>
         /// <param name="k1">The K1 value [-].</param>
         /// <param name="k2">The K2 value [-].</param>
         public GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(double averageNumberOfWaves,

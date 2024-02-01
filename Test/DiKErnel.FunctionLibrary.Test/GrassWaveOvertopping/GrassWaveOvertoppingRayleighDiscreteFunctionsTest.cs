@@ -31,14 +31,14 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             // Setup
             const double averageNumberOfWaves = 832.56;
             const double representativeWaveRunup2P = 2.602;
-            const int fixedNumberOfWaves = 10000;
             const double verticalDistanceWaterLevelElevation = 2.2;
             const double criticalFrontVelocity = 6.6;
             const double increasedLoadTransitionAlphaM = 1;
             const double reducedStrengthTransitionAlphaS = 1;
             const double gravitationalAcceleration = 9.81;
-            const double accelerationAlphaA = 1.4;
             const double frontVelocityCwo = 1.45;
+            const int fixedNumberOfWaves = 10000;
+            const double accelerationAlphaA = 1.4;
 
             var input = new GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput(averageNumberOfWaves,
                                                                                         representativeWaveRunup2P,

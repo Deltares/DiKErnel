@@ -32,16 +32,16 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             // Setup
             double averageNumberOfWaves = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
-            double waterLevel = Random.NextDouble();
-            double waveHeightHm0 = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
-            double bottomForeshoreZ = Random.NextDouble();
-            double slopeForeshore = Random.NextDouble();
             double criticalFrontVelocity = Random.NextDouble();
-            double frontVelocityCu = Random.NextDouble();
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double gravitationalAcceleration = Random.NextDouble();
+            double frontVelocityCu = Random.NextDouble();
+            double waterLevel = Random.NextDouble();
+            double waveHeightHm0 = Random.NextDouble();
+            double bottomForeshoreZ = Random.NextDouble();
+            double slopeForeshore = Random.NextDouble();
             double k1 = Random.NextDouble();
             double k2 = Random.NextDouble();
 
@@ -56,16 +56,16 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             Assert.That(input, Is.InstanceOf<GrassCumulativeOverloadInput>());
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
             Assert.That(input.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
-            Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));
-            Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
             Assert.That(input.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
-            Assert.That(input.BottomForeshoreZ, Is.EqualTo(bottomForeshoreZ));
-            Assert.That(input.SlopeForeshore, Is.EqualTo(slopeForeshore));
             Assert.That(input.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
-            Assert.That(input.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
             Assert.That(input.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
             Assert.That(input.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
             Assert.That(input.GravitationalAcceleration, Is.EqualTo(gravitationalAcceleration));
+            Assert.That(input.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
+            Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));
+            Assert.That(input.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
+            Assert.That(input.BottomForeshoreZ, Is.EqualTo(bottomForeshoreZ));
+            Assert.That(input.SlopeForeshore, Is.EqualTo(slopeForeshore));
             Assert.That(input.K1, Is.EqualTo(k1));
             Assert.That(input.K2, Is.EqualTo(k2));
         }
