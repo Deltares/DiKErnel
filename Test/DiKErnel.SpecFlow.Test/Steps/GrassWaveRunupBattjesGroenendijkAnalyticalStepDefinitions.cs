@@ -26,16 +26,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following tijdstippen:")]
         public void GivenTheFollowingTijdstippen(Table table)
         {
-            context["tijdstippen"] = table.Rows.Select(row => row.GetString("tijdstippen")).ToArray();
+            SetCollectionValues(table);
         }
 
         [Given(@"the following hydraulischeBelastingen:")]
         public void GivenTheFollowingHydraulischeBelastingen(Table table)
         {
-            context["waterstanden"] = table.Rows.Select(row => row.GetString("waterstanden")).ToArray();
-            context["golfhoogtenHm0"] = table.Rows.Select(row => row.GetString("golfhoogtenHm0")).ToArray();
-            context["golfperiodenTm10"] = table.Rows.Select(row => row.GetString("golfperiodenTm10")).ToArray();
-            context["golfrichtingen"] = table.Rows.Select(row => row.GetString("golfrichtingen")).ToArray();
+            SetCollectionValues(table);
         }
 
         [Given(@"the following dijkprofiel:")]
@@ -45,34 +42,21 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context["teenBuitenzijde"] = table.Rows[0].GetString("teenBuitenzijde");
             context["kruinBuitenzijde"] = table.Rows[0].GetString("kruinBuitenzijde");
 
-            IReadOnlyList<SegmentData> segmentData = table.CreateSet<SegmentData>().ToArray();
-            context["posities"] = segmentData.Select(sd => sd.Posities).ToArray();
-            context["hoogten"] = segmentData.Select(sd => sd.Hoogten).ToArray();
-            context["ruwheidscoefficienten"] = segmentData.Select(sd => sd.Ruwheidscoefficienten).ToArray();
+            context["posities"] = table.Rows.Select(row => row.GetString("posities")).ToArray();
+            context["hoogten"] = table.Rows.Select(row => row.GetString("hoogten")).ToArray();
+            context["ruwheidscoefficienten"] = table.Rows.Select(row => row.GetString("ruwheidscoefficienten")).ToArray();
         }
 
         [Given(@"the following locaties:")]
         public void GivenTheFollowingLocaties(Table table)
         {
-            var locationData = table.CreateInstance<Location>();
-
-            context["positie"] = locationData.Positie;
-            context["typeToplaag"] = locationData.TypeToplaag;
-            context["beginschade"] = locationData.Beginschade;
-            context["verhogingBelastingOvergangAlfaM"] = locationData.VerhogingBelastingOvergangAlfaM;
-            context["verlagingSterkteOvergangAlfaS"] = locationData.VerlagingSterkteOvergangAlfaS;
+            SetPropertyValues(table);
         }
 
         [Given(@"the following rekenmethoden:")]
         public void GivenTheFollowingRekenmethoden(Table table)
         {
-            var calculationMethodData = table.CreateInstance<CalculationMethod>();
-
-            context["faalgetal"] = calculationMethodData.Faalgetal;
-            context["factorCtm"] = calculationMethodData.FactorCtm;
-            context["frontsnelheid"] = calculationMethodData.Frontsnelheid;
-            context["bodemVoorlandZ"] = calculationMethodData.BodemVoorlandZ;
-            context["tanAvl"] = calculationMethodData.TanAvl;
+            SetPropertyValues(table);
         }
 
         [When(@"I run the calculation")]
@@ -96,19 +80,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following series are adjusted:")]
         public void GivenTheFollowingSeriesAreAdjusted(Table table)
         {
-            foreach (string property in table.Header)
-            {
-                context[property] = table.Rows.Select(r => r.GetString(property)).ToArray();
-            }
+            SetCollectionValues(table);
         }
 
         [Given(@"the following values are adjusted:")]
         public void GivenTheFollowingValuesAreAdjusted(Table table)
         {
-            foreach (string property in table.Header)
-            {
-                context[property] = table.Rows[0].GetString(property);
-            }
+            SetPropertyValues(table);
         }
 
         [Then(@"the schadegetal is (.*)")]
@@ -120,10 +98,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following constant inputs:")]
         public void GivenTheFollowingConstantInputs(Table table)
         {
-            foreach (string property in table.Header)
-            {
-                context[property] = table.Rows[0].GetString(property);
-            }
+            SetPropertyValues(table);
         }
 
         [When(@"I change the value of (.*)")]
@@ -136,6 +111,22 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public void ThenTheOutputValueForIs(string dload, Table table)
         {
             ScenarioContext.StepIsPending();
+        }
+
+        private void SetCollectionValues(Table table)
+        {
+            foreach (string property in table.Header)
+            {
+                context[property] = table.Rows.Select(r => r.GetString(property)).ToArray();
+            }
+        }
+
+        private void SetPropertyValues(Table table)
+        {
+            foreach (string property in table.Header)
+            {
+                context[property] = table.Rows[0].GetString(property);
+            }
         }
 
         private GrassTopLayerType GetGrassTopLayerType()
@@ -261,31 +252,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
             };
 
             builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
-        }
-
-        private class SegmentData
-        {
-            public string Posities { get; set; }
-            public string Hoogten { get; set; }
-            public string Ruwheidscoefficienten { get; set; }
-        }
-
-        private class CalculationMethod
-        {
-            public string Faalgetal { get; set; }
-            public string FactorCtm { get; set; }
-            public string Frontsnelheid { get; set; }
-            public string BodemVoorlandZ { get; set; }
-            public string TanAvl { get; set; }
-        }
-
-        private class Location
-        {
-            public string Positie { get; set; }
-            public string TypeToplaag { get; set; }
-            public string Beginschade { get; set; }
-            public string VerhogingBelastingOvergangAlfaM { get; set; }
-            public string VerlagingSterkteOvergangAlfaS { get; set; }
         }
     }
 }

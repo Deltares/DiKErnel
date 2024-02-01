@@ -1003,42 +1003,22 @@ namespace DiKErnel.SpecFlow.Test.Features
                 TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "posities",
                             "hoogten",
-                            "dijkorientatie",
-                            "ruwheidscoefficienten",
-                            "positie",
-                            "bodemVoorlandZ",
-                            "tanAvl"});
+                            "ruwheidscoefficienten"});
                 table18.AddRow(new string[] {
                             "0",
                             "0",
-                            "20",
-                            "0.85",
-                            "15",
-                            "0.5",
-                            "0.01"});
+                            "0.85"});
                 table18.AddRow(new string[] {
                             "15",
                             "4",
-                            "",
-                            "0.5",
-                            "",
-                            "",
-                            ""});
+                            "0.5"});
                 table18.AddRow(new string[] {
                             "20",
                             "4.1",
-                            "",
-                            "0.95",
-                            "",
-                            "",
-                            ""});
+                            "0.95"});
                 table18.AddRow(new string[] {
                             "25",
                             "7.5",
-                            "",
-                            "",
-                            "",
-                            "",
                             ""});
 #line 166
      testRunner.And("the following series are adjusted:", ((string)(null)), table18, "And ");
