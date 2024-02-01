@@ -16,17 +16,17 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using DiKErnel.FunctionLibrary.Grass;
+
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 {
     /// <summary>
     /// Input for grass wave run-up Battjes-Groenendijk analytical cumulative overload
     /// calculations.
     /// </summary>
-    public class GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput
+    public class GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput : GrassCumulativeOverloadInput
     {
-        /// <summary>
-        /// Creates a new instance.
-        /// </summary>
+        /// <inheritdoc/>
         /// <param name="averageNumberOfWaves">The average number of waves [-].</param>
         /// <param name="representativeWaveRunup2P">The representative wave run-up
         /// (2 percent) [m].</param>
@@ -57,32 +57,23 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                                                  double bottomForeshoreZ,
                                                                                  double slopeForeshore,
                                                                                  double k1, double k2)
+            : base(averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
+                   criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                   gravitationalAcceleration)
         {
-            AverageNumberOfWaves = averageNumberOfWaves;
-            RepresentativeWaveRunup2P = representativeWaveRunup2P;
+            FrontVelocityCu = frontVelocityCu;
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
-            VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
             BottomForeshoreZ = bottomForeshoreZ;
             SlopeForeshore = slopeForeshore;
-            CriticalFrontVelocity = criticalFrontVelocity;
-            FrontVelocityCu = frontVelocityCu;
-            IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM;
-            ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
-            GravitationalAcceleration = gravitationalAcceleration;
             K1 = k1;
             K2 = k2;
         }
 
         /// <summary>
-        /// Gets the average number of waves [-].
+        /// Gets the Cu coefficient [-].
         /// </summary>
-        public double AverageNumberOfWaves { get; }
-
-        /// <summary>
-        /// Gets the representative wave run-up (2 percent) [m].
-        /// </summary>
-        public double RepresentativeWaveRunup2P { get; }
+        public double FrontVelocityCu { get; }
 
         /// <summary>
         /// Gets the water level [m].
@@ -95,11 +86,6 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         public double WaveHeightHm0 { get; }
 
         /// <summary>
-        /// Gets the vertical distance of the water elevation [m].
-        /// </summary>
-        public double VerticalDistanceWaterLevelElevation { get; }
-
-        /// <summary>
         /// Gets the z coordinate at the bottom of the foreshore [m].
         /// </summary>
         public double BottomForeshoreZ { get; }
@@ -108,31 +94,6 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         /// Gets the slope of the foreshore [-].
         /// </summary>
         public double SlopeForeshore { get; }
-
-        /// <summary>
-        /// Gets the critical front velocity [m/s].
-        /// </summary>
-        public double CriticalFrontVelocity { get; }
-
-        /// <summary>
-        /// Gets the Cu coefficient [-].
-        /// </summary>
-        public double FrontVelocityCu { get; }
-
-        /// <summary>
-        /// Gets the AlphaM value [-].
-        /// </summary>
-        public double IncreasedLoadTransitionAlphaM { get; }
-
-        /// <summary>
-        /// Gets the AlphaS value [-].
-        /// </summary>
-        public double ReducedStrengthTransitionAlphaS { get; }
-
-        /// <summary>
-        /// Gets the gravitational acceleration [m/s^2].
-        /// </summary>
-        public double GravitationalAcceleration { get; }
 
         /// <summary>
         /// Gets the K1 value [-].

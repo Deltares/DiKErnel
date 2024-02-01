@@ -26,9 +26,6 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
     public class GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput : GrassCumulativeOverloadInput
     {
         /// <inheritdoc/>
-        /// <summary>
-        /// Creates a new instance.
-        /// </summary>
         /// <param name="frontVelocityCwo">The Cwo coefficient [-].</param>
         /// <param name="fixedNumberOfWaves">The fixed number of waves [-].</param>
         /// <param name="accelerationAlphaA">The AlphaA coefficient [-].</param>
