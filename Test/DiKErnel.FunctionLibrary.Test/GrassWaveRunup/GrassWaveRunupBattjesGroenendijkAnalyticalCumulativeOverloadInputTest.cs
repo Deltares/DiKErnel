@@ -46,20 +46,10 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 
             // Call
             var input = new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
-                averageNumberOfWaves,
-                representativeWaveRunup2P,
-                verticalDistanceWaterLevelElevation,
-                criticalFrontVelocity,
-                increasedLoadTransitionAlphaM,
-                reducedStrengthTransitionAlphaS,
-                gravitationalAcceleration,
-                frontVelocityCu,
-                waterLevel,
-                waveHeightHm0,
-                bottomForeshoreZ,
-                slopeForeshore,
-                k1,
-                k2);
+                averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
+                criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                gravitationalAcceleration, frontVelocityCu, waterLevel, waveHeightHm0, bottomForeshoreZ, slopeForeshore,
+                k1, k2);
 
             // Assert
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
