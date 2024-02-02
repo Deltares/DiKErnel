@@ -21,10 +21,10 @@ using NUnit.Framework;
 
 namespace DiKErnel.Integration.TestUtil
 {
-    internal static class GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper
+    internal static class GrassWaveRunupLocationDependentInputAssertHelper
     {
         public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCu,
-                                               GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput locationDependentInput)
+                                               GrassWaveRunupLocationDependentInput locationDependentInput)
         {
             Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
             Assert.That(locationDependentInput.FrontVelocityCu, Is.EqualTo(frontVelocityCu));

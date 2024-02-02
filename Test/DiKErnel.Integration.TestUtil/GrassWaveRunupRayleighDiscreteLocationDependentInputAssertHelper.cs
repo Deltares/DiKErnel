@@ -31,12 +31,5 @@ namespace DiKErnel.Integration.TestUtil
 
             Assert.That(locationDependentInput.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
         }
-
-        public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCu,
-                                               GrassWaveRunupRayleighDiscreteLocationDependentInput locationDependentInput)
-        {
-            Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
-            Assert.That(locationDependentInput.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
-        }
     }
 }

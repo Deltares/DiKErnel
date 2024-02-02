@@ -174,7 +174,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 0.99, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7213, 5000, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
-            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 8.3, 3.5, grassWaveRunupRayleighDiscreteLocationDependentInputItem);
 
             var asphaltWaveImpactLocationDependentInputItem =
@@ -363,7 +363,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 0.92, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
-            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.1, grassWaveRunupRayleighDiscreteLocationDependentInputItem1);
 
             var grassWaveRunupRayleighDiscreteLocationDependentInputItem2 =
@@ -379,7 +379,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 0.92, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
-            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.1, grassWaveRunupRayleighDiscreteLocationDependentInputItem2);
 
             var asphaltWaveImpactLocationDependentInputItem =

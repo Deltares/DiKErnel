@@ -1748,7 +1748,7 @@ namespace DiKErnel.Integration.Test
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
 
-            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, frontVelocityCu, locationDependentInput);
         }
 
@@ -1794,7 +1794,7 @@ namespace DiKErnel.Integration.Test
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, locationDependentInput);
 
-            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.1, locationDependentInput);
         }
 
@@ -1840,7 +1840,7 @@ namespace DiKErnel.Integration.Test
             GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, locationDependentInput);
 
-            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.1, locationDependentInput);
         }
 
@@ -2071,7 +2071,7 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 criticalCumulativeOverload, locationDependentInput);
 
-            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, frontVelocityCu, locationDependentInput);
         }
 
@@ -2118,7 +2118,7 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, locationDependentInput);
 
-            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.1, locationDependentInput);
         }
 
@@ -2165,7 +2165,7 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, locationDependentInput);
 
-            GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.1, locationDependentInput);
         }
 
