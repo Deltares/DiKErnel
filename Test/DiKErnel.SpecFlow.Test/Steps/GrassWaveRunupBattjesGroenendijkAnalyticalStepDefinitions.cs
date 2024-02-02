@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
@@ -105,7 +106,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             calculator.WaitForCompletion();
 
             IReadOnlyList<double> damages = calculator.Result.Data.LocationDependentOutputItems[0].GetDamages();
-            context[damageKey] = damages.Last();
+            context[damageKey] = damages[damages.Count - 1];
         }
 
         [Given(@"the following series are adjusted:")]
@@ -172,15 +173,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private double GetDouble(string id)
         {
-            return double.Parse(GetString(id));
+            return double.Parse(GetString(id), CultureInfo.InvariantCulture);
         }
 
         private double? GetNullableDouble(string id)
         {
-            if (context.TryGetValue(id, out object? retrievedValue))
+            if (context.TryGetValue(id, out object retrievedValue))
             {
                 var value = (string) retrievedValue;
-                return string.IsNullOrWhiteSpace(value) ? (double?) null : double.Parse(value);
+                return string.IsNullOrWhiteSpace(value) ? (double?) null : double.Parse(value, CultureInfo.InvariantCulture);
             }
 
             return null;
@@ -204,7 +205,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 }
                 else
                 {
-                    parsedValues.Add(double.Parse(value));
+                    parsedValues.Add(double.Parse(value, CultureInfo.InvariantCulture));
                 }
             }
 
@@ -242,8 +243,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 double? roughnessCoefficient = roughnessCoefficients[i];
                 if (roughnessCoefficient.HasValue)
                 {
-                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ,
-                                                  roughnessCoefficient.Value);
+                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient.Value);
                 }
                 else
                 {
