@@ -21,13 +21,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string waveHeightsHm0Key = "golfhoogtenHm0";
         private const string wavePeriodsTm10Key = "golfperiodenTm10";
         private const string waveDirectionsKey = "golfrichtingen";
-        
+
         private const string dikeOrientationKey = "dijkorientatie";
         private const string outerToePositionKey = "teenBuitenzijde";
         private const string outerCrestPositionKey = "kruinBuitenzijde";
 
         private const string locationXCoordinateKey = "positie";
-        private const string typeGrassToplayerKey = "typeToplaag";
+        private const string grassTopLayerTypeKey = "typeToplaag";
 
         private const string xCoordinatesKey = "posities";
         private const string zCoordinatesKey = "hoogten";
@@ -160,16 +160,19 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        private GrassTopLayerType GetGrassTopLayerType()
+        private GrassTopLayerType GetGrassTopLayerType(string id)
         {
-            var value = (string) context[typeGrassToplayerKey];
-            return value == "grasGeslotenZode" ? GrassTopLayerType.ClosedSod : GrassTopLayerType.OpenSod;
+            return GetString(id) == "grasOpenZode" ? GrassTopLayerType.OpenSod : GrassTopLayerType.ClosedSod;
+        }
+
+        private string GetString(string id)
+        {
+            return (string) context[id];
         }
 
         private double GetDouble(string id)
         {
-            var value = (string) context[id];
-            return double.Parse(value);
+            return double.Parse(GetString(id));
         }
 
         private double? GetNullableDouble(string id)
@@ -251,10 +254,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddProfilePoints(CalculationInputBuilder builder)
         {
-            builder.AddDikeProfilePoint(GetDouble(outerToePositionKey),
-                                        CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(GetDouble(outerCrestPositionKey),
-                                        CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(GetDouble(outerToePositionKey), CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(GetDouble(outerCrestPositionKey), CharacteristicPointType.OuterCrest);
         }
 
         private void AddForeshore(CalculationInputBuilder builder)
@@ -267,7 +268,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddLocation(CalculationInputBuilder builder)
         {
-            GrassTopLayerType topLayerType = GetGrassTopLayerType();
+            GrassTopLayerType topLayerType = GetGrassTopLayerType(grassTopLayerTypeKey);
 
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                 GetDouble(locationXCoordinateKey), topLayerType)
