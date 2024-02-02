@@ -45,8 +45,14 @@
    		
    		Examples: 
    			| hellingVoorland | cumulatieveOverbelastingTijdstap |
+		    | 0               | 0.918                            |
 		    | 0.004           | 1.134                            |
 		    | 0.04            | 13.406                           |
+		    | 0.1             | 49.205                           |
+		    | 0.4             | 48.062                           |
+		    | 10              | 48.062                           |
+		    | 100             | 48.062                           |
+		    | 250             | 48.062                           |
 
 	Scenario Outline: BM Gras benchmark 17
 		Given the following constant inputs:
@@ -58,10 +64,14 @@
    		
    		Examples: 
    			| diepteVoorland | cumulatieveOverbelastingTijdstap |
+		    | 0              | 0.000                            |
+		    | 0.004          | 133115.947                       |
 		    | 0.04           | 13755.272                        |
 		    | 0.1            | 5759.070                         |
 		    | 0.4            | 1031.437                         |
 		    | 10             | 21.453                           |
+		    #| 100            |                                  |
+		    #| 250            |                                  |
       
 	Scenario Outline: BM Gras benchmark 18
 		Given the following constant inputs:
@@ -75,7 +85,11 @@
 		
 		Examples: 
 			| diepteVoorland | kritiekeCumulatieveOverbelasting | cumulatieveOverbelastingTijdstap | Fos   |
+			| 0              | 1000                             | 0.000                            | 0.000 |
+			| 0.004          | 1000                             | 133115.947                       | 0.000 |
 			| 0.04           | 100                              | 13755.272                        | 0.007 |
 			| 0.1            | 10                               | 5759.070                         | 0.002 |
 			| 0.4            | 1                                | 1031.437                         | 0.001 |
 			| 10             | 1                                | 21.453                           | 0.047 |
+			#| 100            | 1                                |                                  |       |
+			#| 250            | 1                                |                                  |       |
