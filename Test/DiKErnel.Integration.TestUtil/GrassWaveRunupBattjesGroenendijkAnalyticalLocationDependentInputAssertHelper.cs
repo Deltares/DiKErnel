@@ -29,14 +29,6 @@ namespace DiKErnel.Integration.TestUtil
             Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
         }
 
-        public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
-                                                 double reducedStrengthTransitionAlphaS,
-                                                 GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput locationDependentInput)
-        {
-            Assert.That(locationDependentInput.IncreasedLoadTransitionAlphaM, Is.EqualTo(increasedLoadTransitionAlphaM));
-            Assert.That(locationDependentInput.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
-        }
-
         public static void AssertAverageNumberOfWaves(
             double averageNumberOfWavesCtm, GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput locationDependentInput)
         {

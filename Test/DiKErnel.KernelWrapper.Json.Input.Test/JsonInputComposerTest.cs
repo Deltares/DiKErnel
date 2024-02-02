@@ -217,7 +217,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 0.023, 0.3, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
                 15.75, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 0.5, 1.8, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.29, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
@@ -491,7 +491,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 0, 1, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
                 null, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
@@ -511,7 +511,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 0, 1, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
                 null, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertTransitionAlpha(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);
