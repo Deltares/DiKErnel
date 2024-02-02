@@ -16,6 +16,37 @@ namespace DiKErnel.SpecFlow.Test.Steps
     [Binding]
     public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions
     {
+        private const string timesKey = "tijdstippen";
+        private const string waterLevelsKey = "waterstanden";
+        private const string waveHeightsHm0Key = "golfhoogtenHm0";
+        private const string wavePeriodsTm10Key = "golfperiodenTm10";
+        private const string waveDirectionsKey = "golfrichtingen";
+        
+        private const string dikeOrientationKey = "dijkorientatie";
+        private const string outerToePositionKey = "teenBuitenzijde";
+        private const string outerCrestPositionKey = "kruinBuitenzijde";
+
+        private const string locationXCoordinateKey = "positie";
+        private const string typeGrassToplayerKey = "typeToplaag";
+
+        private const string xCoordinatesKey = "posities";
+        private const string zCoordinatesKey = "hoogten";
+        private const string roughnessCoefficientsKey = "ruwheidscoefficienten";
+
+        private const string foreshoreSlopeKey = "tanAvl";
+        private const string bottomZForeshoreKey = "bodemVoorlandZ";
+
+        private const string failureNumberKey = "faalGetal";
+        private const string initialDamageKey = "beginSchade";
+        private const string averageNumberOfWavesCtmKey = "factorCtm";
+        private const string criticalFrontVelocityKey = "kritiekeFrontSnelheid";
+        private const string frontVelocityCuKey = "frontsnelheid";
+        private const string criticalCumulativeOverloadKey = "kritiekeCumulatieveOverbelasting";
+        private const string increasedLoadTransitionAlfaMKey = "verhogingBelastingOvergangAlfaM";
+        private const string reducedStrengthTransitionAlphaSKey = "verlagingSterkteOvergangAlfaS";
+
+        private const string damageKey = "damage";
+
         private readonly ScenarioContext context;
 
         public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context)
@@ -38,13 +69,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following dijkprofiel:")]
         public void GivenTheFollowingDijkprofiel(Table table)
         {
-            context["dijkorientatie"] = table.Rows[0].GetString("dijkorientatie");
-            context["teenBuitenzijde"] = table.Rows[0].GetString("teenBuitenzijde");
-            context["kruinBuitenzijde"] = table.Rows[0].GetString("kruinBuitenzijde");
+            context[dikeOrientationKey] = table.Rows[0].GetString(dikeOrientationKey);
+            context[outerToePositionKey] = table.Rows[0].GetString(outerToePositionKey);
+            context[outerCrestPositionKey] = table.Rows[0].GetString(outerCrestPositionKey);
 
-            context["posities"] = table.Rows.Select(row => row.GetString("posities")).ToArray();
-            context["hoogten"] = table.Rows.Select(row => row.GetString("hoogten")).ToArray();
-            context["ruwheidscoefficienten"] = table.Rows.Select(row => row.GetString("ruwheidscoefficienten")).ToArray();
+            context[xCoordinatesKey] = table.Rows.Select(row => row.GetString(xCoordinatesKey)).ToArray();
+            context[zCoordinatesKey] = table.Rows.Select(row => row.GetString(zCoordinatesKey)).ToArray();
+            context[roughnessCoefficientsKey] = table.Rows.Select(row => row.GetString(roughnessCoefficientsKey)).ToArray();
         }
 
         [Given(@"the following locaties:")]
@@ -62,7 +93,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [When(@"I run the calculation")]
         public void WhenIRunTheCalculation()
         {
-            var builder = new CalculationInputBuilder(GetDouble("dijkorientatie"));
+            var builder = new CalculationInputBuilder(GetDouble(dikeOrientationKey));
             AddTimeSteps(builder);
             AddDikeProfile(builder);
             AddProfilePoints(builder);
@@ -74,7 +105,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             calculator.WaitForCompletion();
 
             IReadOnlyList<double> damages = calculator.Result.Data.LocationDependentOutputItems[0].GetDamages();
-            context["damage"] = damages.Last();
+            context[damageKey] = damages.Last();
         }
 
         [Given(@"the following series are adjusted:")]
@@ -92,7 +123,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the schadegetal is (.*)")]
         public void ThenTheSchadegetalIs(decimal expectedDamage)
         {
-            Assert.That(context["damage"], Is.EqualTo(expectedDamage).Within(1e-14));
+            Assert.That(context[damageKey], Is.EqualTo(expectedDamage).Within(1e-14));
         }
 
         [Given(@"the following constant inputs:")]
@@ -110,7 +141,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the output value for (.*) is")]
         public void ThenTheOutputValueForIs(float expectedValue)
         {
-            Assert.That(context["damage"], Is.EqualTo(expectedValue).Within(1e-14));
+            Assert.That(context[damageKey], Is.EqualTo(expectedValue).Within(1e-14));
         }
 
         private void SetCollectionValues(Table table)
@@ -131,7 +162,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private GrassTopLayerType GetGrassTopLayerType()
         {
-            var value = (string) context["typeToplaag"];
+            var value = (string) context[typeGrassToplayerKey];
             return value == "grasGeslotenZode" ? GrassTopLayerType.ClosedSod : GrassTopLayerType.OpenSod;
         }
 
@@ -179,11 +210,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> times = GetDoubleCollection("tijdstippen");
-            IReadOnlyList<double> waterLevels = GetDoubleCollection("waterstanden");
-            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection("golfhoogtenHm0");
-            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection("golfperiodenTm10");
-            IReadOnlyList<double> waveDirections = GetDoubleCollection("golfrichtingen");
+            IReadOnlyList<double> times = GetDoubleCollection(timesKey);
+            IReadOnlyList<double> waterLevels = GetDoubleCollection(waterLevelsKey);
+            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection(waveHeightsHm0Key);
+            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection(wavePeriodsTm10Key);
+            IReadOnlyList<double> waveDirections = GetDoubleCollection(waveDirectionsKey);
 
             for (var i = 0; i < times.Count - 1; i++)
             {
@@ -194,9 +225,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddDikeProfile(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> xLocations = GetDoubleCollection("posities");
-            IReadOnlyList<double> zLocations = GetDoubleCollection("hoogten");
-            IReadOnlyList<double?> roughnessCoefficients = GetNullableDoubleCollection("ruwheidscoefficienten");
+            IReadOnlyList<double> xLocations = GetDoubleCollection(xCoordinatesKey);
+            IReadOnlyList<double> zLocations = GetDoubleCollection(zCoordinatesKey);
+            IReadOnlyList<double?> roughnessCoefficients = GetNullableDoubleCollection(roughnessCoefficientsKey);
 
             for (var i = 0; i < xLocations.Count - 1; i++)
             {
@@ -220,16 +251,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddProfilePoints(CalculationInputBuilder builder)
         {
-            builder.AddDikeProfilePoint(GetDouble("teenBuitenzijde"),
+            builder.AddDikeProfilePoint(GetDouble(outerToePositionKey),
                                         CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(GetDouble("kruinBuitenzijde"),
+            builder.AddDikeProfilePoint(GetDouble(outerCrestPositionKey),
                                         CharacteristicPointType.OuterCrest);
         }
 
         private void AddForeshore(CalculationInputBuilder builder)
         {
-            double foreshoreSlope = GetDouble("tanAvl");
-            double bottomForeshoreZ = GetDouble("bodemVoorlandZ");
+            double foreshoreSlope = GetDouble(foreshoreSlopeKey);
+            double bottomForeshoreZ = GetDouble(bottomZForeshoreKey);
 
             builder.AddForeshore(foreshoreSlope, bottomForeshoreZ);
         }
@@ -239,16 +270,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
             GrassTopLayerType topLayerType = GetGrassTopLayerType();
 
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
-                GetDouble("positie"), topLayerType)
+                GetDouble(locationXCoordinateKey), topLayerType)
             {
-                FailureNumber = GetNullableDouble("faalGetal"),
-                InitialDamage = GetNullableDouble("beginSchade"),
-                AverageNumberOfWavesCtm = GetNullableDouble("factorCtm"),
-                CriticalFrontVelocity = GetNullableDouble("kritiekeFrontSnelheid"),
-                FrontVelocityCu = GetNullableDouble("frontsnelheid"),
-                CriticalCumulativeOverload = GetNullableDouble("kritiekeFrontsnelheid"),
-                IncreasedLoadTransitionAlphaM = GetNullableDouble("verhogingBelastingOvergangAlfaM"),
-                ReducedStrengthTransitionAlphaS = GetNullableDouble("verlagingSterkteOvergangAlfaS")
+                FailureNumber = GetNullableDouble(failureNumberKey),
+                InitialDamage = GetNullableDouble(initialDamageKey),
+                AverageNumberOfWavesCtm = GetNullableDouble(averageNumberOfWavesCtmKey),
+                CriticalFrontVelocity = GetNullableDouble(criticalFrontVelocityKey),
+                FrontVelocityCu = GetNullableDouble(frontVelocityCuKey),
+                CriticalCumulativeOverload = GetNullableDouble(criticalCumulativeOverloadKey),
+                IncreasedLoadTransitionAlphaM = GetNullableDouble(increasedLoadTransitionAlfaMKey),
+                ReducedStrengthTransitionAlphaS = GetNullableDouble(reducedStrengthTransitionAlphaSKey)
             };
 
             builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
