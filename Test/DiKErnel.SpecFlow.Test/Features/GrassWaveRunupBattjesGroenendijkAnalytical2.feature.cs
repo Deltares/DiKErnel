@@ -73,6 +73,94 @@ namespace DiKErnel.SpecFlow.Test.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 4
+  #line hidden
+            TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                        "tijdstippen"});
+            table26.AddRow(new string[] {
+                        "0"});
+#line 5
+  testRunner.Given("the following tijdstippen:", ((string)(null)), table26, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                        "waterstanden",
+                        "golfhoogtenHm0",
+                        "golfperiodenTm10",
+                        "golfrichtingen"});
+            table27.AddRow(new string[] {
+                        "0",
+                        "1.5",
+                        "4.20",
+                        "0"});
+#line 8
+   testRunner.And("the following hydraulischeBelastingen:", ((string)(null)), table27, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                        "dijkorientatie",
+                        "posities",
+                        "hoogten",
+                        "ruwheidscoefficienten",
+                        "teenBuitenzijde",
+                        "kruinBuitenzijde"});
+            table28.AddRow(new string[] {
+                        "",
+                        "",
+                        "",
+                        "1",
+                        "",
+                        ""});
+            table28.AddRow(new string[] {
+                        "",
+                        "",
+                        "",
+                        "1",
+                        "",
+                        ""});
+#line 11
+     testRunner.And("the following dijkprofiel:", ((string)(null)), table28, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                        "positie",
+                        "rekenmethode",
+                        "typeToplaag",
+                        "beginschade",
+                        "verhogingBelastingOvergangAlfaM",
+                        "verlagingSterkteOvergangAlfaS"});
+            table29.AddRow(new string[] {
+                        "",
+                        "grasGolfoploop",
+                        "",
+                        "",
+                        "1",
+                        "1"});
+#line 15
+     testRunner.And("the following locaties:", ((string)(null)), table29, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                        "rekenmethode",
+                        "faalgetal",
+                        "factorCtm",
+                        "typeRekenprotocol",
+                        "frontsnelheid",
+                        "bodemVoorlandZ",
+                        "tanAvl",
+                        "typeToplaag"});
+            table30.AddRow(new string[] {
+                        "grasGolfoploop",
+                        "",
+                        "",
+                        "battjesGroenendijkAnalytisch",
+                        "",
+                        "",
+                        "",
+                        ""});
+#line 18
+     testRunner.And("the following rekenmethoden:", ((string)(null)), table30, "And ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 14")]
         [NUnit.Framework.TestCaseAttribute("3.5", "698.151", null)]
@@ -87,7 +175,7 @@ namespace DiKErnel.SpecFlow.Test.Features
             argumentsOfScenario.Add("kritiekeFrontsnelheid", kritiekeFrontsnelheid);
             argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 14", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 4
+#line 22
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -107,30 +195,33 @@ namespace DiKErnel.SpecFlow.Test.Features
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+#line 4
+  this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
                             "bodemVoorlandZ",
                             "golfhoogtenHm0",
                             "diepteVoorland",
                             "hellingVoorland",
                             "factorCtm",
                             "kritiekeCumulatieveOverbelasting"});
-                table26.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "0.1",
                             "1.5",
                             "3",
                             "0.004",
                             "3.85",
                             "7000"});
-#line 5
-  testRunner.Given("the following constant inputs:", ((string)(null)), table26, "Given ");
+#line 23
+  testRunner.Given("the following constant inputs:", ((string)(null)), table31, "Given ");
 #line hidden
-#line 8
+#line 26
   testRunner.When(string.Format("I change the property kritiekeFrontsnelheid to a value of {0}", kritiekeFrontsnelheid), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 27
   testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 28
   testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -153,7 +244,7 @@ namespace DiKErnel.SpecFlow.Test.Features
             argumentsOfScenario.Add("bodemVoorlandZ", bodemVoorlandZ);
             argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 15", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 20
+#line 38
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -173,30 +264,33 @@ namespace DiKErnel.SpecFlow.Test.Features
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+#line 4
+  this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
                             "kritiekeFrontsnelheid",
                             "golfhoogtenHm0",
                             "diepteVoorland",
                             "hellingVoorland",
                             "factorCtm",
                             "kritiekeCumulatieveOverbelasting"});
-                table27.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             "6.6",
                             "1.5",
                             "3",
                             "0.004",
                             "3.85",
                             "7000"});
-#line 21
-  testRunner.Given("the following constant inputs:", ((string)(null)), table27, "Given ");
+#line 39
+  testRunner.Given("the following constant inputs:", ((string)(null)), table32, "Given ");
 #line hidden
-#line 24
+#line 42
      testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 43
      testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 26
+#line 44
      testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -220,7 +314,7 @@ namespace DiKErnel.SpecFlow.Test.Features
             argumentsOfScenario.Add("hellingVoorland", hellingVoorland);
             argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 16", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 38
+#line 56
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -240,30 +334,33 @@ namespace DiKErnel.SpecFlow.Test.Features
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+#line 4
+  this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                             "kritiekeFrontsnelheid",
                             "golfhoogtenHm0",
                             "diepteVoorland",
                             "bodemVoorlandZ",
                             "factorCtm",
                             "kritiekeCumulatieveOverbelasting"});
-                table28.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "6.6",
                             "1.5",
                             "3",
                             "0.1",
                             "3.85",
                             "7000"});
-#line 39
-  testRunner.Given("the following constant inputs:", ((string)(null)), table28, "Given ");
+#line 57
+  testRunner.Given("the following constant inputs:", ((string)(null)), table33, "Given ");
 #line hidden
-#line 42
+#line 60
      testRunner.When(string.Format("I change the property tanAvl to a value of {0}", hellingVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 43
+#line 61
      testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 44
+#line 62
      testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -285,7 +382,7 @@ namespace DiKErnel.SpecFlow.Test.Features
             argumentsOfScenario.Add("diepteVoorland", diepteVoorland);
             argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 17", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 57
+#line 75
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -305,30 +402,33 @@ namespace DiKErnel.SpecFlow.Test.Features
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+#line 4
+  this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
                             "kritiekeFrontsnelheid",
                             "golfhoogtenHm0",
                             "hellingVoorland",
                             "bodemVoorlandZ",
                             "factorCtm",
                             "kritiekeCumulatieveOverbelasting"});
-                table29.AddRow(new string[] {
+                table34.AddRow(new string[] {
                             "6.6",
                             "1.5",
                             "0.004",
                             "0.1",
                             "3.85",
                             "7000"});
-#line 58
-  testRunner.Given("the following constant inputs:", ((string)(null)), table29, "Given ");
+#line 76
+  testRunner.Given("the following constant inputs:", ((string)(null)), table34, "Given ");
 #line hidden
-#line 61
+#line 79
      testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", diepteVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 62
+#line 80
      testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 63
+#line 81
      testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -352,7 +452,7 @@ namespace DiKErnel.SpecFlow.Test.Features
             argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
             argumentsOfScenario.Add("Fos", fos);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 18", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 76
+#line 94
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -372,34 +472,37 @@ namespace DiKErnel.SpecFlow.Test.Features
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+#line 4
+  this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                             "kritiekeFrontsnelheid",
                             "golfhoogtenHm0",
                             "hellingVoorland",
                             "bodemVoorlandZ",
                             "factorCtm"});
-                table30.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "6.6",
                             "1.5",
                             "0.004",
                             "0.1",
                             "3.85"});
-#line 77
-  testRunner.Given("the following constant inputs:", ((string)(null)), table30, "Given ");
+#line 95
+  testRunner.Given("the following constant inputs:", ((string)(null)), table35, "Given ");
 #line hidden
-#line 80
+#line 98
      testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", diepteVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 81
+#line 99
      testRunner.And(string.Format("I change the property kritiekeCumulatieveOverbelasting to a value of {0}", kritiekeCumulatieveOverbelasting), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 82
+#line 100
   testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 83
+#line 101
   testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 84
+#line 102
   testRunner.And("the output value for <FoS> is", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -1,5 +1,23 @@
 ﻿Feature: GrassWaveRunupBattjesGroenendijkAnalytical2
 	BM Gras benchmarks
+	
+		Background: 
+		Given the following tijdstippen:
+			| tijdstippen |
+			| 0           |
+ 		And the following hydraulischeBelastingen:
+ 			| waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+		    | 0            | 1.5            | 4.20             | 0              |
+	    And the following dijkprofiel:
+     		| dijkorientatie | posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
+	        |                |          |         | 1                     |                 |                  |
+	        |                |          |         | 1                     |                 |                  |
+	    And the following locaties:
+     		| positie | rekenmethode   | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+	        |         | grasGolfoploop |                  |             |  1                              |   1                           |
+	    And  the following rekenmethoden:
+     		| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
+	        | grasGolfoploop |           |           | battjesGroenendijkAnalytisch |               |                |        |                  |
 			
 	Scenario Outline: BM Gras benchmark 14
 		Given the following constant inputs:
