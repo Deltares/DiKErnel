@@ -55,10 +55,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string foreshoreSlopeKey = "tanAvl";
         private const string bottomZForeshoreKey = "bodemVoorlandZ";
 
-        private const string failureNumberKey = "faalGetal";
-        private const string initialDamageKey = "beginSchade";
+        private const string failureNumberKey = "faalgetal";
+        private const string initialDamageKey = "beginschade";
         private const string averageNumberOfWavesCtmKey = "factorCtm";
-        private const string criticalFrontVelocityKey = "kritiekeFrontSnelheid";
+        private const string criticalFrontVelocityKey = "kritiekeFrontsnelheid";
         private const string frontVelocityCuKey = "frontsnelheid";
         private const string criticalCumulativeOverloadKey = "kritiekeCumulatieveOverbelasting";
         private const string increasedLoadTransitionAlfaMKey = "verhogingBelastingOvergangAlfaM";
