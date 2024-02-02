@@ -224,7 +224,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 		Given the following constant inputs:
 			| bodemVoorlandZ | golfhoogtenHm0 | diepteVoorland | hellingVoorland | factorCtm | kritiekeCumulatieveOverbelasting |
 			| 0.1            | 1.5            | 3              | 0.004           | 3.85      | 7000                             |
-		When I change the value of <kritiekeFrontsnelheid>
+		When I change the property kritiekeFrontsnelheid to a value of <kritiekeFrontsnelheid>
 		And I run the calculation
 		Then the output value for <cumulatieveOverbelastingTijdstap> is
 		
@@ -240,7 +240,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 		Given the following constant inputs:
 			| kritiekeFrontsnelheid | golfhoogtenHm0 | diepteVoorland | hellingVoorland | factorCtm | kritiekeCumulatieveOverbelasting |
 			| 6.6                   | 1.5            | 3              | 0.004           | 3.85      | 7000                             |
-   		When I change the value of <bodemVoorlandZ>
+   		When I change the property bodemVoorlandZ to a value of <bodemVoorlandZ>
    		And I run the calculation
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
    		
@@ -258,7 +258,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 		Given the following constant inputs:
 			| kritiekeFrontsnelheid | golfhoogtenHm0 | diepteVoorland | bodemVoorlandZ | factorCtm | kritiekeCumulatieveOverbelasting |
 			| 6.6                   | 1.5            | 3              | 0.1            | 3.85      | 7000                             |
-   		When I change the value of <hellingVoorland>
+   		When I change the property tanAvl to a value of <hellingVoorland>
    		And I run the calculation
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
    		
@@ -271,7 +271,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 		Given the following constant inputs:
 			| kritiekeFrontsnelheid | golfhoogtenHm0 | hellingVoorland | bodemVoorlandZ | factorCtm | kritiekeCumulatieveOverbelasting |
 			| 6.6                   | 1.5            | 0.004           | 0.1            | 3.85      | 7000                             |
-   		When I change the value of <diepteVoorland>
+   		When I change the property bottomVoorlandZ to a value of <diepteVoorland>
    		And I run the calculation
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
    		
@@ -286,8 +286,8 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 		Given the following constant inputs:
 			| kritiekeFrontsnelheid | golfhoogtenHm0 | hellingVoorland | bodemVoorlandZ | factorCtm |
 			| 6.6                   | 1.5            | 0.004           | 0.1            | 3.85      |
-   		When I change the value of <diepteVoorland>
-   		And I change the value of <kritiekeCumulatieveOverbelasting>
+   		When I change the property bottomVoorlandZ to a value of <diepteVoorland>
+   		And I change the property kritiekeCumulatieveOverbelasting to a value of <kritiekeCumulatieveOverbelasting>
 		And I run the calculation
 		Then the output value for <cumulatieveOverbelastingTijdstap> is
 		And the output value for <FoS> is

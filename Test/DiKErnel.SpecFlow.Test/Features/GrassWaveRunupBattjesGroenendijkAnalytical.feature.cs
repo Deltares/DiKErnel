@@ -1348,7 +1348,7 @@ namespace DiKErnel.SpecFlow.Test.Features
   testRunner.Given("the following constant inputs:", ((string)(null)), table26, "Given ");
 #line hidden
 #line 227
-  testRunner.When(string.Format("I change the value of {0}", kritiekeFrontsnelheid), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.When(string.Format("I change the property kritiekeFrontsnelheid to a value of {0}", kritiekeFrontsnelheid), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 228
   testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1417,7 +1417,7 @@ namespace DiKErnel.SpecFlow.Test.Features
   testRunner.Given("the following constant inputs:", ((string)(null)), table27, "Given ");
 #line hidden
 #line 243
-     testRunner.When(string.Format("I change the value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 244
      testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1481,7 +1481,7 @@ namespace DiKErnel.SpecFlow.Test.Features
   testRunner.Given("the following constant inputs:", ((string)(null)), table28, "Given ");
 #line hidden
 #line 261
-     testRunner.When(string.Format("I change the value of {0}", hellingVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When(string.Format("I change the property tanAvl to a value of {0}", hellingVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 262
      testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1547,7 +1547,7 @@ namespace DiKErnel.SpecFlow.Test.Features
   testRunner.Given("the following constant inputs:", ((string)(null)), table29, "Given ");
 #line hidden
 #line 274
-     testRunner.When(string.Format("I change the value of {0}", diepteVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When(string.Format("I change the property bottomVoorlandZ to a value of {0}", diepteVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 275
      testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1613,10 +1613,10 @@ namespace DiKErnel.SpecFlow.Test.Features
   testRunner.Given("the following constant inputs:", ((string)(null)), table30, "Given ");
 #line hidden
 #line 289
-     testRunner.When(string.Format("I change the value of {0}", diepteVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When(string.Format("I change the property bottomVoorlandZ to a value of {0}", diepteVoorland), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 290
-     testRunner.And(string.Format("I change the value of {0}", kritiekeCumulatieveOverbelasting), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+     testRunner.And(string.Format("I change the property kritiekeCumulatieveOverbelasting to a value of {0}", kritiekeCumulatieveOverbelasting), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 291
   testRunner.And("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
