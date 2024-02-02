@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj" />
+        <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj"/>
     </ItemGroup>
 
 </Project>

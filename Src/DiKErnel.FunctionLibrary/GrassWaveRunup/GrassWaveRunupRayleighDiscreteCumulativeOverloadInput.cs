@@ -41,7 +41,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         {
             FixedNumberOfWaves = fixedNumberOfWaves;
         }
-        
+
         /// <summary>
         /// Gets the fixed number of waves [-].
         /// </summary>
