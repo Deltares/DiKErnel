@@ -101,16 +101,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
             SetPropertyValues(table);
         }
 
-        [When(@"I change the value of (.*)")]
-        public void WhenIChangeTheValueOf(string uc)
+        [When(@"I change the property (\w*) to a value of (.*)")]
+        public void WhenIChangeTheValueOf(string propertyName, string value)
         {
-            ScenarioContext.StepIsPending();
+            context[propertyName] = value;
         }
 
         [Then(@"the output value for (.*) is")]
-        public void ThenTheOutputValueForIs(string dload, Table table)
+        public void ThenTheOutputValueForIs(float expectedValue)
         {
-            ScenarioContext.StepIsPending();
+            Assert.That(context["damage"], Is.EqualTo(expectedValue).Within(1e-14));
         }
 
         private void SetCollectionValues(Table table)
