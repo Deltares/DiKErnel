@@ -32,7 +32,9 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertCumulativeOverload(double criticalCumulativeOverload, int fixedNumberOfWaves,
                                                     GrassWaveOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
         {
-            Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, locationDependentInput);
+
             Assert.That(locationDependentInput.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
         }
 
