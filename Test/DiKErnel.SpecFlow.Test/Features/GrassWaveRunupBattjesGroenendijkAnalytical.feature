@@ -70,8 +70,8 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 	
 	Scenario: Testcase 4
 		Given the following values are adjusted:
-			| kritiekeFrontsnelheid |
-			| 1.15                  |
+			| frontsnelheid |
+			| 1.15          |
 		When I run the calculation
 		#Then the schadegetal is
 	
@@ -263,15 +263,15 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
    		
    		Examples: 
-   			| hellingVoorland   | cumulatieveOverbelastingTijdstap |
-		    | 0.004 | 1.134                            |
-		    | 0.04  | 13.406                           |
+   			| hellingVoorland | cumulatieveOverbelastingTijdstap |
+		    | 0.004           | 1.134                            |
+		    | 0.04            | 13.406                           |
 
 	Scenario Outline: BM Gras benchmark 17
 		Given the following constant inputs:
 			| kritiekeFrontsnelheid | golfhoogtenHm0 | hellingVoorland | bodemVoorlandZ | factorCtm | kritiekeCumulatieveOverbelasting |
 			| 6.6                   | 1.5            | 0.004           | 0.1            | 3.85      | 7000                             |
-   		When I change the property bottomVoorlandZ to a value of <diepteVoorland>
+   		When I change the property bodemVoorlandZ to a value of <diepteVoorland>
    		And I run the calculation
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
    		
@@ -286,7 +286,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 		Given the following constant inputs:
 			| kritiekeFrontsnelheid | golfhoogtenHm0 | hellingVoorland | bodemVoorlandZ | factorCtm |
 			| 6.6                   | 1.5            | 0.004           | 0.1            | 3.85      |
-   		When I change the property bottomVoorlandZ to a value of <diepteVoorland>
+   		When I change the property bodemVoorlandZ to a value of <diepteVoorland>
    		And I change the property kritiekeCumulatieveOverbelasting to a value of <kritiekeCumulatieveOverbelasting>
 		And I run the calculation
 		Then the output value for <cumulatieveOverbelastingTijdstap> is
