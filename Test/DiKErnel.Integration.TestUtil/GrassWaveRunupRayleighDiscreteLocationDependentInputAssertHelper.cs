@@ -35,9 +35,7 @@ namespace DiKErnel.Integration.TestUtil
         public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCu,
                                                GrassWaveRunupRayleighDiscreteLocationDependentInput locationDependentInput)
         {
-            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertFrontVelocity(
-                criticalFrontVelocity, locationDependentInput);
-
+            Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
             Assert.That(locationDependentInput.FrontVelocityCu, Is.EqualTo(frontVelocityCu));
         }
     }
