@@ -219,7 +219,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 15.75, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 0.5, 1.8, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.29, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7001, 100000, grassWaveOvertoppingRayleighDiscreteLocationDependentInput);
@@ -493,7 +493,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 null, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveOvertoppingRayleighDiscreteLocationDependentInput1);
@@ -513,7 +513,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                 null, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
                 1, 1, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, grassWaveOvertoppingRayleighDiscreteLocationDependentInput2);

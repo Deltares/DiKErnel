@@ -23,12 +23,6 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInputAssertHelper
     {
-        public static void AssertAverageNumberOfWaves(
-            double averageNumberOfWavesCtm, GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput locationDependentInput)
-        {
-            Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
-        }
-
         public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCu,
                                                GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput locationDependentInput)
         {

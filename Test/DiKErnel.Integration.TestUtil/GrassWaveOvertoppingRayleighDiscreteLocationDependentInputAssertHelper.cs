@@ -45,12 +45,6 @@ namespace DiKErnel.Integration.TestUtil
             Assert.That(locationDependentInput.FrontVelocityCwo, Is.EqualTo(frontVelocityCwo));
         }
 
-        public static void AssertAverageNumberOfWaves(double averageNumberOfWavesCtm,
-                                                      GrassWaveOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
-        {
-            Assert.That(locationDependentInput.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
-        }
-
         public static void AssertAccelerationAlphaA(
             double accelerationAlphaAForCrest, double accelerationAlphaAForInnerSlope,
             GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA accelerationAlphaA)
