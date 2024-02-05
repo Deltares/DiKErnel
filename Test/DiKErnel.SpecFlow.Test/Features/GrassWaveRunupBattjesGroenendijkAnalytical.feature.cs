@@ -446,7 +446,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 76
-        testRunner.Then("the schadegetal is 8.107643036181326", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 8.10764303618132", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -495,7 +495,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 83
-        testRunner.Then("the schadegetal is 34.61849281097397", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 34.618492810973976", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -544,7 +544,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 90
-        testRunner.Then("the schadegetal is 9.562492468848085", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 9.562492468848081", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -593,7 +593,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 97
-        testRunner.Then("the schadegetal is 6.264275964074617", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 6.264275964074616", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -665,7 +665,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 110
-        testRunner.Then("the schadegetal is 0.3712373854569505", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 0.37123738545694945", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -745,7 +745,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 123
-        testRunner.Then("the schadegetal is 0.26854724503160315", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 0.26854724503160177", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -912,7 +912,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 164
-        testRunner.Then("the schadegetal is 8.587822405580944", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 8.587822405580951", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1115,7 +1115,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 214
-        testRunner.Then("the schadegetal is 0.6693914702289517", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 0.669391470228952", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
