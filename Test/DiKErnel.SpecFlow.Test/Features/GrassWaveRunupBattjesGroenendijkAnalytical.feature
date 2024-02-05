@@ -52,7 +52,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 1 - Default with closed sod
         When I run the calculation
-        Then the schadegetal is 5.964275964074617
+        Then the schadegetal is 5.964275964074616
 
     Scenario: Testcase 2 - Default with open sod
         Given the following values are adjusted:
@@ -66,35 +66,35 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
           | 8000                             | 6.2                   |
         When I run the calculation
-        Then the schadegetal is 7.042858339779347
+        Then the schadegetal is 7.042858339779344
 
     Scenario: Testcase 4
         Given the following values are adjusted:
           | frontsnelheid |
           | 1.15          |
         When I run the calculation
-        Then the schadegetal is 8.107643036181326
+        Then the schadegetal is 8.10764303618132
 
     Scenario: Testcase 5
         Given the following values are adjusted:
           | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
           | 1.8                             | 0.9                           |
         When I run the calculation
-        Then the schadegetal is 34.61849281097397
+        Then the schadegetal is 34.618492810973976
 
     Scenario: Testcase 6
         Given the following values are adjusted:
           | bodemVoorlandZ | tanAvl |
           | 0              | 0.05   |
         When I run the calculation
-        Then the schadegetal is 9.562492468848085
+        Then the schadegetal is 9.562492468848081
 
     Scenario: Testcase 7
         Given the following values are adjusted:
           | beginschade | faalgetal |
           | 0.3         | 1.2       |
         When I run the calculation
-        Then the schadegetal is 6.264275964074617
+        Then the schadegetal is 6.264275964074616
 
     Scenario: Testcase 8
         Given the following series are adjusted:
@@ -107,7 +107,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | dijkorientatie | positie |
           | 20             | 15      |
         When I run the calculation
-        Then the schadegetal is 0.3712373854569505
+        Then the schadegetal is 0.37123738545694945
 
     Scenario: Testcase 9
         Given the following series are adjusted:
@@ -120,7 +120,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | dijkorientatie | positie | bodemVoorlandZ | tanAvl | teenBuitenzijde | kruinBuitenzijde |
           | 30             | 18      | 1              | 0.009  | 0               | 30               |
         When I run the calculation
-        Then the schadegetal is 0.26854724503160315
+        Then the schadegetal is 0.26854724503160177
 
     Scenario: Testcase 10
         Given the following series are adjusted:
@@ -161,7 +161,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 3.1          | 1.3            | 4.8              | 15             |
           | 3            | 1              | 4.5              | 20             |
         When I run the calculation
-        Then the schadegetal is 8.587822405580944
+        Then the schadegetal is 8.587822405580951
 
     Scenario: Testcase 11
         Given the following series are adjusted:
@@ -211,7 +211,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | dijkorientatie | positie | bodemVoorlandZ | tanAvl |
           | 20             | 15      | 0.5            | 0.01   |
         When I run the calculation
-        Then the schadegetal is 0.6693914702289517
+        Then the schadegetal is 0.669391470228952
 
     Scenario: Testcase 12
         Given the following series are adjusted:
