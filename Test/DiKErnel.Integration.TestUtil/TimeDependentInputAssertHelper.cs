@@ -23,17 +23,16 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class TimeDependentInputAssertHelper
     {
-        public static void AssertTimeDependentInputItem(double expectedBeginTime, double expectedEndTime,
-                                                        double expectedWaterLevel, double expectedWaveHeightHm0,
-                                                        double expectedWavePeriodTm10, double expectedWaveDirection,
-                                                        ITimeDependentInput actualTimeDependentInput)
+        public static void AssertTimeDependentInputItem(double beginTime, double endTime, double waterLevel,
+                                                        double waveHeightHm0, double wavePeriodTm10,
+                                                        double waveDirection, ITimeDependentInput timeDependentInput)
         {
-            Assert.That(actualTimeDependentInput.BeginTime, Is.EqualTo(expectedBeginTime));
-            Assert.That(actualTimeDependentInput.EndTime, Is.EqualTo(expectedEndTime));
-            Assert.That(actualTimeDependentInput.WaterLevel, Is.EqualTo(expectedWaterLevel));
-            Assert.That(actualTimeDependentInput.WaveHeightHm0, Is.EqualTo(expectedWaveHeightHm0));
-            Assert.That(actualTimeDependentInput.WavePeriodTm10, Is.EqualTo(expectedWavePeriodTm10));
-            Assert.That(actualTimeDependentInput.WaveDirection, Is.EqualTo(expectedWaveDirection));
+            Assert.That(timeDependentInput.BeginTime, Is.EqualTo(beginTime));
+            Assert.That(timeDependentInput.EndTime, Is.EqualTo(endTime));
+            Assert.That(timeDependentInput.WaterLevel, Is.EqualTo(waterLevel));
+            Assert.That(timeDependentInput.WaveHeightHm0, Is.EqualTo(waveHeightHm0));
+            Assert.That(timeDependentInput.WavePeriodTm10, Is.EqualTo(wavePeriodTm10));
+            Assert.That(timeDependentInput.WaveDirection, Is.EqualTo(waveDirection));
         }
     }
 }
