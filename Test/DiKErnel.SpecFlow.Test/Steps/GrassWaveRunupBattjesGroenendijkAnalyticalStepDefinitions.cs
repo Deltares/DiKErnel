@@ -63,7 +63,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string criticalCumulativeOverloadKey = "kritiekeCumulatieveOverbelasting";
         private const string increasedLoadTransitionAlfaMKey = "verhogingBelastingOvergangAlfaM";
         private const string reducedStrengthTransitionAlphaSKey = "verlagingSterkteOvergangAlfaS";
-        
+        private const double tolerance = 1e-14;
+
         private readonly ScenarioContext context;
 
         private IReadOnlyList<LocationDependentOutput> outputs;
@@ -124,7 +125,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             IReadOnlyList<double>? damages = outputs[0].GetDamages();
             double actualDamage = damages[damages.Count - 1];
-            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(1e-14));
+            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
         }
 
         [When(@"I change the property (\w*) to a value of (.*)")]
@@ -133,18 +134,19 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[propertyName] = value;
         }
 
-        [Then(@"the output value for (.*) is")]
-        public void ThenTheOutputValueForIs(string expectedValue)
+        // [Then(@"the output values for (.*) and (.*) are")]
+        [Then(@"the output values for (.*) and (.*) are")]
+        public void ThenTheOutputValueDamageAndCumulativeOverloadAre(double expectedDamage, double expectedCumulativeOverload)
         {
+            GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverLoadOutputs =
+                outputs[0].TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
+            Assert.That(cumulativeOverLoadOutputs[cumulativeOverLoadOutputs.Length - 1].CumulativeOverload,
+                        Is.EqualTo(expectedCumulativeOverload).Within(tolerance));
+
             IReadOnlyList<double>? damages = outputs[0].GetDamages();
             double actualDamage = damages[damages.Count - 1];
-            if (expectedValue == null)
-            {
-                Assert.That(actualDamage, Is.NaN);
-            }
 
-            double expectedDamage = double.Parse(expectedValue);
-            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(1e-14));
+            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
         }
 
         private void SetCollectionValues(Table table)
