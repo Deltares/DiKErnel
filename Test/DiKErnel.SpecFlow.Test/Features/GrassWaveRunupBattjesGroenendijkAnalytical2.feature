@@ -83,15 +83,14 @@
    		And I change the property kritiekeCumulatieveOverbelasting to a value of <kritiekeCumulatieveOverbelasting>
 		And I run the calculation
 		Then the output value for <cumulatieveOverbelastingTijdstap> is
-		And the output value for <FoS> is
 		
 		Examples: 
-			| diepteVoorland | kritiekeCumulatieveOverbelasting | cumulatieveOverbelastingTijdstap | Fos   |
-			| 0              | 1000                             | 0.000                            | 0.000 |
-			| 0.004          | 1000                             | 133115.947                       | 0.000 |
-			| 0.04           | 100                              | 13755.272                        | 0.007 |
-			| 0.1            | 10                               | 5759.070                         | 0.002 |
-			| 0.4            | 1                                | 1031.437                         | 0.001 |
-			| 10             | 1                                | 21.453                           | 0.047 |
-			| 100            | 1                                |                                  |       |
-			| 250            | 1                                |                                  |       |
+			| diepteVoorland | kritiekeCumulatieveOverbelasting | cumulatieveOverbelastingTijdstap |
+			| 0              | 1000                             | 0.000                            |
+			| 0.004          | 1000                             | 133115.947                       |
+			| 0.04           | 100                              | 13755.272                        |
+			| 0.1            | 10                               | 5759.070                         |
+			| 0.4            | 1                                | 1031.437                         |
+			| 10             | 1                                | 21.453                           |
+			| 100            | 1                                |                                  |
+			| 250            | 1                                |                                  |

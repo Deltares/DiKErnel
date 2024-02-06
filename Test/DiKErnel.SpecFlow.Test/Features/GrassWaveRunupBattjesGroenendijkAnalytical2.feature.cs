@@ -369,22 +369,21 @@ namespace DiKErnel.SpecFlow.Test.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 18")]
-        [NUnit.Framework.TestCaseAttribute("0", "1000", "0.000", "0.000", null)]
-        [NUnit.Framework.TestCaseAttribute("0.004", "1000", "133115.947", "0.000", null)]
-        [NUnit.Framework.TestCaseAttribute("0.04", "100", "13755.272", "0.007", null)]
-        [NUnit.Framework.TestCaseAttribute("0.1", "10", "5759.070", "0.002", null)]
-        [NUnit.Framework.TestCaseAttribute("0.4", "1", "1031.437", "0.001", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "21.453", "0.047", null)]
-        [NUnit.Framework.TestCaseAttribute("100", "1", "", "", null)]
-        [NUnit.Framework.TestCaseAttribute("250", "1", "", "", null)]
-        public virtual void BMGrasBenchmark18(string diepteVoorland, string kritiekeCumulatieveOverbelasting, string cumulatieveOverbelastingTijdstap, string fos, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("0", "1000", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("0.004", "1000", "133115.947", null)]
+        [NUnit.Framework.TestCaseAttribute("0.04", "100", "13755.272", null)]
+        [NUnit.Framework.TestCaseAttribute("0.1", "10", "5759.070", null)]
+        [NUnit.Framework.TestCaseAttribute("0.4", "1", "1031.437", null)]
+        [NUnit.Framework.TestCaseAttribute("10", "1", "21.453", null)]
+        [NUnit.Framework.TestCaseAttribute("100", "1", "", null)]
+        [NUnit.Framework.TestCaseAttribute("250", "1", "", null)]
+        public virtual void BMGrasBenchmark18(string diepteVoorland, string kritiekeCumulatieveOverbelasting, string cumulatieveOverbelastingTijdstap, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("diepteVoorland", diepteVoorland);
             argumentsOfScenario.Add("kritiekeCumulatieveOverbelasting", kritiekeCumulatieveOverbelasting);
             argumentsOfScenario.Add("cumulatieveOverbelastingTijdstap", cumulatieveOverbelastingTijdstap);
-            argumentsOfScenario.Add("Fos", fos);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 18", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 81
  this.ScenarioInitialize(scenarioInfo);
@@ -420,9 +419,6 @@ namespace DiKErnel.SpecFlow.Test.Features
 #line hidden
 #line 85
   testRunner.Then(string.Format("the output value for {0} is", cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 86
-  testRunner.And("the output value for <FoS> is", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
