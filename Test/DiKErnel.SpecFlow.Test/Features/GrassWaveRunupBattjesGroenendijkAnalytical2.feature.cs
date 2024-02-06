@@ -328,6 +328,8 @@ namespace DiKErnel.SpecFlow.Test.Features
         [NUnit.Framework.TestCaseAttribute("0.1", "5759.070", null)]
         [NUnit.Framework.TestCaseAttribute("0.4", "1031.437", null)]
         [NUnit.Framework.TestCaseAttribute("10", "21.453", null)]
+        [NUnit.Framework.TestCaseAttribute("100", "", null)]
+        [NUnit.Framework.TestCaseAttribute("250", "", null)]
         public virtual void BMGrasBenchmark17(string diepteVoorland, string cumulatieveOverbelastingTijdstap, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -379,6 +381,8 @@ namespace DiKErnel.SpecFlow.Test.Features
         [NUnit.Framework.TestCaseAttribute("0.1", "10", "5759.070", "0.002", null)]
         [NUnit.Framework.TestCaseAttribute("0.4", "1", "1031.437", "0.001", null)]
         [NUnit.Framework.TestCaseAttribute("10", "1", "21.453", "0.047", null)]
+        [NUnit.Framework.TestCaseAttribute("100", "1", "", "", null)]
+        [NUnit.Framework.TestCaseAttribute("250", "1", "", "", null)]
         public virtual void BMGrasBenchmark18(string diepteVoorland, string kritiekeCumulatieveOverbelasting, string cumulatieveOverbelastingTijdstap, string fos, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;

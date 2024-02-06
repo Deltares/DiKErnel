@@ -75,8 +75,8 @@
 		    | 0.1            | 5759.070                         |
 		    | 0.4            | 1031.437                         |
 		    | 10             | 21.453                           |
-		    #| 100            |                                  |
-		    #| 250            |                                  |
+		    | 100            |                                  |
+		    | 250            |                                  |
       
 	Scenario Outline: BM Gras benchmark 18
    		When I change the property bodemVoorlandZ to a value of <diepteVoorland>
@@ -93,5 +93,5 @@
 			| 0.1            | 10                               | 5759.070                         | 0.002 |
 			| 0.4            | 1                                | 1031.437                         | 0.001 |
 			| 10             | 1                                | 21.453                           | 0.047 |
-			#| 100            | 1                                |                                  |       |
-			#| 250            | 1                                |                                  |       |
+			| 100            | 1                                |                                  |       |
+			| 250            | 1                                |                                  |       |
