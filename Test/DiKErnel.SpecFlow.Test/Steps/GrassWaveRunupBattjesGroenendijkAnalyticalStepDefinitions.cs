@@ -73,7 +73,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             this.context = context;
         }
 
-        [Given(@"the following dijkprofiel and dikeorientatie of (.*):")]
+        [Given(@"the following dijkprofiel and a dijkorientatie of (.*):")]
         public void GivenTheFollowingDijkprofiel(string dikeOrientation, Table table)
         {
             context[dikeOrientationKey] = dikeOrientation;
@@ -110,6 +110,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             SetCollectionValues(table);
         }
 
+        [Given(@"the following karakteristiekePunten:")]
         [Given(@"the following locaties:")]
         [Given(@"the following rekenmethoden:")]
         [Given(@"the following constant inputs:")]
