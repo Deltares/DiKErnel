@@ -5,24 +5,23 @@
 		Given the following tijdstippen:
 			| tijdstippen |
 			| 0           |
+			| 900         |
  		And the following hydraulischeBelastingen:
  			| waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
 		    | 0            | 1.5            | 4.20             | 0              |
 	    And the following dijkprofiel:
      		| dijkorientatie | posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
-	        |                |          |         | 1                     |                 |                  |
-	        |                |          |         | 1                     |                 |                  |
+	        | 0              | 0        |  -10    | 1                     |         0       |     80           |
+	        |                | 40       |   0     | 1                     |                 |                  |
+	        |                | 80       |   10    |                       |                 |                  |
 	    And the following locaties:
-     		| positie | rekenmethode   | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
-	        |         | grasGolfoploop |                  |             |  1                              |   1                           |
+     		| positie | rekenmethode   | typeToplaag       | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+	        |    0.1  | grasGolfoploop |  grasGeslotenZode |      0      |  1                              |   1                           |
 	    And  the following rekenmethoden:
      		| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
-	        | grasGolfoploop |           |           | battjesGroenendijkAnalytisch |               |                |        |                  |
+	        | grasGolfoploop |     1     |    3.85   | battjesGroenendijkAnalytisch |      1.10     |       -3       | 0.004  | grasGeslotenZode |          
 			
 	Scenario Outline: BM Gras benchmark 14
-		Given the following constant inputs:
-			| bodemVoorlandZ | golfhoogtenHm0 | diepteVoorland | hellingVoorland | factorCtm | kritiekeCumulatieveOverbelasting |
-			| 0.1            | 1.5            | 3              | 0.004           | 3.85      | 7000                             |
 		When I change the property kritiekeFrontsnelheid to a value of <kritiekeFrontsnelheid>
 		And I run the calculation
 		Then the output value for <cumulatieveOverbelastingTijdstap> is
@@ -36,9 +35,6 @@
 			| 8                     | 0.000                            |
     
 	Scenario Outline: BM Gras benchmark 15
-		Given the following constant inputs:
-			| kritiekeFrontsnelheid | golfhoogtenHm0 | diepteVoorland | hellingVoorland | factorCtm | kritiekeCumulatieveOverbelasting |
-			| 6.6                   | 1.5            | 3              | 0.004           | 3.85      | 7000                             |
    		When I change the property bodemVoorlandZ to a value of <bodemVoorlandZ>
    		And I run the calculation
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
@@ -54,9 +50,6 @@
 		    | 6              | 0.000                            |
       
 	Scenario Outline: BM Gras benchmark 16
-		Given the following constant inputs:
-			| kritiekeFrontsnelheid | golfhoogtenHm0 | diepteVoorland | bodemVoorlandZ | factorCtm | kritiekeCumulatieveOverbelasting |
-			| 6.6                   | 1.5            | 3              | 0.1            | 3.85      | 7000                             |
    		When I change the property tanAvl to a value of <hellingVoorland>
    		And I run the calculation
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
@@ -73,9 +66,6 @@
 		    | 250             | 48.062                           |
 
 	Scenario Outline: BM Gras benchmark 17
-		Given the following constant inputs:
-			| kritiekeFrontsnelheid | golfhoogtenHm0 | hellingVoorland | bodemVoorlandZ | factorCtm | kritiekeCumulatieveOverbelasting |
-			| 6.6                   | 1.5            | 0.004           | 0.1            | 3.85      | 7000                             |
    		When I change the property bodemVoorlandZ to a value of <diepteVoorland>
    		And I run the calculation
    		Then the output value for <cumulatieveOverbelastingTijdstap> is
@@ -92,9 +82,6 @@
 		    #| 250            |                                  |
       
 	Scenario Outline: BM Gras benchmark 18
-		Given the following constant inputs:
-			| kritiekeFrontsnelheid | golfhoogtenHm0 | hellingVoorland | bodemVoorlandZ | factorCtm |
-			| 6.6                   | 1.5            | 0.004           | 0.1            | 3.85      |
    		When I change the property bodemVoorlandZ to a value of <diepteVoorland>
    		And I change the property kritiekeCumulatieveOverbelasting to a value of <kritiekeCumulatieveOverbelasting>
 		And I run the calculation
