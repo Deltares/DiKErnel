@@ -134,7 +134,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[propertyName] = value;
         }
 
-        // [Then(@"the output values for (.*) and (.*) are")]
         [Then(@"the output values for (.*) and (.*) are")]
         public void ThenTheOutputValueDamageAndCumulativeOverloadAre(double expectedDamage, double expectedCumulativeOverload)
         {
