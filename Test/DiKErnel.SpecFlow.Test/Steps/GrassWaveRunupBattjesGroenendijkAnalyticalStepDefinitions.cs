@@ -73,10 +73,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
             this.context = context;
         }
 
-        [Given(@"the following dijkprofiel:")]
-        public void GivenTheFollowingDijkprofiel(Table table)
+        [Given(@"the following dijkprofiel and dikeorientatie of (.*):")]
+        public void GivenTheFollowingDijkprofiel(string dikeOrientation, Table table)
         {
-            context[dikeOrientationKey] = table.Rows[0].GetString(dikeOrientationKey);
+            context[dikeOrientationKey] = dikeOrientation;
             context[outerToePositionKey] = table.Rows[0].GetString(outerToePositionKey);
             context[outerCrestPositionKey] = table.Rows[0].GetString(outerCrestPositionKey);
 
@@ -103,8 +103,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[damageKey] = damages[damages.Count - 1];
         }
 
-        [Given(@"the following hydraulischeBelastingen:")]
-        [Given(@"the following tijdstippen:")]
+        [Given(@"the following tijdstippen and hydraulischeBelastingen:")]
         [Given(@"the following series are adjusted:")]
         public void GivenTheFollowingCollectionsAreAdjusted(Table table)
         {
@@ -208,15 +207,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
             IReadOnlyList<double> times = GetDoubleCollection(timesKey);
-            IReadOnlyList<double> waterLevels = GetDoubleCollection(waterLevelsKey);
-            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection(waveHeightsHm0Key);
-            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection(wavePeriodsTm10Key);
-            IReadOnlyList<double> waveDirections = GetDoubleCollection(waveDirectionsKey);
+            IReadOnlyList<double?> waterLevels = GetNullableDoubleCollection(waterLevelsKey);
+            IReadOnlyList<double?> waveHeightsHm0 = GetNullableDoubleCollection(waveHeightsHm0Key);
+            IReadOnlyList<double?> wavePeriodsTm10 = GetNullableDoubleCollection(wavePeriodsTm10Key);
+            IReadOnlyList<double?> waveDirections = GetNullableDoubleCollection(waveDirectionsKey);
 
             for (var i = 0; i < times.Count - 1; i++)
             {
-                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeightsHm0[i], wavePeriodsTm10[i],
-                                    waveDirections[i]);
+                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i].Value, waveHeightsHm0[i].Value, wavePeriodsTm10[i].Value,
+                                    waveDirections[i].Value);
             }
         }
 
