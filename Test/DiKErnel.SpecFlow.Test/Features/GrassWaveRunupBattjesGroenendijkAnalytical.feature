@@ -202,8 +202,25 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 13 - Robustness edge cases
         Given the following series are adjusted:
-          | waterstanden |
-          | -3.9         |
-          | 8            |
+          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+          | -6840       | 3.53232      | 2.443434       | 4.132323         | 200.434343     |
+          | 36000       | 3.19999      | 1.3            | 4.83             | 15.9999        |
+          | 43200       | 7.5          | 1.1111         | 4.51111          | 20.43434       |
+          | 50400       |              |                |                  |                |
+        And the following series are adjusted:
+          | posities | hoogten | ruwheidscoefficienten |
+          | 0        | 0       | 0.859999              |
+          | 15.001   | 4.0005  | 0.51111               |
+          | 20.999   | 4.1     | 0.95111               |
+          | 25       | 7.5     |                       |
+        And the following values are adjusted:
+          | dijkorientatie | positie  | bodemVoorlandZ | tanAvl  |
+          | 179.5          | 17.04343 |  -0.59999      | 0.01111 |
+        And the following values are adjusted:
+          | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+          | 0.54545     | 3.754545                        | 0.111                         |
+        And the following values are adjusted:
+          | faalgetal | factorCtm | frontsnelheid | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
+          | 10.32321  | 0.1656454 | 2.21243434    | 6212.32434                       | 4.54434343            |
         When I run the calculation
-    #Then the schadegetal is .*
+        Then the schadegetal is 1.0
