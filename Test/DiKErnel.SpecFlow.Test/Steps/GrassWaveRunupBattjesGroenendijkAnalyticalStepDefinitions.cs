@@ -73,18 +73,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
             this.context = context;
         }
 
-        [Given(@"the following tijdstippen:")]
-        public void GivenTheFollowingTijdstippen(Table table)
-        {
-            SetCollectionValues(table);
-        }
-
-        [Given(@"the following hydraulischeBelastingen:")]
-        public void GivenTheFollowingHydraulischeBelastingen(Table table)
-        {
-            SetCollectionValues(table);
-        }
-
         [Given(@"the following dijkprofiel:")]
         public void GivenTheFollowingDijkprofiel(Table table)
         {
@@ -95,18 +83,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[xCoordinatesKey] = table.Rows.Select(row => row.GetString(xCoordinatesKey)).ToArray();
             context[zCoordinatesKey] = table.Rows.Select(row => row.GetString(zCoordinatesKey)).ToArray();
             context[roughnessCoefficientsKey] = table.Rows.Select(row => row.GetString(roughnessCoefficientsKey)).ToArray();
-        }
-
-        [Given(@"the following locaties:")]
-        public void GivenTheFollowingLocaties(Table table)
-        {
-            SetPropertyValues(table);
-        }
-
-        [Given(@"the following rekenmethoden:")]
-        public void GivenTheFollowingRekenmethoden(Table table)
-        {
-            SetPropertyValues(table);
         }
 
         [When(@"I run the calculation")]
@@ -127,12 +103,17 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[damageKey] = damages[damages.Count - 1];
         }
 
+        [Given(@"the following hydraulischeBelastingen:")]
+        [Given(@"the following tijdstippen:")]
         [Given(@"the following series are adjusted:")]
-        public void GivenTheFollowingSeriesAreAdjusted(Table table)
+        public void GivenTheFollowingCollectionsAreAdjusted(Table table)
         {
             SetCollectionValues(table);
         }
 
+        [Given(@"the following locaties:")]
+        [Given(@"the following rekenmethoden:")]
+        [Given(@"the following constant inputs:")]
         [Given(@"the following values are adjusted:")]
         public void GivenTheFollowingValuesAreAdjusted(Table table)
         {
@@ -143,12 +124,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public void ThenTheSchadegetalIs(decimal expectedDamage)
         {
             Assert.That(context[damageKey], Is.EqualTo(expectedDamage).Within(1e-14));
-        }
-
-        [Given(@"the following constant inputs:")]
-        public void GivenTheFollowingConstantInputs(Table table)
-        {
-            SetPropertyValues(table);
         }
 
         [When(@"I change the property (\w*) to a value of (.*)")]
