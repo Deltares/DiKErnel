@@ -18,6 +18,7 @@
 
 using DiKErnel.FunctionLibrary.Grass;
 using DiKErnel.TestUtil;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.Grass
@@ -38,10 +39,10 @@ namespace DiKErnel.FunctionLibrary.Test.Grass
             double gravitationalAcceleration = Random.NextDouble();
 
             // Call
-            var input = new GrassCumulativeOverloadInput(averageNumberOfWaves, representativeWaveRunup2P,
-                                                         verticalDistanceWaterLevelElevation, criticalFrontVelocity,
-                                                         increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                                                         gravitationalAcceleration);
+            var input = Substitute.For<GrassCumulativeOverloadInput>(averageNumberOfWaves, representativeWaveRunup2P,
+                                                                     verticalDistanceWaterLevelElevation, criticalFrontVelocity,
+                                                                     increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
+                                                                     gravitationalAcceleration);
 
             // Assert
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));

@@ -21,7 +21,7 @@ namespace DiKErnel.FunctionLibrary.Grass
     /// <summary>
     /// Input for grass cumulative overload calculations.
     /// </summary>
-    public class GrassCumulativeOverloadInput
+    public abstract class GrassCumulativeOverloadInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -36,10 +36,10 @@ namespace DiKErnel.FunctionLibrary.Grass
         /// <param name="reducedStrengthTransitionAlphaS">The AlphaS value [-].</param>
         /// <param name="gravitationalAcceleration">The gravitational
         /// acceleration [m/s^2].</param>
-        public GrassCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
-                                            double verticalDistanceWaterLevelElevation, double criticalFrontVelocity,
-                                            double increasedLoadTransitionAlphaM,
-                                            double reducedStrengthTransitionAlphaS, double gravitationalAcceleration)
+        protected GrassCumulativeOverloadInput(double averageNumberOfWaves, double representativeWaveRunup2P,
+                                               double verticalDistanceWaterLevelElevation, double criticalFrontVelocity,
+                                               double increasedLoadTransitionAlphaM,
+                                               double reducedStrengthTransitionAlphaS, double gravitationalAcceleration)
         {
             AverageNumberOfWaves = averageNumberOfWaves;
             RepresentativeWaveRunup2P = representativeWaveRunup2P;

@@ -19,6 +19,7 @@
 using DiKErnel.FunctionLibrary.Grass;
 using DiKErnel.FunctionLibrary.GrassWaveRunup;
 using DiKErnel.TestUtil;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
@@ -40,7 +41,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             double frontVelocityCu = Random.NextDouble();
 
             // Call
-            var input = new GrassWaveRunupCumulativeOverloadInput(
+            var input = Substitute.For<GrassWaveRunupCumulativeOverloadInput>(
                 averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
                 criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                 gravitationalAcceleration, frontVelocityCu);

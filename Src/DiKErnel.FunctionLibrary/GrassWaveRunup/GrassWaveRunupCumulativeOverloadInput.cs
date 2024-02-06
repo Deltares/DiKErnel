@@ -23,18 +23,18 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
     /// <summary>
     /// Input for grass wave run-up cumulative overload calculations.
     /// </summary>
-    public class GrassWaveRunupCumulativeOverloadInput : GrassCumulativeOverloadInput
+    public abstract class GrassWaveRunupCumulativeOverloadInput : GrassCumulativeOverloadInput
     {
         /// <inheritdoc/>
         /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
-        public GrassWaveRunupCumulativeOverloadInput(double averageNumberOfWaves,
-                                                     double representativeWaveRunup2P,
-                                                     double verticalDistanceWaterLevelElevation,
-                                                     double criticalFrontVelocity,
-                                                     double increasedLoadTransitionAlphaM,
-                                                     double reducedStrengthTransitionAlphaS,
-                                                     double gravitationalAcceleration,
-                                                     double frontVelocityCu)
+        protected GrassWaveRunupCumulativeOverloadInput(double averageNumberOfWaves,
+                                                        double representativeWaveRunup2P,
+                                                        double verticalDistanceWaterLevelElevation,
+                                                        double criticalFrontVelocity,
+                                                        double increasedLoadTransitionAlphaM,
+                                                        double reducedStrengthTransitionAlphaS,
+                                                        double gravitationalAcceleration,
+                                                        double frontVelocityCu)
             : base(averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
                    criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                    gravitationalAcceleration)
