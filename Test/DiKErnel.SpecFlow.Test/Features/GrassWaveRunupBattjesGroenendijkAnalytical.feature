@@ -46,42 +46,42 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the calculation
         Then the schadegetal is 21.802708300783724
 
-    Scenario: Testcase 3
+    Scenario: Testcase 3 - Adjusted critical values
         Given the following values are adjusted:
           | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
           | 8000                             | 6.2                   |
         When I run the calculation
         Then the schadegetal is 7.042858339779344
 
-    Scenario: Testcase 4
+    Scenario: Testcase 4 - Adjusted frontsnelheid
         Given the following values are adjusted:
           | frontsnelheid |
           | 1.15          |
         When I run the calculation
         Then the schadegetal is 8.10764303618132
 
-    Scenario: Testcase 5
+    Scenario: Testcase 5 - Adjusted overgangen properties
         Given the following values are adjusted:
           | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
           | 1.8                             | 0.9                           |
         When I run the calculation
         Then the schadegetal is 34.618492810973976
 
-    Scenario: Testcase 6
+    Scenario: Testcase 6 - Adjusted foreshore properties
         Given the following values are adjusted:
           | bodemVoorlandZ | tanAvl |
           | 0              | 0.05   |
         When I run the calculation
         Then the schadegetal is 9.562492468848081
 
-    Scenario: Testcase 7
+    Scenario: Testcase 7 - Adjusted failure conditions
         Given the following values are adjusted:
           | beginschade | faalgetal |
           | 0.3         | 1.2       |
         When I run the calculation
         Then the schadegetal is 6.264275964074616
 
-    Scenario: Testcase 8
+    Scenario: Testcase 8 - Calculations with a berm
         Given the following series are adjusted:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 0.85                  |
@@ -94,7 +94,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the calculation
         Then the schadegetal is 0.37123738545694945
 
-    Scenario: Testcase 9
+    Scenario: Testcase 9 - Calculations with a berm & adjusted foreshore properties
         Given the following series are adjusted:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 0.7                   |
@@ -107,7 +107,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the calculation
         Then the schadegetal is 0.26854724503160177
 
-    Scenario: Testcase 10
+    Scenario: Testcase 10 - Negative tijdstippen & adjusted hydraulischeBelastingen
         Given the following series are adjusted:
           | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
           | -6840       | 3.5          | 2.4            | 4                | 20             |
@@ -130,7 +130,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the calculation
         Then the schadegetal is 8.587822405580951
 
-    Scenario: Testcase 11
+    Scenario: Testcase 11 - Negative tijdstippen & adjusted hydraulischeBelastingen, dike profile properties (berm), foreshore properties
         Given the following series are adjusted:
           | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
           | -6840       | 3.5          | 2.4            | 4                | 20             |
@@ -162,7 +162,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the calculation
         Then the schadegetal is 0.669391470228952
 
-    Scenario: Testcase 12
+    Scenario: Testcase 12 - All properties adjusted
         Given the following series are adjusted:
           | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
           | -6840       | 3.5          | 2.4            | 4                | 20             |
@@ -200,7 +200,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the calculation
         Then the schadegetal is 45.67201925900045
 
-    Scenario: Testcase 13
+    Scenario: Testcase 13 - Robustness edge cases
         Given the following series are adjusted:
           | waterstanden |
           | -3.9         |

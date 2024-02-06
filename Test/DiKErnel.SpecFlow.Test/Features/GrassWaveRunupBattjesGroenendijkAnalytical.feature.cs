@@ -335,12 +335,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 3")]
-        public virtual void Testcase3()
+        [NUnit.Framework.DescriptionAttribute("Testcase 3 - Adjusted critical values")]
+        public virtual void Testcase3_AdjustedCriticalValues()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 3", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 3 - Adjusted critical values", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 49
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -384,12 +384,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 4")]
-        public virtual void Testcase4()
+        [NUnit.Framework.DescriptionAttribute("Testcase 4 - Adjusted frontsnelheid")]
+        public virtual void Testcase4_AdjustedFrontsnelheid()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 4", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 4 - Adjusted frontsnelheid", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 56
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -431,12 +431,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 5")]
-        public virtual void Testcase5()
+        [NUnit.Framework.DescriptionAttribute("Testcase 5 - Adjusted overgangen properties")]
+        public virtual void Testcase5_AdjustedOvergangenProperties()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 5", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 5 - Adjusted overgangen properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 63
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -480,12 +480,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 6")]
-        public virtual void Testcase6()
+        [NUnit.Framework.DescriptionAttribute("Testcase 6 - Adjusted foreshore properties")]
+        public virtual void Testcase6_AdjustedForeshoreProperties()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 6", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 6 - Adjusted foreshore properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 70
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -529,12 +529,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 7")]
-        public virtual void Testcase7()
+        [NUnit.Framework.DescriptionAttribute("Testcase 7 - Adjusted failure conditions")]
+        public virtual void Testcase7_AdjustedFailureConditions()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 7", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 7 - Adjusted failure conditions", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 77
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -578,12 +578,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 8")]
-        public virtual void Testcase8()
+        [NUnit.Framework.DescriptionAttribute("Testcase 8 - Calculations with a berm")]
+        public virtual void Testcase8_CalculationsWithABerm()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 8", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 8 - Calculations with a berm", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 84
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -650,12 +650,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 9")]
-        public virtual void Testcase9()
+        [NUnit.Framework.DescriptionAttribute("Testcase 9 - Calculations with a berm & adjusted foreshore properties")]
+        public virtual void Testcase9_CalculationsWithABermAdjustedForeshoreProperties()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 9", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 9 - Calculations with a berm & adjusted foreshore properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 97
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -730,12 +730,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 10")]
-        public virtual void Testcase10()
+        [NUnit.Framework.DescriptionAttribute("Testcase 10 - Negative tijdstippen & adjusted hydraulischeBelastingen")]
+        public virtual void Testcase10_NegativeTijdstippenAdjustedHydraulischeBelastingen()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 10", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 10 - Negative tijdstippen & adjusted hydraulischeBelastingen", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 110
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -881,12 +881,14 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 11")]
-        public virtual void Testcase11()
+        [NUnit.Framework.DescriptionAttribute("Testcase 11 - Negative tijdstippen & adjusted hydraulischeBelastingen, dike profi" +
+            "le properties (berm), foreshore properties")]
+        public virtual void Testcase11_NegativeTijdstippenAdjustedHydraulischeBelastingenDikeProfilePropertiesBermForeshoreProperties()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 11", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 11 - Negative tijdstippen & adjusted hydraulischeBelastingen, dike profi" +
+                    "le properties (berm), foreshore properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 133
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -1068,12 +1070,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 12")]
-        public virtual void Testcase12()
+        [NUnit.Framework.DescriptionAttribute("Testcase 12 - All properties adjusted")]
+        public virtual void Testcase12_AllPropertiesAdjusted()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 12", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 12 - All properties adjusted", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 165
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -1281,12 +1283,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 13")]
-        public virtual void Testcase13()
+        [NUnit.Framework.DescriptionAttribute("Testcase 13 - Robustness edge cases")]
+        public virtual void Testcase13_RobustnessEdgeCases()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 13", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 13 - Robustness edge cases", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 203
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
