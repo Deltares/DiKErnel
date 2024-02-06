@@ -2,47 +2,29 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 As a user I want to perform grass wave run-up calculations based on Battjes-Groenendijk analytical.
 
     Background:
-        Given the following tijdstippen:
-          | tijdstippen |
-          | 0           |
-          | 3600        |
-          | 7200        |
-          | 10800       |
-          | 14400       |
-          | 18000       |
-          | 21600       |
-          | 25200       |
-          | 28800       |
-          | 32400       |
-          | 36000       |
-          | 39600       |
-          | 43200       |
-          | 46800       |
-          | 50400       |
-          | 54000       |
-          | 57600       |
-        And the following hydraulischeBelastingen:
-          | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | 3            | 0.5            | 3                | 50             |
-          | 3.1          | 0.7            | 3.5              | 45             |
-          | 3.2          | 1              | 4                | 40             |
-          | 3.3          | 1.3            | 4.3              | 35             |
-          | 3.4          | 1.5            | 4.5              | 30             |
-          | 3.5          | 1.8            | 4.8              | 25             |
-          | 3.6          | 2.1            | 5.2              | 20             |
-          | 3.7          | 2.5            | 5.5              | 15             |
-          | 3.7          | 2.8            | 5.8              | 10             |
-          | 3.6          | 2.8            | 6                | 5              |
-          | 3.5          | 2.5            | 6                | 0              |
-          | 3.4          | 2.1            | 5.8              | 0              |
-          | 3.3          | 1.8            | 5.5              | 5              |
-          | 3.2          | 1.5            | 5.2              | 10             |
-          | 3.1          | 1.3            | 4.8              | 15             |
-          | 3            | 1              | 4.5              | 20             |
-        And the following dijkprofiel:
-          | dijkorientatie | posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
-          | 0              | 0        | 0       | 1.0                   | 0               | 25               |
-          |                | 25       | 7.5     |                       |                 |                  |
+        Given the following tijdstippen and hydraulischeBelastingen:
+          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+          | 0           | 3            | 0.5            | 3                | 50             |
+          | 3600        | 3.1          | 0.7            | 3.5              | 45             |
+          | 7200        | 3.2          | 1              | 4                | 40             |
+          | 10800       | 3.3          | 1.3            | 4.3              | 35             |
+          | 14400       | 3.4          | 1.5            | 4.5              | 30             |
+          | 18000       | 3.5          | 1.8            | 4.8              | 25             |
+          | 21600       | 3.6          | 2.1            | 5.2              | 20             |
+          | 25200       | 3.7          | 2.5            | 5.5              | 15             |
+          | 28800       | 3.7          | 2.8            | 5.8              | 10             |
+          | 32400       | 3.6          | 2.8            | 6                | 5              |
+          | 36000       | 3.5          | 2.5            | 6                | 0              |
+          | 39600       | 3.4          | 2.1            | 5.8              | 0              |
+          | 43200       | 3.3          | 1.8            | 5.5              | 5              |
+          | 46800       | 3.2          | 1.5            | 5.2              | 10             |
+          | 50400       | 3.1          | 1.3            | 4.8              | 15             |
+          | 54000       | 3            | 1              | 4.5              | 20             |
+          | 57600       |              |                |                  |                |
+        And the following dijkprofiel and dikeorientatie of 0:
+          | posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
+          | 0        | 0       | 1.0                   | 0               | 25               |
+          | 25       | 7.5     |                       |                 |                  |
         And the following locaties:
           | positie | rekenmethode   | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
           | 15      | grasGolfoploop | grasGeslotenZode | 0           | 1                               | 1                             |
@@ -124,83 +106,47 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 10
         Given the following series are adjusted:
-          | tijdstippen |
-          | -6840       |
-          | -6120       |
-          | -5040       |
-          | -3600       |
-          | -1800       |
-          | 360         |
-          | 2880        |
-          | 5760        |
-          | 9000        |
-          | 12600       |
-          | 16560       |
-          | 20880       |
-          | 25560       |
-          | 30600       |
-          | 36000       |
-          | 43200       |
-          | 50400       |
-        Given the following series are adjusted:
-          | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | 3.5          | 2.4            | 4                | 20             |
-          | 3.6          | 2.5            | 4.2              | 20             |
-          | 3.7          | 2.7            | 4.4              | 20             |
-          | 3.8          | 2.8            | 4.5              | 20             |
-          | 3.9          | 2.9            | 4.8              | 20             |
-          | 3.95         | 3              | 5                | 20             |
-          | 4            | 2.9            | 5.2              | 20             |
-          | 3.95         | 2.9            | 5.5              | 15             |
-          | 3.8          | 2.8            | 5.8              | 10             |
-          | 3.6          | 2.8            | 6                | 5              |
-          | 3.5          | 2.5            | 6                | 0              |
-          | 3.4          | 2.1            | 5.8              | 0              |
-          | 3.3          | 1.8            | 5.5              | 5              |
-          | 3.2          | 1.5            | 5.2              | 10             |
-          | 3.1          | 1.3            | 4.8              | 15             |
-          | 3            | 1              | 4.5              | 20             |
+          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+          | -6840       | 3.5          | 2.4            | 4                | 20             |
+          | -6120       | 3.6          | 2.5            | 4.2              | 20             |
+          | -5040       | 3.7          | 2.7            | 4.4              | 20             |
+          | -3600       | 3.8          | 2.8            | 4.5              | 20             |
+          | -1800       | 3.9          | 2.9            | 4.8              | 20             |
+          | 360         | 3.95         | 3              | 5                | 20             |
+          | 2880        | 4            | 2.9            | 5.2              | 20             |
+          | 5760        | 3.95         | 2.9            | 5.5              | 15             |
+          | 9000        | 3.8          | 2.8            | 5.8              | 10             |
+          | 12600       | 3.6          | 2.8            | 6                | 5              |
+          | 16560       | 3.5          | 2.5            | 6                | 0              |
+          | 20880       | 3.4          | 2.1            | 5.8              | 0              |
+          | 25560       | 3.3          | 1.8            | 5.5              | 5              |
+          | 30600       | 3.2          | 1.5            | 5.2              | 10             |
+          | 36000       | 3.1          | 1.3            | 4.8              | 15             |
+          | 43200       | 3            | 1              | 4.5              | 20             |
+          | 50400       |              |                |                  |                |
         When I run the calculation
         Then the schadegetal is 8.587822405580951
 
     Scenario: Testcase 11
         Given the following series are adjusted:
-          | tijdstippen |
-          | -6840       |
-          | -6120       |
-          | -5040       |
-          | -3600       |
-          | -1800       |
-          | 360         |
-          | 2880        |
-          | 5760        |
-          | 9000        |
-          | 12600       |
-          | 16560       |
-          | 20880       |
-          | 25560       |
-          | 30600       |
-          | 36000       |
-          | 43200       |
-          | 50400       |
-        And the following series are adjusted:
-          | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | 3.5          | 2.4            | 4                | 20             |
-          | 3.6          | 2.5            | 4.2              | 20             |
-          | 3.7          | 2.7            | 4.4              | 20             |
-          | 3.8          | 2.8            | 4.5              | 20             |
-          | 3.9          | 2.9            | 4.8              | 20             |
-          | 3.95         | 3              | 5                | 20             |
-          | 4            | 2.9            | 5.2              | 20             |
-          | 3.95         | 2.9            | 5.5              | 15             |
-          | 3.8          | 2.8            | 5.8              | 10             |
-          | 3.6          | 2.8            | 6                | 5              |
-          | 3.5          | 2.5            | 6                | 0              |
-          | 3.4          | 2.1            | 5.8              | 0              |
-          | 3.3          | 1.8            | 5.5              | 5              |
-          | 3.2          | 1.5            | 5.2              | 10             |
-          | 3.1          | 1.3            | 4.8              | 15             |
-          | 3            | 1              | 4.5              | 20             |
+          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+          | -6840       | 3.5          | 2.4            | 4                | 20             |
+          | -6120       | 3.6          | 2.5            | 4.2              | 20             |
+          | -5040       | 3.7          | 2.7            | 4.4              | 20             |
+          | -3600       | 3.8          | 2.8            | 4.5              | 20             |
+          | -1800       | 3.9          | 2.9            | 4.8              | 20             |
+          | 360         | 3.95         | 3              | 5                | 20             |
+          | 2880        | 4            | 2.9            | 5.2              | 20             |
+          | 5760        | 3.95         | 2.9            | 5.5              | 15             |
+          | 9000        | 3.8          | 2.8            | 5.8              | 10             |
+          | 12600       | 3.6          | 2.8            | 6                | 5              |
+          | 16560       | 3.5          | 2.5            | 6                | 0              |
+          | 20880       | 3.4          | 2.1            | 5.8              | 0              |
+          | 25560       | 3.3          | 1.8            | 5.5              | 5              |
+          | 30600       | 3.2          | 1.5            | 5.2              | 10             |
+          | 36000       | 3.1          | 1.3            | 4.8              | 15             |
+          | 43200       | 3            | 1              | 4.5              | 20             |
+          | 50400       |              |                |                  |                |
         And the following series are adjusted:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 0.85                  |
@@ -215,42 +161,24 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 12
         Given the following series are adjusted:
-          | tijdstippen |
-          | -6840       |
-          | -6120       |
-          | -5040       |
-          | -3600       |
-          | -1800       |
-          | 360         |
-          | 2880        |
-          | 5760        |
-          | 9000        |
-          | 12600       |
-          | 16560       |
-          | 20880       |
-          | 25560       |
-          | 30600       |
-          | 36000       |
-          | 43200       |
-          | 50400       |
-        Given the following series are adjusted:
-          | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | 3.5          | 2.4            | 4                | 20             |
-          | 3.6          | 2.5            | 4.2              | 20             |
-          | 3.7          | 2.7            | 4.4              | 20             |
-          | 3.8          | 2.8            | 4.5              | 20             |
-          | 3.9          | 2.9            | 4.8              | 20             |
-          | 3.95         | 3              | 5                | 20             |
-          | 4            | 2.9            | 5.2              | 20             |
-          | 3.95         | 2.9            | 5.5              | 15             |
-          | 3.8          | 2.8            | 5.8              | 10             |
-          | 3.6          | 2.8            | 6                | 5              |
-          | 3.5          | 2.5            | 6                | 0              |
-          | 3.4          | 2.1            | 5.8              | 0              |
-          | 3.3          | 1.8            | 5.5              | 5              |
-          | 3.2          | 1.5            | 5.2              | 10             |
-          | 3.1          | 1.3            | 4.8              | 15             |
-          | 3            | 1              | 4.5              | 20             |
+          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+          | -6840       | 3.5          | 2.4            | 4                | 20             |
+          | -6120       | 3.6          | 2.5            | 4.2              | 20             |
+          | -5040       | 3.7          | 2.7            | 4.4              | 20             |
+          | -3600       | 3.8          | 2.8            | 4.5              | 20             |
+          | -1800       | 3.9          | 2.9            | 4.8              | 20             |
+          | 360         | 3.95         | 3              | 5                | 20             |
+          | 2880        | 4            | 2.9            | 5.2              | 20             |
+          | 5760        | 3.95         | 2.9            | 5.5              | 15             |
+          | 9000        | 3.8          | 2.8            | 5.8              | 10             |
+          | 12600       | 3.6          | 2.8            | 6                | 5              |
+          | 16560       | 3.5          | 2.5            | 6                | 0              |
+          | 20880       | 3.4          | 2.1            | 5.8              | 0              |
+          | 25560       | 3.3          | 1.8            | 5.5              | 5              |
+          | 30600       | 3.2          | 1.5            | 5.2              | 10             |
+          | 36000       | 3.1          | 1.3            | 4.8              | 15             |
+          | 43200       | 3            | 1              | 4.5              | 20             |
+          | 50400       |              |                |                  |                |
         And the following series are adjusted:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 0.85                  |

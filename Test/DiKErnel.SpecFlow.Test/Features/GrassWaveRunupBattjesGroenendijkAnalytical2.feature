@@ -2,21 +2,18 @@
 	BM Gras benchmarks
 	
 		Background: 
-		Given the following tijdstippen:
-			| tijdstippen |
-			| 0           |
-			| 900         |
- 		And the following hydraulischeBelastingen:
- 			| waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-		    | 0            | 1.5            | 4.20             | 0              |
-	    And the following dijkprofiel:
-     		| dijkorientatie | posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
-	        | 0              | 0        |  -10    | 1                     |         0       |     80           |
-	        |                | 40       |   0     | 1                     |                 |                  |
-	        |                | 80       |   10    |                       |                 |                  |
+		Given the following tijdstippen and hydraulischeBelastingen:
+			| tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
+			| 0           | 0            | 1.5            | 4.20             | 0              |
+			| 900         |              |                |                  |                |
+	    And the following dijkprofiel and a dikeorientatie of 0:
+     		| posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
+	        | 0        |  -10    | 1                     |         0       |     80           |
+	        | 40       |   0     | 1                     |                 |                  |
+	        | 80       |   10    |                       |                 |                  |
 	    And the following locaties:
      		| positie | rekenmethode   | typeToplaag       | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
-	        |    0.1  | grasGolfoploop |  grasGeslotenZode |      0      |  1                              |   1                           |
+	        | 0.1     | grasGolfoploop |  grasGeslotenZode |      0      |  1                              |   1                           |
 	    And  the following rekenmethoden:
      		| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
 	        | grasGolfoploop |     1     |    3.85   | battjesGroenendijkAnalytisch |      1.10     |       -3       | 0.004  | grasGeslotenZode |          
