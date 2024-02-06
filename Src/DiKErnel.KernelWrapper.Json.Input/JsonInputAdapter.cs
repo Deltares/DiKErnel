@@ -135,40 +135,40 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
             foreach (JsonInputLocationData locationData in locationDataItems)
             {
-                switch (locationData)
+                switch (locationData.CalculationMethodType)
                 {
-                    case JsonInputAsphaltWaveImpactLocationData asphaltWaveImpactLocationData:
+                    case JsonInputCalculationType.AsphaltWaveImpact:
                     {
                         builder.AddAsphaltWaveImpactLocation(
                             CreateAsphaltWaveImpactLocationConstructionProperties(
-                                asphaltWaveImpactLocationData,
+                                (JsonInputAsphaltWaveImpactLocationData) locationData,
                                 GetCalculationDefinition<JsonInputAsphaltWaveImpactCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.AsphaltWaveImpact)));
                         break;
                     }
-                    case JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData grassWaveOvertoppingRayleighDiscreteLocationData:
+                    case JsonInputCalculationType.GrassWaveOvertopping:
                     {
                         builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
                             CreateGrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
-                                grassWaveOvertoppingRayleighDiscreteLocationData,
+                                (JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData) locationData,
                                 GetCalculationDefinition<JsonInputGrassWaveOvertoppingRayleighDiscreteCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassWaveOvertopping)));
                         break;
                     }
-                    case JsonInputGrassWaveImpactLocationData grassWaveImpactLocationData:
+                    case JsonInputCalculationType.GrassWaveImpact:
                     {
                         builder.AddGrassWaveImpactLocation(
                             CreateGrassWaveImpactLocationConstructionProperties(
-                                grassWaveImpactLocationData,
+                                (JsonInputGrassWaveImpactLocationData) locationData,
                                 GetCalculationDefinition<JsonInputGrassWaveImpactCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassWaveImpact)));
                         break;
                     }
-                    case JsonInputGrassWaveRunupLocationData grassWaveRunupLocationData:
+                    case JsonInputCalculationType.GrassWaveRunup:
                     {
                         GrassCumulativeOverloadLocationConstructionProperties constructionProperties =
                             CreateGrassWaveRunupLocationConstructionProperties(
-                                grassWaveRunupLocationData,
+                                (JsonInputGrassWaveRunupLocationData) locationData,
                                 GetCalculationDefinition<JsonInputGrassWaveRunupCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassWaveRunup));
 
@@ -182,11 +182,11 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
                         break;
                     }
-                    case JsonInputNaturalStoneWaveImpactLocationData naturalStoneWaveImpactLocationData:
+                    case JsonInputCalculationType.NaturalStoneWaveImpact:
                     {
                         builder.AddNaturalStoneWaveImpactLocation(
                             CreateNaturalStoneWaveImpactLocationConstructionProperties(
-                                naturalStoneWaveImpactLocationData,
+                                (JsonInputNaturalStoneWaveImpactLocationData) locationData,
                                 GetCalculationDefinition<JsonInputNaturalStoneWaveImpactCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.NaturalStoneWaveImpact)));
                         break;
