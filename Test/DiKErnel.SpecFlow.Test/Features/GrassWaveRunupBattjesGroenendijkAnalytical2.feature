@@ -1,4 +1,4 @@
-﻿Feature: GrassWaveRunupBattjesGroenendijkAnalytical2
+Feature: GrassWaveRunupBattjesGroenendijkAnalytical2
 	BM Gras benchmarks
 	
 		Background: 
