@@ -127,14 +127,12 @@ namespace DiKErnel.SpecFlow.Test.Features
 #line hidden
             TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                         "positie",
-                        "rekenmethode",
                         "typeToplaag",
                         "beginschade",
                         "verhogingBelastingOvergangAlfaM",
                         "verlagingSterkteOvergangAlfaS"});
             table27.AddRow(new string[] {
                         "40.4",
-                        "grasGolfoploop",
                         "grasGeslotenZode",
                         "0",
                         "1",
@@ -143,19 +141,15 @@ namespace DiKErnel.SpecFlow.Test.Features
      testRunner.And("the following locaties:", ((string)(null)), table27, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
-                        "rekenmethode",
                         "faalgetal",
                         "factorCtm",
-                        "typeRekenprotocol",
                         "frontsnelheid",
                         "bodemVoorlandZ",
                         "tanAvl",
                         "typeToplaag"});
             table28.AddRow(new string[] {
-                        "grasGolfoploop",
                         "1",
                         "3.85",
-                        "battjesGroenendijkAnalytisch",
                         "1.10",
                         "-3",
                         "0.004",

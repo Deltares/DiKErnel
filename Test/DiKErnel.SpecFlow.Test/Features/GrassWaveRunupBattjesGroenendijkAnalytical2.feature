@@ -12,11 +12,11 @@
 	        | 40       |   0     | 1                     |                 |                  |
 	        | 80       |   10    |                       |                 |                  |
 	    And the following locaties:
-     		| positie | rekenmethode   | typeToplaag       | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
-	        | 40.4    | grasGolfoploop |  grasGeslotenZode |      0      |  1                              |   1                           |
+	      | positie | typeToplaag       | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+	      | 40.4    |  grasGeslotenZode |      0      |  1                              |   1                           |
 	    And  the following rekenmethoden:
-     		| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
-	        | grasGolfoploop |     1     |    3.85   | battjesGroenendijkAnalytisch |      1.10     |       -3       | 0.004  | grasGeslotenZode |          
+	      | faalgetal | factorCtm | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
+	      |     1     |    3.85   |      1.10     |       -3       | 0.004  | grasGeslotenZode |          
 			
 	Scenario Outline: BM Gras benchmark 14
 		When I change the property kritiekeFrontsnelheid to a value of <kritiekeFrontsnelheid>

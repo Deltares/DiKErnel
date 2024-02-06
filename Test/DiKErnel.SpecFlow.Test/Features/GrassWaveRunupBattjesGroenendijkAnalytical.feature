@@ -26,11 +26,11 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 0        | 0       | 1.0                   | 0               | 25               |
           | 25       | 7.5     |                       |                 |                  |
         And the following locaties:
-          | positie | rekenmethode   | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
-          | 15      | grasGolfoploop | grasGeslotenZode | 0           | 1                               | 1                             |
+          | positie | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
+          | 15      | grasGeslotenZode | 0           | 1                               | 1                             |
         And the following rekenmethoden:
-          | rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
-          | grasGolfoploop | 1         | 0.92      | battjesGroenendijkAnalytisch | 1.1           | -4.0           | 0.004  | grasGeslotenZode |
+          | faalgetal | factorCtm | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
+          | 1         | 0.92      | 1.1           | -4.0           | 0.004  | grasGeslotenZode |
 
     Scenario: Testcase 1 - Default with closed sod
         When I run the calculation
