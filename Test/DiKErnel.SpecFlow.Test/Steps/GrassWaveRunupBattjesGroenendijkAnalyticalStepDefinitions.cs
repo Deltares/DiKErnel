@@ -63,10 +63,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string criticalCumulativeOverloadKey = "kritiekeCumulatieveOverbelasting";
         private const string increasedLoadTransitionAlfaMKey = "verhogingBelastingOvergangAlfaM";
         private const string reducedStrengthTransitionAlphaSKey = "verlagingSterkteOvergangAlfaS";
-
-        private const string damageKey = "damage";
-
+        
         private readonly ScenarioContext context;
+
+        private IReadOnlyList<LocationDependentOutput> outputs;
 
         public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context)
         {
@@ -99,8 +99,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             var calculator = new Calculator(result.Data);
             calculator.WaitForCompletion();
 
-            IReadOnlyList<double> damages = calculator.Result.Data.LocationDependentOutputItems[0].GetDamages();
-            context[damageKey] = damages[damages.Count - 1];
+            outputs = calculator.Result.Data.LocationDependentOutputItems;
         }
 
         [Given(@"the following tijdstippen and hydraulischeBelastingen:")]
@@ -123,7 +122,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the schadegetal is (.*)")]
         public void ThenTheSchadegetalIs(decimal expectedDamage)
         {
-            Assert.That(context[damageKey], Is.EqualTo(expectedDamage).Within(1e-14));
+            IReadOnlyList<double>? damages = outputs[0].GetDamages();
+            double actualDamage = damages[damages.Count - 1];
+            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(1e-14));
         }
 
         [When(@"I change the property (\w*) to a value of (.*)")]
@@ -133,9 +134,17 @@ namespace DiKErnel.SpecFlow.Test.Steps
         }
 
         [Then(@"the output value for (.*) is")]
-        public void ThenTheOutputValueForIs(float expectedValue)
+        public void ThenTheOutputValueForIs(string expectedValue)
         {
-            Assert.That(context[damageKey], Is.EqualTo(expectedValue).Within(1e-14));
+            IReadOnlyList<double>? damages = outputs[0].GetDamages();
+            double actualDamage = damages[damages.Count - 1];
+            if (expectedValue == null)
+            {
+                Assert.That(actualDamage, Is.NaN);
+            }
+
+            double expectedDamage = double.Parse(expectedValue);
+            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(1e-14));
         }
 
         private void SetCollectionValues(Table table)
