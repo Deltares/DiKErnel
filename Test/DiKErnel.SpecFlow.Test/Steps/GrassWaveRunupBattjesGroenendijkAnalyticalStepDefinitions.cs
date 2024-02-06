@@ -180,13 +180,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
             return null;
         }
 
-        private IReadOnlyList<double> GetDoubleCollection(string id)
+        private double[] GetDoubleCollection(string id)
         {
             var values = (IReadOnlyList<string>) context[id];
-            return values.Select(double.Parse).ToList();
+            return values.Select(double.Parse).ToArray();
         }
 
-        private IReadOnlyList<double?> GetNullableDoubleCollection(string id)
+        private List<double?> GetNullableDoubleCollection(string id)
         {
             var values = (IReadOnlyList<string>) context[id];
             var parsedValues = new List<double?>();
