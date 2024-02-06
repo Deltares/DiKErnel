@@ -18,8 +18,8 @@
 
 using System;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputAsphaltWaveImpact;
+using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrass;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveImpact;
-using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveOvertopping;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputGrassWaveRunup;
 using DiKErnel.KernelWrapper.Json.Input.Data.Revetment.JsonInputNaturalStoneWaveImpact;
 using Newtonsoft.Json;
@@ -48,7 +48,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Data.Generic.Converters
                 JsonInputCalculationType.AsphaltWaveImpact =>
                     calculationData.ToObject<JsonInputAsphaltWaveImpactLocationData>(),
                 JsonInputCalculationType.GrassWaveOvertopping =>
-                    calculationData.ToObject<JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData>(),
+                    calculationData.ToObject<JsonInputGrassCumulativeOverloadLocationData>(),
                 JsonInputCalculationType.GrassWaveImpact =>
                     calculationData.ToObject<JsonInputGrassWaveImpactLocationData>(),
                 JsonInputCalculationType.GrassWaveRunup =>

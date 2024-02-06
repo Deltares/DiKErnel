@@ -150,7 +150,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
                     {
                         builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
                             CreateGrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
-                                (JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData) locationData,
+                                (JsonInputGrassCumulativeOverloadLocationData) locationData,
                                 GetCalculationDefinition<JsonInputGrassWaveOvertoppingRayleighDiscreteCalculationData>(
                                     calculationDataItems, JsonInputCalculationType.GrassWaveOvertopping)));
                         break;
@@ -249,7 +249,7 @@ namespace DiKErnel.KernelWrapper.Json.Input
 
         private static GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties
             CreateGrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
-                JsonInputGrassWaveOvertoppingRayleighDiscreteLocationData locationData,
+                JsonInputGrassCumulativeOverloadLocationData locationData,
                 JsonInputGrassWaveOvertoppingRayleighDiscreteCalculationData calculationData)
         {
             JsonInputGrassCumulativeOverloadTopLayerData topLayerData =
