@@ -133,7 +133,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "verhogingBelastingOvergangAlfaM",
                         "verlagingSterkteOvergangAlfaS"});
             table27.AddRow(new string[] {
-                        "0.1",
+                        "40.4",
                         "grasGolfoploop",
                         "grasGeslotenZode",
                         "0",

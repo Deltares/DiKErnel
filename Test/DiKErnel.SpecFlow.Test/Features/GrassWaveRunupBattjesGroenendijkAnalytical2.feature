@@ -13,7 +13,7 @@
 	        | 80       |   10    |                       |                 |                  |
 	    And the following locaties:
      		| positie | rekenmethode   | typeToplaag       | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
-	        | 0.1     | grasGolfoploop |  grasGeslotenZode |      0      |  1                              |   1                           |
+	        | 40.4    | grasGolfoploop |  grasGeslotenZode |      0      |  1                              |   1                           |
 	    And  the following rekenmethoden:
      		| rekenmethode   | faalgetal | factorCtm | typeRekenprotocol            | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
 	        | grasGolfoploop |     1     |    3.85   | battjesGroenendijkAnalytisch |      1.10     |       -3       | 0.004  | grasGeslotenZode |          
