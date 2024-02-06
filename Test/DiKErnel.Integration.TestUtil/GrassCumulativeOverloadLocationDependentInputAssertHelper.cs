@@ -29,6 +29,12 @@ namespace DiKErnel.Integration.TestUtil
             Assert.That(locationDependentInput.CriticalCumulativeOverload, Is.EqualTo(criticalCumulativeOverload));
         }
 
+        public static void AssertFrontVelocity(double criticalFrontVelocity,
+                                               GrassCumulativeOverloadLocationDependentInput locationDependentInput)
+        {
+            Assert.That(locationDependentInput.CriticalFrontVelocity, Is.EqualTo(criticalFrontVelocity));
+        }
+
         public static void AssertTransitionAlpha(double increasedLoadTransitionAlphaM,
                                                  double reducedStrengthTransitionAlphaS,
                                                  GrassCumulativeOverloadLocationDependentInput locationDependentInput)
