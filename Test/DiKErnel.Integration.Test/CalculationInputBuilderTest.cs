@@ -2342,7 +2342,7 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
-        public void GivenBuilderWithNotFullyConfiguredNaturalStoneWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        public void GivenBuilderWithNotFullyConfiguredNordicStoneNaturalStoneWaveImpactLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
             const NaturalStoneWaveImpactTopLayerType topLayerType = NaturalStoneWaveImpactTopLayerType.NordicStone;
