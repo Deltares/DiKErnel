@@ -4,9 +4,9 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 The following testcases correspond with BM Gras benchmarks.
 
 DiKErnel does not produce exactly the same results as BM Gras. This is mainly due to the following differences:
-- BM Gras rounds the value of avergeNumberOfWaves, this is not the case in DiKErnel.
+- BM Gras rounds the value of averageNumberOfWaves to an iteger. This is not the case in DiKErnel.
 - BM Gras uses an older version of dikes.Overtopping.dll (version 19.1.1).
-- BM Gras is a user interface and performes validation of input parameters. This is not the case in DiKErnel.
+- BM Gras is a user interface and performs validation of input parameters. This is not the case in DiKErnel.
 
 		Background: 
 		Given the following tijdstippen and hydraulischeBelastingen:
@@ -95,8 +95,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 
 	Scenario Outline: BM Gras benchmark 17 - Variable input of water depth
 	
-	Remark: in BM Gras the value of water depth (water level - bodemVoorlandZ) must be between 0 and 10 m. 
-	This validation is not performed by DiKErnel.
+	Remarks: 
+	- In BM Gras the value of water depth (water level - bodemVoorlandZ) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
+	- When (water level - bodemVoorlandZ) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 	
 		Given the following series are adjusted:
 			| posities | hoogten | ruwheidscoefficienten |
@@ -112,7 +113,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 
 		Examples: 
 			| bodemVoorlandZ | schadegetal           | cumulatieveOverbelastingTijdstap | Benchmark for BM Gras | BM Gras   |
-			| 0              | 0.0                   | 0.0                              | 0.000                 |           |
+			| 0              | NaN                   | NaN                              | 0.000                 |           |
 			| -0.004         | 18.899172206217422    | 132294.20544352196               | 133115.947            |           |
 			| -0.04          | 1.9530600918770284    | 13671.4206431392                 | 13756.388             | 13755.272 |
 			| -0.1           | 0.8177090570008678    | 5723.963399006075                | 5729.582              | 5759.070  |
@@ -123,8 +124,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 
 	Scenario Outline: BM Gras benchmark 18 - Variable input of water depth and critical depth
 	
-	Remark: in BM Gras the value of water depth (water level - bodemVoorlandZ) must be between 0 and 10 m. 
-	This validation is not performed by DiKErnel.
+	Remarks: 
+	- In BM Gras the value of water depth (water level - bodemVoorlandZ) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
+	- When (water level - bodemVoorlandZ) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 	
 		Given the following series are adjusted:
 			| posities | hoogten | ruwheidscoefficienten |
@@ -141,7 +143,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 
 		Examples: 
 			| bodemVoorlandZ | kritiekeCumulatieveOverbelasting | schadegetal        | cumulatieveOverbelastingTijdstap | Benchmark for BM Gras | BM Gras   |
-			| 0              | 1000                             | 0.0                | 0.0                              | 0.000                 |           |
+			| 0              | 1000                             | NaN                | NaN                              | 0.000                 |           |
 			| -0.004         | 1000                             | 132.29420544352197 | 132294.20544352196               | 133115.947            |           |
 			| -0.04          | 100                              | 136.714206431392   | 13671.4206431392                 | 13756.388             | 13755.272 |
 			| -0.1           | 10                               | 572.3963399006075  | 5723.963399006075                | 5759.582              | 5759.070  |
