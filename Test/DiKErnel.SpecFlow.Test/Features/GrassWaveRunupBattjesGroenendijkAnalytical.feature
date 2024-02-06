@@ -21,10 +21,13 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 50400       | 3.1          | 1.3            | 4.8              | 15             |
           | 54000       | 3            | 1              | 4.5              | 20             |
           | 57600       |              |                |                  |                |
-        And the following dijkprofiel and dikeorientatie of 0:
-          | posities | hoogten | ruwheidscoefficienten | teenBuitenzijde | kruinBuitenzijde |
-          | 0        | 0       | 1.0                   | 0               | 25               |
-          | 25       | 7.5     |                       |                 |                  |
+        And the following dijkprofiel and a dijkorientatie of 0:
+          | posities | hoogten | ruwheidscoefficienten |
+          | 0        | 0       | 1.0                   |
+          | 25       | 7.5     |                       |
+        And the following karakteristiekePunten:
+          | teenBuitenzijde | kruinBuitenzijde |
+          | 0               | 25               |
         And the following locaties:
           | positie | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
           | 15      | grasGeslotenZode | 0           | 1                               | 1                             |
