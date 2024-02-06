@@ -23,34 +23,33 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class ProfileDataAssertHelper
     {
-        public static void AssertProfileSegment(double expectedStartPointX, double expectedStartPointZ,
-                                                double expectedEndPointX, double expectedEndPointZ,
-                                                double expectedRoughnessCoefficient,
-                                                ProfileSegment actualProfileSegment)
+        public static void AssertProfileSegment(double startPointX, double startPointZ, double endPointX,
+                                                double endPointZ, double roughnessCoefficient,
+                                                ProfileSegment profileSegment)
         {
-            AssertProfilePoint(expectedStartPointX, expectedStartPointZ, actualProfileSegment.StartPoint);
-            AssertProfilePoint(expectedEndPointX, expectedEndPointZ, actualProfileSegment.EndPoint);
-            Assert.That(actualProfileSegment.RoughnessCoefficient, Is.EqualTo(expectedRoughnessCoefficient));
+            AssertProfilePoint(startPointX, startPointZ, profileSegment.StartPoint);
+            AssertProfilePoint(endPointX, endPointZ, profileSegment.EndPoint);
+            Assert.That(profileSegment.RoughnessCoefficient, Is.EqualTo(roughnessCoefficient));
         }
 
-        public static void AssertCharacteristicPoint(ProfilePoint expectedProfilePoint,
-                                                     CharacteristicPointType expectedCharacteristicPointType,
-                                                     CharacteristicPoint actualCharacteristicPoint)
+        public static void AssertCharacteristicPoint(ProfilePoint profilePoint,
+                                                     CharacteristicPointType characteristicPointType,
+                                                     CharacteristicPoint characteristicPoint)
         {
-            Assert.That(actualCharacteristicPoint.ProfilePoint, Is.SameAs(expectedProfilePoint));
-            Assert.That(actualCharacteristicPoint.CharacteristicPointType, Is.EqualTo(expectedCharacteristicPointType));
+            Assert.That(characteristicPoint.ProfilePoint, Is.SameAs(profilePoint));
+            Assert.That(characteristicPoint.CharacteristicPointType, Is.EqualTo(characteristicPointType));
         }
 
-        public static void AssertForeshore(double expectedSlope, double expectedBottomZ, Foreshore actualForeshore)
+        public static void AssertForeshore(double slope, double bottomZ, Foreshore foreshore)
         {
-            Assert.That(actualForeshore.Slope, Is.EqualTo(expectedSlope));
-            Assert.That(actualForeshore.BottomZ, Is.EqualTo(expectedBottomZ));
+            Assert.That(foreshore.Slope, Is.EqualTo(slope));
+            Assert.That(foreshore.BottomZ, Is.EqualTo(bottomZ));
         }
 
-        private static void AssertProfilePoint(double expectedX, double expectedZ, ProfilePoint actualProfilePoint)
+        private static void AssertProfilePoint(double x, double z, ProfilePoint profilePoint)
         {
-            Assert.That(actualProfilePoint.X, Is.EqualTo(expectedX));
-            Assert.That(actualProfilePoint.Z, Is.EqualTo(expectedZ));
+            Assert.That(profilePoint.X, Is.EqualTo(x));
+            Assert.That(profilePoint.Z, Is.EqualTo(z));
         }
     }
 }
