@@ -160,7 +160,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | dijkorientatie | positie | bodemVoorlandZ | tanAvl |
           | 20             | 15      | 0.5            | 0.01   |
         When I run the Battjes-Groenendijk Wave Runup Calculation
-        Then the schadegetal is 0.669391470228952
+        Then the schadegetal is 0.6219200388310531
 
     Scenario: Testcase 12 - All properties adjusted
         Given the following series are adjusted:
@@ -198,7 +198,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | faalgetal | factorCtm | frontsnelheid | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid | bodemVoorlandZ | tanAvl |
           | 1.1       | 0.89      | 1.2           | 7500                             | 5                     | -1             | 0.008  |
         When I run the Battjes-Groenendijk Wave Runup Calculation
-        Then the schadegetal is 45.67201925900045
+        Then the schadegetal is 41.84703315170409
 
     Scenario: Testcase 13 - Robustness edge cases
         Given the following series are adjusted:
