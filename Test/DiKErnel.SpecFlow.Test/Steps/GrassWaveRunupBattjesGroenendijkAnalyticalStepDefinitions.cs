@@ -67,7 +67,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private readonly ScenarioContext context;
 
-        private IReadOnlyList<LocationDependentOutput>? outputs;
+        private IReadOnlyList<LocationDependentOutput> outputs;
 
         public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context)
         {
