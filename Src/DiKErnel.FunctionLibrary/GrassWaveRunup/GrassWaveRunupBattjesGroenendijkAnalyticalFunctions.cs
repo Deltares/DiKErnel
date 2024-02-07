@@ -326,7 +326,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
             return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *
-                   ((4 * scalingParameterRu) / k *
+                   (((4 * scalingParameterRu) / k) *
                     Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
                     ((4 * input.VerticalDistanceWaterLevelElevation) / k) *
                     Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
