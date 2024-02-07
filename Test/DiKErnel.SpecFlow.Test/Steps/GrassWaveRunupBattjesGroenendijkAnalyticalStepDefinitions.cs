@@ -67,7 +67,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private readonly ScenarioContext context;
 
-        private IReadOnlyList<LocationDependentOutput> outputs;
+        private IReadOnlyList<LocationDependentOutput>? outputs;
 
         public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context)
         {
@@ -218,15 +218,19 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
             IReadOnlyList<double> times = GetDoubleCollection(timesKey);
-            IReadOnlyList<double?> waterLevels = GetNullableDoubleCollection(waterLevelsKey);
-            IReadOnlyList<double?> waveHeightsHm0 = GetNullableDoubleCollection(waveHeightsHm0Key);
-            IReadOnlyList<double?> wavePeriodsTm10 = GetNullableDoubleCollection(wavePeriodsTm10Key);
-            IReadOnlyList<double?> waveDirections = GetNullableDoubleCollection(waveDirectionsKey);
+            IReadOnlyList<double> waterLevels =
+                GetNullableDoubleCollection(waterLevelsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
+            IReadOnlyList<double> waveHeightsHm0 =
+                GetNullableDoubleCollection(waveHeightsHm0Key).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
+            IReadOnlyList<double> wavePeriodsTm10 =
+                GetNullableDoubleCollection(wavePeriodsTm10Key).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
+            IReadOnlyList<double> waveDirections =
+                GetNullableDoubleCollection(waveDirectionsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
 
             for (var i = 0; i < times.Count - 1; i++)
             {
-                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i].Value, waveHeightsHm0[i].Value, wavePeriodsTm10[i].Value,
-                                    waveDirections[i].Value);
+                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeightsHm0[i], wavePeriodsTm10[i],
+                                    waveDirections[i]);
             }
         }
 
