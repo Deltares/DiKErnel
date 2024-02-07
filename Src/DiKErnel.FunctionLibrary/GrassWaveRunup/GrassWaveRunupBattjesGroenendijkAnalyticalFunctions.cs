@@ -34,7 +34,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static readonly IReadOnlyList<(double, double)> lambdasRu1 = new[]
         {
-            (0.00, 12.193),
+            (0, 12.193),
             (0.05, 12.193),
             (0.10, 7.003),
             (0.15, 5.063),
@@ -54,7 +54,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (0.85, 1.302),
             (0.90, 1.256),
             (0.95, 1.216),
-            (1.00, 1.182),
+            (1, 1.182),
             (1.05, 1.153),
             (1.10, 1.128),
             (1.15, 1.108),
@@ -74,7 +74,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (1.85, 1.007),
             (1.90, 1.006),
             (1.95, 1.004),
-            (2.00, 1.004),
+            (2, 1.004),
             (2.05, 1.003),
             (2.10, 1.002),
             (2.15, 1.002),
@@ -82,24 +82,24 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (2.25, 1.001),
             (2.30, 1.001),
             (2.35, 1.001),
-            (2.40, 1.000),
-            (2.45, 1.000),
-            (2.50, 1.000),
-            (2.55, 1.000),
-            (2.60, 1.000),
-            (2.65, 1.000),
-            (2.70, 1.000),
-            (2.75, 1.000),
-            (2.80, 1.000),
-            (2.85, 1.000),
-            (2.90, 1.000),
-            (2.95, 1.000),
-            (3.00, 1.000)
+            (2.40, 1),
+            (2.45, 1),
+            (2.50, 1),
+            (2.55, 1),
+            (2.60, 1),
+            (2.65, 1),
+            (2.70, 1),
+            (2.75, 1),
+            (2.80, 1),
+            (2.85, 1),
+            (2.90, 1),
+            (2.95, 1),
+            (3, 1)
         };
 
         private static readonly IReadOnlyList<(double, double)> lambdasRu2 = new[]
         {
-            (0.00, 1.060),
+            (0, 1.060),
             (0.05, 1.060),
             (0.10, 1.060),
             (0.15, 1.060),
@@ -119,7 +119,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (0.85, 1.077),
             (0.90, 1.083),
             (0.95, 1.090),
-            (1.00, 1.097),
+            (1, 1.097),
             (1.05, 1.106),
             (1.10, 1.116),
             (1.15, 1.126),
@@ -139,7 +139,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (1.85, 1.320),
             (1.90, 1.334),
             (1.95, 1.349),
-            (2.00, 1.363),
+            (2, 1.363),
             (2.05, 1.378),
             (2.10, 1.392),
             (2.15, 1.407),
@@ -159,7 +159,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             (2.85, 1.593),
             (2.90, 1.605),
             (2.95, 1.617),
-            (3.00, 1.630)
+            (3, 1.630)
         };
 
         private static readonly IInterpolation lambdaRu1Interpolator =
