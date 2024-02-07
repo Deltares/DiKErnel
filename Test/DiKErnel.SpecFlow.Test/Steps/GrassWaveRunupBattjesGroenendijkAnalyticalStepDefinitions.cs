@@ -86,8 +86,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[roughnessCoefficientsKey] = table.Rows.Select(row => row.GetString(roughnessCoefficientsKey)).ToArray();
         }
 
-        [When(@"I run the calculation")]
-        public void WhenIRunTheCalculation()
+        [When(@"I run the Battjes-Groenendijk Wave Runup Calculation")]
+        public void WhenIRunTheBattjesGroenendijkWaveRunupCalculation()
         {
             var builder = new CalculationInputBuilder(GetDouble(dikeOrientationKey));
             AddTimeSteps(builder);
