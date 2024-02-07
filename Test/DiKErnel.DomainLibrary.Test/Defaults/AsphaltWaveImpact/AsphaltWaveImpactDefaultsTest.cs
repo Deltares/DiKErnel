@@ -75,7 +75,7 @@ namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
             // Call & Assert
             Assert.That(AsphaltWaveImpactDefaults.DepthFactors, Is.EqualTo(new[]
             {
-                (-1.0, 0.005040816326530646),
+                (-1, 0.005040816326530646),
                 (-0.9744897959183674, 0.00596482278562177),
                 (-0.9489795918367347, 0.007049651822326582),
                 (-0.923469387755102, 0.008280657034496978),

@@ -36,7 +36,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            double verticalHeight = profileData.GetVerticalHeight(0.0);
+            double verticalHeight = profileData.GetVerticalHeight(0);
 
             // Assert
             Assert.That(verticalHeight, Is.NaN);
@@ -49,7 +49,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            double verticalHeight = profileData.GetVerticalHeight(1.0);
+            double verticalHeight = profileData.GetVerticalHeight(1);
 
             // Assert
             Assert.That(verticalHeight, Is.EqualTo(1.1));
@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            double verticalHeight = profileData.GetVerticalHeight(2.0);
+            double verticalHeight = profileData.GetVerticalHeight(2);
 
             // Assert
             Assert.That(verticalHeight, Is.EqualTo(2.2));
@@ -75,7 +75,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            double verticalHeight = profileData.GetVerticalHeight(3.0);
+            double verticalHeight = profileData.GetVerticalHeight(3);
 
             // Assert
             Assert.That(verticalHeight, Is.EqualTo(3.3));
@@ -98,9 +98,9 @@ namespace DiKErnel.Integration.Test.Data
         public void GetVerticalHeight_HorizontalPositionBetweenDescendingDikeProfilePoints_ExpectedValue()
         {
             // Setup
-            var profilePoint1 = new ProfilePoint(1.0, 3.3);
-            var profilePoint2 = new ProfilePoint(2.0, 2.2);
-            var profilePoint3 = new ProfilePoint(3.0, 1.1);
+            var profilePoint1 = new ProfilePoint(1, 3.3);
+            var profilePoint2 = new ProfilePoint(2, 2.2);
+            var profilePoint3 = new ProfilePoint(3, 1.1);
 
             var profileSegmentsWithDescendingHeight = new List<ProfileSegment>
             {
@@ -125,7 +125,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            double verticalHeight = profileData.GetVerticalHeight(4.0);
+            double verticalHeight = profileData.GetVerticalHeight(4);
 
             // Assert
             Assert.That(verticalHeight, Is.NaN);
@@ -138,7 +138,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            double horizontalPosition = profileData.GetHorizontalPosition(0.0);
+            double horizontalPosition = profileData.GetHorizontalPosition(0);
 
             // Assert
             Assert.That(horizontalPosition, Is.NaN);
@@ -154,7 +154,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(1.1);
 
             // Assert
-            Assert.That(horizontalPosition, Is.EqualTo(1.0));
+            Assert.That(horizontalPosition, Is.EqualTo(1));
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(2.2);
 
             // Assert
-            Assert.That(horizontalPosition, Is.EqualTo(2.0));
+            Assert.That(horizontalPosition, Is.EqualTo(2));
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace DiKErnel.Integration.Test.Data
             double horizontalPosition = profileData.GetHorizontalPosition(3.3);
 
             // Assert
-            Assert.That(horizontalPosition, Is.EqualTo(3.0));
+            Assert.That(horizontalPosition, Is.EqualTo(3));
         }
 
         [Test]
@@ -203,7 +203,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            double horizontalPosition = profileData.GetHorizontalPosition(4.0);
+            double horizontalPosition = profileData.GetHorizontalPosition(4);
 
             // Assert
             Assert.That(horizontalPosition, Is.NaN);
@@ -216,7 +216,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            ProfileSegment profileSegment = profileData.GetProfileSegment(0.0);
+            ProfileSegment profileSegment = profileData.GetProfileSegment(0);
 
             // Assert
             Assert.That(profileSegment, Is.Null);
@@ -229,7 +229,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            ProfileSegment profileSegment = profileData.GetProfileSegment(1.0);
+            ProfileSegment profileSegment = profileData.GetProfileSegment(1);
 
             // Assert
             Assert.That(profileSegment, Is.Null);
@@ -242,12 +242,12 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            ProfileSegment profileSegment = profileData.GetProfileSegment(2.0);
+            ProfileSegment profileSegment = profileData.GetProfileSegment(2);
 
             // Assert
-            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(1.0));
+            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(1));
             Assert.That(profileSegment.StartPoint.Z, Is.EqualTo(1.1));
-            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(2.0));
+            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(2));
             Assert.That(profileSegment.EndPoint.Z, Is.EqualTo(2.2));
         }
 
@@ -261,9 +261,9 @@ namespace DiKErnel.Integration.Test.Data
             ProfileSegment profileSegment = profileData.GetProfileSegment(1.5);
 
             // Assert
-            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(1.0));
+            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(1));
             Assert.That(profileSegment.StartPoint.Z, Is.EqualTo(1.1));
-            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(2.0));
+            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(2));
             Assert.That(profileSegment.EndPoint.Z, Is.EqualTo(2.2));
         }
 
@@ -274,12 +274,12 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            ProfileSegment profileSegment = profileData.GetProfileSegment(3.0);
+            ProfileSegment profileSegment = profileData.GetProfileSegment(3);
 
             // Assert
-            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(2.0));
+            Assert.That(profileSegment.StartPoint.X, Is.EqualTo(2));
             Assert.That(profileSegment.StartPoint.Z, Is.EqualTo(2.2));
-            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(3.0));
+            Assert.That(profileSegment.EndPoint.X, Is.EqualTo(3));
             Assert.That(profileSegment.EndPoint.Z, Is.EqualTo(3.3));
         }
 
@@ -290,7 +290,7 @@ namespace DiKErnel.Integration.Test.Data
             ProfileData profileData = CreateDefaultProfileData();
 
             // Call
-            ProfileSegment profileSegment = profileData.GetProfileSegment(4.0);
+            ProfileSegment profileSegment = profileData.GetProfileSegment(4);
 
             // Assert
             Assert.That(profileSegment, Is.Null);
@@ -298,9 +298,9 @@ namespace DiKErnel.Integration.Test.Data
 
         private static ProfileData CreateDefaultProfileData()
         {
-            var profilePoint1 = new ProfilePoint(1.0, 1.1);
-            var profilePoint2 = new ProfilePoint(2.0, 2.2);
-            var profilePoint3 = new ProfilePoint(3.0, 3.3);
+            var profilePoint1 = new ProfilePoint(1, 1.1);
+            var profilePoint2 = new ProfilePoint(2, 2.2);
+            var profilePoint3 = new ProfilePoint(3, 3.3);
 
             var profileSegments = new List<ProfileSegment>
             {

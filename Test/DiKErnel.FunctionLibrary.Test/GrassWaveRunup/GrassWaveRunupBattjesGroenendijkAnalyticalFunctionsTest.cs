@@ -26,20 +26,20 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
     public class GrassWaveRunupBattjesGroenendijkAnalyticalFunctionsTest
     {
         [Test]
-        [TestCase(0.80, 0.00, 300, 1.38280392857274, 95.12417141759073)]
+        [TestCase(0.80, 0, 300, 1.38280392857274, 95.12417141759073)]
         [TestCase(0.01, 0.15, 90, 8.12578956708121, 3413.60861138133350)]
         public void CumulativeOverload_VariousScenarios_ExpectedValue(double waveHeightHm0, double waterLevel, double averageNumberOfWaves,
                                                                       double representativeWaveRunup2P, double expectedCumulativeOverload)
         {
             // Setup
-            const double criticalFrontVelocity = 4.0;
+            const double criticalFrontVelocity = 4;
             const double increasedLoadTransitionAlphaM = 1;
             const double reducedStrengthTransitionAlphaS = 1;
             const double gravitationalAcceleration = 9.81;
             const double frontVelocityCu = 1.1;
             const double bottomForeshoreZ = -4;
             const double slopeForeshore = 0.004;
-            const double k1 = 2.0;
+            const double k1 = 2;
             const double k2 = 3.6;
 
             double verticalDistanceWaterLevelElevation = 1 - waterLevel;

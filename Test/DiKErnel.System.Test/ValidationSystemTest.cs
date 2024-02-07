@@ -400,7 +400,7 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            const double dikeHeight = 10.0;
+            const double dikeHeight = 10;
             const double waterLevel = dikeHeight + 0.1;
 
             var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
@@ -441,7 +441,7 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            const double dikeHeight = 10.0;
+            const double dikeHeight = 10;
 
             var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 25, GrassTopLayerType.ClosedSod)
@@ -477,7 +477,7 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelHigherThanDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            const double heightOuterCrest = 10.0;
+            const double heightOuterCrest = 10;
             const double waterLevel = heightOuterCrest + 0.1;
 
             var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
@@ -515,7 +515,7 @@ namespace DiKErnel.System.Test
             GivenCalculationInputWithGrassWaveOvertoppingRayleighDiscreteLocationAndWaterLevelEqualToDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            const double heightOuterCrest = 10.0;
+            const double heightOuterCrest = 10;
 
             var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 25, GrassTopLayerType.ClosedSod);
@@ -594,7 +594,7 @@ namespace DiKErnel.System.Test
             var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddTimeStep(100, 150, 10, 5, 10, 30);
-            builder.AddDikeProfileSegment(10.0, 5.0, 20.0, 10.0);
+            builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfileSegment(20, 10, 30, 10);
             builder.AddDikeProfileSegment(30, 10, 40, 5);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);

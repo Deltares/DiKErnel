@@ -206,7 +206,7 @@ namespace DiKErnel.Integration.Test
             IReadOnlyList<ProfileSegment> actualProfileSegments = result.Data.ProfileData.ProfileSegments;
             Assert.That(actualProfileSegments, Has.Count.EqualTo(1));
 
-            ProfileDataAssertHelper.AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1.0,
+            ProfileDataAssertHelper.AssertProfileSegment(startPointX, startPointZ, endPointX, endPointZ, 1,
                                                          actualProfileSegments[0]);
         }
 
@@ -913,7 +913,7 @@ namespace DiKErnel.Integration.Test
                 (0.7, 0.1051),
                 (0.8, 0.0890),
                 (0.9, 0.0712),
-                (1.0, 0.0541),
+                (1, 0.0541),
                 (1.1, 0.0391),
                 (1.2, 0.0269),
                 (1.3, 0.0216),
@@ -923,7 +923,7 @@ namespace DiKErnel.Integration.Test
 
             var expectedDepthFactors = new List<(double, double)>
             {
-                (-1.0, 0.005040816326530646),
+                (-1, 0.005040816326530646),
                 (-0.9744897959183674, 0.00596482278562177),
                 (-0.9489795918367347, 0.007049651822326582),
                 (-0.923469387755102, 0.008280657034496978),
@@ -977,17 +977,17 @@ namespace DiKErnel.Integration.Test
 
             var expectedImpactFactors = new List<(double, double)>
             {
-                (2.0, 0.039),
+                (2, 0.039),
                 (2.4, 0.1),
                 (2.8, 0.18),
                 (3.2, 0.235),
                 (3.6, 0.2),
-                (4.0, 0.13),
+                (4, 0.13),
                 (4.4, 0.08),
                 (4.8, 0.02),
                 (5.2, 0.01),
                 (5.6, 0.005),
-                (6.0, 0.001)
+                (6, 0.001)
             };
 
             AsphaltWaveImpactLocationDependentInputAssertHelper.AssertFactors(
@@ -1261,7 +1261,7 @@ namespace DiKErnel.Integration.Test
                 6.6, 1.45, locationDependentInput);
 
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1.0, 1.4, locationDependentInput.AccelerationAlphaA);
+                1, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 
         [Test]
@@ -1320,7 +1320,7 @@ namespace DiKErnel.Integration.Test
                 4.3, 1.45, locationDependentInput);
 
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
-                1.0, 1.4, locationDependentInput.AccelerationAlphaA);
+                1, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 
         #endregion
@@ -1488,7 +1488,7 @@ namespace DiKErnel.Integration.Test
                 3.6, locationDependentInput);
 
             GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                2.0 / 3.0, 0.35, 10, locationDependentInput.WaveAngleImpact);
+                2d / 3, 0.35, 10, locationDependentInput.WaveAngleImpact);
 
             GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
                 1, -0.000009722, 0.25, locationDependentInput.TimeLine);
@@ -1537,7 +1537,7 @@ namespace DiKErnel.Integration.Test
                 3.6, locationDependentInput);
 
             GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                2.0 / 3.0, 0.35, 10, locationDependentInput.WaveAngleImpact);
+                2d / 3, 0.35, 10, locationDependentInput.WaveAngleImpact);
 
             GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
                 0.8, -0.00001944, 0.25, locationDependentInput.TimeLine);

@@ -76,7 +76,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             ProfileDataAssertHelper.AssertProfileSegment(45, 9.9, 50, 11.35, 0.92, profileSegments[12]);
             ProfileDataAssertHelper.AssertProfileSegment(50, 11.35, 55, 12.8, 0.97, profileSegments[13]);
             ProfileDataAssertHelper.AssertProfileSegment(55, 12.8, 60, 14.25, 0.99, profileSegments[14]);
-            ProfileDataAssertHelper.AssertProfileSegment(60, 14.25, 65, 15.7, 1.0, profileSegments[15]);
+            ProfileDataAssertHelper.AssertProfileSegment(60, 14.25, 65, 15.7, 1, profileSegments[15]);
             ProfileDataAssertHelper.AssertProfileSegment(65, 15.7, 70, 15.8, 1.5, profileSegments[16]);
             ProfileDataAssertHelper.AssertProfileSegment(70, 15.8, 75, 14.3, 1.5, profileSegments[17]);
             ProfileDataAssertHelper.AssertProfileSegment(75, 14.3, 80, 12.7, 1.5, profileSegments[18]);
@@ -199,11 +199,11 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                     (1.7, 1.0738)
                 }, new List<(double, double)>
                 {
-                    (-2.0, 1.0244),
+                    (-2, 1.0244),
                     (-1.875, 1.0544)
                 }, new List<(double, double)>
                 {
-                    (6.0, 2.039),
+                    (6, 2.039),
                     (6.4, 2.1)
                 },
                 asphaltWaveImpactLocationDependentInputItem);
@@ -322,7 +322,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
                 3.6, grassWaveImpactLocationDependentInputItem1);
             GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                2.0 / 3.0, 0.35, 10, grassWaveImpactLocationDependentInputItem1.WaveAngleImpact);
+                2d / 3, 0.35, 10, grassWaveImpactLocationDependentInputItem1.WaveAngleImpact);
             GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
                 1, -0.000009722, 0.25, grassWaveImpactLocationDependentInputItem1.TimeLine);
             GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
@@ -342,7 +342,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
             GrassWaveImpactLocationDependentInputAssertHelper.AssertMaximumWaveHeight(
                 3.6, grassWaveImpactLocationDependentInputItem2);
             GrassWaveImpactLocationDependentInputAssertHelper.AssertWaveAngleImpact(
-                2.0 / 3.0, 0.35, 10, grassWaveImpactLocationDependentInputItem2.WaveAngleImpact);
+                2d / 3, 0.35, 10, grassWaveImpactLocationDependentInputItem2.WaveAngleImpact);
             GrassWaveImpactLocationDependentInputAssertHelper.AssertTimeLine(
                 0.8, -0.00001944, 0.25, grassWaveImpactLocationDependentInputItem2.TimeLine);
             GrassWaveImpactLocationDependentInputAssertHelper.AssertUpperLimitLoading(
@@ -408,7 +408,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                     (0.7, 0.1051),
                     (0.8, 0.0890),
                     (0.9, 0.0712),
-                    (1.0, 0.0541),
+                    (1, 0.0541),
                     (1.1, 0.0391),
                     (1.2, 0.0269),
                     (1.3, 0.0216),
@@ -416,7 +416,7 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                     (1.5, 0.0105)
                 }, new List<(double, double)>
                 {
-                    (-1.0, 0.005040816326530646),
+                    (-1, 0.005040816326530646),
                     (-0.9744897959183674, 0.00596482278562177),
                     (-0.9489795918367347, 0.007049651822326582),
                     (-0.923469387755102, 0.008280657034496978),
@@ -468,17 +468,17 @@ namespace DiKErnel.KernelWrapper.Json.Input.Test
                     (0.25, 0.0031645408163265307)
                 }, new List<(double, double)>
                 {
-                    (2.0, 0.039),
+                    (2, 0.039),
                     (2.4, 0.1),
                     (2.8, 0.18),
                     (3.2, 0.235),
                     (3.6, 0.2),
-                    (4.0, 0.13),
+                    (4, 0.13),
                     (4.4, 0.08),
                     (4.8, 0.02),
                     (5.2, 0.01),
                     (5.6, 0.005),
-                    (6.0, 0.001)
+                    (6, 0.001)
                 },
                 asphaltWaveImpactLocationDependentInputItem);
 
