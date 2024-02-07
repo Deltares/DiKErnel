@@ -135,7 +135,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         }
 
         [Then(@"the output values for (.*) and (.*) are")]
-        public void ThenTheOutputValueDamageAndCumulativeOverloadAre(double expectedDamage, double expectedCumulativeOverload)
+        public void ThenTheOutputValueDamageAndCumulativeOverloadAre(double expectedDamage, double? expectedCumulativeOverload)
         {
             GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverLoadOutputs =
                 outputs[0].TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();

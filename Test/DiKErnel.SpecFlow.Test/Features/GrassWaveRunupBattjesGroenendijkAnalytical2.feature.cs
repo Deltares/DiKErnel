@@ -222,7 +222,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 15 - Variable input of level of interest")]
-        [NUnit.Framework.TestCaseAttribute("30.5600", "0.0", "0.0", "0.000", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("30.5600", "0.0", "", "0.000", "0.000", null)]
         [NUnit.Framework.TestCaseAttribute("33.6160", "0.00016098541128284046", "1.1268978789798831", "1.136", "1.134", null)]
         [NUnit.Framework.TestCaseAttribute("36.6720", "0.00016098541128278394", "1.1268978789794877", "1.136", "1.134", null)]
         [NUnit.Framework.TestCaseAttribute("39.7280", "1.973187114472698e-05", "0.13812309801308886", "0.139", "0.139", null)]

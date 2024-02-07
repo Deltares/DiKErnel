@@ -1063,7 +1063,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 163
-        testRunner.Then("the schadegetal is 0.669391470228952", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 0.6219200388310531", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1276,7 +1276,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 201
-        testRunner.Then("the schadegetal is 45.67201925900045", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is 41.84703315170409", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
