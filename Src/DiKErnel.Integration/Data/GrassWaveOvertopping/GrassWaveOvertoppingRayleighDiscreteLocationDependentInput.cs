@@ -119,6 +119,11 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             return DikeHeight;
         }
 
+        protected override bool HasLoading(double verticalDistanceWaterLevelElevation)
+        {
+            return verticalDistanceWaterLevelElevation >= 0d;
+        }
+
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation,

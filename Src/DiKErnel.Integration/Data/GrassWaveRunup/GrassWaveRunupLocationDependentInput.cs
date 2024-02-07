@@ -65,5 +65,10 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
         {
             return Z;
         }
+
+        protected override bool HasLoading(double verticalDistanceWaterLevelElevation)
+        {
+            return verticalDistanceWaterLevelElevation > 0d;
+        }
     }
 }

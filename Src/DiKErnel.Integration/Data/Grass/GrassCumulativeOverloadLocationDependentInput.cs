@@ -99,7 +99,7 @@ namespace DiKErnel.Integration.Data.Grass
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 GetRunupHeight(), timeDependentInput.WaterLevel);
 
-            if (verticalDistanceWaterLevelElevation >= 0d)
+            if (HasLoading(verticalDistanceWaterLevelElevation))
             {
                 double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                         timeDependentInput.EndTime);
@@ -145,6 +145,8 @@ namespace DiKErnel.Integration.Data.Grass
         protected abstract double CalculateDikeHeight(IProfileData profileData);
 
         protected abstract double GetRunupHeight();
+
+        protected abstract bool HasLoading(double verticalDistanceWaterLevelElevation);
 
         protected abstract double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
@@ -194,7 +196,7 @@ namespace DiKErnel.Integration.Data.Grass
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
-            if (verticalDistanceWaterLevelElevation >= 0d)
+            if (HasLoading(verticalDistanceWaterLevelElevation))
             {
                 constructionProperties.RepresentativeWaveRunup2P = representativeWaveRunup2P;
                 constructionProperties.CumulativeOverload = cumulativeOverload;
