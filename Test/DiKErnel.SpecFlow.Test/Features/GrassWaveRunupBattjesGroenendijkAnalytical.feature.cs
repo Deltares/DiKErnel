@@ -1411,7 +1411,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 226
-        testRunner.Then("the schadegetal is 1.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the schadegetal is NaN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

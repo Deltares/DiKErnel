@@ -201,6 +201,9 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the schadegetal is 41.84703315170409
 
     Scenario: Testcase 13 - Robustness edge cases
+        Remark: The timestep 36000 - 43200 results in a 0 for the Z2% (Representatieve2P). This results in a division by zero 
+        due to the wave run up transition and the wave run up root mean square being both 0. Therefore, no result will be 
+        produced by the DiKErnel (NaN) 
         Given the following series are adjusted:
           | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
           | -6840       | 3.53232      | 2.443434       | 4.132323         | 200.434343     |
@@ -223,4 +226,4 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | faalgetal | factorCtm | frontsnelheid | kritiekeCumulatieveOverbelasting | kritiekeFrontsnelheid |
           | 10.32321  | 0.1656454 | 2.21243434    | 6212.32434                       | 4.54434343            |
         When I run the Battjes-Groenendijk Wave Runup Calculation
-        Then the schadegetal is 1.0
+        Then the schadegetal is NaN
