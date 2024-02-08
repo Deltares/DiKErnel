@@ -32,14 +32,14 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
         {
-            double int1 = Int1(input);
-            double int2 = Int2();
-            double int3 = Int3();
+            double integralPart1 = IntegralPart1(input);
+            double integralPart2 = IntegralPart2();
+            double integralPart3 = IntegralPart3();
 
-            return input.AverageNumberOfWaves * Math.Max(int1 + int2 + int3, 0);
+            return input.AverageNumberOfWaves * Math.Max(integralPart1 + integralPart2 + integralPart3, 0);
         }
 
-        private static double Int1(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
+        private static double IntegralPart1(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
         {
             double parameterRayleigh = ParameterRayleigh(input.RepresentativeWaveRunup2P);
 
@@ -52,12 +52,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
             return Math.Sqrt(-Math.Pow(representativeWaveRunup2P, 2) / (2 * Math.Log(0.02)));
         }
 
-        private static double Int2()
+        private static double IntegralPart2()
         {
             return double.NaN;
         }
 
-        private static double Int3()
+        private static double IntegralPart3()
         {
             return double.NaN;
         }
