@@ -55,7 +55,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string foreshoreSlopeKey = "tanAvl";
         private const string bottomZForeshoreKey = "bodemVoorlandZ";
 
-        private const string failureNumberKey = "faalgetal";
+        private const string damageKey = "faalgetal";
         private const string initialDamageKey = "beginschade";
         private const string averageNumberOfWavesCtmKey = "factorCtm";
         private const string criticalFrontVelocityKey = "kritiekeFrontsnelheid";
@@ -75,32 +75,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
         }
 
         [Given(@"the following dijkprofiel and a dijkorientatie of (.*):")]
-        public void GivenTheFollowingDijkprofiel(string dikeOrientation, Table table)
+        public void GivenTheFollowingDikeProfile(string dikeOrientation, Table table)
         {
             context[dikeOrientationKey] = dikeOrientation;
-            context[outerToePositionKey] = table.Rows[0].GetString(outerToePositionKey);
-            context[outerCrestPositionKey] = table.Rows[0].GetString(outerCrestPositionKey);
 
             context[xCoordinatesKey] = table.Rows.Select(row => row.GetString(xCoordinatesKey)).ToArray();
             context[zCoordinatesKey] = table.Rows.Select(row => row.GetString(zCoordinatesKey)).ToArray();
             context[roughnessCoefficientsKey] = table.Rows.Select(row => row.GetString(roughnessCoefficientsKey)).ToArray();
-        }
-
-        [When(@"I run the Battjes-Groenendijk Wave Runup Calculation")]
-        public void WhenIRunTheBattjesGroenendijkWaveRunupCalculation()
-        {
-            var builder = new CalculationInputBuilder(GetDouble(dikeOrientationKey));
-            AddTimeSteps(builder);
-            AddDikeProfile(builder);
-            AddProfilePoints(builder);
-            AddForeshore(builder);
-            AddLocation(builder);
-
-            DataResult<ICalculationInput> result = builder.Build();
-            var calculator = new Calculator(result.Data);
-            calculator.WaitForCompletion();
-
-            outputs = calculator.Result.Data.LocationDependentOutputItems;
         }
 
         [Given(@"the following tijdstippen and hydraulischeBelastingen:")]
@@ -132,29 +113,48 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        [Then(@"the schadegetal is (.*)")]
-        public void ThenTheSchadegetalIs(double expectedDamage)
-        {
-            IReadOnlyList<double> damages = outputs[0].GetDamages();
-            double actualDamage = damages[damages.Count - 1];
-            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
-        }
-
         [When(@"I change the property (\w*) to a value of (.*)")]
         public void WhenIChangeTheValueOf(string propertyName, string value)
         {
             context[propertyName] = value;
         }
 
-        [Then(@"the output values for (.*) and (.*) are")]
-        public void ThenTheOutputValueDamageAndCumulativeOverloadAre(double expectedDamage, double? expectedCumulativeOverload)
+        [When(@"I run the Battjes-Groenendijk Wave Runup Calculation")]
+        public void WhenIRunTheBattjesGroenendijkWaveRunupCalculation()
         {
+            var builder = new CalculationInputBuilder(GetDouble(dikeOrientationKey));
+            AddTimeSteps(builder);
+            AddDikeProfile(builder);
+            AddProfilePoints(builder);
+            AddForeshore(builder);
+            AddLocation(builder);
+
+            DataResult<ICalculationInput> result = builder.Build();
+            var calculator = new Calculator(result.Data);
+            calculator.WaitForCompletion();
+
+            outputs = calculator.Result.Data.LocationDependentOutputItems;
+        }
+
+        [Then(@"the schadegetal is (.*)")]
+        public void ThenTheDamageIs(double expectedDamage)
+        {
+            IReadOnlyList<double> damages = outputs[0].GetDamages();
+            double actualDamage = damages[damages.Count - 1];
+            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
+        }
+
+        [Then(@"the output values for (.*) and (.*) are")]
+        public void ThenTheDamageAndCumulativeOverloadAre(double expectedDamage, double? expectedCumulativeOverload)
+        {
+            LocationDependentOutput locationDependentOutput = outputs[0];
+
             GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverLoadOutputs =
-                outputs[0].TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
+                locationDependentOutput.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
             Assert.That(cumulativeOverLoadOutputs[cumulativeOverLoadOutputs.Length - 1].CumulativeOverload,
                         Is.EqualTo(expectedCumulativeOverload).Within(tolerance));
 
-            IReadOnlyList<double> damages = outputs[0].GetDamages();
+            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
             double actualDamage = damages[damages.Count - 1];
 
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
@@ -276,7 +276,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                 GetDouble(locationXCoordinateKey), topLayerType)
             {
-                FailureNumber = GetNullableDouble(failureNumberKey),
+                FailureNumber = GetNullableDouble(damageKey),
                 InitialDamage = GetNullableDouble(initialDamageKey),
                 AverageNumberOfWavesCtm = GetNullableDouble(averageNumberOfWavesCtmKey),
                 CriticalFrontVelocity = GetNullableDouble(criticalFrontVelocityKey),
