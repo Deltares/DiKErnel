@@ -47,7 +47,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.29228078520670, 14375);
+            AssertOutput(calculator, 1.2922807852067, 14375);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.34810580442110, 15809);
+            AssertOutput(calculator, 1.3481058044211, 15809);
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.69228078520670, 13429);
+            AssertOutput(calculator, 1.6922807852067, 13429);
         }
 
         [Test]

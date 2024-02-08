@@ -167,7 +167,7 @@ namespace DiKErnel.System.Test
             calculator.WaitForCompletion();
 
             // Then
-            AssertOutput(calculator, 1.51861479666960, 35647);
+            AssertOutput(calculator, 1.5186147966696, 35647);
         }
 
         [Test]
