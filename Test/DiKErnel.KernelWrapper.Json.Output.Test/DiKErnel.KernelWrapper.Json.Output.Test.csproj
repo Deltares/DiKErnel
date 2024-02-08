@@ -1,28 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\Test.targets"/>
+    <Import Project="$(SolutionDir)Development\Test.targets" />
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-        <PackageReference Include="NSubstitute" Version="5.1.0"/>
-        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+        <PackageReference Include="NSubstitute" Version="5.1.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="test-data\**"/>
+        <Compile Remove="test-data\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Remove="test-data\**"/>
+        <EmbeddedResource Remove="test-data\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="test-data\**"/>
+        <None Remove="test-data\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Src\DiKErnel.KernelWrapper.Json.Output\DiKErnel.KernelWrapper.Json.Output.csproj"/>
-        <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj"/>
+        <ProjectReference Include="..\DiKErnel.TestUtil\DiKErnel.TestUtil.csproj" />
     </ItemGroup>
 
 </Project>
