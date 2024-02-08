@@ -9,8 +9,6 @@ For each library the version and used license is shown. For the full license tex
 | MahApp.Metro           | 2.4.10  | MIT          | https://github.com/MahApps/MahApps.Metro          |
 | MathNet.Numerics       | 5.0.0   | MIT          | https://github.com/mathnet/mathnet-numerics       |
 | Microsoft.Net.Test.Sdk | 17.8.0  | MIT          | https://github.com/microsoft/vstest               |
-| Newtonsoft.Json        | 13.0.3  | MIT          | https://github.com/JamesNK/Newtonsoft.Json        |
-| Newtonsoft.Json.Schema | 3.0.15  | AGPL-3.0     | https://github.com/JamesNK/Newtonsoft.Json.Schema |
 | NSubstitute            | 5.1.0   | BSD-3-Clause | https://github.com/nsubstitute/NSubstitute        |
 | NUnit                  | 3.14.0  | MIT          | https://github.com/nunit/nunit                    |
 | NUnit.Analyzers        | 3.10.0  | MIT          | https://github.com/nunit/nunit.analyzers          |
