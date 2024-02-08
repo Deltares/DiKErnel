@@ -114,10 +114,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
         }
 
         [Given(@"the following karakteristiekePunten:")]
-        [Given(@"the following locaties:")]
-        [Given(@"the following rekenmethoden:")]
-        [Given(@"the following constant inputs:")]
-        [Given(@"the following values are adjusted:")]
         public void GivenTheFollowingValuesAreAdjusted(Table table)
         {
             foreach (string property in table.Header)
