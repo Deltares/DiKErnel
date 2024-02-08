@@ -84,78 +84,78 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         {
 #line 11
   #line hidden
-            TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                         "tijdstippen",
                         "waterstanden",
                         "golfhoogtenHm0",
                         "golfperiodenTm10",
                         "golfrichtingen"});
-            table30.AddRow(new string[] {
+            table26.AddRow(new string[] {
                         "0",
                         "0",
                         "1.5",
                         "4.20",
                         "0"});
-            table30.AddRow(new string[] {
+            table26.AddRow(new string[] {
                         "900",
                         "",
                         "",
                         "",
                         ""});
 #line 12
-  testRunner.Given("the following tijdstippen and hydraulischeBelastingen:", ((string)(null)), table30, "Given ");
+  testRunner.Given("the following tijdstippen and hydraulischeBelastingen:", ((string)(null)), table26, "Given ");
 #line hidden
-            TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                         "posities",
                         "hoogten",
                         "ruwheidscoefficienten"});
-            table31.AddRow(new string[] {
+            table27.AddRow(new string[] {
                         "0",
                         "-10",
                         "1"});
-            table31.AddRow(new string[] {
+            table27.AddRow(new string[] {
                         "40",
                         "0",
                         "1"});
-            table31.AddRow(new string[] {
+            table27.AddRow(new string[] {
                         "80",
                         "10",
                         ""});
 #line 16
-  testRunner.And("the following dijkprofiel and a dijkorientatie of 0:", ((string)(null)), table31, "And ");
+  testRunner.And("the following dijkprofiel and a dijkorientatie of 0:", ((string)(null)), table27, "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
                         "teenBuitenzijde",
                         "kruinBuitenzijde"});
-            table32.AddRow(new string[] {
+            table28.AddRow(new string[] {
                         "0",
                         "80"});
 #line 21
-  testRunner.And("the following karakteristiekePunten:", ((string)(null)), table32, "And ");
+  testRunner.And("the following karakteristiekePunten:", ((string)(null)), table28, "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                         "positie",
                         "typeToplaag",
                         "beginschade",
                         "verhogingBelastingOvergangAlfaM",
                         "verlagingSterkteOvergangAlfaS"});
-            table33.AddRow(new string[] {
+            table29.AddRow(new string[] {
                         "40.4",
                         "grasGeslotenZode",
                         "0",
                         "1",
                         "1"});
 #line 24
-  testRunner.And("the following locaties:", ((string)(null)), table33, "And ");
+  testRunner.And("the following locaties:", ((string)(null)), table29, "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
                         "faalgetal",
                         "factorCtm",
                         "frontsnelheid",
                         "bodemVoorlandZ",
                         "tanAvl",
                         "typeToplaag"});
-            table34.AddRow(new string[] {
+            table30.AddRow(new string[] {
                         "1",
                         "3.85",
                         "1.10",
@@ -163,7 +163,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                         "0.004",
                         "grasGeslotenZode"});
 #line 27
-  testRunner.And("the following rekenmethoden:", ((string)(null)), table34, "And ");
+  testRunner.And("the following rekenmethoden:", ((string)(null)), table30, "And ");
 #line hidden
         }
         
@@ -262,33 +262,33 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 #line 11
   this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
                             "posities",
                             "hoogten",
                             "ruwheidscoefficienten"});
-                table35.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "0",
                             "-10.0",
                             "1.0"});
-                table35.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "30.56",
                             "0.0",
                             "1.0"});
-                table35.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "61.12",
                             "10.0",
                             ""});
 #line 46
-  testRunner.Given("the following series are adjusted:", ((string)(null)), table35, "Given ");
+  testRunner.Given("the following series are adjusted:", ((string)(null)), table31, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
                             "teenBuitenzijde",
                             "kruinBuitenzijde"});
-                table36.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             "0",
                             "61.12"});
 #line 51
-  testRunner.And("the following values are adjusted:", ((string)(null)), table36, "And ");
+  testRunner.And("the following values are adjusted:", ((string)(null)), table32, "And ");
 #line hidden
 #line 54
   testRunner.When(string.Format("I change the property positie to a value of {0}", positie), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -349,35 +349,35 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 #line 11
   this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                             "posities",
                             "hoogten",
                             "ruwheidscoefficienten"});
-                table37.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "0",
                             "-10.0",
                             "1.0"});
-                table37.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "30.56",
                             "0.0",
                             "1.0"});
-                table37.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "61.12",
                             "10.0",
                             ""});
 #line 73
-  testRunner.Given("the following series are adjusted:", ((string)(null)), table37, "Given ");
+  testRunner.Given("the following series are adjusted:", ((string)(null)), table33, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
                             "positie",
                             "teenBuitenzijde",
                             "kruinBuitenzijde"});
-                table38.AddRow(new string[] {
+                table34.AddRow(new string[] {
                             "30.8656",
                             "0",
                             "61.12"});
 #line 78
-  testRunner.And("the following values are adjusted:", ((string)(null)), table38, "And ");
+  testRunner.And("the following values are adjusted:", ((string)(null)), table34, "And ");
 #line hidden
 #line 81
   testRunner.When(string.Format("I change the property tanAvl to a value of {0}", tanAvl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -437,35 +437,35 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 #line 11
   this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                             "posities",
                             "hoogten",
                             "ruwheidscoefficienten"});
-                table39.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "0",
                             "-10.0",
                             "1.0"});
-                table39.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "30.56",
                             "0.0",
                             "1.0"});
-                table39.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "61.12",
                             "10.0",
                             ""});
 #line 102
-  testRunner.Given("the following series are adjusted:", ((string)(null)), table39, "Given ");
+  testRunner.Given("the following series are adjusted:", ((string)(null)), table35, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                             "positie",
                             "teenBuitenzijde",
                             "kruinBuitenzijde"});
-                table40.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "30.8656",
                             "0",
                             "61.12"});
 #line 107
-  testRunner.And("the following values are adjusted:", ((string)(null)), table40, "And ");
+  testRunner.And("the following values are adjusted:", ((string)(null)), table36, "And ");
 #line hidden
 #line 110
   testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -526,35 +526,35 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 #line 11
   this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "posities",
                             "hoogten",
                             "ruwheidscoefficienten"});
-                table41.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "0",
                             "-10.0",
                             "1.0"});
-                table41.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "30.56",
                             "0.0",
                             "1.0"});
-                table41.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "61.12",
                             "10.0",
                             ""});
 #line 131
-  testRunner.Given("the following series are adjusted:", ((string)(null)), table41, "Given ");
+  testRunner.Given("the following series are adjusted:", ((string)(null)), table37, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "positie",
                             "teenBuitenzijde",
                             "kruinBuitenzijde"});
-                table42.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "30.8656",
                             "0",
                             "61.12"});
 #line 136
-  testRunner.And("the following values are adjusted:", ((string)(null)), table42, "And ");
+  testRunner.And("the following values are adjusted:", ((string)(null)), table38, "And ");
 #line hidden
 #line 139
   testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
