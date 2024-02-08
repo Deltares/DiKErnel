@@ -35,11 +35,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
     [Binding]
     public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions
     {
-        private const string timeStepsKey = "time step";
-        private const string waterLevelsKey = "water level";
-        private const string waveHeightsHm0Key = "wave height Hm0";
-        private const string wavePeriodsTm10Key = "wave period Tm10";
-        private const string waveDirectionsKey = "wave directions";
+        private const string timeStepsKey = "Time step";
+        private const string waterLevelsKey = "Water level";
+        private const string waveHeightsHm0Key = "Wave height Hm0";
+        private const string wavePeriodsTm10Key = "Wave period Tm10";
+        private const string waveDirectionsKey = "Wave directions";
 
         private const string dikeOrientationKey = "dijkorientatie";
         private const string outerToePositionKey = "Outer toe";

@@ -3,7 +3,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Background:
         Given the following time steps and hydraulic loads:
-          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
           | 0         | 3           | 0.5             | 3                | 50              |
           | 3600      | 3.1         | 0.7             | 3.5              | 45              |
           | 7200      | 3.2         | 1               | 4                | 40              |
@@ -125,7 +125,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 10 - Negative time steps & adjusted hydraulischeBelastingen
         Given the following series are adjusted:
-          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
           | -6840     | 3.5         | 2.4             | 4                | 20              |
           | -6120     | 3.6         | 2.5             | 4.2              | 20              |
           | -5040     | 3.7         | 2.7             | 4.4              | 20              |
@@ -148,7 +148,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 11 - Negative time steps & adjusted hydraulic loads, dike profile properties (berm), foreshore properties
         Given the following series are adjusted:
-          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
           | -6840     | 3.5         | 2.4             | 4                | 20              |
           | -6120     | 3.6         | 2.5             | 4.2              | 20              |
           | -5040     | 3.7         | 2.7             | 4.4              | 20              |
@@ -183,7 +183,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 12 - All properties adjusted
         Given the following series are adjusted:
-          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
           | -6840     | 3.5         | 2.4             | 4                | 20              |
           | -6120     | 3.6         | 2.5             | 4.2              | 20              |
           | -5040     | 3.7         | 2.7             | 4.4              | 20              |
@@ -229,7 +229,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
     due to the wave run up transition and the wave run up root mean square being both 0. Therefore, no result will be
     produced by the DiKErnel (NaN)
         Given the following series are adjusted:
-          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
           | -6840     | 3.53232     | 2.443434        | 4.132323         | 200.434343      |
           | 36000     | 3.19999     | 1.3             | 4.83             | 15.9999         |
           | 43200     | 7.5         | 1.1111          | 4.51111          | 20.43434        |

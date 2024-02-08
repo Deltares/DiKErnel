@@ -10,7 +10,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 
     Background:
         Given the following time steps and hydraulic loads:
-          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
           | 0         | 0           | 1.5             | 4.20             | 0               |
           | 900       |             |                 |                  |                 |
         And the following dijkprofiel and a dijkorientatie of 0:

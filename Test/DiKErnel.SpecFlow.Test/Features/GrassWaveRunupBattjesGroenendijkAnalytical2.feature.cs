@@ -85,11 +85,11 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 #line 11
     #line hidden
             TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
-                        "time step",
-                        "water level",
-                        "wave height Hm0",
-                        "wave period Tm10",
-                        "wave directions"});
+                        "Time step",
+                        "Water level",
+                        "Wave height Hm0",
+                        "Wave period Tm10",
+                        "Wave directions"});
             table25.AddRow(new string[] {
                         "0",
                         "0",

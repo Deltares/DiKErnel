@@ -79,11 +79,11 @@ namespace DiKErnel.SpecFlow.Test.Features
 #line 4
     #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "time step",
-                        "water level",
-                        "wave height Hm0",
-                        "wave period Tm10",
-                        "wave directions"});
+                        "Time step",
+                        "Water level",
+                        "Wave height Hm0",
+                        "Wave period Tm10",
+                        "Wave directions"});
             table1.AddRow(new string[] {
                         "0",
                         "3",
@@ -790,11 +790,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
-                            "time step",
-                            "water level",
-                            "wave height Hm0",
-                            "wave period Tm10",
-                            "wave directions"});
+                            "Time step",
+                            "Water level",
+                            "Wave height Hm0",
+                            "Wave period Tm10",
+                            "Wave directions"});
                 table15.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -943,11 +943,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
-                            "time step",
-                            "water level",
-                            "wave height Hm0",
-                            "wave period Tm10",
-                            "wave directions"});
+                            "Time step",
+                            "Water level",
+                            "Wave height Hm0",
+                            "Wave period Tm10",
+                            "Wave directions"});
                 table16.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -1135,11 +1135,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
-                            "time step",
-                            "water level",
-                            "wave height Hm0",
-                            "wave period Tm10",
-                            "wave directions"});
+                            "Time step",
+                            "Water level",
+                            "Wave height Hm0",
+                            "Wave period Tm10",
+                            "Wave directions"});
                 table19.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -1353,11 +1353,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
-                            "time step",
-                            "water level",
-                            "wave height Hm0",
-                            "wave period Tm10",
-                            "wave directions"});
+                            "Time step",
+                            "Water level",
+                            "Wave height Hm0",
+                            "Wave period Tm10",
+                            "Wave directions"});
                 table22.AddRow(new string[] {
                             "-6840",
                             "3.53232",
