@@ -3,24 +3,24 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Background:
         Given the following time steps and hydraulic loads:
-          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
-          | 0         | 3           | 0.5             | 3                | 50              |
-          | 3600      | 3.1         | 0.7             | 3.5              | 45              |
-          | 7200      | 3.2         | 1               | 4                | 40              |
-          | 10800     | 3.3         | 1.3             | 4.3              | 35              |
-          | 14400     | 3.4         | 1.5             | 4.5              | 30              |
-          | 18000     | 3.5         | 1.8             | 4.8              | 25              |
-          | 21600     | 3.6         | 2.1             | 5.2              | 20              |
-          | 25200     | 3.7         | 2.5             | 5.5              | 15              |
-          | 28800     | 3.7         | 2.8             | 5.8              | 10              |
-          | 32400     | 3.6         | 2.8             | 6                | 5               |
-          | 36000     | 3.5         | 2.5             | 6                | 0               |
-          | 39600     | 3.4         | 2.1             | 5.8              | 0               |
-          | 43200     | 3.3         | 1.8             | 5.5              | 5               |
-          | 46800     | 3.2         | 1.5             | 5.2              | 10              |
-          | 50400     | 3.1         | 1.3             | 4.8              | 15              |
-          | 54000     | 3           | 1               | 4.5              | 20              |
-          | 57600     |             |                 |                  |                 |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave direction |
+          | 0         | 3           | 0.5             | 3                | 50             |
+          | 3600      | 3.1         | 0.7             | 3.5              | 45             |
+          | 7200      | 3.2         | 1               | 4                | 40             |
+          | 10800     | 3.3         | 1.3             | 4.3              | 35             |
+          | 14400     | 3.4         | 1.5             | 4.5              | 30             |
+          | 18000     | 3.5         | 1.8             | 4.8              | 25             |
+          | 21600     | 3.6         | 2.1             | 5.2              | 20             |
+          | 25200     | 3.7         | 2.5             | 5.5              | 15             |
+          | 28800     | 3.7         | 2.8             | 5.8              | 10             |
+          | 32400     | 3.6         | 2.8             | 6                | 5              |
+          | 36000     | 3.5         | 2.5             | 6                | 0              |
+          | 39600     | 3.4         | 2.1             | 5.8              | 0              |
+          | 43200     | 3.3         | 1.8             | 5.5              | 5              |
+          | 46800     | 3.2         | 1.5             | 5.2              | 10             |
+          | 50400     | 3.1         | 1.3             | 4.8              | 15             |
+          | 54000     | 3           | 1               | 4.5              | 20             |
+          | 57600     |             |                 |                  |                |
         And the following dike profile and a dike orientation of 0:
           | X  | Z   | Roughness coefficient |
           | 0  | 0   | 1.0                   |
@@ -29,17 +29,17 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Outer toe | Outer crest |
           | 0         | 25          |
         And the following rekeninstellingen:
-          | Setting                         | Value            |
-          | positie                         | 15               |
-          | typeToplaag                     | grasGeslotenZode |
-          | beginSchade                     | 0                |
-          | verhogingBelastingOvergangAlfaM | 1                |
-          | verlagingSterkteOvergangAlfaS   | 1                |
-          | faalgetal                       | 1                |
-          | factorCtm                       | 0.92             |
-          | frontsnelheid                   | 1.1              |
-          | bodemVoorlandZ                  | -4.0             |
-          | tanAvl                          | 0.004            |
+          | Setting                            | Value      |
+          | Position                           | 15         |
+          | Top layer type                     | Closed sod |
+          | Initial damage                     | 0          |
+          | Increased load transition alfa M   | 1          |
+          | Reduced strength transition alfa S | 1          |
+          | Failure number                     | 1          |
+          | Average number of waves Ctm        | 0.92       |
+          | Front velocity                     | 1.1        |
+          | bodemVoorlandZ                     | -4.0       |
+          | tanAvl                             | 0.004      |
 
     Scenario: Testcase 1 - Default with closed sod
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
@@ -47,31 +47,31 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 2 - Default with open sod
         Given the following rekeninstellingen are adjusted:
-          | Setting     | Value        |
-          | typeToplaag | grasOpenZode |
+          | Setting        | Value    |
+          | Top layer type | Open sod |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 21.802708300783724
 
     Scenario: Testcase 3 - Adjusted critical values
         Given the following rekeninstellingen are adjusted:
-          | Setting                          | Value |
-          | kritiekeCumulatieveOverbelasting | 8000  |
-          | kritiekeFrontsnelheid            | 6.2   |
+          | Setting                      | Value |
+          | Critical cumulative overload | 8000  |
+          | Critical front velocity      | 6.2   |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 7.042858339779344
 
     Scenario: Testcase 4 - Adjusted frontsnelheid
         Given the following rekeninstellingen are adjusted:
-          | Setting       | Value |
-          | frontsnelheid | 1.15  |
+          | Setting        | Value |
+          | Front velocity | 1.15  |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 8.10764303618132
 
     Scenario: Testcase 5 - Adjusted overgangen properties
         Given the following rekeninstellingen are adjusted:
-          | Setting                         | Value |
-          | verhogingBelastingOvergangAlfaM | 1.8   |
-          | verlagingSterkteOvergangAlfaS   | 0.9   |
+          | Setting                            | Value |
+          | Increased load transition alfa M   | 1.8   |
+          | Reduced strength transition alfa S | 0.9   |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 34.618492810973976
 
@@ -85,9 +85,9 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 7 - Adjusted failure conditions
         Given the following rekeninstellingen are adjusted:
-          | Setting     | Value |
-          | beginschade | 0.3   |
-          | faalgetal   | 1.2   |
+          | Setting        | Value |
+          | Initial damage | 0.3   |
+          | Damage number  | 1.2   |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 6.264275964074616
 
@@ -99,9 +99,9 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 20 | 4.1 | 0.95                  |
           | 25 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting        | Value |
-          | dijkorientatie | 20    |
-          | positie        | 15    |
+          | Setting          | Value |
+          | Dike orientation | 20    |
+          | Position         | 15    |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 0.37123738545694945
 
@@ -113,59 +113,59 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 20 | 5.1 | 1                     |
           | 30 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting        | Value |
-          | dijkorientatie | 30    |
-          | positie        | 18    |
-          | bodemVoorlandZ | 1     |
-          | tanAvl         | 0.009 |
-          | Outer toe      | 0     |
-          | Outer crest    | 30    |
+          | Setting          | Value |
+          | Dike orientation | 30    |
+          | Position         | 18    |
+          | bodemVoorlandZ   | 1     |
+          | tanAvl           | 0.009 |
+          | Outer toe        | 0     |
+          | Outer crest      | 30    |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 0.26854724503160177
 
     Scenario: Testcase 10 - Negative time steps & adjusted hydraulischeBelastingen
         Given the following series are adjusted:
-          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
-          | -6840     | 3.5         | 2.4             | 4                | 20              |
-          | -6120     | 3.6         | 2.5             | 4.2              | 20              |
-          | -5040     | 3.7         | 2.7             | 4.4              | 20              |
-          | -3600     | 3.8         | 2.8             | 4.5              | 20              |
-          | -1800     | 3.9         | 2.9             | 4.8              | 20              |
-          | 360       | 3.95        | 3               | 5                | 20              |
-          | 2880      | 4           | 2.9             | 5.2              | 20              |
-          | 5760      | 3.95        | 2.9             | 5.5              | 15              |
-          | 9000      | 3.8         | 2.8             | 5.8              | 10              |
-          | 12600     | 3.6         | 2.8             | 6                | 5               |
-          | 16560     | 3.5         | 2.5             | 6                | 0               |
-          | 20880     | 3.4         | 2.1             | 5.8              | 0               |
-          | 25560     | 3.3         | 1.8             | 5.5              | 5               |
-          | 30600     | 3.2         | 1.5             | 5.2              | 10              |
-          | 36000     | 3.1         | 1.3             | 4.8              | 15              |
-          | 43200     | 3           | 1               | 4.5              | 20              |
-          | 50400     |             |                 |                  |                 |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave direction |
+          | -6840     | 3.5         | 2.4             | 4                | 20             |
+          | -6120     | 3.6         | 2.5             | 4.2              | 20             |
+          | -5040     | 3.7         | 2.7             | 4.4              | 20             |
+          | -3600     | 3.8         | 2.8             | 4.5              | 20             |
+          | -1800     | 3.9         | 2.9             | 4.8              | 20             |
+          | 360       | 3.95        | 3               | 5                | 20             |
+          | 2880      | 4           | 2.9             | 5.2              | 20             |
+          | 5760      | 3.95        | 2.9             | 5.5              | 15             |
+          | 9000      | 3.8         | 2.8             | 5.8              | 10             |
+          | 12600     | 3.6         | 2.8             | 6                | 5              |
+          | 16560     | 3.5         | 2.5             | 6                | 0              |
+          | 20880     | 3.4         | 2.1             | 5.8              | 0              |
+          | 25560     | 3.3         | 1.8             | 5.5              | 5              |
+          | 30600     | 3.2         | 1.5             | 5.2              | 10             |
+          | 36000     | 3.1         | 1.3             | 4.8              | 15             |
+          | 43200     | 3           | 1               | 4.5              | 20             |
+          | 50400     |             |                 |                  |                |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 8.587822405580951
 
     Scenario: Testcase 11 - Negative time steps & adjusted hydraulic loads, dike profile properties (berm), foreshore properties
         Given the following series are adjusted:
-          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
-          | -6840     | 3.5         | 2.4             | 4                | 20              |
-          | -6120     | 3.6         | 2.5             | 4.2              | 20              |
-          | -5040     | 3.7         | 2.7             | 4.4              | 20              |
-          | -3600     | 3.8         | 2.8             | 4.5              | 20              |
-          | -1800     | 3.9         | 2.9             | 4.8              | 20              |
-          | 360       | 3.95        | 3               | 5                | 20              |
-          | 2880      | 4           | 2.9             | 5.2              | 20              |
-          | 5760      | 3.95        | 2.9             | 5.5              | 15              |
-          | 9000      | 3.8         | 2.8             | 5.8              | 10              |
-          | 12600     | 3.6         | 2.8             | 6                | 5               |
-          | 16560     | 3.5         | 2.5             | 6                | 0               |
-          | 20880     | 3.4         | 2.1             | 5.8              | 0               |
-          | 25560     | 3.3         | 1.8             | 5.5              | 5               |
-          | 30600     | 3.2         | 1.5             | 5.2              | 10              |
-          | 36000     | 3.1         | 1.3             | 4.8              | 15              |
-          | 43200     | 3           | 1               | 4.5              | 20              |
-          | 50400     |             |                 |                  |                 |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave direction |
+          | -6840     | 3.5         | 2.4             | 4                | 20             |
+          | -6120     | 3.6         | 2.5             | 4.2              | 20             |
+          | -5040     | 3.7         | 2.7             | 4.4              | 20             |
+          | -3600     | 3.8         | 2.8             | 4.5              | 20             |
+          | -1800     | 3.9         | 2.9             | 4.8              | 20             |
+          | 360       | 3.95        | 3               | 5                | 20             |
+          | 2880      | 4           | 2.9             | 5.2              | 20             |
+          | 5760      | 3.95        | 2.9             | 5.5              | 15             |
+          | 9000      | 3.8         | 2.8             | 5.8              | 10             |
+          | 12600     | 3.6         | 2.8             | 6                | 5              |
+          | 16560     | 3.5         | 2.5             | 6                | 0              |
+          | 20880     | 3.4         | 2.1             | 5.8              | 0              |
+          | 25560     | 3.3         | 1.8             | 5.5              | 5              |
+          | 30600     | 3.2         | 1.5             | 5.2              | 10             |
+          | 36000     | 3.1         | 1.3             | 4.8              | 15             |
+          | 43200     | 3           | 1               | 4.5              | 20             |
+          | 50400     |             |                 |                  |                |
         And the following series are adjusted:
           | X  | Z   | Roughness coefficient |
           | 0  | 0   | 0.85                  |
@@ -173,34 +173,34 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 20 | 4.1 | 0.95                  |
           | 25 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting        | Value |
-          | dijkorientatie | 20    |
-          | positie        | 15    |
-          | bodemVoorlandZ | 0.5   |
-          | tanAvl         | 0.01  |
+          | Setting          | Value |
+          | Dike orientation | 20    |
+          | Position         | 15    |
+          | bodemVoorlandZ   | 0.5   |
+          | tanAvl           | 0.01  |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 0.6219200388310531
 
     Scenario: Testcase 12 - All properties adjusted
         Given the following series are adjusted:
-          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
-          | -6840     | 3.5         | 2.4             | 4                | 20              |
-          | -6120     | 3.6         | 2.5             | 4.2              | 20              |
-          | -5040     | 3.7         | 2.7             | 4.4              | 20              |
-          | -3600     | 3.8         | 2.8             | 4.5              | 20              |
-          | -1800     | 3.9         | 2.9             | 4.8              | 20              |
-          | 360       | 3.95        | 3               | 5                | 20              |
-          | 2880      | 4           | 2.9             | 5.2              | 20              |
-          | 5760      | 3.95        | 2.9             | 5.5              | 15              |
-          | 9000      | 3.8         | 2.8             | 5.8              | 10              |
-          | 12600     | 3.6         | 2.8             | 6                | 5               |
-          | 16560     | 3.5         | 2.5             | 6                | 0               |
-          | 20880     | 3.4         | 2.1             | 5.8              | 0               |
-          | 25560     | 3.3         | 1.8             | 5.5              | 5               |
-          | 30600     | 3.2         | 1.5             | 5.2              | 10              |
-          | 36000     | 3.1         | 1.3             | 4.8              | 15              |
-          | 43200     | 3           | 1               | 4.5              | 20              |
-          | 50400     |             |                 |                  |                 |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave direction |
+          | -6840     | 3.5         | 2.4             | 4                | 20             |
+          | -6120     | 3.6         | 2.5             | 4.2              | 20             |
+          | -5040     | 3.7         | 2.7             | 4.4              | 20             |
+          | -3600     | 3.8         | 2.8             | 4.5              | 20             |
+          | -1800     | 3.9         | 2.9             | 4.8              | 20             |
+          | 360       | 3.95        | 3               | 5                | 20             |
+          | 2880      | 4           | 2.9             | 5.2              | 20             |
+          | 5760      | 3.95        | 2.9             | 5.5              | 15             |
+          | 9000      | 3.8         | 2.8             | 5.8              | 10             |
+          | 12600     | 3.6         | 2.8             | 6                | 5              |
+          | 16560     | 3.5         | 2.5             | 6                | 0              |
+          | 20880     | 3.4         | 2.1             | 5.8              | 0              |
+          | 25560     | 3.3         | 1.8             | 5.5              | 5              |
+          | 30600     | 3.2         | 1.5             | 5.2              | 10             |
+          | 36000     | 3.1         | 1.3             | 4.8              | 15             |
+          | 43200     | 3           | 1               | 4.5              | 20             |
+          | 50400     |             |                 |                  |                |
         And the following series are adjusted:
           | X  | Z   | Roughness coefficient |
           | 0  | 0   | 0.85                  |
@@ -208,51 +208,51 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 20 | 4.1 | 0.95                  |
           | 25 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting                          | Value |
-          | dijkorientatie                   | 20    |
-          | positie                          | 15    |
-          | beginschade                      | 0.1   |
-          | verhogingBelastingOvergangAlfaM  | 1.7   |
-          | verlagingSterkteOvergangAlfaS    | 0.85  |
-          | faalgetal                        | 1.1   |
-          | factorCtm                        | 0.89  |
-          | frontsnelheid                    | 1.2   |
-          | bodemVoorlandZ                   | -1    |
-          | tanAvl                           | 0.008 |
-          | kritiekeCumulatieveOverbelasting | 7500  |
-          | kritiekeFrontsnelheid            | 5     |
+          | Setting                            | Value |
+          | Dike orientation                   | 20    |
+          | Position                           | 15    |
+          | Initial damage                     | 0.1   |
+          | Increased load transition alfa M   | 1.7   |
+          | Reduced strength transition alfa S | 0.85  |
+          | Failure number                     | 1.1   |
+          | Average number of waves Ctm        | 0.89  |
+          | Front velocity                     | 1.2   |
+          | bodemVoorlandZ                     | -1    |
+          | tanAvl                             | 0.008 |
+          | Critical cumulative overload       | 7500  |
+          | Critical front velocity            | 5     |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 41.84703315170409
 
     Scenario: Testcase 13 - Robustness edge cases
-    Remark: The timestep 36000 - 43200 results in a 0 for the Z2% (Representatieve2P). This results in a division by zero
-    due to the wave run up transition and the wave run up root mean square being both 0. Therefore, no result will be
-    produced by the DiKErnel (NaN)
+    Remark: The timestep 36000 - 43200 results in a 0 for the representative wave run-up (2 percent) Z2% .
+    This results in a division by zero due to the wave run up transition and the wave run up root mean square being
+    both 0. Therefore, no result will be produced by the DiKErnel (NaN)
         Given the following series are adjusted:
-          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
-          | -6840     | 3.53232     | 2.443434        | 4.132323         | 200.434343      |
-          | 36000     | 3.19999     | 1.3             | 4.83             | 15.9999         |
-          | 43200     | 7.5         | 1.1111          | 4.51111          | 20.43434        |
-          | 50400     |             |                 |                  |                 |
+          | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave direction |
+          | -6840     | 3.53232     | 2.443434        | 4.132323         | 200.434343     |
+          | 36000     | 3.19999     | 1.3             | 4.83             | 15.9999        |
+          | 43200     | 7.5         | 1.1111          | 4.51111          | 20.43434       |
+          | 50400     |             |                 |                  |                |
         And the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | 0       | 0.859999              |
-          | 15.001   | 4.0005  | 0.51111               |
-          | 20.999   | 4.1     | 0.95111               |
-          | 25       | 7.5     |                       |
+          | X      | Z      | Roughness coefficient |
+          | 0      | 0      | 0.859999              |
+          | 15.001 | 4.0005 | 0.51111               |
+          | 20.999 | 4.1    | 0.95111               |
+          | 25     | 7.5    |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting                          | Value      |
-          | dijkorientatie                   | 179.5      |
-          | positie                          | 17.04343   |
-          | bodemVoorlandZ                   | -0.59999   |
-          | tanAvl                           | 0.01111    |
-          | beginschade                      | 0.54545    |
-          | verhogingBelastingOvergangAlfaM  | 3.754545   |
-          | verlagingSterkteOvergangAlfaS    | 0.111      |
-          | faalgetal                        | 10.32321   |
-          | factorCtm                        | 0.1656454  |
-          | frontsnelheid                    | 2.21243434 |
-          | kritiekeCumulatieveOverbelasting | 6212.32434 |
-          | kritiekeFrontsnelheid            | 4.54434343 |
+          | Setting                            | Value      |
+          | Dike orientation                   | 179.5      |
+          | Position                           | 17.04343   |
+          | bodemVoorlandZ                     | -0.59999   |
+          | tanAvl                             | 0.01111    |
+          | Initial damage                     | 0.54545    |
+          | Increased load transition alfa M   | 3.754545   |
+          | Reduced strength transition alfa S | 0.111      |
+          | Failure number                     | 10.32321   |
+          | Average number of waves Ctm        | 0.1656454  |
+          | Front velocity                     | 2.21243434 |
+          | Critical cumulative overload       | 6212.32434 |
+          | Critical front velocity            | 4.54434343 |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is NaN

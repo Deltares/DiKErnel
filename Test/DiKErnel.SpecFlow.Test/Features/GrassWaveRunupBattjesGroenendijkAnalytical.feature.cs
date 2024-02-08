@@ -83,7 +83,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "Water level",
                         "Wave height Hm0",
                         "Wave period Tm10",
-                        "Wave directions"});
+                        "Wave direction"});
             table1.AddRow(new string[] {
                         "0",
                         "3",
@@ -217,28 +217,28 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "Setting",
                         "Value"});
             table4.AddRow(new string[] {
-                        "positie",
+                        "Position",
                         "15"});
             table4.AddRow(new string[] {
-                        "typeToplaag",
-                        "grasGeslotenZode"});
+                        "Top layer type",
+                        "Closed sod"});
             table4.AddRow(new string[] {
-                        "beginSchade",
+                        "Initial damage",
                         "0"});
             table4.AddRow(new string[] {
-                        "verhogingBelastingOvergangAlfaM",
+                        "Increased load transition alfa M",
                         "1"});
             table4.AddRow(new string[] {
-                        "verlagingSterkteOvergangAlfaS",
+                        "Reduced strength transition alfa S",
                         "1"});
             table4.AddRow(new string[] {
-                        "faalgetal",
+                        "Failure number",
                         "1"});
             table4.AddRow(new string[] {
-                        "factorCtm",
+                        "Average number of waves Ctm",
                         "0.92"});
             table4.AddRow(new string[] {
-                        "frontsnelheid",
+                        "Front velocity",
                         "1.1"});
             table4.AddRow(new string[] {
                         "bodemVoorlandZ",
@@ -325,8 +325,8 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table5.AddRow(new string[] {
-                            "typeToplaag",
-                            "grasOpenZode"});
+                            "Top layer type",
+                            "Open sod"});
 #line 49
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table5, "Given ");
 #line hidden
@@ -374,10 +374,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table6.AddRow(new string[] {
-                            "kritiekeCumulatieveOverbelasting",
+                            "Critical cumulative overload",
                             "8000"});
                 table6.AddRow(new string[] {
-                            "kritiekeFrontsnelheid",
+                            "Critical front velocity",
                             "6.2"});
 #line 56
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table6, "Given ");
@@ -426,7 +426,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table7.AddRow(new string[] {
-                            "frontsnelheid",
+                            "Front velocity",
                             "1.15"});
 #line 64
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table7, "Given ");
@@ -475,10 +475,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table8.AddRow(new string[] {
-                            "verhogingBelastingOvergangAlfaM",
+                            "Increased load transition alfa M",
                             "1.8"});
                 table8.AddRow(new string[] {
-                            "verlagingSterkteOvergangAlfaS",
+                            "Reduced strength transition alfa S",
                             "0.9"});
 #line 71
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table8, "Given ");
@@ -579,10 +579,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table10.AddRow(new string[] {
-                            "beginschade",
+                            "Initial damage",
                             "0.3"});
                 table10.AddRow(new string[] {
-                            "faalgetal",
+                            "Damage number",
                             "1.2"});
 #line 87
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table10, "Given ");
@@ -654,10 +654,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table12.AddRow(new string[] {
-                            "dijkorientatie",
+                            "Dike orientation",
                             "20"});
                 table12.AddRow(new string[] {
-                            "positie",
+                            "Position",
                             "15"});
 #line 101
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table12, "And ");
@@ -729,10 +729,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table14.AddRow(new string[] {
-                            "dijkorientatie",
+                            "Dike orientation",
                             "30"});
                 table14.AddRow(new string[] {
-                            "positie",
+                            "Position",
                             "18"});
                 table14.AddRow(new string[] {
                             "bodemVoorlandZ",
@@ -794,7 +794,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Water level",
                             "Wave height Hm0",
                             "Wave period Tm10",
-                            "Wave directions"});
+                            "Wave direction"});
                 table15.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -947,7 +947,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Water level",
                             "Wave height Hm0",
                             "Wave period Tm10",
-                            "Wave directions"});
+                            "Wave direction"});
                 table16.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -1080,10 +1080,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table18.AddRow(new string[] {
-                            "dijkorientatie",
+                            "Dike orientation",
                             "20"});
                 table18.AddRow(new string[] {
-                            "positie",
+                            "Position",
                             "15"});
                 table18.AddRow(new string[] {
                             "bodemVoorlandZ",
@@ -1139,7 +1139,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Water level",
                             "Wave height Hm0",
                             "Wave period Tm10",
-                            "Wave directions"});
+                            "Wave direction"});
                 table19.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -1272,28 +1272,28 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table21.AddRow(new string[] {
-                            "dijkorientatie",
+                            "Dike orientation",
                             "20"});
                 table21.AddRow(new string[] {
-                            "positie",
+                            "Position",
                             "15"});
                 table21.AddRow(new string[] {
-                            "beginschade",
+                            "Initial damage",
                             "0.1"});
                 table21.AddRow(new string[] {
-                            "verhogingBelastingOvergangAlfaM",
+                            "Increased load transition alfa M",
                             "1.7"});
                 table21.AddRow(new string[] {
-                            "verlagingSterkteOvergangAlfaS",
+                            "Reduced strength transition alfa S",
                             "0.85"});
                 table21.AddRow(new string[] {
-                            "faalgetal",
+                            "Failure number",
                             "1.1"});
                 table21.AddRow(new string[] {
-                            "factorCtm",
+                            "Average number of waves Ctm",
                             "0.89"});
                 table21.AddRow(new string[] {
-                            "frontsnelheid",
+                            "Front velocity",
                             "1.2"});
                 table21.AddRow(new string[] {
                             "bodemVoorlandZ",
@@ -1302,10 +1302,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "tanAvl",
                             "0.008"});
                 table21.AddRow(new string[] {
-                            "kritiekeCumulatieveOverbelasting",
+                            "Critical cumulative overload",
                             "7500"});
                 table21.AddRow(new string[] {
-                            "kritiekeFrontsnelheid",
+                            "Critical front velocity",
                             "5"});
 #line 210
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table21, "And ");
@@ -1326,9 +1326,9 @@ namespace DiKErnel.SpecFlow.Test.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 13 - Robustness edge cases", @"    Remark: The timestep 36000 - 43200 results in a 0 for the Z2% (Representatieve2P). This results in a division by zero
-    due to the wave run up transition and the wave run up root mean square being both 0. Therefore, no result will be
-    produced by the DiKErnel (NaN)", tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 13 - Robustness edge cases", @"    Remark: The timestep 36000 - 43200 results in a 0 for the representative wave run-up (2 percent) Z2% .
+    This results in a division by zero due to the wave run up transition and the wave run up root mean square being
+    both 0. Therefore, no result will be produced by the DiKErnel (NaN)", tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 227
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -1357,7 +1357,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Water level",
                             "Wave height Hm0",
                             "Wave period Tm10",
-                            "Wave directions"});
+                            "Wave direction"});
                 table22.AddRow(new string[] {
                             "-6840",
                             "3.53232",
@@ -1386,9 +1386,9 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following series are adjusted:", ((string)(null)), table22, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table23.AddRow(new string[] {
                             "0",
                             "0",
@@ -1412,10 +1412,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table24.AddRow(new string[] {
-                            "dijkorientatie",
+                            "Dike orientation",
                             "179.5"});
                 table24.AddRow(new string[] {
-                            "positie",
+                            "Position",
                             "17.04343"});
                 table24.AddRow(new string[] {
                             "bodemVoorlandZ",
@@ -1424,28 +1424,28 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "tanAvl",
                             "0.01111"});
                 table24.AddRow(new string[] {
-                            "beginschade",
+                            "Initial damage",
                             "0.54545"});
                 table24.AddRow(new string[] {
-                            "verhogingBelastingOvergangAlfaM",
+                            "Increased load transition alfa M",
                             "3.754545"});
                 table24.AddRow(new string[] {
-                            "verlagingSterkteOvergangAlfaS",
+                            "Reduced strength transition alfa S",
                             "0.111"});
                 table24.AddRow(new string[] {
-                            "faalgetal",
+                            "Failure number",
                             "10.32321"});
                 table24.AddRow(new string[] {
-                            "factorCtm",
+                            "Average number of waves Ctm",
                             "0.1656454"});
                 table24.AddRow(new string[] {
-                            "frontsnelheid",
+                            "Front velocity",
                             "2.21243434"});
                 table24.AddRow(new string[] {
-                            "kritiekeCumulatieveOverbelasting",
+                            "Critical cumulative overload",
                             "6212.32434"});
                 table24.AddRow(new string[] {
-                            "kritiekeFrontsnelheid",
+                            "Critical front velocity",
                             "4.54434343"});
 #line 243
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table24, "And ");

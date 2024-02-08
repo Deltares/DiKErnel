@@ -39,14 +39,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string waterLevelsKey = "Water level";
         private const string waveHeightsHm0Key = "Wave height Hm0";
         private const string wavePeriodsTm10Key = "Wave period Tm10";
-        private const string waveDirectionsKey = "Wave directions";
+        private const string waveDirectionsKey = "Wave direction";
 
-        private const string dikeOrientationKey = "dijkorientatie";
+        private const string dikeOrientationKey = "Dike orientation";
         private const string outerToePositionKey = "Outer toe";
         private const string outerCrestPositionKey = "Outer crest";
 
-        private const string locationXCoordinateKey = "positie";
-        private const string grassTopLayerTypeKey = "typeToplaag";
+        private const string locationXCoordinateKey = "Position";
+        private const string grassTopLayerTypeKey = "Top layer type";
 
         private const string xCoordinatesKey = "X";
         private const string zCoordinatesKey = "Z";
@@ -55,14 +55,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string foreshoreSlopeKey = "tanAvl";
         private const string bottomZForeshoreKey = "bodemVoorlandZ";
 
-        private const string damageKey = "faalgetal";
-        private const string initialDamageKey = "beginschade";
-        private const string averageNumberOfWavesCtmKey = "factorCtm";
-        private const string criticalFrontVelocityKey = "kritiekeFrontsnelheid";
-        private const string frontVelocityCuKey = "frontsnelheid";
-        private const string criticalCumulativeOverloadKey = "kritiekeCumulatieveOverbelasting";
-        private const string increasedLoadTransitionAlfaMKey = "verhogingBelastingOvergangAlfaM";
-        private const string reducedStrengthTransitionAlphaSKey = "verlagingSterkteOvergangAlfaS";
+        private const string damageKey = "Failure number";
+        private const string initialDamageKey = "Initial damage";
+        private const string averageNumberOfWavesCtmKey = "Average number of waves Ctm";
+        private const string criticalFrontVelocityKey = "Critical front velocity";
+        private const string frontVelocityCuKey = "Front velocity";
+        private const string criticalCumulativeOverloadKey = "Critical cumulative overload";
+        private const string increasedLoadTransitionAlfaMKey = "Increased load transition alfa M";
+        private const string reducedStrengthTransitionAlphaSKey = "Reduced strength transition alfa S";
         private const double tolerance = 1e-14;
 
         private readonly ScenarioContext context;
@@ -113,7 +113,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        [When(@"I change the property (\w*) to a value of (.*)")]
+        [When(@"I change the property (.*) to a value of (.*)")]
         public void WhenIChangeTheValueOf(string propertyName, string value)
         {
             context[propertyName] = value;
@@ -162,7 +162,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private GrassTopLayerType GetGrassTopLayerType(string id)
         {
-            return GetString(id) == "grasOpenZode" ? GrassTopLayerType.OpenSod : GrassTopLayerType.ClosedSod;
+            return GetString(id) == "Open sod" ? GrassTopLayerType.OpenSod : GrassTopLayerType.ClosedSod;
         }
 
         private string GetString(string id)
