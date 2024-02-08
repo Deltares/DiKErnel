@@ -32,16 +32,24 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
         {
-            double int1 = Int1();
+            double int1 = Int1(input);
             double int2 = Int2();
             double int3 = Int3();
 
             return input.AverageNumberOfWaves * Math.Max(int1 + int2 + int3, 0);
         }
 
-        private static double Int1()
+        private static double Int1(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
         {
-            return double.NaN;
+            double parameterRayleigh = ParameterRayleigh(input.RepresentativeWaveRunup2P);
+
+            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.AccelerationAlphaA, 2) *
+                   Math.Pow(input.FrontVelocityCwo, 2) * input.GravitationalAcceleration * parameterRayleigh;
+        }
+
+        private static double ParameterRayleigh(double representativeWaveRunup2P)
+        {
+            return Math.Sqrt(-Math.Pow(representativeWaveRunup2P, 2) / (2 * Math.Log(0.02)));
         }
 
         private static double Int2()
