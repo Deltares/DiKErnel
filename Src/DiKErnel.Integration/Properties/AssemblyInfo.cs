@@ -20,4 +20,3 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("DiKErnel.Integration.Test")]
 [assembly: InternalsVisibleTo("DiKErnel.Integration.TestUtil")]
-[assembly: InternalsVisibleTo("DiKErnel.KernelWrapper.Json.Input.Test")]
