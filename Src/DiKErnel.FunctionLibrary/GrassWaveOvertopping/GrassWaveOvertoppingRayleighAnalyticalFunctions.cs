@@ -16,6 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+
 namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 {
     /// <summary>
@@ -29,6 +31,25 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
+        {
+            double int1 = Int1();
+            double int2 = Int2();
+            double int3 = Int3();
+
+            return input.AverageNumberOfWaves * Math.Max(int1 + int2 + int3, 0);
+        }
+
+        private static double Int1()
+        {
+            return double.NaN;
+        }
+
+        private static double Int2()
+        {
+            return double.NaN;
+        }
+
+        private static double Int3()
         {
             return double.NaN;
         }
