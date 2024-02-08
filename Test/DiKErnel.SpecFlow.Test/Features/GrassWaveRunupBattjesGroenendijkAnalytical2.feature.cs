@@ -215,7 +215,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.When(string.Format("I change the property kritiekeFrontsnelheid to a value of {0}", kritiekeFrontsnelheid), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 39
-        testRunner.And("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 40
         testRunner.Then(string.Format("the output values for {0} and {1} are", schadegetal, cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -301,7 +301,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.When(string.Format("I change the property positie to a value of {0}", positie), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 62
-        testRunner.And("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 63
         testRunner.Then(string.Format("the output values for {0} and {1} are", schadegetal, cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -392,7 +392,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.When(string.Format("I change the property tanAvl to a value of {0}", tanAvl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 91
-        testRunner.And("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 92
         testRunner.Then(string.Format("the output values for {0} and {1} are", schadegetal, cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -484,7 +484,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 122
-        testRunner.And("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 123
         testRunner.Then(string.Format("the output values for {0} and {1} are", schadegetal, cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -580,7 +580,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.And(string.Format("I change the property kritiekeCumulatieveOverbelasting to a value of {0}", kritiekeCumulatieveOverbelasting), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 154
-        testRunner.And("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 155
         testRunner.Then(string.Format("the output values for {0} and {1} are", schadegetal, cumulatieveOverbelastingTijdstap), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

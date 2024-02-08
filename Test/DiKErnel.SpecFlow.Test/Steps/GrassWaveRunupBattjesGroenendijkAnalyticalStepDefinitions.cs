@@ -119,7 +119,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[propertyName] = value;
         }
 
-        [When(@"I run the Battjes-Groenendijk Wave Runup Calculation")]
+        [When(@"I run the grass wave run-up Battjes-Groenendijk analytical calculation")]
         public void WhenIRunTheBattjesGroenendijkWaveRunupCalculation()
         {
             var builder = new CalculationInputBuilder(GetDouble(dikeOrientationKey));

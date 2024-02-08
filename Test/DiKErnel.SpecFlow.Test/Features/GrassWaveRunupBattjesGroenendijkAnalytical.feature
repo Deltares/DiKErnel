@@ -42,14 +42,14 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | tanAvl                          | 0.004            |
 
     Scenario: Testcase 1 - Default with closed sod
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 5.964275964074616
 
     Scenario: Testcase 2 - Default with open sod
         Given the following rekeninstellingen are adjusted:
           | Setting     | Value        |
           | typeToplaag | grasOpenZode |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 21.802708300783724
 
     Scenario: Testcase 3 - Adjusted critical values
@@ -57,14 +57,14 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Setting                          | Value |
           | kritiekeCumulatieveOverbelasting | 8000  |
           | kritiekeFrontsnelheid            | 6.2   |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 7.042858339779344
 
     Scenario: Testcase 4 - Adjusted frontsnelheid
         Given the following rekeninstellingen are adjusted:
           | Setting       | Value |
           | frontsnelheid | 1.15  |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 8.10764303618132
 
     Scenario: Testcase 5 - Adjusted overgangen properties
@@ -72,7 +72,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Setting                         | Value |
           | verhogingBelastingOvergangAlfaM | 1.8   |
           | verlagingSterkteOvergangAlfaS   | 0.9   |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 34.618492810973976
 
     Scenario: Testcase 6 - Adjusted foreshore properties
@@ -80,7 +80,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Setting        | Value |
           | bodemVoorlandZ | 0     |
           | tanAvl         | 0.05  |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 9.562492468848081
 
     Scenario: Testcase 7 - Adjusted failure conditions
@@ -88,7 +88,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Setting     | Value |
           | beginschade | 0.3   |
           | faalgetal   | 1.2   |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 6.264275964074616
 
     Scenario: Testcase 8 - Calculations with a berm
@@ -102,7 +102,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Setting        | Value |
           | dijkorientatie | 20    |
           | positie        | 15    |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 0.37123738545694945
 
     Scenario: Testcase 9 - Calculations with a berm & adjusted foreshore properties
@@ -120,7 +120,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | tanAvl           | 0.009 |
           | teenBuitenzijde  | 0     |
           | kruinBuitenzijde | 30    |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 0.26854724503160177
 
     Scenario: Testcase 10 - Negative tijdstippen & adjusted hydraulischeBelastingen
@@ -143,7 +143,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 36000       | 3.1          | 1.3            | 4.8              | 15             |
           | 43200       | 3            | 1              | 4.5              | 20             |
           | 50400       |              |                |                  |                |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 8.587822405580951
 
     Scenario: Testcase 11 - Negative tijdstippen & adjusted hydraulischeBelastingen, dike profile properties (berm), foreshore properties
@@ -178,7 +178,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | positie        | 15    |
           | bodemVoorlandZ | 0.5   |
           | tanAvl         | 0.01  |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 0.6219200388310531
 
     Scenario: Testcase 12 - All properties adjusted
@@ -221,7 +221,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | tanAvl                           | 0.008 |
           | kritiekeCumulatieveOverbelasting | 7500  |
           | kritiekeFrontsnelheid            | 5     |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 41.84703315170409
 
     Scenario: Testcase 13 - Robustness edge cases
@@ -254,5 +254,5 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | frontsnelheid                    | 2.21243434 |
           | kritiekeCumulatieveOverbelasting | 6212.32434 |
           | kritiekeFrontsnelheid            | 4.54434343 |
-        When I run the Battjes-Groenendijk Wave Runup Calculation
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is NaN

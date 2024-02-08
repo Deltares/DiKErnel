@@ -282,7 +282,7 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
 #line 45
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 46
         testRunner.Then("the schadegetal is 5.964275964074616", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -331,7 +331,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table5, "Given ");
 #line hidden
 #line 52
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 53
         testRunner.Then("the schadegetal is 21.802708300783724", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -383,7 +383,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table6, "Given ");
 #line hidden
 #line 60
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 61
         testRunner.Then("the schadegetal is 7.042858339779344", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -432,7 +432,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table7, "Given ");
 #line hidden
 #line 67
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 68
         testRunner.Then("the schadegetal is 8.10764303618132", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -484,7 +484,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table8, "Given ");
 #line hidden
 #line 75
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 76
         testRunner.Then("the schadegetal is 34.618492810973976", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -536,7 +536,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table9, "Given ");
 #line hidden
 #line 83
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 84
         testRunner.Then("the schadegetal is 9.562492468848081", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -588,7 +588,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table10, "Given ");
 #line hidden
 #line 91
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 92
         testRunner.Then("the schadegetal is 6.264275964074616", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -663,7 +663,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table12, "And ");
 #line hidden
 #line 105
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 106
         testRunner.Then("the schadegetal is 0.37123738545694945", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -750,7 +750,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table14, "And ");
 #line hidden
 #line 123
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 124
         testRunner.Then("the schadegetal is 0.26854724503160177", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -901,7 +901,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following series are adjusted:", ((string)(null)), table15, "Given ");
 #line hidden
 #line 146
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 147
         testRunner.Then("the schadegetal is 8.587822405580951", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1095,7 +1095,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table18, "And ");
 #line hidden
 #line 181
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 182
         testRunner.Then("the schadegetal is 0.6219200388310531", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1311,7 +1311,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table21, "And ");
 #line hidden
 #line 224
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 225
         testRunner.Then("the schadegetal is 41.84703315170409", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1451,7 +1451,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table24, "And ");
 #line hidden
 #line 257
-        testRunner.When("I run the Battjes-Groenendijk Wave Runup Calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 258
         testRunner.Then("the schadegetal is NaN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
