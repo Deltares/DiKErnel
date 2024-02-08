@@ -39,8 +39,8 @@ namespace DiKErnel.SpecFlow.Test.Features
 
 The following testcases correspond with BM Gras benchmarks.
 
-DiKErnel does not produce exactly the same results as BM Gras. This is mainly due to the following differences:
-- BM Gras rounds the value of averageNumberOfWaves to an integer. This is not the case in DiKErnel.
+DiKErnel does not exactly produce the same results as BM Gras. This is mainly due to the following differences:
+- BM Gras rounds the value of average number of waves to an integer. This is not the case in DiKErnel.
 - BM Gras uses an older version of dikes.Overtopping.dll (version 19.1.1).
 - BM Gras is a user interface and performs validation of input parameters. This is not the case in DiKErnel.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
@@ -161,13 +161,13 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                         "Front velocity",
                         "1.10"});
             table28.AddRow(new string[] {
-                        "bodemVoorlandZ",
+                        "Foreshore bottom level",
                         "-3.0"});
             table28.AddRow(new string[] {
-                        "tanAvl",
+                        "Slope foreshore",
                         "0.004"});
 #line 24
-        testRunner.And("the following rekeninstellingen:", ((string)(null)), table28, "And ");
+        testRunner.And("the following calculation settings:", ((string)(null)), table28, "And ");
 #line hidden
         }
         
@@ -178,12 +178,12 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         [NUnit.Framework.TestCaseAttribute("5.5", "0.0010160364930812532", "7.112255451568773", "7.162", "7.156", null)]
         [NUnit.Framework.TestCaseAttribute("6.5", "5.35959825332454e-09", "3.751718777327178e-05", "0.000", "0.000", null)]
         [NUnit.Framework.TestCaseAttribute("8", "0.0", "0.0", "0.000", "0.000", null)]
-        public virtual void BMGrasBenchmark14_VariableInputOfCriticalVelocity(string criticalFrontVelocity, string failureNumber, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
+        public virtual void BMGrasBenchmark14_VariableInputOfCriticalVelocity(string criticalFrontVelocity, string damage, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Critical front velocity", criticalFrontVelocity);
-            argumentsOfScenario.Add("Failure number", failureNumber);
+            argumentsOfScenario.Add("Damage", damage);
             argumentsOfScenario.Add("Cumulative overload", cumulativeOverload);
             argumentsOfScenario.Add("Benchmark for BM Gras", benchmarkForBMGras);
             argumentsOfScenario.Add("BM Gras", bMGras);
@@ -218,7 +218,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 40
-        testRunner.Then(string.Format("the output values for {0} and {1} are", failureNumber, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then(string.Format("the output values for {0} and {1} are", damage, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -233,12 +233,12 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         [NUnit.Framework.TestCaseAttribute("42.7840", "1.5496648932714766e-11", "1.0847654252900337e-07", "0.000", "0.000", null)]
         [NUnit.Framework.TestCaseAttribute("45.8400", "0.0", "0.0", "0.000", "0.000", null)]
         [NUnit.Framework.TestCaseAttribute("48.8960", "0.0", "0.0", "0.000", "0.000", null)]
-        public virtual void BMGrasBenchmark15_VariableInputOfLevelOfInterest(string position, string failureNumber, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
+        public virtual void BMGrasBenchmark15_VariableInputOfLevelOfInterest(string position, string damage, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Position", position);
-            argumentsOfScenario.Add("Failure number", failureNumber);
+            argumentsOfScenario.Add("Damage", damage);
             argumentsOfScenario.Add("Cumulative overload", cumulativeOverload);
             argumentsOfScenario.Add("Benchmark for BM Gras", benchmarkForBMGras);
             argumentsOfScenario.Add("BM Gras", bMGras);
@@ -295,7 +295,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "Outer crest",
                             "61.12"});
 #line 57
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table30, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table30, "And ");
 #line hidden
 #line 61
         testRunner.When(string.Format("I change the property Position to a value of {0}", position), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -304,7 +304,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 63
-        testRunner.Then(string.Format("the output values for {0} and {1} are", failureNumber, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then(string.Format("the output values for {0} and {1} are", damage, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -320,17 +320,18 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         [NUnit.Framework.TestCaseAttribute("10", "0.006820085853039203", "47.74060097127442", "48.062", "", null)]
         [NUnit.Framework.TestCaseAttribute("100", "0.006820085853039203", "47.74060097127442", "48.062", "", null)]
         [NUnit.Framework.TestCaseAttribute("250", "0.006820085853039203", "47.74060097127442", "48.062", "", null)]
-        public virtual void BMGrasBenchmark16_VariableInputOfSlopeOfTheBottom(string tanAvl, string failureNumber, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
+        public virtual void BMGrasBenchmark16_VariableInputOfSlopeOfTheBottom(string slopeForeshore, string damage, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("tanAvl", tanAvl);
-            argumentsOfScenario.Add("Failure number", failureNumber);
+            argumentsOfScenario.Add("Slope foreshore", slopeForeshore);
+            argumentsOfScenario.Add("Damage", damage);
             argumentsOfScenario.Add("Cumulative overload", cumulativeOverload);
             argumentsOfScenario.Add("Benchmark for BM Gras", benchmarkForBMGras);
             argumentsOfScenario.Add("BM Gras", bMGras);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 16 - Variable input of slope of the bottom", @"    Remark: the value of tanAvl should be between 0.004 and 0.05. In this testcase, no validation of results is performed by DiKErnel.
-    This is why DiKErnel produces results for every situation. The validation of results is however performed by BM Gras.", tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 16 - Variable input of slope of the bottom", @"    Remark: the value of the slope of the foreshore should be between 0.004 and 0.05. In this testcase, no validation
+    of results is performed by DiKErnel. This is why DiKErnel produces results for every situation. The validation of
+    results is however performed by BM Gras.", tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 75
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -370,7 +371,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "61.12",
                             "10.0",
                             ""});
-#line 80
+#line 81
         testRunner.Given("the following series are adjusted:", ((string)(null)), table31, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
@@ -385,17 +386,17 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                 table32.AddRow(new string[] {
                             "Outer crest",
                             "61.12"});
-#line 85
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table32, "And ");
-#line hidden
-#line 90
-        testRunner.When(string.Format("I change the property tanAvl to a value of {0}", tanAvl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 86
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table32, "And ");
 #line hidden
 #line 91
-        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.When(string.Format("I change the property Slope foreshore to a value of {0}", slopeForeshore), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 92
-        testRunner.Then(string.Format("the output values for {0} and {1} are", failureNumber, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 93
+        testRunner.Then(string.Format("the output values for {0} and {1} are", damage, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -411,19 +412,19 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         [NUnit.Framework.TestCaseAttribute("-10", "0.0030480842313577797", "21.33658961950446", "21.469", "21.453", null)]
         [NUnit.Framework.TestCaseAttribute("-100", "0.002089438325616217", "14.626068279313518", "", "", null)]
         [NUnit.Framework.TestCaseAttribute("-250", "0.002034264488518857", "14.239851419631998", "", "", null)]
-        public virtual void BMGrasBenchmark17_VariableInputOfWaterDepth(string bodemVoorlandZ, string failureNumber, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
+        public virtual void BMGrasBenchmark17_VariableInputOfWaterDepth(string foreshoreBottomLevel, string damage, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("bodemVoorlandZ", bodemVoorlandZ);
-            argumentsOfScenario.Add("Failure number", failureNumber);
+            argumentsOfScenario.Add("Foreshore bottom level", foreshoreBottomLevel);
+            argumentsOfScenario.Add("Damage", damage);
             argumentsOfScenario.Add("Cumulative overload", cumulativeOverload);
             argumentsOfScenario.Add("Benchmark for BM Gras", benchmarkForBMGras);
             argumentsOfScenario.Add("BM Gras", bMGras);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 17 - Variable input of water depth", @"    Remarks:
-    - In BM Gras the value of water depth (water level - bodemVoorlandZ) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - bodemVoorlandZ) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).", tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 105
+    - In BM Gras the value of water depth (water level - Foreshore bottom level) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
+    - When (water level - Foreshore bottom level) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).", tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 106
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -462,7 +463,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "61.12",
                             "10.0",
                             ""});
-#line 111
+#line 112
         testRunner.Given("the following series are adjusted:", ((string)(null)), table33, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
@@ -477,17 +478,17 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                 table34.AddRow(new string[] {
                             "Outer crest",
                             "61.12"});
-#line 116
+#line 117
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table34, "And ");
 #line hidden
-#line 121
-        testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 122
-        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.When(string.Format("I change the property Foreshore bottom level to a value of {0}", foreshoreBottomLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 123
-        testRunner.Then(string.Format("the output values for {0} and {1} are", failureNumber, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 124
+        testRunner.Then(string.Format("the output values for {0} and {1} are", damage, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -503,20 +504,20 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         [NUnit.Framework.TestCaseAttribute("-10", "1", "21.33658961950446", "21.33658961950446", "21.469", "21.453", null)]
         [NUnit.Framework.TestCaseAttribute("-100", "1", "14.626068279313518", "14.626068279313518", "", "", null)]
         [NUnit.Framework.TestCaseAttribute("-250", "1", "14.239851419631998", "14.239851419631998", "", "", null)]
-        public virtual void BMGrasBenchmark18_VariableInputOfWaterDepthAndCriticalDepth(string bodemVoorlandZ, string criticalCumulativeOverload, string failureNumber, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
+        public virtual void BMGrasBenchmark18_VariableInputOfWaterDepthAndCriticalDepth(string foreshoreBottomLevel, string criticalCumulativeOverload, string damage, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("bodemVoorlandZ", bodemVoorlandZ);
+            argumentsOfScenario.Add("Foreshore bottom level", foreshoreBottomLevel);
             argumentsOfScenario.Add("Critical cumulative overload", criticalCumulativeOverload);
-            argumentsOfScenario.Add("Failure number", failureNumber);
+            argumentsOfScenario.Add("Damage", damage);
             argumentsOfScenario.Add("Cumulative overload", cumulativeOverload);
             argumentsOfScenario.Add("Benchmark for BM Gras", benchmarkForBMGras);
             argumentsOfScenario.Add("BM Gras", bMGras);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 18 - Variable input of water depth and critical depth", @"    Remarks:
-    - In BM Gras the value of water depth (water level - bodemVoorlandZ) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - bodemVoorlandZ) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).", tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 136
+    - In BM Gras the value of water depth (water level - bottom foreshore level) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
+    - When (water level - bottom foreshore level) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).", tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 137
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -555,7 +556,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "61.12",
                             "10.0",
                             ""});
-#line 142
+#line 143
         testRunner.Given("the following series are adjusted:", ((string)(null)), table35, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
@@ -570,20 +571,20 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                 table36.AddRow(new string[] {
                             "Outer crest",
                             "61.12"});
-#line 147
+#line 148
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table36, "And ");
 #line hidden
-#line 152
-        testRunner.When(string.Format("I change the property bodemVoorlandZ to a value of {0}", bodemVoorlandZ), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 153
-        testRunner.And(string.Format("I change the property Critical cumulative overload to a value of {0}", criticalCumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.When(string.Format("I change the property Foreshore bottom level to a value of {0}", foreshoreBottomLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 154
-        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And(string.Format("I change the property Critical cumulative overload to a value of {0}", criticalCumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 155
-        testRunner.Then(string.Format("the output values for {0} and {1} are", failureNumber, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.And("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 156
+        testRunner.Then(string.Format("the output values for {0} and {1} are", damage, cumulativeOverload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -52,8 +52,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string zCoordinatesKey = "Z";
         private const string roughnessCoefficientsKey = "Roughness coefficient";
 
-        private const string foreshoreSlopeKey = "tanAvl";
-        private const string bottomZForeshoreKey = "bodemVoorlandZ";
+        private const string foreshoreSlopeKey = "Slope foreshore";
+        private const string bottomZForeshoreKey = "Foreshore bottom level";
 
         private const string damageKey = "Failure number";
         private const string initialDamageKey = "Initial damage";
@@ -103,7 +103,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        [Given(@"the following rekeninstellingen:")]
+        [Given(@"the following calculation settings:")]
         [Given(@"the following (?:(?!series).)* are adjusted:")]
         public void GivenTheFollowingCalculationSettingsAreAdjusted(Table table)
         {
@@ -136,7 +136,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             outputs = calculator.Result.Data.LocationDependentOutputItems;
         }
 
-        [Then(@"the schadegetal is (.*)")]
+        [Then(@"the damage is (.*)")]
         public void ThenTheDamageIs(double expectedDamage)
         {
             IReadOnlyList<double> damages = outputs[0].GetDamages();

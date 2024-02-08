@@ -241,13 +241,13 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "Front velocity",
                         "1.1"});
             table4.AddRow(new string[] {
-                        "bodemVoorlandZ",
+                        "Foreshore bottom level",
                         "-4.0"});
             table4.AddRow(new string[] {
-                        "tanAvl",
+                        "Slope foreshore",
                         "0.004"});
 #line 31
-        testRunner.And("the following rekeninstellingen:", ((string)(null)), table4, "And ");
+        testRunner.And("the following calculation settings:", ((string)(null)), table4, "And ");
 #line hidden
         }
         
@@ -285,7 +285,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 46
-        testRunner.Then("the schadegetal is 5.964275964074616", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 5.964275964074616", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -328,13 +328,13 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Top layer type",
                             "Open sod"});
 #line 49
-        testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table5, "Given ");
+        testRunner.Given("the following calculation settings are adjusted:", ((string)(null)), table5, "Given ");
 #line hidden
 #line 52
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 53
-        testRunner.Then("the schadegetal is 21.802708300783724", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 21.802708300783724", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -380,25 +380,25 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Critical front velocity",
                             "6.2"});
 #line 56
-        testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table6, "Given ");
+        testRunner.Given("the following calculation settings are adjusted:", ((string)(null)), table6, "Given ");
 #line hidden
 #line 60
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 61
-        testRunner.Then("the schadegetal is 7.042858339779344", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 7.042858339779344", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 4 - Adjusted frontsnelheid")]
-        public virtual void Testcase4_AdjustedFrontsnelheid()
+        [NUnit.Framework.DescriptionAttribute("Testcase 4 - Adjusted front velocity")]
+        public virtual void Testcase4_AdjustedFrontVelocity()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 4 - Adjusted frontsnelheid", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 4 - Adjusted front velocity", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 63
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -429,25 +429,25 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Front velocity",
                             "1.15"});
 #line 64
-        testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table7, "Given ");
+        testRunner.Given("the following calculation settings are adjusted:", ((string)(null)), table7, "Given ");
 #line hidden
 #line 67
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 68
-        testRunner.Then("the schadegetal is 8.10764303618132", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 8.10764303618132", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 5 - Adjusted overgangen properties")]
-        public virtual void Testcase5_AdjustedOvergangenProperties()
+        [NUnit.Framework.DescriptionAttribute("Testcase 5 - Adjusted transition properties")]
+        public virtual void Testcase5_AdjustedTransitionProperties()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 5 - Adjusted overgangen properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 5 - Adjusted transition properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 70
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -481,13 +481,13 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Reduced strength transition alfa S",
                             "0.9"});
 #line 71
-        testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table8, "Given ");
+        testRunner.Given("the following calculation settings are adjusted:", ((string)(null)), table8, "Given ");
 #line hidden
 #line 75
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 76
-        testRunner.Then("the schadegetal is 34.618492810973976", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 34.618492810973976", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -527,19 +527,19 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Setting",
                             "Value"});
                 table9.AddRow(new string[] {
-                            "bodemVoorlandZ",
+                            "Foreshore bottom level",
                             "0"});
                 table9.AddRow(new string[] {
-                            "tanAvl",
+                            "Slope foreshore",
                             "0.05"});
 #line 79
-        testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table9, "Given ");
+        testRunner.Given("the following calculation settings are adjusted:", ((string)(null)), table9, "Given ");
 #line hidden
 #line 83
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 84
-        testRunner.Then("the schadegetal is 9.562492468848081", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 9.562492468848081", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -585,13 +585,13 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Damage number",
                             "1.2"});
 #line 87
-        testRunner.Given("the following rekeninstellingen are adjusted:", ((string)(null)), table10, "Given ");
+        testRunner.Given("the following calculation settings are adjusted:", ((string)(null)), table10, "Given ");
 #line hidden
 #line 91
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 92
-        testRunner.Then("the schadegetal is 6.264275964074616", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 6.264275964074616", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -660,13 +660,13 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Position",
                             "15"});
 #line 101
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table12, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table12, "And ");
 #line hidden
 #line 105
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 106
-        testRunner.Then("the schadegetal is 0.37123738545694945", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 0.37123738545694945", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -735,10 +735,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Position",
                             "18"});
                 table14.AddRow(new string[] {
-                            "bodemVoorlandZ",
+                            "Foreshore bottom level",
                             "1"});
                 table14.AddRow(new string[] {
-                            "tanAvl",
+                            "Slope foreshore",
                             "0.009"});
                 table14.AddRow(new string[] {
                             "Outer toe",
@@ -747,25 +747,25 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Outer crest",
                             "30"});
 #line 115
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table14, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table14, "And ");
 #line hidden
 #line 123
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 124
-        testRunner.Then("the schadegetal is 0.26854724503160177", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 0.26854724503160177", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 10 - Negative time steps & adjusted hydraulischeBelastingen")]
-        public virtual void Testcase10_NegativeTimeStepsAdjustedHydraulischeBelastingen()
+        [NUnit.Framework.DescriptionAttribute("Testcase 10 - Negative time steps & adjusted hydraulic loads")]
+        public virtual void Testcase10_NegativeTimeStepsAdjustedHydraulicLoads()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 10 - Negative time steps & adjusted hydraulischeBelastingen", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 10 - Negative time steps & adjusted hydraulic loads", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 126
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -904,7 +904,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 147
-        testRunner.Then("the schadegetal is 8.587822405580951", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 8.587822405580951", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1086,19 +1086,19 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Position",
                             "15"});
                 table18.AddRow(new string[] {
-                            "bodemVoorlandZ",
+                            "Foreshore bottom level",
                             "0.5"});
                 table18.AddRow(new string[] {
-                            "tanAvl",
+                            "Slope foreshore",
                             "0.01"});
 #line 175
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table18, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table18, "And ");
 #line hidden
 #line 181
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 182
-        testRunner.Then("the schadegetal is 0.6219200388310531", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 0.6219200388310531", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1296,10 +1296,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Front velocity",
                             "1.2"});
                 table21.AddRow(new string[] {
-                            "bodemVoorlandZ",
+                            "Foreshore bottom level",
                             "-1"});
                 table21.AddRow(new string[] {
-                            "tanAvl",
+                            "Slope foreshore",
                             "0.008"});
                 table21.AddRow(new string[] {
                             "Critical cumulative overload",
@@ -1308,13 +1308,13 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Critical front velocity",
                             "5"});
 #line 210
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table21, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table21, "And ");
 #line hidden
 #line 224
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 225
-        testRunner.Then("the schadegetal is 41.84703315170409", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is 41.84703315170409", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1326,7 +1326,7 @@ namespace DiKErnel.SpecFlow.Test.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 13 - Robustness edge cases", @"    Remark: The timestep 36000 - 43200 results in a 0 for the representative wave run-up (2 percent) Z2% .
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 13 - Robustness edge cases", @"    Remark: The time step 36000 - 43200 results in a 0 for the representative wave run-up (2 percent) Z2% .
     This results in a division by zero due to the wave run up transition and the wave run up root mean square being
     both 0. Therefore, no result will be produced by the DiKErnel (NaN)", tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 227
@@ -1418,10 +1418,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Position",
                             "17.04343"});
                 table24.AddRow(new string[] {
-                            "bodemVoorlandZ",
+                            "Foreshore bottom level",
                             "-0.59999"});
                 table24.AddRow(new string[] {
-                            "tanAvl",
+                            "Slope foreshore",
                             "0.01111"});
                 table24.AddRow(new string[] {
                             "Initial damage",
@@ -1448,13 +1448,13 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "Critical front velocity",
                             "4.54434343"});
 #line 243
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table24, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table24, "And ");
 #line hidden
 #line 257
         testRunner.When("I run the grass wave run-up Battjes-Groenendijk analytical calculation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 258
-        testRunner.Then("the schadegetal is NaN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the damage is NaN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
