@@ -21,10 +21,10 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 50400     | 3.1         | 1.3             | 4.8              | 15              |
           | 54000     | 3           | 1               | 4.5              | 20              |
           | 57600     |             |                 |                  |                 |
-        And the following dijkprofiel and a dijkorientatie of 0:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | 0       | 1.0                   |
-          | 25       | 7.5     |                       |
+        And the following dike profile and a dike orientation of 0:
+          | X  | Z   | Roughness coefficient |
+          | 0  | 0   | 1.0                   |
+          | 25 | 7.5 |                       |
         And the following dike profile points:
           | Outer toe | Outer crest |
           | 0         | 25          |
@@ -93,11 +93,11 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 8 - Calculations with a berm
         Given the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | 0       | 0.85                  |
-          | 15       | 4       | 0.5                   |
-          | 20       | 4.1     | 0.95                  |
-          | 25       | 7.5     |                       |
+          | X  | Z   | Roughness coefficient |
+          | 0  | 0   | 0.85                  |
+          | 15 | 4   | 0.5                   |
+          | 20 | 4.1 | 0.95                  |
+          | 25 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
           | Setting        | Value |
           | dijkorientatie | 20    |
@@ -107,11 +107,11 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 9 - Calculations with a berm & adjusted foreshore properties
         Given the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | 0       | 0.7                   |
-          | 15       | 5       | 0.8                   |
-          | 20       | 5.1     | 1                     |
-          | 30       | 7.5     |                       |
+          | X  | Z   | Roughness coefficient |
+          | 0  | 0   | 0.7                   |
+          | 15 | 5   | 0.8                   |
+          | 20 | 5.1 | 1                     |
+          | 30 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
           | Setting        | Value |
           | dijkorientatie | 30    |
@@ -167,11 +167,11 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 43200     | 3           | 1               | 4.5              | 20              |
           | 50400     |             |                 |                  |                 |
         And the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | 0       | 0.85                  |
-          | 15       | 4       | 0.5                   |
-          | 20       | 4.1     | 0.95                  |
-          | 25       | 7.5     |                       |
+          | X  | Z   | Roughness coefficient |
+          | 0  | 0   | 0.85                  |
+          | 15 | 4   | 0.5                   |
+          | 20 | 4.1 | 0.95                  |
+          | 25 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
           | Setting        | Value |
           | dijkorientatie | 20    |
@@ -202,11 +202,11 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 43200     | 3           | 1               | 4.5              | 20              |
           | 50400     |             |                 |                  |                 |
         And the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | 0       | 0.85                  |
-          | 15       | 4       | 0.5                   |
-          | 20       | 4.1     | 0.95                  |
-          | 25       | 7.5     |                       |
+          | X  | Z   | Roughness coefficient |
+          | 0  | 0   | 0.85                  |
+          | 15 | 4   | 0.5                   |
+          | 20 | 4.1 | 0.95                  |
+          | 25 | 7.5 |                       |
         And the following rekeninstellingen are adjusted:
           | Setting                          | Value |
           | dijkorientatie                   | 20    |

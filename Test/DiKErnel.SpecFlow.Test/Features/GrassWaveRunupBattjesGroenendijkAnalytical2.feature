@@ -13,11 +13,11 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | Time step | Water level | Wave height Hm0 | Wave period Tm10 | Wave directions |
           | 0         | 0           | 1.5             | 4.20             | 0               |
           | 900       |             |                 |                  |                 |
-        And the following dijkprofiel and a dijkorientatie of 0:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | -10     | 1                     |
-          | 40       | 0       | 1                     |
-          | 80       | 10      |                       |
+        And the following dike profile and a dike orientation of 0:
+          | X  | Z   | Roughness coefficient |
+          | 0  | -10 | 1                     |
+          | 40 | 0   | 1                     |
+          | 80 | 10  |                       |
         And the following dike profile points:
           | Outer toe | Outer crest |
           | 0         | 80          |
@@ -50,10 +50,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     Scenario Outline: BM Gras benchmark 15 - Variable input of level of interest
 
         Given the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | -10.0   | 1.0                   |
-          | 30.56    | 0.0     | 1.0                   |
-          | 61.12    | 10.0    |                       |
+          | X     | Z     | Roughness coefficient |
+          | 0     | -10.0 | 1.0                   |
+          | 30.56 | 0.0   | 1.0                   |
+          | 61.12 | 10.0  |                       |
         And the following rekeninstellingen are adjusted:
           | Setting     | Value |
           | Outer toe   | 0     |
@@ -78,10 +78,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     This is why DiKErnel produces results for every situation. The validation of results is however performed by BM Gras.
 
         Given the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | -10.0   | 1.0                   |
-          | 30.56    | 0.0     | 1.0                   |
-          | 61.12    | 10.0    |                       |
+          | X     | Z     | Roughness coefficient |
+          | 0     | -10.0 | 1.0                   |
+          | 30.56 | 0.0   | 1.0                   |
+          | 61.12 | 10.0  |                       |
         And the following rekeninstellingen are adjusted:
           | Setting     | Value   |
           | positie     | 30.8656 |
@@ -109,10 +109,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     - When (water level - bodemVoorlandZ) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 
         Given the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | -10.0   | 1.0                   |
-          | 30.56    | 0.0     | 1.0                   |
-          | 61.12    | 10.0    |                       |
+          | X     | Z     | Roughness coefficient |
+          | 0     | -10.0 | 1.0                   |
+          | 30.56 | 0.0   | 1.0                   |
+          | 61.12 | 10.0  |                       |
         And the following rekeninstellingen are adjusted:
           | Setting     | Value   |
           | positie     | 30.8656 |
@@ -140,10 +140,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     - When (water level - bodemVoorlandZ) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 
         Given the following series are adjusted:
-          | posities | hoogten | ruwheidscoefficienten |
-          | 0        | -10.0   | 1.0                   |
-          | 30.56    | 0.0     | 1.0                   |
-          | 61.12    | 10.0    |                       |
+          | X     | Z     | Roughness coefficient |
+          | 0     | -10.0 | 1.0                   |
+          | 30.56 | 0.0   | 1.0                   |
+          | 61.12 | 10.0  |                       |
         And the following rekeninstellingen are adjusted:
           | Setting     | Value   |
           | positie     | 30.8656 |

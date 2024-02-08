@@ -48,9 +48,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string locationXCoordinateKey = "positie";
         private const string grassTopLayerTypeKey = "typeToplaag";
 
-        private const string xCoordinatesKey = "posities";
-        private const string zCoordinatesKey = "hoogten";
-        private const string roughnessCoefficientsKey = "ruwheidscoefficienten";
+        private const string xCoordinatesKey = "X";
+        private const string zCoordinatesKey = "Z";
+        private const string roughnessCoefficientsKey = "Roughness coefficient";
 
         private const string foreshoreSlopeKey = "tanAvl";
         private const string bottomZForeshoreKey = "bodemVoorlandZ";
@@ -74,7 +74,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             this.context = context;
         }
 
-        [Given(@"the following dijkprofiel and a dijkorientatie of (.*):")]
+        [Given(@"the following dike profile and a dike orientation of (.*):")]
         public void GivenTheFollowingDikeProfile(string dikeOrientation, Table table)
         {
             context[dikeOrientationKey] = dikeOrientation;

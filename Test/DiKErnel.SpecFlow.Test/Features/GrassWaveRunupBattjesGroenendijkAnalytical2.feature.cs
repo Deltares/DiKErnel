@@ -106,9 +106,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.Given("the following time steps and hydraulic loads:", ((string)(null)), table25, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
-                        "posities",
-                        "hoogten",
-                        "ruwheidscoefficienten"});
+                        "X",
+                        "Z",
+                        "Roughness coefficient"});
             table26.AddRow(new string[] {
                         "0",
                         "-10",
@@ -122,7 +122,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                         "10",
                         ""});
 #line 16
-        testRunner.And("the following dijkprofiel and a dijkorientatie of 0:", ((string)(null)), table26, "And ");
+        testRunner.And("the following dike profile and a dike orientation of 0:", ((string)(null)), table26, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                         "Outer toe",
@@ -267,9 +267,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table29.AddRow(new string[] {
                             "0",
                             "-10.0",
@@ -355,9 +355,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table31.AddRow(new string[] {
                             "0",
                             "-10.0",
@@ -447,9 +447,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table33.AddRow(new string[] {
                             "0",
                             "-10.0",
@@ -540,9 +540,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table35.AddRow(new string[] {
                             "0",
                             "-10.0",

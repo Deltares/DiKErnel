@@ -190,9 +190,9 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following time steps and hydraulic loads:", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "posities",
-                        "hoogten",
-                        "ruwheidscoefficienten"});
+                        "X",
+                        "Z",
+                        "Roughness coefficient"});
             table2.AddRow(new string[] {
                         "0",
                         "0",
@@ -202,7 +202,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "7.5",
                         ""});
 #line 24
-        testRunner.And("the following dijkprofiel and a dijkorientatie of 0:", ((string)(null)), table2, "And ");
+        testRunner.And("the following dike profile and a dike orientation of 0:", ((string)(null)), table2, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Outer toe",
@@ -628,9 +628,9 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table11.AddRow(new string[] {
                             "0",
                             "0",
@@ -703,9 +703,9 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table13.AddRow(new string[] {
                             "0",
                             "0",
@@ -1054,9 +1054,9 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following series are adjusted:", ((string)(null)), table16, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table17.AddRow(new string[] {
                             "0",
                             "0",
@@ -1246,9 +1246,9 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.Given("the following series are adjusted:", ((string)(null)), table19, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
-                            "posities",
-                            "hoogten",
-                            "ruwheidscoefficienten"});
+                            "X",
+                            "Z",
+                            "Roughness coefficient"});
                 table20.AddRow(new string[] {
                             "0",
                             "0",
