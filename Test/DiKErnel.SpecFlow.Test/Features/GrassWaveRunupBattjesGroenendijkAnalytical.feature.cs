@@ -205,13 +205,13 @@ namespace DiKErnel.SpecFlow.Test.Features
         testRunner.And("the following dijkprofiel and a dijkorientatie of 0:", ((string)(null)), table2, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "teenBuitenzijde",
-                        "kruinBuitenzijde"});
+                        "Outer toe",
+                        "Outer crest"});
             table3.AddRow(new string[] {
                         "0",
                         "25"});
 #line 28
-        testRunner.And("the following karakteristiekePunten:", ((string)(null)), table3, "And ");
+        testRunner.And("the following dike profile points:", ((string)(null)), table3, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Setting",
@@ -741,10 +741,10 @@ namespace DiKErnel.SpecFlow.Test.Features
                             "tanAvl",
                             "0.009"});
                 table14.AddRow(new string[] {
-                            "teenBuitenzijde",
+                            "Outer toe",
                             "0"});
                 table14.AddRow(new string[] {
-                            "kruinBuitenzijde",
+                            "Outer crest",
                             "30"});
 #line 115
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table14, "And ");

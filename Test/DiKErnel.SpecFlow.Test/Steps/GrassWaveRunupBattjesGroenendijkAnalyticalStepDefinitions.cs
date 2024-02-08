@@ -42,8 +42,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string waveDirectionsKey = "wave directions";
 
         private const string dikeOrientationKey = "dijkorientatie";
-        private const string outerToePositionKey = "teenBuitenzijde";
-        private const string outerCrestPositionKey = "kruinBuitenzijde";
+        private const string outerToePositionKey = "Outer toe";
+        private const string outerCrestPositionKey = "Outer crest";
 
         private const string locationXCoordinateKey = "positie";
         private const string grassTopLayerTypeKey = "typeToplaag";
@@ -94,7 +94,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        [Given(@"the following karakteristiekePunten:")]
+        [Given(@"the following dike profile points:")]
         public void GivenTheFollowingValuesAreAdjusted(Table table)
         {
             foreach (string property in table.Header)

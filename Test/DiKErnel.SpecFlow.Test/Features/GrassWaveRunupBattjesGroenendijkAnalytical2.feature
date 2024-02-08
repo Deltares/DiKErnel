@@ -10,17 +10,17 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 
     Background:
         Given the following time steps and hydraulic loads:
-          | time step | water level  | wave height Hm0 | wave period Tm10 | wave directions |
-          | 0         | 0            | 1.5             | 4.20             | 0               |
-          | 900       |              |                 |                  |                 |
+          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | 0         | 0           | 1.5             | 4.20             | 0               |
+          | 900       |             |                 |                  |                 |
         And the following dijkprofiel and a dijkorientatie of 0:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | -10     | 1                     |
           | 40       | 0       | 1                     |
           | 80       | 10      |                       |
-        And the following karakteristiekePunten:
-          | teenBuitenzijde | kruinBuitenzijde |
-          | 0               | 80               |
+        And the following dike profile points:
+          | Outer toe | Outer crest |
+          | 0         | 80          |
         And the following rekeninstellingen:
           | Setting                         | Value            |
           | positie                         | 40.4             |
@@ -55,9 +55,9 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting          | Value |
-          | teenBuitenzijde  | 0     |
-          | kruinBuitenzijde | 61.12 |
+          | Setting     | Value |
+          | Outer toe   | 0     |
+          | Outer crest | 61.12 |
         When I change the property positie to a value of <positie>
         And I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the output values for <schadegetal> and <cumulatieveOverbelastingTijdstap> are
@@ -83,10 +83,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting          | Value           |
-          | positie          | 30.8656         |
-          | teenBuitenzijde  | 0               |
-          | kruinBuitenzijde | 61.12           |
+          | Setting     | Value   |
+          | positie     | 30.8656 |
+          | Outer toe   | 0       |
+          | Outer crest | 61.12   |
         When I change the property tanAvl to a value of <tanAvl>
         And I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the output values for <schadegetal> and <cumulatieveOverbelastingTijdstap> are
@@ -114,10 +114,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting          | Value   |
-          | positie          | 30.8656 |
-          | teenBuitenzijde  | 0       |
-          | kruinBuitenzijde | 61.12   |
+          | Setting     | Value   |
+          | positie     | 30.8656 |
+          | Outer toe   | 0       |
+          | Outer crest | 61.12   |
         When I change the property bodemVoorlandZ to a value of <bodemVoorlandZ>
         And I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the output values for <schadegetal> and <cumulatieveOverbelastingTijdstap> are
@@ -145,10 +145,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
         And the following rekeninstellingen are adjusted:
-          | Setting          | Value   |
-          | positie          | 30.8656 |
-          | teenBuitenzijde  | 0       |
-          | kruinBuitenzijde | 61.12   |
+          | Setting     | Value   |
+          | positie     | 30.8656 |
+          | Outer toe   | 0       |
+          | Outer crest | 61.12   |
         When I change the property bodemVoorlandZ to a value of <bodemVoorlandZ>
         And I change the property kritiekeCumulatieveOverbelasting to a value of <kritiekeCumulatieveOverbelasting>
         And I run the grass wave run-up Battjes-Groenendijk analytical calculation

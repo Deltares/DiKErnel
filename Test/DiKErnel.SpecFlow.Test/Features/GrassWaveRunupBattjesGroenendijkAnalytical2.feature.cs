@@ -125,13 +125,13 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         testRunner.And("the following dijkprofiel and a dijkorientatie of 0:", ((string)(null)), table26, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
-                        "teenBuitenzijde",
-                        "kruinBuitenzijde"});
+                        "Outer toe",
+                        "Outer crest"});
             table27.AddRow(new string[] {
                         "0",
                         "80"});
 #line 21
-        testRunner.And("the following karakteristiekePunten:", ((string)(null)), table27, "And ");
+        testRunner.And("the following dike profile points:", ((string)(null)), table27, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
                         "Setting",
@@ -289,10 +289,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "Setting",
                             "Value"});
                 table30.AddRow(new string[] {
-                            "teenBuitenzijde",
+                            "Outer toe",
                             "0"});
                 table30.AddRow(new string[] {
-                            "kruinBuitenzijde",
+                            "Outer crest",
                             "61.12"});
 #line 57
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table30, "And ");
@@ -380,10 +380,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "positie",
                             "30.8656"});
                 table32.AddRow(new string[] {
-                            "teenBuitenzijde",
+                            "Outer toe",
                             "0"});
                 table32.AddRow(new string[] {
-                            "kruinBuitenzijde",
+                            "Outer crest",
                             "61.12"});
 #line 85
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table32, "And ");
@@ -472,10 +472,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "positie",
                             "30.8656"});
                 table34.AddRow(new string[] {
-                            "teenBuitenzijde",
+                            "Outer toe",
                             "0"});
                 table34.AddRow(new string[] {
-                            "kruinBuitenzijde",
+                            "Outer crest",
                             "61.12"});
 #line 116
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table34, "And ");
@@ -565,10 +565,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                             "positie",
                             "30.8656"});
                 table36.AddRow(new string[] {
-                            "teenBuitenzijde",
+                            "Outer toe",
                             "0"});
                 table36.AddRow(new string[] {
-                            "kruinBuitenzijde",
+                            "Outer crest",
                             "61.12"});
 #line 147
         testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table36, "And ");
