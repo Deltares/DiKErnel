@@ -96,7 +96,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             AddForeshore(builder);
             AddLocation(builder);
 
-            DataResult<ICalculationInput>? result = builder.Build();
+            DataResult<ICalculationInput> result = builder.Build();
             var calculator = new Calculator(result.Data);
             calculator.WaitForCompletion();
 
@@ -121,9 +121,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
         }
 
         [Then(@"the schadegetal is (.*)")]
-        public void ThenTheSchadegetalIs(decimal expectedDamage)
+        public void ThenTheSchadegetalIs(double expectedDamage)
         {
-            IReadOnlyList<double>? damages = outputs[0].GetDamages();
+            IReadOnlyList<double> damages = outputs[0].GetDamages();
             double actualDamage = damages[damages.Count - 1];
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
         }
@@ -142,7 +142,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             Assert.That(cumulativeOverLoadOutputs[cumulativeOverLoadOutputs.Length - 1].CumulativeOverload,
                         Is.EqualTo(expectedCumulativeOverload).Within(tolerance));
 
-            IReadOnlyList<double>? damages = outputs[0].GetDamages();
+            IReadOnlyList<double> damages = outputs[0].GetDamages();
             double actualDamage = damages[damages.Count - 1];
 
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));

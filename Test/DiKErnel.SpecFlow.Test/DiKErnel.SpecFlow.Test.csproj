@@ -2,10 +2,6 @@
 
     <Import Project="$(SolutionDir)Development\Test.targets"/>
 
-    <PropertyGroup>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57"/>
