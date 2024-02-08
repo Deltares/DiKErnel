@@ -107,7 +107,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
 
     Remarks:
     - In BM Gras the value of water depth (water level - Foreshore bottom level) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - Foreshore bottom level) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
+    - When (water level - Foreshore bottom level) equals to 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.
 
         Given the following series are adjusted:
           | X     | Z     | Roughness coefficient |
