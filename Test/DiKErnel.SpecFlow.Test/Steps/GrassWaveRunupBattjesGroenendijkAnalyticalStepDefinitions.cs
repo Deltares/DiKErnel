@@ -125,6 +125,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 context[property] = table.Rows[0].GetString(property);
             }
         }
+
+        [Given(@"the following rekeninstellingen:")]
+        [Given(@"the following (?:(?!series).)* are adjusted:")]
+        public void GivenTheFollowingCalculationSettingsAreAdjusted(Table table)
+        {
+            foreach (TableRow row in table.Rows)
+            {
+                context[row.Id()] = row.Value();
+            }
         }
 
         [Then(@"the schadegetal is (.*)")]
