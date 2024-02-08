@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
+using MathNet.Numerics;
 
 namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 {
@@ -42,9 +43,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         private static double IntegralPart1(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
         {
             double parameterRayleigh = ParameterRayleigh(input.RepresentativeWaveRunup2P);
+            double parameterX0 = double.NaN;
 
             return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.AccelerationAlphaA, 2) *
-                   Math.Pow(input.FrontVelocityCwo, 2) * input.GravitationalAcceleration * parameterRayleigh;
+                   Math.Pow(input.FrontVelocityCwo, 2) * input.GravitationalAcceleration * parameterRayleigh *
+                   (Math.Sqrt(Math.PI / 2) + Math.Sqrt(2) * parameterX0 * Math.Exp(-Math.Pow(parameterX0, 2)) -
+                    Math.Sqrt(Math.PI / 2) * SpecialFunctions.Erf(parameterX0));
         }
 
         private static double ParameterRayleigh(double representativeWaveRunup2P)
