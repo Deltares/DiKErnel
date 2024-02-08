@@ -107,7 +107,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following series are adjusted:")]
         public void GivenTheFollowingCollectionsAreAdjusted(Table table)
         {
-            SetCollectionValues(table);
+            foreach (string property in table.Header)
+            {
+                context[property] = table.Rows.Select(r => r.GetString(property)).ToArray();
+            }
         }
 
         [Given(@"the following karakteristiekePunten:")]
@@ -117,7 +120,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following values are adjusted:")]
         public void GivenTheFollowingValuesAreAdjusted(Table table)
         {
-            SetPropertyValues(table);
+            foreach (string property in table.Header)
+            {
+                context[property] = table.Rows[0].GetString(property);
+            }
+        }
         }
 
         [Then(@"the schadegetal is (.*)")]
@@ -146,22 +153,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
             double actualDamage = damages[damages.Count - 1];
 
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
-        }
-
-        private void SetCollectionValues(Table table)
-        {
-            foreach (string property in table.Header)
-            {
-                context[property] = table.Rows.Select(r => r.GetString(property)).ToArray();
-            }
-        }
-
-        private void SetPropertyValues(Table table)
-        {
-            foreach (string property in table.Header)
-            {
-                context[property] = table.Rows[0].GetString(property);
-            }
         }
 
         private GrassTopLayerType GetGrassTopLayerType(string id)
