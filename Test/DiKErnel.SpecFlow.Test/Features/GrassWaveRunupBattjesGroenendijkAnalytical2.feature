@@ -21,13 +21,18 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
         And the following karakteristiekePunten:
           | teenBuitenzijde | kruinBuitenzijde |
           | 0               | 80               |
-
-        And the following locaties:
-          | positie | typeToplaag      | beginschade | verhogingBelastingOvergangAlfaM | verlagingSterkteOvergangAlfaS |
-          | 40.4    | grasGeslotenZode | 0           | 1                               | 1                             |
-        And the following rekenmethoden:
-          | faalgetal | factorCtm | frontsnelheid | bodemVoorlandZ | tanAvl | typeToplaag      |
-          | 1         | 3.85      | 1.10          | -3             | 0.004  | grasGeslotenZode |
+        And the following rekeninstellingen:
+          | Setting                         | Value            |
+          | positie                         | 40.4             |
+          | typeToplaag                     | grasGeslotenZode |
+          | beginSchade                     | 0                |
+          | verhogingBelastingOvergangAlfaM | 1                |
+          | verlagingSterkteOvergangAlfaS   | 1                |
+          | faalgetal                       | 1                |
+          | factorCtm                       | 3.85             |
+          | frontsnelheid                   | 1.10             |
+          | bodemVoorlandZ                  | -3.0             |
+          | tanAvl                          | 0.004            |
 
     Scenario Outline: BM Gras benchmark 14 - Variable input of critical velocity
         When I change the property kritiekeFrontsnelheid to a value of <kritiekeFrontsnelheid>
@@ -49,9 +54,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 0        | -10.0   | 1.0                   |
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
-        And the following values are adjusted:
-          | teenBuitenzijde | kruinBuitenzijde |
-          | 0               | 61.12            |
+        And the following rekeninstellingen are adjusted:
+          | Setting          | Value |
+          | teenBuitenzijde  | 0     |
+          | kruinBuitenzijde | 61.12 |
         When I change the property positie to a value of <positie>
         And I run the Battjes-Groenendijk Wave Runup Calculation
         Then the output values for <schadegetal> and <cumulatieveOverbelastingTijdstap> are
@@ -76,9 +82,11 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 0        | -10.0   | 1.0                   |
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
-        And the following values are adjusted:
-          | positie | teenBuitenzijde | kruinBuitenzijde |
-          | 30.8656 | 0               | 61.12            |
+        And the following rekeninstellingen are adjusted:
+          | Setting          | Value           |
+          | positie          | 30.8656         |
+          | teenBuitenzijde  | 0               |
+          | kruinBuitenzijde | 61.12           |
         When I change the property tanAvl to a value of <tanAvl>
         And I run the Battjes-Groenendijk Wave Runup Calculation
         Then the output values for <schadegetal> and <cumulatieveOverbelastingTijdstap> are
@@ -105,9 +113,11 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 0        | -10.0   | 1.0                   |
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
-        And the following values are adjusted:
-          | positie | teenBuitenzijde | kruinBuitenzijde |
-          | 30.8656 | 0               | 61.12            |
+        And the following rekeninstellingen are adjusted:
+          | Setting          | Value   |
+          | positie          | 30.8656 |
+          | teenBuitenzijde  | 0       |
+          | kruinBuitenzijde | 61.12   |
         When I change the property bodemVoorlandZ to a value of <bodemVoorlandZ>
         And I run the Battjes-Groenendijk Wave Runup Calculation
         Then the output values for <schadegetal> and <cumulatieveOverbelastingTijdstap> are
@@ -134,9 +144,11 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
           | 0        | -10.0   | 1.0                   |
           | 30.56    | 0.0     | 1.0                   |
           | 61.12    | 10.0    |                       |
-        And the following values are adjusted:
-          | positie | teenBuitenzijde | kruinBuitenzijde |
-          | 30.8656 | 0               | 61.12            |
+        And the following rekeninstellingen are adjusted:
+          | Setting          | Value   |
+          | positie          | 30.8656 |
+          | teenBuitenzijde  | 0       |
+          | kruinBuitenzijde | 61.12   |
         When I change the property bodemVoorlandZ to a value of <bodemVoorlandZ>
         And I change the property kritiekeCumulatieveOverbelasting to a value of <kritiekeCumulatieveOverbelasting>
         And I run the Battjes-Groenendijk Wave Runup Calculation
