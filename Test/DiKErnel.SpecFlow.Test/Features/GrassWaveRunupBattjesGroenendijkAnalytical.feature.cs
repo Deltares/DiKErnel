@@ -79,11 +79,11 @@ namespace DiKErnel.SpecFlow.Test.Features
 #line 4
     #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "tijdstippen",
-                        "waterstanden",
-                        "golfhoogtenHm0",
-                        "golfperiodenTm10",
-                        "golfrichtingen"});
+                        "time step",
+                        "water level",
+                        "wave height Hm0",
+                        "wave period Tm10",
+                        "wave directions"});
             table1.AddRow(new string[] {
                         "0",
                         "3",
@@ -187,7 +187,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "",
                         ""});
 #line 5
-        testRunner.Given("the following tijdstippen and hydraulischeBelastingen:", ((string)(null)), table1, "Given ");
+        testRunner.Given("the following time steps and hydraulic loads:", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "posities",
@@ -760,12 +760,12 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 10 - Negative tijdstippen & adjusted hydraulischeBelastingen")]
-        public virtual void Testcase10_NegativeTijdstippenAdjustedHydraulischeBelastingen()
+        [NUnit.Framework.DescriptionAttribute("Testcase 10 - Negative time steps & adjusted hydraulischeBelastingen")]
+        public virtual void Testcase10_NegativeTimeStepsAdjustedHydraulischeBelastingen()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 10 - Negative tijdstippen & adjusted hydraulischeBelastingen", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 10 - Negative time steps & adjusted hydraulischeBelastingen", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 126
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -790,11 +790,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
-                            "tijdstippen",
-                            "waterstanden",
-                            "golfhoogtenHm0",
-                            "golfperiodenTm10",
-                            "golfrichtingen"});
+                            "time step",
+                            "water level",
+                            "wave height Hm0",
+                            "wave period Tm10",
+                            "wave directions"});
                 table15.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -911,14 +911,14 @@ namespace DiKErnel.SpecFlow.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Testcase 11 - Negative tijdstippen & adjusted hydraulischeBelastingen, dike profi" +
-            "le properties (berm), foreshore properties")]
-        public virtual void Testcase11_NegativeTijdstippenAdjustedHydraulischeBelastingenDikeProfilePropertiesBermForeshoreProperties()
+        [NUnit.Framework.DescriptionAttribute("Testcase 11 - Negative time steps & adjusted hydraulic loads, dike profile proper" +
+            "ties (berm), foreshore properties")]
+        public virtual void Testcase11_NegativeTimeStepsAdjustedHydraulicLoadsDikeProfilePropertiesBermForeshoreProperties()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 11 - Negative tijdstippen & adjusted hydraulischeBelastingen, dike profi" +
-                    "le properties (berm), foreshore properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Testcase 11 - Negative time steps & adjusted hydraulic loads, dike profile proper" +
+                    "ties (berm), foreshore properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 149
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -943,11 +943,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
-                            "tijdstippen",
-                            "waterstanden",
-                            "golfhoogtenHm0",
-                            "golfperiodenTm10",
-                            "golfrichtingen"});
+                            "time step",
+                            "water level",
+                            "wave height Hm0",
+                            "wave period Tm10",
+                            "wave directions"});
                 table16.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -1135,11 +1135,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
-                            "tijdstippen",
-                            "waterstanden",
-                            "golfhoogtenHm0",
-                            "golfperiodenTm10",
-                            "golfrichtingen"});
+                            "time step",
+                            "water level",
+                            "wave height Hm0",
+                            "wave period Tm10",
+                            "wave directions"});
                 table19.AddRow(new string[] {
                             "-6840",
                             "3.5",
@@ -1353,11 +1353,11 @@ namespace DiKErnel.SpecFlow.Test.Features
     this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
-                            "tijdstippen",
-                            "waterstanden",
-                            "golfhoogtenHm0",
-                            "golfperiodenTm10",
-                            "golfrichtingen"});
+                            "time step",
+                            "water level",
+                            "wave height Hm0",
+                            "wave period Tm10",
+                            "wave directions"});
                 table22.AddRow(new string[] {
                             "-6840",
                             "3.53232",

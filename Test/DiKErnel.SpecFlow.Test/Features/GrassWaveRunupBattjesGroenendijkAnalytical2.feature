@@ -9,10 +9,10 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 - BM Gras is a user interface and performs validation of input parameters. This is not the case in DiKErnel.
 
     Background:
-        Given the following tijdstippen and hydraulischeBelastingen:
-          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | 0           | 0            | 1.5            | 4.20             | 0              |
-          | 900         |              |                |                  |                |
+        Given the following time steps and hydraulic loads:
+          | time step | water level  | wave height Hm0 | wave period Tm10 | wave directions |
+          | 0         | 0            | 1.5             | 4.20             | 0               |
+          | 900       |              |                 |                  |                 |
         And the following dijkprofiel and a dijkorientatie of 0:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | -10     | 1                     |

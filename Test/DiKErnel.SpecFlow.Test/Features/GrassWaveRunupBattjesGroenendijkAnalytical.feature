@@ -2,25 +2,25 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 As a user I want to perform grass wave run-up calculations based on Battjes-Groenendijk analytical.
 
     Background:
-        Given the following tijdstippen and hydraulischeBelastingen:
-          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | 0           | 3            | 0.5            | 3                | 50             |
-          | 3600        | 3.1          | 0.7            | 3.5              | 45             |
-          | 7200        | 3.2          | 1              | 4                | 40             |
-          | 10800       | 3.3          | 1.3            | 4.3              | 35             |
-          | 14400       | 3.4          | 1.5            | 4.5              | 30             |
-          | 18000       | 3.5          | 1.8            | 4.8              | 25             |
-          | 21600       | 3.6          | 2.1            | 5.2              | 20             |
-          | 25200       | 3.7          | 2.5            | 5.5              | 15             |
-          | 28800       | 3.7          | 2.8            | 5.8              | 10             |
-          | 32400       | 3.6          | 2.8            | 6                | 5              |
-          | 36000       | 3.5          | 2.5            | 6                | 0              |
-          | 39600       | 3.4          | 2.1            | 5.8              | 0              |
-          | 43200       | 3.3          | 1.8            | 5.5              | 5              |
-          | 46800       | 3.2          | 1.5            | 5.2              | 10             |
-          | 50400       | 3.1          | 1.3            | 4.8              | 15             |
-          | 54000       | 3            | 1              | 4.5              | 20             |
-          | 57600       |              |                |                  |                |
+        Given the following time steps and hydraulic loads:
+          | time step | water level | wave height Hm0 | wave period Tm10 | wave directions |
+          | 0         | 3           | 0.5             | 3                | 50              |
+          | 3600      | 3.1         | 0.7             | 3.5              | 45              |
+          | 7200      | 3.2         | 1               | 4                | 40              |
+          | 10800     | 3.3         | 1.3             | 4.3              | 35              |
+          | 14400     | 3.4         | 1.5             | 4.5              | 30              |
+          | 18000     | 3.5         | 1.8             | 4.8              | 25              |
+          | 21600     | 3.6         | 2.1             | 5.2              | 20              |
+          | 25200     | 3.7         | 2.5             | 5.5              | 15              |
+          | 28800     | 3.7         | 2.8             | 5.8              | 10              |
+          | 32400     | 3.6         | 2.8             | 6                | 5               |
+          | 36000     | 3.5         | 2.5             | 6                | 0               |
+          | 39600     | 3.4         | 2.1             | 5.8              | 0               |
+          | 43200     | 3.3         | 1.8             | 5.5              | 5               |
+          | 46800     | 3.2         | 1.5             | 5.2              | 10              |
+          | 50400     | 3.1         | 1.3             | 4.8              | 15              |
+          | 54000     | 3           | 1               | 4.5              | 20              |
+          | 57600     |             |                 |                  |                 |
         And the following dijkprofiel and a dijkorientatie of 0:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 1.0                   |
@@ -123,49 +123,49 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 0.26854724503160177
 
-    Scenario: Testcase 10 - Negative tijdstippen & adjusted hydraulischeBelastingen
+    Scenario: Testcase 10 - Negative time steps & adjusted hydraulischeBelastingen
         Given the following series are adjusted:
-          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | -6840       | 3.5          | 2.4            | 4                | 20             |
-          | -6120       | 3.6          | 2.5            | 4.2              | 20             |
-          | -5040       | 3.7          | 2.7            | 4.4              | 20             |
-          | -3600       | 3.8          | 2.8            | 4.5              | 20             |
-          | -1800       | 3.9          | 2.9            | 4.8              | 20             |
-          | 360         | 3.95         | 3              | 5                | 20             |
-          | 2880        | 4            | 2.9            | 5.2              | 20             |
-          | 5760        | 3.95         | 2.9            | 5.5              | 15             |
-          | 9000        | 3.8          | 2.8            | 5.8              | 10             |
-          | 12600       | 3.6          | 2.8            | 6                | 5              |
-          | 16560       | 3.5          | 2.5            | 6                | 0              |
-          | 20880       | 3.4          | 2.1            | 5.8              | 0              |
-          | 25560       | 3.3          | 1.8            | 5.5              | 5              |
-          | 30600       | 3.2          | 1.5            | 5.2              | 10             |
-          | 36000       | 3.1          | 1.3            | 4.8              | 15             |
-          | 43200       | 3            | 1              | 4.5              | 20             |
-          | 50400       |              |                |                  |                |
+          | time step | water level  | wave height Hm0 | wave period Tm10 | wave directions |
+          | -6840     | 3.5          | 2.4             | 4                | 20              |
+          | -6120     | 3.6          | 2.5             | 4.2              | 20              |
+          | -5040     | 3.7          | 2.7             | 4.4              | 20              |
+          | -3600     | 3.8          | 2.8             | 4.5              | 20              |
+          | -1800     | 3.9          | 2.9             | 4.8              | 20              |
+          | 360       | 3.95         | 3               | 5                | 20              |
+          | 2880      | 4            | 2.9             | 5.2              | 20              |
+          | 5760      | 3.95         | 2.9             | 5.5              | 15              |
+          | 9000      | 3.8          | 2.8             | 5.8              | 10              |
+          | 12600     | 3.6          | 2.8             | 6                | 5               |
+          | 16560     | 3.5          | 2.5             | 6                | 0               |
+          | 20880     | 3.4          | 2.1             | 5.8              | 0               |
+          | 25560     | 3.3          | 1.8             | 5.5              | 5               |
+          | 30600     | 3.2          | 1.5             | 5.2              | 10              |
+          | 36000     | 3.1          | 1.3             | 4.8              | 15              |
+          | 43200     | 3            | 1               | 4.5              | 20              |
+          | 50400     |              |                 |                  |                 |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the schadegetal is 8.587822405580951
 
-    Scenario: Testcase 11 - Negative tijdstippen & adjusted hydraulischeBelastingen, dike profile properties (berm), foreshore properties
+    Scenario: Testcase 11 - Negative time steps & adjusted hydraulic loads, dike profile properties (berm), foreshore properties
         Given the following series are adjusted:
-          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | -6840       | 3.5          | 2.4            | 4                | 20             |
-          | -6120       | 3.6          | 2.5            | 4.2              | 20             |
-          | -5040       | 3.7          | 2.7            | 4.4              | 20             |
-          | -3600       | 3.8          | 2.8            | 4.5              | 20             |
-          | -1800       | 3.9          | 2.9            | 4.8              | 20             |
-          | 360         | 3.95         | 3              | 5                | 20             |
-          | 2880        | 4            | 2.9            | 5.2              | 20             |
-          | 5760        | 3.95         | 2.9            | 5.5              | 15             |
-          | 9000        | 3.8          | 2.8            | 5.8              | 10             |
-          | 12600       | 3.6          | 2.8            | 6                | 5              |
-          | 16560       | 3.5          | 2.5            | 6                | 0              |
-          | 20880       | 3.4          | 2.1            | 5.8              | 0              |
-          | 25560       | 3.3          | 1.8            | 5.5              | 5              |
-          | 30600       | 3.2          | 1.5            | 5.2              | 10             |
-          | 36000       | 3.1          | 1.3            | 4.8              | 15             |
-          | 43200       | 3            | 1              | 4.5              | 20             |
-          | 50400       |              |                |                  |                |
+          | time step | water level  | wave height Hm0 | wave period Tm10 | wave directions |
+          | -6840     | 3.5          | 2.4             | 4                | 20              |
+          | -6120     | 3.6          | 2.5             | 4.2              | 20              |
+          | -5040     | 3.7          | 2.7             | 4.4              | 20              |
+          | -3600     | 3.8          | 2.8             | 4.5              | 20              |
+          | -1800     | 3.9          | 2.9             | 4.8              | 20              |
+          | 360       | 3.95         | 3               | 5                | 20              |
+          | 2880      | 4            | 2.9             | 5.2              | 20              |
+          | 5760      | 3.95         | 2.9             | 5.5              | 15              |
+          | 9000      | 3.8          | 2.8             | 5.8              | 10              |
+          | 12600     | 3.6          | 2.8             | 6                | 5               |
+          | 16560     | 3.5          | 2.5             | 6                | 0               |
+          | 20880     | 3.4          | 2.1             | 5.8              | 0               |
+          | 25560     | 3.3          | 1.8             | 5.5              | 5               |
+          | 30600     | 3.2          | 1.5             | 5.2              | 10              |
+          | 36000     | 3.1          | 1.3             | 4.8              | 15              |
+          | 43200     | 3            | 1               | 4.5              | 20              |
+          | 50400     |              |                 |                  |                 |
         And the following series are adjusted:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 0.85                  |
@@ -183,24 +183,24 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
     Scenario: Testcase 12 - All properties adjusted
         Given the following series are adjusted:
-          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | -6840       | 3.5          | 2.4            | 4                | 20             |
-          | -6120       | 3.6          | 2.5            | 4.2              | 20             |
-          | -5040       | 3.7          | 2.7            | 4.4              | 20             |
-          | -3600       | 3.8          | 2.8            | 4.5              | 20             |
-          | -1800       | 3.9          | 2.9            | 4.8              | 20             |
-          | 360         | 3.95         | 3              | 5                | 20             |
-          | 2880        | 4            | 2.9            | 5.2              | 20             |
-          | 5760        | 3.95         | 2.9            | 5.5              | 15             |
-          | 9000        | 3.8          | 2.8            | 5.8              | 10             |
-          | 12600       | 3.6          | 2.8            | 6                | 5              |
-          | 16560       | 3.5          | 2.5            | 6                | 0              |
-          | 20880       | 3.4          | 2.1            | 5.8              | 0              |
-          | 25560       | 3.3          | 1.8            | 5.5              | 5              |
-          | 30600       | 3.2          | 1.5            | 5.2              | 10             |
-          | 36000       | 3.1          | 1.3            | 4.8              | 15             |
-          | 43200       | 3            | 1              | 4.5              | 20             |
-          | 50400       |              |                |                  |                |
+          | time step | water level  | wave height Hm0 | wave period Tm10 | wave directions |
+          | -6840     | 3.5          | 2.4             | 4                | 20              |
+          | -6120     | 3.6          | 2.5             | 4.2              | 20              |
+          | -5040     | 3.7          | 2.7             | 4.4              | 20              |
+          | -3600     | 3.8          | 2.8             | 4.5              | 20              |
+          | -1800     | 3.9          | 2.9             | 4.8              | 20              |
+          | 360       | 3.95         | 3               | 5                | 20              |
+          | 2880      | 4            | 2.9             | 5.2              | 20              |
+          | 5760      | 3.95         | 2.9             | 5.5              | 15              |
+          | 9000      | 3.8          | 2.8             | 5.8              | 10              |
+          | 12600     | 3.6          | 2.8             | 6                | 5               |
+          | 16560     | 3.5          | 2.5             | 6                | 0               |
+          | 20880     | 3.4          | 2.1             | 5.8              | 0               |
+          | 25560     | 3.3          | 1.8             | 5.5              | 5               |
+          | 30600     | 3.2          | 1.5             | 5.2              | 10              |
+          | 36000     | 3.1          | 1.3             | 4.8              | 15              |
+          | 43200     | 3            | 1               | 4.5              | 20              |
+          | 50400     |              |                 |                  |                 |
         And the following series are adjusted:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 0.85                  |
@@ -229,11 +229,11 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
     due to the wave run up transition and the wave run up root mean square being both 0. Therefore, no result will be
     produced by the DiKErnel (NaN)
         Given the following series are adjusted:
-          | tijdstippen | waterstanden | golfhoogtenHm0 | golfperiodenTm10 | golfrichtingen |
-          | -6840       | 3.53232      | 2.443434       | 4.132323         | 200.434343     |
-          | 36000       | 3.19999      | 1.3            | 4.83             | 15.9999        |
-          | 43200       | 7.5          | 1.1111         | 4.51111          | 20.43434       |
-          | 50400       |              |                |                  |                |
+          | time step | water level  | wave height Hm0 | wave period Tm10 | wave directions |
+          | -6840     | 3.53232      | 2.443434        | 4.132323         | 200.434343      |
+          | 36000     | 3.19999      | 1.3             | 4.83             | 15.9999         |
+          | 43200     | 7.5          | 1.1111          | 4.51111          | 20.43434        |
+          | 50400     |              |                 |                  |                 |
         And the following series are adjusted:
           | posities | hoogten | ruwheidscoefficienten |
           | 0        | 0       | 0.859999              |

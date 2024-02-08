@@ -35,11 +35,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
     [Binding]
     public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions
     {
-        private const string timesKey = "tijdstippen";
-        private const string waterLevelsKey = "waterstanden";
-        private const string waveHeightsHm0Key = "golfhoogtenHm0";
-        private const string wavePeriodsTm10Key = "golfperiodenTm10";
-        private const string waveDirectionsKey = "golfrichtingen";
+        private const string timeStepsKey = "time step";
+        private const string waterLevelsKey = "water level";
+        private const string waveHeightsHm0Key = "wave height Hm0";
+        private const string wavePeriodsTm10Key = "wave period Tm10";
+        private const string waveDirectionsKey = "wave directions";
 
         private const string dikeOrientationKey = "dijkorientatie";
         private const string outerToePositionKey = "teenBuitenzijde";
@@ -84,7 +84,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             context[roughnessCoefficientsKey] = table.Rows.Select(row => row.GetString(roughnessCoefficientsKey)).ToArray();
         }
 
-        [Given(@"the following tijdstippen and hydraulischeBelastingen:")]
+        [Given(@"the following time steps and hydraulic loads:")]
         [Given(@"the following series are adjusted:")]
         public void GivenTheFollowingCollectionsAreAdjusted(Table table)
         {
@@ -213,7 +213,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> times = GetDoubleCollection(timesKey);
+            IReadOnlyList<double> times = GetDoubleCollection(timeStepsKey);
             IReadOnlyList<double> waterLevels =
                 GetNullableDoubleCollection(waterLevelsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
             IReadOnlyList<double> waveHeightsHm0 =

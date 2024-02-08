@@ -85,11 +85,11 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
 #line 11
     #line hidden
             TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
-                        "tijdstippen",
-                        "waterstanden",
-                        "golfhoogtenHm0",
-                        "golfperiodenTm10",
-                        "golfrichtingen"});
+                        "time step",
+                        "water level",
+                        "wave height Hm0",
+                        "wave period Tm10",
+                        "wave directions"});
             table25.AddRow(new string[] {
                         "0",
                         "0",
@@ -103,7 +103,7 @@ DiKErnel does not produce exactly the same results as BM Gras. This is mainly du
                         "",
                         ""});
 #line 12
-        testRunner.Given("the following tijdstippen and hydraulischeBelastingen:", ((string)(null)), table25, "Given ");
+        testRunner.Given("the following time steps and hydraulic loads:", ((string)(null)), table25, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                         "posities",
