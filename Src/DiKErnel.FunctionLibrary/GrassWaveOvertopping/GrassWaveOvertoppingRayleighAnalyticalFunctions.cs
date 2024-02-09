@@ -33,21 +33,29 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         /// <returns>The cumulative overload [m^2/s^2].</returns>
         public static double CumulativeOverload(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
         {
-            double integralPart1 = IntegralPart1(input);
-            double integralPart2 = IntegralPart2();
-            double integralPart3 = IntegralPart3();
+            double sharedResult1 = input.IncreasedLoadTransitionAlphaM * Math.Pow(input.AccelerationAlphaA, 2) *
+                                   Math.Pow(input.FrontVelocityCwo, 2) * input.GravitationalAcceleration;
+
+            double sharedResult2 = input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2);
+
+            double parameterX0 = double.NaN;
+
+            double sharedResult3 = Math.Exp(-Math.Pow(parameterX0, 2));
+
+            double integralPart1 = IntegralPart1(input, sharedResult1, sharedResult3, parameterX0);
+            double integralPart2 = IntegralPart2(input, sharedResult1, sharedResult3);
+            double integralPart3 = IntegralPart3(input, sharedResult2, sharedResult3);
 
             return input.AverageNumberOfWaves * Math.Max(integralPart1 + integralPart2 + integralPart3, 0);
         }
 
-        private static double IntegralPart1(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input)
+        private static double IntegralPart1(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input,
+                                            double sharedResult1, double sharedResult3, double parameterX0)
         {
             double parameterRayleigh = ParameterRayleigh(input.RepresentativeWaveRunup2P);
-            double parameterX0 = double.NaN;
 
-            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.AccelerationAlphaA, 2) *
-                   Math.Pow(input.FrontVelocityCwo, 2) * input.GravitationalAcceleration * parameterRayleigh *
-                   (Math.Sqrt(Math.PI / 2) + Math.Sqrt(2) * parameterX0 * Math.Exp(-Math.Pow(parameterX0, 2)) -
+            return sharedResult1 * parameterRayleigh *
+                   (Math.Sqrt(Math.PI / 2) + Math.Sqrt(2) * parameterX0 * sharedResult3 -
                     Math.Sqrt(Math.PI / 2) * SpecialFunctions.Erf(parameterX0));
         }
 
@@ -56,14 +64,22 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
             return Math.Sqrt(-Math.Pow(representativeWaveRunup2P, 2) / (2 * Math.Log(0.02)));
         }
 
-        private static double IntegralPart2()
+        private static double IntegralPart2(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input,
+                                            double sharedResult1, double sharedResult3)
         {
-            return double.NaN;
+            return -sharedResult1 * input.VerticalDistanceWaterLevelElevation * sharedResult3;
         }
 
-        private static double IntegralPart3()
+        private static double IntegralPart3(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input,
+                                            double sharedResult2, double sharedResult3)
         {
-            return double.NaN;
+            return -sharedResult2 * sharedResult3;
+        }
+
+        private static double LowerLimitWaveRunup(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input,
+                                                  double sharedResult1, double sharedResult2)
+        {
+            return input.VerticalDistanceWaterLevelElevation + sharedResult2 / sharedResult1;
         }
     }
 }
