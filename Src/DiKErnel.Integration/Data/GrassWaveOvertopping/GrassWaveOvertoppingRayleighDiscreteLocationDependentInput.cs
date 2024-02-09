@@ -32,8 +32,9 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
         public GrassWaveOvertoppingRayleighDiscreteLocationDependentInput(
             double x, double initialDamage, double failureNumber, double criticalCumulativeOverload,
             double criticalFrontVelocity, double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
-            double averageNumberOfWavesCtm, double frontVelocityCwo, int fixedNumberOfWaves,
-            GrassWaveOvertoppingRayleighAccelerationAlphaA accelerationAlphaA, double? enforcedDikeHeight)
+            double averageNumberOfWavesCtm, double frontVelocityCwo,
+            GrassWaveOvertoppingRayleighAccelerationAlphaA accelerationAlphaA, double? enforcedDikeHeight,
+            int fixedNumberOfWaves)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
                    frontVelocityCwo, accelerationAlphaA, enforcedDikeHeight)
