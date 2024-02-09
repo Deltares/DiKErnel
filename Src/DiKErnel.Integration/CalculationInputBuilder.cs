@@ -390,6 +390,11 @@ namespace DiKErnel.Integration
                         when !ValidateGrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                                  grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties, outerToe,
                                  outerCrest, innerToe):
+                    case GrassWaveOvertoppingRayleighLocationConstructionProperties
+                        grassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties
+                        when !ValidateGrassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties(
+                                 grassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties, outerToe,
+                                 outerCrest, innerToe):
                     case GrassWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
                         when !ValidateGrassWaveImpactLocationConstructionProperties(
                                  grassWaveImpactLocationConstructionProperties, outerToe, outerCrest):
@@ -422,6 +427,15 @@ namespace DiKErnel.Integration
 
         private bool ValidateGrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
             GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties constructionProperties,
+            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
+        {
+            return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
+                   && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
+                   && ValidateOvertoppingAdapterProperties(outerToe, outerCrest, constructionProperties.DikeHeight);
+        }
+
+        private bool ValidateGrassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties(
+            GrassWaveOvertoppingRayleighLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest, ProfileDataFactoryPoint innerToe)
         {
             return ValidateLocationOnCrestOrInnerSlope(outerCrest, innerToe, constructionProperties.X)
