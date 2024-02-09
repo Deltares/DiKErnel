@@ -128,6 +128,25 @@ namespace DiKErnel.Integration.Test
                 "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
                 "outer crest and inner toe.");
         }
+        
+        private static void
+            GivenGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                double locationX)
+        {
+            GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddDikeProfileSegment(10, 20, 30, 40);
+                    builder.AddDikeProfileSegment(30, 40, 50, 60);
+                    builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+                    builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+                    builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
+                        new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                            locationX, Random.NextEnumValue<GrassTopLayerType>()));
+                },
+                "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
+                "outer crest and inner toe.");
+        }
 
         #region Profile segments
 
@@ -1298,6 +1317,333 @@ namespace DiKErnel.Integration.Test
 
             var locationDependentInput = actualLocationDependentInputItems[0]
                                              as GrassWaveOvertoppingRayleighDiscreteLocationDependentInput;
+            Assert.That(locationDependentInput, Is.Not.Null);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+                null, locationDependentInput);
+
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, locationDependentInput);
+
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+                4.3, 1.45, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1, 1.4, locationDependentInput.AccelerationAlphaA);
+        }
+
+        #endregion
+
+        #region Grass wave overtopping Rayleigh analytical
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            GivenGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            GivenGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidTopLayerType_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const GrassTopLayerType topLayerType = (GrassTopLayerType) 99;
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                45, topLayerType);
+
+            const double innerCrestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, innerCrestX, 40);
+            builder.AddDikeProfileSegment(innerCrestX, 40, innerToeX, 60);
+            builder.AddDikeProfilePoint(innerCrestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndEvent(
+                result, "The location with position 45 has an invalid top layer type.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidGeometry_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                45, topLayerType);
+
+            const double outerToeX = 0;
+            const double crestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultTimeStep(builder);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20);
+            builder.AddDikeProfileSegment(10, 20, 20, 20);
+            builder.AddDikeProfileSegment(20, 20, crestX, 10);
+            builder.AddDikeProfileSegment(crestX, 10, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, innerToeX, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.False);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.That(events, Has.Count.EqualTo(1));
+            Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[0].Message, Is.Not.Empty);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidRoughnessCoefficients_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                45, topLayerType);
+
+            const double outerToeX = 0;
+            const double crestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultTimeStep(builder);
+
+            builder.AddDikeProfileSegment(outerToeX, 10, 10, 20, 0.4);
+            builder.AddDikeProfileSegment(10, 20, crestX, 25, 1.1);
+            builder.AddDikeProfileSegment(crestX, 25, 40, 40);
+            builder.AddDikeProfileSegment(40, 40, 50, 60);
+            builder.AddDikeProfilePoint(outerToeX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(crestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.False);
+
+            IReadOnlyList<Event> events = result.Events;
+            Assert.That(events, Has.Count.EqualTo(2));
+            Assert.That(events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[0].Message, Is.Not.Empty);
+            Assert.That(events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(events[1].Message, Is.Not.Empty);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithFullyConfiguredGrassWaveOvertoppingRayleighAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            var topLayerType = Random.NextEnumValue<GrassTopLayerType>();
+            const double x = 45;
+            double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
+            double criticalCumulativeOverload = Random.NextDouble();
+            double criticalFrontVelocity = Random.NextDouble();
+            double increasedLoadTransitionAlphaM = Random.NextDouble();
+            double reducedStrengthTransitionAlphaS = Random.NextDouble();
+            double averageNumberOfWavesCtm = Random.NextDouble();
+            double frontVelocityCwo = Random.NextDouble();
+            double accelerationAlphaAForCrest = Random.NextDouble();
+            double accelerationAlphaAForInnerSlope = Random.NextDouble();
+            double dikeHeight = Random.NextDouble();
+
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                x, topLayerType)
+            {
+                InitialDamage = initialDamage,
+                FailureNumber = failureNumber,
+                CriticalCumulativeOverload = criticalCumulativeOverload,
+                CriticalFrontVelocity = criticalFrontVelocity,
+                IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM,
+                ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS,
+                AverageNumberOfWavesCtm = averageNumberOfWavesCtm,
+                FrontVelocityCwo = frontVelocityCwo,
+                AccelerationAlphaAForCrest = accelerationAlphaAForCrest,
+                AccelerationAlphaAForInnerSlope = accelerationAlphaAForInnerSlope,
+                DikeHeight = dikeHeight
+            };
+
+            const double innerCrestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, innerCrestX, 40);
+            builder.AddDikeProfileSegment(innerCrestX, 40, innerToeX, 60);
+            builder.AddDikeProfilePoint(innerCrestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassWaveOvertoppingRayleighAnalyticalLocationDependentInput;
+            Assert.That(locationDependentInput, Is.Not.Null);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(
+                initialDamage, failureNumber, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+                dikeHeight, locationDependentInput);
+
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, locationDependentInput);
+
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                averageNumberOfWavesCtm, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+                criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput.AccelerationAlphaA);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithNotFullyConfiguredClosedSodGrassWaveOvertoppingRayleighAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const GrassTopLayerType topLayerType = GrassTopLayerType.ClosedSod;
+            const double x = 45;
+
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                x, topLayerType);
+
+            const double innerCrestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, innerCrestX, 40);
+            builder.AddDikeProfileSegment(innerCrestX, 40, innerToeX, 60);
+            builder.AddDikeProfilePoint(innerCrestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassWaveOvertoppingRayleighAnalyticalLocationDependentInput;
+            Assert.That(locationDependentInput, Is.Not.Null);
+
+            LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);
+
+            LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+                null, locationDependentInput);
+
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
+                1, 1, locationDependentInput);
+
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
+                0.92, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, 10000, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+                6.6, 1.45, locationDependentInput);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+                1, 1.4, locationDependentInput.AccelerationAlphaA);
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithNotFullyConfiguredOpenSodGrassWaveOvertoppingRayleighAnalyticalLocationAdded_WhenBuild_ThenReturnsResultWithCalculationInput()
+        {
+            // Given
+            const GrassTopLayerType topLayerType = GrassTopLayerType.OpenSod;
+            const double x = 45;
+
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                x, topLayerType);
+
+            const double innerCrestX = 30;
+            const double innerToeX = 50;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            AddDefaultProfileAndTimeStep(builder);
+            builder.AddDikeProfileSegment(10, 20, innerCrestX, 40);
+            builder.AddDikeProfileSegment(innerCrestX, 40, innerToeX, 60);
+            builder.AddDikeProfilePoint(innerCrestX, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(innerToeX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            Assert.That(result.Successful, Is.True);
+
+            IReadOnlyList<ILocationDependentInput> actualLocationDependentInputItems =
+                result.Data.LocationDependentInputItems;
+            Assert.That(actualLocationDependentInputItems, Has.Count.EqualTo(1));
+
+            var locationDependentInput = actualLocationDependentInputItems[0]
+                                             as GrassWaveOvertoppingRayleighAnalyticalLocationDependentInput;
             Assert.That(locationDependentInput, Is.Not.Null);
 
             LocationDependentInputAssertHelper.AssertLocationProperties(x, locationDependentInput);

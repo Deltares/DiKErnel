@@ -154,6 +154,19 @@ namespace DiKErnel.Integration
         }
 
         /// <summary>
+        /// Adds a grass wave overtopping Rayleigh analytical location.
+        /// </summary>
+        /// <param name="constructionProperties">The properties to construct the grass
+        /// wave overtopping Rayleigh analytical location dependent input.</param>
+        public void AddGrassWaveOvertoppingRayleighAnalyticalLocation(
+            GrassWaveOvertoppingRayleighLocationConstructionProperties constructionProperties)
+        {
+            AddLocation(constructionProperties);
+
+            crestOrInnerSlopeLocationAdded = true;
+        }
+
+        /// <summary>
         /// Adds a grass wave impact location.
         /// </summary>
         /// <param name="constructionProperties">The properties to construct the grass wave
