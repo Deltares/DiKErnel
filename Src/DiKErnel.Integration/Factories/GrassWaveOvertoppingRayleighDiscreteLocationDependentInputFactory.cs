@@ -31,7 +31,7 @@ namespace DiKErnel.Integration.Factories
             IGrassCumulativeOverloadTopLayerDefaults topLayerDefaults =
                 GrassCumulativeOverloadDefaultsFactory.CreateTopLayerDefaults(constructionProperties.TopLayerType);
 
-            var accelerationAlphaA = new GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA(
+            var accelerationAlphaA = new GrassWaveOvertoppingRayleighAccelerationAlphaA(
                 constructionProperties.AccelerationAlphaAForCrest
                 ?? GrassWaveOvertoppingRayleighDefaults.AccelerationAlphaAForCrest,
                 constructionProperties.AccelerationAlphaAForInnerSlope

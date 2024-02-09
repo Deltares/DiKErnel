@@ -39,7 +39,7 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             double x, double initialDamage, double failureNumber, double criticalCumulativeOverload,
             double criticalFrontVelocity, double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
             double averageNumberOfWavesCtm, double frontVelocityCwo, int fixedNumberOfWaves,
-            GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA accelerationAlphaA, double? enforcedDikeHeight)
+            GrassWaveOvertoppingRayleighAccelerationAlphaA accelerationAlphaA, double? enforcedDikeHeight)
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm)
         {
@@ -53,7 +53,7 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 
         public int FixedNumberOfWaves { get; }
 
-        public GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA AccelerationAlphaA { get; }
+        public GrassWaveOvertoppingRayleighAccelerationAlphaA AccelerationAlphaA { get; }
 
         public double? EnforcedDikeHeight { get; }
 
