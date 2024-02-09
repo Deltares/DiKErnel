@@ -34,8 +34,8 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
                                                                            double reducedStrengthTransitionAlphaS,
                                                                            double gravitationalAcceleration,
                                                                            double frontVelocityCwo,
-                                                                           int fixedNumberOfWaves,
-                                                                           double accelerationAlphaA)
+                                                                           double accelerationAlphaA,
+                                                                           int fixedNumberOfWaves)
             : base(averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
                    criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
                    gravitationalAcceleration, frontVelocityCwo, accelerationAlphaA)
