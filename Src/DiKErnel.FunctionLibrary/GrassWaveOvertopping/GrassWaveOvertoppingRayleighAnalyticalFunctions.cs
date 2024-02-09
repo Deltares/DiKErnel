@@ -38,7 +38,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 
             double sharedResult2 = input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2);
 
-            double parameterX0 = double.NaN;
+            double parameterX0 = ParameterX0(input, sharedResult1, sharedResult2);
 
             double sharedResult3 = Math.Exp(-Math.Pow(parameterX0, 2));
 
@@ -47,6 +47,14 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
             double integralPart3 = IntegralPart3(input, sharedResult2, sharedResult3);
 
             return input.AverageNumberOfWaves * Math.Max(integralPart1 + integralPart2 + integralPart3, 0);
+        }
+
+        private static double ParameterX0(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input,
+                                          double sharedResult1, double sharedResult2)
+        {
+            double parameterRayleigh = ParameterRayleigh(input.RepresentativeWaveRunup2P);
+
+            return LowerLimitWaveRunup(input, sharedResult1, sharedResult2) / (Math.Sqrt(2) * parameterRayleigh);
         }
 
         private static double IntegralPart1(GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInput input,
