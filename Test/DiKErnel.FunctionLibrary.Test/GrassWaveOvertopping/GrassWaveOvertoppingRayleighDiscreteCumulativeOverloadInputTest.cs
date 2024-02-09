@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using DiKErnel.FunctionLibrary.Grass;
 using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
 using DiKErnel.TestUtil;
 using NUnit.Framework;
@@ -54,7 +53,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
                                                                                         accelerationAlphaA);
 
             // Assert
-            Assert.That(input, Is.InstanceOf<GrassCumulativeOverloadInput>());
+            Assert.That(input, Is.InstanceOf<GrassWaveOvertoppingRayleighCumulativeOverloadInput>());
             Assert.That(input.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
             Assert.That(input.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
             Assert.That(input.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
