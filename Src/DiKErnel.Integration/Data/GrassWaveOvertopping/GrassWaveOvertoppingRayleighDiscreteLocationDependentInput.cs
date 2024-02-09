@@ -74,11 +74,11 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
                                                          "time steps."));
             }
 
-            validationIssues.Add(GrassWaveOvertoppingRayleighDiscreteValidator.FrontVelocityCwo(FrontVelocityCwo));
+            validationIssues.Add(GrassWaveOvertoppingRayleighValidator.FrontVelocityCwo(FrontVelocityCwo));
             validationIssues.Add(GrassRayleighDiscreteValidator.FixedNumberOfWaves(FixedNumberOfWaves));
-            validationIssues.Add(GrassWaveOvertoppingRayleighDiscreteValidator.AccelerationAlphaA(
+            validationIssues.Add(GrassWaveOvertoppingRayleighValidator.AccelerationAlphaA(
                                      AccelerationAlphaA.ValueAtCrest));
-            validationIssues.Add(GrassWaveOvertoppingRayleighDiscreteValidator.AccelerationAlphaA(
+            validationIssues.Add(GrassWaveOvertoppingRayleighValidator.AccelerationAlphaA(
                                      AccelerationAlphaA.ValueAtInnerSlope));
 
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;

@@ -25,12 +25,12 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveOvertopping
 {
     [TestFixture]
-    public class GrassWaveOvertoppingRayleighDiscreteValidatorTest
+    public class GrassWaveOvertoppingRayleighValidatorTest
     {
         [Test]
         public void AccelerationAlphaA_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassWaveOvertoppingRayleighDiscreteValidator.AccelerationAlphaA;
+            Func<double, ValidationIssue> validationFunc = GrassWaveOvertoppingRayleighValidator.AccelerationAlphaA;
 
             const string errorMessage = "AccelerationAlphaA must be equal to 0 or larger.";
 
@@ -46,7 +46,7 @@ namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveOvertopping
         [Test]
         public void FrontVelocityCwo_VariousScenarios_ExpectedValues()
         {
-            Func<double, ValidationIssue> validationFunc = GrassWaveOvertoppingRayleighDiscreteValidator.FrontVelocityCwo;
+            Func<double, ValidationIssue> validationFunc = GrassWaveOvertoppingRayleighValidator.FrontVelocityCwo;
 
             const string errorMessage = "FrontVelocityCwo must be larger than 0.";
 

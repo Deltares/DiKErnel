@@ -21,9 +21,9 @@ using DiKErnel.Util.Validation;
 namespace DiKErnel.DomainLibrary.Validators.GrassWaveOvertopping
 {
     /// <summary>
-    /// Class that holds grass wave overtopping Rayleigh discrete validation routines.
+    /// Class that holds grass wave overtopping Rayleigh validation routines.
     /// </summary>
-    public static class GrassWaveOvertoppingRayleighDiscreteValidator
+    public static class GrassWaveOvertoppingRayleighValidator
     {
         /// <summary>
         /// Validates the alpha A coefficient.
