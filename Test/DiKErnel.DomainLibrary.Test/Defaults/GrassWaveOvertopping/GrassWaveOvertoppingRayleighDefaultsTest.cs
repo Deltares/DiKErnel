@@ -22,27 +22,27 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveOvertopping
 {
     [TestFixture]
-    public class GrassWaveOvertoppingRayleighDiscreteDefaultsTest
+    public class GrassWaveOvertoppingRayleighDefaultsTest
     {
         [Test]
         public void FrontVelocityCwo_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassWaveOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
+            Assert.That(GrassWaveOvertoppingRayleighDefaults.FrontVelocityCwo, Is.EqualTo(1.45));
         }
 
         [Test]
         public void AccelerationAlphaAForCrest_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassWaveOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
+            Assert.That(GrassWaveOvertoppingRayleighDefaults.AccelerationAlphaAForCrest, Is.EqualTo(1));
         }
 
         [Test]
         public void AccelerationAlphaAForInnerSlope_ExpectedValue()
         {
             // Call & Assert
-            Assert.That(GrassWaveOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
+            Assert.That(GrassWaveOvertoppingRayleighDefaults.AccelerationAlphaAForInnerSlope, Is.EqualTo(1.4));
         }
     }
 }

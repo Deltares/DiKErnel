@@ -19,10 +19,9 @@
 namespace DiKErnel.DomainLibrary.Defaults.GrassWaveOvertopping
 {
     /// <summary>
-    /// Class that contains default values for grass wave overtopping Rayleigh discrete
-    /// calculations.
+    /// Class that contains default values for grass wave overtopping Rayleigh calculations.
     /// </summary>
-    public static class GrassWaveOvertoppingRayleighDiscreteDefaults
+    public static class GrassWaveOvertoppingRayleighDefaults
     {
         /// <summary>
         /// Gets the default value of the Cwo coefficient [-].

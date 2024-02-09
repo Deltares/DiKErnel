@@ -33,9 +33,9 @@ namespace DiKErnel.Integration.Factories
 
             var accelerationAlphaA = new GrassWaveOvertoppingRayleighDiscreteAccelerationAlphaA(
                 constructionProperties.AccelerationAlphaAForCrest
-                ?? GrassWaveOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForCrest,
+                ?? GrassWaveOvertoppingRayleighDefaults.AccelerationAlphaAForCrest,
                 constructionProperties.AccelerationAlphaAForInnerSlope
-                ?? GrassWaveOvertoppingRayleighDiscreteDefaults.AccelerationAlphaAForInnerSlope);
+                ?? GrassWaveOvertoppingRayleighDefaults.AccelerationAlphaAForInnerSlope);
 
             return new GrassWaveOvertoppingRayleighDiscreteLocationDependentInput(
                 constructionProperties.X,
@@ -50,7 +50,7 @@ namespace DiKErnel.Integration.Factories
                 constructionProperties.AverageNumberOfWavesCtm
                 ?? GrassCumulativeOverloadDefaults.AverageNumberOfWavesCtm,
                 constructionProperties.FrontVelocityCwo
-                ?? GrassWaveOvertoppingRayleighDiscreteDefaults.FrontVelocityCwo,
+                ?? GrassWaveOvertoppingRayleighDefaults.FrontVelocityCwo,
                 constructionProperties.FixedNumberOfWaves
                 ?? GrassRayleighDiscreteDefaults.FixedNumberOfWaves,
                 accelerationAlphaA,
