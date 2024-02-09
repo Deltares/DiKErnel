@@ -25,7 +25,7 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
     /// location dependent input.
     /// </summary>
     public class GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties
-        : GrassCumulativeOverloadLocationConstructionProperties
+        : GrassWaveOvertoppingRayleighLocationConstructionProperties
     {
         /// <inheritdoc/>
         public GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(double x,
@@ -33,28 +33,8 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             : base(x, topLayerType) {}
 
         /// <summary>
-        /// Gets or sets the Cwo coefficient.
-        /// </summary>
-        public double? FrontVelocityCwo { get; set; }
-
-        /// <summary>
         /// Gets or sets the fixed number of waves.
         /// </summary>
         public int? FixedNumberOfWaves { get; set; }
-
-        /// <summary>
-        /// Gets or sets the acceleration alpha A for the crest.
-        /// </summary>
-        public double? AccelerationAlphaAForCrest { get; set; }
-
-        /// <summary>
-        /// Gets or sets the acceleration alpha A for the inner slope.
-        /// </summary>
-        public double? AccelerationAlphaAForInnerSlope { get; set; }
-
-        /// <summary>
-        /// Gets or sets the dike height.
-        /// </summary>
-        public double? DikeHeight { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
                 x, topLayerType);
 
             // Assert
-            Assert.That(constructionProperties, Is.InstanceOf<GrassCumulativeOverloadLocationConstructionProperties>());
+            Assert.That(constructionProperties, Is.InstanceOf<GrassWaveOvertoppingRayleighLocationConstructionProperties>());
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
             Assert.That(constructionProperties.X, Is.EqualTo(x));
             Assert.That(constructionProperties.InitialDamage, Is.Null);
@@ -49,10 +49,10 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
             Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.Null);
             Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.Null);
             Assert.That(constructionProperties.FrontVelocityCwo, Is.Null);
-            Assert.That(constructionProperties.FixedNumberOfWaves, Is.Null);
             Assert.That(constructionProperties.AccelerationAlphaAForCrest, Is.Null);
             Assert.That(constructionProperties.AccelerationAlphaAForInnerSlope, Is.Null);
             Assert.That(constructionProperties.DikeHeight, Is.Null);
+            Assert.That(constructionProperties.FixedNumberOfWaves, Is.Null);
         }
 
         [Test]
@@ -69,10 +69,10 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
             double frontVelocityCwo = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double accelerationAlphaAForCrest = Random.NextDouble();
             double accelerationAlphaAForInnerSlope = Random.NextDouble();
             double dikeHeight = Random.NextDouble();
+            int fixedNumberOfWaves = Random.Next();
 
             var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType);
@@ -86,10 +86,10 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
             constructionProperties.ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS;
             constructionProperties.AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
             constructionProperties.FrontVelocityCwo = frontVelocityCwo;
-            constructionProperties.FixedNumberOfWaves = fixedNumberOfWaves;
             constructionProperties.AccelerationAlphaAForCrest = accelerationAlphaAForCrest;
             constructionProperties.AccelerationAlphaAForInnerSlope = accelerationAlphaAForInnerSlope;
             constructionProperties.DikeHeight = dikeHeight;
+            constructionProperties.FixedNumberOfWaves = fixedNumberOfWaves;
 
             // Then
             Assert.That(constructionProperties.TopLayerType, Is.EqualTo(topLayerType));
@@ -102,10 +102,10 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
             Assert.That(constructionProperties.ReducedStrengthTransitionAlphaS, Is.EqualTo(reducedStrengthTransitionAlphaS));
             Assert.That(constructionProperties.AverageNumberOfWavesCtm, Is.EqualTo(averageNumberOfWavesCtm));
             Assert.That(constructionProperties.FrontVelocityCwo, Is.EqualTo(frontVelocityCwo));
-            Assert.That(constructionProperties.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
             Assert.That(constructionProperties.AccelerationAlphaAForCrest, Is.EqualTo(accelerationAlphaAForCrest));
             Assert.That(constructionProperties.AccelerationAlphaAForInnerSlope, Is.EqualTo(accelerationAlphaAForInnerSlope));
             Assert.That(constructionProperties.DikeHeight, Is.EqualTo(dikeHeight));
+            Assert.That(constructionProperties.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
         }
     }
 }
