@@ -128,7 +128,7 @@ namespace DiKErnel.Integration.Test
                 "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
                 "outer crest and inner toe.");
         }
-        
+
         private static void
             GivenGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
                 double locationX)
@@ -1205,7 +1205,7 @@ namespace DiKErnel.Integration.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertGeneralProperties(
                 dikeHeight, locationDependentInput);
 
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
@@ -1217,10 +1217,10 @@ namespace DiKErnel.Integration.Test
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput.AccelerationAlphaA);
         }
 
@@ -1264,7 +1264,7 @@ namespace DiKErnel.Integration.Test
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertGeneralProperties(
                 null, locationDependentInput);
 
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
@@ -1276,10 +1276,10 @@ namespace DiKErnel.Integration.Test
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.45, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 
@@ -1323,7 +1323,7 @@ namespace DiKErnel.Integration.Test
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertGeneralProperties(
                 null, locationDependentInput);
 
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
@@ -1335,10 +1335,10 @@ namespace DiKErnel.Integration.Test
             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
                 7000, 10000, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.45, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 
@@ -1532,7 +1532,7 @@ namespace DiKErnel.Integration.Test
             LocationDependentInputAssertHelper.AssertDamageProperties(
                 initialDamage, failureNumber, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertGeneralProperties(
                 dikeHeight, locationDependentInput);
 
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
@@ -1541,13 +1541,13 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 averageNumberOfWavesCtm, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput.AccelerationAlphaA);
         }
 
@@ -1591,7 +1591,7 @@ namespace DiKErnel.Integration.Test
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertGeneralProperties(
                 null, locationDependentInput);
 
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
@@ -1600,13 +1600,13 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                7000, 10000, locationDependentInput);
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 6.6, 1.45, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 
@@ -1650,7 +1650,7 @@ namespace DiKErnel.Integration.Test
 
             LocationDependentInputAssertHelper.AssertDamageProperties(0, 1, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertGeneralProperties(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertGeneralProperties(
                 null, locationDependentInput);
 
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertTransitionAlpha(
@@ -1659,13 +1659,13 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 0.92, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                7000, 10000, locationDependentInput);
+            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                7000, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertFrontVelocity(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 4.3, 1.45, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
+            GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 1, 1.4, locationDependentInput.AccelerationAlphaA);
         }
 

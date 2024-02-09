@@ -23,12 +23,6 @@ namespace DiKErnel.Integration.TestUtil
 {
     internal static class GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper
     {
-        public static void AssertGeneralProperties(double? dikeHeight,
-                                                   GrassWaveOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
-        {
-            Assert.That(locationDependentInput.EnforcedDikeHeight, Is.EqualTo(dikeHeight));
-        }
-
         public static void AssertCumulativeOverload(double criticalCumulativeOverload, int fixedNumberOfWaves,
                                                     GrassWaveOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
         {
@@ -36,23 +30,6 @@ namespace DiKErnel.Integration.TestUtil
                 criticalCumulativeOverload, locationDependentInput);
 
             Assert.That(locationDependentInput.FixedNumberOfWaves, Is.EqualTo(fixedNumberOfWaves));
-        }
-
-        public static void AssertFrontVelocity(double criticalFrontVelocity, double frontVelocityCwo,
-                                               GrassWaveOvertoppingRayleighDiscreteLocationDependentInput locationDependentInput)
-        {
-            GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertFrontVelocity(
-                criticalFrontVelocity, locationDependentInput);
-
-            Assert.That(locationDependentInput.FrontVelocityCwo, Is.EqualTo(frontVelocityCwo));
-        }
-
-        public static void AssertAccelerationAlphaA(
-            double accelerationAlphaAForCrest, double accelerationAlphaAForInnerSlope,
-            GrassWaveOvertoppingRayleighAccelerationAlphaA accelerationAlphaA)
-        {
-            Assert.That(accelerationAlphaA.ValueAtCrest, Is.EqualTo(accelerationAlphaAForCrest));
-            Assert.That(accelerationAlphaA.ValueAtInnerSlope, Is.EqualTo(accelerationAlphaAForInnerSlope));
         }
     }
 }
