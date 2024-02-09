@@ -49,6 +49,12 @@ namespace DiKErnel.Integration.Factories
                             GrassWaveOvertoppingRayleighDiscreteLocationDependentInputFactory.CreateLocationDependentInput(
                                 grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties));
                         break;
+                    case GrassWaveOvertoppingRayleighLocationConstructionProperties
+                        grassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties:
+                        locationDependentInputItems.Add(
+                            GrassWaveOvertoppingRayleighAnalyticalLocationDependentInputFactory.CreateLocationDependentInput(
+                                grassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties));
+                        break;
                     case GrassWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties:
                         locationDependentInputItems.Add(
                             GrassWaveImpactLocationDependentInputFactory.CreateLocationDependentInput(
