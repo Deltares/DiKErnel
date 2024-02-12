@@ -330,6 +330,99 @@ namespace DiKErnel.System.Test
         }
 
         [Test]
+        public void GivenCalculationInputWithInvalidNaturalStoneWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+        {
+            // Given
+            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
+                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0, 10)
+            {
+                InitialDamage = -0.1,
+                FailureNumber = -1,
+                SlopeUpperLevelAus = 0.3,
+                SlopeLowerLevelAls = 0
+            };
+
+            var builder = new CalculationInputBuilder(0);
+            builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+            builder.AddDikeProfileSegment(10, 5, 20, 10);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddNaturalStoneWaveImpactLocation(constructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
+
+            // Then
+            Assert.That(validationResult.Successful, Is.True);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(6));
+
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
+            Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("RelativeDensity must be in range {0, 10}."));
+            Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("ThicknessTopLayer must be in range {0, 1}."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("SlopeUpperLevelAus should be in range [0.01, 0.2]."));
+            Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("SlopeLowerLevelAls must be larger than 0."));
+        }
+
+        [Test]
+        public void GivenValidCalculationInput_WhenValidating_ThenReturnsExpectedValidationResult()
+        {
+            // Given
+            var builder = new CalculationInputBuilder(0);
+            builder.AddTimeStep(0, 100, 10, 5, 10, 30);
+            builder.AddTimeStep(100, 150, 10, 5, 10, 30);
+            builder.AddDikeProfileSegment(10, 5, 20, 10);
+            builder.AddDikeProfileSegment(20, 10, 30, 10);
+            builder.AddDikeProfileSegment(30, 10, 40, 5);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
+
+            var asphaltWaveImpactLocationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
+                12, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
+
+            var grassWaveImpactLocationConstructionProperties =
+                new GrassWaveImpactLocationConstructionProperties(14, GrassTopLayerType.ClosedSod);
+
+            var grassWaveRunupRayleighDiscreteLocationConstructionProperties =
+                new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(19, GrassTopLayerType.ClosedSod);
+
+            var naturalStoneWaveImpactLocationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
+                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.5, 4.6);
+
+            var grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties =
+                new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
+
+            builder.AddAsphaltWaveImpactLocation(asphaltWaveImpactLocationConstructionProperties);
+            builder.AddGrassWaveImpactLocation(grassWaveImpactLocationConstructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(grassWaveRunupRayleighDiscreteLocationConstructionProperties);
+            builder.AddNaturalStoneWaveImpactLocation(naturalStoneWaveImpactLocationConstructionProperties);
+            builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
+
+            // Then
+            Assert.That(validationResult.Successful, Is.True);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(0));
+        }
+
+        #region Grass wave overtopping Rayleigh discrete
+
+        [Test]
         public void
             GivenCalculationInputWithInvalidGrassWaveOvertoppingRayleighDiscreteLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
@@ -543,25 +636,41 @@ namespace DiKErnel.System.Test
             Assert.That(validationResult.Events, Has.Count.EqualTo(0));
         }
 
+        #endregion
+
+        #region Grass wave overtopping Rayleigh analytical
+
         [Test]
-        public void GivenCalculationInputWithInvalidNaturalStoneWaveImpactLocation_WhenValidating_ThenReturnsExpectedValidationResult()
+        public void
+            GivenCalculationInputWithInvalidGrassWaveOvertoppingRayleighAnalyticalLocation_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
-            var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
-                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0, 10)
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                25, GrassTopLayerType.ClosedSod)
             {
+                DikeHeight = 15,
                 InitialDamage = -0.1,
                 FailureNumber = -1,
-                SlopeUpperLevelAus = 0.3,
-                SlopeLowerLevelAls = 0
+                CriticalCumulativeOverload = -2,
+                CriticalFrontVelocity = -1,
+                AccelerationAlphaAForCrest = -0.1,
+                AccelerationAlphaAForInnerSlope = -0.1,
+                FrontVelocityCwo = -0.1,
+                AverageNumberOfWavesCtm = 0,
+                IncreasedLoadTransitionAlphaM = -11,
+                ReducedStrengthTransitionAlphaS = -3
             };
 
             var builder = new CalculationInputBuilder(0);
             builder.AddTimeStep(0, 100, 10, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
+            builder.AddDikeProfileSegment(20, 10, 30, 10);
+            builder.AddDikeProfileSegment(30, 10, 40, 5);
             builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
-            builder.AddNaturalStoneWaveImpactLocation(constructionProperties);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -571,29 +680,46 @@ namespace DiKErnel.System.Test
             // Then
             Assert.That(validationResult.Successful, Is.True);
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Failed));
-            Assert.That(validationResult.Events, Has.Count.EqualTo(6));
-
+            Assert.That(validationResult.Events, Has.Count.EqualTo(10));
             Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[0].Message, Is.EqualTo("InitialDamage must be equal to 0 or larger."));
             Assert.That(validationResult.Events[1].Type, Is.EqualTo(EventType.Error));
             Assert.That(validationResult.Events[1].Message, Is.EqualTo("FailureNumber must be equal to InitialDamage or larger."));
             Assert.That(validationResult.Events[2].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[2].Message, Is.EqualTo("RelativeDensity must be in range {0, 10}."));
+            Assert.That(validationResult.Events[2].Message, Is.EqualTo("CriticalCumulativeOverload must be larger than 0."));
             Assert.That(validationResult.Events[3].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[3].Message, Is.EqualTo("ThicknessTopLayer must be in range {0, 1}."));
-            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Warning));
-            Assert.That(validationResult.Events[4].Message, Is.EqualTo("SlopeUpperLevelAus should be in range [0.01, 0.2]."));
+            Assert.That(validationResult.Events[3].Message, Is.EqualTo("CriticalFrontVelocity must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[4].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[4].Message, Is.EqualTo("IncreasedLoadTransitionAlphaM must be equal to 0 or larger."));
             Assert.That(validationResult.Events[5].Type, Is.EqualTo(EventType.Error));
-            Assert.That(validationResult.Events[5].Message, Is.EqualTo("SlopeLowerLevelAls must be larger than 0."));
+            Assert.That(validationResult.Events[5].Message, Is.EqualTo("ReducedStrengthTransitionAlphaS must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[6].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[6].Message, Is.EqualTo("AverageNumberOfWavesCtm must be larger than 0."));
+            Assert.That(validationResult.Events[7].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[7].Message, Is.EqualTo("FrontVelocityCwo must be larger than 0."));
+            Assert.That(validationResult.Events[8].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[8].Message, Is.EqualTo("AccelerationAlphaA must be equal to 0 or larger."));
+            Assert.That(validationResult.Events[9].Type, Is.EqualTo(EventType.Error));
+            Assert.That(validationResult.Events[9].Message, Is.EqualTo("AccelerationAlphaA must be equal to 0 or larger."));
         }
 
         [Test]
-        public void GivenValidCalculationInput_WhenValidating_ThenReturnsExpectedValidationResult()
+        public void
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighAnalyticalLocationAndWaterLevelHigherThanEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
         {
             // Given
+            const double dikeHeight = 10;
+            const double waterLevel = dikeHeight + 0.1;
+
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                25, GrassTopLayerType.ClosedSod)
+            {
+                DikeHeight = dikeHeight
+            };
+
             var builder = new CalculationInputBuilder(0);
-            builder.AddTimeStep(0, 100, 10, 5, 10, 30);
-            builder.AddTimeStep(100, 150, 10, 5, 10, 30);
+            builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
+            builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
             builder.AddDikeProfileSegment(10, 5, 20, 10);
             builder.AddDikeProfileSegment(20, 10, 30, 10);
             builder.AddDikeProfileSegment(30, 10, 40, 5);
@@ -601,27 +727,47 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
             builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
             builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
 
-            var asphaltWaveImpactLocationConstructionProperties = new AsphaltWaveImpactLocationConstructionProperties(
-                12, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1, 0.5, 3, 2);
+            DataResult<ICalculationInput> calculationInput = builder.Build();
 
-            var grassWaveImpactLocationConstructionProperties =
-                new GrassWaveImpactLocationConstructionProperties(14, GrassTopLayerType.ClosedSod);
+            // When
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
 
-            var grassWaveRunupRayleighDiscreteLocationConstructionProperties =
-                new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(19, GrassTopLayerType.ClosedSod);
+            // Then
+            Assert.That(validationResult.Successful, Is.True);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(1));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("For one or more time steps the water level " +
+                                                                       "exceeds the dike height. No damage will be " +
+                                                                       "calculated for these time steps."));
+        }
 
-            var naturalStoneWaveImpactLocationConstructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
-                15, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.5, 4.6);
+        [Test]
+        public void
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighAnalyticalLocationAndWaterLevelEqualToEnforcedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+        {
+            // Given
+            const double dikeHeight = 10;
 
-            var grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties =
-                new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                25, GrassTopLayerType.ClosedSod)
+            {
+                DikeHeight = dikeHeight
+            };
 
-            builder.AddAsphaltWaveImpactLocation(asphaltWaveImpactLocationConstructionProperties);
-            builder.AddGrassWaveImpactLocation(grassWaveImpactLocationConstructionProperties);
-            builder.AddGrassWaveRunupRayleighDiscreteLocation(grassWaveRunupRayleighDiscreteLocationConstructionProperties);
-            builder.AddNaturalStoneWaveImpactLocation(naturalStoneWaveImpactLocationConstructionProperties);
-            builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties);
+            var builder = new CalculationInputBuilder(0);
+            builder.AddTimeStep(0, 100, dikeHeight, 5, 10, 30);
+            builder.AddTimeStep(100, 150, dikeHeight, 5, 10, 30);
+            builder.AddDikeProfileSegment(10, 5, 20, 10);
+            builder.AddDikeProfileSegment(20, 10, 30, 10);
+            builder.AddDikeProfileSegment(30, 10, 40, 5);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
@@ -633,5 +779,78 @@ namespace DiKErnel.System.Test
             Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
             Assert.That(validationResult.Events, Has.Count.EqualTo(0));
         }
+
+        [Test]
+        public void
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighAnalyticalLocationAndWaterLevelHigherThanDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+        {
+            // Given
+            const double heightOuterCrest = 10;
+            const double waterLevel = heightOuterCrest + 0.1;
+
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                25, GrassTopLayerType.ClosedSod);
+
+            var builder = new CalculationInputBuilder(0);
+            builder.AddTimeStep(0, 100, waterLevel, 5, 10, 30);
+            builder.AddTimeStep(100, 150, waterLevel, 5, 10, 30);
+            builder.AddDikeProfileSegment(10, 5, 20, heightOuterCrest);
+            builder.AddDikeProfileSegment(20, heightOuterCrest, 30, 10);
+            builder.AddDikeProfileSegment(30, 10, 40, 5);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
+
+            // Then
+            Assert.That(validationResult.Successful, Is.True);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(1));
+            Assert.That(validationResult.Events[0].Type, Is.EqualTo(EventType.Warning));
+            Assert.That(validationResult.Events[0].Message, Is.EqualTo("For one or more time steps the water level " +
+                                                                       "exceeds the dike height. No damage will be " +
+                                                                       "calculated for these time steps."));
+        }
+
+        [Test]
+        public void
+            GivenCalculationInputWithGrassWaveOvertoppingRayleighAnalyticalLocationAndWaterLevelEqualToDerivedDikeHeight_WhenValidating_ThenReturnsExpectedValidationResult()
+        {
+            // Given
+            const double heightOuterCrest = 10;
+
+            var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                25, GrassTopLayerType.ClosedSod);
+
+            var builder = new CalculationInputBuilder(0);
+            builder.AddTimeStep(0, 100, heightOuterCrest, 5, 10, 30);
+            builder.AddTimeStep(100, 150, heightOuterCrest, 5, 10, 30);
+            builder.AddDikeProfileSegment(10, 5, 20, heightOuterCrest);
+            builder.AddDikeProfileSegment(20, heightOuterCrest, 30, 10);
+            builder.AddDikeProfileSegment(30, 10, 40, 5);
+            builder.AddDikeProfilePoint(10, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(20, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(40, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
+
+            DataResult<ICalculationInput> calculationInput = builder.Build();
+
+            // When
+            DataResult<ValidationResultType> validationResult = Validator.Validate(calculationInput.Data);
+
+            // Then
+            Assert.That(validationResult.Successful, Is.True);
+            Assert.That(validationResult.Data, Is.EqualTo(ValidationResultType.Successful));
+            Assert.That(validationResult.Events, Has.Count.EqualTo(0));
+        }
+
+        #endregion
     }
 }
