@@ -94,7 +94,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                         "0",
                         "0",
                         "1.5",
-                        "4.20",
+                        "4.2",
                         "0"});
             table25.AddRow(new string[] {
                         "900",
@@ -159,10 +159,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                         "3.85"});
             table28.AddRow(new string[] {
                         "Front velocity",
-                        "1.10"});
+                        "1.1"});
             table28.AddRow(new string[] {
                         "Foreshore bottom level",
-                        "-3.0"});
+                        "-3"});
             table28.AddRow(new string[] {
                         "Slope foreshore",
                         "0.004"});
@@ -176,8 +176,8 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         [NUnit.Framework.TestCaseAttribute("3.5", "0.09912791114814828", "693.895378037038", "698.202", "698.151", null)]
         [NUnit.Framework.TestCaseAttribute("4", "0.08240815773892438", "576.8571041724706", "588.477", "588.395", null)]
         [NUnit.Framework.TestCaseAttribute("5.5", "0.0010160364930812532", "7.112255451568773", "7.162", "7.156", null)]
-        [NUnit.Framework.TestCaseAttribute("6.5", "5.35959825332454e-09", "3.751718777327178e-05", "0.000", "0.000", null)]
-        [NUnit.Framework.TestCaseAttribute("8", "0.0", "0.0", "0.000", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("6.5", "5.35959825332454e-09", "3.751718777327178e-05", "0", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("8", "0", "0", "0", "0", null)]
         public virtual void BMGrasBenchmark14_VariableInputOfCriticalVelocity(string criticalFrontVelocity, string damage, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -226,13 +226,13 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 15 - Variable input of level of interest")]
-        [NUnit.Framework.TestCaseAttribute("30.5600", "0.0", "", "0.000", "0.000", null)]
-        [NUnit.Framework.TestCaseAttribute("33.6160", "0.00016098541128284046", "1.1268978789798831", "1.136", "1.134", null)]
-        [NUnit.Framework.TestCaseAttribute("36.6720", "0.00016098541128278394", "1.1268978789794877", "1.136", "1.134", null)]
-        [NUnit.Framework.TestCaseAttribute("39.7280", "1.973187114472698e-05", "0.13812309801308886", "0.139", "0.139", null)]
-        [NUnit.Framework.TestCaseAttribute("42.7840", "1.5496648932714766e-11", "1.0847654252900337e-07", "0.000", "0.000", null)]
-        [NUnit.Framework.TestCaseAttribute("45.8400", "0.0", "0.0", "0.000", "0.000", null)]
-        [NUnit.Framework.TestCaseAttribute("48.8960", "0.0", "0.0", "0.000", "0.000", null)]
+        [NUnit.Framework.TestCaseAttribute("30.56", "0", "", "0", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("33.616", "0.00016098541128284046", "1.1268978789798831", "1.136", "1.134", null)]
+        [NUnit.Framework.TestCaseAttribute("36.672", "0.00016098541128278394", "1.1268978789794877", "1.136", "1.134", null)]
+        [NUnit.Framework.TestCaseAttribute("39.728", "1.973187114472698e-05", "0.13812309801308886", "0.139", "0.139", null)]
+        [NUnit.Framework.TestCaseAttribute("42.784", "1.5496648932714766e-11", "1.0847654252900337e-07", "0", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("45.84", "0", "0", "0", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("48.896", "0", "0", "0", "0", null)]
         public virtual void BMGrasBenchmark15_VariableInputOfLevelOfInterest(string position, string damage, string cumulativeOverload, string benchmarkForBMGras, string bMGras, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -272,15 +272,15 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                             "Roughness coefficient"});
                 table29.AddRow(new string[] {
                             "0",
-                            "-10.0",
-                            "1.0"});
+                            "-10",
+                            "1"});
                 table29.AddRow(new string[] {
                             "30.56",
-                            "0.0",
-                            "1.0"});
+                            "0",
+                            "1"});
                 table29.AddRow(new string[] {
                             "61.12",
-                            "10.0",
+                            "10",
                             ""});
 #line 52
         testRunner.Given("the following series are adjusted:", ((string)(null)), table29, "Given ");
@@ -361,15 +361,15 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                             "Roughness coefficient"});
                 table31.AddRow(new string[] {
                             "0",
-                            "-10.0",
-                            "1.0"});
+                            "-10",
+                            "1"});
                 table31.AddRow(new string[] {
                             "30.56",
-                            "0.0",
-                            "1.0"});
+                            "0",
+                            "1"});
                 table31.AddRow(new string[] {
                             "61.12",
-                            "10.0",
+                            "10",
                             ""});
 #line 81
         testRunner.Given("the following series are adjusted:", ((string)(null)), table31, "Given ");
@@ -404,10 +404,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 17 - Variable input of water depth")]
-        [NUnit.Framework.TestCaseAttribute("0", "NaN", "NaN", "0.000", "", null)]
+        [NUnit.Framework.TestCaseAttribute("0", "NaN", "NaN", "0", "", null)]
         [NUnit.Framework.TestCaseAttribute("-0.004", "18.899172206217422", "132294.20544352196", "133115.947", "", null)]
         [NUnit.Framework.TestCaseAttribute("-0.04", "1.9530600918770284", "13671.4206431392", "13756.388", "13755.272", null)]
-        [NUnit.Framework.TestCaseAttribute("-0.1", "0.8177090570008678", "5723.963399006075", "5729.582", "5759.070", null)]
+        [NUnit.Framework.TestCaseAttribute("-0.1", "0.8177090570008678", "5723.963399006075", "5729.582", "5759.07", null)]
         [NUnit.Framework.TestCaseAttribute("-0.4", "0.146449850472942", "1025.1489533105942", "1031.744", "1031.437", null)]
         [NUnit.Framework.TestCaseAttribute("-10", "0.0030480842313577797", "21.33658961950446", "21.469", "21.453", null)]
         [NUnit.Framework.TestCaseAttribute("-100", "0.002089438325616217", "14.626068279313518", "", "", null)]
@@ -423,7 +423,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
             argumentsOfScenario.Add("BM Gras", bMGras);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BM Gras benchmark 17 - Variable input of water depth", @"    Remarks:
     - In BM Gras the value of water depth (water level - Foreshore bottom level) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - Foreshore bottom level) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).", tagsOfScenario, argumentsOfScenario, this._featureTags);
+    - When (water level - Foreshore bottom level) equals to 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.", tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 106
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -453,15 +453,15 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                             "Roughness coefficient"});
                 table33.AddRow(new string[] {
                             "0",
-                            "-10.0",
-                            "1.0"});
+                            "-10",
+                            "1"});
                 table33.AddRow(new string[] {
                             "30.56",
-                            "0.0",
-                            "1.0"});
+                            "0",
+                            "1"});
                 table33.AddRow(new string[] {
                             "61.12",
-                            "10.0",
+                            "10",
                             ""});
 #line 112
         testRunner.Given("the following series are adjusted:", ((string)(null)), table33, "Given ");
@@ -479,7 +479,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                             "Outer crest",
                             "61.12"});
 #line 117
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table34, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table34, "And ");
 #line hidden
 #line 122
         testRunner.When(string.Format("I change the property Foreshore bottom level to a value of {0}", foreshoreBottomLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -496,10 +496,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("BM Gras benchmark 18 - Variable input of water depth and critical depth")]
-        [NUnit.Framework.TestCaseAttribute("0", "1000", "NaN", "NaN", "0.000", "", null)]
+        [NUnit.Framework.TestCaseAttribute("0", "1000", "NaN", "NaN", "0", "", null)]
         [NUnit.Framework.TestCaseAttribute("-0.004", "1000", "132.29420544352197", "132294.20544352196", "133115.947", "", null)]
         [NUnit.Framework.TestCaseAttribute("-0.04", "100", "136.714206431392", "13671.4206431392", "13756.388", "13755.272", null)]
-        [NUnit.Framework.TestCaseAttribute("-0.1", "10", "572.3963399006075", "5723.963399006075", "5759.582", "5759.070", null)]
+        [NUnit.Framework.TestCaseAttribute("-0.1", "10", "572.3963399006075", "5723.963399006075", "5759.582", "5759.07", null)]
         [NUnit.Framework.TestCaseAttribute("-0.4", "1", "1025.1489533105942", "1025.1489533105942", "1031.744", "1031.437", null)]
         [NUnit.Framework.TestCaseAttribute("-10", "1", "21.33658961950446", "21.33658961950446", "21.469", "21.453", null)]
         [NUnit.Framework.TestCaseAttribute("-100", "1", "14.626068279313518", "14.626068279313518", "", "", null)]
@@ -546,15 +546,15 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                             "Roughness coefficient"});
                 table35.AddRow(new string[] {
                             "0",
-                            "-10.0",
-                            "1.0"});
+                            "-10",
+                            "1"});
                 table35.AddRow(new string[] {
                             "30.56",
-                            "0.0",
-                            "1.0"});
+                            "0",
+                            "1"});
                 table35.AddRow(new string[] {
                             "61.12",
-                            "10.0",
+                            "10",
                             ""});
 #line 143
         testRunner.Given("the following series are adjusted:", ((string)(null)), table35, "Given ");
@@ -572,7 +572,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
                             "Outer crest",
                             "61.12"});
 #line 148
-        testRunner.And("the following rekeninstellingen are adjusted:", ((string)(null)), table36, "And ");
+        testRunner.And("the following calculation settings are adjusted:", ((string)(null)), table36, "And ");
 #line hidden
 #line 153
         testRunner.When(string.Format("I change the property Foreshore bottom level to a value of {0}", foreshoreBottomLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

@@ -196,7 +196,7 @@ namespace DiKErnel.SpecFlow.Test.Features
             table2.AddRow(new string[] {
                         "0",
                         "0",
-                        "1.0"});
+                        "1"});
             table2.AddRow(new string[] {
                         "25",
                         "7.5",
@@ -242,7 +242,7 @@ namespace DiKErnel.SpecFlow.Test.Features
                         "1.1"});
             table4.AddRow(new string[] {
                         "Foreshore bottom level",
-                        "-4.0"});
+                        "-4"});
             table4.AddRow(new string[] {
                         "Slope foreshore",
                         "0.004"});
