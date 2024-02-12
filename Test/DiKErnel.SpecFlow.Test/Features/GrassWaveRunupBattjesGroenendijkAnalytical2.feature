@@ -114,7 +114,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | 0     | -10.0 | 1.0                   |
           | 30.56 | 0.0   | 1.0                   |
           | 61.12 | 10.0  |                       |
-        And the following rekeninstellingen are adjusted:
+        And the following calculation settings are adjusted:
           | Setting     | Value   |
           | Position    | 30.8656 |
           | Outer toe   | 0       |
@@ -145,7 +145,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | 0     | -10.0 | 1.0                   |
           | 30.56 | 0.0   | 1.0                   |
           | 61.12 | 10.0  |                       |
-        And the following rekeninstellingen are adjusted:
+        And the following calculation settings are adjusted:
           | Setting     | Value   |
           | Position    | 30.8656 |
           | Outer toe   | 0       |
