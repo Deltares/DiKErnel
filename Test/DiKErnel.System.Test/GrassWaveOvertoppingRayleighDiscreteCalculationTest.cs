@@ -208,8 +208,8 @@ namespace DiKErnel.System.Test
             {
                 IncreasedLoadTransitionAlphaM = 1.2,
                 ReducedStrengthTransitionAlphaS = 1.3,
-                FixedNumberOfWaves = 5000,
-                DikeHeight = 9.7
+                DikeHeight = 9.7,
+                FixedNumberOfWaves = 5000
             };
 
             builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
@@ -279,8 +279,8 @@ namespace DiKErnel.System.Test
                 50, GrassTopLayerType.OpenSod)
             {
                 InitialDamage = 0.9,
-                FixedNumberOfWaves = 15000,
-                DikeHeight = 9
+                DikeHeight = 9,
+                FixedNumberOfWaves = 15000
             };
 
             builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(locationConstructionProperties);
@@ -309,10 +309,10 @@ namespace DiKErnel.System.Test
                 IncreasedLoadTransitionAlphaM = 1.25,
                 ReducedStrengthTransitionAlphaS = 1.33,
                 AverageNumberOfWavesCtm = 0.85,
-                FixedNumberOfWaves = 15000,
                 FrontVelocityCwo = 1.6,
                 AccelerationAlphaAForCrest = 1.1,
-                AccelerationAlphaAForInnerSlope = 1.5
+                AccelerationAlphaAForInnerSlope = 1.5,
+                FixedNumberOfWaves = 15000
             };
 
             builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(locationConstructionProperties);

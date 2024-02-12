@@ -234,8 +234,8 @@ namespace DiKErnel.System.Test
                 IncreasedLoadTransitionAlphaM = -11,
                 ReducedStrengthTransitionAlphaS = -3,
                 AverageNumberOfWavesCtm = 0,
-                FixedNumberOfWaves = 0,
-                FrontVelocityCu = -1
+                FrontVelocityCu = -1,
+                FixedNumberOfWaves = 0
             };
 
             var builder = new CalculationInputBuilder(0);
@@ -441,11 +441,11 @@ namespace DiKErnel.System.Test
                 CriticalFrontVelocity = -1,
                 AccelerationAlphaAForCrest = -0.1,
                 AccelerationAlphaAForInnerSlope = -0.1,
-                FixedNumberOfWaves = 0,
                 FrontVelocityCwo = -0.1,
                 AverageNumberOfWavesCtm = 0,
                 IncreasedLoadTransitionAlphaM = -11,
-                ReducedStrengthTransitionAlphaS = -3
+                ReducedStrengthTransitionAlphaS = -3,
+                FixedNumberOfWaves = 0
             };
 
             var builder = new CalculationInputBuilder(0);

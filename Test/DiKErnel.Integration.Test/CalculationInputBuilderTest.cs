@@ -1192,11 +1192,11 @@ namespace DiKErnel.Integration.Test
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double frontVelocityCwo = Random.NextDouble();
             double accelerationAlphaAForCrest = Random.NextDouble();
             double accelerationAlphaAForInnerSlope = Random.NextDouble();
             double dikeHeight = Random.NextDouble();
+            int fixedNumberOfWaves = Random.Next();
 
             var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType)
@@ -1208,11 +1208,11 @@ namespace DiKErnel.Integration.Test
                 IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM,
                 ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS,
                 AverageNumberOfWavesCtm = averageNumberOfWavesCtm,
-                FixedNumberOfWaves = fixedNumberOfWaves,
                 FrontVelocityCwo = frontVelocityCwo,
                 AccelerationAlphaAForCrest = accelerationAlphaAForCrest,
                 AccelerationAlphaAForInnerSlope = accelerationAlphaAForInnerSlope,
-                DikeHeight = dikeHeight
+                DikeHeight = dikeHeight,
+                FixedNumberOfWaves = fixedNumberOfWaves
             };
 
             const double innerCrestX = 30;
@@ -1254,14 +1254,14 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 averageNumberOfWavesCtm, locationDependentInput);
 
-            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
-
             GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, frontVelocityCwo, locationDependentInput);
 
             GrassWaveOvertoppingRayleighLocationDependentInputAssertHelper.AssertAccelerationAlphaA(
                 accelerationAlphaAForCrest, accelerationAlphaAForInnerSlope, locationDependentInput.AccelerationAlphaA);
+
+            GrassWaveOvertoppingRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
         }
 
         [Test]
@@ -2101,8 +2101,8 @@ namespace DiKErnel.Integration.Test
             double increasedLoadTransitionAlphaM = Random.NextDouble();
             double reducedStrengthTransitionAlphaS = Random.NextDouble();
             double averageNumberOfWavesCtm = Random.NextDouble();
-            int fixedNumberOfWaves = Random.Next();
             double frontVelocityCu = Random.NextDouble();
+            int fixedNumberOfWaves = Random.Next();
 
             var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 x, topLayerType)
@@ -2114,8 +2114,8 @@ namespace DiKErnel.Integration.Test
                 IncreasedLoadTransitionAlphaM = increasedLoadTransitionAlphaM,
                 ReducedStrengthTransitionAlphaS = reducedStrengthTransitionAlphaS,
                 AverageNumberOfWavesCtm = averageNumberOfWavesCtm,
-                FixedNumberOfWaves = fixedNumberOfWaves,
-                FrontVelocityCu = frontVelocityCu
+                FrontVelocityCu = frontVelocityCu,
+                FixedNumberOfWaves = fixedNumberOfWaves
             };
 
             var builder = new CalculationInputBuilder(Random.NextDouble());
@@ -2147,11 +2147,11 @@ namespace DiKErnel.Integration.Test
             GrassCumulativeOverloadLocationDependentInputAssertHelper.AssertAverageNumberOfWaves(
                 averageNumberOfWavesCtm, locationDependentInput);
 
-            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
-                criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
-
             GrassWaveRunupLocationDependentInputAssertHelper.AssertFrontVelocity(
                 criticalFrontVelocity, frontVelocityCu, locationDependentInput);
+
+            GrassWaveRunupRayleighDiscreteLocationDependentInputAssertHelper.AssertCumulativeOverload(
+                criticalCumulativeOverload, fixedNumberOfWaves, locationDependentInput);
         }
 
         [Test]

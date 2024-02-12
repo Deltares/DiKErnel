@@ -84,8 +84,8 @@ namespace DiKErnel.System.Test
             var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 15, GrassTopLayerType.ClosedSod)
             {
-                FixedNumberOfWaves = 500,
-                FrontVelocityCu = 1.15
+                FrontVelocityCu = 1.15,
+                FixedNumberOfWaves = 500
             };
 
             builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
