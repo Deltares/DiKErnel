@@ -16,4 +16,6 @@ RUN $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://
     [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine);
 
 # Install living doc CLI
-RUN dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path C:\SpecFlow-LivingDoc-CLI
+RUN dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path C:\SpecFlow-LivingDoc-CLI; \
+    $path = $path + ';C:\SpecFlow-LivingDoc-CLI'; \
+    [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine);
