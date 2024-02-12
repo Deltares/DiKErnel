@@ -23,7 +23,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 57600     |             |                 |                  |                |
         And the following dike profile and a dike orientation of 0:
           | X  | Z   | Roughness coefficient |
-          | 0  | 0   | 1.0                   |
+          | 0  | 0   | 1                     |
           | 25 | 7.5 |                       |
         And the following dike profile points:
           | Outer toe | Outer crest |
@@ -38,7 +38,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Failure number                     | 1          |
           | Average number of waves Ctm        | 0.92       |
           | Front velocity                     | 1.1        |
-          | Foreshore bottom level             | -4.0       |
+          | Foreshore bottom level             | -4         |
           | Slope foreshore                    | 0.004      |
 
     Scenario: Testcase 1 - Default with closed sod
