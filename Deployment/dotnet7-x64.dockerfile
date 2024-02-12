@@ -8,3 +8,6 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     $installVCRedistScript = ((New-Object System.Net.WebClient).DownloadString('https://vcredist.com/install.ps1')); \
     Invoke-Command -ScriptBlock ([scriptblock]::Create($installVCRedistScript));
+
+# Install living doc CLI
+RUN dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI

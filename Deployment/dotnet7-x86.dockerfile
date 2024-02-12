@@ -14,3 +14,6 @@ RUN $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://
     $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
     $path = $path + ';C:\dotnet'; \
     [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine);
+
+# Install living doc CLI
+RUN dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
