@@ -11,12 +11,9 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
 
 RUN $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://dot.net/v1/dotnet-install.ps1')); \
     & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir C:\dotnet; \
-    $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
-    $path = $path + ';C:\dotnet'; \
-    [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine);
 
 # Install living doc CLI
-RUN dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path=C:\SpecFlow-LivingDoc-CLI; \
-    $newPath = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
-    $livingDocPath = $newPath + ';C:\SpecFlow-LivingDoc-CLI'; \
-    [Environment]::SetEnvironmentVariable('PATH', $livingDocPath, [EnvironmentVariableTarget]::Machine);
+RUN C:\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path C:\SpecFlow-LivingDoc-CLI; \
+    $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
+    $path = $path + ';C:\dotnet;C:\SpecFlow-LivingDoc-CLI;'; \
+    [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine);
