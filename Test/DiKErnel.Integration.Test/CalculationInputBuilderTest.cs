@@ -95,6 +95,22 @@ namespace DiKErnel.Integration.Test
                                    "between the outer toe and outer crest.");
         }
 
+        private static void GivenInnerSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+            Action<CalculationInputBuilder> addLocationAction, double locationX)
+        {
+            GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddDikeProfileSegment(10, 20, 30, 40);
+                    builder.AddDikeProfileSegment(30, 40, 50, 60);
+                    builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
+                    builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
+                    addLocationAction(builder);
+                },
+                "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
+                "outer crest and inner toe.");
+        }
+
         private static void GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
             Action<CalculationInputBuilder> addLocationAction, string expectedMessage)
         {
@@ -108,44 +124,6 @@ namespace DiKErnel.Integration.Test
 
             // Then
             AssertResultWithSuccessfulFalseAndEvent(result, expectedMessage);
-        }
-
-        private static void
-            GivenGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                double locationX)
-        {
-            GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                builder =>
-                {
-                    builder.AddDikeProfileSegment(10, 20, 30, 40);
-                    builder.AddDikeProfileSegment(30, 40, 50, 60);
-                    builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-                    builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-                    builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
-                        new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
-                            locationX, Random.NextEnumValue<GrassTopLayerType>()));
-                },
-                "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
-                "outer crest and inner toe.");
-        }
-
-        private static void
-            GivenGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                double locationX)
-        {
-            GivenLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
-                builder =>
-                {
-                    builder.AddDikeProfileSegment(10, 20, 30, 40);
-                    builder.AddDikeProfileSegment(30, 40, 50, 60);
-                    builder.AddDikeProfilePoint(30, CharacteristicPointType.InnerCrest);
-                    builder.AddDikeProfilePoint(50, CharacteristicPointType.InnerToe);
-                    builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
-                        new GrassWaveOvertoppingRayleighLocationConstructionProperties(
-                            locationX, Random.NextEnumValue<GrassTopLayerType>()));
-                },
-                "The location with position " + NumericsHelper.ToString(locationX) + " must be on or between the " +
-                "outer crest and inner toe.");
         }
 
         #region Profile segments
@@ -1021,14 +999,30 @@ namespace DiKErnel.Integration.Test
         public void
             GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            GivenGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
+            const double locationX = 9.9;
+
+            GivenInnerSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
+                        new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
+                            locationX, Random.NextEnumValue<GrassTopLayerType>()));
+                }, locationX);
         }
 
         [Test]
         public void
             GivenBuilderWithGrassWaveOvertoppingRayleighDiscreteLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            GivenGrassWaveOvertoppingRayleighDiscreteLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
+            const double locationX = 50.1;
+
+            GivenInnerSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
+                        new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
+                            locationX, Random.NextEnumValue<GrassTopLayerType>()));
+                }, locationX);
         }
 
         [Test]
@@ -1350,14 +1344,30 @@ namespace DiKErnel.Integration.Test
         public void
             GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationWithXLeftFromOuterToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            GivenGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(9.9);
+            const double locationX = 9.9;
+
+            GivenInnerSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
+                        new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                            locationX, Random.NextEnumValue<GrassTopLayerType>()));
+                }, locationX);
         }
 
         [Test]
         public void
             GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationWithXRightFromOuterCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
-            GivenGrassWaveOvertoppingRayleighAnalyticalLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(50.1);
+            const double locationX = 50.1;
+
+            GivenInnerSlopeLocationWithInvalidX_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent(
+                builder =>
+                {
+                    builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
+                        new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                            locationX, Random.NextEnumValue<GrassTopLayerType>()));
+                }, locationX);
         }
 
         [Test]
