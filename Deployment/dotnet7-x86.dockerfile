@@ -16,4 +16,4 @@ RUN $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://
     [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine);
 
 # Install living doc CLI
-RUN dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
+RUN dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json
