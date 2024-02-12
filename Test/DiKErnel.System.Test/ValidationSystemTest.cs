@@ -403,11 +403,15 @@ namespace DiKErnel.System.Test
             var grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties =
                 new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
 
+            var grassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties =
+                new GrassWaveOvertoppingRayleighLocationConstructionProperties(25, GrassTopLayerType.ClosedSod);
+
             builder.AddAsphaltWaveImpactLocation(asphaltWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveImpactLocation(grassWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveRunupRayleighDiscreteLocation(grassWaveRunupRayleighDiscreteLocationConstructionProperties);
             builder.AddNaturalStoneWaveImpactLocation(naturalStoneWaveImpactLocationConstructionProperties);
             builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(grassWaveOvertoppingRayleighDiscreteLocationConstructionProperties);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(grassWaveOvertoppingRayleighAnalyticalLocationConstructionProperties);
 
             DataResult<ICalculationInput> calculationInput = builder.Build();
 
