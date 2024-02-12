@@ -29,8 +29,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
         public void CumulativeOverload_ValidInput_ExpectedValue()
         {
             // Setup
-            const double averageNumberOfWaves = 832.56;
-            const double representativeWaveRunup2P = 2.602;
+            const double averageNumberOfWaves = 832.562442183164;
+            const double representativeWaveRunup2P = 4.16193161416357;
             const double verticalDistanceWaterLevelElevation = 2.2;
             const double criticalFrontVelocity = 6.6;
             const double increasedLoadTransitionAlphaM = 1;
@@ -52,7 +52,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             double cumulativeOverload = GrassWaveOvertoppingRayleighAnalyticalFunctions.CumulativeOverload(input);
 
             // Assert
-            AssertHelper.AreEqual(16.72203513267711, cumulativeOverload);
+            AssertHelper.AreEqual(1733.057985595412, cumulativeOverload);
         }
     }
 }
