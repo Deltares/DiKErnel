@@ -490,6 +490,52 @@ namespace DiKErnel.Integration.Test
         }
 
         [Test]
+        public void
+            GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationAndWithoutDikeProfilePointDataInnerToe_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const double endPointX = 10;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            builder.AddDikeProfileSegment(Random.NextDouble(), Random.NextDouble(), endPointX, Random.NextDouble());
+            builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.InnerCrest);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
+                new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                    endPointX - Random.NextDouble(), GrassTopLayerType.ClosedSod));
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndEvent(result, "The inner toe is required.");
+        }
+
+        [Test]
+        public void
+            GivenBuilderWithGrassWaveOvertoppingRayleighAnalyticalLocationAndWithoutDikeProfilePointDataInnerCrest_WhenBuild_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        {
+            // Given
+            const double endPointX = 10;
+
+            var builder = new CalculationInputBuilder(Random.NextDouble());
+            builder.AddDikeProfileSegment(Random.NextDouble(), Random.NextDouble(), endPointX, Random.NextDouble());
+            builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(endPointX, CharacteristicPointType.InnerToe);
+            builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
+                new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                    endPointX - Random.NextDouble(), GrassTopLayerType.ClosedSod));
+
+            // When
+            DataResult<ICalculationInput> result = builder.Build();
+
+            // Then
+            AssertResultWithSuccessfulFalseAndEvent(result, "The inner crest is required.");
+        }
+
+        [Test]
         public void GivenBuilderWithDikeProfilePointDataOnSegmentPoints_WhenBuild_ThenReturnsResultWithCalculationInput()
         {
             // Given
