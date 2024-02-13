@@ -15,6 +15,6 @@ RUN $dotNetPath = 'C:\dotnet'; \
     & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir ${dotNetPath}; \
     & ${dotNetPath}\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path ${specFlowLivingDocPath}; \
     $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
-    $path = $path + ';' + ${dotNetPath} + ';' + ${specFlowLivingDocPath}; \
-    [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine); \
+    $path += ';' + ${dotNetPath} + ';' + ${specFlowLivingDocPath}; \
+    [Environment]::SetEnvironmentVariable('PATH', ${path}, [EnvironmentVariableTarget]::Machine); \
     [Environment]::SetEnvironmentVariable('DOTNET_ROOT', ${dotNetPath}, [EnvironmentVariableTarget]::Machine);
