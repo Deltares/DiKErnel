@@ -7,3 +7,6 @@
 
 # JetBrains Rider
 .idea/
+
+# Specflow
+*.feature.cs
