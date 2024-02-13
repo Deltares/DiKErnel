@@ -11,7 +11,7 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
 
 RUN $DOTNET_PATH="C:\dotnet"; \
     $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://dot.net/v1/dotnet-install.ps1')); \
-    & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir $DOTNET_PATH; \
+    & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir $DOTNET_PATH;
 
 RUN $LIVINGDOC_PATH="C:\SpecFlow-LivingDoc-CLI"; \
     & C:\dotnet\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path $LIVINGDOC_PATH; \
