@@ -9,16 +9,14 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     $installVCRedistScript = ((New-Object System.Net.WebClient).DownloadString('https://vcredist.com/install.ps1')); \
     Invoke-Command -ScriptBlock ([scriptblock]::Create($installVCRedistScript));
 
-RUN $DOTNET_PATH="C:\dotnet"; \
-    $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://dot.net/v1/dotnet-install.ps1')); \
-    & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir $DOTNET_PATH;
+RUN $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://dot.net/v1/dotnet-install.ps1')); \
+    & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir C:\dotnet;
 
-RUN $LIVINGDOC_PATH="C:\SpecFlow-LivingDoc-CLI"; \
-    & C:\dotnet\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path $LIVINGDOC_PATH; \
+RUN C:\dotnet\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path C:\SpecFlow-LivingDoc-CLI; \
     $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
-    $path = "${path};C:\dotnet;${LIVINGDOC_PATH}"; \
+    $path = "${path};C:\dotnet;C:\SpecFlow-LivingDoc-CLI"; \
     [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine); \
-    [Environment]::SetEnvironmentVariable('DOTNET_ROOT', $DOTNET_PATH, [EnvironmentVariableTarget]::Machine);
+    [Environment]::SetEnvironmentVariable('DOTNET_ROOT', C:\dotnet, [EnvironmentVariableTarget]::Machine);
     
 # Pipe output
 RUN Write-Host($Env:PATH); \
