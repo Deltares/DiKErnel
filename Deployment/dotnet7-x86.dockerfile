@@ -13,7 +13,7 @@ RUN $DOTNET_PATH="C:\dotnet"; \
     $LIVINGDOC_PATH="C:\SpecFlow-LivingDoc-CLI"; \
     $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://dot.net/v1/dotnet-install.ps1')); \
     & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir $DOTNET_PATH; \
-    $DOTNET_PATH\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path $LIVINGDOC_PATH; \
+    & $DOTNET_PATH\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path $LIVINGDOC_PATH; \
     $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
     $path = "${path};${DOTNET_PATH};${LIVINGDOC_PATH}"; \
     [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine); \
