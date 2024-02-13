@@ -17,18 +17,12 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using System.IO;
 using NUnit.Framework;
 
 namespace DiKErnel.TestUtil
 {
     public static class AssertHelper
     {
-        public static void AssertFileContents(string expectedContentFilePath, string actualContentFilePath)
-        {
-            Assert.That(File.ReadAllText(actualContentFilePath), Is.EqualTo(File.ReadAllText(expectedContentFilePath)));
-        }
-
         public static void AssertException<T>(TestDelegate call, string expectedMessage) where T : Exception
         {
             Assert.That(call, Throws.TypeOf<T>().With.Message.EqualTo(expectedMessage));
