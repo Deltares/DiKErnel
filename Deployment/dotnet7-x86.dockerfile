@@ -13,11 +13,14 @@ RUN $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://
     & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture x86 -InstallDir C:\dotnet;
 
 RUN C:\dotnet\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path C:\SpecFlow-LivingDoc-CLI; \
-    $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
+
+# Set environment variables
+RUN $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
     $path = "${path};C:\dotnet;C:\SpecFlow-LivingDoc-CLI"; \
-    [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine); \
-    [Environment]::SetEnvironmentVariable('DOTNET_ROOT', "C:\dotnet", [EnvironmentVariableTarget]::Machine);
+    $dotnetPath = "C:\dotnet"; \
+    & [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine); \
+    & [Environment]::SetEnvironmentVariable('DOTNET_ROOT', $dotnetPath, [EnvironmentVariableTarget]::Machine);
     
 # Pipe output
-RUN Write-Host($Env:PATH); \
-    Write-Host($Env:DOTNET_ROOT)
+RUN & Write-Host($Env:PATH); \
+    & Write-Host($Env:DOTNET_ROOT)
