@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -35,6 +36,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
     [Binding]
     public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions
     {
+        private const double tolerance = 1e-14;
+
         private const string timeStepsKey = "Time step";
         private const string waterLevelsKey = "Water level";
         private const string waveHeightsHm0Key = "Wave height Hm0";
@@ -45,14 +48,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string outerToePositionKey = "Outer toe";
         private const string outerCrestPositionKey = "Outer crest";
 
-        private const string locationXCoordinateKey = "Position";
-        private const string grassTopLayerTypeKey = "Top layer type";
+        private const string calculationPositionKey = "Position";
+        private const string topLayerTypeKey = "Top layer type";
 
         private const string xCoordinatesKey = "X";
         private const string zCoordinatesKey = "Z";
         private const string roughnessCoefficientsKey = "Roughness coefficient";
 
-        private const string foreshoreSlopeKey = "Slope foreshore";
+        private const string slopeForeshoreKey = "Slope foreshore";
         private const string bottomZForeshoreKey = "Foreshore bottom level";
 
         private const string damageKey = "Failure number";
@@ -63,11 +66,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string criticalCumulativeOverloadKey = "Critical cumulative overload";
         private const string increasedLoadTransitionAlfaMKey = "Increased load transition alfa M";
         private const string reducedStrengthTransitionAlphaSKey = "Reduced strength transition alfa S";
-        private const double tolerance = 1e-14;
 
         private readonly ScenarioContext context;
 
-        private IReadOnlyList<LocationDependentOutput> outputs;
+        private LocationDependentOutput output;
 
         public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context)
         {
@@ -78,10 +80,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public void GivenTheFollowingDikeProfile(string dikeOrientation, Table table)
         {
             context[dikeOrientationKey] = dikeOrientation;
-
-            context[xCoordinatesKey] = table.Rows.Select(row => row.GetString(xCoordinatesKey)).ToArray();
-            context[zCoordinatesKey] = table.Rows.Select(row => row.GetString(zCoordinatesKey)).ToArray();
-            context[roughnessCoefficientsKey] = table.Rows.Select(row => row.GetString(roughnessCoefficientsKey)).ToArray();
+            
+            GivenTheFollowingCollectionsAreAdjusted(table);
         }
 
         [Given(@"the following time steps and hydraulic loads:")]
@@ -105,7 +105,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         [Given(@"the following calculation settings:")]
         [Given(@"the following (?:(?!series).)* are adjusted:")]
-        public void GivenTheFollowingCalculationSettingsAreAdjusted(Table table)
+        public void GivenTheFollowingPropertiesAreAdjusted(Table table)
         {
             foreach (TableRow row in table.Rows)
             {
@@ -133,13 +133,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
             var calculator = new Calculator(result.Data);
             calculator.WaitForCompletion();
 
-            outputs = calculator.Result.Data.LocationDependentOutputItems;
+            output = calculator.Result.Data.LocationDependentOutputItems[0];
         }
 
         [Then(@"the damage is (.*)")]
         public void ThenTheDamageIs(double expectedDamage)
         {
-            IReadOnlyList<double> damages = outputs[0].GetDamages();
+            IReadOnlyList<double> damages = output.GetDamages();
             double actualDamage = damages[damages.Count - 1];
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
         }
@@ -147,22 +147,27 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the output values for (.*) and (.*) are")]
         public void ThenTheDamageAndCumulativeOverloadAre(double expectedDamage, double? expectedCumulativeOverload)
         {
-            LocationDependentOutput locationDependentOutput = outputs[0];
+            LocationDependentOutput locationDependentOutput = output;
 
             GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverLoadOutputs =
                 locationDependentOutput.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
             Assert.That(cumulativeOverLoadOutputs[cumulativeOverLoadOutputs.Length - 1].CumulativeOverload,
                         Is.EqualTo(expectedCumulativeOverload).Within(tolerance));
 
-            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
-            double actualDamage = damages[damages.Count - 1];
-
-            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
+            ThenTheDamageIs(expectedDamage);
         }
 
         private GrassTopLayerType GetGrassTopLayerType(string id)
         {
-            return GetString(id) == "Open sod" ? GrassTopLayerType.OpenSod : GrassTopLayerType.ClosedSod;
+            switch (GetString(id))
+            {
+                case "Open sod":
+                    return GrassTopLayerType.OpenSod;
+                case "Closed sod":
+                    return GrassTopLayerType.ClosedSod;
+                default:
+                    throw new NotSupportedException();
+            }
         }
 
         private string GetString(string id)
@@ -263,18 +268,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddForeshore(CalculationInputBuilder builder)
         {
-            double foreshoreSlope = GetDouble(foreshoreSlopeKey);
-            double bottomForeshoreZ = GetDouble(bottomZForeshoreKey);
-
-            builder.AddForeshore(foreshoreSlope, bottomForeshoreZ);
+            builder.AddForeshore(GetDouble(slopeForeshoreKey), GetDouble(bottomZForeshoreKey));
         }
 
         private void AddLocation(CalculationInputBuilder builder)
         {
-            GrassTopLayerType topLayerType = GetGrassTopLayerType(grassTopLayerTypeKey);
-
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
-                GetDouble(locationXCoordinateKey), topLayerType)
+                GetDouble(calculationPositionKey), GetGrassTopLayerType(topLayerTypeKey))
             {
                 FailureNumber = GetNullableDouble(damageKey),
                 InitialDamage = GetNullableDouble(initialDamageKey),
