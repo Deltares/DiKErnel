@@ -16,7 +16,7 @@ RUN C:\dotnet\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https
     $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
     $path = "${path};C:\dotnet;C:\SpecFlow-LivingDoc-CLI"; \
     [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine); \
-    [Environment]::SetEnvironmentVariable('DOTNET_ROOT', C:\dotnet, [EnvironmentVariableTarget]::Machine);
+    [Environment]::SetEnvironmentVariable('DOTNET_ROOT', "C:\dotnet", [EnvironmentVariableTarget]::Machine);
     
 # Pipe output
 RUN Write-Host($Env:PATH); \
