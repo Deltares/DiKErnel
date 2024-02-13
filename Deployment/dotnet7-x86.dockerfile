@@ -14,13 +14,10 @@ RUN $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://
 
 RUN C:\dotnet\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path C:\SpecFlow-LivingDoc-CLI;
 
-# Set environment variables
 RUN $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
     $path = "${path};C:\dotnet;C:\SpecFlow-LivingDoc-CLI"; \
-    $dotnetPath = "C:\dotnet"; \
     & [Environment]::SetEnvironmentVariable('PATH', $path, [EnvironmentVariableTarget]::Machine); \
-    & [Environment]::SetEnvironmentVariable('DOTNET_ROOT', $dotnetPath, [EnvironmentVariableTarget]::Machine);
+    Write-Host($Env:PATH); 
     
-# Pipe output
-RUN & Write-Host($Env:PATH); \
-    & Write-Host($Env:DOTNET_ROOT)
+RUN [Environment]::SetEnvironmentVariable('DOTNET_ROOT', 'C:\dotnet' , [EnvironmentVariableTarget]::Machine); \
+    Write-Host($Env:DOTNET_ROOT)
