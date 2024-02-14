@@ -2,20 +2,14 @@
 
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
-ARG ARCHITECTURE=x86
-
-RUN echo "Oh dang look at that ${ARCHITECTURE}"
-
 # Set powershell as default shell
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
-RUN echo "Oh dang look at that ${ARCHITECTURE}"
 
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     $installVCRedistScript = ((New-Object System.Net.WebClient).DownloadString('https://vcredist.com/install.ps1')); \
     Invoke-Command -ScriptBlock ([scriptblock]::Create($installVCRedistScript));
 
-RUN echo "Oh dang look at that ${ARCHITECTURE}"
+ARG architecture=x86
 
 RUN $dotNetPath = 'C:\dotnet'; \
     $specFlowLivingDocPath = 'C:\SpecFlow-LivingDoc-CLI'; \
