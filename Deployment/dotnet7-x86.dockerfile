@@ -2,6 +2,8 @@
 
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
+ARG architecture
+
 # Set powershell as default shell
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -9,15 +11,10 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     $installVCRedistScript = ((New-Object System.Net.WebClient).DownloadString('https://vcredist.com/install.ps1')); \
     Invoke-Command -ScriptBlock ([scriptblock]::Create($installVCRedistScript));
 
-ARG architecture=x86
-
-RUN echo test
-RUN echo $architecture
-
 RUN $dotNetPath = 'C:\dotnet'; \
     $specFlowLivingDocPath = 'C:\SpecFlow-LivingDoc-CLI'; \
     $installDotnet = ((New-Object System.Net.WebClient).DownloadString('https://dot.net/v1/dotnet-install.ps1')); \
-    & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture ${architecture} -InstallDir ${dotNetPath}; \
+    & ([scriptblock]::Create($installDotnet)) -Version 7.0.304 -Architecture %architecture% -InstallDir ${dotNetPath}; \
     & ${dotNetPath}\dotnet tool install SpecFlow.Plus.LivingDoc.CLI --add-source https://api.nuget.org/v3/index.json --tool-path ${specFlowLivingDocPath}; \
     $path = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
     $path += ';' + ${dotNetPath} + ';' + ${specFlowLivingDocPath}; \
