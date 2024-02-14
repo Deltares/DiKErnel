@@ -2,7 +2,7 @@
 
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
-ARG ARCHITECTURE
+ARG ARCHITECTURE=x86
 
 # Set powershell as default shell
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
