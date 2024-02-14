@@ -4,6 +4,8 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 ARG architecture
 
+RUN echo "I'm building for %architecture%"
+
 # Set powershell as default shell
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
