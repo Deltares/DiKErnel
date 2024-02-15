@@ -393,14 +393,9 @@ namespace DiKErnel.Integration
                     case GrassWaveImpactLocationConstructionProperties grassWaveImpactLocationConstructionProperties
                         when !ValidateGrassWaveImpactLocationConstructionProperties(
                                  grassWaveImpactLocationConstructionProperties, outerToe, outerCrest):
-                    case GrassWaveRunupRayleighDiscreteLocationConstructionProperties
-                        grassWaveRunupRayleighDiscreteLocationConstructionProperties
-                        when !ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
-                                 grassWaveRunupRayleighDiscreteLocationConstructionProperties, outerToe, outerCrest):
-                    case GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
-                        grassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties
-                        when !ValidateGrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
-                                 grassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties, outerToe, outerCrest):
+                    case GrassWaveRunupLocationConstructionProperties grassWaveRunupLocationConstructionProperties
+                        when !ValidateGrassWaveRunupLocationConstructionProperties(
+                                 grassWaveRunupLocationConstructionProperties, outerToe, outerCrest):
                     case NaturalStoneWaveImpactLocationConstructionProperties naturalStoneWaveImpactLocationConstructionProperties
                         when !ValidateNaturalStoneWaveImpactLocationConstructionProperties(
                                  naturalStoneWaveImpactLocationConstructionProperties, outerToe, outerCrest):
@@ -437,17 +432,8 @@ namespace DiKErnel.Integration
                    && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X);
         }
 
-        private bool ValidateGrassWaveRunupRayleighDiscreteLocationConstructionProperties(
-            GrassWaveRunupRayleighDiscreteLocationConstructionProperties constructionProperties,
-            ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
-        {
-            return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
-                   && ValidateGrassTopLayerType(constructionProperties.TopLayerType, constructionProperties.X)
-                   && ValidateOvertoppingAdapterProperties(outerToe, outerCrest);
-        }
-
-        private bool ValidateGrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
-            GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties constructionProperties,
+        private bool ValidateGrassWaveRunupLocationConstructionProperties(
+            GrassWaveRunupLocationConstructionProperties constructionProperties,
             ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest)
         {
             return ValidateLocationOnOuterSlope(outerToe, outerCrest, constructionProperties.X)
