@@ -2,6 +2,6 @@
 
     <Import Project="$(SolutionDir)Development\NetStandard.targets"/>
     <Target Name="CopyOvertoppingDependencies" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /d/s/y &quot;$(ExternalDependenciesDir)\*&quot; &quot;$(OutDir)&quot;"/>
+        <Exec Command="xcopy /d/s/y &quot;$(ExternalDependenciesDir)*&quot; &quot;$(OutDir)&quot;"/>
     </Target>
 </Project>
