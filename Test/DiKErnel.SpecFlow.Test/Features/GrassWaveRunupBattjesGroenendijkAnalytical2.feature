@@ -50,10 +50,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
     Scenario Outline: BM Gras benchmark 15 - Variable input of level of interest
 
         Given the following series are adjusted:
-          | X     | Z     | Roughness coefficient |
-          | 0     | -10   | 1                     |
-          | 30.56 | 0     | 1                     |
-          | 61.12 | 10    |                       |
+          | X     | Z   | Roughness coefficient |
+          | 0     | -10 | 1                     |
+          | 30.56 | 0   | 1                     |
+          | 61.12 | 10  |                       |
         And the following calculation settings are adjusted:
           | Setting     | Value |
           | Outer toe   | 0     |
@@ -79,10 +79,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
     results is however performed by BM Gras.
 
         Given the following series are adjusted:
-          | X     | Z     | Roughness coefficient |
-          | 0     | -10   | 1                     |
-          | 30.56 | 0     | 1                     |
-          | 61.12 | 10    |                       |
+          | X     | Z   | Roughness coefficient |
+          | 0     | -10 | 1                     |
+          | 30.56 | 0   | 1                     |
+          | 61.12 | 10  |                       |
         And the following calculation settings are adjusted:
           | Setting     | Value   |
           | Position    | 30.8656 |
@@ -110,10 +110,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
     - When (water level - Foreshore bottom level) equals to 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.
 
         Given the following series are adjusted:
-          | X     | Z     | Roughness coefficient |
-          | 0     | -10   | 1                     |
-          | 30.56 | 0     | 1                     |
-          | 61.12 | 10    |                       |
+          | X     | Z   | Roughness coefficient |
+          | 0     | -10 | 1                     |
+          | 30.56 | 0   | 1                     |
+          | 61.12 | 10  |                       |
         And the following calculation settings are adjusted:
           | Setting     | Value   |
           | Position    | 30.8656 |
@@ -141,10 +141,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
     - When (water level - bottom foreshore level) equals to 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 
         Given the following series are adjusted:
-          | X     | Z     | Roughness coefficient |
-          | 0     | -10   | 1                     |
-          | 30.56 | 0     | 1                     |
-          | 61.12 | 10    |                       |
+          | X     | Z   | Roughness coefficient |
+          | 0     | -10 | 1                     |
+          | 30.56 | 0   | 1                     |
+          | 61.12 | 10  |                       |
         And the following calculation settings are adjusted:
           | Setting     | Value   |
           | Position    | 30.8656 |
