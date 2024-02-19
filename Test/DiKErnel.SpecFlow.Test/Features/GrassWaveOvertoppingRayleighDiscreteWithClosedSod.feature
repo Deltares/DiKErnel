@@ -1,5 +1,5 @@
-Feature: GrassWaveOvertoppingRayleighDiscrete
-  As a user I want to perform grass wave overtopping calculations based on Rayleigh discrete.
+Feature: GrassWaveOvertoppingRayleighDiscrete with closed sod
+  As a user I want to perform grass wave overtopping calculations with a closed sod based on Rayleigh discrete.
 
   Background:
     Given the following time steps and hydraulic loads:
@@ -20,6 +20,7 @@ Feature: GrassWaveOvertoppingRayleighDiscrete
       | 46800     | 5.7         | 2.55            | 5.09             | 16             |
       | 50400     | 5.6         | 2.6             | 5.12             | 18             |
       | 54000     | 5.5         | 2.65            | 5.15             | 20             |
+      | 57600     |             |                 |                  |                |
     And the following dike profile and a dike orientation of 0:
       | X  | Z    | Roughness coefficient |
       | 0  | -0.1 | 1                     |
@@ -32,6 +33,7 @@ Feature: GrassWaveOvertoppingRayleighDiscrete
       | 35 | 7.4  | 0.8                   |
       | 45 | 5    | 0.8                   |
       | 60 | 0.5  | 0.8                   |
+      | 60 | 0.5  |                       |
     And the following dike profile points:
       | Outer toe | Crest outer berm | Notch outer berm | Outer crest | Inner crest | Inner toe |
       | 5         | 15               | 22               | 30          | 35          | 60        |
@@ -51,19 +53,19 @@ Feature: GrassWaveOvertoppingRayleighDiscrete
       | Acceleration alfa A crest          | 1          |
       | Acceleration alfa A inner slope    | 1.4        |
 
-  Scenario: Testcase 1 - Default with closed sod
+  Scenario: Testcase 1 - Default
     When I run the grass wave overtopping Rayleigh discrete calculation
     Then the damage is 1.48214256643614
     And the expected rounded time of failure is 33913
 
-  Scenario: Testcase 2 - Calculation with closed sod and different calculation location
+  Scenario: Testcase 2 - Calculation with different position
     Given the following calculation settings are adjusted:
       | Setting  | Value |
       | Position | 33    |
     When I run the grass wave overtopping Rayleigh discrete calculation
     Then the damage is 0.07514904750839
 
-  Scenario: Testcase 3 - Calculation with closed sod, different calculation and various dike heights
+  Scenario: Testcase 3 - Calculation with different position and various dike heights
     Given the following calculation settings are adjusted:
       | Setting  | Value |
       | Position | 33    |
