@@ -72,7 +72,7 @@ Feature: GrassWaveOvertoppingRayleighDiscrete with closed sod
       | Position | 33    |
     And I change the property Dike height to a value of <Dike height>
     When I run the grass wave overtopping Rayleigh discrete calculation
-    Then the output value for <Damage> is
+    Then the damage is <Damage>
     And the rounded time of failure is undefined
 
     Examples:

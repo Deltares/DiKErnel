@@ -64,6 +64,7 @@ Feature: GrassWaveOvertoppingRayleighDiscrete with non-equidistant time series
   Scenario: Adjusted calculation settings
     Given the following calculation settings are adjusted:
       | Setting               | Value |
+      | Position              | 50    |
       | Initial damage        | 0.9   |
       | Number of fixed waves | 15000 |
       | Dike height           | 9     |
@@ -75,14 +76,13 @@ Feature: GrassWaveOvertoppingRayleighDiscrete with non-equidistant time series
     Given the following calculation settings are adjusted:
       | Setting                            | Value |
       | Position                           | 50    |
-      | Initial damage                     | 0.6   |
       | Critical cumulative overload       | 7500  |
       | Critical front velocity            | 5.5   |
       | Increased load transition alfa M   | 1.25  |
       | Reduced strength transition alfa S | 1.33  |
       | Average number of waves Ctm        | 0.85  |
       | Number of fixed waves              | 15000 |
-      | Front velocity Cwo                 | 1.6   |
+      | Front velocity                     | 1.6   |
       | Acceleration alfa A crest          | 1.1   |
       | Acceleration alfa A inner slope    | 1.5   |
     When I run the grass wave overtopping Rayleigh discrete calculation

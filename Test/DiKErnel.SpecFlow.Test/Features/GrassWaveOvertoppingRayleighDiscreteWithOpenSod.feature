@@ -54,7 +54,7 @@ Feature: GrassWaveOvertoppingRayleighDiscrete with open sod
   Scenario: Testcase 1 - Default
     When I run the grass wave overtopping Rayleigh discrete calculation
     Then the damage is 24.68131275788636
-    And the expected rounded time of failure is 5311
+    And the rounded time of failure is 5311
 
   Scenario: Testcase 2 - Adjusted position and dike height:
     Given the following calculation settings are adjusted:
