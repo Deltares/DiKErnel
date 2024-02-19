@@ -50,3 +50,27 @@ Feature: GrassWaveOvertoppingRayleighDiscrete with open sod
       | Front velocity Cwo                 | 1.45     |
       | Acceleration alfa A crest          | 1        |
       | Acceleration alfa A inner slope    | 1.4      |
+
+  Scenario: Testcase 1 - Default
+    When I run the grass wave overtopping Rayleigh discrete calculation
+    Then the damage is 24.68131275788636
+    And the expected rounded time of failure is 5311
+
+  Scenario: Testcase 2 - Adjusted position and dike height:
+    Given the following calculation settings are adjusted:
+      | Setting     | Value |
+      | Position    | 30    |
+      | Dike height | 9.5   |
+    When I run the grass wave overtopping Rayleigh discrete calculation
+    Then the damage is 0.86861734396724
+    And the rounded time of failure is undefined
+
+  Scenario: Testcase 3 - Adjusted position, dike height and transition
+    Given the following calculation settings are adjusted:
+      | Setting                          | Value |
+      | Position                         | 35    |
+      | Dike height                      | 9.6   |
+      | Increased load transition alfa M | 1.2   |
+    When I run the grass wave overtopping Rayleigh discrete calculation
+    Then the damage is 1.11910058435611
+    And the rounded time of failure is 51672
