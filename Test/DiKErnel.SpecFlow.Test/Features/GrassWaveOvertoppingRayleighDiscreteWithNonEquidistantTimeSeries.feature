@@ -46,3 +46,47 @@ Feature: GrassWaveOvertoppingRayleighDiscrete with non-equidistant time series
       | Front velocity Cwo                 | 1.45     |
       | Acceleration alfa A crest          | 1        |
       | Acceleration alfa A inner slope    | 1.4      |
+
+  Scenario: Default
+    When I run the grass wave overtopping Rayleigh discrete calculation
+    Then the damage is 1.99284873782755
+    And the rounded time of failure is 33915
+
+  Scenario: Adjusted position and dike height
+    Given the following calculation settings are adjusted:
+      | Setting     | Value |
+      | Position    | 50    |
+      | Dike height | 6.7   |
+    When I run the grass wave overtopping Rayleigh discrete calculation
+    Then the damage is 12.99435588540268
+    And the rounded time of failure is 23118
+
+  Scenario: Adjusted calculation settings
+    Given the following calculation settings are adjusted:
+      | Setting               | Value |
+      | Initial damage        | 0.9   |
+      | Number of fixed waves | 15000 |
+      | Dike height           | 9     |
+    When I run the grass wave overtopping Rayleigh discrete calculation
+    Then the damage is 1.03611132410722
+    And the rounded time of failure is 48552
+
+  Scenario: Robustness edge case
+    Given the following calculation settings are adjusted:
+      | Setting                            | Value |
+      | Position                           | 50    |
+      | Initial damage                     | 0.6   |
+      | Critical cumulative overload       | 7500  |
+      | Critical front velocity            | 5.5   |
+      | Increased load transition alfa M   | 1.25  |
+      | Reduced strength transition alfa S | 1.33  |
+      | Average number of waves Ctm        | 0.85  |
+      | Number of fixed waves              | 15000 |
+      | Front velocity Cwo                 | 1.6   |
+      | Acceleration alfa A crest          | 1.1   |
+      | Acceleration alfa A inner slope    | 1.5   |
+    When I run the grass wave overtopping Rayleigh discrete calculation
+    Then the damage is 0.40767273974729
+    And the rounded time of failure is undefined
+
+
