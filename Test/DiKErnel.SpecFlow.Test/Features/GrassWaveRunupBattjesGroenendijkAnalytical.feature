@@ -47,14 +47,14 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
 
   Scenario: Default with closed sod
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 5.964275964074616
+    Then the damage is 5.96427596407462
 
   Scenario: Default with open sod
     Given the following calculation settings are adjusted:
       | Setting        | Value    |
       | Top layer type | Open sod |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 21.802708300783724
+    Then the damage is 21.80270830078372
 
   Scenario: Adjusted critical values
     Given the following adjusted calculation settings:
@@ -62,7 +62,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | Critical cumulative overload | 8000  |
       | Critical front velocity      | 6.2   |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 7.042858339779344
+    Then the damage is 7.04285833977934
 
   Scenario: Adjusted front velocity
     Given the following adjusted calculation settings:
@@ -77,7 +77,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | Increased load transition   | 1.8   |
       | Reduced strength transition | 0.9   |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 34.618492810973976
+    Then the damage is 34.61849281097398
 
   Scenario: Adjusted foreshore properties
     Given the following adjusted dike properties:
@@ -85,15 +85,14 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | Bottom level foreshore | 0     |
       | Slope foreshore        | 0.05  |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 9.562492468848081
+    Then the damage is 9.56249246884808
 
   Scenario: Adjusted failure conditions
     Given the following adjusted calculation settings:
       | Setting        | Value |
       | Initial damage | 0.3   |
-      | Damage number  | 1.2   |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 6.264275964074616
+    Then the damage is 6.26427596407462
 
   Scenario: Calculation with a berm
     Given the adjusted dike geometry:
@@ -109,7 +108,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | Setting  | Value |
       | Position | 15    |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 0.37123738545694945
+    Then the damage is 0.37123738545695
 
   Scenario: Calculation with a berm and adjusted foreshore properties
     Given the following adjusted dike geometry:
@@ -131,7 +130,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | Setting  | Value |
       | Position | 18    |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 0.26854724503160177
+    Then the damage is 0.268547245031602
 
   Scenario: Negative time steps and adjusted hydraulic loads
     Given the following adjusted hydraulic loads:
@@ -154,7 +153,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | 43200     | 3           | 1           | 4.5         | 20             |
       | 50400     | N.A.        | N.A.        | N.A.        | N.A.           |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 8.587822405580951
+    Then the damage is 8.58782240558095
 
   Scenario: Negative time steps and adjusted hydraulic loads, dike profile properties (berm), and foreshore properties
     Given the following adjusted hydraulic loads:
@@ -191,7 +190,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | Setting  | Value |
       | Position | 15    |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is 0.6219200388310531
+    Then the damage is 0.62192003883105
 
   Scenario: All properties adjusted
     Given the following adjusted hydraulic loads:
