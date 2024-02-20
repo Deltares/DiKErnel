@@ -50,7 +50,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
     Then the damage is 5.96427596407462
 
   Scenario: Default with open sod
-    Given the following calculation settings are adjusted:
+    Given the following adjusted calculation settings:
       | Setting        | Value    |
       | Top layer type | Open sod |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
@@ -95,7 +95,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
     Then the damage is 6.26427596407462
 
   Scenario: Calculation with a berm
-    Given the adjusted dike geometry:
+    Given the following adjusted dike geometry:
       | X  | Z   | Roughness coefficient |
       | 0  | 0   | 0.85                  |
       | 15 | 4   | 0.5                   |
@@ -103,7 +103,7 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | 25 | 7.5 | N.A.                  |
     And the following adjusted dike properties:
       | Property         | Value |
-      | Dike orientation | 20    |
+      | Orientation | 20    |
     And the following adjusted calculation settings:
       | Setting  | Value |
       | Position | 15    |
@@ -119,14 +119,14 @@ Feature: GrassWaveRunupBattjesGroenendijkAnalytical
       | 30 | 7.5 | N.A.                  |
     And the following adjusted dike properties:
       | Property               | Value |
-      | Dike orientation       | 30    |
+      | Orientation       | 30    |
       | Foreshore bottom level | 1     |
       | Slope foreshore        | 0.009 |
     And the following adjusted characteristic points:
       | Characteristic point | Value |
       | Outer toe            | 0     |
       | Outer crest          | 30    |
-    And the following calculation settings are adjusted:
+    And the following adjusted calculation settings:
       | Setting  | Value |
       | Position | 18    |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
