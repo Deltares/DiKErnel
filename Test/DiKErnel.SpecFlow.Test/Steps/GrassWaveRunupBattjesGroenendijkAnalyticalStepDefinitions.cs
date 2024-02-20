@@ -97,10 +97,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        [When(@"I change the property (.*) to a value of (.*)")]
-        public void WhenIChangeTheValueOf(string propertyName, string value)
+        [Given(@"the (.*) is adjusted to (.*)")]
+        public void GivenPropertyIsAdjustedTo(string propertyName, string value)
         {
-            context[propertyName] = value;
+            char[] characters = propertyName.ToCharArray();
+            characters[0] = char.ToUpper(characters[0]);
+            var adjustedPropertyName = new string(characters);
+            
+            context[adjustedPropertyName] = value;
         }
 
         [When(@"I run the grass wave run-up Battjes-Groenendijk analytical calculation")]
@@ -128,17 +132,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
         }
 
-        [Then(@"the output values for (.*) and (.*) are")]
-        public void ThenTheDamageAndCumulativeOverloadAre(double expectedDamage, double? expectedCumulativeOverload)
+        [Then(@"the cumulative overload is (.*)")]
+        public void ThenTheCumulativeOverloadIs(double? expectedCumulativeOverload)
         {
-            LocationDependentOutput locationDependentOutput = output;
-
             GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverLoadOutputs =
-                locationDependentOutput.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
+                output.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
+            
             Assert.That(cumulativeOverLoadOutputs[cumulativeOverLoadOutputs.Length - 1].CumulativeOverload,
                         Is.EqualTo(expectedCumulativeOverload).Within(tolerance));
-
-            ThenTheDamageIs(expectedDamage);
         }
 
         private GrassTopLayerType GetGrassTopLayerType(string id)
