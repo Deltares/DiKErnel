@@ -127,10 +127,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        When I change the property "bottom level foreshore" to a value of <Bottom level foreshore>
-        And I run the grass wave run-up Battjes-Groenendijk analytical calculation
-        Then the output value for the "damage" is <Damage>
-        And the output value for the "cumulative overload" is <Cumulative overload>
+        And I adjust the bottom level foreshore to <Bottom level foreshore>
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
+        Then the damage is <Damage>
+        And the cumulative overload is <Cumulative overload>
 
         Examples:
           | Bottom level foreshore | Damage            | Cumulative overload | Benchmark for BM Gras | BM Gras   |
@@ -160,11 +160,11 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        When I change the property "bottom level foreshore" to a value of <Bottom level foreshore>
-        And I change the property "critical cumulative overload" to a value of <Critical cumulative overload>
-        And I run the grass wave run-up Battjes-Groenendijk analytical calculation
-        Then the output value for the "damage" is <Damage>
-        And the output value for the "cumulative overload" is <Cumulative overload>
+        And I adjust the bottom level foreshore to <Bottom level foreshore>
+        And I adjust the critical cumulative overload to of <Critical cumulative overload>
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
+        Then the damage is <Damage>
+        And the cumulative overload is <Cumulative overload>
 
         Examples:
           | Bottom level foreshore | Critical cumulative overload | Damage             | Cumulative overload | Benchmark for BM Gras | BM Gras   |
