@@ -53,7 +53,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | 8                       | 0                    | 0                    | 0                     | 0       |
 
     Scenario Outline: BM Gras benchmark 15 - Variable input of level of interest
-        Given the adjusted dike geometry:
+        Given the following adjusted dike geometry:
           | X     | Z   | Roughness coefficient |
           | 0     | -10 | 1                     |
           | 30.56 | 0   | 1                     |
