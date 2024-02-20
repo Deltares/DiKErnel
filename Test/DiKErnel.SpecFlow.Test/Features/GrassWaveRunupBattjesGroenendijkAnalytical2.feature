@@ -112,8 +112,8 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
 
     Scenario Outline: BM Gras benchmark 17 - Variable input of water depth
     Remarks:
-    - In BM Gras the value of water depth (water level - Foreshore bottom level) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - Foreshore bottom level) equals 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.
+    - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
+    - When (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.
 
         Given the following adjusted dike geometry:
           | X     | Z   | Roughness coefficient |
@@ -127,13 +127,13 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        When I change the property "foreshore bottom level" to a value of <Foreshore bottom level>
+        When I change the property "bottom level foreshore" to a value of <Bottom level foreshore>
         And I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the output value for the "damage" is <Damage>
         And the output value for the "cumulative overload" is <Cumulative overload>
 
         Examples:
-          | Foreshore bottom level | Damage            | Cumulative overload | Benchmark for BM Gras | BM Gras   |
+          | Bottom level foreshore | Damage            | Cumulative overload | Benchmark for BM Gras | BM Gras   |
           | 0                      | NaN               | NaN                 | 0                     | N.A.      |
           | -0.004                 | 18.89917220621742 | 132294.20544352196  | 133115.947            | N.A.      |
           | -0.04                  | 1.95306009187703  | 13671.4206431392    | 13756.388             | 13755.272 |
@@ -146,7 +146,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
     Scenario Outline: BM Gras benchmark 18 - Variable input of water depth and critical depth
     Remarks:
     - In BM Gras the value of water depth (water level - bottom foreshore level) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - bottom foreshore level) equals 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
+    - When (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 
         Given the following adjusted dike geometry:
           | X     | Z   | Roughness coefficient |
@@ -160,14 +160,14 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        When I change the property "foreshore bottom level" to a value of <Foreshore bottom level>
+        When I change the property "bottom level foreshore" to a value of <Bottom level foreshore>
         And I change the property "critical cumulative overload" to a value of <Critical cumulative overload>
         And I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the output value for the "damage" is <Damage>
         And the output value for the "cumulative overload" is <Cumulative overload>
 
         Examples:
-          | Foreshore bottom level | Critical cumulative overload | Damage             | Cumulative overload | Benchmark for BM Gras | BM Gras   |
+          | Bottom level foreshore | Critical cumulative overload | Damage             | Cumulative overload | Benchmark for BM Gras | BM Gras   |
           | 0                      | 1000                         | NaN                | NaN                 | 0                     | N.A.      |
           | -0.004                 | 1000                         | 132.29420544352197 | 132294.20544352196  | 133115.947            | N.A.      |
           | -0.04                  | 100                          | 136.714206431392   | 13671.4206431392    | 13756.388             | 13755.272 |
