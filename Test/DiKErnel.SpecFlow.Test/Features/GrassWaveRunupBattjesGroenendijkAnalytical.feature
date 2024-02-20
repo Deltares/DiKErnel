@@ -77,7 +77,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Increased load transition   | 1.8   |
           | Reduced strength transition | 0.9   |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-        Then the damage is 34.61849281097398
+        Then the damage is 34.61849281097397
 
     Scenario: Adjusted foreshore properties
         Given the following adjusted dike properties:
@@ -120,7 +120,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         And the following adjusted dike properties:
           | Property               | Value |
           | Orientation            | 30    |
-          | Foreshore bottom level | 1     |
+          | Bottom level foreshore | 1     |
           | Slope foreshore        | 0.009 |
         And the following adjusted characteristic points:
           | Characteristic point | Value |
@@ -183,7 +183,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 25 | 7.5 | N.A.                  |
         And the following adjusted dike properties:
           | Property               | Value |
-          | Dike orientation       | 20    |
+          | Orientation            | 20    |
           | Bottom level foreshore | 0.5   |
           | Slope foreshore        | 0.01  |
         And the following adjusted calculation settings:
@@ -220,20 +220,20 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 25 | 7.5 | N.A.                  |
         And the following adjusted dike properties:
           | Property               | Value |
-          | Dike orientation       | 20    |
+          | Orientation            | 20    |
           | Bottom level foreshore | -1    |
           | Slope foreshore        | 0.008 |
         And the following adjusted calculation settings:
-          | Setting                            | Value |
-          | Position                           | 15    |
-          | Initial damage                     | 0.1   |
-          | Increased load transition alfa M   | 1.7   |
-          | Reduced strength transition alfa S | 0.85  |
-          | Failure number                     | 1.1   |
-          | Average number of waves Ctm        | 0.89  |
-          | Front velocity                     | 1.2   |
-          | Critical cumulative overload       | 7500  |
-          | Critical front velocity            | 5     |
+          | Setting                      | Value |
+          | Position                     | 15    |
+          | Initial damage               | 0.1   |
+          | Increased load transition    | 1.7   |
+          | Reduced strength transition  | 0.85  |
+          | Failure number               | 1.1   |
+          | Average number of waves      | 0.89  |
+          | Front velocity               | 1.2   |
+          | Critical cumulative overload | 7500  |
+          | Critical front velocity      | 5     |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 41.84703315170409
 
@@ -259,15 +259,15 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Bottom level foreshore | -0.59999 |
           | Slope foreshore        | 0.01111  |
         And the following adjusted calculation settings:
-          | Setting                            | Value      |
-          | Position                           | 17.04343   |
-          | Initial damage                     | 0.54545    |
-          | Increased load transition alfa M   | 3.754545   |
-          | Reduced strength transition alfa S | 0.111      |
-          | Failure number                     | 10.32321   |
-          | Average number of waves Ctm        | 0.1656454  |
-          | Front velocity                     | 2.21243434 |
-          | Critical cumulative overload       | 6212.32434 |
-          | Critical front velocity            | 4.54434343 |
+          | Setting                      | Value      |
+          | Position                     | 17.04343   |
+          | Initial damage               | 0.54545    |
+          | Increased load transition    | 3.754545   |
+          | Reduced strength transition  | 0.111      |
+          | Failure number               | 10.32321   |
+          | Average number of waves      | 0.1656454  |
+          | Front velocity               | 2.21243434 |
+          | Critical cumulative overload | 6212.32434 |
+          | Critical front velocity      | 4.54434343 |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is NaN
