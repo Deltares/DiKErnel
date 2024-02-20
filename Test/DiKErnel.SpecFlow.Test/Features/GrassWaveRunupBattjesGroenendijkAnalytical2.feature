@@ -35,9 +35,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | Slope foreshore                    | 0.004      |
 
     Scenario Outline: BM Gras benchmark 14 - Variable input of critical velocity
-        When I change the property Critical front velocity to a value of <Critical front velocity>
-        And I run the grass wave run-up Battjes-Groenendijk analytical calculation
-        Then the output values for <Damage> and <Cumulative overload> are
+        Given I change the property "critical front velocity" to a value of <Critical front velocity>
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
+        Then the output value for the "damage" is <Damage> 
+        And the output value for the "cumulative overload" is <Cumulative overload>
 
         Examples:
           | Critical front velocity | Damage                | Cumulative overload   | Benchmark for BM Gras | BM Gras |
