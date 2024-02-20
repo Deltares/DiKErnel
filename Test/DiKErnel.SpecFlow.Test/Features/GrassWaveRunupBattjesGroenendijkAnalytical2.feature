@@ -3,9 +3,9 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
 
 The following testcases correspond with BM Gras benchmarks.
 
-DiKErnel does not exactly produce the same results as BM Gras. This is mainly due to the following differences:
+DiKErnel does not produce the exact same results as BM Gras. This is mainly due to the following differences:
 - BM Gras rounds the value of average number of waves to an integer. This is not the case in DiKErnel.
-- BM Gras uses an older version of dikes.Overtopping.dll (version 19.1.1).
+- BM Gras uses an older version of DikesOvertopping (version 19.1.1).
 - BM Gras is a user interface and performs validation of input parameters. This is not the case in DiKErnel.
 
     Background:
@@ -38,7 +38,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | Average number of waves     | 3.85       |
           | Front velocity              | 1.1        |
 
-    Scenario Outline: BM Gras benchmark 14 - Variable input of critical velocity
+    Scenario Outline: BM Gras benchmark 14 - Variable input of critical front velocity
         Given the critical front velocity is adjusted to <Critical front velocity>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is <Damage>
@@ -145,7 +145,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
 
     Scenario Outline: BM Gras benchmark 18 - Variable input of water depth and critical depth
     Remarks:
-    - In BM Gras the value of water depth (water level - bottom foreshore level) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
+    - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
     - When (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 
         Given the following adjusted dike geometry:
