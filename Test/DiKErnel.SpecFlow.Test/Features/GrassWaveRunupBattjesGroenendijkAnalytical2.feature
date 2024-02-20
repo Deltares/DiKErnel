@@ -39,7 +39,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | Front velocity              | 1.1        |
 
     Scenario Outline: BM Gras benchmark 14 - Variable input of critical velocity
-        Given I adjust the critical front velocity to <Critical front velocity>
+        Given the critical front velocity is adjusted to <Critical front velocity>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is <Damage>
         And the cumulative overload is <Cumulative overload>
@@ -62,7 +62,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | Setting     | Value |
           | Outer toe   | 0     |
           | Outer crest | 61.12 |
-        And I adjust the position to <Position>
+        And the position is adjusted to <Position>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is <Damage>
         And the cumulative overload is <Cumulative overload>
@@ -94,7 +94,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        And I adjust the "slope foreshore" to <Slope foreshore>
+        And the slope foreshore is adjusted to <Slope foreshore>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is <Damage>
         And the cumulative overload is <Cumulative overload>
@@ -127,7 +127,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        And I adjust the bottom level foreshore to <Bottom level foreshore>
+        And the bottom level foreshore is adjusted to <Bottom level foreshore>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is <Damage>
         And the cumulative overload is <Cumulative overload>
@@ -160,8 +160,8 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        And I adjust the bottom level foreshore to <Bottom level foreshore>
-        And I adjust the critical cumulative overload to of <Critical cumulative overload>
+        And the bottom level foreshore is adjusted to <Bottom level foreshore>
+        And the critical cumulative overload is adjusted to <Critical cumulative overload>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is <Damage>
         And the cumulative overload is <Cumulative overload>
