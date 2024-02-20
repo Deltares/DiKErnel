@@ -255,7 +255,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 25     | 7.5    | N.A.                  |
         And the following adjusted dike properties:
           | Property               | Value    |
-          | Dike orientation       | 179.5    |
+          | Orientation       | 179.5    |
           | Bottom level foreshore | -0.59999 |
           | Slope foreshore        | 0.01111  |
         And the following adjusted calculation settings:

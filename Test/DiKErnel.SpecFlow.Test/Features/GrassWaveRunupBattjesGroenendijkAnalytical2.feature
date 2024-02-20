@@ -39,10 +39,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | Front velocity              | 1.1        |
 
     Scenario Outline: BM Gras benchmark 14 - Variable input of critical velocity
-        Given I change the property "critical front velocity" to a value of <Critical front velocity>
+        Given I adjust the critical front velocity to <Critical front velocity>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-        Then the output value for the "damage" is <Damage>
-        And the output value for the "cumulative overload" is <Cumulative overload>
+        Then the damage is <Damage>
+        And the cumulative overload is <Cumulative overload>
 
         Examples:
           | Critical front velocity | Damage               | Cumulative overload  | Benchmark for BM Gras | BM Gras |
@@ -62,10 +62,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | Setting     | Value |
           | Outer toe   | 0     |
           | Outer crest | 61.12 |
-        When I change the property "position" to a value of <Position>
-        And I run the grass wave run-up Battjes-Groenendijk analytical calculation
-        Then the output value for the "damage" is <Damage>
-        And the output value for the "cumulative overload" is <Cumulative overload>
+        And I adjust the position to <Position>
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
+        Then the damage is <Damage>
+        And the cumulative overload is <Cumulative overload>
 
         Examples:
           | Position | Damage               | Cumulative overload  | Benchmark for BM Gras | BM Gras |
@@ -94,10 +94,10 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following adjusted calculation settings:
           | Setting  | Value   |
           | Position | 30.8656 |
-        When I change the property "slope foreshore" to a value of <Slope foreshore>
-        And I run the grass wave run-up Battjes-Groenendijk analytical calculation
-        Then the output value for the "damage" is <Damage>
-        And the output value for the "cumulative overload" is <Cumulative overload>
+        And I adjust the "slope foreshore" to <Slope foreshore>
+        When I run the grass wave run-up Battjes-Groenendijk analytical calculation
+        Then the damage is <Damage>
+        And the cumulative overload is <Cumulative overload>
 
         Examples:
           | Slope foreshore | Damage           | Cumulative overload | Benchmark for BM Gras | BM Gras |
