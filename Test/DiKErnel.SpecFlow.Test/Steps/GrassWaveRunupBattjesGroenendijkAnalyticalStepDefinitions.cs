@@ -40,8 +40,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private const string timeStepsKey = "Time step";
         private const string waterLevelsKey = "Water level";
-        private const string waveHeightsHm0Key = "Wave height Hm0";
-        private const string wavePeriodsTm10Key = "Wave period Tm10";
+        private const string waveHeightsKey = "Wave height";
+        private const string wavePeriodsKey = "Wave period";
         private const string waveDirectionsKey = "Wave direction";
 
         private const string dikeOrientationKey = "Dike orientation";
@@ -56,16 +56,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string roughnessCoefficientsKey = "Roughness coefficient";
 
         private const string slopeForeshoreKey = "Slope foreshore";
-        private const string bottomZForeshoreKey = "Foreshore bottom level";
+        private const string bottomZForeshoreKey = "Bottom level foreshore";
 
         private const string damageKey = "Failure number";
         private const string initialDamageKey = "Initial damage";
-        private const string averageNumberOfWavesCtmKey = "Average number of waves Ctm";
+        private const string averageNumberOfWavesKey = "Average number of waves";
         private const string criticalFrontVelocityKey = "Critical front velocity";
         private const string frontVelocityCuKey = "Front velocity";
         private const string criticalCumulativeOverloadKey = "Critical cumulative overload";
-        private const string increasedLoadTransitionAlfaMKey = "Increased load transition alfa M";
-        private const string reducedStrengthTransitionAlphaSKey = "Reduced strength transition alfa S";
+        private const string increasedLoadTransitionKey = "Increased load transition";
+        private const string reducedStrengthTransitionKey = "Reduced strength transition";
 
         private readonly ScenarioContext context;
 
@@ -222,9 +222,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
             IReadOnlyList<double> waterLevels =
                 GetNullableDoubleCollection(waterLevelsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
             IReadOnlyList<double> waveHeightsHm0 =
-                GetNullableDoubleCollection(waveHeightsHm0Key).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
+                GetNullableDoubleCollection(waveHeightsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
             IReadOnlyList<double> wavePeriodsTm10 =
-                GetNullableDoubleCollection(wavePeriodsTm10Key).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
+                GetNullableDoubleCollection(wavePeriodsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
             IReadOnlyList<double> waveDirections =
                 GetNullableDoubleCollection(waveDirectionsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
 
@@ -278,12 +278,12 @@ namespace DiKErnel.SpecFlow.Test.Steps
             {
                 FailureNumber = GetNullableDouble(damageKey),
                 InitialDamage = GetNullableDouble(initialDamageKey),
-                AverageNumberOfWavesCtm = GetNullableDouble(averageNumberOfWavesCtmKey),
+                AverageNumberOfWavesCtm = GetNullableDouble(averageNumberOfWavesKey),
                 CriticalFrontVelocity = GetNullableDouble(criticalFrontVelocityKey),
                 FrontVelocityCu = GetNullableDouble(frontVelocityCuKey),
                 CriticalCumulativeOverload = GetNullableDouble(criticalCumulativeOverloadKey),
-                IncreasedLoadTransitionAlphaM = GetNullableDouble(increasedLoadTransitionAlfaMKey),
-                ReducedStrengthTransitionAlphaS = GetNullableDouble(reducedStrengthTransitionAlphaSKey)
+                IncreasedLoadTransitionAlphaM = GetNullableDouble(increasedLoadTransitionKey),
+                ReducedStrengthTransitionAlphaS = GetNullableDouble(reducedStrengthTransitionKey)
             };
 
             builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
