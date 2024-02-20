@@ -45,12 +45,12 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the output value for the "cumulative overload" is <Cumulative overload>
 
         Examples:
-          | Critical front velocity | Damage                | Cumulative overload   | Benchmark for BM Gras | BM Gras |
-          | 3.5                     | 0.09912791114814828   | 693.895378037038      | 698.202               | 698.151 |
-          | 4                       | 0.08240815773892438   | 576.8571041724706     | 588.477               | 588.395 |
-          | 5.5                     | 0.0010160364930812532 | 7.112255451568773     | 7.162                 | 7.156   |
-          | 6.5                     | 5.35959825332454e-09  | 3.751718777327178e-05 | 0                     | 0       |
-          | 8                       | 0                     | 0                     | 0                     | 0       |
+          | Critical front velocity | Damage               | Cumulative overload  | Benchmark for BM Gras | BM Gras |
+          | 3.5                     | 0.09912791114815     | 693.895378037038     | 698.202               | 698.151 |
+          | 4                       | 0.08240815773892     | 576.8571041724706    | 588.477               | 588.395 |
+          | 5.5                     | 0.00101603649308     | 7.11225545156877     | 7.162                 | 7.156   |
+          | 6.5                     | 5.35959825332454e-09 | 3.75171877732718e-05 | 0                     | 0       |
+          | 8                       | 0                    | 0                    | 0                     | 0       |
 
     Scenario Outline: BM Gras benchmark 15 - Variable input of level of interest
         Given the adjusted dike geometry:
@@ -68,14 +68,14 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the output value for the "cumulative overload" is <Cumulative overload>
 
         Examples:
-          | Position | Damage                 | Cumulative overload    | Benchmark for BM Gras | BM Gras |
-          | 30.56    | 0                      |                        | 0                     | 0       |
-          | 33.616   | 0.00016098541128284046 | 1.1268978789798831     | 1.136                 | 1.134   |
-          | 36.672   | 0.00016098541128278394 | 1.1268978789794877     | 1.136                 | 1.134   |
-          | 39.728   | 1.973187114472698e-05  | 0.13812309801308886    | 0.139                 | 0.139   |
-          | 42.784   | 1.5496648932714766e-11 | 1.0847654252900337e-07 | 0                     | 0       |
-          | 45.84    | 0                      | 0                      | 0                     | 0       |
-          | 48.896   | 0                      | 0                      | 0                     | 0       |
+          | Position | Damage               | Cumulative overload  | Benchmark for BM Gras | BM Gras |
+          | 30.56    | 0                    |                      | 0                     | 0       |
+          | 33.616   | 0.00016098541128     | 1.12689787897988     | 1.136                 | 1.134   |
+          | 36.672   | 0.00016098541128     | 1.12689787897949     | 1.136                 | 1.134   |
+          | 39.728   | 1.9731871144727e-05  | 0.13812309801309     | 0.139                 | 0.139   |
+          | 42.784   | 1.54966489327148e-11 | 1.08476542529003e-07 | 0                     | 0       |
+          | 45.84    | 0                    | 0                    | 0                     | 0       |
+          | 48.896   | 0                    | 0                    | 0                     | 0       |
 
     Scenario Outline: BM Gras benchmark 16 - Variable input of slope of the bottom
     Remark: the value of the slope of the foreshore should be between 0.004 and 0.05. In this testcase, no validation
@@ -100,15 +100,15 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the output value for the "cumulative overload" is <Cumulative overload>
 
         Examples:
-          | Slope foreshore | Damage                 | Cumulative overload | Benchmark for BM Gras | BM Gras |
-          | 0               | 0.0001300542627438877  | 0.9103798392072139  | 0.918                 | N.A.    |
-          | 0.004           | 0.00016098541128284046 | 1.1268978789798831  | 1.136                 | 1.134   |
-          | 0.04            | 0.0019034054017018846  | 13.323837811913192  | 13.425                | 13.406  |
-          | 0.1             | 0.006982414063938715   | 48.876898447571     | 49.205                | N.A.    |
-          | 0.4             | 0.0068200858530393154  | 47.74060097127521   | 48.062                | N.A.    |
-          | 10              | 0.006820085853039203   | 47.74060097127442   | 48.062                | N.A.    |
-          | 100             | 0.006820085853039203   | 47.74060097127442   | 48.062                | N.A.    |
-          | 250             | 0.006820085853039203   | 47.74060097127442   | 48.062                | N.A.    |
+          | Slope foreshore | Damage           | Cumulative overload | Benchmark for BM Gras | BM Gras |
+          | 0               | 0.00013005426274 | 0.91037983920721    | 0.918                 | N.A.    |
+          | 0.004           | 0.00016098541128 | 1.12689787897988    | 1.136                 | 1.134   |
+          | 0.04            | 0.00190340540170 | 13.32383781191319   | 13.425                | 13.406  |
+          | 0.1             | 0.00698241406394 | 48.876898447571     | 49.205                | N.A.    |
+          | 0.4             | 0.00682008585304 | 47.74060097127521   | 48.062                | N.A.    |
+          | 10              | 0.00682008585304 | 47.74060097127442   | 48.062                | N.A.    |
+          | 100             | 0.00682008585304 | 47.74060097127442   | 48.062                | N.A.    |
+          | 250             | 0.00682008585304 | 47.74060097127442   | 48.062                | N.A.    |
 
     Scenario Outline: BM Gras benchmark 17 - Variable input of water depth
     Remarks:
@@ -133,15 +133,15 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the output value for the "cumulative overload" is <Cumulative overload>
 
         Examples:
-          | Foreshore bottom level | Damage                | Cumulative overload | Benchmark for BM Gras | BM Gras   |
-          | 0                      | NaN                   | NaN                 | 0                     | N.A.      |
-          | -0.004                 | 18.899172206217422    | 132294.20544352196  | 133115.947            | N.A.      |
-          | -0.04                  | 1.9530600918770284    | 13671.4206431392    | 13756.388             | 13755.272 |
-          | -0.1                   | 0.8177090570008678    | 5723.963399006075   | 5729.582              | 5759.07   |
-          | -0.4                   | 0.146449850472942     | 1025.1489533105942  | 1031.744              | 1031.437  |
-          | -10                    | 0.0030480842313577797 | 21.33658961950446   | 21.469                | 21.453    |
-          | -100                   | 0.002089438325616217  | 14.626068279313518  | N.A.                  | N.A.      |
-          | -250                   | 0.002034264488518857  | 14.239851419631998  | N.A.                  | N.A.      |
+          | Foreshore bottom level | Damage            | Cumulative overload | Benchmark for BM Gras | BM Gras   |
+          | 0                      | NaN               | NaN                 | 0                     | N.A.      |
+          | -0.004                 | 18.89917220621742 | 132294.20544352196  | 133115.947            | N.A.      |
+          | -0.04                  | 1.95306009187703  | 13671.4206431392    | 13756.388             | 13755.272 |
+          | -0.1                   | 0.81770905700087  | 5723.963399006075   | 5729.582              | 5759.07   |
+          | -0.4                   | 0.14644985047294  | 1025.1489533105942  | 1031.744              | 1031.437  |
+          | -10                    | 0.00304808423136  | 21.33658961950446   | 21.469                | 21.453    |
+          | -100                   | 0.00208943832562  | 14.62606827931352   | N.A.                  | N.A.      |
+          | -250                   | 0.00203426448852  | 14.2398514196311    | N.A.                  | N.A.      |
 
     Scenario Outline: BM Gras benchmark 18 - Variable input of water depth and critical depth
     Remarks:
@@ -174,5 +174,5 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | -0.1                   | 10                           | 572.3963399006075  | 5723.963399006075   | 5759.582              | 5759.07   |
           | -0.4                   | 1                            | 1025.1489533105942 | 1025.1489533105942  | 1031.744              | 1031.437  |
           | -10                    | 1                            | 21.33658961950446  | 21.33658961950446   | 21.469                | 21.453    |
-          | -100                   | 1                            | 14.626068279313518 | 14.626068279313518  | N.A.                  | N.A.      |
-          | -250                   | 1                            | 14.239851419631998 | 14.239851419631998  | N.A.                  | N.A.      |
+          | -100                   | 1                            | 14.62606827931352  | 14.62606827931352   | N.A.                  | N.A.      |
+          | -250                   | 1                            | 14.2398514196311   | 14.2398514196311    | N.A.                  | N.A.      |
