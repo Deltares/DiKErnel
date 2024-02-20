@@ -26,7 +26,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
         And the following characteristic points:
           | Characteristic point | Position |
           | Outer toe            | 0        |
-          | Outer crest          | 25       |
+          | Outer crest          | 80       |
         And the following calculation settings:
           | Setting                     | Value      |
           | Position                    | 40.4       |
@@ -141,7 +141,7 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | -0.4                   | 0.14644985047294  | 1025.1489533105942  | 1031.744              | 1031.437  |
           | -10                    | 0.00304808423136  | 21.33658961950446   | 21.469                | 21.453    |
           | -100                   | 0.00208943832562  | 14.62606827931352   | N.A.                  | N.A.      |
-          | -250                   | 0.00203426448852  | 14.2398514196311    | N.A.                  | N.A.      |
+          | -250                   | 0.00203426448852  | 14.23985141963199   | N.A.                  | N.A.      |
 
     Scenario Outline: BM Gras benchmark 18 - Variable input of water depth and critical depth
     Remarks:
@@ -175,4 +175,4 @@ DiKErnel does not exactly produce the same results as BM Gras. This is mainly du
           | -0.4                   | 1                            | 1025.1489533105942 | 1025.1489533105942  | 1031.744              | 1031.437  |
           | -10                    | 1                            | 21.33658961950446  | 21.33658961950446   | 21.469                | 21.453    |
           | -100                   | 1                            | 14.62606827931352  | 14.62606827931352   | N.A.                  | N.A.      |
-          | -250                   | 1                            | 14.2398514196311   | 14.2398514196311    | N.A.                  | N.A.      |
+          | -250                   | 1                            | 14.23985141963199   | 14.23985141963199   | N.A.                  | N.A.      |
