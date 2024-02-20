@@ -44,7 +44,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string wavePeriodsKey = "Wave period";
         private const string waveDirectionsKey = "Wave direction";
 
-        private const string dikeOrientationKey = "Dike orientation";
+        private const string dikeOrientationKey = "Orientation";
         private const string outerToePositionKey = "Outer toe";
         private const string outerCrestPositionKey = "Outer crest";
 
@@ -76,16 +76,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
             this.context = context;
         }
 
-        [Given(@"the following dike profile and a dike orientation of (.*):")]
-        public void GivenTheFollowingDikeProfile(string dikeOrientation, Table table)
-        {
-            context[dikeOrientationKey] = dikeOrientation;
-            
-            GivenTheFollowingCollectionsAreAdjusted(table);
-        }
-
-        [Given(@"the following time steps and hydraulic loads:")]
-        [Given(@"the following series are adjusted:")]
+        [Given(@"the following(?: adjusted)? hydraulic loads:")]
+        [Given(@"the following(?: adjusted)? dike geometry:")]
         public void GivenTheFollowingCollectionsAreAdjusted(Table table)
         {
             foreach (string property in table.Header)
@@ -94,17 +86,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        [Given(@"the following dike profile points:")]
-        public void GivenTheFollowingValuesAreAdjusted(Table table)
-        {
-            foreach (string property in table.Header)
-            {
-                context[property] = table.Rows[0].GetString(property);
-            }
-        }
-
-        [Given(@"the following calculation settings:")]
-        [Given(@"the following (?:(?!series).)* are adjusted:")]
+        [Given(@"the following(?: adjusted)? calculation settings:")]
+        [Given(@"the following(?: adjusted)? dike properties:")]
+        [Given(@"the following(?: adjusted)? characteristic points:")]
         public void GivenTheFollowingPropertiesAreAdjusted(Table table)
         {
             foreach (TableRow row in table.Rows)
@@ -194,39 +178,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private double[] GetDoubleCollection(string id)
         {
             var values = (IReadOnlyList<string>) context[id];
-            return values.Select(double.Parse).ToArray();
-        }
-
-        private List<double?> GetNullableDoubleCollection(string id)
-        {
-            var values = (IReadOnlyList<string>) context[id];
-            var parsedValues = new List<double?>();
-            foreach (string value in values)
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    parsedValues.Add(null);
-                }
-                else
-                {
-                    parsedValues.Add(double.Parse(value, CultureInfo.InvariantCulture));
-                }
-            }
-
-            return parsedValues;
+            return values.Where(s => !Equals(s, "N.A.")).Select(double.Parse).ToArray();
         }
 
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
             IReadOnlyList<double> times = GetDoubleCollection(timeStepsKey);
-            IReadOnlyList<double> waterLevels =
-                GetNullableDoubleCollection(waterLevelsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
-            IReadOnlyList<double> waveHeightsHm0 =
-                GetNullableDoubleCollection(waveHeightsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
-            IReadOnlyList<double> wavePeriodsTm10 =
-                GetNullableDoubleCollection(wavePeriodsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
-            IReadOnlyList<double> waveDirections =
-                GetNullableDoubleCollection(waveDirectionsKey).TakeWhile(d => d.HasValue).Cast<double>().ToArray();
+            IReadOnlyList<double> waterLevels = GetDoubleCollection(waterLevelsKey);
+            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection(waveHeightsKey);
+            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection(wavePeriodsKey);
+            IReadOnlyList<double> waveDirections = GetDoubleCollection(waveDirectionsKey);
 
             for (var i = 0; i < times.Count - 1; i++)
             {
@@ -239,7 +200,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             IReadOnlyList<double> xLocations = GetDoubleCollection(xCoordinatesKey);
             IReadOnlyList<double> zLocations = GetDoubleCollection(zCoordinatesKey);
-            IReadOnlyList<double?> roughnessCoefficients = GetNullableDoubleCollection(roughnessCoefficientsKey);
+            IReadOnlyList<double> roughnessCoefficients = GetDoubleCollection(roughnessCoefficientsKey);
 
             for (var i = 0; i < xLocations.Count - 1; i++)
             {
@@ -248,10 +209,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 double endPointX = xLocations[i + 1];
                 double endPointZ = zLocations[i + 1];
 
-                double? roughnessCoefficient = roughnessCoefficients[i];
-                if (roughnessCoefficient.HasValue)
+                if (i < roughnessCoefficients.Count)
                 {
-                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficient.Value);
+                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficients[i]);
                 }
                 else
                 {
