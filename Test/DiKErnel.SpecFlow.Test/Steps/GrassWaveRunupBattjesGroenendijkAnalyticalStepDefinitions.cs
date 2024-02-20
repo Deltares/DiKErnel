@@ -62,7 +62,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string initialDamageKey = "Initial damage";
         private const string averageNumberOfWavesKey = "Average number of waves";
         private const string criticalFrontVelocityKey = "Critical front velocity";
-        private const string frontVelocityCuKey = "Front velocity";
+        private const string frontVelocityKey = "Front velocity";
         private const string criticalCumulativeOverloadKey = "Critical cumulative overload";
         private const string increasedLoadTransitionKey = "Increased load transition";
         private const string reducedStrengthTransitionKey = "Reduced strength transition";
@@ -241,7 +241,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 InitialDamage = GetNullableDouble(initialDamageKey),
                 AverageNumberOfWavesCtm = GetNullableDouble(averageNumberOfWavesKey),
                 CriticalFrontVelocity = GetNullableDouble(criticalFrontVelocityKey),
-                FrontVelocityCu = GetNullableDouble(frontVelocityCuKey),
+                FrontVelocityCu = GetNullableDouble(frontVelocityKey),
                 CriticalCumulativeOverload = GetNullableDouble(criticalCumulativeOverloadKey),
                 IncreasedLoadTransitionAlphaM = GetNullableDouble(increasedLoadTransitionKey),
                 ReducedStrengthTransitionAlphaS = GetNullableDouble(reducedStrengthTransitionKey)
