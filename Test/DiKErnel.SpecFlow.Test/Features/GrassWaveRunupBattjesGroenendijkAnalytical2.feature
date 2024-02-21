@@ -24,9 +24,9 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
           | Slope foreshore        | 0.004 |
           | Bottom level foreshore | -3    |
         And the following characteristic points:
-          | Characteristic point | Value    |
-          | Outer toe            | 0        |
-          | Outer crest          | 80       |
+          | Characteristic point | Value |
+          | Outer toe            | 0     |
+          | Outer crest          | 80    |
         And the following calculation settings:
           | Setting                     | Value      |
           | Position                    | 40.4       |
@@ -175,4 +175,4 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
           | -0.4                   | 1                            | 1025.1489533105942 | 1025.1489533105942  | 1031.744              | 1031.437  |
           | -10                    | 1                            | 21.33658961950446  | 21.33658961950446   | 21.469                | 21.453    |
           | -100                   | 1                            | 14.62606827931352  | 14.62606827931352   | N.A.                  | N.A.      |
-          | -250                   | 1                            | 14.23985141963199   | 14.23985141963199   | N.A.                  | N.A.      |
+          | -250                   | 1                            | 14.23985141963199  | 14.23985141963199   | N.A.                  | N.A.      |

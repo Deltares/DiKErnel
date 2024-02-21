@@ -31,9 +31,9 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Slope foreshore        | 0.004 |
           | Bottom level foreshore | -4    |
         And the following characteristic points:
-          | Characteristic point | Value    |
-          | Outer toe            | 0        |
-          | Outer crest          | 25       |
+          | Characteristic point | Value |
+          | Outer toe            | 0     |
+          | Outer crest          | 25    |
         And the following calculation settings:
           | Setting                     | Value      |
           | Position                    | 15         |
@@ -255,7 +255,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | 25     | 7.5    | N.A.                  |
         And the following adjusted dike properties:
           | Property               | Value    |
-          | Orientation       | 179.5    |
+          | Orientation            | 179.5    |
           | Bottom level foreshore | -0.59999 |
           | Slope foreshore        | 0.01111  |
         And the following adjusted calculation settings:
