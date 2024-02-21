@@ -1,4 +1,4 @@
-Feature: GrassWaveRunupBattjesGroenendijkAnalytical2
+Feature: Grass wave run-up Battjes-Groenendijk analytical with BM Gras Benchmarks
 As a user I want to perform grass wave run-up calculations based on Battjes-Groenendijk analytical.
 
 The following testcases correspond with BM Gras benchmarks.
