@@ -28,6 +28,9 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | 70    | 5     | 1                     |
           | 85    | 1     | 1                     |
           | 95    | 0     | N.A.                  |
+        And the following dike properties:
+          | Property    | Value |
+          | Orientation | 0     |
         And the following characteristic points:
           | Characteristic point | Value |
           | Outer toe            | -1.73 |

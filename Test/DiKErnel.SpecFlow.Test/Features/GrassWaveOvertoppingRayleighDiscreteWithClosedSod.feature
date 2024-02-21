@@ -34,6 +34,9 @@ As a user I want to perform grass wave overtopping calculations with a closed so
           | 45 | 5    | 0.8                   |
           | 60 | 0.5  | 0.8                   |
           | 60 | 0.5  | N.A.                  |
+        And the following dike properties:
+          | Property    | Value |
+          | Orientation | 0     |
         And the following characteristic points:
           | Characteristic point | Value |
           | Outer toe            | 5     |
