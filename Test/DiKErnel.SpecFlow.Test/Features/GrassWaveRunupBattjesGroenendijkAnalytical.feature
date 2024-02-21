@@ -31,7 +31,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Slope foreshore        | 0.004 |
           | Bottom level foreshore | -4    |
         And the following characteristic points:
-          | Characteristic point | Position |
+          | Characteristic point | Value    |
           | Outer toe            | 0        |
           | Outer crest          | 25       |
         And the following calculation settings:

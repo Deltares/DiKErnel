@@ -24,7 +24,7 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
           | Slope foreshore        | 0.004 |
           | Bottom level foreshore | -3    |
         And the following characteristic points:
-          | Characteristic point | Position |
+          | Characteristic point | Value    |
           | Outer toe            | 0        |
           | Outer crest          | 80       |
         And the following calculation settings:
@@ -59,9 +59,9 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
           | 30.56 | 0   | 1                     |
           | 61.12 | 10  | N.A.                  |
         And the following adjusted characteristic points:
-          | Setting     | Value |
-          | Outer toe   | 0     |
-          | Outer crest | 61.12 |
+          | Characteristic point | Value |
+          | Outer toe            | 0     |
+          | Outer crest          | 61.12 |
         And the position is adjusted to <Position>
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is <Damage>
