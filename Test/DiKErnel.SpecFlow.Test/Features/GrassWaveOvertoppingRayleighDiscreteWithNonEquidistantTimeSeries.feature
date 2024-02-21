@@ -50,7 +50,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Reduced strength transition  | 1        |
           | Failure number               | 1        |
           | Average number of waves      | 0.92     |
-          | Number of fixed waves        | 10000    |
+          | Fixed number of waves        | 10000    |
           | Front velocity               | 1.45     |
           | Acceleration crest           | 1        |
           | Acceleration inner slope     | 1.4      |
@@ -74,7 +74,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Setting               | Value |
           | Position              | 50    |
           | Initial damage        | 0.9   |
-          | Number of fixed waves | 15000 |
+          | Fixed number of waves | 15000 |
           | Dike height           | 9     |
         When I run the grass wave overtopping Rayleigh discrete calculation
         Then the damage is 1.03611132410722
@@ -89,7 +89,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Increased load transition    | 1.25  |
           | Reduced strength transition  | 1.33  |
           | Average number of waves      | 0.85  |
-          | Number of fixed waves        | 15000 |
+          | Fixed number of waves        | 15000 |
           | Front velocity               | 1.6   |
           | Acceleration crest           | 1.1   |
           | Acceleration inner slope     | 1.5   |

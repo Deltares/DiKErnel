@@ -56,7 +56,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
           | Reduced strength transition  | 1          |
           | Failure number               | 1          |
           | Average number of waves      | 0.92       |
-          | Number of fixed waves        | 10000      |
+          | Fixed number of waves        | 10000      |
           | Front velocity               | 1.45       |
           | Acceleration crest           | 1          |
           | Acceleration inner slope     | 1.4        |
@@ -74,7 +74,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
         Then the damage is 0.07514904750839
         And the rounded time of failure is undefined
 
-    Scenario: Adjusted position and various dike heights
+    Scenario Outline: Adjusted position and various dike heights
         Given the following adjusted calculation settings:
           | Setting  | Value |
           | Position | 33    |
