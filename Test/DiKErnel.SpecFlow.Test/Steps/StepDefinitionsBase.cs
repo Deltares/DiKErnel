@@ -16,13 +16,10 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
-using DiKErnel.Integration.Data.Grass;
 using DiKErnel.SpecFlow.Test.Steps.Definitions;
 using DiKErnel.Util;
 using TechTalk.SpecFlow;
@@ -60,35 +57,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         protected abstract void AddLocation(CalculationInputBuilder builder);
 
-        protected double GetDouble(string id)
-        {
-            return double.Parse(GetString(id), CultureInfo.InvariantCulture);
-        }
-
-        protected GrassTopLayerType GetGrassTopLayerType(string id)
-        {
-            switch (GetString(id))
-            {
-                case "Open sod":
-                    return GrassTopLayerType.OpenSod;
-                case "Closed sod":
-                    return GrassTopLayerType.ClosedSod;
-                default:
-                    throw new NotSupportedException();
-            }
-        }
-
-        protected double? GetNullableDouble(string id)
-        {
-            if (Context.TryGetValue(id, out object retrievedValue))
-            {
-                var value = (string) retrievedValue;
-                return string.IsNullOrWhiteSpace(value) ? (double?) null : double.Parse(value, CultureInfo.InvariantCulture);
-            }
-
-            return null;
-        }
-
         private void AddProfilePoints(CalculationInputBuilder builder)
         {
             AddProfilePoint(builder, DikeProfileDefinitions.CharacteristicPointTypeOuterToe, CharacteristicPointType.OuterToe);
@@ -106,11 +74,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
             {
                 builder.AddDikeProfilePoint(position.Value, characteristicPoint);
             }
-        }
-
-        private string GetString(string id)
-        {
-            return (string) Context[id];
         }
 
         private void AddTimeSteps(CalculationInputBuilder builder)
