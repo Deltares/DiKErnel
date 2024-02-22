@@ -54,9 +54,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             switch (context.GetString(GeneralDefinitions.TopLayerTypeKey))
             {
-                case "Open sod":
+                case GrassDefinitions.OpenSod:
                     return GrassTopLayerType.OpenSod;
-                case "Closed sod":
+                case GrassDefinitions.ClosedSod:
                     return GrassTopLayerType.ClosedSod;
                 default:
                     throw new NotSupportedException();

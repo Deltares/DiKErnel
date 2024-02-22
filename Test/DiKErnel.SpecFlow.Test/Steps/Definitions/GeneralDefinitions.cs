@@ -18,7 +18,7 @@
 
 namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
-    internal class GeneralDefinitions
+    internal static class GeneralDefinitions
     {
         public const string OutputKey = "Output";
         public const string NotApplicable = "N.A.";

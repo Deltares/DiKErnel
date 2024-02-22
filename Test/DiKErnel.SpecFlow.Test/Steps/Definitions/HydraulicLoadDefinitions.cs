@@ -18,7 +18,7 @@
 
 namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
-    internal class HydraulicLoadDefinitions
+    internal static class HydraulicLoadDefinitions
     {
         public const string TimeStepsKey = "Time step";
         public const string WaterLevelsKey = "Water level";
