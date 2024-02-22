@@ -50,6 +50,17 @@ namespace DiKErnel.SpecFlow.Test.Steps
             return null;
         }
 
+        public static int? GetNullableInt(this ScenarioContext context, string id)
+        {
+            if (context.TryGetValue(id, out object retrievedValue))
+            {
+                var value = (string) retrievedValue;
+                return string.IsNullOrWhiteSpace(value) ? (int?) null : int.Parse(value, CultureInfo.InvariantCulture);
+            }
+
+            return null;
+        }
+
         public static GrassTopLayerType GetGrassTopLayerType(this ScenarioContext context)
         {
             switch (context.GetString(GeneralDefinitions.TopLayerType))
