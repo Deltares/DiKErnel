@@ -29,9 +29,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 CriticalCumulativeOverload = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalCumulativeOverloadKey),
                 IncreasedLoadTransitionAlphaM = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.IncreasedLoadTransitionKey),
                 ReducedStrengthTransitionAlphaS = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.ReducedStrengthTransitionKey),
-                AccelerationAlphaAForCrest = Context.GetNullableDouble("Acceleration crest"),
-                AccelerationAlphaAForInnerSlope = Context.GetNullableDouble("Acceleration inner slope"),
-                DikeHeight = Context.GetNullableDouble("Dike height")
+                AccelerationAlphaAForCrest = Context.GetNullableDouble(GrassWaveOvertoppingDefinitions.AccelerationCrest),
+                AccelerationAlphaAForInnerSlope = Context.GetNullableDouble(GrassWaveOvertoppingDefinitions.AccelerationInnerSlope),
+                DikeHeight = Context.GetNullableDouble(GrassWaveOvertoppingDefinitions.DikeHeight)
             };
 
             builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(constructionProperties);
