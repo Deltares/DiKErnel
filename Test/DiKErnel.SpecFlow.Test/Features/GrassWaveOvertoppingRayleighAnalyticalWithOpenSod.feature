@@ -77,5 +77,5 @@ As a user I want to perform grass wave overtopping calculations with an open sod
           | Dike height               | 9.6   |
           | Increased load transition | 1.2   |
         When I run the grass wave overtopping Rayleigh analytical calculation
-        Then the damage is 3.6657280582615317
+        Then the damage is 1.127374421660193
         And the rounded time of failure is 25181

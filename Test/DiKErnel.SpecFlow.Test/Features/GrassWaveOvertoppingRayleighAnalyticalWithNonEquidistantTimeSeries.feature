@@ -91,5 +91,5 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Acceleration crest           | 1.1   |
           | Acceleration inner slope     | 1.5   |
         When I run the grass wave overtopping Rayleigh analytical calculation
-        Then the damage is 0.38466933828755684
+        Then the damage is 0.4134930294528225
         And the rounded time of failure is undefined

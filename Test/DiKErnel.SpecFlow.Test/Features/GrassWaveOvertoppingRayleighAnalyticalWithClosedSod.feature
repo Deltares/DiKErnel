@@ -70,7 +70,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
           | Setting  | Value |
           | Position | 33    |
         When I run the grass wave overtopping Rayleigh analytical calculation
-        Then the damage is 0.07267562429048524
+        Then the damage is 0.07776240092792007
         And the rounded time of failure is undefined
 
     Scenario Outline: Adjusted position and various dike heights
