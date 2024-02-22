@@ -18,7 +18,7 @@
 
 namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
-    internal static class GrassWaveOvertoppingDefinitions
+    internal static class GrassWaveOvertoppingRayleighDefinitions
     {
         public const string AccelerationCrest = "Acceleration crest";
         public const string AccelerationInnerSlope = "Acceleration inner slope";
