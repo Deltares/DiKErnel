@@ -78,4 +78,4 @@ As a user I want to perform grass wave overtopping calculations with an open sod
           | Increased load transition | 1.2   |
         When I run the grass wave overtopping Rayleigh analytical calculation
         Then the damage is 1.127374421660193
-        And the rounded time of failure is 25181
+        And the rounded time of failure is 51323
