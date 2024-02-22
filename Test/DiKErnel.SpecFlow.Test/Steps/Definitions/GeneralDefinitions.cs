@@ -20,12 +20,12 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
     internal static class GeneralDefinitions
     {
-        public const string OutputKey = "Output";
+        public const string Output = "Output";
         public const string NotApplicable = "N.A.";
-        public const string CalculationPositionKey = "Position";
+        public const string CalculationPosition = "Position";
 
-        public const string TopLayerTypeKey = "Top layer type";
-        public const string DamageKey = "Failure number";
-        public const string InitialDamageKey = "Initial damage";
+        public const string TopLayerType = "Top layer type";
+        public const string Damage = "Failure number";
+        public const string InitialDamage = "Initial damage";
     }
 }

@@ -19,16 +19,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
         protected override void AddLocation(CalculationInputBuilder builder)
         {
             var constructionProperties = new GrassWaveOvertoppingRayleighLocationConstructionProperties(
-                Context.GetDouble(GeneralDefinitions.CalculationPositionKey), Context.GetGrassTopLayerType())
+                Context.GetDouble(GeneralDefinitions.CalculationPosition), Context.GetGrassTopLayerType())
             {
-                FailureNumber = Context.GetNullableDouble(GeneralDefinitions.DamageKey),
-                InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamageKey),
-                AverageNumberOfWavesCtm = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.AverageNumberOfWavesKey),
-                CriticalFrontVelocity = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocityKey),
-                FrontVelocityCwo = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.FrontVelocityKey),
-                CriticalCumulativeOverload = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalCumulativeOverloadKey),
-                IncreasedLoadTransitionAlphaM = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.IncreasedLoadTransitionKey),
-                ReducedStrengthTransitionAlphaS = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.ReducedStrengthTransitionKey),
+                FailureNumber = Context.GetNullableDouble(GeneralDefinitions.Damage),
+                InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamage),
+                AverageNumberOfWavesCtm = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.AverageNumberOfWaves),
+                CriticalFrontVelocity = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocity),
+                FrontVelocityCwo = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.FrontVelocity),
+                CriticalCumulativeOverload = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalCumulativeOverload),
+                IncreasedLoadTransitionAlphaM = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.IncreasedLoadTransition),
+                ReducedStrengthTransitionAlphaS = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.ReducedStrengthTransition),
                 AccelerationAlphaAForCrest = Context.GetNullableDouble(GrassWaveOvertoppingDefinitions.AccelerationCrest),
                 AccelerationAlphaAForInnerSlope = Context.GetNullableDouble(GrassWaveOvertoppingDefinitions.AccelerationInnerSlope),
                 DikeHeight = Context.GetNullableDouble(GrassWaveOvertoppingDefinitions.DikeHeight)

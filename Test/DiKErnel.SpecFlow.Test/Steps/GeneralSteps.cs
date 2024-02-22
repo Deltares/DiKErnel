@@ -75,7 +75,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the damage is (.*)")]
         public void ThenTheDamageIs(double expectedDamage)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.OutputKey];
+            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.Output];
 
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
             double actualDamage = damages[damages.Count - 1];
@@ -85,7 +85,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the rounded time of failure is (.*)")]
         public void ThenTheRoundedTimeOfFailureIs(string expectedValue)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.OutputKey];
+            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.Output];
 
             double? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
             if (timeOfFailure.HasValue)

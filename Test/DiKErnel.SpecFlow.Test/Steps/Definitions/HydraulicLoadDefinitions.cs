@@ -20,10 +20,10 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
     internal static class HydraulicLoadDefinitions
     {
-        public const string TimeStepsKey = "Time step";
-        public const string WaterLevelsKey = "Water level";
-        public const string WaveHeightsKey = "Wave height";
-        public const string WavePeriodsKey = "Wave period";
-        public const string WaveDirectionsKey = "Wave direction";
+        public const string TimeSteps = "Time step";
+        public const string WaterLevels = "Water level";
+        public const string WaveHeights = "Wave height";
+        public const string WavePeriods = "Wave period";
+        public const string WaveDirections = "Wave direction";
     }
 }

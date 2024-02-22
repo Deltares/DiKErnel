@@ -52,7 +52,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         public static GrassTopLayerType GetGrassTopLayerType(this ScenarioContext context)
         {
-            switch (context.GetString(GeneralDefinitions.TopLayerTypeKey))
+            switch (context.GetString(GeneralDefinitions.TopLayerType))
             {
                 case GrassDefinitions.OpenSod:
                     return GrassTopLayerType.OpenSod;

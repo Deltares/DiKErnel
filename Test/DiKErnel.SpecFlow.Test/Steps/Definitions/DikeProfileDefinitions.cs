@@ -20,15 +20,15 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
     internal static class DikeProfileDefinitions
     {
-        public const string DikeOrientationKey = "Orientation";
+        public const string DikeOrientation = "Orientation";
 
-        public const string XCoordinatesKey = "X";
-        public const string ZCoordinatesKey = "Z";
-        public const string RoughnessCoefficientsKey = "Roughness coefficient";
-        
-        public const string SlopeForeshoreKey = "Slope foreshore";
-        public const string BottomZForeshoreKey = "Bottom level foreshore";
-        
+        public const string XCoordinates = "X";
+        public const string ZCoordinates = "Z";
+        public const string RoughnessCoefficients = "Roughness coefficient";
+
+        public const string SlopeForeshore = "Slope foreshore";
+        public const string BottomZForeshore = "Bottom level foreshore";
+
         public const string CharacteristicPointTypeOuterToe = "Outer toe";
         public const string CharacteristicPointTypeCrestOuterBerm = "Crest outer berm";
         public const string CharacteristicPointTypeNotchOuterBerm = "Notch outer berm";

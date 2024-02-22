@@ -20,11 +20,11 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
     internal static class GrassCumulativeOverloadDefinitions
     {
-        public const string AverageNumberOfWavesKey = "Average number of waves";
-        public const string CriticalFrontVelocityKey = "Critical front velocity";
-        public const string FrontVelocityKey = "Front velocity";
-        public const string CriticalCumulativeOverloadKey = "Critical cumulative overload";
-        public const string IncreasedLoadTransitionKey = "Increased load transition";
-        public const string ReducedStrengthTransitionKey = "Reduced strength transition";
+        public const string AverageNumberOfWaves = "Average number of waves";
+        public const string CriticalFrontVelocity = "Critical front velocity";
+        public const string FrontVelocity = "Front velocity";
+        public const string CriticalCumulativeOverload = "Critical cumulative overload";
+        public const string IncreasedLoadTransition = "Increased load transition";
+        public const string ReducedStrengthTransition = "Reduced strength transition";
     }
 }
