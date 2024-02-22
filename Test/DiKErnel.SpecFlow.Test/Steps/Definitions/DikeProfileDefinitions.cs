@@ -35,6 +35,5 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
         public const string CharacteristicPointTypeOuterCrest = "Outer crest";
         public const string CharacteristicPointTypeInnerCrest = "Inner crest";
         public const string CharacteristicPointTypeInnerToe = "Inner toe";
-
     }
 }

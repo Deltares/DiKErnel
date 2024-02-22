@@ -24,6 +24,7 @@ using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.Grass;
+using DiKErnel.SpecFlow.Test.Steps.Definitions;
 using DiKErnel.Util;
 using TechTalk.SpecFlow;
 
@@ -31,18 +32,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
 {
     public abstract class StepDefinitionsBase
     {
-        private const string dikeOrientationKey = "Orientation";
-
-        private const string timeStepsKey = "Time step";
-        private const string waterLevelsKey = "Water level";
-        private const string waveHeightsKey = "Wave height";
-        private const string wavePeriodsKey = "Wave period";
-        private const string waveDirectionsKey = "Wave direction";
-
-        private const string xCoordinatesKey = "X";
-        private const string zCoordinatesKey = "Z";
-        private const string roughnessCoefficientsKey = "Roughness coefficient";
-
         protected StepDefinitionsBase(ScenarioContext context)
         {
             Context = context;
@@ -52,14 +41,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         protected void RunCalculation()
         {
-            var builder = new CalculationInputBuilder(GetDouble(dikeOrientationKey));
+            var builder = new CalculationInputBuilder(GetDouble(DikeProfileDefinitions.DikeOrientationKey));
             ConfigureBuilder(builder);
 
             DataResult<ICalculationInput> result = builder.Build();
             var calculator = new Calculator(result.Data);
             calculator.WaitForCompletion();
 
-            Context["Output"] = calculator.Result.Data.LocationDependentOutputItems[0];
+            Context[GeneralDefinitions.OutputKey] = calculator.Result.Data.LocationDependentOutputItems[0];
         }
 
         protected virtual void ConfigureBuilder(CalculationInputBuilder builder)
@@ -103,12 +92,12 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddProfilePoints(CalculationInputBuilder builder)
         {
-            AddProfilePoint(builder, "Outer toe", CharacteristicPointType.OuterToe);
-            AddProfilePoint(builder, "Crest outer berm", CharacteristicPointType.CrestOuterBerm);
-            AddProfilePoint(builder, "Notch outer berm", CharacteristicPointType.NotchOuterBerm);
-            AddProfilePoint(builder, "Outer crest", CharacteristicPointType.OuterCrest);
-            AddProfilePoint(builder, "Inner crest", CharacteristicPointType.InnerCrest);
-            AddProfilePoint(builder, "Inner toe", CharacteristicPointType.InnerToe);
+            AddProfilePoint(builder, DikeProfileDefinitions.CharacteristicPointTypeOuterToe, CharacteristicPointType.OuterToe);
+            AddProfilePoint(builder, DikeProfileDefinitions.CharacteristicPointTypeCrestOuterBerm, CharacteristicPointType.CrestOuterBerm);
+            AddProfilePoint(builder, DikeProfileDefinitions.CharacteristicPointTypeNotchOuterBerm, CharacteristicPointType.NotchOuterBerm);
+            AddProfilePoint(builder, DikeProfileDefinitions.CharacteristicPointTypeOuterCrest, CharacteristicPointType.OuterCrest);
+            AddProfilePoint(builder, DikeProfileDefinitions.CharacteristicPointTypeInnerCrest, CharacteristicPointType.InnerCrest);
+            AddProfilePoint(builder, DikeProfileDefinitions.CharacteristicPointTypeInnerToe, CharacteristicPointType.InnerToe);
         }
 
         private void AddProfilePoint(CalculationInputBuilder builder, string key, CharacteristicPointType characteristicPoint)
@@ -128,16 +117,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private double[] GetDoubleCollection(string id)
         {
             var values = (IReadOnlyList<string>) Context[id];
-            return values.Where(s => !Equals(s, "N.A.")).Select(double.Parse).ToArray();
+            return values.Where(s => !Equals(s, GeneralDefinitions.NotApplicable)).Select(double.Parse).ToArray();
         }
 
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> times = GetDoubleCollection(timeStepsKey);
-            IReadOnlyList<double> waterLevels = GetDoubleCollection(waterLevelsKey);
-            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection(waveHeightsKey);
-            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection(wavePeriodsKey);
-            IReadOnlyList<double> waveDirections = GetDoubleCollection(waveDirectionsKey);
+            IReadOnlyList<double> times = GetDoubleCollection(HydraulicLoadDefinitions.TimeStepsKey);
+            IReadOnlyList<double> waterLevels = GetDoubleCollection(HydraulicLoadDefinitions.WaterLevelsKey);
+            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection(HydraulicLoadDefinitions.WaveHeightsKey);
+            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection(HydraulicLoadDefinitions.WavePeriodsKey);
+            IReadOnlyList<double> waveDirections = GetDoubleCollection(HydraulicLoadDefinitions.WaveDirectionsKey);
 
             for (var i = 0; i < times.Count - 1; i++)
             {
@@ -148,9 +137,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddDikeProfile(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> xLocations = GetDoubleCollection(xCoordinatesKey);
-            IReadOnlyList<double> zLocations = GetDoubleCollection(zCoordinatesKey);
-            IReadOnlyList<double> roughnessCoefficients = GetDoubleCollection(roughnessCoefficientsKey);
+            IReadOnlyList<double> xLocations = GetDoubleCollection(DikeProfileDefinitions.XCoordinatesKey);
+            IReadOnlyList<double> zLocations = GetDoubleCollection(DikeProfileDefinitions.ZCoordinatesKey);
+            IReadOnlyList<double> roughnessCoefficients = GetDoubleCollection(DikeProfileDefinitions.RoughnessCoefficientsKey);
 
             for (var i = 0; i < xLocations.Count - 1; i++)
             {
