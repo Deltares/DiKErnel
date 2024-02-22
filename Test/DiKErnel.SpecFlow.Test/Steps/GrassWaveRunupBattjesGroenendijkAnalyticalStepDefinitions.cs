@@ -79,7 +79,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private void AddForeshore(CalculationInputBuilder builder)
         {
             builder.AddForeshore(GetDouble(DikeProfileDefinitions.SlopeForeshoreKey), 
-                                 GetDouble(DikeProfileDefinitions.SlopeForeshoreKey));
+                                 GetDouble(DikeProfileDefinitions.BottomZForeshoreKey));
         }
     }
 }
