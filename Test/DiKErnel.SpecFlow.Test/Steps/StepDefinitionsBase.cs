@@ -43,12 +43,12 @@ namespace DiKErnel.SpecFlow.Test.Steps
         private const string zCoordinatesKey = "Z";
         private const string roughnessCoefficientsKey = "Roughness coefficient";
 
-        protected readonly ScenarioContext Context;
-
         protected StepDefinitionsBase(ScenarioContext context)
         {
             Context = context;
         }
+
+        protected ScenarioContext Context { get; }
 
         protected void RunCalculation()
         {
@@ -100,7 +100,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
             return null;
         }
-        
+
         private void AddProfilePoints(CalculationInputBuilder builder)
         {
             AddProfilePoint(builder, "Outer toe", CharacteristicPointType.OuterToe);

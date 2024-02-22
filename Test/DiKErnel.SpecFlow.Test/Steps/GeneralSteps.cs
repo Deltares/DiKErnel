@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
@@ -74,7 +75,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public void WhenIChangeTheValueOf(string propertyName, string value)
         {
             char[] characters = propertyName.ToCharArray();
-            characters[0] = char.ToUpper(characters[0]);
+            characters[0] = char.ToUpper(characters[0], CultureInfo.InvariantCulture);
             var adjustedPropertyName = new string(characters);
             
             context[adjustedPropertyName] = value;
