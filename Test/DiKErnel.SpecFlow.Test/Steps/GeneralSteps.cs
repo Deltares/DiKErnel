@@ -43,7 +43,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         [Given(@"the following(?: adjusted)? hydraulic loads:")]
         [Given(@"the following(?: adjusted)? dike geometry:")]
-        public void GivenTheFollowingCollectionsAreAdjusted(Table table)
+        public void GivenTheFollowingCollections(Table table)
         {
             foreach (string property in table.Header)
             {
@@ -54,7 +54,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following(?: adjusted)? calculation settings:")]
         [Given(@"the following(?: adjusted)? dike properties:")]
         [Given(@"the following(?: adjusted)? characteristic points:")]
-        public void GivenTheFollowingPropertiesAreAdjusted(Table table)
+        public void GivenTheFollowingProperties(Table table)
         {
             foreach (TableRow row in table.Rows)
             {
@@ -63,7 +63,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         }
 
         [Given(@"the (.*) is adjusted to (.*)")]
-        public void WhenIChangeTheValueOf(string propertyName, string value)
+        public void GivenThePropertyIsAdjustedTo(string propertyName, string value)
         {
             char[] characters = propertyName.ToCharArray();
             characters[0] = char.ToUpper(characters[0], CultureInfo.InvariantCulture);
