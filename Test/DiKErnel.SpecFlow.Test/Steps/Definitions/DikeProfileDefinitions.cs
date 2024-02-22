@@ -20,7 +20,7 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
     internal static class DikeProfileDefinitions
     {
-        public const string DikeOrientationKey = "Dike orientation";
+        public const string DikeOrientationKey = "Orientation";
 
         public const string XCoordinatesKey = "X";
         public const string ZCoordinatesKey = "Z";
