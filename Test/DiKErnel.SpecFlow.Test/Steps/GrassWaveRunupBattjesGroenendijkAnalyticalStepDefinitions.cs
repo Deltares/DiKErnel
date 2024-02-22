@@ -21,6 +21,7 @@ using DiKErnel.Core.Data;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveRunup;
+using DiKErnel.SpecFlow.Test.Steps.Definitions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -30,21 +31,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
     public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions : StepDefinitionsBase
     {
         private const double tolerance = 1e-14;
-
-        private const string calculationPositionKey = "Position";
-        private const string topLayerTypeKey = "Top layer type";
-        private const string damageKey = "Failure number";
-        private const string initialDamageKey = "Initial damage";
-        private const string averageNumberOfWavesKey = "Average number of waves";
-        private const string criticalFrontVelocityKey = "Critical front velocity";
-        private const string frontVelocityKey = "Front velocity";
-        private const string criticalCumulativeOverloadKey = "Critical cumulative overload";
-        private const string increasedLoadTransitionKey = "Increased load transition";
-        private const string reducedStrengthTransitionKey = "Reduced strength transition";
-
-        private const string slopeForeshoreKey = "Slope foreshore";
-        private const string bottomZForeshoreKey = "Bottom level foreshore";
-
         public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context) : base(context) {}
 
         [When(@"I run the grass wave run-up Battjes-Groenendijk analytical calculation")]
@@ -57,7 +43,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Scope(Feature = "Grass wave run-up Battjes-Groenendijk analytical with BM Gras Benchmarks")]
         public void ThenTheCumulativeOverloadIs(double? expectedCumulativeOverload)
         {
-            var output = (LocationDependentOutput) Context["Output"];
+            var output = (LocationDependentOutput) Context[GeneralDefinitions.OutputKey];
 
             GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverLoadOutputs =
                 output.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
@@ -75,16 +61,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
         protected override void AddLocation(CalculationInputBuilder builder)
         {
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
-                GetDouble(calculationPositionKey), GetGrassTopLayerType(topLayerTypeKey))
+                GetDouble(GeneralDefinitions.CalculationPositionKey), GetGrassTopLayerType(GeneralDefinitions.TopLayerTypeKey))
             {
-                FailureNumber = GetNullableDouble(damageKey),
-                InitialDamage = GetNullableDouble(initialDamageKey),
-                AverageNumberOfWavesCtm = GetNullableDouble(averageNumberOfWavesKey),
-                CriticalFrontVelocity = GetNullableDouble(criticalFrontVelocityKey),
-                FrontVelocityCu = GetNullableDouble(frontVelocityKey),
-                CriticalCumulativeOverload = GetNullableDouble(criticalCumulativeOverloadKey),
-                IncreasedLoadTransitionAlphaM = GetNullableDouble(increasedLoadTransitionKey),
-                ReducedStrengthTransitionAlphaS = GetNullableDouble(reducedStrengthTransitionKey)
+                FailureNumber = GetNullableDouble(GeneralDefinitions.DamageKey),
+                InitialDamage = GetNullableDouble(GeneralDefinitions.InitialDamageKey),
+                AverageNumberOfWavesCtm = GetNullableDouble(GrassCumulativeOverloadDefinitions.AverageNumberOfWavesKey),
+                CriticalFrontVelocity = GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocityKey),
+                FrontVelocityCu = GetNullableDouble(GrassCumulativeOverloadDefinitions.FrontVelocityKey),
+                CriticalCumulativeOverload = GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalCumulativeOverloadKey),
+                IncreasedLoadTransitionAlphaM = GetNullableDouble(GrassCumulativeOverloadDefinitions.IncreasedLoadTransitionKey),
+                ReducedStrengthTransitionAlphaS = GetNullableDouble(GrassCumulativeOverloadDefinitions.ReducedStrengthTransitionKey)
             };
 
             builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(constructionProperties);
@@ -92,7 +78,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddForeshore(CalculationInputBuilder builder)
         {
-            builder.AddForeshore(GetDouble(slopeForeshoreKey), GetDouble(bottomZForeshoreKey));
+            builder.AddForeshore(GetDouble(DikeProfileDefinitions.SlopeForeshoreKey), 
+                                 GetDouble(DikeProfileDefinitions.SlopeForeshoreKey));
         }
     }
 }
