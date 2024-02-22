@@ -19,7 +19,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
@@ -41,7 +40,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         protected void RunCalculation()
         {
-            var builder = new CalculationInputBuilder(GetDouble(DikeProfileDefinitions.DikeOrientationKey));
+            var builder = new CalculationInputBuilder(Context.GetDouble(DikeProfileDefinitions.DikeOrientationKey));
             ConfigureBuilder(builder);
 
             DataResult<ICalculationInput> result = builder.Build();
@@ -102,7 +101,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddProfilePoint(CalculationInputBuilder builder, string key, CharacteristicPointType characteristicPoint)
         {
-            double? position = GetNullableDouble(key);
+            double? position = Context.GetNullableDouble(key);
             if (position.HasValue)
             {
                 builder.AddDikeProfilePoint(position.Value, characteristicPoint);
@@ -114,19 +113,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
             return (string) Context[id];
         }
 
-        private double[] GetDoubleCollection(string id)
-        {
-            var values = (IReadOnlyList<string>) Context[id];
-            return values.Where(s => !Equals(s, GeneralDefinitions.NotApplicable)).Select(double.Parse).ToArray();
-        }
-
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> times = GetDoubleCollection(HydraulicLoadDefinitions.TimeStepsKey);
-            IReadOnlyList<double> waterLevels = GetDoubleCollection(HydraulicLoadDefinitions.WaterLevelsKey);
-            IReadOnlyList<double> waveHeightsHm0 = GetDoubleCollection(HydraulicLoadDefinitions.WaveHeightsKey);
-            IReadOnlyList<double> wavePeriodsTm10 = GetDoubleCollection(HydraulicLoadDefinitions.WavePeriodsKey);
-            IReadOnlyList<double> waveDirections = GetDoubleCollection(HydraulicLoadDefinitions.WaveDirectionsKey);
+            IReadOnlyList<double> times = Context.GetDoubleCollection(HydraulicLoadDefinitions.TimeStepsKey);
+            IReadOnlyList<double> waterLevels = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaterLevelsKey);
+            IReadOnlyList<double> waveHeightsHm0 = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaveHeightsKey);
+            IReadOnlyList<double> wavePeriodsTm10 = Context.GetDoubleCollection(HydraulicLoadDefinitions.WavePeriodsKey);
+            IReadOnlyList<double> waveDirections = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaveDirectionsKey);
 
             for (var i = 0; i < times.Count - 1; i++)
             {
@@ -137,9 +130,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddDikeProfile(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> xLocations = GetDoubleCollection(DikeProfileDefinitions.XCoordinatesKey);
-            IReadOnlyList<double> zLocations = GetDoubleCollection(DikeProfileDefinitions.ZCoordinatesKey);
-            IReadOnlyList<double> roughnessCoefficients = GetDoubleCollection(DikeProfileDefinitions.RoughnessCoefficientsKey);
+            IReadOnlyList<double> xLocations = Context.GetDoubleCollection(DikeProfileDefinitions.XCoordinatesKey);
+            IReadOnlyList<double> zLocations = Context.GetDoubleCollection(DikeProfileDefinitions.ZCoordinatesKey);
+            IReadOnlyList<double> roughnessCoefficients = Context.GetDoubleCollection(DikeProfileDefinitions.RoughnessCoefficientsKey);
 
             for (var i = 0; i < xLocations.Count - 1; i++)
             {

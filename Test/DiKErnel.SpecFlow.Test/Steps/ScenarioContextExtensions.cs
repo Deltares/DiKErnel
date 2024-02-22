@@ -28,9 +28,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
 {
     internal static class ScenarioContextExtensions
     {
-        public static string GetString(this ScenarioContext context, string id)
+        public static double GetDouble(this ScenarioContext context, string id)
         {
-            return (string) context[id];
+            return double.Parse(context.GetString(id), CultureInfo.InvariantCulture);
         }
 
         public static double[] GetDoubleCollection(this ScenarioContext context, string id)
@@ -38,7 +38,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             var values = (IReadOnlyList<string>) context[id];
             return values.Where(s => !Equals(s, GeneralDefinitions.NotApplicable)).Select(double.Parse).ToArray();
         }
-        
+
         public static double? GetNullableDouble(this ScenarioContext context, string id)
         {
             if (context.TryGetValue(id, out object retrievedValue))
@@ -49,7 +49,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
             return null;
         }
-        
+
         public static GrassTopLayerType GetGrassTopLayerType(this ScenarioContext context)
         {
             switch (context.GetString(GeneralDefinitions.TopLayerTypeKey))
@@ -61,6 +61,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 default:
                     throw new NotSupportedException();
             }
+        }
+
+        private static string GetString(this ScenarioContext context, string id)
+        {
+            return (string) context[id];
         }
     }
 }
