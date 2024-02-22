@@ -22,6 +22,7 @@ using System.Globalization;
 using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
+using DiKErnel.SpecFlow.Test.Steps.Definitions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -31,9 +32,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
     [Binding]
     public class GeneralSteps
     {
-        private const string dikeOrientationKey = "Dike orientation";
         private const double tolerance = 1e-14;
-        private const string outputKey = "Output";
 
         private readonly ScenarioContext context;
 
@@ -42,14 +41,6 @@ namespace DiKErnel.SpecFlow.Test.Steps
             this.context = context;
         }
 
-        [Given(@"the following dike profile and a dike orientation of (.*):")]
-        public void GivenTheFollowingDikeProfile(string dikeOrientation, Table table)
-        {
-            context[dikeOrientationKey] = dikeOrientation;
-
-            GivenTheFollowingCollectionsAreAdjusted(table);
-        }
-        
         [Given(@"the following(?: adjusted)? hydraulic loads:")]
         [Given(@"the following(?: adjusted)? dike geometry:")]
         public void GivenTheFollowingCollectionsAreAdjusted(Table table)
@@ -84,7 +75,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the damage is (.*)")]
         public void ThenTheDamageIs(double expectedDamage)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[outputKey];
+            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.OutputKey];
 
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
             double actualDamage = damages[damages.Count - 1];
@@ -94,7 +85,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the rounded time of failure is (.*)")]
         public void ThenTheRoundedTimeOfFailureIs(string expectedValue)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[outputKey];
+            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.OutputKey];
 
             double? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
             if (timeOfFailure.HasValue)
