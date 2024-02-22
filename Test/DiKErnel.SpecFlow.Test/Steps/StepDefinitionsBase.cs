@@ -26,6 +26,7 @@ using TechTalk.SpecFlow;
 
 namespace DiKErnel.SpecFlow.Test.Steps
 {
+    [Binding]
     public abstract class StepDefinitionsBase
     {
         protected StepDefinitionsBase(ScenarioContext context)
