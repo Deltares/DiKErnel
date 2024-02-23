@@ -155,4 +155,21 @@ As a user I want to perform asphalt wave impact calculations.
         Then the damage is 1.46369311689636
         And the rounded time of failure is 15186
 
-# Scenario: Calculation with a berm
+    Scenario: Calculation with a berm
+        Given the following adjusted dike geometry:
+          | X  | Z   |
+          | 0  | 0   |
+          | 8  | 2.0 |
+          | 17 | 3.0 |
+          | 35 | 7.5 |
+        And the following adjusted characteristic points:
+          | Characteristic point | Value |
+          | Crest outer berm     | 8     |
+          | Notch outer berm     | 17    |
+          | Outer crest          | 35    |
+        And the following adjusted calculation settings:
+          | Setting  | Value |
+          | Position | 12.5  |
+        When I run the asphalt wave impact calculation
+        Then the damage is 1.12993952544265
+        And the rounded time of failure is 25720
