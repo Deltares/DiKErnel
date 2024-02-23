@@ -30,13 +30,13 @@ using TechTalk.SpecFlow.Assist;
 namespace DiKErnel.SpecFlow.Test.Steps
 {
     [Binding]
-    public class GeneralSteps
+    public class GeneralStepDefinitions
     {
         private const double tolerance = 1e-14;
 
         private readonly ScenarioContext context;
 
-        public GeneralSteps(ScenarioContext context)
+        public GeneralStepDefinitions(ScenarioContext context)
         {
             this.context = context;
         }

@@ -30,6 +30,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
     public class GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions : StepDefinitionsBase
     {
         private const double tolerance = 1e-14;
+
         public GrassWaveRunupBattjesGroenendijkAnalyticalStepDefinitions(ScenarioContext context) : base(context) {}
 
         [When(@"I run the grass wave run-up Battjes-Groenendijk analytical calculation")]
@@ -77,7 +78,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddForeshore(CalculationInputBuilder builder)
         {
-            builder.AddForeshore(Context.GetDouble(DikeProfileDefinitions.SlopeForeshore), 
+            builder.AddForeshore(Context.GetDouble(DikeProfileDefinitions.SlopeForeshore),
                                  Context.GetDouble(DikeProfileDefinitions.BottomZForeshore));
         }
     }
