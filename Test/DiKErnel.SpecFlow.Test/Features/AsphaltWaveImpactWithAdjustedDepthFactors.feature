@@ -1,5 +1,5 @@
 ﻿Feature: Asphalt wave impact
-As a user I want to perform asphalt wave impact calculations.
+As a user I want to perform asphalt wave impact calculations with adjusted depth factors.
 
     Background:
         Given the following hydraulic loads:
