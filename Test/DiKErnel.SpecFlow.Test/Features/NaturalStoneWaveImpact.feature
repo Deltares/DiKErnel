@@ -62,17 +62,81 @@ As a user I want to perform natural stone wave impact calculations.
           | Hydraulic load Bs   | 1.5    |
           | Hydraulic load Cs   | -3.12  |
           | Hydraulic load Ns   | -1.5   |
-          When I run the natural stone wave impact calculation
-          Then the damage is 1.07139251615967
-          And the rounded time of failure is 7815
+        When I run the natural stone wave impact calculation
+        Then the damage is 1.07139251615967
+        And the rounded time of failure is 7815
 
-    Scenario: 4 Calculation with a varying buitentalud and a berm
+    Scenario: Calculation with a varying outer slope and a berm
+        Given the following adjusted dike geometry:
+          | X    | Z   |
+          | 0    | 0.0 |
+          | 6.4  | 1.6 |
+          | 12.4 | 1.8 |
+          | 30   | 7.5 |
+        And the following adjusted characteristic points:
+          | Setting          | Value |
+          | Crest outer berm | 6.4   |
+          | Notch outer berm | 12.4  |
+        And the following adjusted calculation settings:
+          | Setting             | Value |
+          | Thickness top layer | 0.3   |
+        When I run the natural stone wave impact calculation
+        Then the damage is 1.69080696566877
+        And the rounded time of failure is 5605
 
-    Scenario: 5 Calculation with a varying buitentalud and no berm
+    Scenario: Calculation with a varying outer slope and no berm
+        Given the following adjusted dike geometry:
+          | X    | Z   |
+          | 0    | 0.0 |
+          | 6.4  | 1.6 |
+          | 12.4 | 1.8 |
+          | 30   | 7.5 |
+        And the following adjusted calculation settings:
+          | Setting             | Value |
+          | Thickness top layer | 0.3   |
+        When I run the natural stone wave impact calculation
+        Then the damage is 1.19007096598986
+        And the rounded time of failure is 7941
 
-    Scenario: 6 Calculation with an adjusted setting for the impact angle
+    Scenario: Calculation with adjusted wave angle impact
+        Given the following adjusted calculation settings:
+          | Setting                   | Value |
+          | Wave angle impact Betamax | 30    |
+        When I run the natural stone wave impact calculation
+        Then the damage is 1.23139438041740
+        And the rounded time of failure is 7272
 
-    Scenario: 7 Calculation with an adjusted load setting
+    Scenario: Calculation with adjusted hydraulic loads
+        Given the following adjusted hydraulic loads:
+          | Water level | Wave height | Wave period | Wave direction |
+          | 1.27        | 1.5         | 6           | 0              |
+          | 1.271       | 1.5         | 6           | 0              |
+          | 1.272       | 1.5         | 6           | 0              |
+          | 1.273       | 1.5         | 6           | 0              |
+          | 2.531       | 1.5         | 6           | 0              |
+          | 2.532       | 1.5         | 6           | 0              |
+          | 2.533       | 1.5         | 6           | 0              |
+          | 2.534       | 1.5         | 6           | 0              |
+          | 2.535       | 1.5         | 6           | 0              |
+          | 2.536       | 1.5         | 6           | 0              |
+          | 2.537       | 1.5         | 6           | 0              |
+          | 2.538       | 1.5         | 6           | 0              |
+        And the following adjusted calculation settings:
+          | Setting                               | Value |
+          | Thickness top layer                   | 0.3   |
+          | Upper limit loading Aul               | 0.08  |
+          | Upper limit loading Bul               | 0.7   |
+          | Upper limit loading Cul               | 3.5   |
+          | Lower limit loading All               | 0.08  |
+          | Lower limit loading Bll               | 0.15  |
+          | Lower limit loading Cll               | 5.5   |
+          | Distance maximum wave elevation Asmax | 0.5   |
+          | Distance maximum wave elevation Bsmax | 0.8   |
+          | Normative width of wave impact Awi    | 1.1   |
+          | Normative width of wave impact Bwi    | 0.15  |
+        When I run the natural stone wave impact calculation
+        Then the damage is 1.09941459712288
+        And the rounded time of failure is 3893
 
     Scenario: 8 Calculation with a non-equidistant time series and a negative start time
 
