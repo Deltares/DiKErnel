@@ -138,6 +138,42 @@ As a user I want to perform natural stone wave impact calculations.
         Then the damage is 1.09941459712288
         And the rounded time of failure is 3893
 
-    Scenario: 8 Calculation with a non-equidistant time series and a negative start time
+    Scenario: Calculation with a non-equidistant time series and a negative start time
+        Given the following adjusted hydraulic loads:
+          | Time step |
+          | -3600     |
+          | -3420     |
+          | -3060     |
+          | -2520     |
+          | -1800     |
+          | -900      |
+          | 180       |
+          | 1440      |
+          | 2880      |
+          | 4500      |
+          | 6300      |
+          | 8280      |
+          | 10800     |
+        When I run the natural stone wave impact calculation
+        Then the damage is 1.30817784966504
+        And the rounded time of failure is 2914
 
-    Scenario: 9 Calculation with adjusted slope settings
+    Scenario: Calculation with adjusted slope settings
+        Given the following adjusted dike geometry:
+          | X    | Z   |
+          | 0    | 0.0 |
+          | 6.4  | 1.6 |
+          | 12.4 | 1.8 |
+          | 30   | 7.5 |
+        And the following adjusted characteristic points:
+          | Setting          | Value |
+          | Crest outer berm | 6.4   |
+          | Notch outer berm | 12.4  |
+        And the following adjusted calculation settings:
+          | Setting               | Value |
+          | Thickness top layer   | 0.3   |
+          | Slope upper level Aus | 0.5   |
+          | Slope lower level Als | 1.0   |
+        When I run the natural stone wave impact calculation
+        Then the damage is 1.69466545304923
+        And the rounded time of failure is 5570
