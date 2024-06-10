@@ -45,10 +45,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             var output = (LocationDependentOutput) Context[GeneralDefinitions.Output];
 
-            GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverLoadOutputs =
+            GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverloadOutputs =
                 output.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
 
-            Assert.That(cumulativeOverLoadOutputs[cumulativeOverLoadOutputs.Length - 1].CumulativeOverload,
+            Assert.That(cumulativeOverloadOutputs[cumulativeOverloadOutputs.Length - 1].CumulativeOverload,
                         Is.EqualTo(expectedCumulativeOverload).Within(tolerance));
         }
 

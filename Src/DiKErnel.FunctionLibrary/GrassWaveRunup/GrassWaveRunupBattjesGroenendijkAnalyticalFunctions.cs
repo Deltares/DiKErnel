@@ -211,31 +211,31 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             double verticalWaveRunupLimit5 = VerticalWaveRunupLimit5(scaledVerticalDistanceWaterLevelElevation,
                                                                      waveRunupTransition, verticalWaveRunupLimit6);
 
-            double cumulativeOverLoad1 = DeltaCumulativeLoad(input, verticalWaveRunupLimit1, scalingParameterRu1, input.K1);
+            double cumulativeOverload1 = DeltaCumulativeLoad(input, verticalWaveRunupLimit1, scalingParameterRu1, input.K1);
 
-            double cumulativeOverLoad2 = DeltaCumulativeLoad(input, verticalWaveRunupLimit2, scalingParameterRu1, input.K1);
+            double cumulativeOverload2 = DeltaCumulativeLoad(input, verticalWaveRunupLimit2, scalingParameterRu1, input.K1);
 
-            double cumulativeOverLoad3 = DeltaCumulativeLoad(input, verticalWaveRunupLimit3, scalingParameterRu2, input.K2);
+            double cumulativeOverload3 = DeltaCumulativeLoad(input, verticalWaveRunupLimit3, scalingParameterRu2, input.K2);
 
-            double cumulativeOverLoad4 = DeltaCumulativeLoad(input, verticalWaveRunupLimit1, scalingParameterRu2, input.K2);
+            double cumulativeOverload4 = DeltaCumulativeLoad(input, verticalWaveRunupLimit1, scalingParameterRu2, input.K2);
 
-            double cumulativeOverLoad5 =
+            double cumulativeOverload5 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalWaveRunupLimit5, scalingParameterRu1, input.K1);
 
-            double cumulativeOverLoad6 =
+            double cumulativeOverload6 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalWaveRunupLimit6, scalingParameterRu1, input.K1);
 
-            double cumulativeOverLoad7 =
+            double cumulativeOverload7 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, scaledVerticalDistanceWaterLevelElevation, scalingParameterRu2,
                                                                   input.K2);
 
-            double cumulativeOverLoad8 =
+            double cumulativeOverload8 =
                 DeltaCumulativeLoadWithVerticalDistanceWaterLevel(input, verticalWaveRunupLimit5, scalingParameterRu2, input.K2);
 
-            return input.AverageNumberOfWaves * (cumulativeOverLoad1 - cumulativeOverLoad2 +
-                                                 cumulativeOverLoad3 - cumulativeOverLoad4 +
-                                                 cumulativeOverLoad5 - cumulativeOverLoad6 +
-                                                 cumulativeOverLoad7 - cumulativeOverLoad8);
+            return input.AverageNumberOfWaves * (cumulativeOverload1 - cumulativeOverload2 +
+                                                 cumulativeOverload3 - cumulativeOverload4 +
+                                                 cumulativeOverload5 - cumulativeOverload6 +
+                                                 cumulativeOverload7 - cumulativeOverload8);
         }
 
         private static double UpperLimitWaveRunup(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
