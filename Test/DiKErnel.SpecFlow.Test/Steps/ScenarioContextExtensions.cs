@@ -41,24 +41,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         public static double? GetNullableDouble(this ScenarioContext context, string id)
         {
-            if (context.TryGetValue(id, out object retrievedValue))
-            {
-                var value = (string) retrievedValue;
-                return string.IsNullOrWhiteSpace(value) ? (double?) null : double.Parse(value, CultureInfo.InvariantCulture);
-            }
-
-            return null;
+            return context.ContainsKey(id)
+                       ? (double?) context.GetDouble(id)
+                       : null;
         }
 
         public static int? GetNullableInt(this ScenarioContext context, string id)
         {
-            if (context.TryGetValue(id, out object retrievedValue))
-            {
-                var value = (string) retrievedValue;
-                return string.IsNullOrWhiteSpace(value) ? (int?) null : int.Parse(value, CultureInfo.InvariantCulture);
-            }
-
-            return null;
+            return context.ContainsKey(id)
+                       ? (int?) int.Parse(context.GetString(id), CultureInfo.InvariantCulture)
+                       : null;
         }
 
         public static GrassTopLayerType GetGrassTopLayerType(this ScenarioContext context)
