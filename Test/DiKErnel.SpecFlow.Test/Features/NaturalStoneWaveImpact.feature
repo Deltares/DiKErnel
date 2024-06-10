@@ -106,7 +106,7 @@ As a user I want to perform natural stone wave impact calculations.
         Then the damage is 1.23139438041740
         And the rounded time of failure is 7272
 
-    Scenario: Calculation with adjusted hydraulic loads
+    Scenario: Calculation with adjusted hydraulic loads and impact zone
         Given the following adjusted hydraulic loads:
           | Water level | Wave height | Wave period | Wave direction |
           | 1.27        | 1.5         | 6           | 0              |
