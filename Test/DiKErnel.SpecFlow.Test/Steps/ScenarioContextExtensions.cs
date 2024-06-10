@@ -28,15 +28,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
 {
     internal static class ScenarioContextExtensions
     {
+        private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
+
         public static double GetDouble(this ScenarioContext context, string id)
         {
-            return double.Parse(context.GetString(id), CultureInfo.InvariantCulture);
-        }
-
-        public static double[] GetDoubleCollection(this ScenarioContext context, string id)
-        {
-            var values = (IReadOnlyList<string>) context[id];
-            return values.Where(s => !Equals(s, GeneralDefinitions.NotApplicable)).Select(double.Parse).ToArray();
+            return double.Parse(context.GetString(id), Culture);
         }
 
         public static double? GetNullableDouble(this ScenarioContext context, string id)
@@ -46,10 +42,19 @@ namespace DiKErnel.SpecFlow.Test.Steps
                        : null;
         }
 
+        public static double[] GetDoubleCollection(this ScenarioContext context, string id)
+        {
+            var values = (IReadOnlyList<string>) context[id];
+
+            return values.Where(s => !Equals(s, GeneralDefinitions.NotApplicable))
+                         .Select(s => double.Parse(s, Culture))
+                         .ToArray();
+        }
+
         public static int? GetNullableInt(this ScenarioContext context, string id)
         {
             return context.ContainsKey(id)
-                       ? (int?) int.Parse(context.GetString(id), CultureInfo.InvariantCulture)
+                       ? (int?) int.Parse(context.GetString(id), Culture)
                        : null;
         }
 
