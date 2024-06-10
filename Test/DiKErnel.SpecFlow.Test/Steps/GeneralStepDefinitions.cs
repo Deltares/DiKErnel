@@ -32,7 +32,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
     [Binding]
     public class GeneralStepDefinitions
     {
-        private const double tolerance = 1e-14;
+        public const double Tolerance = 1e-14;
 
         private readonly ScenarioContext context;
 
@@ -68,7 +68,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             char[] characters = propertyName.ToCharArray();
             characters[0] = char.ToUpper(characters[0], CultureInfo.InvariantCulture);
             var adjustedPropertyName = new string(characters);
-            
+
             context[adjustedPropertyName] = value;
         }
 
@@ -79,7 +79,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
             double actualDamage = damages[damages.Count - 1];
-            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(tolerance));
+            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(Tolerance));
         }
 
         [Then(@"the rounded time of failure is (.*)")]
