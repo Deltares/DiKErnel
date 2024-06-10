@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(SolutionDir)Development\Test.targets" />
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.22" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj" />
-  </ItemGroup>
+    <Import Project="$(SolutionDir)Development\Test.targets"/>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="SpecFlow.NUnit" Version="3.9.22"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj"/>
+    </ItemGroup>
 </Project>
