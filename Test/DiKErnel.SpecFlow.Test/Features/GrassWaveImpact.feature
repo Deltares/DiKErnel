@@ -48,6 +48,7 @@ As a user I want to perform grass wave impact calculations.
     Scenario: Default with closed sod
         When I run the grass wave impact calculation
         Then the damage is 1.29228078520671
+        And the rounded time of failure is 14375
 
     Scenario: Default with open sod
         Given the following adjusted hydraulic loads:
@@ -81,6 +82,7 @@ As a user I want to perform grass wave impact calculations.
           | Top layer type | Open sod |
         When I run the grass wave impact calculation
         Then the damage is 1.74141684707082
+        And the rounded time of failure is 13466
 
     Scenario: Calculation with adjusted sod
         Given the following adjusted calculation settings:
@@ -90,6 +92,7 @@ As a user I want to perform grass wave impact calculations.
           | Time line c | 0.3      |
         When I run the grass wave impact calculation
         Then the damage is 1.34810580442111
+        And the rounded time of failure is 15809
 
     Scenario: Calculation with adjusted initial damage and failure number
         Given the following adjusted calculation settings:
@@ -98,6 +101,7 @@ As a user I want to perform grass wave impact calculations.
           | Failure number | 1.2   |
         When I run the grass wave impact calculation
         Then the damage is 1.69228078520671
+        And the rounded time of failure is 13429
 
     Scenario: Calculation with adjusted wave angle impact
         Given the following adjusted calculation settings:
@@ -107,14 +111,16 @@ As a user I want to perform grass wave impact calculations.
           | Wave angle impact r | 40.0  |
         When I run the grass wave impact calculation
         Then the damage is 1.28595658264855
+        And the rounded time of failure is 14416
 
-    Scenario: Calculation with adjusted belastingzone
+    Scenario: Calculation with adjusted impact zone
         Given the following adjusted calculation settings:
           | Setting             | Value |
           | Upper limit loading | 0.1   |
           | Lower limit loading | 0.45  |
         When I run the grass wave impact calculation
         Then the damage is 1.07849231778936
+        And the rounded time of failure is 17130
 
     Scenario: Calculation with a non-equidistant time series and a negative start time
         Given the following adjusted hydraulic loads:
@@ -146,3 +152,4 @@ As a user I want to perform grass wave impact calculations.
           | 21600     |
         When I run the grass wave impact calculation
         Then the damage is 1.91616541078065
+        And the rounded time of failure is 6938
