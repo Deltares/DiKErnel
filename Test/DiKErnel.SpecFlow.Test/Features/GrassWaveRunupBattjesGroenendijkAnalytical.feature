@@ -104,9 +104,6 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         And the following adjusted dike properties:
           | Property    | Value |
           | Orientation | 20    |
-        And the following adjusted calculation settings:
-          | Setting  | Value |
-          | Position | 15    |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 0.37123738545695
 
@@ -155,7 +152,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 8.58782240558095
 
-    Scenario: Negative time steps and adjusted hydraulic loads, dike profile properties (berm), and foreshore properties
+    Scenario: Negative time steps and adjusted hydraulic loads, dike profile properties (berm) and foreshore properties
         Given the following adjusted hydraulic loads:
           | Time step | Water level | Wave height | Wave period | Wave direction |
           | -6840     | 3.5         | 2.4         | 4           | 20             |
@@ -186,9 +183,6 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Orientation            | 20    |
           | Bottom level foreshore | 0.5   |
           | Slope foreshore        | 0.01  |
-        And the following adjusted calculation settings:
-          | Setting  | Value |
-          | Position | 15    |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 0.62192003883105
 
@@ -225,7 +219,6 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Slope foreshore        | 0.008 |
         And the following adjusted calculation settings:
           | Setting                      | Value |
-          | Position                     | 15    |
           | Initial damage               | 0.1   |
           | Increased load transition    | 1.7   |
           | Reduced strength transition  | 0.85  |
