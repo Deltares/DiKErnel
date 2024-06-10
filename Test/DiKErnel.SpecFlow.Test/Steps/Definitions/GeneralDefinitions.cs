@@ -25,7 +25,7 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
         public const string CalculationPosition = "Position";
 
         public const string TopLayerType = "Top layer type";
-        public const string Damage = "Failure number";
+        public const string FailureNumber = "Failure number";
         public const string InitialDamage = "Initial damage";
     }
 }

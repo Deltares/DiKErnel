@@ -63,7 +63,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             var constructionProperties = new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
                 Context.GetDouble(GeneralDefinitions.CalculationPosition), Context.GetGrassTopLayerType())
             {
-                FailureNumber = Context.GetNullableDouble(GeneralDefinitions.Damage),
+                FailureNumber = Context.GetNullableDouble(GeneralDefinitions.FailureNumber),
                 InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamage),
                 AverageNumberOfWavesCtm = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.AverageNumberOfWaves),
                 CriticalFrontVelocity = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocity),
