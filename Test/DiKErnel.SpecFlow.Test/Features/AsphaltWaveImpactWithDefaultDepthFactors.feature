@@ -107,6 +107,6 @@ As a user I want to perform asphalt wave impact calculations with default depth 
           | Factor                      | 0.9    |
           | Impact number C             | 0.95   |
           | Density of water            | 1000.0 |
-          When I run the asphalt wave impact calculation
-          Then the damage is 1.2072693145504558
-          And the rounded time of failure is 26616
+        When I run the asphalt wave impact calculation
+        Then the damage is 1.2072693145504558
+        And the rounded time of failure is 26616
