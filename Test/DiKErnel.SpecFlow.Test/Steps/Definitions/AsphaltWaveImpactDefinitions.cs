@@ -18,16 +18,18 @@
 
 namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
-    internal static class GeneralDefinitions
+    internal static class AsphaltWaveImpactDefinitions
     {
-        public const string Output = "Output";
-        public const string NotApplicable = "N.A.";
-        public const string CalculationPosition = "Position";
-
-        public const string TopLayerType = "Top layer type";
-        public const string FailureNumber = "Failure number";
-        public const string InitialDamage = "Initial damage";
-
-        public const string AverageNumberOfWaves = "Average number of waves";
+        public const string FlexuralStrength = "Flexural strength";
+        public const string SoilElasticity = "Soil elasticity";
+        public const string ThicknessUpperLayer = "Thickness upper layer";
+        public const string ElasticModulusUpperLayer = "Elastic modulus upper layer";
+        public const string DensityOfWater = "Density of water";
+        public const string ThicknessSubLayer = "Thickness sub layer";
+        public const string ElasticModulusSubLayer = "Elastic modulus sub layer";
+        public const string FatigueAlpha = "Fatigue alpha";
+        public const string FatigueBeta = "Fatigue beta";
+        public const string ImpactNumberC = "Impact number C";
+        public const string StiffnessRelation = "Stiffness relation";
     }
 }
