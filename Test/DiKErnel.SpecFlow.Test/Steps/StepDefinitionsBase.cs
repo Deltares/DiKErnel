@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
@@ -97,8 +96,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             IReadOnlyList<double> xLocations = Context.GetDoubleCollection(DikeProfileDefinitions.XCoordinates);
             IReadOnlyList<double> zLocations = Context.GetDoubleCollection(DikeProfileDefinitions.ZCoordinates);
-            IReadOnlyList<double> roughnessCoefficients = Context.GetNullableDoubleCollection(DikeProfileDefinitions.RoughnessCoefficients)
-                                                          ?? Array.Empty<double>();
+            IReadOnlyList<double> roughnessCoefficients = Context.GetNullableDoubleCollection(DikeProfileDefinitions.RoughnessCoefficients);
 
             for (var i = 0; i < xLocations.Count - 1; i++)
             {
@@ -107,7 +105,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 double endPointX = xLocations[i + 1];
                 double endPointZ = zLocations[i + 1];
 
-                if (i < roughnessCoefficients.Count)
+                if (roughnessCoefficients != null)
                 {
                     builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficients[i]);
                 }
