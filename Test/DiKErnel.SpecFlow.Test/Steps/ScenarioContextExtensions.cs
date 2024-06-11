@@ -50,6 +50,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
                          .Select(s => double.Parse(s, Culture))
                          .ToArray();
         }
+        
+        public static double[] GetNullableDoubleCollection(this ScenarioContext context, string id)
+        {
+            return context.ContainsKey(id)
+                       ? context.GetDoubleCollection(id)
+                       : null;
+        }
 
         public static int? GetNullableInt(this ScenarioContext context, string id)
         {
