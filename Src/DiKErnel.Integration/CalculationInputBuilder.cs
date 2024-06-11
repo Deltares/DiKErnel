@@ -84,23 +84,12 @@ namespace DiKErnel.Integration
         /// <param name="startPointZ">The z coordinate for the start profile point.</param>
         /// <param name="endPointX">The x coordinate for the end profile point.</param>
         /// <param name="endPointZ">The z coordinate for the end profile point.</param>
-        public void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ)
-        {
-            AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, null);
-        }
-
-        /// <summary>
-        /// Adds a dike profile segment.
-        /// </summary>
-        /// <param name="startPointX">The x coordinate for the start profile point.</param>
-        /// <param name="startPointZ">The z coordinate for the start profile point.</param>
-        /// <param name="endPointX">The x coordinate for the end profile point.</param>
-        /// <param name="endPointZ">The z coordinate for the end profile point.</param>
         /// <param name="roughnessCoefficient">The roughness coefficient.</param>
         public void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
-                                          double roughnessCoefficient)
+                                          double? roughnessCoefficient = null)
         {
-            AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, (double?) roughnessCoefficient);
+            profileDataFactorySegments.Add(new ProfileDataFactorySegment(startPointX, startPointZ, endPointX, endPointZ,
+                                                                         roughnessCoefficient));
         }
 
         /// <summary>
@@ -233,13 +222,6 @@ namespace DiKErnel.Integration
             return new DataResult<ICalculationInput>(new CalculationInput(profileData, locationDependentInputItems,
                                                                           timeDependentInputItems),
                                                      EventRegistry.Flush());
-        }
-
-        private void AddDikeProfileSegment(double startPointX, double startPointZ, double endPointX, double endPointZ,
-                                           double? roughnessCoefficient)
-        {
-            profileDataFactorySegments.Add(new ProfileDataFactorySegment(startPointX, startPointZ, endPointX, endPointZ,
-                                                                         roughnessCoefficient));
         }
 
         private void AddLocation(LocationConstructionProperties locationConstructionProperties)

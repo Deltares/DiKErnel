@@ -100,19 +100,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
             for (var i = 0; i < xLocations.Count - 1; i++)
             {
-                double startPointX = xLocations[i];
-                double startPointZ = zLocations[i];
-                double endPointX = xLocations[i + 1];
-                double endPointZ = zLocations[i + 1];
-
-                if (roughnessCoefficients != null)
-                {
-                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ, roughnessCoefficients[i]);
-                }
-                else
-                {
-                    builder.AddDikeProfileSegment(startPointX, startPointZ, endPointX, endPointZ);
-                }
+                builder.AddDikeProfileSegment(xLocations[i], zLocations[i], xLocations[i + 1], zLocations[i + 1],
+                                              roughnessCoefficients?[i]);
             }
         }
     }
