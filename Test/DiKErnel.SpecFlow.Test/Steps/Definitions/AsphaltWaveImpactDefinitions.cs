@@ -31,5 +31,8 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
         public const string FatigueBeta = "Fatigue beta";
         public const string ImpactNumberC = "Impact number C";
         public const string StiffnessRelation = "Stiffness relation";
+        public const string WidthFactors = "Width factors";
+        public const string DepthFactors = "Depth factors";
+        public const string ImpactFactors = "Impact factors";
     }
 }

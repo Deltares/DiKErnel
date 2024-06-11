@@ -30,6 +30,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
     {
         private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
 
+        public static void SetValueTuples(this ScenarioContext context, string id, Table table)
+        {
+            context[id] = table.Rows.Select(row => new ValueTuple<string, string>(row[0], row[1])).ToArray();
+        }
+
         public static double GetDouble(this ScenarioContext context, string id)
         {
             return double.Parse(context.GetString(id), Culture);
@@ -50,7 +55,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
                          .Select(s => double.Parse(s, Culture))
                          .ToArray();
         }
-        
+
         public static double[] GetNullableDoubleCollection(this ScenarioContext context, string id)
         {
             return context.ContainsKey(id)
@@ -58,20 +63,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
                        : null;
         }
 
-        public static IReadOnlyList<(double, double)> GetKeyValuePairCollection(this ScenarioContext context, string id)
-        {
-            var keyValuePairs = (IReadOnlyList<KeyValuePair<string, string>>) context[id];
-
-            return keyValuePairs.Select(kvp => new ValueTuple<double, double>(double.Parse(kvp.Key, Culture), double.Parse(kvp.Value, Culture))).ToList();
-        }
-        
-        public static IReadOnlyList<(double, double)> GetNullableKeyValuePairCollection(this ScenarioContext context, string id)
+        public static IReadOnlyList<(double, double)> GetNullableValueTuples(this ScenarioContext context, string id)
         {
             return context.ContainsKey(id)
-                       ? context.GetKeyValuePairCollection(id)
+                       ? context.GetValueTuples(id)
                        : null;
         }
-        
+
         public static int? GetNullableInt(this ScenarioContext context, string id)
         {
             return context.ContainsKey(id)
@@ -90,6 +88,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 default:
                     throw new NotSupportedException();
             }
+        }
+
+        private static IReadOnlyList<(double, double)> GetValueTuples(this ScenarioContext context, string id)
+        {
+            var valueTuples = (IReadOnlyList<ValueTuple<string, string>>) context[id];
+
+            return valueTuples.Select(valueTuple => new ValueTuple<double, double>(double.Parse(valueTuple.Item1, Culture),
+                                                                                   double.Parse(valueTuple.Item2, Culture)))
+                              .ToArray();
         }
 
         private static string GetString(this ScenarioContext context, string id)

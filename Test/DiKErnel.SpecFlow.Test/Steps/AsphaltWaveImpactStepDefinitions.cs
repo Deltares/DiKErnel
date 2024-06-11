@@ -16,8 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.SpecFlow.Test.Steps.Definitions;
@@ -35,22 +33,22 @@ namespace DiKErnel.SpecFlow.Test.Steps
             RunCalculation();
         }
 
-        [Given(@"the following(?: adjusted)? depth factors:")]
-        public void GivenTheFollowingDepthFactors(Table table)
-        {
-            Context["Depth factors"] = table.Rows.Select(row => new KeyValuePair<string, string>(row[0], row[1])).ToArray();
-        }
-
         [Given(@"the following(?: adjusted)? width factors:")]
         public void GivenTheFollowingWidthFactors(Table table)
         {
-            Context["Width factors"] = table.Rows.Select(row => new KeyValuePair<string, string>(row[0], row[1])).ToArray();
+            Context.SetValueTuples(AsphaltWaveImpactDefinitions.WidthFactors, table);
+        }
+
+        [Given(@"the following(?: adjusted)? depth factors:")]
+        public void GivenTheFollowingDepthFactors(Table table)
+        {
+            Context.SetValueTuples(AsphaltWaveImpactDefinitions.DepthFactors, table);
         }
 
         [Given(@"the following(?: adjusted)? impact factors:")]
         public void GivenTheFollowingImpactFactors(Table table)
         {
-            Context["Impact factors"] = table.Rows.Select(row => new KeyValuePair<string, string>(row[0], row[1])).ToArray();
+            Context.SetValueTuples(AsphaltWaveImpactDefinitions.ImpactFactors, table);
         }
 
         protected override void AddLocation(CalculationInputBuilder builder)
@@ -73,9 +71,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 FatigueBeta = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.FatigueBeta),
                 ImpactNumberC = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.ImpactNumberC),
                 StiffnessRelationNu = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.StiffnessRelation),
-                WidthFactors = Context.GetNullableKeyValuePairCollection("Width factors"),
-                DepthFactors = Context.GetNullableKeyValuePairCollection("Depth factors"),
-                ImpactFactors = Context.GetNullableKeyValuePairCollection("Impact factors")
+                WidthFactors = Context.GetNullableValueTuples(AsphaltWaveImpactDefinitions.WidthFactors),
+                DepthFactors = Context.GetNullableValueTuples(AsphaltWaveImpactDefinitions.DepthFactors),
+                ImpactFactors = Context.GetNullableValueTuples(AsphaltWaveImpactDefinitions.ImpactFactors)
             };
 
             builder.AddAsphaltWaveImpactLocation(constructionProperties);
