@@ -16,6 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.SpecFlow.Test.Steps.Definitions;
@@ -31,6 +33,24 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public void WhenIRunTheAsphaltWaveImpactCalculation()
         {
             RunCalculation();
+        }
+
+        [Given(@"the following(?: adjusted)? depth factors:")]
+        public void GivenTheFollowingDepthFactors(Table table)
+        {
+            Context["Depth factors"] = table.Rows.Select(row => new KeyValuePair<string, string>(row[0], row[1])).ToArray();
+        }
+
+        [Given(@"the following(?: adjusted)? width factors:")]
+        public void GivenTheFollowingWidthFactors(Table table)
+        {
+            Context["Width factors"] = table.Rows.Select(row => new KeyValuePair<string, string>(row[0], row[1])).ToArray();
+        }
+
+        [Given(@"the following(?: adjusted)? impact factors:")]
+        public void GivenTheFollowingImpactFactors(Table table)
+        {
+            Context["Impact factors"] = table.Rows.Select(row => new KeyValuePair<string, string>(row[0], row[1])).ToArray();
         }
 
         protected override void AddLocation(CalculationInputBuilder builder)
