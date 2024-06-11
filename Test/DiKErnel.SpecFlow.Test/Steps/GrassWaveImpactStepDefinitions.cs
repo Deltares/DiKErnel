@@ -39,7 +39,17 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 Context.GetDouble(GeneralDefinitions.CalculationPosition), Context.GetGrassTopLayerType())
             {
                 FailureNumber = Context.GetNullableDouble(GeneralDefinitions.FailureNumber),
-                InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamage)
+                InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamage),
+                TimeLineAgwi = Context.GetNullableDouble(GrassWaveImpactDefinitions.TimeLineA),
+                TimeLineBgwi = Context.GetNullableDouble(GrassWaveImpactDefinitions.TimeLineB),
+                TimeLineCgwi = Context.GetNullableDouble(GrassWaveImpactDefinitions.TimeLineC),
+                MinimumWaveHeightTemax = Context.GetNullableDouble(GrassWaveImpactDefinitions.MinimumWaveHeight),
+                MaximumWaveHeightTemin = Context.GetNullableDouble(GrassWaveImpactDefinitions.MaximumWaveHeight),
+                WaveAngleImpactNwa = Context.GetNullableDouble(GrassWaveImpactDefinitions.WaveAngleImpactN),
+                WaveAngleImpactQwa = Context.GetNullableDouble(GrassWaveImpactDefinitions.WaveAngleImpactQ),
+                WaveAngleImpactRwa = Context.GetNullableDouble(GrassWaveImpactDefinitions.WaveAngleImpactR),
+                UpperLimitLoadingAul = Context.GetNullableDouble(GrassWaveImpactDefinitions.UpperLimitLoading),
+                LowerLimitLoadingAll = Context.GetNullableDouble(GrassWaveImpactDefinitions.LowerLimitLoading)
             };
 
             builder.AddGrassWaveImpactLocation(constructionProperties);
