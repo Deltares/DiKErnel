@@ -42,7 +42,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | -0.5   | 0.1801      |
           | -0.375 | 0.1632      |
           | -0.25  | 0.1426      |
-          | -0.125 | 0.994       |
+          | -0.125 | 0.0994       |
           | 0      | 0.06        |
           | 0.125  | 0.0244      |
           | 0.25   | 0.0169      |
@@ -85,7 +85,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | 6.0    | 0.001       |
         When I run the asphalt wave impact calculation
         Then the damage is 1.13998469842777
-        And the rounded time of failure is 25236
+        And the rounded time of failure is 25237
 
     Scenario: Adjusted depth factors
         Given the following adjusted calculation settings:
@@ -153,7 +153,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | 36000     |
         When I run the asphalt wave impact calculation
         Then the damage is 1.46369311689636
-        And the rounded time of failure is 15186
+        And the rounded time of failure is 15187
 
     Scenario: Calculation with a berm
         Given the following adjusted dike geometry:

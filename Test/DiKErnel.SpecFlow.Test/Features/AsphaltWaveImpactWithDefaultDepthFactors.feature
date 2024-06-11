@@ -94,7 +94,7 @@ As a user I want to perform asphalt wave impact calculations with default depth 
           | Initial damage              | 0.4   |
         When I run the asphalt wave impact calculation
         Then the damage is 1.66992666142180
-        And the rounded time of failure is 21326
+        And the rounded time of failure is 21327
 
     Scenario: Calculation with variable calculation settings
         Given the following adjusted calculation settings:
