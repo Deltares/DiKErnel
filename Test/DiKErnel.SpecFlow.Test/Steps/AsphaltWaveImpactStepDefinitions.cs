@@ -36,19 +36,19 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Given(@"the following(?: adjusted)? width factors:")]
         public void GivenTheFollowingWidthFactors(Table table)
         {
-            Context.SetValueTuples(AsphaltWaveImpactDefinitions.WidthFactors, table);
+            Context.SetStringValueTuples(AsphaltWaveImpactDefinitions.WidthFactors, table);
         }
 
         [Given(@"the following(?: adjusted)? depth factors:")]
         public void GivenTheFollowingDepthFactors(Table table)
         {
-            Context.SetValueTuples(AsphaltWaveImpactDefinitions.DepthFactors, table);
+            Context.SetStringValueTuples(AsphaltWaveImpactDefinitions.DepthFactors, table);
         }
 
         [Given(@"the following(?: adjusted)? impact factors:")]
         public void GivenTheFollowingImpactFactors(Table table)
         {
-            Context.SetValueTuples(AsphaltWaveImpactDefinitions.ImpactFactors, table);
+            Context.SetStringValueTuples(AsphaltWaveImpactDefinitions.ImpactFactors, table);
         }
 
         protected override void AddLocation(CalculationInputBuilder builder)
@@ -71,9 +71,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 FatigueBeta = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.FatigueBeta),
                 ImpactNumberC = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.ImpactNumberC),
                 StiffnessRelationNu = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.StiffnessRelation),
-                WidthFactors = Context.GetNullableValueTuples(AsphaltWaveImpactDefinitions.WidthFactors),
-                DepthFactors = Context.GetNullableValueTuples(AsphaltWaveImpactDefinitions.DepthFactors),
-                ImpactFactors = Context.GetNullableValueTuples(AsphaltWaveImpactDefinitions.ImpactFactors)
+                WidthFactors = Context.GetNullableDoubleValueTuples(AsphaltWaveImpactDefinitions.WidthFactors),
+                DepthFactors = Context.GetNullableDoubleValueTuples(AsphaltWaveImpactDefinitions.DepthFactors),
+                ImpactFactors = Context.GetNullableDoubleValueTuples(AsphaltWaveImpactDefinitions.ImpactFactors)
             };
 
             builder.AddAsphaltWaveImpactLocation(constructionProperties);

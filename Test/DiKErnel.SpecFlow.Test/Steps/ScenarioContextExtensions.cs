@@ -30,7 +30,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
     {
         private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
 
-        public static void SetValueTuples(this ScenarioContext context, string id, Table table)
+        public static void SetStringValueTuples(this ScenarioContext context, string id, Table table)
         {
             context[id] = table.Rows.Select(row => new ValueTuple<string, string>(row[0], row[1])).ToArray();
         }
@@ -63,10 +63,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
                        : null;
         }
 
-        public static IReadOnlyList<(double, double)> GetNullableValueTuples(this ScenarioContext context, string id)
+        public static IReadOnlyList<(double, double)> GetNullableDoubleValueTuples(this ScenarioContext context, string id)
         {
             return context.ContainsKey(id)
-                       ? context.GetValueTuples(id)
+                       ? context.GetDoubleValueTuples(id)
                        : null;
         }
 
@@ -90,7 +90,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        private static IReadOnlyList<(double, double)> GetValueTuples(this ScenarioContext context, string id)
+        private static IReadOnlyList<(double, double)> GetDoubleValueTuples(this ScenarioContext context, string id)
         {
             var valueTuples = (IReadOnlyList<ValueTuple<string, string>>) context[id];
 
