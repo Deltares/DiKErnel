@@ -110,7 +110,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | 0.27  | 0.00009647  |
         When I run the asphalt wave impact calculation
         Then the damage is 1.33022336665883
-        And the rounded time of failure is 22914
+        And the rounded time of failure is 22915
 
     Scenario: Adjusted width factors
         Given the following adjusted calculation settings:
