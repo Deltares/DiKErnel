@@ -36,7 +36,6 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Setting        | Value      |
           | Position       | 3.0        |
           | Top layer type | Closed sod |
-          | Slope angle    | 0.3        |
 
     Scenario: Default with closed sod
         When I run the grass wave run-up Rayleigh discrete calculation
