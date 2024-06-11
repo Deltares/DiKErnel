@@ -72,7 +72,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 FatigueAlpha = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.FatigueAlpha),
                 FatigueBeta = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.FatigueBeta),
                 ImpactNumberC = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.ImpactNumberC),
-                StiffnessRelationNu = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.StiffnessRelation)
+                StiffnessRelationNu = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.StiffnessRelation),
+                WidthFactors = Context.GetNullableKeyValuePairCollection("Width factors"),
+                DepthFactors = Context.GetNullableKeyValuePairCollection("Depth factors"),
+                ImpactFactors = Context.GetNullableKeyValuePairCollection("Impact factors")
             };
 
             builder.AddAsphaltWaveImpactLocation(constructionProperties);

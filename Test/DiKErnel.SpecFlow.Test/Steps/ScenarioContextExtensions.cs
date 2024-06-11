@@ -58,6 +58,20 @@ namespace DiKErnel.SpecFlow.Test.Steps
                        : null;
         }
 
+        public static IReadOnlyList<(double, double)> GetKeyValuePairCollection(this ScenarioContext context, string id)
+        {
+            var keyValuePairs = (IReadOnlyList<KeyValuePair<string, string>>) context[id];
+
+            return keyValuePairs.Select(kvp => new ValueTuple<double, double>(double.Parse(kvp.Key, Culture), double.Parse(kvp.Value, Culture))).ToList();
+        }
+        
+        public static IReadOnlyList<(double, double)> GetNullableKeyValuePairCollection(this ScenarioContext context, string id)
+        {
+            return context.ContainsKey(id)
+                       ? context.GetKeyValuePairCollection(id)
+                       : null;
+        }
+        
         public static int? GetNullableInt(this ScenarioContext context, string id)
         {
             return context.ContainsKey(id)
