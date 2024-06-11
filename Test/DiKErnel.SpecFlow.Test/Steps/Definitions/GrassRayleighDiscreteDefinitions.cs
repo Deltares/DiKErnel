@@ -18,7 +18,7 @@
 
 namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
-    internal static class GrassWaveOvertoppingRayleighDiscreteDefinitions
+    internal static class GrassRayleighDiscreteDefinitions
     {
         public const string FixedNumberOfWaves = "Fixed number of waves";
     }

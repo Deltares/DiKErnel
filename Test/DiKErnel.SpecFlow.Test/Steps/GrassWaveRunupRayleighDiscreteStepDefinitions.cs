@@ -17,42 +17,39 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using DiKErnel.Integration;
-using DiKErnel.Integration.Data.GrassWaveOvertopping;
+using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.SpecFlow.Test.Steps.Definitions;
 using TechTalk.SpecFlow;
 
 namespace DiKErnel.SpecFlow.Test.Steps
 {
-    public class GrassWaveOvertoppingRayleighDiscreteStepDefinitions : StepDefinitionsBase
+    public class GrassWaveRunupRayleighDiscreteStepDefinitions : StepDefinitionsBase
     {
-        public GrassWaveOvertoppingRayleighDiscreteStepDefinitions(ScenarioContext context) : base(context) {}
+        public GrassWaveRunupRayleighDiscreteStepDefinitions(ScenarioContext context) : base(context) {}
 
-        [When(@"I run the grass wave overtopping Rayleigh discrete calculation")]
-        public void WhenIRunTheGrassWaveOvertoppingRayleighDiscreteCalculation()
+        [When(@"I run the grass wave run-up Rayleigh discrete calculation")]
+        public void WhenIRunTheGrassWaveRunupRayleighDiscreteCalculation()
         {
             RunCalculation();
         }
 
         protected override void AddLocation(CalculationInputBuilder builder)
         {
-            var constructionProperties = new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
+            var constructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
                 Context.GetDouble(GeneralDefinitions.CalculationPosition), Context.GetGrassTopLayerType())
             {
                 FailureNumber = Context.GetNullableDouble(GeneralDefinitions.FailureNumber),
                 InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamage),
-                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWaves),
-                CriticalFrontVelocity = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocity),
-                FrontVelocityCwo = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.FrontVelocity),
                 CriticalCumulativeOverload = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalCumulativeOverload),
+                CriticalFrontVelocity = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocity),
                 IncreasedLoadTransitionAlphaM = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.IncreasedLoadTransition),
                 ReducedStrengthTransitionAlphaS = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.ReducedStrengthTransition),
-                AccelerationAlphaAForCrest = Context.GetNullableDouble(GrassWaveOvertoppingRayleighDefinitions.AccelerationCrest),
-                AccelerationAlphaAForInnerSlope = Context.GetNullableDouble(GrassWaveOvertoppingRayleighDefinitions.AccelerationInnerSlope),
-                DikeHeight = Context.GetNullableDouble(GrassWaveOvertoppingRayleighDefinitions.DikeHeight),
+                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWaves),
+                FrontVelocityCu = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.FrontVelocity),
                 FixedNumberOfWaves = Context.GetNullableInt(GrassRayleighDiscreteDefinitions.FixedNumberOfWaves)
             };
 
-            builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(constructionProperties);
+            builder.AddGrassWaveRunupRayleighDiscreteLocation(constructionProperties);
         }
     }
 }
