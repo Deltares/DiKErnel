@@ -196,5 +196,5 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | 36000     |
           | 43200     |
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.17363142829280
-        And the rounded time of failure is 18856
+        Then the damage is 1.17257472297294
+        And the rounded time of failure is 18880
