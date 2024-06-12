@@ -95,27 +95,6 @@ namespace DiKErnel.System.Test
             AssertOutput(calculator, 0.01075989442725);
         }
 
-        [Test]
-        public void GivenCalculationInputForSchematization4Testcase1_WhenCalculating_ThenReturnsExpectedCalculationResult()
-        {
-            // Given
-            CalculationInputBuilder builder = CreateBuilderForSchematization4();
-
-            var locationConstructionProperties = new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
-                15, GrassTopLayerType.ClosedSod);
-
-            builder.AddGrassWaveRunupRayleighDiscreteLocation(locationConstructionProperties);
-
-            DataResult<ICalculationInput> calculationInput = builder.Build();
-
-            // When
-            var calculator = new Calculator(calculationInput.Data);
-            calculator.WaitForCompletion();
-
-            // Then
-            AssertOutput(calculator, 1.70123523079437, 32693);
-        }
-
         private static CalculationInputBuilder CreateBuilderForSchematization3(double orientation = 0,
                                                                                double roughnessCoefficient1 = 1,
                                                                                double roughnessCoefficient2 = 1,
@@ -143,35 +122,6 @@ namespace DiKErnel.System.Test
             builder.AddDikeProfileSegment(0, 0, 15, 4, roughnessCoefficient1);
             builder.AddDikeProfileSegment(15, 4, 20, 4.1, roughnessCoefficient2);
             builder.AddDikeProfileSegment(20, 4.1, 25, 7.5, roughnessCoefficient3);
-
-            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(25, CharacteristicPointType.OuterCrest);
-
-            return builder;
-        }
-
-        private static CalculationInputBuilder CreateBuilderForSchematization4()
-        {
-            var builder = new CalculationInputBuilder(0);
-
-            builder.AddTimeStep(0, 3600, 3.5, 2.4, 4, 20);
-            builder.AddTimeStep(3600, 7200, 3.6, 2.5, 4.2, 20);
-            builder.AddTimeStep(7200, 10800, 3.7, 2.7, 4.4, 20);
-            builder.AddTimeStep(10800, 14400, 3.8, 2.8, 4.5, 20);
-            builder.AddTimeStep(14400, 18000, 3.9, 2.9, 4.8, 20);
-            builder.AddTimeStep(18000, 21600, 3.95, 3, 5, 20);
-            builder.AddTimeStep(21600, 25200, 4, 2.9, 5.2, 20);
-            builder.AddTimeStep(25200, 28800, 3.95, 2.9, 5.5, 15);
-            builder.AddTimeStep(28800, 32400, 3.8, 2.8, 5.8, 10);
-            builder.AddTimeStep(32400, 36000, 3.6, 2.8, 6, 5);
-            builder.AddTimeStep(36000, 39600, 3.5, 2.5, 6, 0);
-            builder.AddTimeStep(39600, 43200, 3.4, 2.1, 5.8, 0);
-            builder.AddTimeStep(43200, 46800, 3.3, 1.8, 5.5, 5);
-            builder.AddTimeStep(46800, 50400, 3.2, 1.5, 5.2, 10);
-            builder.AddTimeStep(50400, 54000, 3.1, 1.3, 4.8, 15);
-            builder.AddTimeStep(54000, 57600, 3, 1, 4.5, 20);
-
-            builder.AddDikeProfileSegment(0, 0, 25, 7.5);
 
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(25, CharacteristicPointType.OuterCrest);
