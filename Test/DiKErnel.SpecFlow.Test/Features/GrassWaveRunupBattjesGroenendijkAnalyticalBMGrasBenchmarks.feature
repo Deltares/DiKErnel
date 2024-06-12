@@ -1,4 +1,4 @@
-Feature: Grass wave run-up Battjes-Groenendijk analytical with BM Gras Benchmarks
+Feature: Grass wave run-up Battjes-Groenendijk analytical with BM Gras benchmarks
 As a user I want to perform grass wave run-up calculations based on Battjes-Groenendijk analytical.
 
 The following testcases correspond with BM Gras benchmarks.
@@ -72,13 +72,13 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
           | 30.56    | 0                    |                      | 0                     | 0       |
           | 33.616   | 0.00016098541128     | 1.12689787897988     | 1.136                 | 1.134   |
           | 36.672   | 0.00016098541128     | 1.12689787897949     | 1.136                 | 1.134   |
-          | 39.728   | 1.9731871144727e-05  | 0.13812309801309     | 0.139                 | 0.139   |
+          | 39.728   | 1.97318711447270e-05 | 0.13812309801309     | 0.139                 | 0.139   |
           | 42.784   | 1.54966489327148e-11 | 1.08476542529003e-07 | 0                     | 0       |
           | 45.84    | 0                    | 0                    | 0                     | 0       |
           | 48.896   | 0                    | 0                    | 0                     | 0       |
 
-    Scenario Outline: BM Gras benchmark 16 - Variable input of slope of the bottom
-    Remark: the value of the slope of the foreshore should be between 0.004 and 0.05. In this testcase, no validation
+    Scenario Outline: BM Gras benchmark 16 - Variable input of the slope of the bottom
+    Remark: The value of the slope of the foreshore should be between 0.004 and 0.05. In this testcase, no validation
     of results is performed by DiKErnel. This is why DiKErnel produces results for every situation. The validation of
     results is however performed by BM Gras.
 
@@ -113,7 +113,7 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
     Scenario Outline: BM Gras benchmark 17 - Variable input of water depth
     Remarks:
     - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.
+    - When the value of water depth (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.
 
         Given the following adjusted dike geometry:
           | X     | Z   | Roughness coefficient |
@@ -146,7 +146,7 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
     Scenario Outline: BM Gras benchmark 18 - Variable input of water depth and critical depth
     Remarks:
     - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-    - When (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
+    - When the value of water depth (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
 
         Given the following adjusted dike geometry:
           | X     | Z   | Roughness coefficient |
