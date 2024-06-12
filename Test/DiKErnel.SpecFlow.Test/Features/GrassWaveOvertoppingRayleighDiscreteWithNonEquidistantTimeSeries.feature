@@ -49,7 +49,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Increased load transition    | 1        |
           | Reduced strength transition  | 1        |
           | Failure number               | 1        |
-          | Average number of waves      | 0.92     |
+          | Factor Ctm                   | 0.92     |
           | Fixed number of waves        | 10000    |
           | Front velocity               | 1.45     |
           | Acceleration crest           | 1        |
@@ -88,7 +88,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Critical front velocity      | 5.5   |
           | Increased load transition    | 1.25  |
           | Reduced strength transition  | 1.33  |
-          | Average number of waves      | 0.85  |
+          | Factor Ctm                   | 0.85  |
           | Fixed number of waves        | 15000 |
           | Front velocity               | 1.6   |
           | Acceleration crest           | 1.1   |

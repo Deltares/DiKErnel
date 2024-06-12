@@ -33,7 +33,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
           | 35 | 7.4  | 0.8                   |
           | 45 | 5    | 0.8                   |
           | 60 | 0.5  | 0.8                   |
-          | 60 | 0.5  | N.A.                  |
+          | 70 | 0.5  | N.A.                  |
         And the following dike properties:
           | Property    | Value |
           | Orientation | 0     |
@@ -55,7 +55,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
           | Increased load transition    | 1          |
           | Reduced strength transition  | 1          |
           | Failure number               | 1          |
-          | Average number of waves      | 0.92       |
+          | Factor Ctm                   | 0.92       |
           | Front velocity               | 1.45       |
           | Acceleration crest           | 1          |
           | Acceleration inner slope     | 1.4        |
@@ -82,7 +82,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
         Then the damage is <Damage>
         And the rounded time of failure is undefined
 
-    Examples:
-      | Dike height | Damage              |
-      | 8           | 0.04233958224615242 |
-      | 5.65        | 0.3619578997839564  |
+        Examples:
+          | Dike height | Damage              |
+          | 8           | 0.04233958224615242 |
+          | 5.65        | 0.3619578997839564  |

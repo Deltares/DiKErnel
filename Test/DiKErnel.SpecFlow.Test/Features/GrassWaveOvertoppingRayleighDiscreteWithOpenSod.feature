@@ -51,7 +51,7 @@ As a user I want to perform grass wave overtopping calculations with an open sod
           | Increased load transition    | 1        |
           | Reduced strength transition  | 1        |
           | Failure number               | 1        |
-          | Average number of waves      | 0.92     |
+          | Factor Ctm                   | 0.92     |
           | Fixed number of waves        | 10000    |
           | Front velocity               | 1.45     |
           | Acceleration crest           | 1        |
@@ -80,3 +80,16 @@ As a user I want to perform grass wave overtopping calculations with an open sod
         When I run the grass wave overtopping Rayleigh discrete calculation
         Then the damage is 1.11910058435611
         And the rounded time of failure is 51672
+
+    Scenario: Adjusted failure number, transition zone, number of waves and dike height
+        Given the following adjusted calculation settings:
+          | Setting                     | Value |
+          | Position                    | 35    |
+          | Increased load transition   | 1.2   |
+          | Reduced strength transition | 1.3   |
+          | Failure number              | 0.6   |
+          | Dike height                 | 9.7   |
+          | Fixed number of waves       | 5000  |
+        When I run the grass wave overtopping Rayleigh analytical calculation
+        Then the damage is 0.68842513955307
+        And the rounded time of failure is 50635

@@ -35,7 +35,7 @@ DiKErnel does not produce the exact same results as BM Gras. This is mainly due 
           | Increased load transition   | 1          |
           | Reduced strength transition | 1          |
           | Failure number              | 1          |
-          | Average number of waves     | 3.85       |
+          | Factor Ctm                  | 3.85       |
           | Front velocity              | 1.1        |
 
     Scenario Outline: BM Gras benchmark 14 - Variable input of critical front velocity

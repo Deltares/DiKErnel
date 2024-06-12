@@ -41,7 +41,7 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
         When I run the grass wave run-up Rayleigh discrete calculation
         Then the damage is 1.17319166638798
         And the rounded time of failure is 40475
-      
+
     Scenario: Default with open sod
         Given the following adjusted hydraulic loads:
           | Wave height | Wave period |
@@ -138,7 +138,7 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Setting                   | Value  |
           | Wave angle impact aBeta   | 0.0033 |
           | Wave angle impact betaMax | 30.0   |
-          | Average number of waves   | 1.0    |
+          | Factor Ctm                | 1.0    |
         When I run the grass wave run-up Rayleigh discrete calculation
         Then the damage is 1.03411027331395
         And the rounded time of failure is 45518

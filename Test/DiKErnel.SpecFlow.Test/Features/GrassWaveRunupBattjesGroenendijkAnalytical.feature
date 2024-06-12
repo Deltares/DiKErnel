@@ -42,7 +42,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Increased load transition   | 1          |
           | Reduced strength transition | 1          |
           | Failure number              | 1          |
-          | Average number of waves     | 0.92       |
+          | Factor Ctm                  | 0.92       |
           | Front velocity              | 1.1        |
 
     Scenario: Default with closed sod
@@ -223,7 +223,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Increased load transition    | 1.7   |
           | Reduced strength transition  | 0.85  |
           | Failure number               | 1.1   |
-          | Average number of waves      | 0.89  |
+          | Factor Ctm                   | 0.89  |
           | Front velocity               | 1.2   |
           | Critical cumulative overload | 7500  |
           | Critical front velocity      | 5     |
@@ -258,7 +258,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Increased load transition    | 3.754545   |
           | Reduced strength transition  | 0.111      |
           | Failure number               | 10.32321   |
-          | Average number of waves      | 0.1656454  |
+          | Factor Ctm                   | 0.1656454  |
           | Front velocity               | 2.21243434 |
           | Critical cumulative overload | 6212.32434 |
           | Critical front velocity      | 4.54434343 |

@@ -49,7 +49,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Increased load transition    | 1        |
           | Reduced strength transition  | 1        |
           | Failure number               | 1        |
-          | Average number of waves      | 0.92     |
+          | Factor Ctm                   | 0.92     |
           | Front velocity               | 1.45     |
           | Acceleration crest           | 1        |
           | Acceleration inner slope     | 1.4      |
@@ -70,10 +70,10 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
 
     Scenario: Adjusted calculation settings
         Given the following adjusted calculation settings:
-          | Setting               | Value |
-          | Position              | 50    |
-          | Initial damage        | 0.9   |
-          | Dike height           | 9     |
+          | Setting        | Value |
+          | Position       | 50    |
+          | Initial damage | 0.9   |
+          | Dike height    | 9     |
         When I run the grass wave overtopping Rayleigh analytical calculation
         Then the damage is 1.038995100892069
         And the rounded time of failure is 47583
@@ -86,7 +86,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
           | Critical front velocity      | 5.5   |
           | Increased load transition    | 1.25  |
           | Reduced strength transition  | 1.33  |
-          | Average number of waves      | 0.85  |
+          | Factor Ctm                   | 0.85  |
           | Front velocity               | 1.6   |
           | Acceleration crest           | 1.1   |
           | Acceleration inner slope     | 1.5   |
