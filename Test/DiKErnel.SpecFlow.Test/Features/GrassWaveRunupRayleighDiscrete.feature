@@ -4,22 +4,22 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
     Background:
         Given the following hydraulic loads:
           | Time step | Water level | Wave height | Wave period | Wave direction |
-          | 0         | 0           | 0.5         | 3           | 50             |
-          | 3600      | 0.1         | 0.7         | 3.5         | 45             |
-          | 7200      | 0.2         | 1           | 4           | 40             |
-          | 10800     | 0.3         | 1.3         | 4.3         | 35             |
-          | 14400     | 0.4         | 1.5         | 4.5         | 30             |
-          | 18000     | 0.5         | 1.8         | 4.8         | 25             |
-          | 21600     | 0.6         | 2.1         | 5.2         | 20             |
-          | 25200     | 0.7         | 2.5         | 5.5         | 15             |
-          | 28800     | 0.7         | 2.8         | 5.8         | 10             |
-          | 32400     | 0.6         | 2.8         | 6           | 5              |
-          | 36000     | 0.5         | 2.5         | 6           | 0              |
-          | 39600     | 0.4         | 2.1         | 5.8         | 0              |
-          | 43200     | 0.3         | 1.8         | 5.5         | 5              |
-          | 46800     | 0.2         | 1.5         | 5.2         | 10             |
-          | 50400     | 0.1         | 1.3         | 4.8         | 15             |
-          | 54000     | 0           | 1           | 4.5         | 20             |
+          | 0         | 3           | 0.5         | 3           | 50             |
+          | 3600      | 3.1         | 0.7         | 3.5         | 45             |
+          | 7200      | 3.2         | 1           | 4           | 40             |
+          | 10800     | 3.3         | 1.3         | 4.3         | 35             |
+          | 14400     | 3.4         | 1.5         | 4.5         | 30             |
+          | 18000     | 3.5         | 1.8         | 4.8         | 25             |
+          | 21600     | 3.6         | 2.1         | 5.2         | 20             |
+          | 25200     | 3.7         | 2.5         | 5.5         | 15             |
+          | 28800     | 3.7         | 2.8         | 5.8         | 10             |
+          | 32400     | 3.6         | 2.8         | 6           | 5              |
+          | 36000     | 3.5         | 2.5         | 6           | 0              |
+          | 39600     | 3.4         | 2.1         | 5.8         | 0              |
+          | 43200     | 3.3         | 1.8         | 5.5         | 5              |
+          | 46800     | 3.2         | 1.5         | 5.2         | 10             |
+          | 50400     | 3.1         | 1.3         | 4.8         | 15             |
+          | 54000     | 3           | 1           | 4.5         | 20             |
           | 57600     | N.A.        | N.A.        | N.A.        | N.A.           |
         And the following dike geometry:
           | X  | Z   |
@@ -34,13 +34,13 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Outer crest          | 25    |
         And the following calculation settings:
           | Setting        | Value      |
-          | Position       | 3.0        |
+          | Position       | 15         |
           | Top layer type | Closed sod |
 
     Scenario: Default with closed sod
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.17424874554865
-        And the rounded time of failure is 40451
+        Then the damage is 1.17319166638798
+        And the rounded time of failure is 40475
       
     Scenario: Default with open sod
         Given the following adjusted hydraulic loads:
@@ -65,8 +65,8 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Setting        | Value    |
           | Top layer type | Open sod |
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.52484620520786
-        And the rounded time of failure is 35962
+        Then the damage is 1.51245044476551
+        And the rounded time of failure is 35971
 
     Scenario: Adjusted sod
         Given the following adjusted calculation settings:
@@ -74,8 +74,8 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Critical cumulative overload | 8000  |
           | Critical front velocity      | 6.2   |
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.67645627404328
-        And the rounded time of failure is 35682
+        Then the damage is 1.67514451030233
+        And the rounded time of failure is 35690
 
     Scenario: Calculation with a transition zone
         Given the following adjusted hydraulic loads:
@@ -101,8 +101,8 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Increased load transition   | 1.8   |
           | Reduced strength transition | 0.9   |
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.51908455307175
-        And the rounded time of failure is 35645
+        Then the damage is 1.51861479666960
+        And the rounded time of failure is 35647
 
     Scenario: Adjusted front velocity and fixed number of waves
         Given the following adjusted calculation settings:
@@ -110,8 +110,8 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Fixed number of waves | 500   |
           | Front velocity        | 1.15  |
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.79080784328382
-        And the rounded time of failure is 35036
+        Then the damage is 1.78933048403964
+        And the rounded time of failure is 35043
 
     Scenario: Adjusted representative wave run-up 2P
         Given the following adjusted calculation settings:
@@ -172,8 +172,8 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Initial damage | 0.3   |
           | Failure number | 1.1   |
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.47424874554865
-        And the rounded time of failure is 36979
+        Then the damage is 1.47319166638799
+        And the rounded time of failure is 36989
 
     Scenario: Calculation with a non-equidistant time series and a negative start time
         Given the following adjusted hydraulic loads:
