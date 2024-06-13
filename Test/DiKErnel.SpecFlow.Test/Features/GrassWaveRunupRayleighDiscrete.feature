@@ -113,25 +113,19 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
         Then the damage is 1.78933048403964
         And the rounded time of failure is 35043
 
-    Scenario: Adjusted representative wave run-up 2P
-        Given the following adjusted calculation settings:
-          | Setting                         | Value |
-          | Representative wave run-up 2P a | 1.75  |
-          | Representative wave run-up 2P b | 4.3   |
-          | Representative wave run-up 2P c | 1.6   |
-        When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.58504284832686
-        And the rounded time of failure is 36169
-
-    Scenario: Adjusted berm factor and roughness coefficient
-        Given the following adjusted calculation settings:
-          | Setting               | Value    |
-          | Top layer type        | Open sod |
-          | Berm factor           | 0.7      |
-          | Roughness coefficient | 0.7      |
-        When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.00238062787654
-        And the rounded time of failure is 53050
+    Scenario: Adjusted dike profile with roughness coefficients
+      Given the following adjusted dike geometry:
+        | X  | Z   | Roughness coefficient |
+        | 0  | 0   | 0.5                   |
+        | 15 | 4   | 0.7                   |
+        | 20 | 4.1 | 0.8                   |
+        | 25 | 7.5 | N.A.                  |
+      And the following adjusted calculation settings:
+        | Setting        | Value    |
+        | Top layer type | Open sod |
+      When I run the grass wave run-up Rayleigh discrete calculation
+      Then the damage is 1.49714378801417
+      And the rounded time of failure is 35719
 
     Scenario: Adjusted orientation and average number of waves
         Given the following adjusted calculation settings:
