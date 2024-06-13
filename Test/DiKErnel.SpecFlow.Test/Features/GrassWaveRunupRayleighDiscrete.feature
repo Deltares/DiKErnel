@@ -133,15 +133,14 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
         Then the damage is 1.00238062787654
         And the rounded time of failure is 53050
 
-    Scenario: Adjusted wave angle impact and average number of waves
+    Scenario: Adjusted orientation and average number of waves
         Given the following adjusted calculation settings:
-          | Setting                   | Value  |
-          | Wave angle impact aBeta   | 0.0033 |
-          | Wave angle impact betaMax | 30.0   |
-          | Factor Ctm                | 1.0    |
+          | Setting     | Value |
+          | Orientation | 20    |
+          | Factor Ctm  | 1     |
         When I run the grass wave run-up Rayleigh discrete calculation
-        Then the damage is 1.03411027331395
-        And the rounded time of failure is 45518
+        Then the damage is 1.02085944400925
+        And the rounded time of failure is 46710
 
     Scenario: Calculation where the revetment is flooded for some time
         Given the following adjusted hydraulic loads:
