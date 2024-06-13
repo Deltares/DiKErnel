@@ -104,7 +104,7 @@ As a user I want to perform asphalt wave impact calculations with default depth 
           | Thickness upper layer       | 0.35   |
           | Elastic modulus upper layer | 18000  |
           | Stiffness relation          | 0.3    |
-          | Average number of waves     | 0.9    |
+          | Factor Ctm                  | 0.9    |
           | Impact number C             | 0.95   |
           | Density of water            | 1000.0 |
         When I run the asphalt wave impact calculation

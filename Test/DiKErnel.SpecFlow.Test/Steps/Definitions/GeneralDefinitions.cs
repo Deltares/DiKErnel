@@ -28,6 +28,6 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
         public const string FailureNumber = "Failure number";
         public const string InitialDamage = "Initial damage";
 
-        public const string AverageNumberOfWaves = "Average number of waves";
+        public const string AverageNumberOfWavesCtm = "Factor Ctm";
     }
 }

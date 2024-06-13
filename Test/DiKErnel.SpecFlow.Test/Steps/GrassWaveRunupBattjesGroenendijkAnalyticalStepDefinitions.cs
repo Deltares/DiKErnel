@@ -63,7 +63,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             {
                 FailureNumber = Context.GetNullableDouble(GeneralDefinitions.FailureNumber),
                 InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamage),
-                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWaves),
+                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWavesCtm),
                 CriticalFrontVelocity = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocity),
                 FrontVelocityCu = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.FrontVelocity),
                 CriticalCumulativeOverload = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalCumulativeOverload),

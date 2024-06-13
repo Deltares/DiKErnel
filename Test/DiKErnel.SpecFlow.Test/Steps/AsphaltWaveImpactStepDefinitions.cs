@@ -66,7 +66,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 DensityOfWater = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.DensityOfWater),
                 ThicknessSubLayer = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.ThicknessSubLayer),
                 ElasticModulusSubLayer = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.ElasticModulusSubLayer),
-                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWaves),
+                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWavesCtm),
                 FatigueAlpha = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.FatigueAlpha),
                 FatigueBeta = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.FatigueBeta),
                 ImpactNumberC = Context.GetNullableDouble(AsphaltWaveImpactDefinitions.ImpactNumberC),

@@ -44,7 +44,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
                 CriticalFrontVelocity = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.CriticalFrontVelocity),
                 IncreasedLoadTransitionAlphaM = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.IncreasedLoadTransition),
                 ReducedStrengthTransitionAlphaS = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.ReducedStrengthTransition),
-                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWaves),
+                AverageNumberOfWavesCtm = Context.GetNullableDouble(GeneralDefinitions.AverageNumberOfWavesCtm),
                 FrontVelocityCu = Context.GetNullableDouble(GrassCumulativeOverloadDefinitions.FrontVelocity),
                 FixedNumberOfWaves = Context.GetNullableInt(GrassRayleighDiscreteDefinitions.FixedNumberOfWaves)
             };
