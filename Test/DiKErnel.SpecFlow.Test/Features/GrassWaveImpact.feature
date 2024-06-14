@@ -45,12 +45,12 @@ As a user I want to perform grass wave impact calculations.
           | Position       | 11         |
           | Top layer type | Closed sod |
 
-    Scenario: Default with closed sod
+    Scenario: Default calculation with closed sod
         When I run the grass wave impact calculation
         Then the damage is 1.29228078520671
         And the rounded time of failure is 14375
 
-    Scenario: Default with open sod
+    Scenario: Default calculation with open sod
         Given the following adjusted hydraulic loads:
           | Wave height |
           | 0.3         |

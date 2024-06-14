@@ -47,7 +47,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | 0.125  | 0.0244      |
           | 0.25   | 0.0169      |
 
-    Scenario: Default
+    Scenario: Default calculation
         When I run the asphalt wave impact calculation
         Then the damage is 1.12993952544265
         And the rounded time of failure is 25720

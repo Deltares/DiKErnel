@@ -61,7 +61,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
           | Acceleration crest           | 1          |
           | Acceleration inner slope     | 1.4        |
 
-    Scenario: Default
+    Scenario: Default calculation
         When I run the grass wave overtopping Rayleigh discrete calculation
         Then the damage is 1.48214256643614
         And the rounded time of failure is 33913

@@ -37,12 +37,12 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
           | Position       | 15         |
           | Top layer type | Closed sod |
 
-    Scenario: Default with closed sod
+    Scenario: Default calculation with closed sod
         When I run the grass wave run-up Rayleigh discrete calculation
         Then the damage is 1.17319166638798
         And the rounded time of failure is 40475
 
-    Scenario: Default with open sod
+    Scenario: Default calculation with open sod
         Given the following adjusted hydraulic loads:
           | Wave height | Wave period |
           | 0.3         | 3           |

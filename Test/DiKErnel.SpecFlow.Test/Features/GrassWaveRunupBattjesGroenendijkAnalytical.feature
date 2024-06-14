@@ -45,12 +45,12 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Factor Ctm                  | 0.92       |
           | Front velocity              | 1.1        |
 
-    Scenario: Default with closed sod
+    Scenario: Default calculation with closed sod
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 5.96427596407462
         And the rounded time of failure is 27615
 
-    Scenario: Default with open sod
+    Scenario: Default calculation with open sod
         Given the following adjusted calculation settings:
           | Setting        | Value    |
           | Top layer type | Open sod |

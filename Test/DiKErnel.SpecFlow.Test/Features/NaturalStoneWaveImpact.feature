@@ -34,7 +34,7 @@ As a user I want to perform natural stone wave impact calculations.
           | Relative density    | 1.65  |
           | Thickness top layer | 0.4   |
 
-    Scenario: Default
+    Scenario: Default calculation
         When I run the natural stone wave impact calculation
         Then the damage is 1.23043545607545
         And the rounded time of failure is 7283
