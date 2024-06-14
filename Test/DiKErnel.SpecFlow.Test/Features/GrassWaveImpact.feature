@@ -30,19 +30,19 @@ As a user I want to perform grass wave impact calculations.
           | 20700     | 0.5         | 0.9         | 3           | 0              |
           | 21600     | N.A.        | N.A.        | N.A.        | N.A.           |
         And the following dike geometry:
-          | X    | Z    |
-          | 5.0  | -1.0 |
-          | 55.0 | 11.5 |
+          | X  | Z    |
+          | 5  | -1   |
+          | 55 | 11.5 |
         And the following dike properties:
           | Property    | Value |
           | Orientation | 0     |
         And the following characteristic points:
           | Characteristic point | Value |
-          | Outer toe            | 5.0   |
-          | Outer crest          | 55.0  |
+          | Outer toe            | 5     |
+          | Outer crest          | 55    |
         And the following calculation settings:
           | Setting        | Value      |
-          | Position       | 11.0       |
+          | Position       | 11         |
           | Top layer type | Closed sod |
 
     Scenario: Default with closed sod
@@ -108,7 +108,7 @@ As a user I want to perform grass wave impact calculations.
           | Setting             | Value |
           | Wave angle impact n | 0.8   |
           | Wave angle impact q | 0.5   |
-          | Wave angle impact r | 40.0  |
+          | Wave angle impact r | 40    |
         When I run the grass wave impact calculation
         Then the damage is 1.28595658264855
         And the rounded time of failure is 14416

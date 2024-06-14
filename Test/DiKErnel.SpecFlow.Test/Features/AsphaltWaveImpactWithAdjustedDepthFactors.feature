@@ -31,7 +31,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | Position                    | 10    |
           | Flexural strength           | 1.6   |
           | Soil elasticity             | 55    |
-          | Thickness upper layer       | 0.40  |
+          | Thickness upper layer       | 0.4   |
           | Elastic modulus upper layer | 18000 |
         And the following depth factors:
           | Depth  | Probability |
@@ -42,7 +42,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | -0.5   | 0.1801      |
           | -0.375 | 0.1632      |
           | -0.25  | 0.1426      |
-          | -0.125 | 0.0994       |
+          | -0.125 | 0.0994      |
           | 0      | 0.06        |
           | 0.125  | 0.0244      |
           | 0.25   | 0.0169      |
@@ -65,24 +65,24 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
     Scenario: Adjusted impact factors
         Given the following adjusted calculation settings:
           | Setting               | Value |
-          | Thickness upper layer | 0.30  |
+          | Thickness upper layer | 0.3   |
         And the following adjusted impact factors:
           | Impact | Probability |
           | 0.4    | 0.349       |
           | 0.8    | 0.123       |
           | 1.2    | 0.152       |
           | 1.6    | 0.125       |
-          | 2.0    | 0.088       |
+          | 2      | 0.088       |
           | 2.4    | 0.059       |
           | 2.8    | 0.038       |
           | 3.2    | 0.024       |
           | 3.6    | 0.016       |
-          | 4.0    | 0.01        |
+          | 4      | 0.01        |
           | 4.4    | 0.007       |
           | 4.8    | 0.004       |
           | 5.2    | 0.003       |
           | 5.6    | 0.002       |
-          | 6.0    | 0.001       |
+          | 6      | 0.001       |
         When I run the asphalt wave impact calculation
         Then the damage is 1.13998469842777
         And the rounded time of failure is 25237
@@ -104,7 +104,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | -0.27 | 0.1916      |
           | -0.18 | 0.1192      |
           | -0.09 | 0.05403     |
-          | 0.0   | 0.01785     |
+          | 0     | 0.01785     |
           | 0.09  | 0.004299    |
           | 0.18  | 0.0007544   |
           | 0.27  | 0.00009647  |
@@ -118,13 +118,13 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
           | Thickness upper layer | 0.45  |
         And the following adjusted width factors:
           | Width | Probability |
-          | 0.1   | 0.0         |
+          | 0.1   | 0           |
           | 0.25  | 0.018       |
           | 0.4   | 0.09        |
           | 0.55  | 0.153       |
           | 0.7   | 0.168       |
           | 0.85  | 0.15        |
-          | 1.0   | 0.119       |
+          | 1     | 0.119       |
           | 1.15  | 0.089       |
           | 1.3   | 0.064       |
           | 1.45  | 0.045       |
@@ -159,8 +159,8 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
         Given the following adjusted dike geometry:
           | X  | Z   |
           | 0  | 0   |
-          | 8  | 2.0 |
-          | 17 | 3.0 |
+          | 8  | 2   |
+          | 17 | 3   |
           | 35 | 7.5 |
         And the following adjusted characteristic points:
           | Characteristic point | Value |
