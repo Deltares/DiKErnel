@@ -113,7 +113,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Orientation | 20    |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 0.37123738545695
-        And the rounded time of failure is NaN
+        And the rounded time of failure is undefined
 
     Scenario: Calculation with a berm and adjusted foreshore properties
         Given the following adjusted dike geometry:
@@ -136,7 +136,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Position | 18    |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 0.268547245031602
-        And the rounded time of failure is -47436053107893075968
+        And the rounded time of failure is undefined
 
     Scenario: Negative time steps and adjusted hydraulic loads
         Given the following adjusted hydraulic loads:
@@ -195,7 +195,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Slope foreshore        | 0.01  |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is 0.62192003883105
-        And the rounded time of failure is NaN
+        And the rounded time of failure is undefined
 
     Scenario: All properties adjusted
         Given the following adjusted hydraulic loads:
@@ -276,4 +276,4 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Critical front velocity      | 4.54434343 |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is NaN
-        And the rounded time of failure is NaN
+        And the rounded time of failure is -6634
