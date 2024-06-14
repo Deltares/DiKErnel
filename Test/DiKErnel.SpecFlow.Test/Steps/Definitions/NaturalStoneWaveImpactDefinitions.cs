@@ -32,7 +32,7 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
         public const string HydraulicLoadNs = "Hydraulic load Ns";
         public const string HydraulicLoadXib = "Hydraulic load Xib";
         public const string SlopeUpperLevelAus = "Slope upper level Aus";
-        public const string SlopeLowerLevelAls = "Slope upper level Als";
+        public const string SlopeLowerLevelAls = "Slope lower level Als";
         public const string UpperLimitLoadingAul = "Upper limit loading Aul";
         public const string UpperLimitLoadingBul = "Upper limit loading Bul";
         public const string UpperLimitLoadingCul = "Upper limit loading Cul";
