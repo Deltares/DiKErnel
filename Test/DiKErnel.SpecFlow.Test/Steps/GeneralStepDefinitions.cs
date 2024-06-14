@@ -87,19 +87,21 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.Output];
 
+            int? roundedTimeOfFailure = null;
             double? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
+
             if (timeOfFailure.HasValue)
             {
-                timeOfFailure = Math.Ceiling(timeOfFailure.Value);
+                roundedTimeOfFailure = (int) Math.Ceiling(timeOfFailure.Value);
             }
 
             if (double.TryParse(expectedValue, out double expectedRoundedTimeOfFailure))
             {
-                Assert.That(timeOfFailure, Is.EqualTo(expectedRoundedTimeOfFailure));
+                Assert.That(roundedTimeOfFailure, Is.EqualTo(expectedRoundedTimeOfFailure));
             }
             else
             {
-                Assert.That(timeOfFailure, Is.Null);
+                Assert.That(roundedTimeOfFailure, Is.Null);
             }
         }
     }
