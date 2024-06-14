@@ -66,7 +66,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
         Then the damage is 1.48214256643614
         And the rounded time of failure is 33913
 
-    Scenario: Adjusted position
+    Scenario: Calculation with adjusted position
         Given the following adjusted calculation settings:
           | Setting  | Value |
           | Position | 33    |
@@ -74,7 +74,7 @@ As a user I want to perform grass wave overtopping calculations with a closed so
         Then the damage is 0.07514904750839
         And the rounded time of failure is undefined
 
-    Scenario Outline: Adjusted position and various dike heights
+    Scenario Outline: Calculation with adjusted position and various dike heights
         Given the following adjusted calculation settings:
           | Setting  | Value |
           | Position | 33    |

@@ -60,7 +60,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
         Then the damage is 1.99284873782755
         And the rounded time of failure is 33915
 
-    Scenario: Adjusted position and dike height
+    Scenario: Calculation with adjusted position and dike height
         Given the following adjusted calculation settings:
           | Setting     | Value |
           | Position    | 50    |
@@ -69,7 +69,7 @@ As a user I want to perform grass wave overtopping calculations with a non-equid
         Then the damage is 12.99435588540268
         And the rounded time of failure is 23118
 
-    Scenario: Adjusted calculation settings
+    Scenario: Calculation with adjusted calculation settings
         Given the following adjusted calculation settings:
           | Setting               | Value |
           | Position              | 50    |

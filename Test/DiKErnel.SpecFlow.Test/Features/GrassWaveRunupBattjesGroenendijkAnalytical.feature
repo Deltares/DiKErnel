@@ -58,7 +58,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 21.80270830078372
         And the rounded time of failure is 14511
 
-    Scenario: Adjusted critical values
+    Scenario: Calculation with adjusted critical values
         Given the following adjusted calculation settings:
           | Setting                      | Value |
           | Critical cumulative overload | 8000  |
@@ -67,7 +67,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 7.04285833977934
         And the rounded time of failure is 26198
 
-    Scenario: Adjusted front velocity
+    Scenario: Calculation with adjusted front velocity
         Given the following adjusted calculation settings:
           | Setting        | Value |
           | Front velocity | 1.15  |
@@ -75,7 +75,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 8.10764303618132
         And the rounded time of failure is 25872
 
-    Scenario: Adjusted transition properties
+    Scenario: Calculation with adjusted transition properties
         Given the following adjusted calculation settings:
           | Setting                     | Value |
           | Increased load transition   | 1.8   |
@@ -84,7 +84,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 34.61849281097397
         And the rounded time of failure is 13555
 
-    Scenario: Adjusted foreshore properties
+    Scenario: Calculation with adjusted foreshore properties
         Given the following adjusted dike properties:
           | Property               | Value |
           | Bottom level foreshore | 0     |
@@ -93,7 +93,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 9.56249246884808
         And the rounded time of failure is 26067
 
-    Scenario: Adjusted failure conditions
+    Scenario: Calculation with adjusted failure conditions
         Given the following adjusted calculation settings:
           | Setting        | Value |
           | Initial damage | 0.3   |
@@ -138,7 +138,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 0.268547245031602
         And the rounded time of failure is undefined
 
-    Scenario: Negative time steps and adjusted hydraulic loads
+    Scenario: Calculation with negative time steps and adjusted hydraulic loads
         Given the following adjusted hydraulic loads:
           | Time step | Water level | Wave height | Wave period | Wave direction |
           | -6840     | 3.5         | 2.4         | 4           | 20             |
@@ -162,7 +162,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 8.58782240558095
         And the rounded time of failure is 1365
 
-    Scenario: Negative time steps and adjusted hydraulic loads, dike profile properties (berm) and foreshore properties
+    Scenario: Calculation with negative time steps and adjusted hydraulic loads, dike profile properties (berm) and foreshore properties
         Given the following adjusted hydraulic loads:
           | Time step | Water level | Wave height | Wave period | Wave direction |
           | -6840     | 3.5         | 2.4         | 4           | 20             |
@@ -197,7 +197,7 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
         Then the damage is 0.62192003883105
         And the rounded time of failure is undefined
 
-    Scenario: All properties adjusted
+    Scenario: Calculation with all properties adjusted
         Given the following adjusted hydraulic loads:
           | Time step | Water level | Wave height | Wave period | Wave direction |
           | -6840     | 3.5         | 2.4         | 4           | 20             |

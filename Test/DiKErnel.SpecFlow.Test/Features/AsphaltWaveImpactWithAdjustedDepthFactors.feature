@@ -62,7 +62,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
         Then the damage is 1.53983898504504
         And the rounded time of failure is 23511
 
-    Scenario: Adjusted impact factors
+    Scenario: Calculation with adjusted impact factors
         Given the following adjusted calculation settings:
           | Setting               | Value |
           | Thickness upper layer | 0.3   |
@@ -87,7 +87,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
         Then the damage is 1.13998469842777
         And the rounded time of failure is 25237
 
-    Scenario: Adjusted depth factors
+    Scenario: Calculation with adjusted depth factors
         Given the following adjusted calculation settings:
           | Setting               | Value |
           | Thickness upper layer | 0.38  |
@@ -112,7 +112,7 @@ As a user I want to perform asphalt wave impact calculations with adjusted depth
         Then the damage is 1.33022336665883
         And the rounded time of failure is 22915
 
-    Scenario: Adjusted width factors
+    Scenario: Calculation with adjusted width factors
         Given the following adjusted calculation settings:
           | Setting               | Value |
           | Thickness upper layer | 0.45  |

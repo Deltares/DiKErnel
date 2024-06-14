@@ -68,7 +68,7 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
         Then the damage is 1.51245044476551
         And the rounded time of failure is 35971
 
-    Scenario: Adjusted sod
+    Scenario: Calculation with adjusted sod
         Given the following adjusted calculation settings:
           | Setting                      | Value |
           | Critical cumulative overload | 8000  |
@@ -104,7 +104,7 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
         Then the damage is 1.51861479666960
         And the rounded time of failure is 35647
 
-    Scenario: Adjusted front velocity and fixed number of waves
+    Scenario: Calculation with adjusted front velocity and fixed number of waves
         Given the following adjusted calculation settings:
           | Setting               | Value |
           | Fixed number of waves | 500   |
@@ -113,7 +113,7 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
         Then the damage is 1.78933048403964
         And the rounded time of failure is 35043
 
-    Scenario: Adjusted dike profile with roughness coefficients
+    Scenario: Calculation with adjusted dike profile with roughness coefficients
       Given the following adjusted dike geometry:
         | X  | Z   | Roughness coefficient |
         | 0  | 0   | 0.5                   |
@@ -127,7 +127,7 @@ As a user I want to perform grass wave run-up calculations based on Rayleigh dis
       Then the damage is 1.49714378801417
       And the rounded time of failure is 35719
 
-    Scenario: Adjusted orientation and average number of waves
+    Scenario: Calculation with adjusted orientation and average number of waves
         Given the following adjusted calculation settings:
           | Setting     | Value |
           | Orientation | 20    |
