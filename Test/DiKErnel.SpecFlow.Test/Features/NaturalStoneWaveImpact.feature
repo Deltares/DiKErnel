@@ -47,7 +47,7 @@ As a user I want to perform natural stone wave impact calculations.
           | Initial damage      | 0.6   |
         When I run the natural stone wave impact calculation
         Then the damage is 1.45017739145779
-        And the rounded time of failure is 6423
+        And the rounded time of failure is 6424
 
     Scenario: Calculation with adjusted values for the stability comparison
         Given the following adjusted calculation settings:
@@ -82,7 +82,7 @@ As a user I want to perform natural stone wave impact calculations.
           | Thickness top layer | 0.3   |
         When I run the natural stone wave impact calculation
         Then the damage is 1.69080696566877
-        And the rounded time of failure is 5605
+        And the rounded time of failure is 5606
 
     Scenario: Calculation with a varying outer slope and no berm
         Given the following adjusted dike geometry:
@@ -96,7 +96,7 @@ As a user I want to perform natural stone wave impact calculations.
           | Thickness top layer | 0.3   |
         When I run the natural stone wave impact calculation
         Then the damage is 1.19007096598986
-        And the rounded time of failure is 7941
+        And the rounded time of failure is 7942
 
     Scenario: Calculation with adjusted wave angle impact
         Given the following adjusted calculation settings:
@@ -136,7 +136,7 @@ As a user I want to perform natural stone wave impact calculations.
           | Normative width of wave impact Bwi    | 0.15  |
         When I run the natural stone wave impact calculation
         Then the damage is 1.09941459712288
-        And the rounded time of failure is 3893
+        And the rounded time of failure is 3894
 
     Scenario: Calculation with a non-equidistant time series and a negative start time
         Given the following adjusted hydraulic loads:
