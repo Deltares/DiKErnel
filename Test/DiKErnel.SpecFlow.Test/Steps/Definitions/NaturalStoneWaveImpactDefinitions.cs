@@ -43,6 +43,6 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
         public const string DistanceMaximumWaveElevationBsmax = "Distance maximum wave elevation Bsmax";
         public const string NormativeWidthOfWaveImpactAwi = "Normative width of wave impact Awi";
         public const string NormativeWidthOfWaveImpactBwi = "Normative width of wave impact Bwi";
-        public const string WaveAngleImpactBetamax = "Wave angle impact Betamax";        
+        public const string WaveAngleImpactBetamax = "Wave angle impact Betamax";
     }
 }
