@@ -18,21 +18,31 @@
 
 namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
-    internal static class AsphaltWaveImpactDefinitions
+    internal static class NaturalStoneWaveImpactDefinitions
     {
-        public const string FlexuralStrength = "Flexural strength";
-        public const string SoilElasticity = "Soil elasticity";
-        public const string ThicknessUpperLayer = "Thickness upper layer";
-        public const string ElasticModulusUpperLayer = "Elastic modulus upper layer";
-        public const string DensityOfWater = "Density of water";
-        public const string ThicknessSubLayer = "Thickness sub layer";
-        public const string ElasticModulusSubLayer = "Elastic modulus sub layer";
-        public const string FatigueAlpha = "Fatigue alpha";
-        public const string FatigueBeta = "Fatigue beta";
-        public const string ImpactNumberC = "Impact number C";
-        public const string StiffnessRelation = "Stiffness relation";
-        public const string WidthFactors = "Width factors";
-        public const string DepthFactors = "Depth factors";
-        public const string ImpactFactors = "Impact factors";
+        public const string ThicknessTopLayer = "Thickness top layer";
+        public const string RelativeDensity = "Relative density";
+        public const string HydraulicLoadAp = "Hydraulic load Ap";
+        public const string HydraulicLoadBp = "Hydraulic load Bp";
+        public const string HydraulicLoadCp = "Hydraulic load Cp";
+        public const string HydraulicLoadNp = "Hydraulic load Np";
+        public const string HydraulicLoadAs = "Hydraulic load As";
+        public const string HydraulicLoadBs = "Hydraulic load Bs";
+        public const string HydraulicLoadCs = "Hydraulic load Cs";
+        public const string HydraulicLoadNs = "Hydraulic load Ns";
+        public const string HydraulicLoadXib = "Hydraulic load Xib";
+        public const string SlopeUpperLevelAus = "Slope upper level Aus";
+        public const string SlopeLowerLevelAls = "Slope upper level Als";
+        public const string UpperLimitLoadingAul = "Upper limit loading Aul";
+        public const string UpperLimitLoadingBul = "Upper limit loading Bul";
+        public const string UpperLimitLoadingCul = "Upper limit loading Cul";
+        public const string LowerLimitLoadingAll = "Lower limit loading All";
+        public const string LowerLimitLoadingBll = "Lower limit loading Bll";
+        public const string LowerLimitLoadingCll = "Lower limit loading Cll";
+        public const string DistanceMaximumWaveElevationAsmax = "Distance maximum wave elevation Asmax";
+        public const string DistanceMaximumWaveElevationBsmax = "Distance maximum wave elevation Bsmax";
+        public const string NormativeWidthOfWaveImpactAwi = "Normative width of wave impact Awi";
+        public const string NormativeWidthOfWaveImpactBwi = "Normative width of wave impact Bwi";
+        public const string WaveAngleImpactBetamax = "Wave angle impact Betamax";        
     }
 }

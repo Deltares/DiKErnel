@@ -35,39 +35,38 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         protected override void AddLocation(CalculationInputBuilder builder)
         {
-            var thicknessTopLayer = 0.0;
-            var relativeDensity = 0.0;
-
             var constructionProperties = new NaturalStoneWaveImpactLocationConstructionProperties(
                 Context.GetDouble(GeneralDefinitions.CalculationPosition),
                 NaturalStoneWaveImpactTopLayerType.NordicStone,
-                thicknessTopLayer,
-                relativeDensity)
+                Context.GetDouble(NaturalStoneWaveImpactDefinitions.ThicknessTopLayer),
+                Context.GetDouble(NaturalStoneWaveImpactDefinitions.RelativeDensity))
             {
                 FailureNumber = Context.GetNullableDouble(GeneralDefinitions.FailureNumber),
                 InitialDamage = Context.GetNullableDouble(GeneralDefinitions.InitialDamage),
-                HydraulicLoadAp = 0,
-                HydraulicLoadBp = 0,
-                HydraulicLoadCp = 0,
-                HydraulicLoadNp = 0,
-                HydraulicLoadAs = 0,
-                HydraulicLoadBs = 0,
-                HydraulicLoadCs = 0,
-                HydraulicLoadNs = 0,
-                HydraulicLoadXib = 0,
-                SlopeUpperLevelAus = 0,
-                SlopeLowerLevelAls = 0,
-                UpperLimitLoadingAul = 0,
-                UpperLimitLoadingBul = 0,
-                UpperLimitLoadingCul = 0,
-                LowerLimitLoadingAll = 0,
-                LowerLimitLoadingBll = 0,
-                LowerLimitLoadingCll = 0,
-                DistanceMaximumWaveElevationAsmax = 0,
-                DistanceMaximumWaveElevationBsmax = 0,
-                NormativeWidthOfWaveImpactAwi = 0,
-                NormativeWidthOfWaveImpactBwi = 0,
-                WaveAngleImpactBetamax = 0
+                HydraulicLoadAp = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadAp),
+                HydraulicLoadBp = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadBp),
+                HydraulicLoadCp = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadCp),
+                HydraulicLoadNp = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadNp),
+                HydraulicLoadAs = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadAs),
+                HydraulicLoadBs = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadBs),
+                HydraulicLoadCs = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadCs),
+                HydraulicLoadNs = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadNs),
+                HydraulicLoadXib = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.HydraulicLoadXib),
+                SlopeUpperLevelAus = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.SlopeUpperLevelAus),
+                SlopeLowerLevelAls = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.SlopeLowerLevelAls),
+                UpperLimitLoadingAul = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.UpperLimitLoadingAul),
+                UpperLimitLoadingBul = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.UpperLimitLoadingBul),
+                UpperLimitLoadingCul = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.UpperLimitLoadingCul),
+                LowerLimitLoadingAll = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.LowerLimitLoadingAll),
+                LowerLimitLoadingBll = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.LowerLimitLoadingBll),
+                LowerLimitLoadingCll = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.LowerLimitLoadingCll),
+                DistanceMaximumWaveElevationAsmax =
+                    Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.DistanceMaximumWaveElevationAsmax),
+                DistanceMaximumWaveElevationBsmax =
+                    Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.DistanceMaximumWaveElevationBsmax),
+                NormativeWidthOfWaveImpactAwi = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.NormativeWidthOfWaveImpactAwi),
+                NormativeWidthOfWaveImpactBwi = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.NormativeWidthOfWaveImpactBwi),
+                WaveAngleImpactBetamax = Context.GetNullableDouble(NaturalStoneWaveImpactDefinitions.WaveAngleImpactBetamax)
             };
 
             builder.AddNaturalStoneWaveImpactLocation(constructionProperties);
