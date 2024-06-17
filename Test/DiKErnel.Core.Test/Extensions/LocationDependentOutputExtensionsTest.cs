@@ -68,7 +68,7 @@ namespace DiKErnel.Core.Test.Extensions
         public void GivenLocationDependentOutput_WhenGetTimeOfFailure_ThenExpectedValues(bool withTimeOfFailure)
         {
             // Given
-            double? timeOfFailureInLastTimeStep = withTimeOfFailure ? Random.NextDouble() : (double?) null;
+            double? timeOfFailureInSecondTimeStep = withTimeOfFailure ? Random.NextDouble() : (double?) null;
 
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties1.IncrementDamage = Random.NextDouble();
@@ -77,12 +77,17 @@ namespace DiKErnel.Core.Test.Extensions
             var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties2.IncrementDamage = Random.NextDouble();
             timeDependentOutputConstructionProperties2.Damage = Random.NextDouble();
-            timeDependentOutputConstructionProperties2.TimeOfFailure = timeOfFailureInLastTimeStep;
+            timeDependentOutputConstructionProperties2.TimeOfFailure = timeOfFailureInSecondTimeStep;
+
+            var timeDependentOutputConstructionProperties3 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties3.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties3.Damage = Random.NextDouble();
 
             var timeDependentOutputItems = new List<TimeDependentOutput>
             {
                 Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties3)
             };
 
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
@@ -91,7 +96,7 @@ namespace DiKErnel.Core.Test.Extensions
             double? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
 
             // Then
-            Assert.That(timeOfFailure, Is.EqualTo(timeOfFailureInLastTimeStep));
+            Assert.That(timeOfFailure, Is.EqualTo(timeOfFailureInSecondTimeStep));
         }
     }
 }
