@@ -47,6 +47,11 @@ namespace DiKErnel.Core.Extensions
         /// output.</returns>
         public static double? GetTimeOfFailure(this LocationDependentOutput locationDependentOutput)
         {
+            if (locationDependentOutput.GetDamages().Any(double.IsNaN))
+            {
+                return null;
+            }
+            
             return locationDependentOutput.TimeDependentOutputItems
                                           .FirstOrDefault(tdo => tdo.TimeOfFailure.HasValue)?.TimeOfFailure;
         }

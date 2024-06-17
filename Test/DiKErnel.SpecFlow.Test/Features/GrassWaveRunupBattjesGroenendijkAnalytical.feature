@@ -276,4 +276,4 @@ As a user I want to perform grass wave run-up calculations based on Battjes-Groe
           | Critical front velocity      | 4.54434343 |
         When I run the grass wave run-up Battjes-Groenendijk analytical calculation
         Then the damage is NaN
-        And the rounded time of failure is -6634
+        And the rounded time of failure is undefined
