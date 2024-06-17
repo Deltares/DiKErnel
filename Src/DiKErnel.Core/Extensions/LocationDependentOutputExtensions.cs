@@ -43,15 +43,19 @@ namespace DiKErnel.Core.Extensions
         /// Gets the calculated time of failure.
         /// </summary>
         /// <param name="locationDependentOutput">The location dependent output.</param>
-        /// <returns>The calculated time of failure for the location dependent
-        /// output.</returns>
+        /// <returns>The calculated time of failure for the location dependent output, or <c>null</c> when:
+        /// <list type="bullet">
+        /// <item>the revetment at the location did not fail;</item>
+        /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
+        /// </list>
+        /// </returns>
         public static double? GetTimeOfFailure(this LocationDependentOutput locationDependentOutput)
         {
             if (locationDependentOutput.GetDamages().Any(double.IsNaN))
             {
                 return null;
             }
-            
+
             return locationDependentOutput.TimeDependentOutputItems
                                           .FirstOrDefault(tdo => tdo.TimeOfFailure.HasValue)?.TimeOfFailure;
         }
