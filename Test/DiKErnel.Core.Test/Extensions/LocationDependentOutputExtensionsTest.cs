@@ -65,7 +65,8 @@ namespace DiKErnel.Core.Test.Extensions
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void GivenLocationDependentOutput_WhenGetTimeOfFailure_ThenExpectedValues(bool withTimeOfFailure)
+        public void GivenLocationDependentOutputWithDamagesNotEqualToNaN_WhenGetTimeOfFailure_ThenReturnsExpectedValue(
+            bool withTimeOfFailure)
         {
             // Given
             double? timeOfFailureInSecondTimeStep = withTimeOfFailure ? Random.NextDouble() : (double?) null;
@@ -97,6 +98,39 @@ namespace DiKErnel.Core.Test.Extensions
 
             // Then
             Assert.That(timeOfFailure, Is.EqualTo(timeOfFailureInSecondTimeStep));
+        }
+
+        [Test]
+        public void GivenLocationDependentOutputWithOneDamageEqualToNaN_WhenGetTimeOfFailure_ThenReturnsNull()
+        {
+            // Given
+            var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties1.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties1.Damage = Random.NextDouble();
+
+            var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties2.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties2.Damage = Random.NextDouble();
+            timeDependentOutputConstructionProperties2.TimeOfFailure = Random.NextDouble();
+
+            var timeDependentOutputConstructionProperties3 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties3.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties3.Damage = double.NaN;
+
+            var timeDependentOutputItems = new List<TimeDependentOutput>
+            {
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties3)
+            };
+
+            var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
+
+            // When
+            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
+
+            // Then
+            Assert.That(timeOfFailure, Is.Null);
         }
     }
 }
