@@ -28,7 +28,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 {
     internal static class ScenarioContextExtensions
     {
-        private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
+        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
         public static void SetStringValueTuples(this ScenarioContext context, string id, Table table)
         {
@@ -37,7 +37,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         public static double GetDouble(this ScenarioContext context, string id)
         {
-            return double.Parse(context.GetString(id), Culture);
+            return double.Parse(context.GetString(id), culture);
         }
 
         public static double? GetNullableDouble(this ScenarioContext context, string id)
@@ -52,7 +52,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             var values = (IReadOnlyList<string>) context[id];
 
             return values.Where(s => !Equals(s, GeneralDefinitions.NotApplicable))
-                         .Select(s => double.Parse(s, Culture))
+                         .Select(s => double.Parse(s, culture))
                          .ToArray();
         }
 
@@ -73,7 +73,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         public static int? GetNullableInt(this ScenarioContext context, string id)
         {
             return context.ContainsKey(id)
-                       ? (int?) int.Parse(context.GetString(id), Culture)
+                       ? (int?) int.Parse(context.GetString(id), culture)
                        : null;
         }
 
@@ -94,8 +94,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             var valueTuples = (IReadOnlyList<ValueTuple<string, string>>) context[id];
 
-            return valueTuples.Select(valueTuple => new ValueTuple<double, double>(double.Parse(valueTuple.Item1, Culture),
-                                                                                   double.Parse(valueTuple.Item2, Culture)))
+            return valueTuples.Select(valueTuple => new ValueTuple<double, double>(double.Parse(valueTuple.Item1, culture),
+                                                                                   double.Parse(valueTuple.Item2, culture)))
                               .ToArray();
         }
 
