@@ -4,18 +4,18 @@
   Background:
     Given the following hydraulic loads:
       | Time step | Water level | Wave height | Wave period | Wave direction |
-      | 0         | 1.4         | 1.0         | 5.5         | 30.0           |
-      | 900       | 1.6         | 1.2         | 6.0         | 60.0           |
-      | 1800      | 1.7         | 1.2         | 6.5         | 90.0           |
-      | 2700      | 1.8         | 1.3         | 7.0         | 75.0           |
-      | 3600      | 2.0         | 1.4         | 7.0         | 60.0           |
-      | 4500      | 2.1         | 1.3         | 7.5         | 45.0           |
-      | 5400      | 2.1         | 1.6         | 8.0         | 30.0           |
-      | 6300      | 2.4         | 1.7         | 8.0         | 15.0           |
-      | 7200      | 2.0         | 2.4         | 8.5         | 0.0            |
-      | 8100      | 1.9         | 2.2         | 8.0         | 0.0            |
-      | 9000      | 1.6         | 1.8         | 7.0         | 0.0            |
-      | 9900      | 1.4         | 1.2         | 6.0         | 0.0            |
+      | 0         | 1.4         | 1           | 5.5         | 30             |
+      | 900       | 1.6         | 1.2         | 6           | 60             |
+      | 1800      | 1.7         | 1.2         | 6.5         | 90             |
+      | 2700      | 1.8         | 1.3         | 7           | 75             |
+      | 3600      | 2           | 1.4         | 7           | 60             |
+      | 4500      | 2.1         | 1.3         | 7.5         | 45             |
+      | 5400      | 2.1         | 1.6         | 8           | 30             |
+      | 6300      | 2.4         | 1.7         | 8           | 15             |
+      | 7200      | 2           | 2.4         | 8.5         | 0              |
+      | 8100      | 1.9         | 2.2         | 8           | 0              |
+      | 9000      | 1.6         | 1.8         | 7           | 0              |
+      | 9900      | 1.4         | 1.2         | 6           | 0              |
       | 10800     | N.A.        | N.A.        | N.A.        | N.A.           |
     And the following dike geometry:
       | X  | Z   |
@@ -69,7 +69,7 @@
   Scenario: Calculation with a varying outer slope and a berm
     Given the following adjusted dike geometry:
       | X    | Z   |
-      | 0    | 0.0 |
+      | 0    | 0   |
       | 6.4  | 1.6 |
       | 12.4 | 1.8 |
       | 30   | 7.5 |
@@ -87,7 +87,7 @@
   Scenario: Calculation with a varying outer slope and no berm
     Given the following adjusted dike geometry:
       | X    | Z   |
-      | 0    | 0.0 |
+      | 0    | 0   |
       | 6.4  | 1.6 |
       | 12.4 | 1.8 |
       | 30   | 7.5 |
@@ -161,7 +161,7 @@
   Scenario: Calculation with adjusted slope settings
     Given the following adjusted dike geometry:
       | X    | Z   |
-      | 0    | 0.0 |
+      | 0    | 0   |
       | 6.4  | 1.6 |
       | 12.4 | 1.8 |
       | 30   | 7.5 |
@@ -173,7 +173,7 @@
       | Setting               | Value |
       | Thickness top layer   | 0.3   |
       | Slope upper level Aus | 0.5   |
-      | Slope lower level Als | 1.0   |
+      | Slope lower level Als | 1     |
     When I run the natural stone wave impact calculation
     Then the damage is 1.69466545304923
     And the rounded time of failure is 5570
