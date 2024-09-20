@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using DiKErnel.Core;
 using DiKErnel.Core.Data;
+using DiKErnel.Core.Extensions;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.Integration.Data.GrassWaveOvertopping;
 using DiKErnel.Integration.Data.GrassWaveRunup;
+using DiKErnel.Util;
 
 namespace DiKErnel.GrassPerformance
 {
@@ -43,6 +46,18 @@ namespace DiKErnel.GrassPerformance
                     AddTimeSteps(builder, 12, Resources.htime_12h, Resources.Hm0_12h, Resources.Tmm10_12h, Resources.WDir_12h);
                     break;
             }
+
+            DataResult<ICalculationInput> result = builder.Build();
+
+            var calculator = new Calculator(result.Data);
+            calculator.WaitForCompletion();
+
+            for (var i = 0; i < calculator.Result.Data.LocationDependentOutputItems.Count; i++)
+            {
+                IReadOnlyList<double> damages = calculator.Result.Data.LocationDependentOutputItems[i].GetDamages();
+
+                Console.WriteLine($@"| X = {Math.Round(result.Data.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture),-5} | Damage = {Math.Round(damages[^1], 2).ToString(CultureInfo.InvariantCulture),-5} |");
+            }
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -60,9 +75,9 @@ namespace DiKErnel.GrassPerformance
             builder.AddDikeProfilePoint(80, CharacteristicPointType.InnerToe);
         }
 
-        private static void AddLocations(string identifier, int numberOfLocations, CalculationInputBuilder builder)
+        private static void AddLocations(string calculationTypeIdentifier, int numberOfLocations, CalculationInputBuilder builder)
         {
-            Action<double> addLocationAction = identifier switch
+            Action<double> addLocationAction = calculationTypeIdentifier switch
             {
                 grassWaveImpactIdentifier => x => builder.AddGrassWaveImpactLocation(
                     new GrassWaveImpactLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
@@ -77,21 +92,21 @@ namespace DiKErnel.GrassPerformance
                 _ => throw new ArgumentException("Invalid calculation type")
             };
 
-            foreach (double x in GetXValues(identifier, numberOfLocations))
+            foreach (double x in GetXValues(calculationTypeIdentifier, numberOfLocations))
             {
                 addLocationAction(x);
             }
         }
 
-        private static List<double> GetXValues(string identifier, int numberOfLocations)
+        private static List<double> GetXValues(string calculationTypeIdentifier, int numberOfLocations)
         {
             var xValues = new List<double>();
 
             double xStartCalculationZone;
             double xEndCalculationZone;
 
-            if (identifier == grassWaveOvertoppingRayleighAnalyticalIdentifier ||
-                identifier == grassWaveOvertoppingRayleighDiscreteIdentifier)
+            if (calculationTypeIdentifier == grassWaveOvertoppingRayleighAnalyticalIdentifier ||
+                calculationTypeIdentifier == grassWaveOvertoppingRayleighDiscreteIdentifier)
             {
                 xStartCalculationZone = xStartCalculationZoneInnerSlope;
                 xEndCalculationZone = xEndCalculationZoneInnerSlope;
@@ -155,8 +170,7 @@ namespace DiKErnel.GrassPerformance
                 builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
             }
 
-            Console.WriteLine($"Duration of single time step: {hours * 3600} seconds");
-            Console.WriteLine($"Number of time steps: {waterLevels.Length}");
+            Console.WriteLine($@"Number of time steps = {waterLevels.Length}");
         }
     }
 }
