@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
+using System.Linq;
 using DiKErnel.GrassPerformance;
 using DiKErnel.Integration;
 
@@ -19,30 +21,27 @@ internal class Program
         }
     }
 
-    private static void AddTimeSteps(CalculationInputBuilder builder,
-                                     int hours,
-                                     string waterLevelsFile,
-                                     string waveHeightsFile,
-                                     string wavePeriodsFile,
-                                     string waveDirectionsFile)
+    private static void AddTimeSteps(CalculationInputBuilder builder, int hours, string commaSeparatedWaterLevels,
+                                     string commaSeparatedWaveHeights, string commaSeparatedWavePeriods,
+                                     string commaSeparatedWaveDirections)
     {
-        double[] waterLevels = waterLevelsFile.Split(',')
-                                              .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                              .ToArray();
+        double[] waterLevels = commaSeparatedWaterLevels.Split(',')
+                                                        .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                                        .ToArray();
 
-        double[] waveHeights = waveHeightsFile.Split(',')
-                                              .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                              .Select(d => d <= 0 ? 0.01 : d)
-                                              .ToArray();
+        double[] waveHeights = commaSeparatedWaveHeights.Split(',')
+                                                        .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                                        .Select(d => d <= 0 ? 0.01 : d)
+                                                        .ToArray();
 
-        double[] wavePeriods = wavePeriodsFile.Split(',')
-                                              .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                              .Select(d => d <= 0 ? 0.01 : d)
-                                              .ToArray();
+        double[] wavePeriods = commaSeparatedWavePeriods.Split(',')
+                                                        .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                                        .Select(d => d <= 0 ? 0.01 : d)
+                                                        .ToArray();
 
-        double[] waveDirections = waveDirectionsFile.Split(',')
-                                                    .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                    .ToArray();
+        double[] waveDirections = commaSeparatedWaveDirections.Split(',')
+                                                              .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                                              .ToArray();
 
         double[] times = Enumerable.Range(0, waterLevels.Length + 1)
                                    .Select(i => hours * 3600d * i)
@@ -53,6 +52,7 @@ internal class Program
             builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
         }
 
-        Console.WriteLine($"Performing calculation(s) for {waterLevels.Length} time steps");
+        Console.WriteLine($"Duration of single time step: {hours * 3600} seconds");
+        Console.WriteLine($"Number of time steps: {waterLevels.Length}");
     }
 }
