@@ -19,6 +19,28 @@ internal class Program
                 AddTimeSteps(builder, 12, Resources.htime_12h, Resources.Hm0_12h, Resources.Tmm10_12h, Resources.WDir_12h);
                 break;
         }
+
+        switch (args[2])
+        {
+            case "GrassWaveImpact":
+                // Todo: implement
+                break;
+            case "GrassWaveOvertoppingRayleighAnalytical":
+                // Todo: implement
+                break;
+            case "GrassWaveOvertoppingRayleighDiscrete":
+                // Todo: implement
+                break;
+            case "GrassWaveRunupBattjesGroenendijkAnalytical":
+                // Todo: implement
+                break;
+            case "GrassWaveRunupRayleighDiscrete":
+                // Todo: implement
+                break;
+            case "GrassWaveRunupRayleighAnalytical":
+                // Todo: implement
+                break;
+        }
     }
 
     private static void AddTimeSteps(CalculationInputBuilder builder, int hours, string commaSeparatedWaterLevels,
