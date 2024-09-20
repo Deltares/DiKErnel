@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using DiKErnel.Core;
@@ -46,11 +47,11 @@ namespace DiKErnel.GrassPerformance
 
             if (!result.Successful)
             {
-                Console.WriteLine($@"Validation error: {result.Events.First(e => e.Type == EventType.Error).Message}");
+                Console.WriteLine($"Validation error: {result.Events.First(e => e.Type == EventType.Error).Message}");
                 return;
             }
 
-            CalculateAndWriteOutput(result);
+            CalculateAndWriteOutput(result.Data, args[0]);
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -152,12 +153,10 @@ namespace DiKErnel.GrassPerformance
 
             double[] waveHeights = commaSeparatedWaveHeights.Split(',')
                                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                            .Select(d => d <= 0 ? 0.01 : d)
                                                             .ToArray();
 
             double[] wavePeriods = commaSeparatedWavePeriods.Split(',')
                                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                            .Select(d => d <= 0 ? 0.01 : d)
                                                             .ToArray();
 
             double[] waveDirections = commaSeparatedWaveDirections.Split(',')
@@ -172,25 +171,42 @@ namespace DiKErnel.GrassPerformance
             {
                 builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
             }
-
-            Console.WriteLine($@"Number of time steps = {waterLevels.Length}");
         }
 
-        private static void CalculateAndWriteOutput(DataResult<ICalculationInput> result)
+        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string calculationTypeArgument)
         {
-            var calculator = new Calculator(result.Data);
+            var stopWatch = new Stopwatch();
+
+            stopWatch.Start();
+
+            var calculator = new Calculator(calculationInput);
 
             calculator.WaitForCompletion();
+
+            stopWatch.Stop();
+
+            Console.WriteLine();
+            Console.WriteLine($"Duration = {Math.Round(stopWatch.Elapsed.TotalSeconds, 2)} seconds");
+            Console.WriteLine();
+            Console.WriteLine($"Number of locations = {calculationInput.LocationDependentInputItems.Count}");
+            Console.WriteLine($"Number of time steps = {calculationInput.TimeDependentInputItems.Count}");
+            Console.WriteLine($"Calculation type = {calculationTypeArgument}");
+            Console.WriteLine();
+            Console.WriteLine("Output results");
+            Console.WriteLine("---------------------------------");
 
             for (var i = 0; i < calculator.Result.Data.LocationDependentOutputItems.Count; i++)
             {
                 IReadOnlyList<double> damages = calculator.Result.Data.LocationDependentOutputItems[i].GetDamages();
 
-                var x = Math.Round(result.Data.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
+                var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
                 var damage = Math.Round(damages[^1], 2).ToString(CultureInfo.InvariantCulture);
 
-                Console.WriteLine($@"| X = {x,-5} | Damage = {damage,-8} |");
+                Console.WriteLine($"| X = {x,-5} | Damage = {damage,-8} |");
             }
+
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine();
         }
     }
 }
