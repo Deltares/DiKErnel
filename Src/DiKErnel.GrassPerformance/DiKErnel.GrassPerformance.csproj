@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="$(SolutionDir)Development\Base.targets" />
+    
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <LangVersion>latest</LangVersion>

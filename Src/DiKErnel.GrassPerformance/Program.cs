@@ -38,7 +38,7 @@ namespace DiKErnel.GrassPerformance
 
             AddDikeProfile(builder);
 
-            AddLocations(builder, args[0], int.Parse(args[1]));
+            AddLocations(builder, args[0], int.Parse(args[1], CultureInfo.InvariantCulture));
 
             AddTimeSteps(builder, args[2]);
 
