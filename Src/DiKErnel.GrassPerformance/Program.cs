@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using DiKErnel.Core.Data;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveImpact;
@@ -13,10 +14,12 @@ namespace DiKErnel.GrassPerformance
     internal static class Program
     {
         private const double dikeOrientation = 0;
+
         private const double xStartCalculationZoneOuterSlope = 5;
         private const double xEndCalculationZoneOuterSlope = 15;
         private const double xStartCalculationZoneInnerSlope = 60;
         private const double xEndCalculationZoneInnerSlope = 70;
+
         private const string grassWaveImpactIdentifier = "GrassWaveImpact";
         private const string grassWaveOvertoppingRayleighAnalyticalIdentifier = "GrassWaveOvertoppingRayleighAnalytical";
         private const string grassWaveOvertoppingRayleighDiscreteIdentifier = "GrassWaveOvertoppingRayleighDiscrete";
@@ -27,7 +30,39 @@ namespace DiKErnel.GrassPerformance
         {
             var builder = new CalculationInputBuilder(dikeOrientation);
 
-            Action<double> addGrassLocationAction = args[0] switch
+            AddDikeProfile(builder);
+
+            AddLocations(args[0], int.Parse(args[1]), builder);
+
+            switch (args[2])
+            {
+                case "1h":
+                    AddTimeSteps(builder, 1, Resources.htime_1h, Resources.Hm0_1h, Resources.Tmm10_1h, Resources.WDir_1h);
+                    break;
+                case "12h":
+                    AddTimeSteps(builder, 12, Resources.htime_12h, Resources.Hm0_12h, Resources.Tmm10_12h, Resources.WDir_12h);
+                    break;
+            }
+        }
+
+        private static void AddDikeProfile(CalculationInputBuilder builder)
+        {
+            builder.AddDikeProfileSegment(0, 1, 15, 3, 1);
+            builder.AddDikeProfileSegment(15, 3, 25, 3.2, 1);
+            builder.AddDikeProfileSegment(25, 3.2, 45, 6, 0.75);
+            builder.AddDikeProfileSegment(45, 6, 55, 6, 0.5);
+            builder.AddDikeProfileSegment(55, 6, 80, 3, 0.8);
+            builder.AddDikeProfileSegment(80, 3, 90, 2.9, 0.8);
+
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(45, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(55, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(80, CharacteristicPointType.InnerToe);
+        }
+
+        private static void AddLocations(string identifier, int numberOfLocations, CalculationInputBuilder builder)
+        {
+            Action<double> addLocationAction = identifier switch
             {
                 grassWaveImpactIdentifier => x => builder.AddGrassWaveImpactLocation(
                     new GrassWaveImpactLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
@@ -42,14 +77,21 @@ namespace DiKErnel.GrassPerformance
                 _ => throw new ArgumentException("Invalid calculation type")
             };
 
-            int numberOfLocations = int.Parse(args[1]);
+            foreach (double x in GetXValues(identifier, numberOfLocations))
+            {
+                addLocationAction(x);
+            }
+        }
 
-            var locations = new List<double>();
+        private static List<double> GetXValues(string identifier, int numberOfLocations)
+        {
+            var xValues = new List<double>();
 
             double xStartCalculationZone;
             double xEndCalculationZone;
 
-            if (args[0] == grassWaveOvertoppingRayleighAnalyticalIdentifier || args[0] == grassWaveOvertoppingRayleighDiscreteIdentifier)
+            if (identifier == grassWaveOvertoppingRayleighAnalyticalIdentifier ||
+                identifier == grassWaveOvertoppingRayleighDiscreteIdentifier)
             {
                 xStartCalculationZone = xStartCalculationZoneInnerSlope;
                 xEndCalculationZone = xEndCalculationZoneInnerSlope;
@@ -63,36 +105,23 @@ namespace DiKErnel.GrassPerformance
             switch (numberOfLocations)
             {
                 case 1:
-                    locations.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 2);
+                    xValues.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 2);
                     break;
                 case 2:
-                    locations.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 3);
-                    locations.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 2 / 3);
+                    xValues.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 3);
+                    xValues.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 2 / 3);
                     break;
                 default:
                 {
                     double increment = (xEndCalculationZone - xStartCalculationZone) / numberOfLocations;
 
-                    locations.AddRange(Enumerable.Range(0, numberOfLocations)
-                                                 .Select(i => xStartCalculationZone + i * increment));
+                    xValues.AddRange(Enumerable.Range(0, numberOfLocations)
+                                               .Select(i => xStartCalculationZone + i * increment));
                     break;
                 }
             }
 
-            foreach (double location in locations)
-            {
-                addGrassLocationAction(location);
-            }
-
-            switch (args[2])
-            {
-                case "1h":
-                    AddTimeSteps(builder, 1, Resources.htime_1h, Resources.Hm0_1h, Resources.Tmm10_1h, Resources.WDir_1h);
-                    break;
-                case "12h":
-                    AddTimeSteps(builder, 12, Resources.htime_12h, Resources.Hm0_12h, Resources.Tmm10_12h, Resources.WDir_12h);
-                    break;
-            }
+            return xValues;
         }
 
         private static void AddTimeSteps(CalculationInputBuilder builder, int hours, string commaSeparatedWaterLevels,
