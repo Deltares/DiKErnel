@@ -19,7 +19,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DiKErnel.Core.Data;
 using DiKErnel.Util;
 
@@ -30,9 +29,8 @@ namespace DiKErnel.Core
     /// </summary>
     public class Calculator
     {
-        private readonly Task<DataResult<CalculationOutput>> task;
-
         private double progress;
+        private readonly DataResult<CalculationOutput> result;
 
         /// <summary>
         /// Creates a new instance.
@@ -43,9 +41,7 @@ namespace DiKErnel.Core
         /// <see cref="WaitForCompletion"/>).</remarks>
         public Calculator(ICalculationInput calculationInput)
         {
-            task = new Task<DataResult<CalculationOutput>>(() => Calculate(calculationInput));
-
-            task.Start();
+            result = Calculate(calculationInput);
         }
 
         /// <summary>
@@ -66,14 +62,14 @@ namespace DiKErnel.Core
         /// <remarks>An actual result is returned when the calculation is finished
         /// successfully, cancelled or finished in error. When the calculation is still
         /// running, <c>null</c> is returned.</remarks>
-        public DataResult<CalculationOutput> Result => CalculationState != CalculationState.Running ? task.Result : null;
+        public DataResult<CalculationOutput> Result => result;
 
         /// <summary>
         /// Handle that enables a calling instance to wait for the calculation to complete.
         /// </summary>
         public void WaitForCompletion()
         {
-            task.Wait();
+            
         }
 
         /// <summary>
