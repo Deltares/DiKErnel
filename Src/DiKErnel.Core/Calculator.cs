@@ -52,16 +52,11 @@ namespace DiKErnel.Core
         /// <summary>
         /// Gets the current progress of the calculation [%].
         /// </summary>
-        /// <remarks>This method also returns the current progress when the calculation is
-        /// cancelled.</remarks>
         public int Progress => (int) Math.Round(progress * 100);
 
         /// <summary>
         /// Gets the result of the calculation.
         /// </summary>
-        /// <remarks>An actual result is returned when the calculation is finished
-        /// successfully, cancelled or finished in error. When the calculation is still
-        /// running, <c>null</c> is returned.</remarks>
         public DataResult<CalculationOutput> Result => result;
 
         /// <summary>
