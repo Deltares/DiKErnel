@@ -60,19 +60,6 @@ namespace DiKErnel.Core.Test
         }
 
         [Test]
-        public void GivenCalculatorWithRunningCalculation_WhenGetCalculationState_ThenReturnsExpectedResult()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            // When
-            CalculationState calculationState = calculator.CalculationState;
-
-            // Then
-            Assert.That(calculationState, Is.EqualTo(CalculationState.Running));
-        }
-
-        [Test]
         public void GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnsNull()
         {
             // Given
@@ -83,24 +70,6 @@ namespace DiKErnel.Core.Test
 
             // Then
             Assert.That(result, Is.Null);
-        }
-
-        [Test]
-        public void GivenCalculatorWithExceptionDuringCalculation_WhenGetCalculationState_ThenExpectedResult()
-        {
-            // Given
-            ICalculationInput calculationInput = CreateCalculationInput();
-
-            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[0];
-            ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = Random.NextString();
-
-            var calculator = new Calculator(calculationInput);
-
-            // When
-            CalculationState calculationState = calculator.CalculationState;
-
-            // Then
-            Assert.That(calculationState, Is.EqualTo(CalculationState.FinishedInError));
         }
 
         [Test]

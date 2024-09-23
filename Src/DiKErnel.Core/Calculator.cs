@@ -40,11 +40,6 @@ namespace DiKErnel.Core
         }
 
         /// <summary>
-        /// Gets the state of the calculation.
-        /// </summary>
-        public CalculationState CalculationState { get; private set; } = CalculationState.Running;
-
-        /// <summary>
         /// Gets the result of the calculation.
         /// </summary>
         public DataResult<CalculationOutput> Result { get; }
@@ -61,13 +56,6 @@ namespace DiKErnel.Core
                 CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
                                                timeDependentOutputItemsPerLocation, calculationInput.ProfileData);
 
-                if (CalculationState == CalculationState.Cancelled)
-                {
-                    return new DataResult<CalculationOutput>(EventRegistry.Flush());
-                }
-
-                CalculationState = CalculationState.FinishedSuccessfully;
-
                 List<LocationDependentOutput> locationDependentOutputItems =
                     locationDependentInputItems
                         .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]))
@@ -78,8 +66,6 @@ namespace DiKErnel.Core
             }
             catch (Exception e)
             {
-                CalculationState = CalculationState.FinishedInError;
-
                 EventRegistry.Register(new Event("An unhandled error occurred while performing the calculation. See stack " +
                                                  $"trace for more information:{Environment.NewLine}{e.Message}", EventType.Error));
 
@@ -97,11 +83,6 @@ namespace DiKErnel.Core
             {
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                 {
-                    if (CalculationState == CalculationState.Cancelled)
-                    {
-                        break;
-                    }
-
                     List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
 
                     currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
