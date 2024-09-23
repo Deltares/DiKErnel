@@ -30,18 +30,15 @@ namespace DiKErnel.Core
     public class Calculator
     {
         private double progress;
-        private readonly DataResult<CalculationOutput> result;
 
         /// <summary>
         /// Creates a new instance.
         /// </summary>
         /// <param name="calculationInput">The input used in the calculation.</param>
-        /// <remarks>While creating the new instance, the thread that performs the
-        /// calculation is directly started (and can be waited for to finish by calling
-        /// <see cref="WaitForCompletion"/>).</remarks>
+        /// <remarks>While creating the new instance, the calculation is directly started.</remarks>
         public Calculator(ICalculationInput calculationInput)
         {
-            result = Calculate(calculationInput);
+            Result = Calculate(calculationInput);
         }
 
         /// <summary>
@@ -57,15 +54,7 @@ namespace DiKErnel.Core
         /// <summary>
         /// Gets the result of the calculation.
         /// </summary>
-        public DataResult<CalculationOutput> Result => result;
-
-        /// <summary>
-        /// Handle that enables a calling instance to wait for the calculation to complete.
-        /// </summary>
-        public void WaitForCompletion()
-        {
-            
-        }
+        public DataResult<CalculationOutput> Result { get; }
 
         private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {

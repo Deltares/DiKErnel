@@ -181,8 +181,6 @@ namespace DiKErnel.GrassPerformance
 
             var calculator = new Calculator(calculationInput);
 
-            calculator.WaitForCompletion();
-
             stopWatch.Stop();
 
             Console.WriteLine();

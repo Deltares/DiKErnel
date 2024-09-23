@@ -33,20 +33,6 @@ namespace DiKErnel.Core.Test
     public class CalculatorTest
     {
         [Test]
-        public void GivenCalculator_WhenWaitForCompletion_ThenCalculationPerformed()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            // When
-            calculator.WaitForCompletion();
-
-            // Then
-            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
-            Assert.That(calculator.Progress, Is.EqualTo(100));
-        }
-
-        [Test]
         [TestCase(true)]
         [TestCase(false)]
         public void GivenCalculator_WhenCalculationPerformed_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
@@ -57,10 +43,8 @@ namespace DiKErnel.Core.Test
 
             ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
 
-            var calculator = new Calculator(calculationInput);
-
             // When
-            calculator.WaitForCompletion();
+            var calculator = new Calculator(calculationInput);
 
             // Then
             Assert.That(calculator.Result, Is.Not.Null);
@@ -86,8 +70,6 @@ namespace DiKErnel.Core.Test
 
             // Then
             Assert.That(calculationState, Is.EqualTo(CalculationState.Running));
-
-            calculator.WaitForCompletion();
         }
 
         [Test]
@@ -101,8 +83,6 @@ namespace DiKErnel.Core.Test
 
             // Then
             Assert.That(result, Is.Null);
-
-            calculator.WaitForCompletion();
         }
 
         [Test]
@@ -115,8 +95,6 @@ namespace DiKErnel.Core.Test
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = Random.NextString();
 
             var calculator = new Calculator(calculationInput);
-
-            calculator.WaitForCompletion();
 
             // When
             CalculationState calculationState = calculator.CalculationState;
@@ -136,8 +114,6 @@ namespace DiKErnel.Core.Test
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
             var calculator = new Calculator(calculationInput);
-
-            calculator.WaitForCompletion();
 
             // When
             DataResult<CalculationOutput> result = calculator.Result;
