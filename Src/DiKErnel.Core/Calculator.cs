@@ -29,6 +29,11 @@ namespace DiKErnel.Core
     /// </summary>
     public static class Calculator
     {
+        /// <summary>
+        /// Performs a calculation.
+        /// </summary>
+        /// <param name="calculationInput">The input used for the calculation.</param>
+        /// <returns>The result of the calculation.</returns>
         public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
             try
