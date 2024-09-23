@@ -32,7 +32,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
         {
             // Setup
             double incrementDamage = Random.NextDouble();
-            double damage = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();
@@ -41,7 +40,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
             var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
                 RepresentativeWaveRunup2P = representativeWaveRunup2P,
                 CumulativeOverload = cumulativeOverload,
@@ -54,7 +52,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
-            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.That(output.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
             Assert.That(output.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
             Assert.That(output.CumulativeOverload, Is.EqualTo(cumulativeOverload));
@@ -66,13 +63,11 @@ namespace DiKErnel.Integration.Test.Data.Grass
         {
             // Setup
             double incrementDamage = Random.NextDouble();
-            double damage = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
 
             var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
@@ -82,7 +77,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
-            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.That(output.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
             Assert.That(output.RepresentativeWaveRunup2P, Is.Null);
             Assert.That(output.CumulativeOverload, Is.Null);
@@ -96,7 +90,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
             var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
-                Damage = Random.NextDouble(),
                 VerticalDistanceWaterLevelElevation = null,
                 RepresentativeWaveRunup2P = Random.NextDouble(),
                 CumulativeOverload = Random.NextDouble(),

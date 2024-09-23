@@ -36,7 +36,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.That(constructionProperties.AverageNumberOfWaves, Is.Null);
             Assert.That(constructionProperties.IncrementDamage, Is.Null);
-            Assert.That(constructionProperties.Damage, Is.Null);
             Assert.That(constructionProperties.VerticalDistanceWaterLevelElevation, Is.Null);
             Assert.That(constructionProperties.RepresentativeWaveRunup2P, Is.Null);
             Assert.That(constructionProperties.CumulativeOverload, Is.Null);
@@ -47,7 +46,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
         {
             // Given
             double incrementDamage = Random.NextDouble();
-            double damage = Random.NextDouble();
             double verticalDistanceWaterLevelElevation = Random.NextDouble();
             double representativeWaveRunup2P = Random.NextDouble();
             double cumulativeOverload = Random.NextDouble();
@@ -57,7 +55,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
             var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation,
                 RepresentativeWaveRunup2P = representativeWaveRunup2P,
                 CumulativeOverload = cumulativeOverload,
@@ -66,7 +63,6 @@ namespace DiKErnel.Integration.Test.Data.Grass
 
             // Then
             Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
-            Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
             Assert.That(constructionProperties.VerticalDistanceWaterLevelElevation, Is.EqualTo(verticalDistanceWaterLevelElevation));
             Assert.That(constructionProperties.RepresentativeWaveRunup2P, Is.EqualTo(representativeWaveRunup2P));
             Assert.That(constructionProperties.CumulativeOverload, Is.EqualTo(cumulativeOverload));
