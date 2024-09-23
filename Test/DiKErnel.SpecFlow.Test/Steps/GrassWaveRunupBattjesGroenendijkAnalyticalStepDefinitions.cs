@@ -41,7 +41,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Scope(Feature = "Grass wave run-up Battjes-Groenendijk analytical with BM Gras Benchmarks")]
         public void ThenTheCumulativeOverloadIs(double? expectedCumulativeOverload)
         {
-            var output = (LocationDependentOutput) Context[GeneralDefinitions.Output];
+            var output = (LocationDependentOutput) Context[GeneralDefinitions.LocationDependentOutput];
 
             GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverloadOutputItems =
                 output.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();

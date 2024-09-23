@@ -75,9 +75,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the damage is (.*)")]
         public void ThenTheDamageIs(double expectedDamage)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.Output];
+            var locationDependentInput = (ILocationDependentInput) context[GeneralDefinitions.LocationDependentInput];
+            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutput];
 
-            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
+            IReadOnlyList<double> damages = locationDependentOutput.GetDamages(locationDependentInput.InitialDamage);
             double actualDamage = damages[damages.Count - 1];
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(Tolerance));
         }
@@ -85,10 +86,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the rounded time of failure is (.*)")]
         public void ThenTheRoundedTimeOfFailureIs(string expectedValue)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.Output];
+            var locationDependentInput = (ILocationDependentInput) context[GeneralDefinitions.LocationDependentInput];
+            var timeDependentInputItems = (IReadOnlyList<ITimeDependentInput>) context[GeneralDefinitions.TimeDependentInput];
+            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutput];
 
             int? roundedTimeOfFailure = null;
-            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure();
+            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure(
+                locationDependentInput.InitialDamage, locationDependentInput.FailureNumber, timeDependentInputItems);
 
             if (timeOfFailure.HasValue)
             {
