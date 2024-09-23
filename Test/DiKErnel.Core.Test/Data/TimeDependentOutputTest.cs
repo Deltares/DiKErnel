@@ -32,18 +32,15 @@ namespace DiKErnel.Core.Test.Data
         {
             // Setup
             double incrementDamage = Random.NextDouble();
-            double damage = Random.NextDouble();
 
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
             constructionProperties.IncrementDamage = incrementDamage;
-            constructionProperties.Damage = damage;
 
             // Call
             var timeDependentOutput = Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
             Assert.That(timeDependentOutput.IncrementDamage, Is.EqualTo(incrementDamage));
-            Assert.That(timeDependentOutput.Damage, Is.EqualTo(damage));
         }
 
         [Test]
@@ -51,27 +48,12 @@ namespace DiKErnel.Core.Test.Data
         {
             // Setup
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
-            constructionProperties.Damage = Random.NextDouble();
 
             // Call
             void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
             AssertHelper.AssertInnerException<InvalidTimeDependentOutputException>(Call, "IncrementDamage must be set.");
-        }
-
-        [Test]
-        public void Constructor_DamageNull_ThrowsInvalidTimeDependentOutputException()
-        {
-            // Setup
-            var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
-            constructionProperties.IncrementDamage = Random.NextDouble();
-
-            // Call
-            void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
-
-            // Assert
-            AssertHelper.AssertInnerException<InvalidTimeDependentOutputException>(Call, "Damage must be set.");
         }
     }
 }
