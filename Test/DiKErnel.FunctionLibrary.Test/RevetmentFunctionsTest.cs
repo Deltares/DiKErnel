@@ -53,19 +53,5 @@ namespace DiKErnel.FunctionLibrary.Test
             // Assert
             AssertHelper.AreEqual(115.38461538461539, averageNumberOfWaves);
         }
-
-        [Test]
-        public void Damage_ValidInput_ExpectedValue()
-        {
-            // Setup
-            const double incrementDamage = 0.12;
-            const double initialDamage = 0.23;
-
-            // Call
-            double damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
-
-            // Assert
-            AssertHelper.AreEqual(0.35, damage);
-        }
     }
 }
