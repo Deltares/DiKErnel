@@ -36,7 +36,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.That(constructionProperties.IncrementDamage, Is.Null);
             Assert.That(constructionProperties.Damage, Is.Null);
-            Assert.That(constructionProperties.TimeOfFailure, Is.Null);
             Assert.That(constructionProperties.MaximumPeakStress, Is.Null);
             Assert.That(constructionProperties.AverageNumberOfWaves, Is.Null);
         }
@@ -47,7 +46,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             // Given
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double timeOfFailure = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
@@ -56,7 +54,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 MaximumPeakStress = maximumPeakStress,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
@@ -65,7 +62,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
-            Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));
             Assert.That(constructionProperties.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
             Assert.That(constructionProperties.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
