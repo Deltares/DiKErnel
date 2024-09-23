@@ -39,13 +39,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
         protected void RunCalculation()
         {
             var builder = new CalculationInputBuilder(Context.GetDouble(DikeProfileDefinitions.DikeOrientation));
+
             ConfigureBuilder(builder);
 
-            DataResult<ICalculationInput> result = builder.Build();
+            DataResult<ICalculationInput> inputResult = builder.Build();
 
-            var calculator = new Calculator(result.Data);
+            DataResult<CalculationOutput> outputResult = Calculator.Calculate(inputResult.Data);
 
-            Context[GeneralDefinitions.Output] = calculator.Result.Data.LocationDependentOutputItems[0];
+            Context[GeneralDefinitions.Output] = outputResult.Data.LocationDependentOutputItems[0];
         }
 
         protected virtual void ConfigureBuilder(CalculationInputBuilder builder)
