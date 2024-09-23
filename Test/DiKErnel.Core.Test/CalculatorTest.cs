@@ -34,9 +34,7 @@ namespace DiKErnel.Core.Test
         public void GivenCalculationInput_WhenCalculationPerformedSuccessfully_ThenReturnsResultWithExpectedOutput()
         {
             // Given
-            double damage = Random.NextDouble();
-
-            ICalculationInput calculationInput = CreateCalculationInput(damage);
+            ICalculationInput calculationInput = CreateCalculationInput();
 
             // When
             DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
@@ -79,7 +77,7 @@ namespace DiKErnel.Core.Test
                                                            $"{Environment.NewLine}{exceptionMessage}"));
         }
 
-        private static ICalculationInput CreateCalculationInput(double damage = 0)
+        private static ICalculationInput CreateCalculationInput()
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -87,7 +85,7 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                new TestLocationDependentCalculationInput(damage)
+                new TestLocationDependentCalculationInput()
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -102,13 +100,6 @@ namespace DiKErnel.Core.Test
 
         private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
-            private readonly double damage;
-
-            public TestLocationDependentCalculationInput(double damage)
-            {
-                this.damage = damage;
-            }
-
             public string ExceptionMessage { get; set; }
 
             public double X => 0;
@@ -137,7 +128,6 @@ namespace DiKErnel.Core.Test
                 var timeDependentOutputConstructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
 
                 timeDependentOutputConstructionProperties.IncrementDamage = Random.NextDouble();
-                timeDependentOutputConstructionProperties.Damage = damage;
 
                 return Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties);
             }
