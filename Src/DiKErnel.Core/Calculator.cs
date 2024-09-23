@@ -72,19 +72,6 @@ namespace DiKErnel.Core
             
         }
 
-        /// <summary>
-        /// Cancels the calculation.
-        /// </summary>
-        /// <remarks>A calculation can only be cancelled when it is actually
-        /// running.</remarks>
-        public void Cancel()
-        {
-            if (CalculationState == CalculationState.Running)
-            {
-                CalculationState = CalculationState.Cancelled;
-            }
-        }
-
         private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
             try

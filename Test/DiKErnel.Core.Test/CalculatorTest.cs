@@ -76,37 +76,6 @@ namespace DiKErnel.Core.Test
         }
 
         [Test]
-        public void GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            // When
-            calculator.Cancel();
-            calculator.WaitForCompletion();
-
-            // Then
-            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.Cancelled));
-            Assert.That(calculator.Progress, Is.Not.EqualTo(100));
-        }
-
-        [Test]
-        public void GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            calculator.WaitForCompletion();
-
-            // When
-            calculator.Cancel();
-
-            // Then
-            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
-            Assert.That(calculator.Progress, Is.EqualTo(100));
-        }
-
-        [Test]
         public void GivenCalculatorWithRunningCalculation_WhenGetCalculationState_ThenReturnsExpectedResult()
         {
             // Given
@@ -134,38 +103,6 @@ namespace DiKErnel.Core.Test
             Assert.That(result, Is.Null);
 
             calculator.WaitForCompletion();
-        }
-
-        [Test]
-        public void GivenCalculatorWithCancelledCalculation_WhenGetCalculationState_ThenExpectedResult()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            calculator.Cancel();
-            calculator.WaitForCompletion();
-
-            // When
-            CalculationState calculationState = calculator.CalculationState;
-
-            // Then
-            Assert.That(calculationState, Is.EqualTo(CalculationState.Cancelled));
-        }
-
-        [Test]
-        public void GivenCalculatorWithCancelledCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalse()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            calculator.Cancel();
-            calculator.WaitForCompletion();
-
-            // When
-            DataResult<CalculationOutput> result = calculator.Result;
-
-            // Then
-            Assert.That(result.Successful, Is.False);
         }
 
         [Test]
