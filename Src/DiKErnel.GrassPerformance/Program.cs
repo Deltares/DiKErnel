@@ -179,7 +179,7 @@ namespace DiKErnel.GrassPerformance
 
             stopWatch.Start();
 
-            var calculator = new Calculator(calculationInput);
+            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
 
             stopWatch.Stop();
 
@@ -193,9 +193,9 @@ namespace DiKErnel.GrassPerformance
             Console.WriteLine("Output results");
             Console.WriteLine("---------------------------------");
 
-            for (var i = 0; i < calculator.Result.Data.LocationDependentOutputItems.Count; i++)
+            for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
             {
-                IReadOnlyList<double> damages = calculator.Result.Data.LocationDependentOutputItems[i].GetDamages();
+                IReadOnlyList<double> damages = result.Data.LocationDependentOutputItems[i].GetDamages();
 
                 var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
                 var damage = Math.Round(damages[^1], 2).ToString(CultureInfo.InvariantCulture);
