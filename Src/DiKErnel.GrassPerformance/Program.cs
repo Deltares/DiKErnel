@@ -197,7 +197,8 @@ namespace DiKErnel.GrassPerformance
 
             for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
             {
-                IReadOnlyList<double> damages = result.Data.LocationDependentOutputItems[i].GetDamages();
+                IReadOnlyList<double> damages = result.Data.LocationDependentOutputItems[i]
+                                                      .GetDamages(calculationInput.LocationDependentInputItems[i].InitialDamage);
 
                 var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
                 var damage = Math.Round(damages[^1], 2).ToString(CultureInfo.InvariantCulture);
