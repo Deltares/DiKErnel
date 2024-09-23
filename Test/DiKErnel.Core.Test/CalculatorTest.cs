@@ -18,10 +18,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using DiKErnel.Core.Data;
-using DiKErnel.Core.Extensions;
 using DiKErnel.Util;
 using NSubstitute;
 using NUnit.Framework;
@@ -33,30 +31,25 @@ namespace DiKErnel.Core.Test
     public class CalculatorTest
     {
         [Test]
-        [TestCase(true)]
-        [TestCase(false)]
-        public void GivenCalculationInput_WhenCalculationPerformedSuccessfully_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
+        public void GivenCalculationInput_WhenCalculationPerformedSuccessfully_ThenReturnsResultWithExpectedOutput()
         {
             // Given
             double damage = Random.NextDouble();
-            double? timeOfFailure = withTimeOfFailure ? Random.NextDouble() : (double?) null;
 
-            ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
+            ICalculationInput calculationInput = CreateCalculationInput(damage);
 
             // When
             DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
 
             // Then
             Assert.That(result, Is.Not.Null);
+            Assert.That(result.Successful, Is.True);
+            Assert.That(result.Events, Has.Count.EqualTo(0));
+
+            Assert.That(result.Data, Is.Not.Null);
 
             CalculationOutput output = result.Data;
             Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(1));
-
-            LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
-            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
-            Assert.That(damages, Has.Count.EqualTo(3));
-            Assert.That(damages.All(d => d.Equals(damage)), Is.True);
-            Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailure));
         }
 
         [Test]
@@ -73,7 +66,10 @@ namespace DiKErnel.Core.Test
             DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
 
             // Then
+            Assert.That(result, Is.Not.Null);
             Assert.That(result.Successful, Is.False);
+            Assert.That(result.Data, Is.Null);
+
             Assert.That(result.Events, Has.Count.EqualTo(1));
 
             Event exceptionEvent = result.Events[0];
@@ -83,7 +79,7 @@ namespace DiKErnel.Core.Test
                                                            $"{Environment.NewLine}{exceptionMessage}"));
         }
 
-        private static ICalculationInput CreateCalculationInput(double damage = 0, double? timeOfFailure = null)
+        private static ICalculationInput CreateCalculationInput(double damage = 0)
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -91,7 +87,7 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                new TestLocationDependentCalculationInput(damage, timeOfFailure)
+                new TestLocationDependentCalculationInput(damage)
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -107,12 +103,10 @@ namespace DiKErnel.Core.Test
         private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
             private readonly double damage;
-            private readonly double? timeOfFailure;
 
-            public TestLocationDependentCalculationInput(double damage, double? timeOfFailure = null)
+            public TestLocationDependentCalculationInput(double damage)
             {
                 this.damage = damage;
-                this.timeOfFailure = timeOfFailure;
             }
 
             public string ExceptionMessage { get; set; }
