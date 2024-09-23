@@ -106,8 +106,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                                            MaximumWaveHeightTemin);
         }
 
-        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
-                                                                            ITimeDependentInput timeDependentInput,
+        protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
             loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel,

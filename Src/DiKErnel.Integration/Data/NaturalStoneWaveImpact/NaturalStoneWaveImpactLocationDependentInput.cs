@@ -131,8 +131,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             resistance = NaturalStoneWaveImpactFunctions.Resistance(RelativeDensity, ThicknessTopLayer);
         }
 
-        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
-                                                                            ITimeDependentInput timeDependentInput,
+        protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
             outerSlope = CalculateOuterSlope(
