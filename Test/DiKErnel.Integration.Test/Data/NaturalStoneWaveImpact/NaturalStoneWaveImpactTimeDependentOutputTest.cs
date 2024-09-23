@@ -33,7 +33,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double timeOfFailure = Random.NextDouble();
             double outerSlope = Random.NextDouble();
             double slopeUpperLevel = Random.NextDouble();
             double slopeUpperPosition = Random.NextDouble();
@@ -57,7 +56,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 OuterSlope = outerSlope,
                 SlopeUpperLevel = slopeUpperLevel,
                 SlopeUpperPosition = slopeUpperPosition,
@@ -85,7 +83,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
             Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
             Assert.That(output.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
             Assert.That(output.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
@@ -130,7 +127,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = null,
                 OuterSlope = outerSlope,
                 SlopeUpperLevel = slopeUpperLevel,
                 SlopeUpperPosition = slopeUpperPosition,
@@ -158,7 +154,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.That(output.TimeOfFailure, Is.Null);
             Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
             Assert.That(output.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
             Assert.That(output.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
@@ -405,7 +400,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
-                TimeOfFailure = Random.NextDouble(),
                 OuterSlope = Random.NextDouble(),
                 SlopeUpperLevel = Random.NextDouble(),
                 SlopeUpperPosition = Random.NextDouble(),

@@ -36,7 +36,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.That(constructionProperties.IncrementDamage, Is.Null);
             Assert.That(constructionProperties.Damage, Is.Null);
-            Assert.That(constructionProperties.TimeOfFailure, Is.Null);
             Assert.That(constructionProperties.LoadingRevetment, Is.Null);
             Assert.That(constructionProperties.UpperLimitLoading, Is.Null);
             Assert.That(constructionProperties.LowerLimitLoading, Is.Null);
@@ -51,7 +50,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             // Given
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double timeOfFailure = Random.NextDouble();
             bool loadingRevetment = Random.NextBoolean();
             double upperLimitLoading = Random.NextDouble();
             double lowerLimitLoading = Random.NextDouble();
@@ -64,7 +62,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading,
@@ -76,7 +73,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             // Then
             Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
-            Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));
             Assert.That(constructionProperties.LoadingRevetment, Is.EqualTo(loadingRevetment));
             Assert.That(constructionProperties.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
             Assert.That(constructionProperties.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));

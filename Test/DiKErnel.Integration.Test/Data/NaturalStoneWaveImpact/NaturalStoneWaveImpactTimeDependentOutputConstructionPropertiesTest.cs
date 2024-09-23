@@ -36,7 +36,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             Assert.That(constructionProperties, Is.InstanceOf<TimeDependentOutputConstructionProperties>());
             Assert.That(constructionProperties.IncrementDamage, Is.Null);
             Assert.That(constructionProperties.Damage, Is.Null);
-            Assert.That(constructionProperties.TimeOfFailure, Is.Null);
             Assert.That(constructionProperties.OuterSlope, Is.Null);
             Assert.That(constructionProperties.SlopeUpperLevel, Is.Null);
             Assert.That(constructionProperties.SlopeUpperPosition, Is.Null);
@@ -63,7 +62,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             // Given
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double timeOfFailure = Random.NextDouble();
             double outerSlope = Random.NextDouble();
             double slopeUpperLevel = Random.NextDouble();
             double slopeUpperPosition = Random.NextDouble();
@@ -88,7 +86,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 OuterSlope = outerSlope,
                 SlopeUpperLevel = slopeUpperLevel,
                 SlopeUpperPosition = slopeUpperPosition,
@@ -112,7 +109,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             // Then
             Assert.That(constructionProperties.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(constructionProperties.Damage, Is.EqualTo(damage));
-            Assert.That(constructionProperties.TimeOfFailure, Is.EqualTo(timeOfFailure));
             Assert.That(constructionProperties.OuterSlope, Is.EqualTo(outerSlope));
             Assert.That(constructionProperties.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
             Assert.That(constructionProperties.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));

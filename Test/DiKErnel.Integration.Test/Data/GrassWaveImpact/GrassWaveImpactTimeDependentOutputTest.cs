@@ -33,7 +33,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double timeOfFailure = Random.NextDouble();
             bool loadingRevetment = Random.NextBoolean();
             double upperLimitLoading = Random.NextDouble();
             double lowerLimitLoading = Random.NextDouble();
@@ -45,7 +44,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading,
@@ -61,7 +59,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
             Assert.That(output.LoadingRevetment, Is.EqualTo(loadingRevetment));
             Assert.That(output.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
             Assert.That(output.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
@@ -84,7 +81,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = null,
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading,
@@ -100,7 +96,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.That(output.TimeOfFailure, Is.Null);
             Assert.That(output.LoadingRevetment, Is.EqualTo(loadingRevetment));
             Assert.That(output.UpperLimitLoading, Is.EqualTo(upperLimitLoading));
             Assert.That(output.LowerLimitLoading, Is.EqualTo(lowerLimitLoading));
@@ -175,7 +170,6 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
-                TimeOfFailure = Random.NextDouble(),
                 LoadingRevetment = Random.NextBoolean(),
                 UpperLimitLoading = Random.NextDouble(),
                 LowerLimitLoading = Random.NextDouble(),
