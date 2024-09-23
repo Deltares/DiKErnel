@@ -50,13 +50,13 @@ namespace DiKErnel.Core.Extensions
         }
 
         /// <summary>
-        /// Gets the calculated time of failure.
+        /// Gets the time of failure.
         /// </summary>
         /// <param name="locationDependentOutput">The location dependent output.</param>
         /// <param name="initialDamage">The initial damage.</param>
         /// <param name="failureNumber">The failure number.</param>
         /// <param name="timeDependentInputItems">The time dependent input items.</param>
-        /// <returns>The calculated time of failure for the location dependent output, or <c>null</c> when:
+        /// <returns>The time of failure for the location dependent output, or <c>null</c> when:
         /// <list type="bullet">
         /// <item>the revetment at the location did not fail;</item>
         /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
@@ -72,44 +72,21 @@ namespace DiKErnel.Core.Extensions
                 return null;
             }
 
-            double? timeOfFailure = null;
-
             for (var i = 0; i < timeDependentInputItems.Count; i++)
             {
-                if (FailureRevetment(damages[i], initialDamage, failureNumber))
+                if (initialDamage < failureNumber && damages[i] >= failureNumber)
                 {
                     ITimeDependentInput timeDependentInput = timeDependentInputItems[i];
 
-                    double durationInTimeStepFailure = DurationInTimeStepFailure(
-                        IncrementTime(timeDependentInput.BeginTime, timeDependentInput.EndTime),
-                        locationDependentOutput.TimeDependentOutputItems[i].IncrementDamage, failureNumber, initialDamage);
+                    double incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
+                    double incrementDamage = locationDependentOutput.TimeDependentOutputItems[i].IncrementDamage;
+                    double durationInTimeStepFailure = (failureNumber - initialDamage) / incrementDamage * incrementTime;
 
-                    timeOfFailure = TimeOfFailure(durationInTimeStepFailure, timeDependentInput.BeginTime);
+                    return timeDependentInput.BeginTime + durationInTimeStepFailure;
                 }
             }
 
-            return timeOfFailure;
-        }
-
-        private static bool FailureRevetment(double damage, double initialDamage, double failureNumber)
-        {
-            return initialDamage < failureNumber && damage >= failureNumber;
-        }
-
-        private static double DurationInTimeStepFailure(double incrementTime, double incrementDamage, double failureNumber,
-                                                        double initialDamage)
-        {
-            return (failureNumber - initialDamage) / incrementDamage * incrementTime;
-        }
-
-        private static double IncrementTime(double beginTime, double endTime)
-        {
-            return endTime - beginTime;
-        }
-
-        private static double TimeOfFailure(double durationInTimeStepFailure, double beginTime)
-        {
-            return durationInTimeStepFailure + beginTime;
+            return null;
         }
     }
 }
