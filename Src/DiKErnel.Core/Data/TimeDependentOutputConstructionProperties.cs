@@ -32,10 +32,5 @@ namespace DiKErnel.Core.Data
         /// Gets or sets the damage.
         /// </summary>
         public double? Damage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the time of failure.
-        /// </summary>
-        public double? TimeOfFailure { get; set; }
     }
 }

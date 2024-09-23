@@ -37,7 +37,6 @@ namespace DiKErnel.Core.Data
                               ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.IncrementDamage));
             Damage = constructionProperties.Damage
                      ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.Damage));
-            TimeOfFailure = constructionProperties.TimeOfFailure;
         }
 
         /// <summary>
@@ -49,10 +48,5 @@ namespace DiKErnel.Core.Data
         /// Gets the damage.
         /// </summary>
         public double Damage { get; }
-
-        /// <summary>
-        /// Gets the time of failure.
-        /// </summary>
-        public double? TimeOfFailure { get; }
     }
 }
