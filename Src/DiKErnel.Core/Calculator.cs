@@ -25,12 +25,10 @@ using DiKErnel.Util;
 namespace DiKErnel.Core
 {
     /// <summary>
-    /// Class responsible for performing calculations on a separate thread.
+    /// Class responsible for performing calculations.
     /// </summary>
     public class Calculator
     {
-        private double progress;
-
         /// <summary>
         /// Creates a new instance.
         /// </summary>
@@ -45,11 +43,6 @@ namespace DiKErnel.Core
         /// Gets the state of the calculation.
         /// </summary>
         public CalculationState CalculationState { get; private set; } = CalculationState.Running;
-
-        /// <summary>
-        /// Gets the current progress of the calculation [%].
-        /// </summary>
-        public int Progress => (int) Math.Round(progress * 100);
 
         /// <summary>
         /// Gets the result of the calculation.
@@ -100,8 +93,6 @@ namespace DiKErnel.Core
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData)
         {
-            double progressPerIteration = 1d / timeDependentInputItems.Count / locationDependentInputItems.Count;
-
             foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
             {
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
@@ -115,8 +106,6 @@ namespace DiKErnel.Core
 
                     currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
                                                                         currentOutputItems, profileData));
-
-                    progress += progressPerIteration;
                 }
             }
         }
