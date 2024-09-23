@@ -56,42 +56,5 @@ namespace DiKErnel.FunctionLibrary
         {
             return initialDamage + incrementDamage;
         }
-
-        /// <summary>
-        /// Calculates whether the revetment has failed or not.
-        /// </summary>
-        /// <param name="damage">The damage [-].</param>
-        /// <param name="initialDamage">The initial damage [-].</param>
-        /// <param name="failureNumber">The failure number [-].</param>
-        /// <returns>Whether the revetment has failed or not.</returns>
-        public static bool FailureRevetment(double damage, double initialDamage, double failureNumber)
-        {
-            return initialDamage < failureNumber && damage >= failureNumber;
-        }
-
-        /// <summary>
-        /// Calculates the duration in the time step of failure.
-        /// </summary>
-        /// <param name="incrementTime">The increment of time [s].</param>
-        /// <param name="incrementDamage">The increment of damage [-].</param>
-        /// <param name="failureNumber">The failure number [-].</param>
-        /// <param name="initialDamage">The initial damage [-].</param>
-        /// <returns>The duration in the time step of failure [s].</returns>
-        public static double DurationInTimeStepFailure(double incrementTime, double incrementDamage, double failureNumber,
-                                                       double initialDamage)
-        {
-            return (failureNumber - initialDamage) / incrementDamage * incrementTime;
-        }
-
-        /// <summary>
-        /// Calculates the time of failure.
-        /// </summary>
-        /// <param name="durationInTimeStepFailure">The duration in the time step of failure [s].</param>
-        /// <param name="beginTime">The begin time [s].</param>
-        /// <returns>The time of failure [s].</returns>
-        public static double TimeOfFailure(double durationInTimeStepFailure, double beginTime)
-        {
-            return durationInTimeStepFailure + beginTime;
-        }
     }
 }
