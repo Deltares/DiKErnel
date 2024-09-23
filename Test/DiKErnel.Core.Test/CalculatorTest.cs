@@ -35,7 +35,7 @@ namespace DiKErnel.Core.Test
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void GivenCalculator_WhenCalculationPerformed_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
+        public void GivenCalculationInput_WhenCalculationPerformedSuccessfully_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
         {
             // Given
             double damage = Random.NextDouble();
@@ -44,12 +44,12 @@ namespace DiKErnel.Core.Test
             ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
 
             // When
-            var calculator = new Calculator(calculationInput);
+            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
 
             // Then
-            Assert.That(calculator.Result, Is.Not.Null);
+            Assert.That(result, Is.Not.Null);
 
-            CalculationOutput output = calculator.Result.Data;
+            CalculationOutput output = result.Data;
             Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(1));
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
@@ -60,20 +60,7 @@ namespace DiKErnel.Core.Test
         }
 
         [Test]
-        public void GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnsNull()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            // When
-            DataResult<CalculationOutput> result = calculator.Result;
-
-            // Then
-            Assert.That(result, Is.Null);
-        }
-
-        [Test]
-        public void GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenCalculationInput_WhenExceptionDuringCalculation_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             ICalculationInput calculationInput = CreateCalculationInput();
@@ -82,10 +69,8 @@ namespace DiKErnel.Core.Test
             ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[0];
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
-            var calculator = new Calculator(calculationInput);
-
             // When
-            DataResult<CalculationOutput> result = calculator.Result;
+            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
 
             // Then
             Assert.That(result.Successful, Is.False);
