@@ -27,24 +27,9 @@ namespace DiKErnel.Core
     /// <summary>
     /// Class responsible for performing calculations.
     /// </summary>
-    public class Calculator
+    public static class Calculator
     {
-        /// <summary>
-        /// Creates a new instance.
-        /// </summary>
-        /// <param name="calculationInput">The input used in the calculation.</param>
-        /// <remarks>While creating the new instance, the calculation is directly started.</remarks>
-        public Calculator(ICalculationInput calculationInput)
-        {
-            Result = Calculate(calculationInput);
-        }
-
-        /// <summary>
-        /// Gets the result of the calculation.
-        /// </summary>
-        public DataResult<CalculationOutput> Result { get; }
-
-        private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
+        public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
             try
             {
@@ -73,7 +58,7 @@ namespace DiKErnel.Core
             }
         }
 
-        private void CalculateTimeStepsForLocations(
+        private static void CalculateTimeStepsForLocations(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
