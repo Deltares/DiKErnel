@@ -94,7 +94,6 @@ namespace DiKErnel.Integration.Data.Grass
         {
             var incrementDamage = 0d;
             double damage = initialDamage;
-            double? timeOfFailure = null;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 GetRunupHeight(), timeDependentInput.WaterLevel);
@@ -118,19 +117,9 @@ namespace DiKErnel.Integration.Data.Grass
                                                                                    CriticalCumulativeOverload);
 
                 damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
-
-                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
-                {
-                    double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
-                        incrementTime, incrementDamage, FailureNumber, initialDamage);
-
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
-                                                                     timeDependentInput.BeginTime);
-                }
             }
 
-            return new GrassCumulativeOverloadTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+            return new GrassCumulativeOverloadTimeDependentOutput(CreateConstructionProperties(incrementDamage, damage));
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
@@ -186,13 +175,12 @@ namespace DiKErnel.Integration.Data.Grass
         }
 
         private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, double? timeOfFailure)
+            double incrementDamage, double damage)
         {
             var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
