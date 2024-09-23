@@ -37,11 +37,11 @@ namespace DiKErnel.Core.Test.Extensions
             double incrementDamage2 = Random.NextDouble();
 
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
-            timeDependentOutputConstructionProperties1.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties1.IncrementDamage = incrementDamage1;
             timeDependentOutputConstructionProperties1.Damage = incrementDamage1;
 
             var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
-            timeDependentOutputConstructionProperties2.IncrementDamage = Random.NextDouble();
+            timeDependentOutputConstructionProperties2.IncrementDamage = incrementDamage2;
             timeDependentOutputConstructionProperties2.Damage = incrementDamage2;
 
             var timeDependentOutputItems = new List<TimeDependentOutput>
