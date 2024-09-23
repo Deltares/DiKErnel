@@ -31,12 +31,22 @@ namespace DiKErnel.Core.Extensions
         /// Gets the calculated damages.
         /// </summary>
         /// <param name="locationDependentOutput">The location dependent output.</param>
+        /// <param name="initialDamage">The initial damage.</param>
         /// <returns>The calculated damages for the location dependent output.</returns>
-        public static IReadOnlyList<double> GetDamages(this LocationDependentOutput locationDependentOutput)
+        public static IReadOnlyList<double> GetDamages(this LocationDependentOutput locationDependentOutput, double initialDamage)
         {
-            return locationDependentOutput.TimeDependentOutputItems
-                                          .Select(timeDependentOutput => timeDependentOutput.Damage)
-                                          .ToList();
+            var damages = new List<double>();
+
+            double currentDamage = initialDamage;
+
+            foreach (TimeDependentOutput timeDependentOutput in locationDependentOutput.TimeDependentOutputItems)
+            {
+                currentDamage += timeDependentOutput.IncrementDamage;
+
+                damages.Add(currentDamage);
+            }
+
+            return damages;
         }
 
         /// <summary>
