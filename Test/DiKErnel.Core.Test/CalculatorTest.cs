@@ -144,7 +144,6 @@ namespace DiKErnel.Core.Test
 
                 timeDependentOutputConstructionProperties.IncrementDamage = Random.NextDouble();
                 timeDependentOutputConstructionProperties.Damage = damage;
-                timeDependentOutputConstructionProperties.TimeOfFailure = timeOfFailure;
 
                 return Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties);
             }
