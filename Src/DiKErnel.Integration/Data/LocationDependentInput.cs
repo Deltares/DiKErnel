@@ -55,8 +55,7 @@ namespace DiKErnel.Integration.Data
             return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
 
-        public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput,
-                                             IProfileData profileData)
+        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
         {
             if (!derivedLocationDependentInputInitialized)
             {

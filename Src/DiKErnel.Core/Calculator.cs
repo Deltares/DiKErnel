@@ -76,21 +76,16 @@ namespace DiKErnel.Core
                     List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
 
                     currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
-                                                                        currentOutputItems, profileData));
+                                                                        profileData));
                 }
             }
         }
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        IReadOnlyList<TimeDependentOutput> currentOutputItems,
                                                                         IProfileData profileData)
         {
-            double initialDamage = currentOutputItems.Count == 0
-                                       ? locationDependentInput.InitialDamage
-                                       : currentOutputItems[currentOutputItems.Count - 1].Damage;
-
-            return locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
+            return locationDependentInput.Calculate(timeDependentInput, profileData);
         }
     }
 }
