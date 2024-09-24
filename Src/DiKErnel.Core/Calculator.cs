@@ -17,8 +17,10 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DiKErnel.Core.Data;
 using DiKErnel.Util;
 
@@ -74,21 +76,65 @@ namespace DiKErnel.Core
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, CalculationMode locationCalculationMode, CalculationMode timeStepCalculationMode)
         {
-            foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
+            switch (locationCalculationMode)
             {
-                List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
-
-                double currentDamage = locationDependentInput.InitialDamage;
-
-                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+                case CalculationMode.FullySequential:
                 {
-                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
-                        timeDependentInput, locationDependentInput, profileData, currentDamage);
+                    foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
+                    {
+                        CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
+                                                      locationDependentInput, timeStepCalculationMode);
+                    }
 
-                    currentDamage += timeDependentOutput.IncrementDamage;
-
-                    timeDependentOutputItemsForLocation.Add(timeDependentOutput);
+                    break;
                 }
+                case CalculationMode.FullyParallel:
+                    Parallel.For(0, locationDependentInputItems.Count,
+                                 i =>
+                                 {
+                                     CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation,
+                                                                   profileData,
+                                                                   locationDependentInputItems.ElementAt(i), timeStepCalculationMode);
+                                 });
+
+                    break;
+                case CalculationMode.ParallelChunks:
+                {
+                    OrderablePartitioner<Tuple<int, int>> rangePartitioner = Partitioner.Create(0, locationDependentInputItems.Count);
+
+                    Parallel.ForEach(rangePartitioner, (range, loopState) =>
+                    {
+                        for (int i = range.Item1; i < range.Item2; i++)
+                        {
+                            CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
+                                                          locationDependentInputItems.ElementAt(i), timeStepCalculationMode);
+                        }
+                    });
+
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(locationCalculationMode), locationCalculationMode, null);
+            }
+        }
+
+        private static void CalculateTimeStepsForLocation(
+            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
+            IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
+            IProfileData profileData, ILocationDependentInput locationDependentInput, CalculationMode timeStepCalculationMode)
+        {
+            List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
+
+            double currentDamage = locationDependentInput.InitialDamage;
+
+            foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+            {
+                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
+                    timeDependentInput, locationDependentInput, profileData, currentDamage);
+
+                currentDamage += timeDependentOutput.IncrementDamage;
+
+                timeDependentOutputItemsForLocation.Add(timeDependentOutput);
             }
         }
 
