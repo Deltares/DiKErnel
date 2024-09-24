@@ -39,8 +39,8 @@ namespace DiKErnel.Core
         /// <param name="timeStepCalculationMode">The calculation mode while iterating the time steps of each location.</param>
         /// <returns>The result of the calculation.</returns>
         public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput,
-                                                              CalculationMode locationCalculationMode = CalculationMode.FullySequential,
-                                                              CalculationMode timeStepCalculationMode = CalculationMode.FullySequential)
+                                                              CalculationMode locationCalculationMode = CalculationMode.FullyParallel,
+                                                              CalculationMode timeStepCalculationMode = CalculationMode.FullyParallel)
         {
             try
             {
@@ -147,6 +147,8 @@ namespace DiKErnel.Core
                 }
                 case CalculationMode.FullyParallel:
                 {
+                    timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
+
                     Parallel.For(0, timeDependentInputItems.Count,
                                  i =>
                                  {
@@ -158,6 +160,8 @@ namespace DiKErnel.Core
                 }
                 case CalculationMode.ParallelChunks:
                 {
+                    timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
+
                     OrderablePartitioner<Tuple<int, int>> rangePartitioner = Partitioner.Create(0, timeDependentInputItems.Count);
 
                     Parallel.ForEach(rangePartitioner, (range, loopState) =>
