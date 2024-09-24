@@ -48,9 +48,9 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         /// </summary>
         public double Resistance { get; }
 
-        protected override double CalculateDurationInTimeStepFailure(double failureNumber, ITimeDependentInput timeDependentInput,
-                                                                     TimeDependentOutput timeDependentOutput,
-                                                                     double damageAtStartOfCalculation)
+        protected override double CalculateTimeOfFailure(double failureNumber, ITimeDependentInput timeDependentInput,
+                                                         TimeDependentOutput timeDependentOutput,
+                                                         double damageAtStartOfCalculation)
         {
             var naturalStoneWaveImpactTimeDependentOutput = (NaturalStoneWaveImpactTimeDependentOutput) timeDependentOutput;
 
@@ -62,8 +62,10 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             double referenceTimeFailure = NaturalStoneWaveImpactFunctions.ReferenceTimeFailure(
                 referenceFailure, timeDependentInput.WavePeriodTm10);
 
-            return NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
+            double durationInTimeStepFailure = NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
                 referenceTimeFailure, naturalStoneWaveImpactTimeDependentOutput.ReferenceTimeDegradation ?? double.NaN);
+
+            return timeDependentInput.BeginTime + durationInTimeStepFailure;
         }
     }
 }

@@ -92,12 +92,8 @@ namespace DiKErnel.Core.Data
 
                 if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
                 {
-                    ITimeDependentInput timeDependentInput = timeDependentInputItems[i];
-
-                    double durationInTimeStepFailure = CalculateDurationInTimeStepFailure(
-                        failureNumber, timeDependentInput, TimeDependentOutputItems[i], damageAtStartOfCalculation);
-
-                    return timeDependentInput.BeginTime + durationInTimeStepFailure;
+                    return CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], TimeDependentOutputItems[i],
+                                                  damageAtStartOfCalculation);
                 }
 
                 damageAtStartOfCalculation = damageAtEndOfCalculation;
@@ -106,14 +102,23 @@ namespace DiKErnel.Core.Data
             return null;
         }
 
-        protected virtual double CalculateDurationInTimeStepFailure(double failureNumber, ITimeDependentInput timeDependentInput,
-                                                                    TimeDependentOutput timeDependentOutput,
-                                                                    double damageAtStartOfCalculation)
+        /// <summary>
+        /// Calculates the time of failure.
+        /// </summary>
+        /// <param name="failureNumber">The failure number.</param>
+        /// <param name="timeDependentInput">The time dependent input.</param>
+        /// <param name="timeDependentOutput">The time dependent output.</param>
+        /// <param name="damageAtStartOfCalculation">The damage at the start of the calculation.</param>
+        /// <returns>The time of failure.</returns>
+        protected virtual double CalculateTimeOfFailure(double failureNumber, ITimeDependentInput timeDependentInput,
+                                                        TimeDependentOutput timeDependentOutput,
+                                                        double damageAtStartOfCalculation)
         {
             double incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
             double incrementDamage = timeDependentOutput.IncrementDamage;
+            double durationInTimeStepFailure = (failureNumber - damageAtStartOfCalculation) / incrementDamage * incrementTime;
 
-            return (failureNumber - damageAtStartOfCalculation) / incrementDamage * incrementTime;
+            return timeDependentInput.BeginTime + durationInTimeStepFailure;
         }
     }
 }
