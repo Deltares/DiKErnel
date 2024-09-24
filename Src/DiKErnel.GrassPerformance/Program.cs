@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
-using DiKErnel.Core.Extensions;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveImpact;

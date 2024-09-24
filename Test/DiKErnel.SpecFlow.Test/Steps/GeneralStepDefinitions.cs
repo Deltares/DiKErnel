@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DiKErnel.Core.Data;
-using DiKErnel.Core.Extensions;
 using DiKErnel.SpecFlow.Test.Steps.Definitions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
