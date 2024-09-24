@@ -6,10 +6,12 @@ using System.Linq;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.Grass;
 using DiKErnel.Integration.Data.GrassWaveImpact;
 using DiKErnel.Integration.Data.GrassWaveOvertopping;
 using DiKErnel.Integration.Data.GrassWaveRunup;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.Util;
 
 namespace DiKErnel.GrassPerformance
@@ -28,6 +30,8 @@ namespace DiKErnel.GrassPerformance
         private const string grassWaveOvertoppingRayleighDiscreteIdentifier = "GrassWaveOvertoppingRayleighDiscrete";
         private const string grassWaveRunupBattjesGroenendijkAnalyticalIdentifier = "GrassWaveRunupBattjesGroenendijkAnalytical";
         private const string grassWaveRunupRayleighDiscreteIdentifier = "GrassWaveRunupRayleighDiscrete";
+        private const string naturalStoneWaveImpactIdentifier = "NaturalStoneWaveImpact";
+        private const string asphaltWaveImpactIdentifier = "AsphaltWaveImpact";
 
         private const string oneHourTimeStepIdentifier = "1h";
         private const string twelveHoursTimeStepIdentifier = "12h";
@@ -79,6 +83,11 @@ namespace DiKErnel.GrassPerformance
                     new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
                 grassWaveRunupRayleighDiscreteIdentifier => x => builder.AddGrassWaveRunupRayleighDiscreteLocation(
                     new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
+                naturalStoneWaveImpactIdentifier => x => builder.AddNaturalStoneWaveImpactLocation(
+                    new NaturalStoneWaveImpactLocationConstructionProperties(x, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65)),
+                asphaltWaveImpactIdentifier => x => builder.AddAsphaltWaveImpactLocation(
+                    new AsphaltWaveImpactLocationConstructionProperties(x, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
+                                                                        0.3, 16000)),
                 _ => throw new ArgumentException("Invalid calculation type")
             };
 
@@ -196,11 +205,12 @@ namespace DiKErnel.GrassPerformance
 
             for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
             {
-                IReadOnlyList<double> damages = result.Data.LocationDependentOutputItems[i]
-                                                      .GetDamages(calculationInput.LocationDependentInputItems[i].InitialDamage);
+                IReadOnlyList<double> cumulativeDamages =
+                    result.Data.LocationDependentOutputItems[i]
+                          .GetCumulativeDamages(calculationInput.LocationDependentInputItems[i].InitialDamage);
 
                 var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
-                var damage = Math.Round(damages[^1], 2).ToString(CultureInfo.InvariantCulture);
+                var damage = Math.Round(cumulativeDamages[^1], 2).ToString(CultureInfo.InvariantCulture);
 
                 Console.WriteLine($"| X = {x,-5} | Damage = {damage,-8} |");
             }
