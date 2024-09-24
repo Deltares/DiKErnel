@@ -89,6 +89,7 @@ namespace DiKErnel.Core
                     break;
                 }
                 case CalculationMode.FullyParallel:
+                {
                     Parallel.For(0, locationDependentInputItems.Count,
                                  i =>
                                  {
@@ -98,6 +99,7 @@ namespace DiKErnel.Core
                                  });
 
                     break;
+                }
                 case CalculationMode.ParallelChunks:
                 {
                     OrderablePartitioner<Tuple<int, int>> rangePartitioner = Partitioner.Create(0, locationDependentInputItems.Count);
@@ -125,16 +127,52 @@ namespace DiKErnel.Core
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-            double currentDamage = locationDependentInput.InitialDamage;
-
-            foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+            switch (timeStepCalculationMode)
             {
-                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
-                    timeDependentInput, locationDependentInput, profileData, currentDamage);
+                case CalculationMode.FullySequential:
+                {
+                    double currentDamage = locationDependentInput.InitialDamage;
 
-                currentDamage += timeDependentOutput.IncrementDamage;
+                    foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+                    {
+                        TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
+                            timeDependentInput, locationDependentInput, profileData, currentDamage);
 
-                timeDependentOutputItemsForLocation.Add(timeDependentOutput);
+                        currentDamage += timeDependentOutput.IncrementDamage;
+
+                        timeDependentOutputItemsForLocation.Add(timeDependentOutput);
+                    }
+
+                    break;
+                }
+                case CalculationMode.FullyParallel:
+                {
+                    Parallel.For(0, timeDependentInputItems.Count,
+                                 i =>
+                                 {
+                                     timeDependentOutputItemsForLocation[i] = CalculateTimeStepForLocation(
+                                         timeDependentInputItems.ElementAt(i), locationDependentInput, profileData);
+                                 });
+
+                    break;
+                }
+                case CalculationMode.ParallelChunks:
+                {
+                    OrderablePartitioner<Tuple<int, int>> rangePartitioner = Partitioner.Create(0, timeDependentInputItems.Count);
+
+                    Parallel.ForEach(rangePartitioner, (range, loopState) =>
+                    {
+                        for (int i = range.Item1; i < range.Item2; i++)
+                        {
+                            timeDependentOutputItemsForLocation[i] = CalculateTimeStepForLocation(
+                                timeDependentInputItems.ElementAt(i), locationDependentInput, profileData);
+                        }
+                    });
+
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(timeStepCalculationMode), timeStepCalculationMode, null);
             }
         }
 
