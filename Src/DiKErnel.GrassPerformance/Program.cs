@@ -18,8 +18,6 @@ namespace DiKErnel.GrassPerformance
 {
     internal static class Program
     {
-        private const double dikeOrientation = 10;
-
         private const double xStartCalculationZoneOuterSlope = 5;
         private const double xEndCalculationZoneOuterSlope = 15;
         private const double xStartCalculationZoneInnerSlope = 24;
@@ -38,7 +36,7 @@ namespace DiKErnel.GrassPerformance
 
         private static void Main(string[] args)
         {
-            var builder = new CalculationInputBuilder(dikeOrientation);
+            var builder = new CalculationInputBuilder(10);
 
             AddDikeProfile(builder);
 
