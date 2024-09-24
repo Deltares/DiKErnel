@@ -74,8 +74,8 @@ namespace DiKErnel.Core.Data
         /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
         /// </list>
         /// </returns>
-        public virtual double? GetTimeOfFailure(double initialDamage, double failureNumber,
-                                                IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
+        public double? GetTimeOfFailure(double initialDamage, double failureNumber,
+                                        IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
         {
             IReadOnlyList<double> damages = GetDamages(initialDamage);
 
@@ -84,27 +84,36 @@ namespace DiKErnel.Core.Data
                 return null;
             }
 
-            double damageBeginTime = initialDamage;
+            double damageAtStartOfCalculation = initialDamage;
 
             for (var i = 0; i < timeDependentInputItems.Count; i++)
             {
-                double damageEndTime = damages[i];
+                double damageAtEndOfCalculation = damages[i];
 
-                if (damageBeginTime < failureNumber && damageEndTime >= failureNumber)
+                if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
                 {
                     ITimeDependentInput timeDependentInput = timeDependentInputItems[i];
 
-                    double incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
-                    double incrementDamage = TimeDependentOutputItems[i].IncrementDamage;
-                    double durationInTimeStepFailure = (failureNumber - damageBeginTime) / incrementDamage * incrementTime;
+                    double durationInTimeStepFailure = CalculateDurationInTimeStepFailure(
+                        failureNumber, timeDependentInput, TimeDependentOutputItems[i], damageAtStartOfCalculation);
 
                     return timeDependentInput.BeginTime + durationInTimeStepFailure;
                 }
 
-                damageBeginTime = damageEndTime;
+                damageAtStartOfCalculation = damageAtEndOfCalculation;
             }
 
             return null;
+        }
+
+        protected virtual double CalculateDurationInTimeStepFailure(double failureNumber, ITimeDependentInput timeDependentInput,
+                                                                    TimeDependentOutput timeDependentOutput,
+                                                                    double damageAtStartOfCalculation)
+        {
+            double incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
+            double incrementDamage = timeDependentOutput.IncrementDamage;
+
+            return (failureNumber - damageAtStartOfCalculation) / incrementDamage * incrementTime;
         }
     }
 }
