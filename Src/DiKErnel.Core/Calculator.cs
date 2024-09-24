@@ -33,8 +33,12 @@ namespace DiKErnel.Core
         /// Performs a calculation.
         /// </summary>
         /// <param name="calculationInput">The input used for the calculation.</param>
+        /// <param name="locationCalculationMode">The calculation mode while iterating multiple locations.</param>
+        /// <param name="timeStepCalculationMode">The calculation mode while iterating the time steps of each location.</param>
         /// <returns>The result of the calculation.</returns>
-        public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
+        public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput,
+                                                              CalculationMode locationCalculationMode = CalculationMode.FullySequential,
+                                                              CalculationMode timeStepCalculationMode = CalculationMode.FullySequential)
         {
             try
             {
@@ -44,7 +48,8 @@ namespace DiKErnel.Core
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
                 CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
-                                               timeDependentOutputItemsPerLocation, calculationInput.ProfileData);
+                                               timeDependentOutputItemsPerLocation, calculationInput.ProfileData,
+                                               locationCalculationMode, timeStepCalculationMode);
 
                 List<LocationDependentOutput> locationDependentOutputItems =
                     locationDependentInputItems
@@ -67,7 +72,7 @@ namespace DiKErnel.Core
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
-            IProfileData profileData)
+            IProfileData profileData, CalculationMode locationCalculationMode, CalculationMode timeStepCalculationMode)
         {
             foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
             {
