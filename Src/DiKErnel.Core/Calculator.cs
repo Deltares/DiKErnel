@@ -69,23 +69,29 @@ namespace DiKErnel.Core
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData)
         {
-            foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+            foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
             {
-                foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
-                {
-                    List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
+                List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-                    currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
-                                                                        profileData));
+                double damageAtStartOfTimeStep = locationDependentInput.InitialDamage;
+
+                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+                {
+                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
+                        timeDependentInput, locationDependentInput, profileData, damageAtStartOfTimeStep);
+
+                    damageAtStartOfTimeStep += timeDependentOutput.IncrementDamage;
+
+                    timeDependentOutputItemsForLocation.Add(timeDependentOutput);
                 }
             }
         }
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        IProfileData profileData)
+                                                                        IProfileData profileData, double damageAtStartOfTimeStep)
         {
-            return locationDependentInput.Calculate(timeDependentInput, profileData);
+            return locationDependentInput.Calculate(timeDependentInput, profileData, damageAtStartOfTimeStep);
         }
     }
 }
