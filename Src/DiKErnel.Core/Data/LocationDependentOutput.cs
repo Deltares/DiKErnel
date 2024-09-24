@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DiKErnel.Core.Data
 {
@@ -39,5 +40,71 @@ namespace DiKErnel.Core.Data
         /// Gets the time dependent output items.
         /// </summary>
         public IReadOnlyList<TimeDependentOutput> TimeDependentOutputItems { get; }
+
+        /// <summary>
+        /// Gets the cumulative damages.
+        /// </summary>
+        /// <param name="initialDamage">The initial damage.</param>
+        /// <returns>The cumulative damages for the location dependent output.</returns>
+        public IReadOnlyList<double> GetDamages(double initialDamage)
+        {
+            var damages = new List<double>();
+
+            double currentDamage = initialDamage;
+
+            foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
+            {
+                currentDamage += timeDependentOutput.IncrementDamage;
+
+                damages.Add(currentDamage);
+            }
+
+            return damages;
+        }
+
+        /// <summary>
+        /// Gets the time of failure.
+        /// </summary>
+        /// <param name="initialDamage">The initial damage.</param>
+        /// <param name="failureNumber">The failure number.</param>
+        /// <param name="timeDependentInputItems">The time dependent input items.</param>
+        /// <returns>The time of failure for the location dependent output, or <c>null</c> when:
+        /// <list type="bullet">
+        /// <item>the revetment at the location did not fail;</item>
+        /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
+        /// </list>
+        /// </returns>
+        public double? GetTimeOfFailure(double initialDamage, double failureNumber,
+                                        IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
+        {
+            IReadOnlyList<double> damages = GetDamages(initialDamage);
+
+            if (damages.Any(double.IsNaN))
+            {
+                return null;
+            }
+
+            double damageBeginTime = initialDamage;
+
+            for (var i = 0; i < timeDependentInputItems.Count; i++)
+            {
+                double damageEndTime = damages[i];
+
+                if (damageBeginTime < failureNumber && damageEndTime >= failureNumber)
+                {
+                    ITimeDependentInput timeDependentInput = timeDependentInputItems[i];
+
+                    double incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
+                    double incrementDamage = TimeDependentOutputItems[i].IncrementDamage;
+                    double durationInTimeStepFailure = (failureNumber - damageBeginTime) / incrementDamage * incrementTime;
+
+                    return timeDependentInput.BeginTime + durationInTimeStepFailure;
+                }
+
+                damageBeginTime = damageEndTime;
+            }
+
+            return null;
+        }
     }
 }
