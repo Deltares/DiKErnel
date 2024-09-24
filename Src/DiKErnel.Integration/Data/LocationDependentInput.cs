@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Validators;
@@ -67,6 +68,11 @@ namespace DiKErnel.Integration.Data
                 derivedLocationDependentInputInitialized = true;
 
                 InitializeDerivedLocationDependentInput(profileData);
+            }
+
+            if (RequiresDamageAtStartOfCalculation && double.IsNaN(damageAtStartOfCalculation))
+            {
+                throw new ArgumentException("'damageAtStartOfCalculation' is required");
             }
 
             return CalculateTimeDependentOutput(timeDependentInput, profileData, damageAtStartOfCalculation);

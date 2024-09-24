@@ -77,8 +77,8 @@ namespace DiKErnel.SpecFlow.Test.Steps
             var locationDependentInput = (ILocationDependentInput) context[GeneralDefinitions.LocationDependentInput];
             var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutput];
 
-            IReadOnlyList<double> damages = locationDependentOutput.GetDamages(locationDependentInput.InitialDamage);
-            double actualDamage = damages[damages.Count - 1];
+            IReadOnlyList<double> cumulativeDamages = locationDependentOutput.GetCumulativeDamages(locationDependentInput.InitialDamage);
+            double actualDamage = cumulativeDamages[cumulativeDamages.Count - 1];
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(Tolerance));
         }
 

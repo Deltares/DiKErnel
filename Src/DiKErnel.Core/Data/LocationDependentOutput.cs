@@ -46,7 +46,7 @@ namespace DiKErnel.Core.Data
         /// </summary>
         /// <param name="initialDamage">The initial damage.</param>
         /// <returns>The cumulative damages for the location dependent output.</returns>
-        public IReadOnlyList<double> GetDamages(double initialDamage)
+        public IReadOnlyList<double> GetCumulativeDamages(double initialDamage)
         {
             var damages = new List<double>();
 
@@ -77,9 +77,9 @@ namespace DiKErnel.Core.Data
         public double? GetTimeOfFailure(double initialDamage, double failureNumber,
                                         IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
         {
-            IReadOnlyList<double> damages = GetDamages(initialDamage);
+            IReadOnlyList<double> cumulativeDamages = GetCumulativeDamages(initialDamage);
 
-            if (damages.Any(double.IsNaN))
+            if (cumulativeDamages.Any(double.IsNaN))
             {
                 return null;
             }
@@ -88,7 +88,7 @@ namespace DiKErnel.Core.Data
 
             for (var i = 0; i < timeDependentInputItems.Count; i++)
             {
-                double damageAtEndOfCalculation = damages[i];
+                double damageAtEndOfCalculation = cumulativeDamages[i];
 
                 if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
                 {
