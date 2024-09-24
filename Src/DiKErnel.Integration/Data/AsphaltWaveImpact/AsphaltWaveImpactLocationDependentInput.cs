@@ -173,7 +173,8 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData, double damageOfPreviousTimeStep = double.NaN)
+                                                                            IProfileData profileData,
+                                                                            double damageAtStartOfCalculation = double.NaN)
         {
             double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
                                                                     timeDependentInput.EndTime);
