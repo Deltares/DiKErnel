@@ -61,7 +61,7 @@ namespace DiKErnel.Core.Test
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
             // When
-            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
+            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput, CalculationMode.Sequential, CalculationMode.Sequential);
 
             // Then
             Assert.That(result, Is.Not.Null);
