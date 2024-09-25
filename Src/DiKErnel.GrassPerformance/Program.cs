@@ -52,7 +52,7 @@ namespace DiKErnel.GrassPerformance
                 return;
             }
 
-            CalculateAndWriteOutput(result.Data, args[0]);
+            CalculateAndWriteOutput(result.Data, args[0], args[3], args[4]);
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -181,22 +181,28 @@ namespace DiKErnel.GrassPerformance
             }
         }
 
-        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string calculationTypeArgument)
+        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string calculationTypeArgument,
+                                                    string locationCalculationModeArgument, string timeStepCalculationModeArgument)
         {
+            Enum.TryParse(locationCalculationModeArgument, out CalculationMode locationCalculationMode);
+            Enum.TryParse(timeStepCalculationModeArgument, out CalculationMode timeStepCalculationMode);
+
             var stopWatch = new Stopwatch();
 
             stopWatch.Start();
 
-            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
+            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput, locationCalculationMode, timeStepCalculationMode);
 
             stopWatch.Stop();
 
             Console.WriteLine();
-            Console.WriteLine($"Duration = {Math.Round(stopWatch.Elapsed.TotalSeconds, 2)} seconds");
+            Console.WriteLine($"Duration = {Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture)} seconds");
             Console.WriteLine();
             Console.WriteLine($"Number of locations = {calculationInput.LocationDependentInputItems.Count}");
             Console.WriteLine($"Number of time steps = {calculationInput.TimeDependentInputItems.Count}");
-            Console.WriteLine($"Calculation type = {calculationTypeArgument}");
+            Console.WriteLine($"Failure mechanism = {calculationTypeArgument}");
+            Console.WriteLine($"Location calculation mode = {locationCalculationMode}");
+            Console.WriteLine($"Time step calculation mode = {timeStepCalculationMode}");
             Console.WriteLine();
             Console.WriteLine("Output results");
             Console.WriteLine("---------------------------------");
