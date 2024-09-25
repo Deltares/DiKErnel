@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
@@ -195,17 +196,12 @@ namespace DiKErnel.GrassPerformance
 
             stopWatch.Stop();
 
-            Console.WriteLine();
-            Console.WriteLine($"Duration = {Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture)} seconds");
-            Console.WriteLine();
-            Console.WriteLine($"Number of locations = {calculationInput.LocationDependentInputItems.Count}");
-            Console.WriteLine($"Number of time steps = {calculationInput.TimeDependentInputItems.Count}");
-            Console.WriteLine($"Failure mechanism = {calculationTypeArgument}");
-            Console.WriteLine($"Location calculation mode = {locationCalculationMode}");
-            Console.WriteLine($"Time step calculation mode = {timeStepCalculationMode}");
-            Console.WriteLine();
-            Console.WriteLine("Output results");
-            Console.WriteLine("---------------------------------");
+            string outputMessage = $"{calculationTypeArgument, 43};" +
+                                   $"{calculationInput.LocationDependentInputItems.Count, 4};" +
+                                   $"{calculationInput.TimeDependentInputItems.Count, 8};" +
+                                   $"{locationCalculationMode, 15};" +
+                                   $"{timeStepCalculationMode, 15};" +
+                                   $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture), 7};";
 
             for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
             {
@@ -216,11 +212,10 @@ namespace DiKErnel.GrassPerformance
                 var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
                 var damage = Math.Round(cumulativeDamages[^1], 2).ToString(CultureInfo.InvariantCulture);
 
-                Console.WriteLine($"| X = {x,-5} | Damage = {damage,-8} |");
+                outputMessage += $" {x}; {damage};";
             }
-
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine();
+            
+            Console.Write(outputMessage.Remove(outputMessage.Length - 1, 1));
         }
     }
 }
