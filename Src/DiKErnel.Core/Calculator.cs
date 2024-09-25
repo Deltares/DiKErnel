@@ -40,7 +40,7 @@ namespace DiKErnel.Core
         /// <returns>The result of the calculation.</returns>
         public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput,
                                                               CalculationMode locationCalculationMode = CalculationMode.FullyParallel,
-                                                              CalculationMode timeStepCalculationMode = CalculationMode.Sequential)
+                                                              CalculationMode timeStepCalculationMode = CalculationMode.FullyParallel)
         {
             try
             {
