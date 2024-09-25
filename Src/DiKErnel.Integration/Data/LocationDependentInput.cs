@@ -65,9 +65,7 @@ namespace DiKErnel.Integration.Data
         {
             if (!derivedLocationDependentInputInitialized)
             {
-                derivedLocationDependentInputInitialized = true;
-
-                InitializeDerivedLocationDependentInput(profileData);
+                throw new InvalidOperationException("Location dependent input must be initialized first.");
             }
 
             if (RequiresDamageAtStartOfCalculation && double.IsNaN(damageAtStartOfCalculation))
@@ -83,6 +81,8 @@ namespace DiKErnel.Integration.Data
 
         public virtual void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
+            derivedLocationDependentInputInitialized = true;
+
             Z = profileData.GetVerticalHeight(X);
         }
 
