@@ -82,6 +82,8 @@ namespace DiKErnel.Core
                 {
                     foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                     {
+                        locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+
                         CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
                                                       locationDependentInput, timeStepCalculationMode);
                     }
@@ -93,9 +95,13 @@ namespace DiKErnel.Core
                     Parallel.For(0, locationDependentInputItems.Count,
                                  i =>
                                  {
+                                     ILocationDependentInput locationDependentInput = locationDependentInputItems.ElementAt(i);
+
+                                     locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+
                                      CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation,
                                                                    profileData,
-                                                                   locationDependentInputItems.ElementAt(i), timeStepCalculationMode);
+                                                                   locationDependentInput, timeStepCalculationMode);
                                  });
 
                     break;
@@ -108,8 +114,12 @@ namespace DiKErnel.Core
                     {
                         for (int i = range.Item1; i < range.Item2; i++)
                         {
+                            ILocationDependentInput locationDependentInput = locationDependentInputItems.ElementAt(i);
+
+                            locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+
                             CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
-                                                          locationDependentInputItems.ElementAt(i), timeStepCalculationMode);
+                                                          locationDependentInput, timeStepCalculationMode);
                         }
                     });
 
