@@ -92,7 +92,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                               maximumWaveHeight);
         }
 
-        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 

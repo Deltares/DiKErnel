@@ -61,6 +61,12 @@ namespace DiKErnel.Core.Data
         public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData);
 
         /// <summary>
+        /// Initializes the location dependent calculations.
+        /// </summary>
+        /// <param name="profileData">The profile data to use in the calculations.</param>
+        public void InitializeDerivedLocationDependentInput(IProfileData profileData);
+        
+        /// <summary>
         /// Performs a location dependent calculation.
         /// </summary>
         /// <param name="timeDependentInput">The time dependent input to use in the

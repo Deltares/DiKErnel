@@ -75,14 +75,14 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        protected double AccelerationAlphaAValue { get; private set; } = double.NaN;
-
-        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 
             InitializeAccelerationAlphaAValue(profileData);
         }
+
+        protected double AccelerationAlphaAValue { get; private set; } = double.NaN;
 
         protected override double CalculateDikeHeight(IProfileData profileData)
         {
