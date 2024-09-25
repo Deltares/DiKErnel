@@ -40,7 +40,7 @@ namespace DiKErnel.Core
         /// <returns>The result of the calculation.</returns>
         public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput,
                                                               CalculationMode locationCalculationMode = CalculationMode.FullyParallel,
-                                                              CalculationMode timeStepCalculationMode = CalculationMode.FullyParallel)
+                                                              CalculationMode timeStepCalculationMode = CalculationMode.Sequential)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace DiKErnel.Core
         {
             switch (locationCalculationMode)
             {
-                case CalculationMode.FullySequential:
+                case CalculationMode.Sequential:
                 {
                     foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                     {
@@ -139,7 +139,7 @@ namespace DiKErnel.Core
 
             switch (timeStepCalculationMode)
             {
-                case CalculationMode.FullySequential:
+                case CalculationMode.Sequential:
                 {
                     double currentDamage = locationDependentInput.InitialDamage;
 

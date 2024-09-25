@@ -23,7 +23,7 @@ namespace DiKErnel.Core
     /// </summary>
     public enum CalculationMode
     {
-        FullySequential,
+        Sequential,
         FullyParallel,
         ParallelChunks
     }
