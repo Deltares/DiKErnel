@@ -18,9 +18,9 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Core.Test.Data
 {
@@ -47,6 +47,8 @@ namespace DiKErnel.Core.Test.Data
             double initialDamage = Random.NextDouble();
             double incrementDamage1 = Random.NextDouble();
             double incrementDamage2 = Random.NextDouble();
+            double incrementDamage3 = double.NaN;
+            double incrementDamage4 = Random.NextDouble();
 
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties1.IncrementDamage = incrementDamage1;
@@ -54,10 +56,18 @@ namespace DiKErnel.Core.Test.Data
             var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties2.IncrementDamage = incrementDamage2;
 
+            var timeDependentOutputConstructionProperties3 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties3.IncrementDamage = incrementDamage3;
+
+            var timeDependentOutputConstructionProperties4 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties4.IncrementDamage = incrementDamage4;
+
             var timeDependentOutputItems = new List<TimeDependentOutput>
             {
                 Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties3),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties4)
             };
 
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
@@ -69,7 +79,9 @@ namespace DiKErnel.Core.Test.Data
             Assert.That(cumulativeDamages, Is.EqualTo(new[]
             {
                 initialDamage + incrementDamage1,
-                initialDamage + incrementDamage1 + incrementDamage2
+                initialDamage + incrementDamage1 + incrementDamage2,
+                initialDamage + incrementDamage1 + incrementDamage2,
+                initialDamage + incrementDamage1 + incrementDamage2 + incrementDamage4
             }));
         }
     }
