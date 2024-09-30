@@ -156,7 +156,10 @@ namespace DiKErnel.Core
                         TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
                             timeDependentInput, locationDependentInput, profileData, currentDamage);
 
-                        currentDamage += timeDependentOutput.IncrementDamage;
+                        if (!double.IsNaN(timeDependentOutput.IncrementDamage))
+                        {
+                            currentDamage += timeDependentOutput.IncrementDamage;
+                        }
 
                         timeDependentOutputItemsForLocation.Add(timeDependentOutput);
                     }
