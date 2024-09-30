@@ -167,12 +167,10 @@ namespace DiKErnel.GrassPerformance
 
             double[] waveHeights = commaSeparatedWaveHeights.Split(',')
                                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                            .Select(d => d <= 0 ? 0.01 : d)
                                                             .ToArray();
 
             double[] wavePeriods = commaSeparatedWavePeriods.Split(',')
                                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                            .Select(d => d <= 0 ? 0.01 : d)
                                                             .ToArray();
 
             double[] waveDirections = commaSeparatedWaveDirections.Split(',')
