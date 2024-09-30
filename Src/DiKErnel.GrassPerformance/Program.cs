@@ -69,9 +69,9 @@ namespace DiKErnel.GrassPerformance
             builder.AddDikeProfilePoint(33.05, CharacteristicPointType.InnerToe);
         }
 
-        private static void AddLocations(CalculationInputBuilder builder, string calculationTypeArgument, int numberOfLocations)
+        private static void AddLocations(CalculationInputBuilder builder, string failureMechanismArgument, int numberOfLocations)
         {
-            Action<double> addLocationAction = calculationTypeArgument switch
+            Action<double> addLocationAction = failureMechanismArgument switch
             {
                 grassWaveImpactIdentifier => x => builder.AddGrassWaveImpactLocation(
                     new GrassWaveImpactLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
@@ -94,24 +94,24 @@ namespace DiKErnel.GrassPerformance
                 asphaltWaveImpactIdentifier => x => builder.AddAsphaltWaveImpactLocation(
                     new AsphaltWaveImpactLocationConstructionProperties(x, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
                                                                         0.3, 16000)),
-                _ => throw new ArgumentException("Invalid calculation type")
+                _ => throw new ArgumentException("Invalid failure mechanism")
             };
 
-            foreach (double x in GetXValues(calculationTypeArgument, numberOfLocations))
+            foreach (double x in GetXValues(failureMechanismArgument, numberOfLocations))
             {
                 addLocationAction(x);
             }
         }
 
-        private static List<double> GetXValues(string calculationTypeArgument, int numberOfLocations)
+        private static List<double> GetXValues(string failureMechanismArgument, int numberOfLocations)
         {
             var xValues = new List<double>();
 
             double xStartCalculationZone;
             double xEndCalculationZone;
 
-            if (calculationTypeArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier ||
-                calculationTypeArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
+            if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier ||
+                failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
             {
                 xStartCalculationZone = xStartCalculationZoneInnerSlope;
                 xEndCalculationZone = xEndCalculationZoneInnerSlope;
@@ -187,7 +187,7 @@ namespace DiKErnel.GrassPerformance
             }
         }
 
-        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string calculationTypeArgument,
+        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string failureMechanismArgument,
                                                     string locationCalculationModeArgument, string timeStepCalculationModeArgument)
         {
             Enum.TryParse(locationCalculationModeArgument, out CalculationMode locationCalculationMode);
@@ -201,7 +201,7 @@ namespace DiKErnel.GrassPerformance
 
             stopWatch.Stop();
 
-            string outputMessage = $"{calculationTypeArgument,43};" +
+            string outputMessage = $"{failureMechanismArgument,43};" +
                                    $"{calculationInput.LocationDependentInputItems.Count,4};" +
                                    $"{calculationInput.TimeDependentInputItems.Count,8};" +
                                    $"{locationCalculationMode,15};" +
@@ -217,7 +217,7 @@ namespace DiKErnel.GrassPerformance
                 var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
                 var damage = Math.Round(cumulativeDamages[^1], 2).ToString(CultureInfo.InvariantCulture);
 
-                outputMessage += $" {x, 5}; {damage, 8};";
+                outputMessage += $" {x,5}; {damage,8};";
             }
 
             Console.Write(outputMessage.Remove(outputMessage.Length - 1, 1));
