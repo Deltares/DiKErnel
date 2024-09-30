@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
@@ -19,8 +18,8 @@ namespace DiKErnel.GrassPerformance
 {
     internal static class Program
     {
-        private const double xStartCalculationZoneOuterSlope = 5;
-        private const double xEndCalculationZoneOuterSlope = 15;
+        private const double xStartCalculationZoneOuterSlope = 7;
+        private const double xEndCalculationZoneOuterSlope = 11;
         private const double xStartCalculationZoneInnerSlope = 24;
         private const double xEndCalculationZoneInnerSlope = 32;
 
@@ -58,9 +57,11 @@ namespace DiKErnel.GrassPerformance
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
         {
+            builder.AddForeshore(0.004, -4);
+
             builder.AddDikeProfileSegment(0, 7.09, 18.39, 13.22, 1);
             builder.AddDikeProfileSegment(18.39, 13.22, 23.39, 13.22, 1);
-            builder.AddDikeProfileSegment(23.39, 13.22, 33.05, 10, 1);
+            builder.AddDikeProfileSegment(23.39, 13.22, 33.05, 0, 1);
 
             builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
             builder.AddDikeProfilePoint(18.39, CharacteristicPointType.OuterCrest);
@@ -75,9 +76,15 @@ namespace DiKErnel.GrassPerformance
                 grassWaveImpactIdentifier => x => builder.AddGrassWaveImpactLocation(
                     new GrassWaveImpactLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
                 grassWaveOvertoppingRayleighAnalyticalIdentifier => x => builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
-                    new GrassWaveOvertoppingRayleighLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
+                    new GrassWaveOvertoppingRayleighLocationConstructionProperties(x, GrassTopLayerType.OpenSod)
+                    {
+                        DikeHeight = 11
+                    }),
                 grassWaveOvertoppingRayleighDiscreteIdentifier => x => builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
-                    new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
+                    new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(x, GrassTopLayerType.OpenSod)
+                    {
+                        DikeHeight = 11
+                    }),
                 grassWaveRunupBattjesGroenendijkAnalyticalIdentifier => x => builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(
                     new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
                 grassWaveRunupRayleighDiscreteIdentifier => x => builder.AddGrassWaveRunupRayleighDiscreteLocation(
@@ -196,12 +203,12 @@ namespace DiKErnel.GrassPerformance
 
             stopWatch.Stop();
 
-            string outputMessage = $"{calculationTypeArgument, 43};" +
-                                   $"{calculationInput.LocationDependentInputItems.Count, 4};" +
-                                   $"{calculationInput.TimeDependentInputItems.Count, 8};" +
-                                   $"{locationCalculationMode, 15};" +
-                                   $"{timeStepCalculationMode, 15};" +
-                                   $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture), 7};";
+            string outputMessage = $"{calculationTypeArgument,43};" +
+                                   $"{calculationInput.LocationDependentInputItems.Count,4};" +
+                                   $"{calculationInput.TimeDependentInputItems.Count,8};" +
+                                   $"{locationCalculationMode,15};" +
+                                   $"{timeStepCalculationMode,15};" +
+                                   $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture),7};";
 
             for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
             {
@@ -212,9 +219,9 @@ namespace DiKErnel.GrassPerformance
                 var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
                 var damage = Math.Round(cumulativeDamages[^1], 2).ToString(CultureInfo.InvariantCulture);
 
-                outputMessage += $" {x}; {damage};";
+                outputMessage += $" {x, 5}; {damage, 8};";
             }
-            
+
             Console.Write(outputMessage.Remove(outputMessage.Length - 1, 1));
         }
     }
