@@ -48,18 +48,21 @@ namespace DiKErnel.Core.Data
         /// <returns>The cumulative damages for the location dependent output.</returns>
         public IReadOnlyList<double> GetCumulativeDamages(double initialDamage)
         {
-            var damages = new List<double>();
+            var cumulativeDamages = new List<double>();
 
-            double currentDamage = initialDamage;
+            double cumulativeDamage = initialDamage;
 
-            foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
+            foreach (double incrementDamage in TimeDependentOutputItems.Select(timeDependentOutput => timeDependentOutput.IncrementDamage))
             {
-                currentDamage += timeDependentOutput.IncrementDamage;
+                if (!double.IsNaN(incrementDamage))
+                {
+                    cumulativeDamage += incrementDamage;
+                }
 
-                damages.Add(currentDamage);
+                cumulativeDamages.Add(cumulativeDamage);
             }
 
-            return damages;
+            return cumulativeDamages;
         }
 
         /// <summary>
