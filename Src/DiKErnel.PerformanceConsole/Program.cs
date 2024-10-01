@@ -14,7 +14,7 @@ using DiKErnel.Integration.Data.GrassWaveRunup;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.Util;
 
-namespace DiKErnel.GrassPerformance
+namespace DiKErnel.PerformanceConsole
 {
     internal static class Program
     {

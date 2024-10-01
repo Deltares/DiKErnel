@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.FunctionLibrary.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.SpecFlow.Test", "Test\DiKErnel.SpecFlow.Test\DiKErnel.SpecFlow.Test.csproj", "{37F95BA6-7219-4724-85CB-B36B6B5BCC80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiKErnel.GrassPerformance", "Src\DiKErnel.GrassPerformance\DiKErnel.GrassPerformance.csproj", "{28BBE3C5-A90A-4441-A515-A61DB50376E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiKErnel.PerformanceConsole", "Src\DiKErnel.PerformanceConsole\DiKErnel.PerformanceConsole.csproj", "{28BBE3C5-A90A-4441-A515-A61DB50376E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
