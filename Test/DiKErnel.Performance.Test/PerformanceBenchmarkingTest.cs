@@ -36,11 +36,11 @@ using NUnit.Framework;
 namespace DiKErnel.Performance.Test
 {
     [TestFixture]
-    public class PerformanceTest
+    public class PerformanceBenchmarkingTest
     {
         [Test]
         [TestCaseSource(nameof(LocationCases))]
-        public void Fixme(Action<CalculationInputBuilder> addLocationAction)
+        public void PerformanceBenchmarking(Action<CalculationInputBuilder> addLocationAction)
         {
             var builder = new CalculationInputBuilder(10);
 
@@ -59,6 +59,48 @@ namespace DiKErnel.Performance.Test
             }
 
             CalculateAndWriteOutput(result.Data);
+        }
+
+        private static void AddDikeProfile(CalculationInputBuilder builder)
+        {
+            builder.AddForeshore(0.004, -4);
+
+            builder.AddDikeProfileSegment(0, 7.09, 18.39, 13.22, 1);
+            builder.AddDikeProfileSegment(18.39, 13.22, 23.39, 13.22, 1);
+            builder.AddDikeProfileSegment(23.39, 13.22, 33.05, 0, 1);
+
+            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
+            builder.AddDikeProfilePoint(18.39, CharacteristicPointType.OuterCrest);
+            builder.AddDikeProfilePoint(23.39, CharacteristicPointType.InnerCrest);
+            builder.AddDikeProfilePoint(33.05, CharacteristicPointType.InnerToe);
+        }
+
+        private static void AddTimeSteps(CalculationInputBuilder builder)
+        {
+            double[] waterLevels = Resources.htime_12h.Split(',')
+                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .ToArray();
+
+            double[] waveHeights = Resources.Hm0_12h.Split(',')
+                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .ToArray();
+
+            double[] wavePeriods = Resources.Tmm10_12h.Split(',')
+                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .ToArray();
+
+            double[] waveDirections = Resources.WDir_12h.Split(',')
+                                               .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                               .ToArray();
+
+            double[] times = Enumerable.Range(0, waterLevels.Length + 1)
+                                       .Select(i => 12 * 3600d * i)
+                                       .ToArray();
+
+            for (var i = 0; i <= waterLevels.Length - 1; i++)
+            {
+                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
+            }
         }
 
         private static IEnumerable<TestCaseData> LocationCases()
@@ -111,48 +153,6 @@ namespace DiKErnel.Performance.Test
                                                                   10, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3,
                                                                   16000))))
                 .SetName("AsphaltWaveImpact");
-        }
-
-        private static void AddDikeProfile(CalculationInputBuilder builder)
-        {
-            builder.AddForeshore(0.004, -4);
-
-            builder.AddDikeProfileSegment(0, 7.09, 18.39, 13.22, 1);
-            builder.AddDikeProfileSegment(18.39, 13.22, 23.39, 13.22, 1);
-            builder.AddDikeProfileSegment(23.39, 13.22, 33.05, 0, 1);
-
-            builder.AddDikeProfilePoint(0, CharacteristicPointType.OuterToe);
-            builder.AddDikeProfilePoint(18.39, CharacteristicPointType.OuterCrest);
-            builder.AddDikeProfilePoint(23.39, CharacteristicPointType.InnerCrest);
-            builder.AddDikeProfilePoint(33.05, CharacteristicPointType.InnerToe);
-        }
-
-        private static void AddTimeSteps(CalculationInputBuilder builder)
-        {
-            double[] waterLevels = Resources.htime_12h.Split(',')
-                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                            .ToArray();
-
-            double[] waveHeights = Resources.Hm0_12h.Split(',')
-                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                            .ToArray();
-
-            double[] wavePeriods = Resources.Tmm10_12h.Split(',')
-                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                            .ToArray();
-
-            double[] waveDirections = Resources.WDir_12h.Split(',')
-                                               .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                               .ToArray();
-
-            double[] times = Enumerable.Range(0, waterLevels.Length + 1)
-                                       .Select(i => 12 * 3600d * i)
-                                       .ToArray();
-
-            for (var i = 0; i <= waterLevels.Length - 1; i++)
-            {
-                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
-            }
         }
 
         private static void CalculateAndWriteOutput(ICalculationInput calculationInput)
