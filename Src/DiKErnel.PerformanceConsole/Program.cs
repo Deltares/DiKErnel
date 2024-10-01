@@ -46,12 +46,6 @@ namespace DiKErnel.PerformanceConsole
 
             DataResult<ICalculationInput> result = builder.Build();
 
-            if (!result.Successful)
-            {
-                Console.WriteLine($"Validation error: {result.Events.First(e => e.Type == EventType.Error).Message}");
-                return;
-            }
-
             CalculateAndWriteOutput(result.Data, args[0], args[3], args[4]);
         }
 

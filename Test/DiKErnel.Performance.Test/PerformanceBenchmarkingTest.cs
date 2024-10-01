@@ -39,8 +39,8 @@ namespace DiKErnel.Performance.Test
     public class PerformanceBenchmarkingTest
     {
         [Test]
-        [TestCaseSource(nameof(LocationCases))]
-        public void PerformanceBenchmarking(Action<CalculationInputBuilder> addLocationAction)
+        [TestCaseSource(nameof(FailureMechanismCases))]
+        public void PerformanceBenchmarking(Action<CalculationInputBuilder> addLocationForFailureMechanismAction)
         {
             var builder = new CalculationInputBuilder(10);
 
@@ -48,15 +48,9 @@ namespace DiKErnel.Performance.Test
 
             AddTimeSteps(builder);
 
-            addLocationAction(builder);
+            addLocationForFailureMechanismAction(builder);
 
             DataResult<ICalculationInput> result = builder.Build();
-
-            if (!result.Successful)
-            {
-                Console.WriteLine($"Validation error: {result.Events.First(e => e.Type == EventType.Error).Message}");
-                return;
-            }
 
             CalculateAndWriteOutput(result.Data);
         }
@@ -103,7 +97,7 @@ namespace DiKErnel.Performance.Test
             }
         }
 
-        private static IEnumerable<TestCaseData> LocationCases()
+        private static IEnumerable<TestCaseData> FailureMechanismCases()
         {
             yield return new TestCaseData(
                     (Action<CalculationInputBuilder>) (builder => builder.AddGrassWaveImpactLocation(
