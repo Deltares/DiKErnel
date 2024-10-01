@@ -1,9 +1,42 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\Test.targets"/>
+    <Import Project="$(SolutionDir)Development\Test.targets" />
+
+    <ItemGroup>
+      <None Remove="Resources\Hm0_12h.csv" />
+      <None Remove="Resources\htime_12h.csv" />
+      <None Remove="Resources\Tmm10_12h.csv" />
+      <None Remove="Resources\WDir_12h.csv" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\Hm0_12h.csv" />
+      <EmbeddedResource Include="Resources\htime_12h.csv" />
+      <EmbeddedResource Include="Resources\Tmm10_12h.csv" />
+      <EmbeddedResource Include="Resources\WDir_12h.csv" />
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
     </ItemGroup>
 
 </Project>

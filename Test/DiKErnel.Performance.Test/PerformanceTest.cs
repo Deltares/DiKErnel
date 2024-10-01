@@ -16,10 +16,21 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
+using DiKErnel.Integration.Data.Grass;
+using DiKErnel.Integration.Data.GrassWaveImpact;
+using DiKErnel.Integration.Data.GrassWaveOvertopping;
+using DiKErnel.Integration.Data.GrassWaveRunup;
+using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
+using DiKErnel.Util;
 using NUnit.Framework;
 
 namespace DiKErnel.Performance.Test
@@ -27,16 +38,79 @@ namespace DiKErnel.Performance.Test
     [TestFixture]
     public class PerformanceTest
     {
-        private CalculationInputBuilder builder;
-
-        [SetUp]
-        public void Setup()
+        [Test]
+        [TestCaseSource(nameof(LocationCases))]
+        public void Fixme(Action<CalculationInputBuilder> addLocationAction)
         {
-            builder = new CalculationInputBuilder(10);
+            var builder = new CalculationInputBuilder(10);
 
             AddDikeProfile(builder);
 
             AddTimeSteps(builder);
+
+            addLocationAction(builder);
+
+            DataResult<ICalculationInput> result = builder.Build();
+
+            if (!result.Successful)
+            {
+                Console.WriteLine($"Validation error: {result.Events.First(e => e.Type == EventType.Error).Message}");
+                return;
+            }
+
+            CalculateAndWriteOutput(result.Data);
+        }
+
+        private static IEnumerable<TestCaseData> LocationCases()
+        {
+            yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddGrassWaveImpactLocation(
+                                                              new GrassWaveImpactLocationConstructionProperties(
+                                                                  10, GrassTopLayerType.OpenSod))))
+                .SetName("GrassWaveImpact");
+
+            yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
+                                                              new GrassWaveOvertoppingRayleighLocationConstructionProperties(
+                                                                  26, GrassTopLayerType.OpenSod)
+                                                              {
+                                                                  DikeHeight = 11
+                                                              })))
+                .SetName("GrassWaveOvertoppingRayleighAnalytical");
+
+            yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
+                                                              new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(
+                                                                  26, GrassTopLayerType.OpenSod)
+                                                              {
+                                                                  DikeHeight = 11
+                                                              })))
+                .SetName("GrassWaveOvertoppingRayleighDiscrete");
+
+            yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(
+                                                              new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(
+                                                                  10, GrassTopLayerType.OpenSod))))
+                .SetName("GrassWaveRunupBattjesGroenendijkAnalytical");
+
+            yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddGrassWaveRunupRayleighDiscreteLocation(
+                                                              new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(
+                                                                  10, GrassTopLayerType.OpenSod))))
+                .SetName("GrassWaveRunupRayleighDiscrete");
+
+            yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddNaturalStoneWaveImpactLocation(
+                                                              new NaturalStoneWaveImpactLocationConstructionProperties(
+                                                                  10, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65))))
+                .SetName("NaturalStoneWaveImpact");
+
+            yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddAsphaltWaveImpactLocation(
+                                                              new AsphaltWaveImpactLocationConstructionProperties(
+                                                                  10, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3,
+                                                                  16000))))
+                .SetName("AsphaltWaveImpact");
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -53,23 +127,23 @@ namespace DiKErnel.Performance.Test
             builder.AddDikeProfilePoint(33.05, CharacteristicPointType.InnerToe);
         }
 
-        private void AddTimeSteps(CalculationInputBuilder builder)
+        private static void AddTimeSteps(CalculationInputBuilder builder)
         {
-            double[] waterLevels = commaSeparatedWaterLevels.Split(',')
-                                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                            .ToArray();
+            double[] waterLevels = Resources.htime_12h.Split(',')
+                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .ToArray();
 
-            double[] waveHeights = commaSeparatedWaveHeights.Split(',')
-                                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                            .ToArray();
+            double[] waveHeights = Resources.Hm0_12h.Split(',')
+                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .ToArray();
 
-            double[] wavePeriods = commaSeparatedWavePeriods.Split(',')
-                                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                            .ToArray();
+            double[] wavePeriods = Resources.Tmm10_12h.Split(',')
+                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .ToArray();
 
-            double[] waveDirections = commaSeparatedWaveDirections.Split(',')
-                                                                  .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                                  .ToArray();
+            double[] waveDirections = Resources.WDir_12h.Split(',')
+                                               .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                               .ToArray();
 
             double[] times = Enumerable.Range(0, waterLevels.Length + 1)
                                        .Select(i => 12 * 3600d * i)
@@ -79,6 +153,35 @@ namespace DiKErnel.Performance.Test
             {
                 builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
             }
+        }
+
+        private static void CalculateAndWriteOutput(ICalculationInput calculationInput)
+        {
+            var stopWatch = new Stopwatch();
+
+            stopWatch.Start();
+
+            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput);
+
+            stopWatch.Stop();
+
+            string outputMessage = $"{calculationInput.LocationDependentInputItems.Count,4};" +
+                                   $"{calculationInput.TimeDependentInputItems.Count,8};" +
+                                   $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture),7};";
+
+            for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
+            {
+                IReadOnlyList<double> cumulativeDamages =
+                    result.Data.LocationDependentOutputItems[i]
+                          .GetCumulativeDamages(calculationInput.LocationDependentInputItems[i].InitialDamage);
+
+                var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
+                var damage = Math.Round(cumulativeDamages[cumulativeDamages.Count - 1], 2).ToString(CultureInfo.InvariantCulture);
+
+                outputMessage += $" {x,5}; {damage,8};";
+            }
+
+            Console.Write(outputMessage.Remove(outputMessage.Length - 1, 1));
         }
     }
 }

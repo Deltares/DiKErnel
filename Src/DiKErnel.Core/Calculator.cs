@@ -39,8 +39,8 @@ namespace DiKErnel.Core
         /// <param name="timeStepCalculationMode">The calculation mode while iterating the time steps of each location.</param>
         /// <returns>The result of the calculation.</returns>
         public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput,
-                                                              CalculationMode locationCalculationMode = CalculationMode.FullyParallel,
-                                                              CalculationMode timeStepCalculationMode = CalculationMode.FullyParallel)
+                                                              CalculationMode locationCalculationMode = CalculationMode.Sequential,
+                                                              CalculationMode timeStepCalculationMode = CalculationMode.Sequential)
         {
             try
             {
