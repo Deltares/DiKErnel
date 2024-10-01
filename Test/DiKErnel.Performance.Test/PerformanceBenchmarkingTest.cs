@@ -159,21 +159,15 @@ namespace DiKErnel.Performance.Test
 
             stopWatch.Stop();
 
-            string outputMessage = $"{calculationInput.LocationDependentInputItems.Count,4};" +
-                                   $"{calculationInput.TimeDependentInputItems.Count,8};" +
-                                   $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture),7};";
+            IReadOnlyList<double> cumulativeDamages =
+                result.Data.LocationDependentOutputItems[0]
+                      .GetCumulativeDamages(calculationInput.LocationDependentInputItems[0].InitialDamage);
 
-            for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
-            {
-                IReadOnlyList<double> cumulativeDamages =
-                    result.Data.LocationDependentOutputItems[i]
-                          .GetCumulativeDamages(calculationInput.LocationDependentInputItems[i].InitialDamage);
+            var x = Math.Round(calculationInput.LocationDependentInputItems[0].X, 2).ToString(CultureInfo.InvariantCulture);
+            var damage = Math.Round(cumulativeDamages[cumulativeDamages.Count - 1], 2).ToString(CultureInfo.InvariantCulture);
 
-                var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
-                var damage = Math.Round(cumulativeDamages[cumulativeDamages.Count - 1], 2).ToString(CultureInfo.InvariantCulture);
-
-                outputMessage += $" {x,5}; {damage,8};";
-            }
+            string outputMessage = $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture),7};" +
+                                   $" {x,5}; {damage,8};";
 
             Console.Write(outputMessage.Remove(outputMessage.Length - 1, 1));
         }
