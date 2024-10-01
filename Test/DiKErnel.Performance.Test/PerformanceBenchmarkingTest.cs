@@ -52,7 +52,7 @@ namespace DiKErnel.Performance.Test
 
             DataResult<ICalculationInput> result = builder.Build();
 
-            CalculateAndWriteOutput(result.Data);
+            CalculateAndWriteOutput(result.Data, TestContext.CurrentContext.Test.Name);
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -100,6 +100,13 @@ namespace DiKErnel.Performance.Test
         private static IEnumerable<TestCaseData> FailureMechanismCases()
         {
             yield return new TestCaseData(
+                    (Action<CalculationInputBuilder>) (builder => builder.AddAsphaltWaveImpactLocation(
+                                                              new AsphaltWaveImpactLocationConstructionProperties(
+                                                                  10, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3,
+                                                                  16000))))
+                .SetName("AsphaltWaveImpact");
+
+            yield return new TestCaseData(
                     (Action<CalculationInputBuilder>) (builder => builder.AddGrassWaveImpactLocation(
                                                               new GrassWaveImpactLocationConstructionProperties(
                                                                   10, GrassTopLayerType.OpenSod))))
@@ -140,16 +147,9 @@ namespace DiKErnel.Performance.Test
                                                               new NaturalStoneWaveImpactLocationConstructionProperties(
                                                                   10, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65))))
                 .SetName("NaturalStoneWaveImpact");
-
-            yield return new TestCaseData(
-                    (Action<CalculationInputBuilder>) (builder => builder.AddAsphaltWaveImpactLocation(
-                                                              new AsphaltWaveImpactLocationConstructionProperties(
-                                                                  10, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3,
-                                                                  16000))))
-                .SetName("AsphaltWaveImpact");
         }
 
-        private static void CalculateAndWriteOutput(ICalculationInput calculationInput)
+        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string failureMechanism)
         {
             var stopWatch = new Stopwatch();
 
@@ -166,8 +166,11 @@ namespace DiKErnel.Performance.Test
             var x = Math.Round(calculationInput.LocationDependentInputItems[0].X, 2).ToString(CultureInfo.InvariantCulture);
             var damage = Math.Round(cumulativeDamages[cumulativeDamages.Count - 1], 2).ToString(CultureInfo.InvariantCulture);
 
-            string outputMessage = $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture),7};" +
-                                   $" {x,5}; {damage,8};";
+            string outputMessage = $"{failureMechanism};" +
+                                   $"{calculationInput.LocationDependentInputItems.Count};" +
+                                   $"{calculationInput.TimeDependentInputItems.Count};" +
+                                   $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture)};" +
+                                   $" {x}; {damage};";
 
             Console.Write(outputMessage.Remove(outputMessage.Length - 1, 1));
         }
