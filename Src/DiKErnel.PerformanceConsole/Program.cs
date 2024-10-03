@@ -23,13 +23,13 @@ namespace DiKErnel.PerformanceConsole
         private const double xStartCalculationZoneInnerSlope = 24;
         private const double xEndCalculationZoneInnerSlope = 32;
 
+        private const string asphaltWaveImpactIdentifier = "AsphaltWaveImpact";
         private const string grassWaveImpactIdentifier = "GrassWaveImpact";
         private const string grassWaveOvertoppingRayleighAnalyticalIdentifier = "GrassWaveOvertoppingRayleighAnalytical";
         private const string grassWaveOvertoppingRayleighDiscreteIdentifier = "GrassWaveOvertoppingRayleighDiscrete";
         private const string grassWaveRunupBattjesGroenendijkAnalyticalIdentifier = "GrassWaveRunupBattjesGroenendijkAnalytical";
         private const string grassWaveRunupRayleighDiscreteIdentifier = "GrassWaveRunupRayleighDiscrete";
         private const string naturalStoneWaveImpactIdentifier = "NaturalStoneWaveImpact";
-        private const string asphaltWaveImpactIdentifier = "AsphaltWaveImpact";
 
         private const string oneHourTimeStepIdentifier = "1h";
         private const string twelveHoursTimeStepIdentifier = "12h";
@@ -67,6 +67,9 @@ namespace DiKErnel.PerformanceConsole
         {
             Action<double> addLocationAction = failureMechanismArgument switch
             {
+                asphaltWaveImpactIdentifier => x => builder.AddAsphaltWaveImpactLocation(
+                    new AsphaltWaveImpactLocationConstructionProperties(x, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
+                                                                        0.3, 16000)),
                 grassWaveImpactIdentifier => x => builder.AddGrassWaveImpactLocation(
                     new GrassWaveImpactLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
                 grassWaveOvertoppingRayleighAnalyticalIdentifier => x => builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
@@ -85,9 +88,6 @@ namespace DiKErnel.PerformanceConsole
                     new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
                 naturalStoneWaveImpactIdentifier => x => builder.AddNaturalStoneWaveImpactLocation(
                     new NaturalStoneWaveImpactLocationConstructionProperties(x, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65)),
-                asphaltWaveImpactIdentifier => x => builder.AddAsphaltWaveImpactLocation(
-                    new AsphaltWaveImpactLocationConstructionProperties(x, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
-                                                                        0.3, 16000)),
                 _ => throw new ArgumentException("Invalid failure mechanism")
             };
 
