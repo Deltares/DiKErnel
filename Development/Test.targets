@@ -4,7 +4,7 @@
   </PropertyGroup>
   <Import Project="$(SolutionDir)Development\Base.targets" />
   <PropertyGroup> 
-    <TargetFrameworks>net48;net7.0</TargetFrameworks>
+    <TargetFrameworks>net481;net7.0;net8.0</TargetFrameworks>
     <OutDir>$(BuildDir)\Regression\$(TargetFramework)</OutDir>
     <GenerateDependencyFile>true</GenerateDependencyFile>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.14.0"/>
+    <PackageReference Include="NUnit" Version="4.2.2"/>
     <PackageReference Include="NUnit.Analyzers" Version="3.10.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
