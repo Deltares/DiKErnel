@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
 using DiKErnel.FunctionLibrary.TestUtil;
 using NUnit.Framework;
@@ -39,6 +40,11 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
             const double frontVelocityCwo = 1.45;
             const double accelerationAlphaA = 1.4;
 
+            double cumulativeOverloadPartial1 = increasedLoadTransitionAlphaM * Math.Pow(accelerationAlphaA, 2) *
+                                                Math.Pow(frontVelocityCwo, 2) * gravitationalAcceleration;
+
+            double cumulativeOverloadPartial2 = reducedStrengthTransitionAlphaS * Math.Pow(criticalFrontVelocity, 2);
+
             var input = new GrassWaveOvertoppingRayleighCumulativeOverloadInput(averageNumberOfWaves,
                                                                                 representativeWaveRunup2P,
                                                                                 verticalDistanceWaterLevelElevation,
@@ -49,7 +55,8 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
                                                                                 frontVelocityCwo, accelerationAlphaA);
 
             // Call
-            double cumulativeOverload = GrassWaveOvertoppingRayleighAnalyticalFunctions.CumulativeOverload(input);
+            double cumulativeOverload = GrassWaveOvertoppingRayleighAnalyticalFunctions.CumulativeOverload(
+                input, cumulativeOverloadPartial1, cumulativeOverloadPartial2);
 
             // Assert
             AssertHelper.AreEqual(1733.057985595415, cumulativeOverload);
