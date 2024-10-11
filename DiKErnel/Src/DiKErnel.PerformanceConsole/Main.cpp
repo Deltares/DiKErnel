@@ -19,6 +19,8 @@
 // All rights reserved.
 
 #include <filesystem>
+#include <iostream>
+#include <fstream>
 
 #include "CalculationInputBuilder.h"
 #include "Calculator.h"
@@ -32,6 +34,33 @@ using namespace std::chrono;
 #pragma region Forward declarations
 
 #pragma endregion
+
+vector<float> GetValuesFromFile(const string& fileName)
+{
+    vector<float> v;
+
+    ifstream in(fileName);
+
+    string valueString;
+    getline(in, valueString, '\n');
+
+    int i = 0;
+    int j = valueString.find(',');
+
+    while (j >= 0)
+    {
+        v.push_back(stof(valueString.substr(i, j - i)));
+        i = ++j;
+        j = valueString.find(',', j);
+
+        if (j < 0)
+        {
+            v.push_back(stof(valueString.substr(i, valueString.length())));
+        }
+    }
+
+    return v;
+}
 
 int main(
     const int argc,
@@ -53,16 +82,27 @@ int main(
 
     builder->AddAsphaltWaveImpactLocation(std::move(locationConstructionProperties));
 
-    builder->AddTimeStep(0, 1000, 1, 1, 1, 1);
-    builder->AddTimeStep(1000, 2000, 1, 1, 1, 1);
-    builder->AddTimeStep(2000, 3000, 1, 1, 1, 1);
+    const vector<float> waterLevels = GetValuesFromFile("htime_12h.csv");
+    const vector<float> waveHeights = GetValuesFromFile("Hm0_12h.csv");
+    const vector<float> wavePeriods = GetValuesFromFile("Tmm10_12h.csv");
+    const vector<float> waveDirections = GetValuesFromFile("WDir_12h.csv");
+
+    double currentStartTime = 0;
+
+    for (int i = 0; i < waterLevels.size(); i++)
+    {
+        const auto currentEndTime = currentStartTime + 3600 * 12;
+
+        builder->AddTimeStep(currentStartTime, currentEndTime, waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
+
+        currentStartTime = currentEndTime;
+    }
 
     const auto input = builder->Build();
 
     Calculator calculator(*input->GetData());
 
     calculator.WaitForCompletion();
-
 
     return 0;
 }
