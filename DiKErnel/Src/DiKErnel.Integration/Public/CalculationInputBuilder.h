@@ -114,8 +114,8 @@ namespace DiKErnel::Integration
              *        The wave angle.
              */
             void AddTimeStep(
-                int beginTime,
-                int endTime,
+                double beginTime,
+                double endTime,
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,

@@ -26,9 +26,9 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    int RevetmentFunctions::IncrementTime(
-        const int beginTime,
-        const int endTime)
+    double RevetmentFunctions::IncrementTime(
+        const double beginTime,
+        const double endTime)
     {
         return endTime - beginTime;
     }

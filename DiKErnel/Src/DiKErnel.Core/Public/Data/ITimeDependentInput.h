@@ -45,14 +45,14 @@ namespace DiKErnel::Core
              * \return The begin time.
              */
             [[nodiscard]]
-            virtual int GetBeginTime() const = 0;
+            virtual double GetBeginTime() const = 0;
 
             /*!
              * \brief Gets the end time.
              * \return The end time.
              */
             [[nodiscard]]
-            virtual int GetEndTime() const = 0;
+            virtual double GetEndTime() const = 0;
 
             /*!
              * \brief Gets the water level.

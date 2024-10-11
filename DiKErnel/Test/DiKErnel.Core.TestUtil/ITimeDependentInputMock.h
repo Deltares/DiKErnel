@@ -30,8 +30,8 @@ namespace DiKErnel::Core::TestUtil
     {
         public:
             MOCK_METHOD(bool, Validate, (), (const, override));
-            MOCK_METHOD(int, GetBeginTime, (), (const, override));
-            MOCK_METHOD(int, GetEndTime, (), (const, override));
+            MOCK_METHOD(double, GetBeginTime, (), (const, override));
+            MOCK_METHOD(double, GetEndTime, (), (const, override));
             MOCK_METHOD(double, GetWaterLevel, (), (const, override));
             MOCK_METHOD(double, GetWaveHeightHm0, (), (const, override));
             MOCK_METHOD(double, GetWavePeriodTm10, (), (const, override));

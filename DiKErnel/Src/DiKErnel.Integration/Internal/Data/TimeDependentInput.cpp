@@ -30,8 +30,8 @@ namespace DiKErnel::Integration
     using namespace Util;
 
     TimeDependentInput::TimeDependentInput(
-        const int beginTime,
-        const int endTime,
+        const double beginTime,
+        const double endTime,
         const double waterLevel,
         const double waveHeightHm0,
         const double wavePeriodTm10,
@@ -53,12 +53,12 @@ namespace DiKErnel::Integration
         return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
-    int TimeDependentInput::GetBeginTime() const
+    double TimeDependentInput::GetBeginTime() const
     {
         return _beginTime;
     }
 
-    int TimeDependentInput::GetEndTime() const
+    double TimeDependentInput::GetEndTime() const
     {
         return _endTime;
     }

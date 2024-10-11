@@ -26,18 +26,18 @@ namespace DiKErnel::Integration
     {
         public:
             explicit TimeDependentInputFactoryData(
-                int beginTime,
-                int endTime,
+                double beginTime,
+                double endTime,
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
                 double waveAngle);
 
             [[nodiscard]]
-            int GetBeginTime() const;
+            double GetBeginTime() const;
 
             [[nodiscard]]
-            int GetEndTime() const;
+            double GetEndTime() const;
 
             [[nodiscard]]
             double GetWaterLevel() const;
@@ -52,8 +52,8 @@ namespace DiKErnel::Integration
             double GetWaveAngle() const;
 
         private:
-            int _beginTime;
-            int _endTime;
+            double _beginTime;
+            double _endTime;
             double _waterLevel;
             double _waveHeightHm0;
             double _wavePeriodTm10;

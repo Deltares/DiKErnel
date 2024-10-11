@@ -40,9 +40,9 @@ namespace DiKErnel::FunctionLibrary
              *         Unit = [s]
              */
             [[nodiscard]]
-            static int IncrementTime(
-                int beginTime,
-                int endTime);
+            static double IncrementTime(
+                double beginTime,
+                double endTime);
 
             /*!
              * \brief Calculates the average number of waves.

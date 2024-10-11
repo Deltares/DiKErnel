@@ -28,8 +28,8 @@ namespace DiKErnel::Integration
     {
         public:
             explicit TimeDependentInput(
-                int beginTime,
-                int endTime,
+                double beginTime,
+                double endTime,
                 double waterLevel,
                 double waveHeightHm0,
                 double wavePeriodTm10,
@@ -39,10 +39,10 @@ namespace DiKErnel::Integration
             bool Validate() const override;
 
             [[nodiscard]]
-            int GetBeginTime() const override;
+            double GetBeginTime() const override;
 
             [[nodiscard]]
-            int GetEndTime() const override;
+            double GetEndTime() const override;
 
             [[nodiscard]]
             double GetWaterLevel() const override;
@@ -57,8 +57,8 @@ namespace DiKErnel::Integration
             double GetWaveAngle() const override;
 
         private:
-            int _beginTime;
-            int _endTime;
+            double _beginTime;
+            double _endTime;
             double _waterLevel;
             double _waveHeightHm0;
             double _wavePeriodTm10;

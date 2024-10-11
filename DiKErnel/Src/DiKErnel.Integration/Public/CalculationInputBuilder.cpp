@@ -73,8 +73,8 @@ namespace DiKErnel::Integration
     }
 
     void CalculationInputBuilder::AddTimeStep(
-        int beginTime,
-        int endTime,
+        double beginTime,
+        double endTime,
         double waterLevel,
         double waveHeightHm0,
         double wavePeriodTm10,
