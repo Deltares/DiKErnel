@@ -20,6 +20,12 @@
 
 #include <filesystem>
 
+#include "CalculationInputBuilder.h"
+#include "Calculator.h"
+
+using namespace DiKErnel::Core;
+using namespace DiKErnel::Integration;
+
 using namespace std;
 using namespace std::chrono;
 
@@ -31,5 +37,32 @@ int main(
     const int argc,
     char** argv)
 {
+    const auto builder = make_unique<CalculationInputBuilder>();
+
+    builder->AddDikeProfileSegment(0, 7.09, 18.39, 13.22, 1);
+    builder->AddDikeProfileSegment(18.39, 13.22, 23.39, 13.22, 1);
+    builder->AddDikeProfileSegment(23.39, 13.22, 33.05, 0, 1);
+
+    builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+    builder->AddDikeProfilePointData(18.39, CharacteristicPointType::OuterCrest);
+    builder->AddDikeProfilePointData(23.39, CharacteristicPointType::InnerCrest);
+    builder->AddDikeProfilePointData(33.05, CharacteristicPointType::InnerToe);
+
+    auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+        9, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
+
+    builder->AddAsphaltWaveImpactLocation(std::move(locationConstructionProperties));
+
+    builder->AddTimeStep(0, 1000, 1, 1, 1, 1);
+    builder->AddTimeStep(1000, 2000, 1, 1, 1, 1);
+    builder->AddTimeStep(2000, 3000, 1, 1, 1, 1);
+
+    const auto input = builder->Build();
+
+    Calculator calculator(*input->GetData());
+
+    calculator.WaitForCompletion();
+
+
     return 0;
 }
