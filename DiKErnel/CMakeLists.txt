@@ -80,11 +80,6 @@ endmacro()
 # Add directories
 add_subdirectory(Src)
 
-# Set startup project in Visual Studio
-if(CMAKE_GENERATOR MATCHES "Visual Studio" AND ${BUILD_PLATFORM} STREQUAL "x64")
-  set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT DiKErnel.Gui)
-endif()
-
 if(NOT BUILD_FOR_RELEASE)
   add_subdirectory(Test)
 endif()
