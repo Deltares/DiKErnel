@@ -31,7 +31,26 @@ using namespace DiKErnel::Integration;
 using namespace std;
 using namespace std::chrono;
 
+double xStartCalculationZoneOuterSlope = 7;
+double xEndCalculationZoneOuterSlope = 11;
+double xStartCalculationZoneInnerSlope = 24;
+double xEndCalculationZoneInnerSlope = 32;
+
+string asphaltWaveImpactIdentifier = "AsphaltWaveImpact";
+string grassWaveImpactIdentifier = "GrassWaveImpact";
+string grassWaveOvertoppingRayleighAnalyticalIdentifier = "GrassWaveOvertoppingRayleighAnalytical";
+string grassWaveOvertoppingRayleighDiscreteIdentifier = "GrassWaveOvertoppingRayleighDiscrete";
+string grassWaveRunupBattjesGroenendijkAnalyticalIdentifier = "GrassWaveRunupBattjesGroenendijkAnalytical";
+string grassWaveRunupRayleighDiscreteIdentifier = "GrassWaveRunupRayleighDiscrete";
+string naturalStoneWaveImpactIdentifier = "NaturalStoneWaveImpact";
+
+string oneHourTimeStepIdentifier = "1h";
+string twelveHoursTimeStepIdentifier = "12h";
+
 #pragma region Forward declarations
+
+void AddDikeProfile(
+    const unique_ptr<CalculationInputBuilder>& builder);
 
 vector<double> GetValuesFromFile(
     const string& fileName);
@@ -44,14 +63,7 @@ int main(
 {
     const auto builder = make_unique<CalculationInputBuilder>();
 
-    builder->AddDikeProfileSegment(0, 7.09, 18.39, 13.22, 1);
-    builder->AddDikeProfileSegment(18.39, 13.22, 23.39, 13.22, 1);
-    builder->AddDikeProfileSegment(23.39, 13.22, 33.05, 0, 1);
-
-    builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
-    builder->AddDikeProfilePointData(18.39, CharacteristicPointType::OuterCrest);
-    builder->AddDikeProfilePointData(23.39, CharacteristicPointType::InnerCrest);
-    builder->AddDikeProfilePointData(33.05, CharacteristicPointType::InnerToe);
+    AddDikeProfile(builder);
 
     auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
         10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
@@ -100,6 +112,19 @@ int main(
     cout << "AsphaltWaveImpact; 1; 99960; " << ms_double.count() / 1000.0 << "; 10; " << damage;
 
     return 0;
+}
+
+void AddDikeProfile(
+    const unique_ptr<CalculationInputBuilder>& builder)
+{
+    builder->AddDikeProfileSegment(0, 7.09, 18.39, 13.22, 1);
+    builder->AddDikeProfileSegment(18.39, 13.22, 23.39, 13.22, 1);
+    builder->AddDikeProfileSegment(23.39, 13.22, 33.05, 0, 1);
+
+    builder->AddDikeProfilePointData(0, CharacteristicPointType::OuterToe);
+    builder->AddDikeProfilePointData(18.39, CharacteristicPointType::OuterCrest);
+    builder->AddDikeProfilePointData(23.39, CharacteristicPointType::InnerCrest);
+    builder->AddDikeProfilePointData(33.05, CharacteristicPointType::InnerToe);
 }
 
 vector<double> GetValuesFromFile(
