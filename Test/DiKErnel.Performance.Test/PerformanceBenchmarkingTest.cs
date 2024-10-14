@@ -42,7 +42,7 @@ namespace DiKErnel.Performance.Test
         [TestCaseSource(nameof(FailureMechanismCases))]
         public void PerformanceBenchmarking(Action<CalculationInputBuilder> addLocationForFailureMechanismAction)
         {
-            var builder = new CalculationInputBuilder(10);
+            var builder = new CalculationInputBuilder(0);
 
             AddDikeProfile(builder);
 
@@ -83,17 +83,13 @@ namespace DiKErnel.Performance.Test
                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
                                             .ToArray();
 
-            double[] waveDirections = Resources.WDir_12h.Split(',')
-                                               .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                               .ToArray();
-
             double[] times = Enumerable.Range(0, waterLevels.Length + 1)
                                        .Select(i => 12 * 3600d * i)
                                        .ToArray();
 
             for (var i = 0; i <= waterLevels.Length - 1; i++)
             {
-                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
+                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], 0);
             }
         }
 

@@ -13,7 +13,6 @@
       <EmbeddedResource Include="Resources\Hm0_12h.csv" />
       <EmbeddedResource Include="Resources\htime_12h.csv" />
       <EmbeddedResource Include="Resources\Tmm10_12h.csv" />
-      <EmbeddedResource Include="Resources\WDir_12h.csv" />
     </ItemGroup>
 
     <ItemGroup>
