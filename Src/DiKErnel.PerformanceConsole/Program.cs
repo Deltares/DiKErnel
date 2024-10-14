@@ -87,8 +87,7 @@ namespace DiKErnel.PerformanceConsole
                 grassWaveRunupRayleighDiscreteIdentifier => x => builder.AddGrassWaveRunupRayleighDiscreteLocation(
                     new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
                 naturalStoneWaveImpactIdentifier => x => builder.AddNaturalStoneWaveImpactLocation(
-                    new NaturalStoneWaveImpactLocationConstructionProperties(x, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65)),
-                _ => throw new ArgumentException("Invalid failure mechanism")
+                    new NaturalStoneWaveImpactLocationConstructionProperties(x, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65))
             };
 
             foreach (double x in GetXValues(failureMechanismArgument, numberOfLocations))
@@ -127,7 +126,7 @@ namespace DiKErnel.PerformanceConsole
                     break;
                 default:
                 {
-                    double increment = (xEndCalculationZone - xStartCalculationZone) / numberOfLocations;
+                    double increment = (xEndCalculationZone - xStartCalculationZone) / (numberOfLocations - 1);
 
                     xValues.AddRange(Enumerable.Range(0, numberOfLocations)
                                                .Select(i => xStartCalculationZone + i * increment));
