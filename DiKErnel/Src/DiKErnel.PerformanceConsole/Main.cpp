@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include <fstream>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 
@@ -52,6 +53,11 @@ string twelveHoursTimeStepIdentifier = "12h";
 void AddDikeProfile(
     const unique_ptr<CalculationInputBuilder>& builder);
 
+void AddLocations(
+    const unique_ptr<CalculationInputBuilder>& builder,
+    const string& failureMechanismArgument,
+    const int numberOfLocations);
+
 vector<double> GetValuesFromFile(
     const string& fileName);
 
@@ -65,10 +71,7 @@ int main(
 
     AddDikeProfile(builder);
 
-    auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-        10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
-
-    builder->AddAsphaltWaveImpactLocation(std::move(locationConstructionProperties));
+    AddLocations(builder, asphaltWaveImpactIdentifier, 1);
 
     const vector<double> waterLevels = GetValuesFromFile("htime_12h.csv");
     const vector<double> waveHeights = GetValuesFromFile("Hm0_12h.csv");
@@ -125,6 +128,58 @@ void AddDikeProfile(
     builder->AddDikeProfilePointData(18.39, CharacteristicPointType::OuterCrest);
     builder->AddDikeProfilePointData(23.39, CharacteristicPointType::InnerCrest);
     builder->AddDikeProfilePointData(33.05, CharacteristicPointType::InnerToe);
+}
+
+void AddLocations(
+    const unique_ptr<CalculationInputBuilder>& builder,
+    const string& failureMechanismArgument,
+    const int numberOfLocations)
+{
+    function<void(double, const unique_ptr<CalculationInputBuilder>&)> addLocationAction;
+
+    if (failureMechanismArgument == asphaltWaveImpactIdentifier)
+    {
+        addLocationAction = [](
+            double x, const unique_ptr<CalculationInputBuilder>& builderToUse) ->
+            void
+            {
+                builderToUse->AddAsphaltWaveImpactLocation(make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                    x, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000));
+            };
+    }
+    else if (failureMechanismArgument == grassWaveImpactIdentifier)
+    {
+        
+    }
+    else if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier)
+    {
+
+    }
+    else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
+    {
+
+    }
+    else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier)
+    {
+
+    }
+    else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier)
+    {
+
+    }
+    else if (failureMechanismArgument == naturalStoneWaveImpactIdentifier)
+    {
+
+    }
+    else
+    {
+        throw std::invalid_argument("Invalid failure mechanism");
+    }
+
+    for (int i = 0; i < numberOfLocations; i++)
+    {
+        addLocationAction(10, builder);
+    }
 }
 
 vector<double> GetValuesFromFile(
