@@ -520,10 +520,10 @@ namespace DiKErnel::Integration
         {
             const TimeDependentInputFactoryData& currentTimeStep = *timeStepDataItem;
 
-            const int currentTimeStepBeginTime = currentTimeStep.GetBeginTime();
+            const double currentTimeStepBeginTime = currentTimeStep.GetBeginTime();
             if (previousTimeStep != nullptr)
             {
-                if (const int previousTimeStepEndTime = previousTimeStep->GetEndTime(); previousTimeStepEndTime != currentTimeStepBeginTime)
+                if (const double previousTimeStepEndTime = previousTimeStep->GetEndTime(); previousTimeStepEndTime != currentTimeStepBeginTime)
                 {
                     RegisterValidationError(
                         "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be equal to the end time of the " +
@@ -532,7 +532,7 @@ namespace DiKErnel::Integration
                 }
             }
 
-            if (const int currentTimeStepEndTime = currentTimeStep.GetEndTime(); currentTimeStepBeginTime >= currentTimeStepEndTime)
+            if (const double currentTimeStepEndTime = currentTimeStep.GetEndTime(); currentTimeStepBeginTime >= currentTimeStepEndTime)
             {
                 RegisterValidationError(
                     "The begin time of the time step (" + to_string(currentTimeStepBeginTime) + ") must be smaller than the end time of the " +
