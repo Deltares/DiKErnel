@@ -285,10 +285,10 @@ void CalculateAndWriteOutput(
     stringstream outputMessage;
 
     outputMessage << fixed << showpoint << setprecision(2);
-    outputMessage << failureMechanismArgument << ";";
-    outputMessage << locationDependentInputItems.size() << ";";
-    outputMessage << calculationInput->GetTimeDependentInputItems().size() << ";";
-    outputMessage << duration<double, milli>(endTime - startTime).count() / 1000.0 << ";";
+    outputMessage << setw(43) << failureMechanismArgument << ";";
+    outputMessage << setw(4) << locationDependentInputItems.size() << ";";
+    outputMessage << setw(8) << calculationInput->GetTimeDependentInputItems().size() << ";";
+    outputMessage << setw(7) << duration<double, milli>(endTime - startTime).count() / 1000.0 << ";";
 
     const auto& locationDependentOutputItems = calculator.GetResult()->GetData()->GetLocationDependentOutputItems();
 
@@ -296,8 +296,8 @@ void CalculateAndWriteOutput(
     {
         auto damages = locationDependentOutputItems[i].get().GetDamages();
 
-        outputMessage << locationDependentInputItems[i].get().GetX() << ";";
-        outputMessage << damages[damages.size() - 1] << ";";
+        outputMessage << setw(5) << locationDependentInputItems[i].get().GetX() << ";";
+        outputMessage << setw(8) << damages[damages.size() - 1] << ";";
     }
 
     auto outputMessageString = outputMessage.str();
