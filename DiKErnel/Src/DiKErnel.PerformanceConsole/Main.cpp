@@ -142,8 +142,17 @@ void AddLocations(
     else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier) {}
     else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier) {}
     else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier) {}
-    else
-        if (failureMechanismArgument == naturalStoneWaveImpactIdentifier) {}
+    else if (failureMechanismArgument == naturalStoneWaveImpactIdentifier)
+    {
+        addLocationAction = [](
+            double x,
+            const unique_ptr<CalculationInputBuilder>& builderToUse) ->
+            void
+                {
+                    builderToUse->AddNaturalStoneLocation(make_unique<NaturalStoneRevetmentLocationConstructionProperties>(
+                        x, NaturalStoneRevetmentTopLayerType::NordicStone, 0.4, 1.65));
+                };
+    }
 
     const auto xValues = GetXValues(failureMechanismArgument, numberOfLocations);
 
@@ -230,7 +239,7 @@ void AddTimeSteps(
     {
         const double currentEndTime = currentStartTime + 3600 * 12;
 
-        builder->AddTimeStep(currentStartTime, currentEndTime, waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
+        builder->AddTimeStep(currentStartTime, currentEndTime, waterLevels[i], waveHeights[i], wavePeriods[i], 0);
 
         currentStartTime = currentEndTime;
     }
