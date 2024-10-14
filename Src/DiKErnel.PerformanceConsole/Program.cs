@@ -36,7 +36,7 @@ namespace DiKErnel.PerformanceConsole
 
         private static void Main(string[] args)
         {
-            var builder = new CalculationInputBuilder(10);
+            var builder = new CalculationInputBuilder(0);
 
             AddDikeProfile(builder);
 
@@ -142,17 +142,16 @@ namespace DiKErnel.PerformanceConsole
             switch (timeStepArgument)
             {
                 case oneHourTimeStepIdentifier:
-                    AddTimeSteps(builder, 1, Resources.htime_1h, Resources.Hm0_1h, Resources.Tmm10_1h, Resources.WDir_1h);
+                    AddTimeSteps(builder, 1, Resources.htime_1h, Resources.Hm0_1h, Resources.Tmm10_1h);
                     break;
                 case twelveHoursTimeStepIdentifier:
-                    AddTimeSteps(builder, 12, Resources.htime_12h, Resources.Hm0_12h, Resources.Tmm10_12h, Resources.WDir_12h);
+                    AddTimeSteps(builder, 12, Resources.htime_12h, Resources.Hm0_12h, Resources.Tmm10_12h);
                     break;
             }
         }
 
         private static void AddTimeSteps(CalculationInputBuilder builder, int hours, string commaSeparatedWaterLevels,
-                                         string commaSeparatedWaveHeights, string commaSeparatedWavePeriods,
-                                         string commaSeparatedWaveDirections)
+                                         string commaSeparatedWaveHeights, string commaSeparatedWavePeriods)
         {
             double[] waterLevels = commaSeparatedWaterLevels.Split(',')
                                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
@@ -166,17 +165,13 @@ namespace DiKErnel.PerformanceConsole
                                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
                                                             .ToArray();
 
-            double[] waveDirections = commaSeparatedWaveDirections.Split(',')
-                                                                  .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                                                  .ToArray();
-
             double[] times = Enumerable.Range(0, waterLevels.Length + 1)
                                        .Select(i => hours * 3600d * i)
                                        .ToArray();
 
             for (var i = 0; i <= waterLevels.Length - 1; i++)
             {
-                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
+                builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], 0);
             }
         }
 

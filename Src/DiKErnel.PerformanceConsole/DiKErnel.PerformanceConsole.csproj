@@ -29,8 +29,6 @@
       <EmbeddedResource Include="Resources\htime_1h.csv" />
       <EmbeddedResource Include="Resources\Tmm10_12h.csv" />
       <EmbeddedResource Include="Resources\Tmm10_1h.csv" />
-      <EmbeddedResource Include="Resources\WDir_12h.csv" />
-      <EmbeddedResource Include="Resources\WDir_1h.csv" />
     </ItemGroup>
 
     <ItemGroup>
