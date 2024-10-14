@@ -75,7 +75,7 @@ int main(
 
     AddDikeProfile(builder);
 
-    AddLocations(builder, "AsphaltWaveImpact", 1);
+    AddLocations(builder, argv[1], stoi(argv[2]));
 
     const vector<double> waterLevels = GetValuesFromFile("htime_12h.csv");
     const vector<double> waveHeights = GetValuesFromFile("Hm0_12h.csv");
