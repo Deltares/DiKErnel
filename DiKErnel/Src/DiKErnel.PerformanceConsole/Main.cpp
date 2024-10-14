@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include <fstream>
+#include <iostream>
 
 #include "CalculationInputBuilder.h"
 #include "Calculator.h"
@@ -52,7 +53,7 @@ int main(
     builder->AddDikeProfilePointData(33.05, CharacteristicPointType::InnerToe);
 
     auto locationConstructionProperties = make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-        9, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
+        10, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000);
 
     builder->AddAsphaltWaveImpactLocation(std::move(locationConstructionProperties));
 
@@ -74,9 +75,15 @@ int main(
 
     const auto input = builder->Build();
 
+    const auto startTime = high_resolution_clock::now();
+
     Calculator calculator(*input->GetData());
 
     calculator.WaitForCompletion();
+
+    const auto endTime = high_resolution_clock::now();
+
+    const duration<double, std::milli> ms_double = endTime - startTime;
 
     const auto result = calculator.GetResult();
 
@@ -86,7 +93,18 @@ int main(
 
     const auto& damages = locationDependentOutputItems.at(0).get().GetDamages();
 
-    auto damage = damages[damages.size() - 1];
+    auto finalDamage = damages[damages.size() - 1];
+
+    ofstream out("damages.txt");
+
+    for (double damage : damages)
+    {
+        out << damage << '\n';
+    }
+
+    out.close();
+
+    cout << ms_double.count() / 1000;
 
     return 0;
 }
@@ -117,6 +135,8 @@ vector<double> GetValuesFromFile(
             values.push_back(stod(valueString.substr(i, valueString.length())));
         }
     }
+
+    in.close();
 
     return values;
 }
