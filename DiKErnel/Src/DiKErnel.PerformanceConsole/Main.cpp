@@ -73,7 +73,6 @@ void AddTimeSteps(
     int,
     const string&,
     const string&,
-    const string&,
     const string&);
 
 vector<double> GetValuesFromFile(
@@ -212,11 +211,11 @@ void AddTimeSteps(
 {
     if (timeStepArgument == oneHourTimeStepIdentifier)
     {
-        AddTimeSteps(builder, 1, "htime_1h.csv", "Hm0_1h.csv", "Tmm10_1h.csv", "WDir_1h.csv");
+        AddTimeSteps(builder, 1, "htime_1h.csv", "Hm0_1h.csv", "Tmm10_1h.csv");
     }
     else if (timeStepArgument == twelveHoursTimeStepIdentifier)
     {
-        AddTimeSteps(builder, 12, "htime_12h.csv", "Hm0_12h.csv", "Tmm10_12h.csv", "WDir_12h.csv");
+        AddTimeSteps(builder, 12, "htime_12h.csv", "Hm0_12h.csv", "Tmm10_12h.csv");
     }
 }
 
@@ -225,13 +224,11 @@ void AddTimeSteps(
     int hours,
     const string& waterLevelsFile,
     const string& waveHeightsFile,
-    const string& wavePeriodsFile,
-    const string& waveDirectionsFile)
+    const string& wavePeriodsFile)
 {
     const vector<double> waterLevels = GetValuesFromFile(waterLevelsFile);
     const vector<double> waveHeights = GetValuesFromFile(waveHeightsFile);
     const vector<double> wavePeriods = GetValuesFromFile(wavePeriodsFile);
-    const vector<double> waveDirections = GetValuesFromFile(waveDirectionsFile);
 
     double currentStartTime = 0;
 
