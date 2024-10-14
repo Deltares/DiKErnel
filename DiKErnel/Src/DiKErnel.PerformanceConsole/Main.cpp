@@ -56,6 +56,10 @@ void AddDikeProfile(
 void AddLocations(
     const unique_ptr<CalculationInputBuilder>& builder,
     const string& failureMechanismArgument,
+    int numberOfLocations);
+
+vector<double> GetXValues(
+    const string& failureMechanismArgument,
     const int numberOfLocations);
 
 vector<double> GetValuesFromFile(
@@ -71,7 +75,7 @@ int main(
 
     AddDikeProfile(builder);
 
-    AddLocations(builder, asphaltWaveImpactIdentifier, 1);
+    AddLocations(builder, "AsphaltWaveImpact", 1);
 
     const vector<double> waterLevels = GetValuesFromFile("htime_12h.csv");
     const vector<double> waveHeights = GetValuesFromFile("Hm0_12h.csv");
@@ -135,51 +139,82 @@ void AddLocations(
     const string& failureMechanismArgument,
     const int numberOfLocations)
 {
-    function<void(double, const unique_ptr<CalculationInputBuilder>&)> addLocationAction;
+    function<void(
+        double,
+        const unique_ptr<CalculationInputBuilder>&)> addLocationAction;
 
     if (failureMechanismArgument == asphaltWaveImpactIdentifier)
     {
         addLocationAction = [](
-            double x, const unique_ptr<CalculationInputBuilder>& builderToUse) ->
+            double x,
+            const unique_ptr<CalculationInputBuilder>& builderToUse) ->
             void
-            {
-                builderToUse->AddAsphaltWaveImpactLocation(make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
-                    x, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000));
-            };
+                {
+                    builderToUse->AddAsphaltWaveImpactLocation(make_unique<AsphaltRevetmentWaveImpactLocationConstructionProperties>(
+                        x, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000));
+                };
     }
-    else if (failureMechanismArgument == grassWaveImpactIdentifier)
-    {
-        
-    }
-    else if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier)
-    {
-
-    }
-    else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
-    {
-
-    }
-    else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier)
-    {
-
-    }
-    else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier)
-    {
-
-    }
-    else if (failureMechanismArgument == naturalStoneWaveImpactIdentifier)
-    {
-
-    }
+    else if (failureMechanismArgument == grassWaveImpactIdentifier) {}
+    else if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier) {}
+    else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier) {}
+    else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier) {}
+    else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier) {}
+    else if (failureMechanismArgument == naturalStoneWaveImpactIdentifier) {}
     else
     {
         throw std::invalid_argument("Invalid failure mechanism");
     }
 
+    const auto xValues = GetXValues(failureMechanismArgument, numberOfLocations);
+
     for (int i = 0; i < numberOfLocations; i++)
     {
-        addLocationAction(10, builder);
+        addLocationAction(xValues[i], builder);
     }
+}
+
+vector<double> GetXValues(
+    const string& failureMechanismArgument,
+    const int numberOfLocations)
+{
+    vector<double> xValues;
+
+    double xStartCalculationZone;
+    double xEndCalculationZone;
+
+    if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier ||
+        failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
+    {
+        xStartCalculationZone = xStartCalculationZoneInnerSlope;
+        xEndCalculationZone = xEndCalculationZoneInnerSlope;
+    }
+    else
+    {
+        xStartCalculationZone = xStartCalculationZoneOuterSlope;
+        xEndCalculationZone = xEndCalculationZoneOuterSlope;
+    }
+
+    switch (numberOfLocations)
+    {
+        case 1:
+            xValues.push_back(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 2);
+            break;
+        case 2:
+            xValues.push_back(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 3);
+            xValues.push_back(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 2 / 3);
+            break;
+        default:
+        {
+            const double increment = (xEndCalculationZone - xStartCalculationZone) / numberOfLocations;
+
+            for (int i = 0; i < numberOfLocations; i++)
+            {
+                xValues.push_back(xStartCalculationZone + i * increment);
+            }
+        }
+    }
+
+    return xValues;
 }
 
 vector<double> GetValuesFromFile(
