@@ -22,12 +22,14 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 
 #include "CalculationInputBuilder.h"
 #include "Calculator.h"
 
 using namespace DiKErnel::Core;
 using namespace DiKErnel::Integration;
+using namespace DiKErnel::Util;
 
 using namespace std;
 using namespace std::chrono;
@@ -77,6 +79,10 @@ void AddTimeSteps(
 vector<double> GetValuesFromFile(
     const string&);
 
+void CalculateAndWriteOutput(
+    const ICalculationInput*,
+    const string&);
+
 #pragma endregion
 
 int main(
@@ -93,28 +99,7 @@ int main(
 
     const auto input = builder->Build();
 
-    const auto startTime = high_resolution_clock::now();
-
-    Calculator calculator(*input->GetData());
-
-    calculator.WaitForCompletion();
-
-    const auto endTime = high_resolution_clock::now();
-
-    const duration<double, std::milli> ms_double = endTime - startTime;
-
-    const auto result = calculator.GetResult();
-
-    const auto output = result->GetData();
-
-    const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
-
-    const auto& damages = locationDependentOutputItems.at(0).get().GetDamages();
-
-    const auto damage = damages[damages.size() - 1];
-
-    cout << fixed << showpoint << setprecision(2);
-    cout << "AsphaltWaveImpact; 1; 99960; " << ms_double.count() / 1000.0 << "; 10; " << damage;
+    CalculateAndWriteOutput(input->GetData(), argv[1]);
 
     return 0;
 }
@@ -200,7 +185,7 @@ vector<double> GetXValues(
             break;
         default:
         {
-            const double increment = (xEndCalculationZone - xStartCalculationZone) / numberOfLocations;
+            const double increment = (xEndCalculationZone - xStartCalculationZone) / (numberOfLocations - 1);
 
             for (int i = 0; i < numberOfLocations; i++)
             {
@@ -281,4 +266,43 @@ vector<double> GetValuesFromFile(
     in.close();
 
     return values;
+}
+
+void CalculateAndWriteOutput(
+    const ICalculationInput* calculationInput,
+    const string& failureMechanismArgument)
+{
+    const auto startTime = high_resolution_clock::now();
+
+    Calculator calculator(*calculationInput);
+
+    calculator.WaitForCompletion();
+
+    const auto endTime = high_resolution_clock::now();
+
+    const auto locationDependentInputItems = calculationInput->GetLocationDependentInputItems();
+
+    stringstream outputMessage;
+
+    outputMessage << fixed << showpoint << setprecision(2);
+    outputMessage << failureMechanismArgument << ";";
+    outputMessage << locationDependentInputItems.size() << ";";
+    outputMessage << calculationInput->GetTimeDependentInputItems().size() << ";";
+    outputMessage << duration<double, milli>(endTime - startTime).count() / 1000.0 << ";";
+
+    const auto& locationDependentOutputItems = calculator.GetResult()->GetData()->GetLocationDependentOutputItems();
+
+    for (int i = 0; i < locationDependentOutputItems.size(); i++)
+    {
+        auto damages = locationDependentOutputItems[i].get().GetDamages();
+
+        outputMessage << locationDependentInputItems[i].get().GetX() << ";";
+        outputMessage << damages[damages.size() - 1] << ";";
+    }
+
+    auto outputMessageString = outputMessage.str();
+
+    outputMessageString.pop_back();
+
+    cout << outputMessageString;
 }
