@@ -18,8 +18,6 @@
 // Stichting Deltares and remain full property of Stichting Deltares at all times.
 // All rights reserved.
 
-#include <filesystem>
-#include <iostream>
 #include <fstream>
 
 #include "CalculationInputBuilder.h"
@@ -33,34 +31,10 @@ using namespace std::chrono;
 
 #pragma region Forward declarations
 
+vector<double> GetValuesFromFile(
+    const string& fileName);
+
 #pragma endregion
-
-vector<double> GetValuesFromFile(const string& fileName)
-{
-    vector<double> v;
-
-    ifstream in(fileName);
-
-    string valueString;
-    getline(in, valueString, '\n');
-
-    int i = 0;
-    int j = valueString.find(',');
-
-    while (j >= 0)
-    {
-        v.push_back(stod(valueString.substr(i, j - i)));
-        i = ++j;
-        j = valueString.find(',', j);
-
-        if (j < 0)
-        {
-            v.push_back(stod(valueString.substr(i, valueString.length())));
-        }
-    }
-
-    return v;
-}
 
 int main(
     const int argc,
@@ -104,15 +78,45 @@ int main(
 
     calculator.WaitForCompletion();
 
-    auto result = calculator.GetResult();
+    const auto result = calculator.GetResult();
 
-    auto output = result->GetData();
+    const auto output = result->GetData();
 
     const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
 
-    const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages();
+    const auto& damages = locationDependentOutputItems.at(0).get().GetDamages();
 
-    auto damage = actualDamages[actualDamages.size() - 1];
+    auto damage = damages[damages.size() - 1];
 
     return 0;
+}
+
+vector<double> GetValuesFromFile(
+    const string& fileName)
+{
+    vector<double> values;
+
+    ifstream in(fileName);
+
+    string valueString;
+    getline(in, valueString, '\n');
+
+    int i = 0;
+    int j = valueString.find(',');
+
+    while (j >= 0)
+    {
+        values.push_back(stod(valueString.substr(i, j - i)));
+
+        i = ++j;
+
+        j = valueString.find(',', j);
+
+        if (j < 0)
+        {
+            values.push_back(stod(valueString.substr(i, valueString.length())));
+        }
+    }
+
+    return values;
 }
