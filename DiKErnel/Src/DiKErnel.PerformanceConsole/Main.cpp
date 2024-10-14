@@ -19,6 +19,7 @@
 // All rights reserved.
 
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 
 #include "CalculationInputBuilder.h"
@@ -97,6 +98,8 @@ int main(
 
     ofstream out("damages.txt");
 
+    out << setprecision(numeric_limits<double>::max_digits10);
+
     for (double damage : damages)
     {
         out << damage << '\n';
@@ -104,7 +107,8 @@ int main(
 
     out.close();
 
-    cout << ms_double.count() / 1000;
+    cout << ms_double.count() / 1000 << '\n';
+    cout << finalDamage;
 
     return 0;
 }
