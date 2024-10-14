@@ -51,19 +51,31 @@ string twelveHoursTimeStepIdentifier = "12h";
 #pragma region Forward declarations
 
 void AddDikeProfile(
-    const unique_ptr<CalculationInputBuilder>& builder);
+    const unique_ptr<CalculationInputBuilder>&);
 
 void AddLocations(
-    const unique_ptr<CalculationInputBuilder>& builder,
-    const string& failureMechanismArgument,
-    int numberOfLocations);
+    const unique_ptr<CalculationInputBuilder>&,
+    const string&,
+    int);
 
 vector<double> GetXValues(
-    const string& failureMechanismArgument,
-    const int numberOfLocations);
+    const string&,
+    int);
+
+void AddTimeSteps(
+    const unique_ptr<CalculationInputBuilder>&,
+    const string&);
+
+void AddTimeSteps(
+    const unique_ptr<CalculationInputBuilder>&,
+    int,
+    const string&,
+    const string&,
+    const string&,
+    const string&);
 
 vector<double> GetValuesFromFile(
-    const string& fileName);
+    const string&);
 
 #pragma endregion
 
@@ -77,21 +89,7 @@ int main(
 
     AddLocations(builder, argv[1], stoi(argv[2]));
 
-    const vector<double> waterLevels = GetValuesFromFile("htime_12h.csv");
-    const vector<double> waveHeights = GetValuesFromFile("Hm0_12h.csv");
-    const vector<double> wavePeriods = GetValuesFromFile("Tmm10_12h.csv");
-    const vector<double> waveDirections = GetValuesFromFile("WDir_12h.csv");
-
-    double currentStartTime = 0;
-
-    for (int i = 0; i < waterLevels.size(); i++)
-    {
-        const double currentEndTime = currentStartTime + 3600 * 12;
-
-        builder->AddTimeStep(currentStartTime, currentEndTime, waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
-
-        currentStartTime = currentEndTime;
-    }
+    AddTimeSteps(builder, argv[3]);
 
     const auto input = builder->Build();
 
@@ -159,11 +157,8 @@ void AddLocations(
     else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier) {}
     else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier) {}
     else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier) {}
-    else if (failureMechanismArgument == naturalStoneWaveImpactIdentifier) {}
     else
-    {
-        throw std::invalid_argument("Invalid failure mechanism");
-    }
+        if (failureMechanismArgument == naturalStoneWaveImpactIdentifier) {}
 
     const auto xValues = GetXValues(failureMechanismArgument, numberOfLocations);
 
@@ -215,6 +210,45 @@ vector<double> GetXValues(
     }
 
     return xValues;
+}
+
+void AddTimeSteps(
+    const unique_ptr<CalculationInputBuilder>& builder,
+    const string& timeStepArgument)
+{
+    if (timeStepArgument == oneHourTimeStepIdentifier)
+    {
+        AddTimeSteps(builder, 1, "htime_1h.csv", "Hm0_1h.csv", "Tmm10_1h.csv", "WDir_1h.csv");
+    }
+    else if (timeStepArgument == twelveHoursTimeStepIdentifier)
+    {
+        AddTimeSteps(builder, 12, "htime_12h.csv", "Hm0_12h.csv", "Tmm10_12h.csv", "WDir_12h.csv");
+    }
+}
+
+void AddTimeSteps(
+    const unique_ptr<CalculationInputBuilder>& builder,
+    int hours,
+    const string& waterLevelsFile,
+    const string& waveHeightsFile,
+    const string& wavePeriodsFile,
+    const string& waveDirectionsFile)
+{
+    const vector<double> waterLevels = GetValuesFromFile(waterLevelsFile);
+    const vector<double> waveHeights = GetValuesFromFile(waveHeightsFile);
+    const vector<double> wavePeriods = GetValuesFromFile(wavePeriodsFile);
+    const vector<double> waveDirections = GetValuesFromFile(waveDirectionsFile);
+
+    double currentStartTime = 0;
+
+    for (int i = 0; i < waterLevels.size(); i++)
+    {
+        const double currentEndTime = currentStartTime + 3600 * 12;
+
+        builder->AddTimeStep(currentStartTime, currentEndTime, waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
+
+        currentStartTime = currentEndTime;
+    }
 }
 
 vector<double> GetValuesFromFile(
