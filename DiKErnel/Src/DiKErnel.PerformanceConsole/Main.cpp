@@ -35,9 +35,9 @@ using namespace std::chrono;
 
 #pragma endregion
 
-vector<float> GetValuesFromFile(const string& fileName)
+vector<double> GetValuesFromFile(const string& fileName)
 {
-    vector<float> v;
+    vector<double> v;
 
     ifstream in(fileName);
 
@@ -49,13 +49,13 @@ vector<float> GetValuesFromFile(const string& fileName)
 
     while (j >= 0)
     {
-        v.push_back(stof(valueString.substr(i, j - i)));
+        v.push_back(stod(valueString.substr(i, j - i)));
         i = ++j;
         j = valueString.find(',', j);
 
         if (j < 0)
         {
-            v.push_back(stof(valueString.substr(i, valueString.length())));
+            v.push_back(stod(valueString.substr(i, valueString.length())));
         }
     }
 
@@ -82,16 +82,16 @@ int main(
 
     builder->AddAsphaltWaveImpactLocation(std::move(locationConstructionProperties));
 
-    const vector<float> waterLevels = GetValuesFromFile("htime_12h.csv");
-    const vector<float> waveHeights = GetValuesFromFile("Hm0_12h.csv");
-    const vector<float> wavePeriods = GetValuesFromFile("Tmm10_12h.csv");
-    const vector<float> waveDirections = GetValuesFromFile("WDir_12h.csv");
+    const vector<double> waterLevels = GetValuesFromFile("htime_12h.csv");
+    const vector<double> waveHeights = GetValuesFromFile("Hm0_12h.csv");
+    const vector<double> wavePeriods = GetValuesFromFile("Tmm10_12h.csv");
+    const vector<double> waveDirections = GetValuesFromFile("WDir_12h.csv");
 
     double currentStartTime = 0;
 
     for (int i = 0; i < waterLevels.size(); i++)
     {
-        const auto currentEndTime = currentStartTime + 3600 * 12;
+        const double currentEndTime = currentStartTime + 3600 * 12;
 
         builder->AddTimeStep(currentStartTime, currentEndTime, waterLevels[i], waveHeights[i], wavePeriods[i], waveDirections[i]);
 
@@ -103,6 +103,16 @@ int main(
     Calculator calculator(*input->GetData());
 
     calculator.WaitForCompletion();
+
+    auto result = calculator.GetResult();
+
+    auto output = result->GetData();
+
+    const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
+
+    const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages();
+
+    auto damage = actualDamages[actualDamages.size() - 1];
 
     return 0;
 }
