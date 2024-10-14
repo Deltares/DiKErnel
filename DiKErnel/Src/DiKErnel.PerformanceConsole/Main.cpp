@@ -94,21 +94,10 @@ int main(
 
     const auto& damages = locationDependentOutputItems.at(0).get().GetDamages();
 
-    auto finalDamage = damages[damages.size() - 1];
+    const auto damage = damages[damages.size() - 1];
 
-    ofstream out("damages.txt");
-
-    out << setprecision(numeric_limits<double>::max_digits10);
-
-    for (double damage : damages)
-    {
-        out << damage << '\n';
-    }
-
-    out.close();
-
-    cout << ms_double.count() / 1000 << '\n';
-    cout << finalDamage;
+    cout << fixed << showpoint << setprecision(2);
+    cout << "AsphaltWaveImpact; 1; 99960; " << ms_double.count() / 1000.0 << "; 10; " << damage;
 
     return 0;
 }
