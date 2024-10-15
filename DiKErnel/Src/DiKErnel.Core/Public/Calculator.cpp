@@ -90,20 +90,10 @@ namespace DiKErnel::Core
 
             for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
             {
-                if (calculationState == CalculationState::Cancelled)
-                {
-                    break;
-                }
-
                 const auto& timeDependentInput = timeDependentInputItems.at(i).get();
 
                 for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
                 {
-                    if (calculationState == CalculationState::Cancelled)
-                    {
-                        break;
-                    }
-
                     auto& locationDependentInput = locationDependentInputItems.at(j).get();
 
                     const auto initialDamage = i == 0
