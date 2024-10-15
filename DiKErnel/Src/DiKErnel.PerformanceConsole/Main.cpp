@@ -136,7 +136,17 @@ void AddLocations(
                         x, AsphaltRevetmentTopLayerType::HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000));
                 };
     }
-    else if (failureMechanismArgument == grassWaveImpactIdentifier) {}
+    else if (failureMechanismArgument == grassWaveImpactIdentifier)
+    {
+        addLocationAction = [](
+            double x,
+            const unique_ptr<CalculationInputBuilder>& builderToUse) ->
+            void
+                {
+                    builderToUse->AddGrassWaveImpactLocation(make_unique<GrassRevetmentWaveImpactLocationConstructionProperties>(
+                        x, GrassRevetmentTopLayerType::OpenSod));
+                };
+    }
     else if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier) {}
     else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier) {}
     else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier) {}
