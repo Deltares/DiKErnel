@@ -48,11 +48,6 @@ namespace DiKErnel::Core
         }
     }
 
-    CalculationState Calculator::GetCalculationState() const
-    {
-        return _calculationState;
-    }
-
     int Calculator::GetProgress() const
     {
         return static_cast<int>(round(_progress * 100));
@@ -60,10 +55,7 @@ namespace DiKErnel::Core
 
     void Calculator::Cancel()
     {
-        if (_calculationState == CalculationState::Running)
-        {
-            _calculationState = CalculationState::Cancelled;
-        }
+
     }
 
     shared_ptr<DataResult<CalculationOutput>> Calculator::GetResult() const
@@ -108,16 +100,7 @@ namespace DiKErnel::Core
                 }
             }
 
-            if (calculationState != CalculationState::Cancelled)
-            {
-                CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
-
-                calculationState = CalculationState::FinishedSuccessfully;
-            }
-            else
-            {
-                CreateResultWithoutCalculationOutput();
-            }
+            CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
         }
         catch (const exception& e)
         {
@@ -125,8 +108,6 @@ namespace DiKErnel::Core
                                                        "information:\n" + static_cast<string>(e.what()), EventType::Error));
 
             CreateResultWithoutCalculationOutput();
-
-            calculationState = CalculationState::FinishedInError;
         }
     }
 

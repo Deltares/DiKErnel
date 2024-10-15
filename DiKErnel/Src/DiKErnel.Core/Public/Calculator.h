@@ -51,12 +51,6 @@ namespace DiKErnel::Core
             void WaitForCompletion();
 
             /*!
-             * \brief Gets the state of the calculation.
-             * \return The state of the calculation.
-             */
-            CalculationState GetCalculationState() const;
-
-            /*!
              * \brief Gets the current progress of the calculation.
              * \return The current progress of the calculation.
              *         Unit = [%]
@@ -82,7 +76,6 @@ namespace DiKErnel::Core
         private:
             std::jthread _calculationThread;
             std::atomic<double> _progress = 0;
-            std::atomic<CalculationState> _calculationState = CalculationState::Running;
             std::shared_ptr<Util::DataResult<CalculationOutput>> _result = nullptr;
 
             void PerformCalculation(
