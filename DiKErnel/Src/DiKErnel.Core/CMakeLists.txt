@@ -17,7 +17,6 @@ set(SOURCEFILES_PUBLIC
 set(SOURCEFILES_PUBLIC_DATA
   ${PUBLIC_DATA_FOLDER}/CalculationOutput.cpp
   ${PUBLIC_DATA_FOLDER}/CalculationOutput.h
-  ${PUBLIC_DATA_FOLDER}/CalculationState.h
   ${PUBLIC_DATA_FOLDER}/CharacteristicPoint.cpp
   ${PUBLIC_DATA_FOLDER}/CharacteristicPoint.h
   ${PUBLIC_DATA_FOLDER}/CharacteristicPointType.h
