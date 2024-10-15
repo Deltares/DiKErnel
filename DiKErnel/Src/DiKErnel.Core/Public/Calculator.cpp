@@ -20,8 +20,6 @@
 
 #include "Calculator.h"
 
-#include <cmath>
-
 #include "EventRegistry.h"
 
 namespace DiKErnel::Core
@@ -47,19 +45,13 @@ namespace DiKErnel::Core
         }
     }
 
-    int Calculator::GetProgress() const
-    {
-        return static_cast<int>(round(_progress * 100));
-    }
-
     shared_ptr<DataResult<CalculationOutput>> Calculator::GetResult() const
     {
         return _result;
     }
 
     void Calculator::PerformCalculation(
-        const ICalculationInput& calculationInput,
-        atomic<double>& progress)
+        const ICalculationInput& calculationInput)
     {
         try
         {
@@ -68,10 +60,6 @@ namespace DiKErnel::Core
             const auto& locationDependentInputItems = calculationInput.GetLocationDependentInputItems();
 
             auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
-
-            const auto progressPerCalculationStep = 1.0
-                    / static_cast<double>(timeDependentInputItems.size())
-                    / static_cast<double>(locationDependentInputItems.size());
 
             for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
             {
@@ -88,8 +76,6 @@ namespace DiKErnel::Core
                     auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
 
                     timeDependentOutputItems.at(j).push_back(move(timeDependentOutput));
-
-                    progress = progress + progressPerCalculationStep;
                 }
             }
 

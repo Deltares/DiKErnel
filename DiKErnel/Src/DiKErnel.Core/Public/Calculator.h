@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include <atomic>
 #include <thread>
 
 #include "CalculationOutput.h"
@@ -50,14 +49,6 @@ namespace DiKErnel::Core
             void WaitForCompletion();
 
             /*!
-             * \brief Gets the current progress of the calculation.
-             * \return The current progress of the calculation.
-             *         Unit = [%]
-             * \remarks Also returns the current progress when the calculation is cancelled.
-             */
-            int GetProgress() const;
-
-            /*!
              * \brief Gets the result of the calculator.
              * \return The result of the operation after being finished successfully, cancelled or
              *         finished in error. When the calculation is still running, a nullptr is
@@ -68,12 +59,10 @@ namespace DiKErnel::Core
 
         private:
             std::jthread _calculationThread;
-            std::atomic<double> _progress = 0;
             std::shared_ptr<Util::DataResult<CalculationOutput>> _result = nullptr;
 
             void PerformCalculation(
-                const ICalculationInput& calculationInput,
-                std::atomic<double>& progress);
+                const ICalculationInput& calculationInput);
 
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
