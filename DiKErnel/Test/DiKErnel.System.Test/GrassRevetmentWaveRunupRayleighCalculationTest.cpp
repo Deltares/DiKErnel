@@ -169,8 +169,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 40451;
@@ -195,8 +194,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 35682;
@@ -221,8 +219,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 35036;
@@ -248,8 +245,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 36169;
@@ -274,8 +270,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 53050;
@@ -301,8 +296,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 45518;
@@ -327,8 +321,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 36979;
@@ -354,8 +347,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 35962;
@@ -380,8 +372,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 35645;
@@ -407,8 +398,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 42138;
@@ -434,8 +424,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 18856;
