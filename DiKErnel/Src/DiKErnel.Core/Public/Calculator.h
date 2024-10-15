@@ -43,12 +43,6 @@ namespace DiKErnel::Core
                 const ICalculationInput& calculationInput);
 
             /*!
-             * \brief Handle that enables a calling instance to wait for the calculation to
-             *        complete.
-             */
-            void WaitForCompletion();
-
-            /*!
              * \brief Gets the result of the calculator.
              * \return The result of the operation after being finished successfully, cancelled or
              *         finished in error. When the calculation is still running, a nullptr is
@@ -58,7 +52,6 @@ namespace DiKErnel::Core
             std::shared_ptr<Util::DataResult<CalculationOutput>> GetResult() const;
 
         private:
-            std::jthread _calculationThread;
             std::shared_ptr<Util::DataResult<CalculationOutput>> _result = nullptr;
 
             void PerformCalculation(

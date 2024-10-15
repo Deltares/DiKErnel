@@ -280,9 +280,7 @@ void CalculateAndWriteOutput(
 {
     const auto startTime = high_resolution_clock::now();
 
-    Calculator calculator(*calculationInput);
-
-    calculator.WaitForCompletion();
+    const Calculator calculator(*calculationInput);
 
     const auto endTime = high_resolution_clock::now();
 

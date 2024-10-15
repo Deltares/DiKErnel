@@ -125,8 +125,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 28730;
@@ -150,8 +149,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 21784;
@@ -176,8 +174,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 24186;
@@ -218,8 +215,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 28534;
@@ -260,8 +256,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 22915;
@@ -302,8 +297,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 24516;
@@ -332,8 +326,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 25376;
@@ -359,8 +352,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 16415;
@@ -386,8 +378,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 28730;

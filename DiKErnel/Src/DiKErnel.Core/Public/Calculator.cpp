@@ -30,18 +30,7 @@ namespace DiKErnel::Core
     Calculator::Calculator(
         const ICalculationInput& calculationInput)
     {
-        _calculationThread = jthread(
-            &Calculator::PerformCalculation,
-            this,
-            ref(calculationInput));
-    }
-
-    void Calculator::WaitForCompletion()
-    {
-        if (_calculationThread.joinable())
-        {
-            _calculationThread.join();
-        }
+        PerformCalculation(calculationInput);
     }
 
     shared_ptr<DataResult<CalculationOutput>> Calculator::GetResult() const
