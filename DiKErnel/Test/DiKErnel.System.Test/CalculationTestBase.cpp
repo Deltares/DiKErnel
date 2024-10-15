@@ -32,8 +32,6 @@ namespace DiKErnel::System::Test
         const double expectedDamage,
         const int* expectedTimeOfFailure)
     {
-        ASSERT_EQ(CalculationState::FinishedSuccessfully, calculator.GetCalculationState());
-
         const auto calculatorResult = calculator.GetResult();
         ASSERT_TRUE(calculatorResult->GetSuccessful());
         ASSERT_EQ(0, calculatorResult->GetEvents().size());

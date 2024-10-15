@@ -33,8 +33,7 @@ namespace DiKErnel::Core
         _calculationThread = jthread(
             &Calculator::PerformCalculation,
             this,
-            ref(calculationInput),
-            ref(_progress));
+            ref(calculationInput));
     }
 
     void Calculator::WaitForCompletion()
