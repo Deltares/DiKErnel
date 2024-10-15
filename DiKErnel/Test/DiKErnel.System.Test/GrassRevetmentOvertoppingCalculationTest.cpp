@@ -170,8 +170,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 33913;
@@ -195,8 +194,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         AssertOutput(calculator, 0.0751490475083924);
@@ -219,8 +217,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         AssertOutput(calculator, 0.0403132797601268);
@@ -243,8 +240,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         AssertOutput(calculator, 0.360805793202144);
@@ -268,8 +264,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 5311;
@@ -293,8 +288,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         AssertOutput(calculator, 0.868617343967244);
@@ -317,8 +311,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 51672;
@@ -345,8 +338,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         AssertOutput(calculator, 0.688425139553067);
@@ -370,8 +362,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 33915;
@@ -395,8 +386,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 23118;
@@ -422,8 +412,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         constexpr int expectedTimeOfFailure = 48552;
@@ -455,8 +444,7 @@ namespace DiKErnel::System::Test
         const auto calculationInput = builder->Build();
 
         // When
-        Calculator calculator(*calculationInput->GetData());
-        calculator.WaitForCompletion();
+        const Calculator calculator(*calculationInput->GetData());
 
         // Then
         AssertOutput(calculator, 0.407672739747293);

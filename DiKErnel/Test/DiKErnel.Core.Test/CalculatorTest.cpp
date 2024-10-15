@@ -81,10 +81,8 @@ namespace DiKErnel::Core::Test
 
         locationDependentInput->SetDamage(damage);
 
-        Calculator calculator(calculationInput);
-
         // When
-        calculator.WaitForCompletion();
+        const Calculator calculator(calculationInput);
 
         // Then
         const auto& result = calculator.GetResult();
@@ -121,10 +119,8 @@ namespace DiKErnel::Core::Test
         locationDependentInput->SetDamage(damage);
         locationDependentInput->SetTimeOfFailure(&timeOfFailure);
 
-        Calculator calculator(calculationInput);
-
         // When
-        calculator.WaitForCompletion();
+        const Calculator calculator(calculationInput);
 
         // Then
         const auto& result = calculator.GetResult();
@@ -144,25 +140,6 @@ namespace DiKErnel::Core::Test
         ASSERT_EQ(timeOfFailure, *locationDependentOutputItems.at(0).get().GetTimeOfFailure());
     }
 
-    TEST_F(CalculatorTest, GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnsNullPtr)
-    {
-        // Given
-        const NiceMock<ICalculationInputMock> calculationInput;
-        EXPECT_CALL(calculationInput, GetProfileData).WillRepeatedly(ReturnRef(*_profileData));
-        EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(_locationDependentInputItemReferences));
-        EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
-
-        Calculator calculator(calculationInput);
-
-        // When
-        const auto& result = calculator.GetResult();
-
-        // Then
-        ASSERT_EQ(nullptr, result);
-
-        calculator.WaitForCompletion();
-    }
-
     TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalseAndEvent)
     {
         // Given
@@ -177,8 +154,7 @@ namespace DiKErnel::Core::Test
         EXPECT_CALL(calculationInput, GetLocationDependentInputItems).WillRepeatedly(ReturnRef(locationDependentInputItemReferences));
         EXPECT_CALL(calculationInput, GetTimeDependentInputItems).WillRepeatedly(ReturnRef(_timeDependentInputItemReferences));
 
-        Calculator calculator(calculationInput);
-        calculator.WaitForCompletion();
+        const Calculator calculator(calculationInput);
 
         // When
         const auto& result = calculator.GetResult();
