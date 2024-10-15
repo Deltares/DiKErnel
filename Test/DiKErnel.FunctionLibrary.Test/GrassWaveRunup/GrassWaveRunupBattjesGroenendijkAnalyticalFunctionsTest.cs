@@ -44,10 +44,6 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 
             double verticalDistanceWaterLevelElevation = 1 - waterLevel;
 
-            double upperLimitWaveRunup = GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.UpperLimitWaveRunup(
-                increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
-                frontVelocityCu, criticalFrontVelocity, gravitationalAcceleration);
-
             var input = new GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput(
                 averageNumberOfWaves, representativeWaveRunup2P, verticalDistanceWaterLevelElevation,
                 criticalFrontVelocity, increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS,
@@ -55,7 +51,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
                 k1, k2);
 
             // Call
-            double cumulativeOverload = GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(input, upperLimitWaveRunup);
+            double cumulativeOverload = GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.CumulativeOverload(input);
 
             // Assert
             AssertHelper.AreEqual(expectedCumulativeOverload, cumulativeOverload);
