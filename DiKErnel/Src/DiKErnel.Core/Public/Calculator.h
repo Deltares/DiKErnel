@@ -35,7 +35,7 @@ namespace DiKErnel::Core
     {
         public:
             /*!
-             * \brief Creates a new instance.
+             * \brief Creates a new instance and directly starts the calculation.
              * \param calculationInput
              *        The input used in the calculation.
              */
