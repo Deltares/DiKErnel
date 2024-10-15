@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using System.Linq;
 
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
@@ -42,17 +41,12 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             double bindingStressCalculationPartial = -3 * input.MaximumPeakStress /
                                                      (4 * Math.Pow(input.StiffnessRelation, 2) * Math.Pow(input.ComputationalThickness, 2));
 
-            double[] impactNumberLookup = input.ImpactFactors
-                                               .Select(impactFactor => ImpactNumber(input.OuterSlope, impactFactor.Item1,
-                                                                                    input.ImpactNumberC))
-                                               .ToArray();
-
             foreach ((double, double) widthFactor in input.WidthFactors)
             {
                 double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, widthFactor.Item1,
                                                                          input.WaveHeightHm0);
 
-                double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, impactNumberLookup,
+                double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA,
                                                                          bindingStressCalculationPartial);
 
                 result += widthFactor.Item2 * depthFactorAccumulation;
@@ -132,7 +126,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         }
 
         private static double DepthFactorAccumulation(AsphaltWaveImpactInput input, double relativeWidthWaveImpact, double sinA,
-                                                      double[] impactNumberLookup, double bindingStressCalculationPartial)
+                                                      double bindingStressCalculationPartial)
         {
             double result = 0;
 
@@ -146,7 +140,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                                                      expNegativeRelativeWidthWaveImpact, sinA, depthFactor.Item1,
                                                      bindingStressCalculationPartial);
 
-                double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress, impactNumberLookup);
+                double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
 
                 result += depthFactor.Item2 * impactFactorAccumulation;
             }
@@ -154,29 +148,32 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return result;
         }
 
-        private static double ImpactFactorAccumulation(AsphaltWaveImpactInput input, double bendingStress, double[] impactNumberLookup)
+        private static double ImpactFactorAccumulation(AsphaltWaveImpactInput input, double bendingStress)
         {
             double result = 0;
 
-            for (var i = 0; i < input.ImpactFactors.Count; i++)
+            foreach ((double, double) impactFactor in input.ImpactFactors)
             {
-                double fatigue = Fatigue(input, bendingStress, impactNumberLookup[i]);
+                double fatigue = Fatigue(input, bendingStress, impactFactor.Item1);
 
-                result += input.ImpactFactors[i].Item2 * input.AverageNumberOfWaves * fatigue;
+                result += impactFactor.Item2 * input.AverageNumberOfWaves * fatigue;
             }
 
             return result;
         }
 
-        private static double Fatigue(AsphaltWaveImpactInput input, double bendingStress, double impactNumber)
+        private static double Fatigue(AsphaltWaveImpactInput input, double bendingStress, double impactFactorValue)
         {
-            double logTension = LogTension(bendingStress, impactNumber);
+            double logTension = LogTension(bendingStress, input.OuterSlope, impactFactorValue, input.ImpactNumberC);
 
-            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
+            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFlexuralStrength - logTension),
+                                                              input.FatigueAlpha));
         }
 
-        private static double LogTension(double bendingStress, double impactNumber)
+        private static double LogTension(double bendingStress, double outerSlope, double impactFactorValue, double impactNumberC)
         {
+            double impactNumber = ImpactNumber(outerSlope, impactFactorValue, impactNumberC);
+
             return Math.Log10(impactNumber * bendingStress);
         }
 
