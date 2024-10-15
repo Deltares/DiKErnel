@@ -148,7 +148,21 @@ void AddLocations(
                 };
     }
     else if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier) {}
-    else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier) {}
+    else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
+    {
+        addLocationAction = [](
+            double x,
+            const unique_ptr<CalculationInputBuilder>& builderToUse) ->
+            void
+            {
+                auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
+                    x, GrassRevetmentTopLayerType::OpenSod);
+
+                grassRevetmentOvertoppingLocationConstructionProperties->SetDikeHeight(make_unique<double>(11));
+
+                builderToUse->AddGrassOvertoppingLocation(move(grassRevetmentOvertoppingLocationConstructionProperties));
+            };
+    }
     else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier) {}
     else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier) {}
     else if (failureMechanismArgument == naturalStoneWaveImpactIdentifier)

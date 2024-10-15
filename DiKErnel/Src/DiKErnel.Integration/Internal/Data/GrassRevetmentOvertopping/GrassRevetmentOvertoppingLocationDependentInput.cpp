@@ -202,7 +202,10 @@ namespace DiKErnel::Integration
 
             incrementDamage = GrassRevetmentFunctions::IncrementDamage(_cumulativeOverload, _criticalCumulativeOverload);
 
-            damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
+            if (incrementDamage != numeric_limits<double>::infinity() && !std::isnan(incrementDamage))
+            {
+                damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
+            }
 
             if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
             {
