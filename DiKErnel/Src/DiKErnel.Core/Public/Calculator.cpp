@@ -36,8 +36,7 @@ namespace DiKErnel::Core
             &Calculator::PerformCalculation,
             this,
             ref(calculationInput),
-            ref(_progress),
-            ref(_calculationState));
+            ref(_progress));
     }
 
     void Calculator::WaitForCompletion()
@@ -53,11 +52,6 @@ namespace DiKErnel::Core
         return static_cast<int>(round(_progress * 100));
     }
 
-    void Calculator::Cancel()
-    {
-
-    }
-
     shared_ptr<DataResult<CalculationOutput>> Calculator::GetResult() const
     {
         return _result;
@@ -65,8 +59,7 @@ namespace DiKErnel::Core
 
     void Calculator::PerformCalculation(
         const ICalculationInput& calculationInput,
-        atomic<double>& progress,
-        atomic<CalculationState>& calculationState)
+        atomic<double>& progress)
     {
         try
         {

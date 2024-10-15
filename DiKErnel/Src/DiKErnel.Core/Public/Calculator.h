@@ -24,7 +24,6 @@
 #include <thread>
 
 #include "CalculationOutput.h"
-#include "CalculationState.h"
 #include "DataResult.h"
 #include "ICalculationInput.h"
 
@@ -59,12 +58,6 @@ namespace DiKErnel::Core
             int GetProgress() const;
 
             /*!
-             * \brief Cancels the calculation.
-             * \remarks A calculation can only be cancelled when it is actually still running.
-             */
-            void Cancel();
-
-            /*!
              * \brief Gets the result of the calculator.
              * \return The result of the operation after being finished successfully, cancelled or
              *         finished in error. When the calculation is still running, a nullptr is
@@ -80,8 +73,7 @@ namespace DiKErnel::Core
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput,
-                std::atomic<double>& progress,
-                std::atomic<CalculationState>& calculationState);
+                std::atomic<double>& progress);
 
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
