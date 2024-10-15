@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.FunctionLibrary.GrassWaveOvertopping;
@@ -26,9 +25,6 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
     internal class GrassWaveOvertoppingRayleighAnalyticalLocationDependentInput
         : GrassWaveOvertoppingRayleighLocationDependentInput
     {
-        private double cumulativeOverloadPartial1;
-        private double cumulativeOverloadPartial2;
-
         public GrassWaveOvertoppingRayleighAnalyticalLocationDependentInput(
             double x, double initialDamage, double failureNumber, double criticalCumulativeOverload,
             double criticalFrontVelocity, double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
@@ -37,16 +33,6 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             : base(x, initialDamage, failureNumber, criticalCumulativeOverload, criticalFrontVelocity,
                    increasedLoadTransitionAlphaM, reducedStrengthTransitionAlphaS, averageNumberOfWavesCtm,
                    frontVelocityCwo, accelerationAlphaA, enforcedDikeHeight) {}
-
-        public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
-        {
-            base.InitializeDerivedLocationDependentInput(profileData);
-
-            cumulativeOverloadPartial1 = IncreasedLoadTransitionAlphaM * Math.Pow(AccelerationAlphaAValue, 2) *
-                                         Math.Pow(FrontVelocityCwo, 2) * NaturalConstants.GravitationalAcceleration;
-
-            cumulativeOverloadPartial2 = ReducedStrengthTransitionAlphaS * Math.Pow(CriticalFrontVelocity, 2);
-        }
 
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
@@ -63,8 +49,7 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
                                                                         ReducedStrengthTransitionAlphaS,
                                                                         NaturalConstants.GravitationalAcceleration,
                                                                         FrontVelocityCwo,
-                                                                        AccelerationAlphaAValue),
-                cumulativeOverloadPartial1, cumulativeOverloadPartial2);
+                                                                        AccelerationAlphaAValue));
         }
     }
 }

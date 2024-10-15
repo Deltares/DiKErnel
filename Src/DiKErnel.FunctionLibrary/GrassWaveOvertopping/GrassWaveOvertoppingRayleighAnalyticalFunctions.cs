@@ -34,25 +34,27 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         /// Calculates the cumulative overload.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
-        /// <param name="cumulativeOverloadPartial1">A part of the cumulative overload calculation that is not time dependent.</param>
-        /// <param name="cumulativeOverloadPartial2">A part of the cumulative overload calculation that is not time dependent.</param>
         /// <returns>The cumulative overload [m^2/s^2].</returns>
-        public static double CumulativeOverload(GrassWaveOvertoppingRayleighCumulativeOverloadInput input,
-                                                double cumulativeOverloadPartial1, double cumulativeOverloadPartial2)
+        public static double CumulativeOverload(GrassWaveOvertoppingRayleighCumulativeOverloadInput input)
         {
             double parameterRayleigh = ParameterRayleigh(input.RepresentativeWaveRunup2P);
 
+            double sharedResult1 = input.IncreasedLoadTransitionAlphaM * Math.Pow(input.AccelerationAlphaA, 2) *
+                                   Math.Pow(input.FrontVelocityCwo, 2) * input.GravitationalAcceleration;
+
+            double sharedResult2 = input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2);
+
             double parameterX0 = ParameterX0(input.VerticalDistanceWaterLevelElevation, parameterRayleigh,
-                                             cumulativeOverloadPartial1, cumulativeOverloadPartial2);
+                                             sharedResult1, sharedResult2);
 
-            double sharedResult = Math.Exp(-Math.Pow(parameterX0, 2));
+            double sharedResult3 = Math.Exp(-Math.Pow(parameterX0, 2));
 
-            double integralPart1 = IntegralPart1(parameterRayleigh, cumulativeOverloadPartial1, sharedResult, parameterX0);
+            double integralPart1 = IntegralPart1(parameterRayleigh, sharedResult1, sharedResult3, parameterX0);
 
-            double integralPart2 = IntegralPart2(input.VerticalDistanceWaterLevelElevation, cumulativeOverloadPartial1,
-                                                 sharedResult);
+            double integralPart2 = IntegralPart2(input.VerticalDistanceWaterLevelElevation, sharedResult1,
+                                                 sharedResult3);
 
-            double integralPart3 = IntegralPart3(cumulativeOverloadPartial2, sharedResult);
+            double integralPart3 = IntegralPart3(sharedResult2, sharedResult3);
 
             return input.AverageNumberOfWaves * Math.Max(integralPart1 + integralPart2 + integralPart3, 0);
         }
@@ -63,35 +65,35 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         }
 
         private static double ParameterX0(double verticalDistanceWaterLevelElevation, double parameterRayleigh,
-                                          double cumulativeOverloadPartial1, double cumulativeOverloadPartial2)
+                                          double sharedResult1, double sharedResult2)
         {
-            return LowerLimitWaveRunup(verticalDistanceWaterLevelElevation, cumulativeOverloadPartial1, cumulativeOverloadPartial2) /
+            return LowerLimitWaveRunup(verticalDistanceWaterLevelElevation, sharedResult1, sharedResult2) /
                    (sqrt_2 * parameterRayleigh);
         }
 
-        private static double LowerLimitWaveRunup(double verticalDistanceWaterLevelElevation, double cumulativeOverloadPartial1,
-                                                  double cumulativeOverloadPartial2)
+        private static double LowerLimitWaveRunup(double verticalDistanceWaterLevelElevation, double sharedResult1,
+                                                  double sharedResult2)
         {
-            return verticalDistanceWaterLevelElevation + cumulativeOverloadPartial2 / cumulativeOverloadPartial1;
+            return verticalDistanceWaterLevelElevation + sharedResult2 / sharedResult1;
         }
 
-        private static double IntegralPart1(double parameterRayleigh, double cumulativeOverloadPartial1, double sharedResult,
+        private static double IntegralPart1(double parameterRayleigh, double sharedResult1, double sharedResult3,
                                             double parameterX0)
         {
-            return cumulativeOverloadPartial1 * parameterRayleigh *
-                   (sqrt_half_pi + sqrt_2 * parameterX0 * sharedResult -
+            return sharedResult1 * parameterRayleigh *
+                   (sqrt_half_pi + sqrt_2 * parameterX0 * sharedResult3 -
                     sqrt_half_pi * SpecialFunctions.Erf(parameterX0));
         }
 
-        private static double IntegralPart2(double verticalDistanceWaterLevelElevation, double cumulativeOverloadPartial1,
-                                            double sharedResult)
+        private static double IntegralPart2(double verticalDistanceWaterLevelElevation, double sharedResult1,
+                                            double sharedResult3)
         {
-            return -cumulativeOverloadPartial1 * verticalDistanceWaterLevelElevation * sharedResult;
+            return -sharedResult1 * verticalDistanceWaterLevelElevation * sharedResult3;
         }
 
-        private static double IntegralPart3(double cumulativeOverloadPartial2, double sharedResult)
+        private static double IntegralPart3(double sharedResult2, double sharedResult3)
         {
-            return -cumulativeOverloadPartial2 * sharedResult;
+            return -sharedResult2 * sharedResult3;
         }
     }
 }
