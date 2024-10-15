@@ -25,8 +25,6 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
     /// </summary>
     public static class AsphaltWaveImpactFunctions
     {
-        private static readonly double bindingStressCalculationConstant = Math.Pow(10, -99);
-
         /// <summary>
         /// Calculates the increment of damage.
         /// </summary>
@@ -42,7 +40,6 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             {
                 double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, widthFactor.Item1,
                                                                          input.WaveHeightHm0);
-
                 double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA);
 
                 result += widthFactor.Item2 * depthFactorAccumulation;
@@ -184,7 +181,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                 input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact, expNegativeRelativeWidthWaveImpact,
                 sinA, depthFactorValue);
 
-            return Math.Max(bindingStressCalculationConstant,
+            return Math.Max(Math.Pow(10, -99),
                             -3 * input.MaximumPeakStress / (4 * Math.Pow(input.StiffnessRelation, 2)
                                                               * Math.Pow(input.ComputationalThickness, 2))
                             * spatialDistributionBendingStress);
