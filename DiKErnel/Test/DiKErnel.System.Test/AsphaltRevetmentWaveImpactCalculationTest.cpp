@@ -129,9 +129,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 25720;
+        constexpr int expectedTimeOfFailure = 28730;
 
-        AssertOutput(calculator, 1.129939525442647, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.090455071141477, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -154,9 +154,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 22141;
+        constexpr int expectedTimeOfFailure = 21784;
 
-        AssertOutput(calculator, 1.7241657918426123, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.5994630284574629, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -180,9 +180,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 23511;
+        constexpr int expectedTimeOfFailure = 24186;
 
-        AssertOutput(calculator, 1.5398389850450416, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.4504822396893404, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -222,9 +222,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 25237;
+        constexpr int expectedTimeOfFailure = 28534;
 
-        AssertOutput(calculator, 1.1399846984277664, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.1209751340365248, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -306,9 +306,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 23892;
+        constexpr int expectedTimeOfFailure = 24516;
 
-        AssertOutput(calculator, 1.4791211989406279, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.3929836399508819, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -336,9 +336,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 24032;
+        constexpr int expectedTimeOfFailure = 25376;
 
-        AssertOutput(calculator, 1.391297689776666, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.286077744433424, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -363,9 +363,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 15187;
+        constexpr int expectedTimeOfFailure = 16415;
 
-        AssertOutput(calculator, 1.4636931168963618, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.4248173105992974, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -390,9 +390,9 @@ namespace DiKErnel::System::Test
         calculator.WaitForCompletion();
 
         // Then
-        constexpr int expectedTimeOfFailure = 25720;
+        constexpr int expectedTimeOfFailure = 28730;
 
-        AssertOutput(calculator, 1.129939525442647, &expectedTimeOfFailure);
+        AssertOutput(calculator, 1.090455071141477, &expectedTimeOfFailure);
     }
 
     #pragma endregion
