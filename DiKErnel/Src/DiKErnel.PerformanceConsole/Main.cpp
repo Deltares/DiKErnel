@@ -147,7 +147,11 @@ void AddLocations(
                         x, GrassRevetmentTopLayerType::OpenSod));
                 };
     }
-    else if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier) {}
+    else if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier)
+    {
+        cout << grassWaveOvertoppingRayleighAnalyticalIdentifier << " not supported in C++";
+        exit(0);
+    }
     else if (failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
     {
         addLocationAction = [](
@@ -163,8 +167,16 @@ void AddLocations(
                 builderToUse->AddGrassOvertoppingLocation(move(grassRevetmentOvertoppingLocationConstructionProperties));
             };
     }
-    else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier) {}
-    else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier) {}
+    else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier)
+    {
+        cout << grassWaveRunupBattjesGroenendijkAnalyticalIdentifier << " not supported in C++";
+        exit(0);
+    }
+    else if (failureMechanismArgument == grassWaveRunupRayleighDiscreteIdentifier)
+    {
+        cout << grassWaveRunupRayleighDiscreteIdentifier << " not supported in C++";
+        exit(0);
+    }
     else if (failureMechanismArgument == naturalStoneWaveImpactIdentifier)
     {
         addLocationAction = [](
