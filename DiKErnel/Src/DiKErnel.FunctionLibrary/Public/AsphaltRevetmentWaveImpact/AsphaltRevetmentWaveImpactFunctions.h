@@ -151,25 +151,25 @@ namespace DiKErnel::FunctionLibrary
                 const AsphaltRevetmentWaveImpactFunctionsInput& input,
                 double relativeWidthWaveImpact,
                 double sinA,
+                const std::vector<double>& impactNumberLookup,
                 double bindingStressPartial2);
 
             [[nodiscard]]
             static double ImpactFactorAccumulation(
                 const AsphaltRevetmentWaveImpactFunctionsInput& input,
-                double bendingStress);
+                double bendingStress,
+                const std::vector<double>& impactNumberLookup);
 
             [[nodiscard]]
             static double Fatigue(
                 const AsphaltRevetmentWaveImpactFunctionsInput& input,
                 double bendingStress,
-                double impactFactorValue);
+                double impactNumber);
 
             [[nodiscard]]
             static double LogTension(
                 double bendingStress,
-                double outerSlope,
-                double impactFactorValue,
-                double impactNumberC);
+                double impactNumber);
 
             [[nodiscard]]
             static double ImpactNumber(

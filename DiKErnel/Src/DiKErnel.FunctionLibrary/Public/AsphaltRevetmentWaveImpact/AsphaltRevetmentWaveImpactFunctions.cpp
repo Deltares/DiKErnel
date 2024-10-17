@@ -39,10 +39,20 @@ namespace DiKErnel::FunctionLibrary
         const double bindingStressPartial2 = -3.0 * input._maximumPeakStress / (4.0 * pow(input._stiffnessRelation, 2.0) * pow(
             input._computationalThickness, 2.0));
 
+        vector<double> impactNumberLookup;
+
+        impactNumberLookup.reserve(input._impactFactors.size());
+
+        for (int i = 0; i < input._impactFactors.size(); i++)
+        {
+            impactNumberLookup.push_back(ImpactNumber(input._outerSlope, input._impactFactors[i].first, input._impactNumberC));
+        }
+
         for (const auto& [widthFactorValue, widthFactorProbability] : input._widthFactors)
         {
             const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(input._stiffnessRelation, widthFactorValue, input._waveHeightHm0);
-            const auto depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, bindingStressPartial2);
+            const auto depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, impactNumberLookup,
+                                                                         bindingStressPartial2);
 
             result += widthFactorProbability * depthFactorAccumulation;
         }
@@ -96,6 +106,7 @@ namespace DiKErnel::FunctionLibrary
         const AsphaltRevetmentWaveImpactFunctionsInput& input,
         const double relativeWidthWaveImpact,
         const double sinA,
+        const vector<double>& impactNumberLookup,
         const double bindingStressPartial2)
     {
         auto result = 0.0;
@@ -109,7 +120,7 @@ namespace DiKErnel::FunctionLibrary
             const auto bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
                                                      expNegativeRelativeWidthWaveImpact, sinA, depthFactorValue, bindingStressPartial2);
 
-            const auto impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
+            const auto impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress, impactNumberLookup);
 
             result += depthFactorProbability * impactFactorAccumulation;
         }
@@ -119,15 +130,16 @@ namespace DiKErnel::FunctionLibrary
 
     double AsphaltRevetmentWaveImpactFunctions::ImpactFactorAccumulation(
         const AsphaltRevetmentWaveImpactFunctionsInput& input,
-        const double bendingStress)
+        const double bendingStress,
+        const vector<double>& impactNumberLookup)
     {
         auto result = 0.0;
 
-        for (const auto& [impactFactorValue, impactFactorProbability] : input._impactFactors)
+        for (int i = 0; i < input._impactFactors.size(); i++)
         {
-            const auto fatigue = Fatigue(input, bendingStress, impactFactorValue);
+            const auto fatigue = Fatigue(input, bendingStress, impactNumberLookup[i]);
 
-            result += impactFactorProbability * input._averageNumberOfWaves * fatigue;
+            result += input._impactFactors[i].second * input._averageNumberOfWaves * fatigue;
         }
 
         return result;
@@ -136,21 +148,17 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetmentWaveImpactFunctions::Fatigue(
         const AsphaltRevetmentWaveImpactFunctionsInput& input,
         const double bendingStress,
-        const double impactFactorValue)
+        const double impactNumber)
     {
-        const auto logTension = LogTension(bendingStress, input._outerSlope, impactFactorValue, input._impactNumberC);
+        const auto logTension = LogTension(bendingStress, impactNumber);
 
         return pow(10.0, -input._fatigueBeta * pow(max(0.0, input._logFailureTension - logTension), input._fatigueAlpha));
     }
 
     double AsphaltRevetmentWaveImpactFunctions::LogTension(
         const double bendingStress,
-        const double outerSlope,
-        const double impactFactorValue,
-        const double impactNumberC)
+        const double impactNumber)
     {
-        const auto impactNumber = ImpactNumber(outerSlope, impactFactorValue, impactNumberC);
-
         return log10(impactNumber * bendingStress);
     }
 
