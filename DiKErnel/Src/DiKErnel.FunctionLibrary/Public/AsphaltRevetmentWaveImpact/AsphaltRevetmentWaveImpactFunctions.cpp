@@ -27,6 +27,8 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
+    double AsphaltRevetmentWaveImpactFunctions::_bindingStressPartial1 = pow(10.0, -99.0);
+
     double AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
         const AsphaltRevetmentWaveImpactFunctionsInput& input)
     {
@@ -169,7 +171,7 @@ namespace DiKErnel::FunctionLibrary
                                                                                        cosRelativeWidthWaveImpact,
                                                                                        expNegativeRelativeWidthWaveImpact, sinA, depthFactorValue);
 
-        return max(pow(10.0, -99.0),
+        return max(_bindingStressPartial1,
                    -3.0 * input._maximumPeakStress / (4.0 * pow(input._stiffnessRelation, 2.0) * pow(input._computationalThickness, 2.0))
                    * spatialDistributionBendingStress);
     }

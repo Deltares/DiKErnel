@@ -207,5 +207,7 @@ namespace DiKErnel::FunctionLibrary
                 const AsphaltRevetmentWaveImpactFunctionsInput& input,
                 double depthFactorValue,
                 double sinA);
+
+            static double _bindingStressPartial1;
     };
 }
