@@ -27,7 +27,8 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
-    double AsphaltRevetmentWaveImpactFunctions::_bindingStressPartial1 = pow(10.0, -99.0);
+    double AsphaltRevetmentWaveImpactFunctions::_maximumPeakStressPartial = pow(10.0, 6.0);
+        double AsphaltRevetmentWaveImpactFunctions::_bindingStressPartial1 = pow(10.0, -99.0);
 
     double AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
         const AsphaltRevetmentWaveImpactFunctionsInput& input)
@@ -71,7 +72,7 @@ namespace DiKErnel::FunctionLibrary
         const double gravitationalAcceleration,
         const double densityOfWater)
     {
-        return gravitationalAcceleration * densityOfWater * waveHeightHm0 / pow(10.0, 6.0);
+        return gravitationalAcceleration * densityOfWater * waveHeightHm0 / _maximumPeakStressPartial;
     }
 
     double AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(

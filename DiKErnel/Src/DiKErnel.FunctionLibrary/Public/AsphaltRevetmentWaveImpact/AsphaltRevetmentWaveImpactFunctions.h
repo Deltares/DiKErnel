@@ -210,6 +210,7 @@ namespace DiKErnel::FunctionLibrary
                 double depthFactorValue,
                 double sinA);
 
+            static double _maximumPeakStressPartial;
             static double _bindingStressPartial1;
     };
 }
