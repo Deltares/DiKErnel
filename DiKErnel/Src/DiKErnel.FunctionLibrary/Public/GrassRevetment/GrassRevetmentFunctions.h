@@ -60,13 +60,15 @@ namespace DiKErnel::FunctionLibrary
             {
                 auto cumulativeFrontVelocity = 0.0;
 
+                const double cumulativeFrontVelocityPartial = std::pow(input._criticalFrontVelocity, 2.0);
+
                 for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
                 {
                     const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
                     const auto frontVelocity = getFrontVelocity(waveRunup);
 
                     cumulativeFrontVelocity += std::max(0.0, input._increasedLoadTransitionAlphaM * std::pow(frontVelocity, 2.0)
-                                                        - input._reducedStrengthTransitionAlphaS * std::pow(input._criticalFrontVelocity, 2.0));
+                                                        - input._reducedStrengthTransitionAlphaS * cumulativeFrontVelocityPartial);
                 }
 
                 return input._averageNumberOfWaves / input._fixedNumberOfWaves * cumulativeFrontVelocity;
@@ -77,5 +79,7 @@ namespace DiKErnel::FunctionLibrary
                 double representativeWaveRunup2P,
                 int fixedNumberOfWaves,
                 int waveNumber);
+
+            static double _waveRunupPartial;
     };
 }

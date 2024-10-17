@@ -24,6 +24,8 @@ namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
 
+    double GrassRevetmentFunctions::_waveRunupPartial = log(0.02);
+
     double GrassRevetmentFunctions::IncrementDamage(
         const double cumulativeOverload,
         const double criticalCumulativeOverload)
@@ -36,6 +38,6 @@ namespace DiKErnel::FunctionLibrary
         const int fixedNumberOfWaves,
         const int waveNumber)
     {
-        return representativeWaveRunup2P * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / log(0.02));
+        return representativeWaveRunup2P * sqrt(log(1.0 - waveNumber / (fixedNumberOfWaves + 1.0)) / _waveRunupPartial);
     }
 }
