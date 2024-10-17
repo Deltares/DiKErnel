@@ -150,7 +150,8 @@ namespace DiKErnel::FunctionLibrary
             static double DepthFactorAccumulation(
                 const AsphaltRevetmentWaveImpactFunctionsInput& input,
                 double relativeWidthWaveImpact,
-                double sinA);
+                double sinA,
+                double bindingStressPartial2);
 
             [[nodiscard]]
             static double ImpactFactorAccumulation(
@@ -184,7 +185,8 @@ namespace DiKErnel::FunctionLibrary
                 double cosRelativeWidthWaveImpact,
                 double expNegativeRelativeWidthWaveImpact,
                 double sinA,
-                double depthFactorValue);
+                double depthFactorValue,
+                double bindingStressPartial2);
 
             [[nodiscard]]
             static double SpatialDistributionBendingStress(
