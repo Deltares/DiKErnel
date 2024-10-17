@@ -25,11 +25,15 @@ namespace DiKErnel.FunctionLibrary.Grass
     /// </summary>
     public static class GrassRayleighDiscreteFunctions
     {
+        private static readonly double waveRunupPartial = Math.Log(0.02);
+
         internal static double CumulativeOverload(GrassCumulativeOverloadInput input,
                                                   int fixedNumberOfWaves,
                                                   Func<double, double> getFrontVelocityFunc)
         {
             double cumulativeFrontVelocity = 0;
+
+            double cumulativeFrontVelocityPartial = Math.Pow(input.CriticalFrontVelocity, 2);
 
             for (var k = 1; k <= fixedNumberOfWaves; k++)
             {
@@ -38,7 +42,7 @@ namespace DiKErnel.FunctionLibrary.Grass
 
                 cumulativeFrontVelocity += Math.Max(0, input.IncreasedLoadTransitionAlphaM * Math.Pow(frontVelocity, 2)
                                                        - input.ReducedStrengthTransitionAlphaS
-                                                       * Math.Pow(input.CriticalFrontVelocity, 2));
+                                                       * cumulativeFrontVelocityPartial);
             }
 
             return input.AverageNumberOfWaves / fixedNumberOfWaves * cumulativeFrontVelocity;
@@ -47,7 +51,7 @@ namespace DiKErnel.FunctionLibrary.Grass
         private static double WaveRunup(double representativeWaveRunup2P, int fixedNumberOfWaves, int waveNumber)
         {
             return representativeWaveRunup2P * Math.Sqrt(Math.Log(1 - waveNumber / (fixedNumberOfWaves + 1d))
-                                                         / Math.Log(0.02));
+                                                         / waveRunupPartial);
         }
     }
 }
