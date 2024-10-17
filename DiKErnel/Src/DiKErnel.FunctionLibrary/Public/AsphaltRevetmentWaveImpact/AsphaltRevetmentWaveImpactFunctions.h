@@ -152,7 +152,7 @@ namespace DiKErnel::FunctionLibrary
                 double relativeWidthWaveImpact,
                 double sinA,
                 const std::vector<double>& impactNumberLookup,
-                double bindingStressPartial2);
+                double bendingStressPartial2);
 
             [[nodiscard]]
             static double ImpactFactorAccumulation(
@@ -186,7 +186,7 @@ namespace DiKErnel::FunctionLibrary
                 double expNegativeRelativeWidthWaveImpact,
                 double sinA,
                 double depthFactorValue,
-                double bindingStressPartial2);
+                double bendingStressPartial2);
 
             [[nodiscard]]
             static double SpatialDistributionBendingStress(
@@ -211,6 +211,6 @@ namespace DiKErnel::FunctionLibrary
                 double sinA);
 
             static double _maximumPeakStressPartial;
-            static double _bindingStressPartial1;
+            static double _bendingStressPartial1;
     };
 }

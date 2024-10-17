@@ -28,7 +28,7 @@ namespace DiKErnel::FunctionLibrary
     using namespace std;
 
     double AsphaltRevetmentWaveImpactFunctions::_maximumPeakStressPartial = pow(10.0, 6.0);
-        double AsphaltRevetmentWaveImpactFunctions::_bindingStressPartial1 = pow(10.0, -99.0);
+        double AsphaltRevetmentWaveImpactFunctions::_bendingStressPartial1 = pow(10.0, -99.0);
 
     double AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
         const AsphaltRevetmentWaveImpactFunctionsInput& input)
@@ -37,7 +37,7 @@ namespace DiKErnel::FunctionLibrary
 
         const auto sinA = sin(atan(input._outerSlope));
 
-        const double bindingStressPartial2 = -3.0 * input._maximumPeakStress / (4.0 * pow(input._stiffnessRelation, 2.0) * pow(
+        const double bendingStressPartial2 = -3.0 * input._maximumPeakStress / (4.0 * pow(input._stiffnessRelation, 2.0) * pow(
             input._computationalThickness, 2.0));
 
         vector<double> impactNumberLookup;
@@ -53,7 +53,7 @@ namespace DiKErnel::FunctionLibrary
         {
             const auto relativeWidthWaveImpact = RelativeWidthWaveImpact(input._stiffnessRelation, widthFactorValue, input._waveHeightHm0);
             const auto depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, impactNumberLookup,
-                                                                         bindingStressPartial2);
+                                                                         bendingStressPartial2);
 
             result += widthFactorProbability * depthFactorAccumulation;
         }
@@ -108,7 +108,7 @@ namespace DiKErnel::FunctionLibrary
         const double relativeWidthWaveImpact,
         const double sinA,
         const vector<double>& impactNumberLookup,
-        const double bindingStressPartial2)
+        const double bendingStressPartial2)
     {
         auto result = 0.0;
 
@@ -119,7 +119,7 @@ namespace DiKErnel::FunctionLibrary
         for (const auto& [depthFactorValue, depthFactorProbability] : input._depthFactors)
         {
             const auto bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
-                                                     expNegativeRelativeWidthWaveImpact, sinA, depthFactorValue, bindingStressPartial2);
+                                                     expNegativeRelativeWidthWaveImpact, sinA, depthFactorValue, bendingStressPartial2);
 
             const auto impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress, impactNumberLookup);
 
@@ -179,13 +179,13 @@ namespace DiKErnel::FunctionLibrary
         const double expNegativeRelativeWidthWaveImpact,
         const double sinA,
         const double depthFactorValue,
-        const double bindingStressPartial2)
+        const double bendingStressPartial2)
     {
         const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact,
                                                                                        cosRelativeWidthWaveImpact,
                                                                                        expNegativeRelativeWidthWaveImpact, sinA, depthFactorValue);
 
-        return max(_bindingStressPartial1, bindingStressPartial2 * spatialDistributionBendingStress);
+        return max(_bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
     }
 
     double AsphaltRevetmentWaveImpactFunctions::SpatialDistributionBendingStress(
