@@ -180,6 +180,9 @@ namespace DiKErnel::FunctionLibrary
             static double BendingStress(
                 const AsphaltRevetmentWaveImpactFunctionsInput& input,
                 double relativeWidthWaveImpact,
+                double sinRelativeWidthWaveImpact,
+                double cosRelativeWidthWaveImpact,
+                double expNegativeRelativeWidthWaveImpact,
                 double sinA,
                 double depthFactorValue);
 
@@ -187,6 +190,9 @@ namespace DiKErnel::FunctionLibrary
             static double SpatialDistributionBendingStress(
                 const AsphaltRevetmentWaveImpactFunctionsInput& input,
                 double relativeWidthWaveImpact,
+                double sinRelativeWidthWaveImpact,
+                double cosRelativeWidthWaveImpact,
+                double expNegativeRelativeWidthWaveImpact,
                 double sinA,
                 double depthFactorValue);
 

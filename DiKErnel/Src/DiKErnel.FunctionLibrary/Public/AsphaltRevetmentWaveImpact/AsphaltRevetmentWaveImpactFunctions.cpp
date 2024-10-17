@@ -94,9 +94,15 @@ namespace DiKErnel::FunctionLibrary
     {
         auto result = 0.0;
 
+        const auto sinRelativeWidthWaveImpact = sin(relativeWidthWaveImpact);
+        const auto cosRelativeWidthWaveImpact = cos(relativeWidthWaveImpact);
+        const auto expNegativeRelativeWidthWaveImpact = exp(-relativeWidthWaveImpact);
+
         for (const auto& [depthFactorValue, depthFactorProbability] : input._depthFactors)
         {
-            const auto bendingStress = BendingStress(input, relativeWidthWaveImpact, sinA, depthFactorValue);
+            const auto bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
+                                                     expNegativeRelativeWidthWaveImpact, sinA, depthFactorValue);
+
             const auto impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
 
             result += depthFactorProbability * impactFactorAccumulation;
@@ -153,10 +159,15 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetmentWaveImpactFunctions::BendingStress(
         const AsphaltRevetmentWaveImpactFunctionsInput& input,
         const double relativeWidthWaveImpact,
+        const double sinRelativeWidthWaveImpact,
+        const double cosRelativeWidthWaveImpact,
+        const double expNegativeRelativeWidthWaveImpact,
         const double sinA,
         const double depthFactorValue)
     {
-        const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(input, relativeWidthWaveImpact, sinA, depthFactorValue);
+        const auto spatialDistributionBendingStress = SpatialDistributionBendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact,
+                                                                                       cosRelativeWidthWaveImpact,
+                                                                                       expNegativeRelativeWidthWaveImpact, sinA, depthFactorValue);
 
         return max(pow(10.0, -99.0),
                    -3.0 * input._maximumPeakStress / (4.0 * pow(input._stiffnessRelation, 2.0) * pow(input._computationalThickness, 2.0))
@@ -166,17 +177,17 @@ namespace DiKErnel::FunctionLibrary
     double AsphaltRevetmentWaveImpactFunctions::SpatialDistributionBendingStress(
         const AsphaltRevetmentWaveImpactFunctionsInput& input,
         const double relativeWidthWaveImpact,
+        const double sinRelativeWidthWaveImpact,
+        const double cosRelativeWidthWaveImpact,
+        const double expNegativeRelativeWidthWaveImpact,
         const double sinA,
         const double depthFactorValue)
     {
         const auto relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
 
         const auto sinRelativeDistanceCenterWaveImpact = sin(relativeDistanceCenterWaveImpact);
-        const auto sinRelativeWidthWaveImpact = sin(relativeWidthWaveImpact);
         const auto cosRelativeDistanceCenterWaveImpact = cos(relativeDistanceCenterWaveImpact);
-        const auto cosRelativeWidthWaveImpact = cos(relativeWidthWaveImpact);
         const auto expNegativeRelativeDistanceCenterWaveImpact = exp(-relativeDistanceCenterWaveImpact);
-        const auto expNegativeRelativeWidthWaveImpact = exp(-relativeWidthWaveImpact);
 
         if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
         {
