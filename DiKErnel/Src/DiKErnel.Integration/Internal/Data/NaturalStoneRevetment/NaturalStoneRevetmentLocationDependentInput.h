@@ -113,15 +113,6 @@ namespace DiKErnel::Integration
             std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
 
             double _resistance = std::numeric_limits<double>::infinity();
-            double _upperLimitLoading = std::numeric_limits<double>::infinity();
-            double _lowerLimitLoading = std::numeric_limits<double>::infinity();
-
-            [[nodiscard]]
-            bool CalculateLoadingRevetment(
-                double depthMaximumWaveLoad,
-                double surfSimilarityParameter,
-                double waterLevel,
-                double waveHeightHm0);
 
             [[nodiscard]]
             double CalculateHydraulicLoad(
@@ -151,6 +142,8 @@ namespace DiKErnel::Integration
                 double surfSimilarityParameter,
                 double normativeWidthWaveImpact,
                 double depthMaximumWaveLoad,
+                double lowerLimitLoading,
+                double upperLimitLoading,
                 bool loadingRevetment,
                 double hydraulicLoad,
                 double waveAngleImpact,
