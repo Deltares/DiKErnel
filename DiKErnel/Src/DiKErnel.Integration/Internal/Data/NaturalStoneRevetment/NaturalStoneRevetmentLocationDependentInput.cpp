@@ -182,32 +182,36 @@ namespace DiKErnel::Integration
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
+        auto hydraulicLoad = 0.0;
+        auto waveAngleImpact = 0.0;
+
         if (loadingRevetment)
         {
-            _hydraulicLoad = CalculateHydraulicLoad(surfSimilarityParameter, waveHeightHm0);
+            hydraulicLoad = CalculateHydraulicLoad(surfSimilarityParameter, waveHeightHm0);
 
-            _waveAngleImpact = NaturalStoneRevetmentFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
-                                                                               _waveAngleImpactInput->GetBetamax());
+            waveAngleImpact = NaturalStoneRevetmentFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
+                                                                              _waveAngleImpactInput->GetBetamax());
             _referenceDegradation = NaturalStoneRevetmentFunctions::ReferenceDegradation(
-                _resistance, _hydraulicLoad, _waveAngleImpact, initialDamage);
+                _resistance, hydraulicLoad, waveAngleImpact, initialDamage);
             _referenceTimeDegradation = NaturalStoneRevetmentFunctions::ReferenceTimeDegradation(_referenceDegradation, wavePeriodTm10);
 
             const auto incrementTime = RevetmentFunctions::IncrementTime(timeDependentInput.GetBeginTime(), timeDependentInput.GetEndTime());
             const auto incrementDegradation = NaturalStoneRevetmentFunctions::IncrementDegradation(
                 _referenceTimeDegradation, incrementTime, wavePeriodTm10);
 
-            incrementDamage = NaturalStoneRevetmentFunctions::IncrementDamage(_hydraulicLoad, _resistance, incrementDegradation, _waveAngleImpact);
+            incrementDamage = NaturalStoneRevetmentFunctions::IncrementDamage(hydraulicLoad, _resistance, incrementDegradation, waveAngleImpact);
             damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
 
             if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
             {
-                timeOfFailure = make_unique<int>(CalculateTimeOfFailure(failureNumber, wavePeriodTm10, timeDependentInput.GetBeginTime()));
+                timeOfFailure = make_unique<int>(CalculateTimeOfFailure(failureNumber, wavePeriodTm10, timeDependentInput.GetBeginTime(),
+                                                                        hydraulicLoad, waveAngleImpact));
             }
         }
 
         return make_unique<NaturalStoneRevetmentTimeDependentOutput>(*CreateConstructionProperties(
             incrementDamage, damage, outerSlope, waveSteepnessDeepWater, distanceMaximumWaveElevation, surfSimilarityParameter,
-            normativeWidthWaveImpact, depthMaximumWaveLoad, loadingRevetment, move(timeOfFailure)));
+            normativeWidthWaveImpact, depthMaximumWaveLoad, loadingRevetment, hydraulicLoad, waveAngleImpact, move(timeOfFailure)));
     }
 
     double NaturalStoneRevetmentLocationDependentInput::CalculateOuterSlope(
@@ -302,10 +306,12 @@ namespace DiKErnel::Integration
     int NaturalStoneRevetmentLocationDependentInput::CalculateTimeOfFailure(
         const double failureNumber,
         const double wavePeriodTm10,
-        const double beginTime) const
+        const double beginTime,
+        const double hydraulicLoad,
+        const double waveAngleImpact) const
     {
         const auto referenceFailure = NaturalStoneRevetmentFunctions::ReferenceFailure(
-            _resistance, _hydraulicLoad, _waveAngleImpact, failureNumber);
+            _resistance, hydraulicLoad, waveAngleImpact, failureNumber);
         const auto referenceTimeFailure = NaturalStoneRevetmentFunctions::ReferenceTimeFailure(referenceFailure, wavePeriodTm10);
         const auto durationInTimeStepFailure = NaturalStoneRevetmentFunctions::DurationInTimeStepFailure(
             referenceTimeFailure, _referenceTimeDegradation);
@@ -324,6 +330,8 @@ namespace DiKErnel::Integration
         double normativeWidthWaveImpact,
         double depthMaximumWaveLoad,
         bool loadingRevetment,
+        double hydraulicLoad,
+        double waveAngleImpact,
         unique_ptr<int> timeOfFailure)
     {
         auto constructionProperties = make_unique<NaturalStoneRevetmentTimeDependentOutputConstructionProperties>();
@@ -346,8 +354,8 @@ namespace DiKErnel::Integration
 
         if (loadingRevetment)
         {
-            constructionProperties->_hydraulicLoad = make_unique<double>(_hydraulicLoad);
-            constructionProperties->_waveAngleImpact = make_unique<double>(_waveAngleImpact);
+            constructionProperties->_hydraulicLoad = make_unique<double>(hydraulicLoad);
+            constructionProperties->_waveAngleImpact = make_unique<double>(waveAngleImpact);
             constructionProperties->_resistance = make_unique<double>(_resistance);
             constructionProperties->_referenceTimeDegradation = make_unique<double>(_referenceTimeDegradation);
             constructionProperties->_referenceDegradation = make_unique<double>(_referenceDegradation);

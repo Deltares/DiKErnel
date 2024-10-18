@@ -119,8 +119,6 @@ namespace DiKErnel::Integration
             double _slopeUpperLevel = std::numeric_limits<double>::infinity();
             double _upperLimitLoading = std::numeric_limits<double>::infinity();
             double _lowerLimitLoading = std::numeric_limits<double>::infinity();
-            double _hydraulicLoad = std::numeric_limits<double>::infinity();
-            double _waveAngleImpact = std::numeric_limits<double>::infinity();
             double _referenceTimeDegradation = std::numeric_limits<double>::infinity();
             double _referenceDegradation = std::numeric_limits<double>::infinity();
 
@@ -146,7 +144,9 @@ namespace DiKErnel::Integration
             int CalculateTimeOfFailure(
                 double failureNumber,
                 double wavePeriodTm10,
-                double beginTime) const;
+                double beginTime,
+                double hydraulicLoad,
+                double waveAngleImpact) const;
 
             [[nodiscard]]
             std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
@@ -159,6 +159,8 @@ namespace DiKErnel::Integration
                 double normativeWidthWaveImpact,
                 double depthMaximumWaveLoad,
                 bool loadingRevetment,
+                double hydraulicLoad,
+                double waveAngleImpact,
                 std::unique_ptr<int> timeOfFailure);
     };
 }
