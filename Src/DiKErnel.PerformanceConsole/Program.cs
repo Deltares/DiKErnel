@@ -181,6 +181,13 @@ namespace DiKErnel.PerformanceConsole
             Enum.TryParse(locationCalculationModeArgument, out CalculationMode locationCalculationMode);
             Enum.TryParse(timeStepCalculationModeArgument, out CalculationMode timeStepCalculationMode);
 
+            if (failureMechanismArgument == naturalStoneWaveImpactIdentifier && timeStepCalculationMode != CalculationMode.Sequential)
+            {
+                Console.Write("Parallelization of time steps is not supported for natural stone wave impact");
+
+                return;
+            }
+            
             var stopWatch = new Stopwatch();
 
             stopWatch.Start();
