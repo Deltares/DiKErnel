@@ -124,18 +124,19 @@ namespace DiKErnel::Integration
             double _computationalThickness = std::numeric_limits<double>::infinity();
             double _stiffnessRelation = std::numeric_limits<double>::infinity();
             double _subLayerElasticModulus = std::numeric_limits<double>::infinity();
-            double _averageNumberOfWaves = std::numeric_limits<double>::infinity();
-            double _maximumPeakStress = std::numeric_limits<double>::infinity();
 
             [[nodiscard]]
             FunctionLibrary::AsphaltRevetmentWaveImpactFunctionsInput CreateIncrementDamageInput(
                 double waterLevel,
-                double waveHeightHm0) const;
+                double waveHeightHm0,
+                double averageNumberOfWaves,
+                double maximumPeakStress) const;
 
             [[nodiscard]]
             std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
+                double maximumPeakStress,
                 std::unique_ptr<int> timeOfFailure);
     };
 }
