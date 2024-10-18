@@ -154,7 +154,34 @@ namespace DiKErnel::Integration
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
 
-        const auto outerSlope = CalculateOuterSlope(waterLevel, waveHeightHm0, profileData);
+        const auto& naturalStoneRevetmentSlope = GetSlope();
+
+        const auto slopeUpperLevel = NaturalStoneRevetmentFunctions::SlopeUpperLevel(_outerToeHeight, _outerCrestHeight, waterLevel, waveHeightHm0,
+                                                                                     naturalStoneRevetmentSlope.GetUpperLevelAus());
+        const auto slopeUpperPosition = profileData.InterpolationHorizontalPosition(slopeUpperLevel);
+        const auto slopeLowerLevel = NaturalStoneRevetmentFunctions::SlopeLowerLevel(_outerToeHeight, slopeUpperLevel, waveHeightHm0,
+                                                                                     naturalStoneRevetmentSlope.GetLowerLevelAls());
+        const auto slopeLowerPosition = profileData.InterpolationHorizontalPosition(slopeLowerLevel);
+
+        NaturalStoneRevetmentOuterSlopeInput outerSlopeInput
+        {
+            ._slopeLowerPosition = slopeLowerPosition,
+            ._slopeLowerLevel = slopeLowerLevel,
+            ._slopeUpperPosition = slopeUpperPosition,
+            ._slopeUpperLevel = slopeUpperLevel,
+            ._outerToeHeight = _outerToeHeight,
+            ._outerCrestHeight = _outerCrestHeight
+        };
+
+        if (_notchOuterBerm != nullptr && _crestOuterBerm != nullptr)
+        {
+            outerSlopeInput._notchOuterBermPosition = _notchOuterBerm->first;
+            outerSlopeInput._notchOuterBermHeight = _notchOuterBerm->second;
+            outerSlopeInput._crestOuterBermPosition = _crestOuterBerm->first;
+            outerSlopeInput._crestOuterBermHeight = _crestOuterBerm->second;
+        }
+
+        const auto outerSlope = NaturalStoneRevetmentFunctions::OuterSlope(outerSlopeInput);
 
         const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(outerSlope);
 
@@ -212,44 +239,9 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<NaturalStoneRevetmentTimeDependentOutput>(*CreateConstructionProperties(
-            incrementDamage, damage, outerSlope, waveSteepnessDeepWater, distanceMaximumWaveElevation, surfSimilarityParameter,
-            normativeWidthWaveImpact, depthMaximumWaveLoad, loadingRevetment, hydraulicLoad, waveAngleImpact, referenceDegradation,
-            referenceTimeDegradation, move(timeOfFailure)));
-    }
-
-    double NaturalStoneRevetmentLocationDependentInput::CalculateOuterSlope(
-        const double waterLevel,
-        const double waveHeightHm0,
-        const IProfileData& profileData)
-    {
-        const auto& naturalStoneRevetmentSlope = GetSlope();
-
-        _slopeUpperLevel = NaturalStoneRevetmentFunctions::SlopeUpperLevel(_outerToeHeight, _outerCrestHeight, waterLevel, waveHeightHm0,
-                                                                           naturalStoneRevetmentSlope.GetUpperLevelAus());
-        _slopeUpperPosition = profileData.InterpolationHorizontalPosition(_slopeUpperLevel);
-        _slopeLowerLevel = NaturalStoneRevetmentFunctions::SlopeLowerLevel(_outerToeHeight, _slopeUpperLevel, waveHeightHm0,
-                                                                           naturalStoneRevetmentSlope.GetLowerLevelAls());
-        _slopeLowerPosition = profileData.InterpolationHorizontalPosition(_slopeLowerLevel);
-
-        NaturalStoneRevetmentOuterSlopeInput outerSlopeInput
-        {
-            ._slopeLowerPosition = _slopeLowerPosition,
-            ._slopeLowerLevel = _slopeLowerLevel,
-            ._slopeUpperPosition = _slopeUpperPosition,
-            ._slopeUpperLevel = _slopeUpperLevel,
-            ._outerToeHeight = _outerToeHeight,
-            ._outerCrestHeight = _outerCrestHeight
-        };
-
-        if (_notchOuterBerm != nullptr && _crestOuterBerm != nullptr)
-        {
-            outerSlopeInput._notchOuterBermPosition = _notchOuterBerm->first;
-            outerSlopeInput._notchOuterBermHeight = _notchOuterBerm->second;
-            outerSlopeInput._crestOuterBermPosition = _crestOuterBerm->first;
-            outerSlopeInput._crestOuterBermHeight = _crestOuterBerm->second;
-        }
-
-        return NaturalStoneRevetmentFunctions::OuterSlope(outerSlopeInput);
+            incrementDamage, damage, slopeLowerLevel, slopeLowerPosition, slopeUpperLevel, slopeUpperPosition, outerSlope, waveSteepnessDeepWater,
+            distanceMaximumWaveElevation, surfSimilarityParameter, normativeWidthWaveImpact, depthMaximumWaveLoad, loadingRevetment, hydraulicLoad,
+            waveAngleImpact, referenceDegradation, referenceTimeDegradation, move(timeOfFailure)));
     }
 
     bool NaturalStoneRevetmentLocationDependentInput::CalculateLoadingRevetment(
@@ -327,6 +319,10 @@ namespace DiKErnel::Integration
     CreateConstructionProperties(
         double incrementDamage,
         double damage,
+        double slopeLowerLevel,
+        double slopeLowerPosition,
+        double slopeUpperLevel,
+        double slopeUpperPosition,
         double outerSlope,
         double waveSteepnessDeepWater,
         double distanceMaximumWaveElevation,
@@ -345,10 +341,10 @@ namespace DiKErnel::Integration
         constructionProperties->_damage = make_unique<double>(damage);
         constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_outerSlope = make_unique<double>(outerSlope);
-        constructionProperties->_slopeUpperLevel = make_unique<double>(_slopeUpperLevel);
-        constructionProperties->_slopeUpperPosition = make_unique<double>(_slopeUpperPosition);
-        constructionProperties->_slopeLowerLevel = make_unique<double>(_slopeLowerLevel);
-        constructionProperties->_slopeLowerPosition = make_unique<double>(_slopeLowerPosition);
+        constructionProperties->_slopeUpperLevel = make_unique<double>(slopeUpperLevel);
+        constructionProperties->_slopeUpperPosition = make_unique<double>(slopeUpperPosition);
+        constructionProperties->_slopeLowerLevel = make_unique<double>(slopeLowerLevel);
+        constructionProperties->_slopeLowerPosition = make_unique<double>(slopeLowerPosition);
         constructionProperties->_loadingRevetment = make_unique<bool>(loadingRevetment);
         constructionProperties->_surfSimilarityParameter = make_unique<double>(surfSimilarityParameter);
         constructionProperties->_waveSteepnessDeepWater = make_unique<double>(waveSteepnessDeepWater);

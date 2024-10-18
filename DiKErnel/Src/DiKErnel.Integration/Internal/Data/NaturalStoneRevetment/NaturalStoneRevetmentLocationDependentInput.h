@@ -113,18 +113,8 @@ namespace DiKErnel::Integration
             std::unique_ptr<std::pair<double, double>> _crestOuterBerm = nullptr;
 
             double _resistance = std::numeric_limits<double>::infinity();
-            double _slopeLowerPosition = std::numeric_limits<double>::infinity();
-            double _slopeLowerLevel = std::numeric_limits<double>::infinity();
-            double _slopeUpperPosition = std::numeric_limits<double>::infinity();
-            double _slopeUpperLevel = std::numeric_limits<double>::infinity();
             double _upperLimitLoading = std::numeric_limits<double>::infinity();
             double _lowerLimitLoading = std::numeric_limits<double>::infinity();
-
-            [[nodiscard]]
-            double CalculateOuterSlope(
-                double waterLevel,
-                double waveHeightHm0,
-                const Core::IProfileData& profileData);
 
             [[nodiscard]]
             bool CalculateLoadingRevetment(
@@ -151,6 +141,10 @@ namespace DiKErnel::Integration
             std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
+                double slopeLowerLevel,
+                double slopeLowerPosition,
+                double slopeUpperLevel,
+                double slopeUpperPosition,
                 double outerSlope,
                 double waveSteepnessDeepWater,
                 double distanceMaximumWaveElevation,
