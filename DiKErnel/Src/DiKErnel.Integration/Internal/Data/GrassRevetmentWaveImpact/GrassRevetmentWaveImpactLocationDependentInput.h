@@ -92,9 +92,6 @@ namespace DiKErnel::Integration
             double _maximumWaveHeight = std::numeric_limits<double>::infinity();
             double _lowerLimitLoading = std::numeric_limits<double>::infinity();
             double _upperLimitLoading = std::numeric_limits<double>::infinity();
-            bool _loadingRevetment = false;
-            double _waveAngleImpact = std::numeric_limits<double>::infinity();
-            double _waveHeightImpact = std::numeric_limits<double>::infinity();
 
             [[nodiscard]]
             bool CalculateLoadingRevetment(
@@ -105,6 +102,9 @@ namespace DiKErnel::Integration
             std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
+                bool loadingRevetment,
+                double waveAngleImpact,
+                double waveHeightImpact,
                 std::unique_ptr<int> timeOfFailure);
     };
 }

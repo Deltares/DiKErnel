@@ -132,24 +132,27 @@ namespace DiKErnel::Integration
     {
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
 
-        _loadingRevetment = CalculateLoadingRevetment(timeDependentInput.GetWaterLevel(), waveHeightHm0);
+        const auto loadingRevetment = CalculateLoadingRevetment(timeDependentInput.GetWaterLevel(), waveHeightHm0);
 
         auto incrementDamage = 0.0;
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
-        if (_loadingRevetment)
+        auto waveAngleImpact = 0.0;
+        auto waveHeightImpact = 0.0;
+
+        if (loadingRevetment)
         {
             const auto beginTime = timeDependentInput.GetBeginTime();
 
             const auto incrementTime = RevetmentFunctions::IncrementTime(beginTime, timeDependentInput.GetEndTime());
-            _waveAngleImpact = GrassRevetmentWaveImpactFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
-                                                                                  _waveAngleImpactInput->GetWaveAngleImpactNwa(),
-                                                                                  _waveAngleImpactInput->GetWaveAngleImpactQwa(),
-                                                                                  _waveAngleImpactInput->GetWaveAngleImpactRwa());
-            _waveHeightImpact = GrassRevetmentWaveImpactFunctions::WaveHeightImpact(_minimumWaveHeight, _maximumWaveHeight, _waveAngleImpact,
-                                                                                    waveHeightHm0);
-            const auto timeLine = GrassRevetmentWaveImpactFunctions::TimeLine(_waveHeightImpact, _timeLine->GetTimeLineAgwi(),
+            waveAngleImpact = GrassRevetmentWaveImpactFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
+                                                                                 _waveAngleImpactInput->GetWaveAngleImpactNwa(),
+                                                                                 _waveAngleImpactInput->GetWaveAngleImpactQwa(),
+                                                                                 _waveAngleImpactInput->GetWaveAngleImpactRwa());
+            waveHeightImpact = GrassRevetmentWaveImpactFunctions::WaveHeightImpact(_minimumWaveHeight, _maximumWaveHeight, waveAngleImpact,
+                                                                                   waveHeightHm0);
+            const auto timeLine = GrassRevetmentWaveImpactFunctions::TimeLine(waveHeightImpact, _timeLine->GetTimeLineAgwi(),
                                                                               _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi());
             incrementDamage = GrassRevetmentWaveImpactFunctions::IncrementDamage(incrementTime, timeLine);
 
@@ -165,7 +168,7 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
-            *CreateConstructionProperties(incrementDamage, damage, move(timeOfFailure)));
+            *CreateConstructionProperties(incrementDamage, damage, loadingRevetment, waveAngleImpact, waveHeightImpact, move(timeOfFailure)));
     }
 
     bool GrassRevetmentWaveImpactLocationDependentInput::CalculateLoadingRevetment(
@@ -182,22 +185,25 @@ namespace DiKErnel::Integration
     CreateConstructionProperties(
         double incrementDamage,
         double damage,
+        bool loadingRevetment,
+        double waveAngleImpact,
+        double waveHeightImpact,
         unique_ptr<int> timeOfFailure)
     {
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
         constructionProperties->_damage = make_unique<double>(damage);
         constructionProperties->_timeOfFailure = move(timeOfFailure);
-        constructionProperties->_loadingRevetment = make_unique<bool>(_loadingRevetment);
+        constructionProperties->_loadingRevetment = make_unique<bool>(loadingRevetment);
         constructionProperties->_upperLimitLoading = make_unique<double>(_upperLimitLoading);
         constructionProperties->_lowerLimitLoading = make_unique<double>(_lowerLimitLoading);
 
-        if (_loadingRevetment)
+        if (loadingRevetment)
         {
             constructionProperties->_minimumWaveHeight = make_unique<double>(_minimumWaveHeight);
             constructionProperties->_maximumWaveHeight = make_unique<double>(_maximumWaveHeight);
-            constructionProperties->_waveAngleImpact = make_unique<double>(_waveAngleImpact);
-            constructionProperties->_waveHeightImpact = make_unique<double>(_waveHeightImpact);
+            constructionProperties->_waveAngleImpact = make_unique<double>(waveAngleImpact);
+            constructionProperties->_waveHeightImpact = make_unique<double>(waveHeightImpact);
         }
 
         return constructionProperties;
