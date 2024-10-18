@@ -90,18 +90,13 @@ namespace DiKErnel::Integration
 
             double _minimumWaveHeight = std::numeric_limits<double>::infinity();
             double _maximumWaveHeight = std::numeric_limits<double>::infinity();
-            double _lowerLimitLoading = std::numeric_limits<double>::infinity();
-            double _upperLimitLoading = std::numeric_limits<double>::infinity();
-
-            [[nodiscard]]
-            bool CalculateLoadingRevetment(
-                double waterLevel,
-                double waveHeightHm0);
 
             [[nodiscard]]
             std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
+                double lowerLimitLoading,
+                double upperLimitLoading,
                 bool loadingRevetment,
                 double waveAngleImpact,
                 double waveHeightImpact,

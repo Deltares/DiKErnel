@@ -130,9 +130,14 @@ namespace DiKErnel::Integration
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
+        const auto waterLevel = timeDependentInput.GetWaterLevel();
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
 
-        const auto loadingRevetment = CalculateLoadingRevetment(timeDependentInput.GetWaterLevel(), waveHeightHm0);
+        const auto lowerLimitLoading = GrassRevetmentWaveImpactFunctions::LowerLimitLoading(waterLevel, waveHeightHm0, _lowerLimitLoadingAll);
+
+        const auto upperLimitLoading = GrassRevetmentWaveImpactFunctions::UpperLimitLoading(waterLevel, waveHeightHm0, _upperLimitLoadingAul);
+
+        const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
 
         auto incrementDamage = 0.0;
         auto damage = initialDamage;
@@ -168,23 +173,16 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
-            *CreateConstructionProperties(incrementDamage, damage, loadingRevetment, waveAngleImpact, waveHeightImpact, move(timeOfFailure)));
-    }
-
-    bool GrassRevetmentWaveImpactLocationDependentInput::CalculateLoadingRevetment(
-        const double waterLevel,
-        const double waveHeightHm0)
-    {
-        _lowerLimitLoading = GrassRevetmentWaveImpactFunctions::LowerLimitLoading(waterLevel, waveHeightHm0, _lowerLimitLoadingAll);
-        _upperLimitLoading = GrassRevetmentWaveImpactFunctions::UpperLimitLoading(waterLevel, waveHeightHm0, _upperLimitLoadingAul);
-
-        return HydraulicLoadFunctions::LoadingRevetment(_lowerLimitLoading, _upperLimitLoading, GetZ());
+            *CreateConstructionProperties(incrementDamage, damage, lowerLimitLoading, upperLimitLoading, loadingRevetment, waveAngleImpact,
+                                          waveHeightImpact, move(timeOfFailure)));
     }
 
     unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> GrassRevetmentWaveImpactLocationDependentInput::
     CreateConstructionProperties(
         double incrementDamage,
         double damage,
+        double lowerLimitLoading,
+        double upperLimitLoading,
         bool loadingRevetment,
         double waveAngleImpact,
         double waveHeightImpact,
@@ -195,8 +193,8 @@ namespace DiKErnel::Integration
         constructionProperties->_damage = make_unique<double>(damage);
         constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_loadingRevetment = make_unique<bool>(loadingRevetment);
-        constructionProperties->_upperLimitLoading = make_unique<double>(_upperLimitLoading);
-        constructionProperties->_lowerLimitLoading = make_unique<double>(_lowerLimitLoading);
+        constructionProperties->_upperLimitLoading = make_unique<double>(upperLimitLoading);
+        constructionProperties->_lowerLimitLoading = make_unique<double>(lowerLimitLoading);
 
         if (loadingRevetment)
         {
