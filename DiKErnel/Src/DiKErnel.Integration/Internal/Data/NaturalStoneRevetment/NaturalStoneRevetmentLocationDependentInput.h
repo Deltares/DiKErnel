@@ -117,12 +117,6 @@ namespace DiKErnel::Integration
             double _slopeLowerLevel = std::numeric_limits<double>::infinity();
             double _slopeUpperPosition = std::numeric_limits<double>::infinity();
             double _slopeUpperLevel = std::numeric_limits<double>::infinity();
-            double _outerSlope = std::numeric_limits<double>::infinity();
-            double _waveSteepnessDeepWater = std::numeric_limits<double>::infinity();
-            double _distanceMaximumWaveElevation = std::numeric_limits<double>::infinity();
-            double _surfSimilarityParameter = std::numeric_limits<double>::infinity();
-            double _normativeWidthWaveImpact = std::numeric_limits<double>::infinity();
-            double _depthMaximumWaveLoad = std::numeric_limits<double>::infinity();
             double _upperLimitLoading = std::numeric_limits<double>::infinity();
             double _lowerLimitLoading = std::numeric_limits<double>::infinity();
             bool _loadingRevetment = false;
@@ -159,6 +153,12 @@ namespace DiKErnel::Integration
             std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
+                double outerSlope,
+                double waveSteepnessDeepWater,
+                double distanceMaximumWaveElevation,
+                double surfSimilarityParameter,
+                double normativeWidthWaveImpact,
+                double depthMaximumWaveLoad,
                 std::unique_ptr<int> timeOfFailure);
     };
 }

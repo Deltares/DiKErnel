@@ -154,28 +154,29 @@ namespace DiKErnel::Integration
         const auto waveHeightHm0 = timeDependentInput.GetWaveHeightHm0();
         const auto wavePeriodTm10 = timeDependentInput.GetWavePeriodTm10();
 
-        _outerSlope = CalculateOuterSlope(waterLevel, waveHeightHm0, profileData);
+        const auto outerSlope = CalculateOuterSlope(waterLevel, waveHeightHm0, profileData);
 
-        const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(_outerSlope);
+        const auto slopeAngle = HydraulicLoadFunctions::SlopeAngle(outerSlope);
 
-        _waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
-                                                                                 Constants::GetGravitationalAcceleration());
+        const auto waveSteepnessDeepWater = HydraulicLoadFunctions::WaveSteepnessDeepWater(waveHeightHm0, wavePeriodTm10,
+                                                                                           Constants::GetGravitationalAcceleration());
 
-        _distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions::DistanceMaximumWaveElevation(
-            1.0, _waveSteepnessDeepWater, waveHeightHm0, _distanceMaximumWaveElevationInput->GetDistanceMaximumWaveElevationAsmax(),
+        const auto distanceMaximumWaveElevation = NaturalStoneRevetmentFunctions::DistanceMaximumWaveElevation(
+            1.0, waveSteepnessDeepWater, waveHeightHm0, _distanceMaximumWaveElevationInput->GetDistanceMaximumWaveElevationAsmax(),
             _distanceMaximumWaveElevationInput->GetDistanceMaximumWaveElevationBsmax());
 
-        _surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(_outerSlope, waveHeightHm0, wavePeriodTm10,
-                                                                                   Constants::GetGravitationalAcceleration());
+        const auto surfSimilarityParameter = HydraulicLoadFunctions::SurfSimilarityParameter(outerSlope, waveHeightHm0, wavePeriodTm10,
+                                                                                             Constants::GetGravitationalAcceleration());
 
-        _normativeWidthWaveImpact = NaturalStoneRevetmentFunctions::NormativeWidthWaveImpact(
-            _surfSimilarityParameter, waveHeightHm0, _normativeWidthOfWaveImpactInput->GetNormativeWidthOfWaveImpactAwi(),
+        const auto normativeWidthWaveImpact = NaturalStoneRevetmentFunctions::NormativeWidthWaveImpact(
+            surfSimilarityParameter, waveHeightHm0, _normativeWidthOfWaveImpactInput->GetNormativeWidthOfWaveImpactAwi(),
             _normativeWidthOfWaveImpactInput->GetNormativeWidthOfWaveImpactBwi());
 
-        _depthMaximumWaveLoad = NaturalStoneRevetmentFunctions::DepthMaximumWaveLoad(_distanceMaximumWaveElevation, _normativeWidthWaveImpact,
-                                                                                     slopeAngle);
+        const auto depthMaximumWaveLoad = NaturalStoneRevetmentFunctions::DepthMaximumWaveLoad(
+            distanceMaximumWaveElevation, normativeWidthWaveImpact,
+            slopeAngle);
 
-        _loadingRevetment = CalculateLoadingRevetment(_depthMaximumWaveLoad, _surfSimilarityParameter, waterLevel, waveHeightHm0);
+        _loadingRevetment = CalculateLoadingRevetment(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0);
 
         auto incrementDamage = 0.0;
         auto damage = initialDamage;
@@ -183,7 +184,7 @@ namespace DiKErnel::Integration
 
         if (_loadingRevetment)
         {
-            _hydraulicLoad = CalculateHydraulicLoad(_surfSimilarityParameter, waveHeightHm0);
+            _hydraulicLoad = CalculateHydraulicLoad(surfSimilarityParameter, waveHeightHm0);
 
             _waveAngleImpact = NaturalStoneRevetmentFunctions::WaveAngleImpact(timeDependentInput.GetWaveAngle(),
                                                                                _waveAngleImpactInput->GetBetamax());
@@ -204,7 +205,9 @@ namespace DiKErnel::Integration
             }
         }
 
-        return make_unique<NaturalStoneRevetmentTimeDependentOutput>(*CreateConstructionProperties(incrementDamage, damage, move(timeOfFailure)));
+        return make_unique<NaturalStoneRevetmentTimeDependentOutput>(*CreateConstructionProperties(
+            incrementDamage, damage, outerSlope, waveSteepnessDeepWater, distanceMaximumWaveElevation, surfSimilarityParameter,
+            normativeWidthWaveImpact, depthMaximumWaveLoad, move(timeOfFailure)));
     }
 
     double NaturalStoneRevetmentLocationDependentInput::CalculateOuterSlope(
@@ -314,25 +317,31 @@ namespace DiKErnel::Integration
     CreateConstructionProperties(
         double incrementDamage,
         double damage,
+        double outerSlope,
+        double waveSteepnessDeepWater,
+        double distanceMaximumWaveElevation,
+        double surfSimilarityParameter,
+        double normativeWidthWaveImpact,
+        double depthMaximumWaveLoad,
         unique_ptr<int> timeOfFailure)
     {
         auto constructionProperties = make_unique<NaturalStoneRevetmentTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
         constructionProperties->_damage = make_unique<double>(damage);
         constructionProperties->_timeOfFailure = move(timeOfFailure);
-        constructionProperties->_outerSlope = make_unique<double>(_outerSlope);
+        constructionProperties->_outerSlope = make_unique<double>(outerSlope);
         constructionProperties->_slopeUpperLevel = make_unique<double>(_slopeUpperLevel);
         constructionProperties->_slopeUpperPosition = make_unique<double>(_slopeUpperPosition);
         constructionProperties->_slopeLowerLevel = make_unique<double>(_slopeLowerLevel);
         constructionProperties->_slopeLowerPosition = make_unique<double>(_slopeLowerPosition);
         constructionProperties->_loadingRevetment = make_unique<bool>(_loadingRevetment);
-        constructionProperties->_surfSimilarityParameter = make_unique<double>(_surfSimilarityParameter);
-        constructionProperties->_waveSteepnessDeepWater = make_unique<double>(_waveSteepnessDeepWater);
+        constructionProperties->_surfSimilarityParameter = make_unique<double>(surfSimilarityParameter);
+        constructionProperties->_waveSteepnessDeepWater = make_unique<double>(waveSteepnessDeepWater);
         constructionProperties->_upperLimitLoading = make_unique<double>(_upperLimitLoading);
         constructionProperties->_lowerLimitLoading = make_unique<double>(_lowerLimitLoading);
-        constructionProperties->_depthMaximumWaveLoad = make_unique<double>(_depthMaximumWaveLoad);
-        constructionProperties->_distanceMaximumWaveElevation = make_unique<double>(_distanceMaximumWaveElevation);
-        constructionProperties->_normativeWidthOfWaveImpact = make_unique<double>(_normativeWidthWaveImpact);
+        constructionProperties->_depthMaximumWaveLoad = make_unique<double>(depthMaximumWaveLoad);
+        constructionProperties->_distanceMaximumWaveElevation = make_unique<double>(distanceMaximumWaveElevation);
+        constructionProperties->_normativeWidthOfWaveImpact = make_unique<double>(normativeWidthWaveImpact);
 
         if (_loadingRevetment)
         {
