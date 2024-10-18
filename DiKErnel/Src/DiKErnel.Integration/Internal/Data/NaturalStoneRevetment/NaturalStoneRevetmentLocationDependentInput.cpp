@@ -176,13 +176,13 @@ namespace DiKErnel::Integration
             distanceMaximumWaveElevation, normativeWidthWaveImpact,
             slopeAngle);
 
-        _loadingRevetment = CalculateLoadingRevetment(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0);
+        const auto loadingRevetment = CalculateLoadingRevetment(depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0);
 
         auto incrementDamage = 0.0;
         auto damage = initialDamage;
         unique_ptr<int> timeOfFailure = nullptr;
 
-        if (_loadingRevetment)
+        if (loadingRevetment)
         {
             _hydraulicLoad = CalculateHydraulicLoad(surfSimilarityParameter, waveHeightHm0);
 
@@ -207,7 +207,7 @@ namespace DiKErnel::Integration
 
         return make_unique<NaturalStoneRevetmentTimeDependentOutput>(*CreateConstructionProperties(
             incrementDamage, damage, outerSlope, waveSteepnessDeepWater, distanceMaximumWaveElevation, surfSimilarityParameter,
-            normativeWidthWaveImpact, depthMaximumWaveLoad, move(timeOfFailure)));
+            normativeWidthWaveImpact, depthMaximumWaveLoad, loadingRevetment, move(timeOfFailure)));
     }
 
     double NaturalStoneRevetmentLocationDependentInput::CalculateOuterSlope(
@@ -323,6 +323,7 @@ namespace DiKErnel::Integration
         double surfSimilarityParameter,
         double normativeWidthWaveImpact,
         double depthMaximumWaveLoad,
+        bool loadingRevetment,
         unique_ptr<int> timeOfFailure)
     {
         auto constructionProperties = make_unique<NaturalStoneRevetmentTimeDependentOutputConstructionProperties>();
@@ -334,7 +335,7 @@ namespace DiKErnel::Integration
         constructionProperties->_slopeUpperPosition = make_unique<double>(_slopeUpperPosition);
         constructionProperties->_slopeLowerLevel = make_unique<double>(_slopeLowerLevel);
         constructionProperties->_slopeLowerPosition = make_unique<double>(_slopeLowerPosition);
-        constructionProperties->_loadingRevetment = make_unique<bool>(_loadingRevetment);
+        constructionProperties->_loadingRevetment = make_unique<bool>(loadingRevetment);
         constructionProperties->_surfSimilarityParameter = make_unique<double>(surfSimilarityParameter);
         constructionProperties->_waveSteepnessDeepWater = make_unique<double>(waveSteepnessDeepWater);
         constructionProperties->_upperLimitLoading = make_unique<double>(_upperLimitLoading);
@@ -343,7 +344,7 @@ namespace DiKErnel::Integration
         constructionProperties->_distanceMaximumWaveElevation = make_unique<double>(distanceMaximumWaveElevation);
         constructionProperties->_normativeWidthOfWaveImpact = make_unique<double>(normativeWidthWaveImpact);
 
-        if (_loadingRevetment)
+        if (loadingRevetment)
         {
             constructionProperties->_hydraulicLoad = make_unique<double>(_hydraulicLoad);
             constructionProperties->_waveAngleImpact = make_unique<double>(_waveAngleImpact);

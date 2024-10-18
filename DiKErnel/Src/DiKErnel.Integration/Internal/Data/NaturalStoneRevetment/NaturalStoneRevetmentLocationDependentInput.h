@@ -119,7 +119,6 @@ namespace DiKErnel::Integration
             double _slopeUpperLevel = std::numeric_limits<double>::infinity();
             double _upperLimitLoading = std::numeric_limits<double>::infinity();
             double _lowerLimitLoading = std::numeric_limits<double>::infinity();
-            bool _loadingRevetment = false;
             double _hydraulicLoad = std::numeric_limits<double>::infinity();
             double _waveAngleImpact = std::numeric_limits<double>::infinity();
             double _referenceTimeDegradation = std::numeric_limits<double>::infinity();
@@ -159,6 +158,7 @@ namespace DiKErnel::Integration
                 double surfSimilarityParameter,
                 double normativeWidthWaveImpact,
                 double depthMaximumWaveLoad,
+                bool loadingRevetment,
                 std::unique_ptr<int> timeOfFailure);
     };
 }
