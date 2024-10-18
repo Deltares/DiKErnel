@@ -108,10 +108,6 @@ namespace DiKErnel::Integration
             double _dikeHeight = std::numeric_limits<double>::infinity();
             double _accelerationAlphaA = std::numeric_limits<double>::infinity();
 
-            double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
-            double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
-            double _cumulativeOverload = std::numeric_limits<double>::infinity();
-
             void InitializeCalculationProfile(
                 const std::pair<double, double>& outerToe,
                 const std::pair<double, double>& outerCrest,
@@ -134,7 +130,9 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             double CalculateCumulativeOverload(
-                double averageNumberOfWaves) const;
+                double averageNumberOfWaves,
+                double verticalDistanceWaterLevelElevation,
+                double representativeWaveRunup2P) const;
 
             [[nodiscard]]
             double CalculateDikeHeight(
@@ -143,9 +141,12 @@ namespace DiKErnel::Integration
                 double locationHeight) const;
 
             [[nodiscard]]
-            std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+            static std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double damage,
+                double verticalDistanceWaterLevelElevation,
+                double representativeWaveRunup2P,
+                double cumulativeOverload,
                 std::unique_ptr<int> timeOfFailure);
     };
 }
