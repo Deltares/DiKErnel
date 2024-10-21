@@ -99,7 +99,8 @@ namespace DiKErnel::Core::Test
             ASSERT_DOUBLE_EQ(damage, actualDamages.at(j));
         }
 
-        ASSERT_EQ(nullptr, locationDependentOutputItems.at(0).get().GetTimeOfFailure(0, 1, _timeDependentInputItemReferences));
+        ASSERT_EQ(numeric_limits<double>::infinity(),
+                  locationDependentOutputItems.at(0).get().GetTimeOfFailure(0, 1, _timeDependentInputItemReferences));
     }
 
     TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenReturnsResultWithExpectedOutput)

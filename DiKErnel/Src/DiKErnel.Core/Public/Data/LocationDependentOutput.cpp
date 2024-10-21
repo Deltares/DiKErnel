@@ -80,7 +80,7 @@ namespace DiKErnel::Core
             damageAtStartOfCalculation = damageAtEndOfCalculation;
         }
 
-        return numeric_limits<double>::max();
+        return numeric_limits<double>::infinity();
     }
 
     const vector<reference_wrapper<TimeDependentOutput>>& LocationDependentOutput::GetTimeDependentOutputItems() const

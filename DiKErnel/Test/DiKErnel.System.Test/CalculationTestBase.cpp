@@ -52,7 +52,7 @@ namespace DiKErnel::System::Test
 
         if (expectedTimeOfFailure == nullptr)
         {
-            ASSERT_EQ(numeric_limits<double>::max(), actualTimeOfFailure);
+            ASSERT_EQ(numeric_limits<double>::infinity(), actualTimeOfFailure);
         }
         else
         {
