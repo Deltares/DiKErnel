@@ -48,6 +48,13 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             double GetZ() const;
 
+        protected:
+            double CalculateTimeOfFailure(
+                double failureNumber,
+                std::reference_wrapper<Core::ITimeDependentInput> timeDependentInput,
+                std::reference_wrapper<Core::TimeDependentOutput> timeDependentOutput,
+                double damageAtStartOfCalculation) const override;
+
         private:
             double _z;
     };

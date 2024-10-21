@@ -36,6 +36,19 @@ namespace DiKErnel::Core
         }
     }
 
+    double LocationDependentOutput::CalculateTimeOfFailure(
+        double failureNumber,
+        std::reference_wrapper<ITimeDependentInput> timeDependentInput,
+        std::reference_wrapper<TimeDependentOutput> timeDependentOutput,
+        double damageAtStartOfCalculation) const
+    {
+        const double incrementTime = timeDependentInput.get().GetEndTime() - timeDependentInput.get().GetBeginTime();
+        const double incrementDamage = timeDependentOutput.get().GetIncrementDamage();
+        const double durationInTimeStepFailure = (failureNumber - damageAtStartOfCalculation) / incrementDamage * incrementTime;
+
+        return timeDependentInput.get().GetBeginTime() + durationInTimeStepFailure;
+    }
+
     vector<double> LocationDependentOutput::GetDamages(
         const double initialDamage) const
     {
@@ -86,18 +99,5 @@ namespace DiKErnel::Core
     const vector<reference_wrapper<TimeDependentOutput>>& LocationDependentOutput::GetTimeDependentOutputItems() const
     {
         return _timeDependentOutputItemReferences;
-    }
-
-    double LocationDependentOutput::CalculateTimeOfFailure(
-        const double failureNumber,
-        const std::reference_wrapper<ITimeDependentInput> timeDependentInput,
-        const std::reference_wrapper<TimeDependentOutput> timeDependentOutput,
-        const double damageAtStartOfCalculation)
-    {
-        const double incrementTime = timeDependentInput.get().GetEndTime() - timeDependentInput.get().GetBeginTime();
-        const double incrementDamage = timeDependentOutput.get().GetIncrementDamage();
-        const double durationInTimeStepFailure = (failureNumber - damageAtStartOfCalculation) / incrementDamage * incrementTime;
-
-        return timeDependentInput.get().GetBeginTime() + durationInTimeStepFailure;
     }
 }

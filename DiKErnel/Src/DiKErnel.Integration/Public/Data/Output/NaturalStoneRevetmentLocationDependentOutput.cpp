@@ -22,19 +22,46 @@
 
 #include <utility>
 
+#include "NaturalStoneRevetmentFunctions.h"
+#include "NaturalStoneRevetmentTimeDependentOutput.h"
+
 namespace DiKErnel::Integration
 {
     using namespace Core;
+    using namespace FunctionLibrary;
     using namespace std;
 
     NaturalStoneRevetmentLocationDependentOutput::NaturalStoneRevetmentLocationDependentOutput(
         vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems,
         const double z)
         : LocationDependentOutput(move(timeDependentOutputItems)),
-          _z(z) { }
+          _z(z) {}
 
     double NaturalStoneRevetmentLocationDependentOutput::GetZ() const
     {
         return _z;
+    }
+
+    double NaturalStoneRevetmentLocationDependentOutput::CalculateTimeOfFailure(
+        double failureNumber,
+        std::reference_wrapper<ITimeDependentInput> timeDependentInput,
+        std::reference_wrapper<TimeDependentOutput> timeDependentOutput,
+        double damageAtStartOfCalculation) const
+    {
+        const auto* naturalStoneWaveImpactTimeDependentOutput = dynamic_cast<NaturalStoneRevetmentTimeDependentOutput*>(&timeDependentOutput.get());
+
+        const double referenceFailure = NaturalStoneRevetmentFunctions::ReferenceFailure(
+            *naturalStoneWaveImpactTimeDependentOutput->GetResistance(),
+            *naturalStoneWaveImpactTimeDependentOutput->GetHydraulicLoad(),
+            *naturalStoneWaveImpactTimeDependentOutput->GetWaveAngleImpact(),
+            failureNumber);
+
+        const double referenceTimeFailure = NaturalStoneRevetmentFunctions::ReferenceTimeFailure(
+            referenceFailure, timeDependentInput.get().GetWavePeriodTm10());
+
+        const double durationInTimeStepFailure = NaturalStoneRevetmentFunctions::DurationInTimeStepFailure(
+            referenceTimeFailure, *naturalStoneWaveImpactTimeDependentOutput->GetReferenceTimeDegradation());
+
+        return timeDependentInput.get().GetBeginTime() + durationInTimeStepFailure;
     }
 }
