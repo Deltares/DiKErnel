@@ -43,7 +43,8 @@ namespace DiKErnel::Core
              * \return The calculated damages.
              */
             [[nodiscard]]
-            const std::vector<double>& GetDamages() const;
+            std::vector<double> GetDamages(
+                double initialDamage) const;
 
             /*!
              * \brief Gets the calculated time of failure.

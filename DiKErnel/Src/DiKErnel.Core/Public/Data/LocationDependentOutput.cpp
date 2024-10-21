@@ -46,9 +46,26 @@ namespace DiKErnel::Core
         }
     }
 
-    const vector<double>& LocationDependentOutput::GetDamages() const
+    vector<double> LocationDependentOutput::GetDamages(
+        const double initialDamage) const
     {
-        return _damages;
+        vector<double> cumulativeDamages;
+
+        double cumulativeDamage = initialDamage;
+
+        for (const auto& timeDependentOutput : _timeDependentOutputItems)
+        {
+            const double incrementDamage = timeDependentOutput->GetIncrementDamage();
+
+            if (incrementDamage != numeric_limits<double>::infinity() && !isnan(incrementDamage))
+            {
+                cumulativeDamage += incrementDamage;
+            }
+
+            cumulativeDamages.push_back(cumulativeDamage);
+        }
+
+        return cumulativeDamages;
     }
 
     const int* LocationDependentOutput::GetTimeOfFailure() const
