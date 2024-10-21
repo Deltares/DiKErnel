@@ -38,7 +38,6 @@ namespace DiKErnel::Integration::Test
         {
             auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
             constructionProperties->_incrementDamage = make_unique<double>(0.1);
-            constructionProperties->_damage = make_unique<double>(0.2);
             constructionProperties->_timeOfFailure = make_unique<int>(3);
             constructionProperties->_logFailureTension = make_unique<double>(0.4);
             constructionProperties->_maximumPeakStress = make_unique<double>(0.5);
@@ -104,7 +103,6 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
         constexpr auto timeOfFailure = 3;
         constexpr auto logFailureTension = 0.4;
         constexpr auto maximumPeakStress = 0.5;
@@ -114,7 +112,6 @@ namespace DiKErnel::Integration::Test
 
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
         constructionProperties._logFailureTension = make_unique<double>(logFailureTension);
         constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
@@ -128,7 +125,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_DOUBLE_EQ(logFailureTension, output.GetLogFailureTension());
         ASSERT_DOUBLE_EQ(maximumPeakStress, output.GetMaximumPeakStress());
@@ -141,7 +137,6 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
         constexpr auto logFailureTension = 0.3;
         constexpr auto maximumPeakStress = 0.4;
         constexpr auto stiffnessRelation = 0.5;
@@ -150,7 +145,6 @@ namespace DiKErnel::Integration::Test
 
         AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._timeOfFailure = nullptr;
         constructionProperties._logFailureTension = make_unique<double>(logFailureTension);
         constructionProperties._maximumPeakStress = make_unique<double>(maximumPeakStress);
@@ -164,7 +158,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
         ASSERT_DOUBLE_EQ(logFailureTension, output.GetLogFailureTension());
         ASSERT_DOUBLE_EQ(maximumPeakStress, output.GetMaximumPeakStress());

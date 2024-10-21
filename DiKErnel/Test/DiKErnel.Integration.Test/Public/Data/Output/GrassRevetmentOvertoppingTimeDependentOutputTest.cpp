@@ -38,7 +38,6 @@ namespace DiKErnel::Integration::Test
             // Setup
             GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
             constructionProperties._incrementDamage = make_unique<double>(0.1);
-            constructionProperties._damage = make_unique<double>(0.2);
             constructionProperties._timeOfFailure = make_unique<int>(3);
             constructionProperties._verticalDistanceWaterLevelElevation = nullptr;
             constructionProperties._representativeWaveRunup2P = make_unique<double>(0.4);
@@ -53,7 +52,6 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
         constexpr auto timeOfFailure = 3;
         constexpr auto verticalDistanceWaterLevelElevation = 0.4;
         constexpr auto representativeWaveRunup2P = 0.5;
@@ -61,7 +59,6 @@ namespace DiKErnel::Integration::Test
 
         GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
         constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
         constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
@@ -73,7 +70,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
         ASSERT_DOUBLE_EQ(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
@@ -84,12 +80,10 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
         constexpr auto verticalDistanceWaterLevelElevation = 0.3;
 
         GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
 
         // Call
@@ -98,7 +92,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, output.GetDamage());
         ASSERT_EQ(nullptr, output.GetTimeOfFailure());
         ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
         ASSERT_EQ(nullptr, output.GetRepresentativeWaveRunup2P());
