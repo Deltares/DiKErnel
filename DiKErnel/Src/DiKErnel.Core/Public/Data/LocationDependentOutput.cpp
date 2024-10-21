@@ -34,16 +34,6 @@ namespace DiKErnel::Core
         {
             _timeDependentOutputItemReferences.emplace_back(*timeDependentOutput);
         }
-
-        for (const auto& timeDependentOutput : _timeDependentOutputItems)
-        {
-            _damages.push_back(timeDependentOutput->GetDamage());
-
-            if (timeDependentOutput->GetTimeOfFailure() != nullptr)
-            {
-                _timeOfFailure = make_unique<int>(*timeDependentOutput->GetTimeOfFailure());
-            }
-        }
     }
 
     vector<double> LocationDependentOutput::GetDamages(
@@ -68,9 +58,29 @@ namespace DiKErnel::Core
         return cumulativeDamages;
     }
 
-    const int* LocationDependentOutput::GetTimeOfFailure() const
+    int LocationDependentOutput::GetTimeOfFailure(
+        const double initialDamage,
+        const double failureNumber,
+        vector<unique_ptr<TimeDependentOutput>>& timeDependentInputItems) const
     {
-        return _timeOfFailure.get();
+        const auto cumulativeDamages = GetDamages(initialDamage);
+
+        double damageAtStartOfCalculation = initialDamage;
+
+        for (int i = 0; i < timeDependentInputItems.size(); i++)
+        {
+            const double damageAtEndOfCalculation = cumulativeDamages[i];
+
+            if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
+            {
+                return CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], _timeDependentOutputItems[i],
+                                              damageAtStartOfCalculation);
+            }
+
+            damageAtStartOfCalculation = damageAtEndOfCalculation;
+        }
+
+        return numeric_limits<int>::max();
     }
 
     const vector<reference_wrapper<TimeDependentOutput>>& LocationDependentOutput::GetTimeDependentOutputItems() const

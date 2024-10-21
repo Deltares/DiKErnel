@@ -51,7 +51,10 @@ namespace DiKErnel::Core
              * \return The calculated time of failure.
              */
             [[nodiscard]]
-            const int* GetTimeOfFailure() const;
+            int GetTimeOfFailure(
+                double initialDamage,
+                double failureNumber,
+                std::vector<std::unique_ptr<TimeDependentOutput>>& timeDependentInputItems) const;
 
             /*!
              * \brief Gets the time dependent output items.
@@ -71,7 +74,6 @@ namespace DiKErnel::Core
 
         private:
             std::vector<double> _damages = std::vector<double>();
-            std::unique_ptr<int> _timeOfFailure;
             std::vector<std::unique_ptr<TimeDependentOutput>> _timeDependentOutputItems;
             std::vector<std::reference_wrapper<TimeDependentOutput>> _timeDependentOutputItemReferences;
     };
