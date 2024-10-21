@@ -226,19 +226,6 @@ namespace DiKErnel::Integration
         const auto& input = CreateIncrementDamageInput(timeDependentInput.GetWaterLevel(), waveHeightHm0, averageNumberOfWaves, maximumPeakStress);
         const auto incrementDamage = AsphaltRevetmentWaveImpactFunctions::IncrementDamage(input);
 
-        const auto damage = incrementDamage != numeric_limits<double>::infinity()
-                                ? RevetmentFunctions::Damage(incrementDamage, initialDamage)
-                                : initialDamage;
-
-        unique_ptr<int> timeOfFailure = nullptr;
-
-        if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
-        {
-            const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
-                                                                                                 initialDamage);
-            timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
-        }
-
         return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
             *CreateConstructionProperties(incrementDamage, maximumPeakStress));
     }

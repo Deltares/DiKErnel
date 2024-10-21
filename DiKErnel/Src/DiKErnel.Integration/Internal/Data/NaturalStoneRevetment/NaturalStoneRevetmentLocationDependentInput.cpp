@@ -225,8 +225,6 @@ namespace DiKErnel::Integration
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
 
         auto incrementDamage = 0.0;
-        auto damage = initialDamage;
-        unique_ptr<int> timeOfFailure = nullptr;
 
         auto hydraulicLoad = 0.0;
         auto waveAngleImpact = 0.0;
@@ -248,18 +246,12 @@ namespace DiKErnel::Integration
                 referenceTimeDegradation, incrementTime, wavePeriodTm10);
 
             incrementDamage = NaturalStoneRevetmentFunctions::IncrementDamage(hydraulicLoad, _resistance, incrementDegradation, waveAngleImpact);
-            damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
-
-            if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
-            {
-                timeOfFailure = make_unique<int>(CalculateTimeOfFailure(failureNumber, wavePeriodTm10, timeDependentInput.GetBeginTime(),
-                                                                        hydraulicLoad, waveAngleImpact, referenceTimeDegradation));
-            }
         }
 
         return make_unique<NaturalStoneRevetmentTimeDependentOutput>(*CreateConstructionProperties(
             incrementDamage, slopeLowerLevel, slopeLowerPosition, slopeUpperLevel, slopeUpperPosition, outerSlope, waveSteepnessDeepWater,
-            distanceMaximumWaveElevation, surfSimilarityParameter, normativeWidthWaveImpact, depthMaximumWaveLoad, lowerLimitLoading, upperLimitLoading,
+            distanceMaximumWaveElevation, surfSimilarityParameter, normativeWidthWaveImpact, depthMaximumWaveLoad, lowerLimitLoading,
+            upperLimitLoading,
             loadingRevetment, hydraulicLoad, waveAngleImpact, referenceDegradation, referenceTimeDegradation));
     }
 

@@ -95,8 +95,6 @@ namespace DiKErnel::Integration
         const IProfileData& profileData)
     {
         auto incrementDamage = 0.0;
-        auto damage = initialDamage;
-        unique_ptr<int> timeOfFailure = nullptr;
 
         _verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
             GetZ(), timeDependentInput.GetWaterLevel());
@@ -121,16 +119,6 @@ namespace DiKErnel::Integration
             _cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves);
 
             incrementDamage = GrassRevetmentFunctions::IncrementDamage(_cumulativeOverload, GetCriticalCumulativeOverload());
-
-            damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
-
-            if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
-            {
-                const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
-                    initialDamage);
-
-                timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
-            }
         }
 
         return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(

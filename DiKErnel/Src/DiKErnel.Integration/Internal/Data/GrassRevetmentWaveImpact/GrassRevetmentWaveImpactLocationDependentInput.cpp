@@ -140,8 +140,6 @@ namespace DiKErnel::Integration
         const auto loadingRevetment = HydraulicLoadFunctions::LoadingRevetment(lowerLimitLoading, upperLimitLoading, GetZ());
 
         auto incrementDamage = 0.0;
-        auto damage = initialDamage;
-        unique_ptr<int> timeOfFailure = nullptr;
 
         auto waveAngleImpact = 0.0;
         auto waveHeightImpact = 0.0;
@@ -160,16 +158,6 @@ namespace DiKErnel::Integration
             const auto timeLine = GrassRevetmentWaveImpactFunctions::TimeLine(waveHeightImpact, _timeLine->GetTimeLineAgwi(),
                                                                               _timeLine->GetTimeLineBgwi(), _timeLine->GetTimeLineCgwi());
             incrementDamage = GrassRevetmentWaveImpactFunctions::IncrementDamage(incrementTime, timeLine);
-
-            damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
-
-            if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
-            {
-                const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(
-                    incrementTime, incrementDamage, failureNumber, initialDamage);
-
-                timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
-            }
         }
 
         return make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(

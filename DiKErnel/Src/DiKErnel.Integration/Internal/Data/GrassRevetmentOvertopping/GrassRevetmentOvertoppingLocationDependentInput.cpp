@@ -177,8 +177,6 @@ namespace DiKErnel::Integration
         const IProfileData& profileData)
     {
         auto incrementDamage = 0.0;
-        auto damage = initialDamage;
-        unique_ptr<int> timeOfFailure = nullptr;
 
         auto representativeWaveRunup2P = 0.0;
         auto cumulativeOverload = 0.0;
@@ -203,19 +201,6 @@ namespace DiKErnel::Integration
             cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves, verticalDistanceWaterLevelElevation, representativeWaveRunup2P);
 
             incrementDamage = GrassRevetmentFunctions::IncrementDamage(cumulativeOverload, _criticalCumulativeOverload);
-
-            if (incrementDamage != numeric_limits<double>::infinity() && !std::isnan(incrementDamage))
-            {
-                damage = RevetmentFunctions::Damage(incrementDamage, initialDamage);
-            }
-
-            if (const auto failureNumber = GetFailureNumber(); RevetmentFunctions::FailureRevetment(damage, initialDamage, failureNumber))
-            {
-                const auto durationInTimeStepFailure = RevetmentFunctions::DurationInTimeStepFailure(incrementTime, incrementDamage, failureNumber,
-                    initialDamage);
-
-                timeOfFailure = make_unique<int>(RevetmentFunctions::TimeOfFailure(durationInTimeStepFailure, beginTime));
-            }
         }
 
         return make_unique<GrassRevetmentOvertoppingTimeDependentOutput>(
