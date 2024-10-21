@@ -52,7 +52,6 @@ namespace DiKErnel::Core
                 const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
                 const IProfileData& profileData) const = 0;
 
-            [[nodiscard]]
             virtual void InitializeDerivedLocationDependentInput(
                 const IProfileData& profileData) = 0;
 

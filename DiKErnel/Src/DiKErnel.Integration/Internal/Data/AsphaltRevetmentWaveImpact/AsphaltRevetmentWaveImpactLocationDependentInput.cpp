@@ -156,12 +156,6 @@ namespace DiKErnel::Integration
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
 
-    unique_ptr<LocationDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
-        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-    {
-        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ(), _outerSlope);
-    }
-
     void AsphaltRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
@@ -182,16 +176,16 @@ namespace DiKErnel::Integration
 
         _logFailureTension = AsphaltRevetmentWaveImpactFunctions::LogFailureTension(_failureTension);
         _computationalThickness = AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(_upperLayer->GetThickness(), subLayerThickness,
-                                                                                              _upperLayer->GetElasticModulus(),
-                                                                                              _subLayerElasticModulus);
+            _upperLayer->GetElasticModulus(),
+            _subLayerElasticModulus);
         _stiffnessRelation = AsphaltRevetmentWaveImpactFunctions::StiffnessRelation(_computationalThickness, _subLayerElasticModulus,
-                                                                                    _soilElasticity, _stiffnessRelationNu);
+            _soilElasticity, _stiffnessRelationNu);
 
         const auto& characteristicPoints = profileData.GetCharacteristicPoints();
         const auto notchOuterBerm =
-                CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
+            CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::NotchOuterBerm);
         const auto crestOuterBerm =
-                CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
+            CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
 
         auto horizontalPosition = GetX();
         if (notchOuterBerm != nullptr && crestOuterBerm != nullptr
@@ -205,7 +199,14 @@ namespace DiKErnel::Integration
         const auto& profileSegmentEndPoint = profileSegment->GetEndPoint();
 
         _outerSlope = AsphaltRevetmentWaveImpactFunctions::OuterSlope(profileSegmentStartPoint.GetX(), profileSegmentStartPoint.GetZ(),
-                                                                      profileSegmentEndPoint.GetX(), profileSegmentEndPoint.GetZ());
+            profileSegmentEndPoint.GetX(), profileSegmentEndPoint.GetZ());
+    }
+
+
+    unique_ptr<LocationDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<AsphaltRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ(), _outerSlope);
     }
 
     unique_ptr<TimeDependentOutput> AsphaltRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(

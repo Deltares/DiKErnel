@@ -150,12 +150,6 @@ namespace DiKErnel::Integration
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
 
-    unique_ptr<LocationDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::GetLocationDependentOutput(
-        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-    {
-        return make_unique<GrassRevetmentOvertoppingLocationDependentOutput>(move(timeDependentOutputItems));
-    }
-
     void GrassRevetmentOvertoppingLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
@@ -169,6 +163,12 @@ namespace DiKErnel::Integration
         InitializeCalculationProfile(*outerToe, *outerCrest, profileData.GetProfileSegments());
         InitializeDikeHeight(*outerCrest, profileData.GetProfileSegments());
         InitializeAccelerationAlphaA(*outerCrest, *innerCrest);
+    }
+
+    unique_ptr<LocationDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<GrassRevetmentOvertoppingLocationDependentOutput>(move(timeDependentOutputItems));
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentOvertoppingLocationDependentInput::CalculateTimeDependentOutput(

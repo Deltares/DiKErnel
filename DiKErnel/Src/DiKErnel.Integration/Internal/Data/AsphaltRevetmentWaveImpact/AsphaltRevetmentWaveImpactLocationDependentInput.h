@@ -92,14 +92,15 @@ namespace DiKErnel::Integration
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
+            void InitializeDerivedLocationDependentInput(
+                const Core::IProfileData& profileData) override;
+
+
             [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;
 
         protected:
-            void InitializeDerivedLocationDependentInput(
-                const Core::IProfileData& profileData) override;
-
             [[nodiscard]]
             std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(
                 double initialDamage,
