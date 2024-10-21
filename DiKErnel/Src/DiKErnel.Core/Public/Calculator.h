@@ -70,7 +70,8 @@ namespace DiKErnel::Core
                 const IProfileData& profileData,
                 const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputItems,
                 ILocationDependentInput& locationDependentInput,
-                std::vector<std::unique_ptr<TimeDependentOutput>>& timeDependentOutputItemsForLocation);
+                std::vector<std::unique_ptr<TimeDependentOutput>>& timeDependentOutputItemsForLocation,
+                CalculationMode timeStepCalculationMode);
 
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,

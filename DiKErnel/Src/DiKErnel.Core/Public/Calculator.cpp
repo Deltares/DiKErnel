@@ -81,15 +81,23 @@ namespace DiKErnel::Core
                     auto& timeDependentOutputItemsForLocation = timeDependentOutputItems.at(i);
 
                     CalculateTimeStepsForLocation(profileData, timeDependentInputItems, locationDependentInput,
-                                                  timeDependentOutputItemsForLocation);
+                                                  timeDependentOutputItemsForLocation, timeStepCalculationMode);
                 }
 
                 break;
             }
             case CalculationMode::FullyParallel:
+            {
+                // TODO: implement
+
                 break;
+            }
             case CalculationMode::ParallelChunks:
+            {
+                // TODO: implement
+
                 break;
+            }
         }
     }
 
@@ -97,23 +105,44 @@ namespace DiKErnel::Core
         const IProfileData& profileData,
         const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems,
         ILocationDependentInput& locationDependentInput,
-        vector<unique_ptr<TimeDependentOutput>>& timeDependentOutputItemsForLocation)
+        vector<unique_ptr<TimeDependentOutput>>& timeDependentOutputItemsForLocation,
+        const CalculationMode timeStepCalculationMode)
     {
-        auto currentDamage = locationDependentInput.GetInitialDamage();
-
-        for (auto j = 0; j < static_cast<int>(timeDependentInputItems.size()); ++j)
+        switch (timeStepCalculationMode)
         {
-            const auto& timeDependentInput = timeDependentInputItems.at(j).get();
-
-            auto timeDependentOutput = locationDependentInput.Calculate(currentDamage, timeDependentInput, profileData);
-
-            const double incrementDamage = timeDependentOutput->GetIncrementDamage();
-            if (incrementDamage != numeric_limits<double>::infinity() && !isnan(incrementDamage))
+            case CalculationMode::Sequential:
             {
-                currentDamage += incrementDamage;
-            }
+                auto currentDamage = locationDependentInput.GetInitialDamage();
 
-            timeDependentOutputItemsForLocation.push_back(move(timeDependentOutput));
+                for (auto j = 0; j < static_cast<int>(timeDependentInputItems.size()); ++j)
+                {
+                    const auto& timeDependentInput = timeDependentInputItems.at(j).get();
+
+                    auto timeDependentOutput = locationDependentInput.Calculate(currentDamage, timeDependentInput, profileData);
+
+                    const double incrementDamage = timeDependentOutput->GetIncrementDamage();
+                    if (incrementDamage != numeric_limits<double>::infinity() && !isnan(incrementDamage))
+                    {
+                        currentDamage += incrementDamage;
+                    }
+
+                    timeDependentOutputItemsForLocation.push_back(move(timeDependentOutput));
+                }
+
+                break;
+            }
+            case CalculationMode::FullyParallel:
+            {
+                // TODO: implement
+
+                break;
+            }
+            case CalculationMode::ParallelChunks:
+            {
+                // TODO: implement
+
+                break;
+            }
         }
     }
 
