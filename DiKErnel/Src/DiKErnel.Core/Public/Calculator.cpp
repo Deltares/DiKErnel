@@ -51,8 +51,13 @@ namespace DiKErnel::Core
 
             auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
 
+            for (int i = 0; i < locationDependentInputItems.size(); i++)
+            {
+                timeDependentOutputItems[i] = vector<unique_ptr<TimeDependentOutput>>(timeDependentInputItems.size());
+            }
+
             CalculateTimeStepsForLocations(profileData, timeDependentInputItems, locationDependentInputItems, timeDependentOutputItems,
-                                           CalculationMode::Sequential, CalculationMode::FullyParallel);
+                                           CalculationMode::Sequential, CalculationMode::Sequential);
 
             CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
         }
@@ -140,7 +145,7 @@ namespace DiKErnel::Core
                         currentDamage += incrementDamage;
                     }
 
-                    timeDependentOutputItemsForLocation.push_back(move(timeDependentOutput));
+                    timeDependentOutputItemsForLocation[i] = move(timeDependentOutput);
                 }
 
                 break;
@@ -154,7 +159,7 @@ namespace DiKErnel::Core
 
                         auto timeDependentOutput = locationDependentInput.Calculate(0, timeDependentInput, profileData);
 
-                        timeDependentOutputItemsForLocation.push_back(move(timeDependentOutput));
+                        timeDependentOutputItemsForLocation[i] = move(timeDependentOutput);
                     });
 
                 // TODO: implement
