@@ -91,7 +91,7 @@ namespace DiKErnel::Core::Test
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());
 
-        const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages();
+        const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages(0);
         ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
         for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
@@ -99,7 +99,7 @@ namespace DiKErnel::Core::Test
             ASSERT_DOUBLE_EQ(damage, actualDamages.at(j));
         }
 
-        ASSERT_EQ(nullptr, locationDependentOutputItems.at(0).get().GetTimeOfFailure());
+        ASSERT_EQ(nullptr, locationDependentOutputItems.at(0).get().GetTimeOfFailure(0, 1, _timeDependentInputItemReferences));
     }
 
     TEST_F(CalculatorTest, GivenCalculator_WhenCalculationPerformedAndTimeOfFailure_ThenReturnsResultWithExpectedOutput)
@@ -129,7 +129,7 @@ namespace DiKErnel::Core::Test
         const auto& locationDependentOutputItems = output->GetLocationDependentOutputItems();
         ASSERT_EQ(1, locationDependentOutputItems.size());
 
-        const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages();
+        const auto& actualDamages = locationDependentOutputItems.at(0).get().GetDamages(0);
         ASSERT_EQ(_timeDependentInputItemReferences.size(), actualDamages.size());
 
         for (auto j = 0; j < static_cast<int>(_timeDependentInputItemReferences.size()); ++j)
@@ -137,7 +137,7 @@ namespace DiKErnel::Core::Test
             ASSERT_DOUBLE_EQ(damage, actualDamages.at(j));
         }
 
-        ASSERT_EQ(timeOfFailure, *locationDependentOutputItems.at(0).get().GetTimeOfFailure());
+        ASSERT_EQ(timeOfFailure, locationDependentOutputItems.at(0).get().GetTimeOfFailure(0, 1, _timeDependentInputItemReferences));
     }
 
     TEST_F(CalculatorTest, GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalseAndEvent)
