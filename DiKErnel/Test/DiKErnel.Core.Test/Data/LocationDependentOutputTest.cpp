@@ -33,14 +33,11 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        timeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
 
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
@@ -48,8 +45,6 @@ namespace DiKErnel::Core::Test
         const LocationDependentOutputMock locationDependentOutput(move(timeDependentOutputItems));
 
         // Assert
-        ASSERT_EQ(vector{ damage }, locationDependentOutput.GetDamages());
-        ASSERT_EQ(timeOfFailure, *locationDependentOutput.GetTimeOfFailure());
         ASSERT_EQ(1, locationDependentOutput.GetTimeDependentOutputItems().size());
     }
 
@@ -57,13 +52,11 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        timeDependentOutputConstructionProperties._timeOfFailure = nullptr;
 
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
@@ -71,8 +64,6 @@ namespace DiKErnel::Core::Test
         const LocationDependentOutputMock locationDependentOutput(move(timeDependentOutputItems));
 
         // Assert
-        ASSERT_EQ(vector{ damage }, locationDependentOutput.GetDamages());
-        ASSERT_EQ(nullptr, locationDependentOutput.GetTimeOfFailure());
         ASSERT_EQ(1, locationDependentOutput.GetTimeDependentOutputItems().size());
     }
 }
