@@ -49,21 +49,21 @@ namespace DiKErnel::Core
 
             auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
 
-            for (auto k = 0; k < static_cast<int>(timeDependentInputItems.size()); ++k)
+            for (auto i = 0; i < static_cast<int>(locationDependentInputItems.size()); ++i)
             {
-                const auto& timeDependentInput = timeDependentInputItems.at(k).get();
+                auto& locationDependentInput = locationDependentInputItems.at(i).get();
 
-                for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
+                for (auto j = 0; j < static_cast<int>(timeDependentInputItems.size()); ++j)
                 {
-                    auto& locationDependentInput = locationDependentInputItems.at(j).get();
+                    const auto& timeDependentInput = timeDependentInputItems.at(j).get();
 
-                    const auto initialDamage = k == 0
-                                                   ? locationDependentInput.GetInitialDamage()
-                                                   : timeDependentOutputItems.at(j).back()->GetDamage();
+                    const auto initialDamage = j == 0
+                        ? locationDependentInput.GetInitialDamage()
+                        : timeDependentOutputItems.at(i).back()->GetDamage();
 
                     auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
 
-                    timeDependentOutputItems.at(j).push_back(move(timeDependentOutput));
+                    timeDependentOutputItems.at(i).push_back(move(timeDependentOutput));
                 }
             }
 
