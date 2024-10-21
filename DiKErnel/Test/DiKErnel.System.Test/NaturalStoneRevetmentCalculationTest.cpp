@@ -190,7 +190,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 7283;
 
-        AssertOutput(calculator, 1.2304354560754505, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.2304354560754505, &expectedTimeOfFailure);
     }
 
     TEST_F(NaturalStoneRevetmentCalculationTest,
@@ -214,7 +215,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 6424;
 
-        AssertOutput(calculator, 1.4501773914577867, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.4501773914577867, &expectedTimeOfFailure);
     }
 
     TEST_F(NaturalStoneRevetmentCalculationTest,
@@ -246,7 +248,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 7815;
 
-        AssertOutput(calculator, 1.071392516159668, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.071392516159668, &expectedTimeOfFailure);
     }
 
     TEST_F(NaturalStoneRevetmentCalculationTest,
@@ -270,7 +273,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 7272;
 
-        AssertOutput(calculator, 1.2313943804174021, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.2313943804174021, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -296,7 +300,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 5606;
 
-        AssertOutput(calculator, 1.6908069656687659, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.6908069656687659, &expectedTimeOfFailure);
     }
 
     TEST_F(NaturalStoneRevetmentCalculationTest,
@@ -321,7 +326,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 5570;
 
-        AssertOutput(calculator, 1.6946654530492318, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.6946654530492318, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -347,7 +353,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 7942;
 
-        AssertOutput(calculator, 1.1900709659898594, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.1900709659898594, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -384,7 +391,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 3894;
 
-        AssertOutput(calculator, 1.0994145971228768, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.0994145971228768, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -410,7 +418,8 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 2914;
 
-        AssertOutput(calculator, 1.3081778496650407, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(),
+                     calculationInput->GetData()->GetTimeDependentInputItems(), 1.3081778496650407, &expectedTimeOfFailure);
     }
 
     #pragma endregion
