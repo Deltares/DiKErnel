@@ -61,7 +61,7 @@ namespace DiKErnel::Core
     int LocationDependentOutput::GetTimeOfFailure(
         const double initialDamage,
         const double failureNumber,
-        vector<unique_ptr<TimeDependentOutput>>& timeDependentInputItems) const
+        vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems) const
     {
         const auto cumulativeDamages = GetDamages(initialDamage);
 
@@ -73,7 +73,7 @@ namespace DiKErnel::Core
 
             if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
             {
-                return CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], _timeDependentOutputItems[i],
+                return CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], _timeDependentOutputItemReferences[i],
                                               damageAtStartOfCalculation);
             }
 

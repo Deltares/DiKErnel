@@ -23,6 +23,7 @@
 #include <memory>
 #include <vector>
 
+#include "ITimeDependentInput.h"
 #include "TimeDependentOutput.h"
 
 namespace DiKErnel::Core
@@ -54,7 +55,7 @@ namespace DiKErnel::Core
             int GetTimeOfFailure(
                 double initialDamage,
                 double failureNumber,
-                std::vector<std::unique_ptr<TimeDependentOutput>>& timeDependentInputItems) const;
+                std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputItems) const;
 
             /*!
              * \brief Gets the time dependent output items.
