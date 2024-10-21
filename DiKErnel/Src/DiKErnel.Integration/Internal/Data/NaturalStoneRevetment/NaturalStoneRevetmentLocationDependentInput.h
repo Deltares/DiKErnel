@@ -147,7 +147,6 @@ namespace DiKErnel::Integration
                 double hydraulicLoad,
                 double waveAngleImpact,
                 double referenceDegradation,
-                double referenceTimeDegradation,
-                std::unique_ptr<int> timeOfFailure);
+                double referenceTimeDegradation);
     };
 }

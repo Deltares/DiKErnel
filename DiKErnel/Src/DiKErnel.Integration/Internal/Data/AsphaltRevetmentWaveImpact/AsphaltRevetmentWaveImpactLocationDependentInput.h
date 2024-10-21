@@ -135,7 +135,6 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             std::unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
-                double maximumPeakStress,
-                std::unique_ptr<int> timeOfFailure);
+                double maximumPeakStress);
     };
 }

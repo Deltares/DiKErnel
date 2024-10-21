@@ -145,7 +145,6 @@ namespace DiKErnel::Integration
                 double incrementDamage,
                 double verticalDistanceWaterLevelElevation,
                 double representativeWaveRunup2P,
-                double cumulativeOverload,
-                std::unique_ptr<int> timeOfFailure);
+                double cumulativeOverload);
     };
 }

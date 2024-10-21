@@ -174,7 +174,7 @@ namespace DiKErnel::Integration
 
         return make_unique<GrassRevetmentWaveImpactTimeDependentOutput>(
             *CreateConstructionProperties(incrementDamage, lowerLimitLoading, upperLimitLoading, loadingRevetment, waveAngleImpact,
-                                          waveHeightImpact, move(timeOfFailure)));
+                                          waveHeightImpact));
     }
 
     unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> GrassRevetmentWaveImpactLocationDependentInput::
@@ -184,12 +184,10 @@ namespace DiKErnel::Integration
         double upperLimitLoading,
         bool loadingRevetment,
         double waveAngleImpact,
-        double waveHeightImpact,
-        unique_ptr<int> timeOfFailure)
+        double waveHeightImpact)
     {
         auto constructionProperties = make_unique<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_loadingRevetment = make_unique<bool>(loadingRevetment);
         constructionProperties->_upperLimitLoading = make_unique<double>(upperLimitLoading);
         constructionProperties->_lowerLimitLoading = make_unique<double>(lowerLimitLoading);

@@ -240,7 +240,7 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<AsphaltRevetmentWaveImpactTimeDependentOutput>(
-            *CreateConstructionProperties(incrementDamage, maximumPeakStress, move(timeOfFailure)));
+            *CreateConstructionProperties(incrementDamage, maximumPeakStress));
     }
 
     AsphaltRevetmentWaveImpactFunctionsInput AsphaltRevetmentWaveImpactLocationDependentInput::CreateIncrementDamageInput(
@@ -272,12 +272,10 @@ namespace DiKErnel::Integration
     unique_ptr<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>
     AsphaltRevetmentWaveImpactLocationDependentInput::CreateConstructionProperties(
         double incrementDamage,
-        double maximumPeakStress,
-        unique_ptr<int> timeOfFailure)
+        double maximumPeakStress)
     {
         auto constructionProperties = make_unique<AsphaltRevetmentWaveImpactTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_logFailureTension = make_unique<double>(_logFailureTension);
         constructionProperties->_maximumPeakStress = make_unique<double>(maximumPeakStress);
         constructionProperties->_stiffnessRelation = make_unique<double>(_stiffnessRelation);

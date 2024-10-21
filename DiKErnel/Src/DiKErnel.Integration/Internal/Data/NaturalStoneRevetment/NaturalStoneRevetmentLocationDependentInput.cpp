@@ -260,7 +260,7 @@ namespace DiKErnel::Integration
         return make_unique<NaturalStoneRevetmentTimeDependentOutput>(*CreateConstructionProperties(
             incrementDamage, slopeLowerLevel, slopeLowerPosition, slopeUpperLevel, slopeUpperPosition, outerSlope, waveSteepnessDeepWater,
             distanceMaximumWaveElevation, surfSimilarityParameter, normativeWidthWaveImpact, depthMaximumWaveLoad, lowerLimitLoading, upperLimitLoading,
-            loadingRevetment, hydraulicLoad, waveAngleImpact, referenceDegradation, referenceTimeDegradation, move(timeOfFailure)));
+            loadingRevetment, hydraulicLoad, waveAngleImpact, referenceDegradation, referenceTimeDegradation));
     }
 
     double NaturalStoneRevetmentLocationDependentInput::CalculateHydraulicLoad(
@@ -326,12 +326,10 @@ namespace DiKErnel::Integration
         double hydraulicLoad,
         double waveAngleImpact,
         double referenceDegradation,
-        double referenceTimeDegradation,
-        unique_ptr<int> timeOfFailure)
+        double referenceTimeDegradation)
     {
         auto constructionProperties = make_unique<NaturalStoneRevetmentTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_outerSlope = make_unique<double>(outerSlope);
         constructionProperties->_slopeUpperLevel = make_unique<double>(slopeUpperLevel);
         constructionProperties->_slopeUpperPosition = make_unique<double>(slopeUpperPosition);

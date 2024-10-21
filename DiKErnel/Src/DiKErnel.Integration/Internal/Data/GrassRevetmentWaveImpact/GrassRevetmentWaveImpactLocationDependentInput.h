@@ -98,7 +98,6 @@ namespace DiKErnel::Integration
                 double upperLimitLoading,
                 bool loadingRevetment,
                 double waveAngleImpact,
-                double waveHeightImpact,
-                std::unique_ptr<int> timeOfFailure);
+                double waveHeightImpact);
     };
 }
