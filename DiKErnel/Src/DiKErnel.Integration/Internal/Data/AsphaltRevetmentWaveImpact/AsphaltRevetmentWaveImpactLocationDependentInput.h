@@ -95,7 +95,6 @@ namespace DiKErnel::Integration
             void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData) override;
 
-
             [[nodiscard]]
             std::unique_ptr<Core::LocationDependentOutput> GetLocationDependentOutput(
                 std::vector<std::unique_ptr<Core::TimeDependentOutput>> timeDependentOutputItems) override;

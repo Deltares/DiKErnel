@@ -104,12 +104,6 @@ namespace DiKErnel::Integration
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
 
-    unique_ptr<LocationDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
-        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-    {
-        return make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
-    }
-
     void GrassRevetmentWaveImpactLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
@@ -123,6 +117,12 @@ namespace DiKErnel::Integration
                                                                                   _minimumWaveHeightTemax);
         _maximumWaveHeight = GrassRevetmentWaveImpactFunctions::MaximumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
                                                                                   _maximumWaveHeightTemin);
+    }
+
+    unique_ptr<LocationDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<GrassRevetmentWaveImpactLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
     }
 
     unique_ptr<TimeDependentOutput> GrassRevetmentWaveImpactLocationDependentInput::CalculateTimeDependentOutput(

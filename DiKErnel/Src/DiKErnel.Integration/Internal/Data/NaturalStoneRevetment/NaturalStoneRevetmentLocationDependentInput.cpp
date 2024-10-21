@@ -124,12 +124,6 @@ namespace DiKErnel::Integration
         return ValidationHelper::RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
     }
 
-    unique_ptr<LocationDependentOutput> NaturalStoneRevetmentLocationDependentInput::GetLocationDependentOutput(
-        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
-    {
-        return make_unique<NaturalStoneRevetmentLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
-    }
-
     void NaturalStoneRevetmentLocationDependentInput::InitializeDerivedLocationDependentInput(
         const IProfileData& profileData)
     {
@@ -143,6 +137,12 @@ namespace DiKErnel::Integration
         _crestOuterBerm = CharacteristicPointsHelper::GetCoordinatesForType(characteristicPoints, CharacteristicPointType::CrestOuterBerm);
 
         _resistance = NaturalStoneRevetmentFunctions::Resistance(_relativeDensity, _thicknessTopLayer);
+    }
+
+    unique_ptr<LocationDependentOutput> NaturalStoneRevetmentLocationDependentInput::GetLocationDependentOutput(
+        vector<unique_ptr<TimeDependentOutput>> timeDependentOutputItems)
+    {
+        return make_unique<NaturalStoneRevetmentLocationDependentOutput>(move(timeDependentOutputItems), GetZ());
     }
 
     unique_ptr<TimeDependentOutput> NaturalStoneRevetmentLocationDependentInput::CalculateTimeDependentOutput(
