@@ -65,13 +65,6 @@ namespace DiKErnel::Integration
         const ITimeDependentInput& timeDependentInput,
         const IProfileData& profileData)
     {
-        if (!_derivedLocationDependentInputInitialized)
-        {
-            _derivedLocationDependentInputInitialized = true;
-
-            InitializeDerivedLocationDependentInput(profileData);
-        }
-
         return CalculateTimeDependentOutput(initialDamage, timeDependentInput, profileData);
     }
 

@@ -80,6 +80,8 @@ namespace DiKErnel::Core
                     auto& locationDependentInput = locationDependentInputItems.at(i).get();
                     auto& timeDependentOutputItemsForLocation = timeDependentOutputItems.at(i);
 
+                    locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+
                     CalculateTimeStepsForLocation(profileData, timeDependentInputItems, locationDependentInput,
                                                   timeDependentOutputItemsForLocation, timeStepCalculationMode);
                 }
