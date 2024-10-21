@@ -24,8 +24,7 @@ namespace DiKErnel::Core
 {
     TimeDependentOutput::TimeDependentOutput(
         TimeDependentOutputConstructionProperties& constructionProperties)
-        : _incrementDamage(move(constructionProperties._incrementDamage)),
-          _timeOfFailure(move(constructionProperties._timeOfFailure))
+        : _incrementDamage(move(constructionProperties._incrementDamage))
     {
         ThrowExceptionWhenPropertyIsNullPtr(_incrementDamage.get(), "incrementDamage");
     }
@@ -33,10 +32,5 @@ namespace DiKErnel::Core
     double TimeDependentOutput::GetIncrementDamage() const
     {
         return *_incrementDamage;
-    }
-
-    const int* TimeDependentOutput::GetTimeOfFailure() const
-    {
-        return _timeOfFailure.get();
     }
 }

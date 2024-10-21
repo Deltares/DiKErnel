@@ -46,13 +46,6 @@ namespace DiKErnel::Core
             [[nodiscard]]
             double GetIncrementDamage() const;
 
-            /*!
-             * \brief Gets the time of failure.
-             * \return The time of failure.
-             */
-            [[nodiscard]]
-            const int* GetTimeOfFailure() const;
-
         protected:
             /*!
              * \brief Creates a new instance.
@@ -87,6 +80,5 @@ namespace DiKErnel::Core
 
         private:
             std::unique_ptr<double> _incrementDamage = nullptr;
-            std::unique_ptr<int> _timeOfFailure = nullptr;
     };
 }

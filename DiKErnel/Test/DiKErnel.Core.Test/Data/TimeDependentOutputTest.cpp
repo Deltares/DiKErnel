@@ -38,18 +38,6 @@ namespace DiKErnel::Core::Test
             // Setup
             TimeDependentOutputConstructionProperties constructionProperties;
             constructionProperties._incrementDamage = nullptr;
-            constructionProperties._timeOfFailure = make_unique<int>(2);
-
-            // Call
-            const TimeDependentOutputMock timeDependentOutput(constructionProperties);
-        }
-
-        static void CreateOutputWithConstructionPropertiesWithDamageNullPtr()
-        {
-            // Setup
-            TimeDependentOutputConstructionProperties constructionProperties;
-            constructionProperties._incrementDamage = make_unique<double>(0.1);
-            constructionProperties._timeOfFailure = make_unique<int>(2);
 
             // Call
             const TimeDependentOutputMock timeDependentOutput(constructionProperties);
@@ -60,18 +48,15 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        auto timeOfFailure = 3;
 
         TimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
 
         // Call
         const TimeDependentOutputMock timeDependentOutput(constructionProperties);
 
         // Assert
         ASSERT_DOUBLE_EQ(incrementDamage, timeDependentOutput.GetIncrementDamage());
-        ASSERT_EQ(timeOfFailure, *timeDependentOutput.GetTimeOfFailure());
     }
 
     TEST_F(TimeDependentOutputTest, Constructor_IncrementDamageNullPtr_ThrowsInvalidTimeDependentOutputException)
@@ -81,28 +66,5 @@ namespace DiKErnel::Core::Test
 
         // Assert
         AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "incrementDamage must be set.");
-    }
-
-    TEST_F(TimeDependentOutputTest, Constructor_DamageNullPtr_ThrowsInvalidTimeDependentOutputException)
-    {
-        // Setup & Call
-        const auto action = &TimeDependentOutputTest::CreateOutputWithConstructionPropertiesWithDamageNullPtr;
-
-        // Assert
-        AssertHelper::AssertThrowsWithMessage<InvalidTimeDependentOutputException>(action, "damage must be set.");
-    }
-
-    TEST_F(TimeDependentOutputTest, Constructor_TimeOfFailureNullPtr_ExpectedValues)
-    {
-        // Setup
-        TimeDependentOutputConstructionProperties constructionProperties;
-        constructionProperties._incrementDamage = make_unique<double>(0.1);
-        constructionProperties._timeOfFailure = nullptr;
-
-        // Call
-        const TimeDependentOutputMock timeDependentOutput(constructionProperties);
-
-        // Assert
-        ASSERT_EQ(nullptr, timeDependentOutput.GetTimeOfFailure());
     }
 }
