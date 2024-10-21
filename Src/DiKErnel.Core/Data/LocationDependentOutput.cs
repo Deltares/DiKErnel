@@ -82,11 +82,6 @@ namespace DiKErnel.Core.Data
         {
             IReadOnlyList<double> cumulativeDamages = GetCumulativeDamages(initialDamage);
 
-            if (cumulativeDamages.Any(double.IsNaN))
-            {
-                return null;
-            }
-
             double damageAtStartOfCalculation = initialDamage;
 
             for (var i = 0; i < timeDependentInputItems.Count; i++)
