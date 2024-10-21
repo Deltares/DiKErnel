@@ -37,7 +37,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._damage);
         ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
         ASSERT_EQ(nullptr, constructionProperties._verticalDistanceWaterLevelElevation);
         ASSERT_EQ(nullptr, constructionProperties._waveAngleImpact);
@@ -50,7 +49,6 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
         constexpr auto timeOfFailure = 3;
         constexpr auto verticalDistanceWaterLevelElevation = 0.4;
         constexpr auto waveAngleImpact = 0.5;
@@ -60,7 +58,6 @@ namespace DiKErnel::Integration::Test
         // When
         GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
         constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
         constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
@@ -69,7 +66,6 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
         ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
         ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, *constructionProperties._verticalDistanceWaterLevelElevation);
         ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties._waveAngleImpact);
