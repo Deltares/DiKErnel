@@ -47,7 +47,7 @@ namespace DiKErnel::System::Test
         AssertHelper::AssertAreEqualWithAcceptablePrecision(expectedDamage, actualDamage);
 
         const auto actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure(
-            locationDependentInput.GetInitialDamage(), locationDependentInput.GetFailureNumber()
+            locationDependentInput.GetInitialDamage(), locationDependentInput.GetFailureNumber(),
             timeDependentInputItems);
 
         if (expectedTimeOfFailure == nullptr)
