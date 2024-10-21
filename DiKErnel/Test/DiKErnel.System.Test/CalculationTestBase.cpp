@@ -25,10 +25,12 @@
 namespace DiKErnel::System::Test
 {
     using namespace Core;
+    using namespace std;
     using namespace TestUtil;
 
     void CalculationTestBase::AssertOutput(
         const Calculator& calculator,
+        const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
         const double expectedDamage,
         const int* expectedTimeOfFailure)
     {

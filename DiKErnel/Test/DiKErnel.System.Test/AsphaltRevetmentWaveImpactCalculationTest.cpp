@@ -130,7 +130,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 28730;
 
-        AssertOutput(calculator, 1.090455071141477, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.090455071141477, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -154,7 +154,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 21784;
 
-        AssertOutput(calculator, 1.5994630284574629, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.5994630284574629, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -179,7 +179,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 24186;
 
-        AssertOutput(calculator, 1.4504822396893404, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.4504822396893404, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -220,7 +220,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 28534;
 
-        AssertOutput(calculator, 1.1209751340365248, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.1209751340365248, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -261,7 +261,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 22915;
 
-        AssertOutput(calculator, 1.330223366658833, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.330223366658833, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -302,7 +302,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 24516;
 
-        AssertOutput(calculator, 1.3929836399508819, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.3929836399508819, &expectedTimeOfFailure);
     }
 
     TEST_F(AsphaltRevetmentWaveImpactCalculationTest,
@@ -331,7 +331,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 25376;
 
-        AssertOutput(calculator, 1.286077744433424, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.286077744433424, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -357,7 +357,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 16415;
 
-        AssertOutput(calculator, 1.4248173105992974, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.4248173105992974, &expectedTimeOfFailure);
     }
 
     #pragma endregion
@@ -383,7 +383,7 @@ namespace DiKErnel::System::Test
         // Then
         constexpr int expectedTimeOfFailure = 28730;
 
-        AssertOutput(calculator, 1.090455071141477, &expectedTimeOfFailure);
+        AssertOutput(calculator, calculationInput->GetData()->GetLocationDependentInputItems(), 1.090455071141477, &expectedTimeOfFailure);
     }
 
     #pragma endregion

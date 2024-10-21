@@ -30,6 +30,7 @@ namespace DiKErnel::System::Test
     {
         static void AssertOutput(
             const Core::Calculator& calculator,
+            const std::vector<std::reference_wrapper<Core::ILocationDependentInput>>& locationDependentInputItems,
             double expectedDamage,
             const int* expectedTimeOfFailure = nullptr);
     };
