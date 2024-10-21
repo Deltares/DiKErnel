@@ -48,6 +48,7 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         constexpr auto incrementDamage = 0.1;
+        constexpr auto representativeWaveRunup2P = 0.3;
         constexpr auto verticalDistanceWaterLevelElevation = 0.4;
         constexpr auto waveAngleImpact = 0.5;
         constexpr auto cumulativeOverload = 0.7;
