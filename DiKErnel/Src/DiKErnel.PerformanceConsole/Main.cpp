@@ -158,14 +158,15 @@ void AddLocations(
             double x,
             const unique_ptr<CalculationInputBuilder>& builderToUse) ->
             void
-            {
-                auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<GrassRevetmentOvertoppingLocationConstructionProperties>(
-                    x, GrassRevetmentTopLayerType::OpenSod);
+                {
+                    auto grassRevetmentOvertoppingLocationConstructionProperties = make_unique<
+                        GrassRevetmentOvertoppingLocationConstructionProperties>(
+                        x, GrassRevetmentTopLayerType::OpenSod);
 
-                grassRevetmentOvertoppingLocationConstructionProperties->SetDikeHeight(make_unique<double>(11));
+                    grassRevetmentOvertoppingLocationConstructionProperties->SetDikeHeight(make_unique<double>(11));
 
-                builderToUse->AddGrassOvertoppingLocation(move(grassRevetmentOvertoppingLocationConstructionProperties));
-            };
+                    builderToUse->AddGrassOvertoppingLocation(move(grassRevetmentOvertoppingLocationConstructionProperties));
+                };
     }
     else if (failureMechanismArgument == grassWaveRunupBattjesGroenendijkAnalyticalIdentifier)
     {
@@ -334,9 +335,11 @@ void CalculateAndWriteOutput(
 
     for (int i = 0; i < locationDependentOutputItems.size(); i++)
     {
-        auto damages = locationDependentOutputItems[i].get().GetDamages();
+        const auto locationDependentInput = &locationDependentInputItems[i].get();
 
-        outputMessage << setw(5) << locationDependentInputItems[i].get().GetX() << ";";
+        auto damages = locationDependentOutputItems[i].get().GetDamages(locationDependentInput->GetInitialDamage());
+
+        outputMessage << setw(5) << locationDependentInput->GetX() << ";";
         outputMessage << setw(8) << damages[damages.size() - 1] << ";";
     }
 
