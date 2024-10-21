@@ -58,10 +58,10 @@ namespace DiKErnel::Core
         return cumulativeDamages;
     }
 
-    int LocationDependentOutput::GetTimeOfFailure(
+    double LocationDependentOutput::GetTimeOfFailure(
         const double initialDamage,
         const double failureNumber,
-        vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems) const
+        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems) const
     {
         const auto cumulativeDamages = GetDamages(initialDamage);
 
@@ -80,7 +80,7 @@ namespace DiKErnel::Core
             damageAtStartOfCalculation = damageAtEndOfCalculation;
         }
 
-        return numeric_limits<int>::max();
+        return numeric_limits<double>::max();
     }
 
     const vector<reference_wrapper<TimeDependentOutput>>& LocationDependentOutput::GetTimeDependentOutputItems() const
