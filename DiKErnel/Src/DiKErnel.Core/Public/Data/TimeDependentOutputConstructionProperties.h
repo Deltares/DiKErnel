@@ -31,7 +31,6 @@ namespace DiKErnel::Core
     {
         public:
             std::unique_ptr<double> _incrementDamage = nullptr;
-            std::unique_ptr<double> _damage = nullptr;
             std::unique_ptr<int> _timeOfFailure = nullptr;
     };
 }
