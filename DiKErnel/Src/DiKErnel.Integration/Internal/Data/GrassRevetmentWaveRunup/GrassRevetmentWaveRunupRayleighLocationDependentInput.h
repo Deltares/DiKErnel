@@ -88,7 +88,6 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
-                double damage,
                 std::unique_ptr<int> timeOfFailure);
     };
 }

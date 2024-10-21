@@ -143,7 +143,6 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             static std::unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
-                double damage,
                 double verticalDistanceWaterLevelElevation,
                 double representativeWaveRunup2P,
                 double cumulativeOverload,

@@ -94,7 +94,6 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             std::unique_ptr<GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
-                double damage,
                 double lowerLimitLoading,
                 double upperLimitLoading,
                 bool loadingRevetment,

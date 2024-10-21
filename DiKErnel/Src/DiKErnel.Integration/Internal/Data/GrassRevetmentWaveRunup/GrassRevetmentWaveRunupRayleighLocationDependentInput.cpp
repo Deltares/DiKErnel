@@ -134,7 +134,7 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
-            *CreateConstructionProperties(incrementDamage, damage, move(timeOfFailure)));
+            *CreateConstructionProperties(incrementDamage, move(timeOfFailure)));
     }
 
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateRepresentativeWaveRunup2P(
@@ -180,12 +180,10 @@ namespace DiKErnel::Integration
     unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>
     GrassRevetmentWaveRunupRayleighLocationDependentInput::CreateConstructionProperties(
         double incrementDamage,
-        double damage,
         unique_ptr<int> timeOfFailure)
     {
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties->_damage = make_unique<double>(damage);
         constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_verticalDistanceWaterLevelElevation = make_unique<double>(_verticalDistanceWaterLevelElevation);
 

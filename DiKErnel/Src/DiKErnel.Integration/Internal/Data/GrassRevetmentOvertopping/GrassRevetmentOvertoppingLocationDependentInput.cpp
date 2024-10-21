@@ -219,7 +219,7 @@ namespace DiKErnel::Integration
         }
 
         return make_unique<GrassRevetmentOvertoppingTimeDependentOutput>(
-            *CreateConstructionProperties(incrementDamage, damage, verticalDistanceWaterLevelElevation, representativeWaveRunup2P,
+            *CreateConstructionProperties(incrementDamage, verticalDistanceWaterLevelElevation, representativeWaveRunup2P,
                                           cumulativeOverload, move(timeOfFailure)));
     }
 
@@ -336,7 +336,6 @@ namespace DiKErnel::Integration
     unique_ptr<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties>
     GrassRevetmentOvertoppingLocationDependentInput::CreateConstructionProperties(
         double incrementDamage,
-        double damage,
         double verticalDistanceWaterLevelElevation,
         double representativeWaveRunup2P,
         double cumulativeOverload,
@@ -345,7 +344,6 @@ namespace DiKErnel::Integration
         auto constructionProperties = make_unique<GrassRevetmentOvertoppingTimeDependentOutputConstructionProperties>();
 
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties->_damage = make_unique<double>(damage);
         constructionProperties->_timeOfFailure = move(timeOfFailure);
         constructionProperties->_verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
 
