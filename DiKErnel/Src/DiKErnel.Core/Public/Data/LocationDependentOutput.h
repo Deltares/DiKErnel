@@ -80,7 +80,6 @@ namespace DiKErnel::Core
                 double damageAtStartOfCalculation) const;
 
         private:
-            std::vector<double> _damages = std::vector<double>();
             std::vector<std::unique_ptr<TimeDependentOutput>> _timeDependentOutputItems;
             std::vector<std::reference_wrapper<TimeDependentOutput>> _timeDependentOutputItemReferences;
     };
