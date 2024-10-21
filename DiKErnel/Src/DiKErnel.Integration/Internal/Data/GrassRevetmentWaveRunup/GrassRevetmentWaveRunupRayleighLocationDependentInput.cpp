@@ -101,6 +101,7 @@ namespace DiKErnel::Integration
 
         auto waveAngleImpact = 0.0;
         auto representativeWaveRunup2P = 0.0;
+        auto cumulativeOverload = 0.0;
 
         if (verticalDistanceWaterLevelElevation > 0)
         {
@@ -122,13 +123,14 @@ namespace DiKErnel::Integration
             representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(surfSimilarityParameter, waveAngleImpact,
                                                                            timeDependentInput.GetWaveHeightHm0());
 
-            _cumulativeOverload = CalculateCumulativeOverload(verticalDistanceWaterLevelElevation, averageNumberOfWaves, representativeWaveRunup2P);
+            cumulativeOverload = CalculateCumulativeOverload(verticalDistanceWaterLevelElevation, averageNumberOfWaves, representativeWaveRunup2P);
 
-            incrementDamage = GrassRevetmentFunctions::IncrementDamage(_cumulativeOverload, GetCriticalCumulativeOverload());
+            incrementDamage = GrassRevetmentFunctions::IncrementDamage(cumulativeOverload, GetCriticalCumulativeOverload());
         }
 
         return make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutput>(
-            *CreateConstructionProperties(incrementDamage, verticalDistanceWaterLevelElevation, waveAngleImpact, representativeWaveRunup2P));
+            *CreateConstructionProperties(incrementDamage, verticalDistanceWaterLevelElevation, waveAngleImpact, representativeWaveRunup2P,
+                                          cumulativeOverload));
     }
 
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateRepresentativeWaveRunup2P(
@@ -179,7 +181,8 @@ namespace DiKErnel::Integration
         double incrementDamage,
         double verticalDistanceWaterLevelElevation,
         double waveAngleImpact,
-        double representativeWaveRunup2P)
+        double representativeWaveRunup2P,
+        double cumulativeOverload)
     {
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
@@ -189,7 +192,7 @@ namespace DiKErnel::Integration
         {
             constructionProperties->_waveAngleImpact = make_unique<double>(waveAngleImpact);
             constructionProperties->_representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
-            constructionProperties->_cumulativeOverload = make_unique<double>(_cumulativeOverload);
+            constructionProperties->_cumulativeOverload = make_unique<double>(cumulativeOverload);
         }
 
         return constructionProperties;

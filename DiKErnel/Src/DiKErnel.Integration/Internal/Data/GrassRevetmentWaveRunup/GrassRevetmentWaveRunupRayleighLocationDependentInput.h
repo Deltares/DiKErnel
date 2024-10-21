@@ -71,8 +71,6 @@ namespace DiKErnel::Integration
             const int _fixedNumberOfWaves;
             const double _frontVelocityCu;
 
-            double _cumulativeOverload = std::numeric_limits<double>::infinity();
-
             [[nodiscard]]
             double CalculateRepresentativeWaveRunup2P(
                 double surfSimilarityParameter,
@@ -86,10 +84,11 @@ namespace DiKErnel::Integration
                 double representativeWaveRunup2P) const;
 
             [[nodiscard]]
-            std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
+            static std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
                 double verticalDistanceWaterLevelElevation,
                 double waveAngleImpact,
-                double representativeWaveRunup2P);
+                double representativeWaveRunup2P,
+                double cumulativeOverload);
     };
 }
