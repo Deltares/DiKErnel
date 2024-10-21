@@ -53,15 +53,19 @@ namespace DiKErnel::Core
             {
                 auto& locationDependentInput = locationDependentInputItems.at(i).get();
 
+                auto currentDamage = locationDependentInput.GetInitialDamage();
+
                 for (auto j = 0; j < static_cast<int>(timeDependentInputItems.size()); ++j)
                 {
                     const auto& timeDependentInput = timeDependentInputItems.at(j).get();
 
-                    const auto initialDamage = j == 0
-                        ? locationDependentInput.GetInitialDamage()
-                        : timeDependentOutputItems.at(i).back()->GetDamage();
+                    auto timeDependentOutput = locationDependentInput.Calculate(currentDamage, timeDependentInput, profileData);
 
-                    auto timeDependentOutput = locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
+                    const double incrementDamage = timeDependentOutput->GetIncrementDamage();
+                    if (incrementDamage != numeric_limits<double>::infinity() && !isnan(incrementDamage))
+                    {
+                        currentDamage += incrementDamage;
+                    }
 
                     timeDependentOutputItems.at(i).push_back(move(timeDependentOutput));
                 }
