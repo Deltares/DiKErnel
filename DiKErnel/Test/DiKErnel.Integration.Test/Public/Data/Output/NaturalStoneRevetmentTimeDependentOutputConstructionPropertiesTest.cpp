@@ -37,7 +37,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
         ASSERT_EQ(nullptr, constructionProperties._outerSlope);
         ASSERT_EQ(nullptr, constructionProperties._slopeUpperLevel);
         ASSERT_EQ(nullptr, constructionProperties._slopeUpperPosition);
@@ -62,7 +61,6 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         constexpr auto incrementDamage = 0.1;
-        constexpr auto timeOfFailure = 3;
         constexpr auto outerSlope = 0.4;
         constexpr auto slopeUpperLevel = 0.5;
         constexpr auto slopeUpperPosition = 0.6;
@@ -85,7 +83,6 @@ namespace DiKErnel::Integration::Test
         // When
         NaturalStoneRevetmentTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
         constructionProperties._outerSlope = make_unique<double>(outerSlope);
         constructionProperties._slopeUpperLevel = make_unique<double>(slopeUpperLevel);
         constructionProperties._slopeUpperPosition = make_unique<double>(slopeUpperPosition);
@@ -107,7 +104,6 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
         ASSERT_DOUBLE_EQ(outerSlope, *constructionProperties._outerSlope);
         ASSERT_DOUBLE_EQ(slopeUpperLevel, *constructionProperties._slopeUpperLevel);
         ASSERT_DOUBLE_EQ(slopeUpperPosition, *constructionProperties._slopeUpperPosition);
