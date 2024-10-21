@@ -8,6 +8,7 @@ set(PUBLIC_EXCEPTIONS_FOLDER ${PUBLIC_FOLDER}/Exceptions)
 
 # Define sources
 set(SOURCEFILES_PUBLIC
+  ${PUBLIC_FOLDER}/CalculationMode.h
   ${PUBLIC_FOLDER}/Calculator.cpp
   ${PUBLIC_FOLDER}/Calculator.h
   ${PUBLIC_FOLDER}/Validator.cpp

@@ -54,7 +54,7 @@ namespace DiKErnel::Integration
         const double frontVelocityCwo,
         unique_ptr<GrassRevetmentOvertoppingLocationDependentAccelerationAlphaA> locationDependentAccelerationAlphaA,
         unique_ptr<double> enforcedDikeHeight)
-        : LocationDependentInput(x, initialDamage, failureNumber),
+        : LocationDependentInput(x, initialDamage, failureNumber, false),
           _criticalCumulativeOverload(criticalCumulativeOverload),
           _criticalFrontVelocity(criticalFrontVelocity),
           _increasedLoadTransitionAlphaM(increasedLoadTransitionAlphaM),

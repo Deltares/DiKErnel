@@ -35,10 +35,12 @@ namespace DiKErnel::Integration
     LocationDependentInput::LocationDependentInput(
         const double x,
         const double initialDamage,
-        const double failureNumber)
+        const double failureNumber,
+        const bool requiresDamageAtStartOfCalculation)
         : _x(x),
           _initialDamage(initialDamage),
-          _failureNumber(failureNumber) { }
+          _failureNumber(failureNumber),
+          _requiresDamageAtStartOfCalculation(requiresDamageAtStartOfCalculation) {}
 
     bool LocationDependentInput::Validate(
         const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
@@ -85,6 +87,11 @@ namespace DiKErnel::Integration
     double LocationDependentInput::GetZ() const
     {
         return _z;
+    }
+
+    bool LocationDependentInput::GetRequiresDamageAtStartOfCalculation() const
+    {
+        return _requiresDamageAtStartOfCalculation;
     }
 
     void LocationDependentInput::InitializeDerivedLocationDependentInput(

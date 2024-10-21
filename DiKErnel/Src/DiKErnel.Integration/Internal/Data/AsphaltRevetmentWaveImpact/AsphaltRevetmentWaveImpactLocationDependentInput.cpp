@@ -54,7 +54,7 @@ namespace DiKErnel::Integration
         vector<pair<double, double>> widthFactors,
         vector<pair<double, double>> depthFactors,
         vector<pair<double, double>> impactFactors)
-        : LocationDependentInput(x, initialDamage, failureNumber),
+        : LocationDependentInput(x, initialDamage, failureNumber, false),
           _failureTension(failureTension),
           _densityOfWater(densityOfWater),
           _soilElasticity(soilElasticity),

@@ -51,11 +51,15 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             double GetZ() const override;
 
+            [[nodiscard]]
+            bool GetRequiresDamageAtStartOfCalculation() const override;
+
         protected:
             explicit LocationDependentInput(
                 double x,
                 double initialDamage,
-                double failureNumber);
+                double failureNumber,
+                bool requiresDamageAtStartOfCalculation);
 
             virtual void InitializeDerivedLocationDependentInput(
                 const Core::IProfileData& profileData);
@@ -72,5 +76,6 @@ namespace DiKErnel::Integration
             const double _failureNumber;
             bool _derivedLocationDependentInputInitialized = false;
             double _z = std::numeric_limits<double>::infinity();
+            bool _requiresDamageAtStartOfCalculation;
     };
 }

@@ -105,5 +105,8 @@ namespace DiKErnel::Core
              */
             [[nodiscard]]
             virtual double GetZ() const = 0;
+
+            [[nodiscard]]
+            virtual bool GetRequiresDamageAtStartOfCalculation() const = 0;
     };
 }

@@ -46,7 +46,7 @@ namespace DiKErnel::Integration
         unique_ptr<GrassRevetmentWaveImpactTimeLine> timeLine,
         const double upperLimitLoadingAul,
         const double lowerLimitLoadingAll)
-        : LocationDependentInput(x, initialDamage, failureNumber),
+        : LocationDependentInput(x, initialDamage, failureNumber, false),
           _waveAngleImpactInput(move(waveAngleImpact)),
           _minimumWaveHeightTemax(minimumWaveHeightTemax),
           _maximumWaveHeightTemin(maximumWaveHeightTemin),
