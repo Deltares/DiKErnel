@@ -20,6 +20,8 @@
 
 #include "Calculator.h"
 
+#include <ppl.h>
+
 #include "EventRegistry.h"
 
 namespace DiKErnel::Core
@@ -50,7 +52,7 @@ namespace DiKErnel::Core
             auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
 
             CalculateTimeStepsForLocations(profileData, timeDependentInputItems, locationDependentInputItems, timeDependentOutputItems,
-                                           CalculationMode::Sequential, CalculationMode::Sequential);
+                                           CalculationMode::Sequential, CalculationMode::FullyParallel);
 
             CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
         }
@@ -90,7 +92,17 @@ namespace DiKErnel::Core
             }
             case CalculationMode::FullyParallel:
             {
-                // TODO: implement
+                Concurrency::parallel_for(static_cast<size_t>(0), locationDependentInputItems.size(), [&](
+                                      const size_t i)
+                                          {
+                                              auto& locationDependentInput = locationDependentInputItems.at(i).get();
+                                              auto& timeDependentOutputItemsForLocation = timeDependentOutputItems.at(i);
+
+                                              locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+
+                                              CalculateTimeStepsForLocation(profileData, timeDependentInputItems, locationDependentInput,
+                                                                            timeDependentOutputItemsForLocation, timeStepCalculationMode);
+                                          });
 
                 break;
             }
@@ -116,9 +128,9 @@ namespace DiKErnel::Core
             {
                 auto currentDamage = locationDependentInput.GetInitialDamage();
 
-                for (auto j = 0; j < static_cast<int>(timeDependentInputItems.size()); ++j)
+                for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
                 {
-                    const auto& timeDependentInput = timeDependentInputItems.at(j).get();
+                    const auto& timeDependentInput = timeDependentInputItems.at(i).get();
 
                     auto timeDependentOutput = locationDependentInput.Calculate(currentDamage, timeDependentInput, profileData);
 
@@ -135,6 +147,16 @@ namespace DiKErnel::Core
             }
             case CalculationMode::FullyParallel:
             {
+                Concurrency::parallel_for(static_cast<size_t>(0), timeDependentInputItems.size(), [&](
+                    const size_t i)
+                    {
+                        const auto& timeDependentInput = timeDependentInputItems.at(i).get();
+
+                        auto timeDependentOutput = locationDependentInput.Calculate(0, timeDependentInput, profileData);
+
+                        timeDependentOutputItemsForLocation.push_back(move(timeDependentOutput));
+                    });
+
                 // TODO: implement
 
                 break;
