@@ -87,4 +87,17 @@ namespace DiKErnel::Core
     {
         return _timeDependentOutputItemReferences;
     }
+
+    double LocationDependentOutput::CalculateTimeOfFailure(
+        const double failureNumber,
+        const std::reference_wrapper<ITimeDependentInput> timeDependentInput,
+        const std::reference_wrapper<TimeDependentOutput> timeDependentOutput,
+        const double damageAtStartOfCalculation)
+    {
+        const double incrementTime = timeDependentInput.get().GetEndTime() - timeDependentInput.get().GetBeginTime();
+        const double incrementDamage = timeDependentOutput.get().GetIncrementDamage();
+        const double durationInTimeStepFailure = (failureNumber - damageAtStartOfCalculation) / incrementDamage * incrementTime;
+
+        return timeDependentInput.get().GetBeginTime() + durationInTimeStepFailure;
+    }
 }

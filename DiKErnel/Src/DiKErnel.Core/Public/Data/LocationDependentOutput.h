@@ -73,6 +73,12 @@ namespace DiKErnel::Core
             explicit LocationDependentOutput(
                 std::vector<std::unique_ptr<TimeDependentOutput>> timeDependentOutputItems);
 
+            static double CalculateTimeOfFailure(
+                double failureNumber,
+                std::reference_wrapper<ITimeDependentInput> timeDependentInput,
+                std::reference_wrapper<TimeDependentOutput> timeDependentOutput,
+                double damageAtStartOfCalculation);
+
         private:
             std::vector<double> _damages = std::vector<double>();
             std::vector<std::unique_ptr<TimeDependentOutput>> _timeDependentOutputItems;
