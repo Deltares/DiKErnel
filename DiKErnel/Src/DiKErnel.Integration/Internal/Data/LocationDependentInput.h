@@ -34,6 +34,9 @@ namespace DiKErnel::Integration
                 const std::vector<std::reference_wrapper<Core::ITimeDependentInput>>& timeDependentInputs,
                 const Core::IProfileData& profileData) const override;
 
+            void InitializeDerivedLocationDependentInput(
+                const Core::IProfileData& profileData) override;
+
             std::unique_ptr<Core::TimeDependentOutput> Calculate(
                 double initialDamage,
                 const Core::ITimeDependentInput& timeDependentInput,
@@ -60,9 +63,6 @@ namespace DiKErnel::Integration
                 double initialDamage,
                 double failureNumber,
                 bool requiresDamageAtStartOfCalculation);
-
-            virtual void InitializeDerivedLocationDependentInput(
-                const Core::IProfileData& profileData);
 
             [[nodiscard]]
             virtual std::unique_ptr<Core::TimeDependentOutput> CalculateTimeDependentOutput(

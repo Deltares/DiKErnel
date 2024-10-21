@@ -54,6 +54,12 @@ namespace DiKErnel::Integration
         return ValidationHelper::RegisterValidationIssues(validationIssues);
     }
 
+    void LocationDependentInput::InitializeDerivedLocationDependentInput(
+        const IProfileData& profileData)
+    {
+        _z = profileData.InterpolationVerticalHeight(_x);
+    }
+
     unique_ptr<TimeDependentOutput> LocationDependentInput::Calculate(
         const double initialDamage,
         const ITimeDependentInput& timeDependentInput,
@@ -92,11 +98,5 @@ namespace DiKErnel::Integration
     bool LocationDependentInput::GetRequiresDamageAtStartOfCalculation() const
     {
         return _requiresDamageAtStartOfCalculation;
-    }
-
-    void LocationDependentInput::InitializeDerivedLocationDependentInput(
-        const IProfileData& profileData)
-    {
-        _z = profileData.InterpolationVerticalHeight(_x);
     }
 }

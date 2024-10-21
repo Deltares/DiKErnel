@@ -49,8 +49,12 @@ namespace DiKErnel::Core
              */
             [[nodiscard]]
             virtual bool Validate(
-                const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputs, 
+                const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputs,
                 const IProfileData& profileData) const = 0;
+
+            [[nodiscard]]
+            virtual void InitializeDerivedLocationDependentInput(
+                const IProfileData& profileData) = 0;
 
             /*!
              * \brief Performs a location dependent calculation.
