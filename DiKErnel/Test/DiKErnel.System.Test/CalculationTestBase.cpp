@@ -31,6 +31,7 @@ namespace DiKErnel::System::Test
     void CalculationTestBase::AssertOutput(
         const Calculator& calculator,
         const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
+        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems,
         const double expectedDamage,
         const int* expectedTimeOfFailure)
     {
@@ -40,20 +41,22 @@ namespace DiKErnel::System::Test
 
         const auto* calculationOutput = calculatorResult->GetData();
         const auto& locationDependentOutput = calculationOutput->GetLocationDependentOutputItems().at(0).get();
+        const auto& locationDependentInput = locationDependentInputItems.at(0).get();
 
-        const auto actualDamage = locationDependentOutput.GetDamages().back();
+        const auto actualDamage = locationDependentOutput.GetDamages(locationDependentInput.GetInitialDamage()).back();
         AssertHelper::AssertAreEqualWithAcceptablePrecision(expectedDamage, actualDamage);
 
-        const auto* actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure();
+        const auto actualTimeOfFailure = locationDependentOutput.GetTimeOfFailure(
+            locationDependentInput.GetInitialDamage(), locationDependentInput.GetFailureNumber()
+            timeDependentInputItems);
 
         if (expectedTimeOfFailure == nullptr)
         {
-            ASSERT_EQ(nullptr, actualTimeOfFailure);
+            ASSERT_EQ(numeric_limits<double>::max(), actualTimeOfFailure);
         }
         else
         {
-            ASSERT_NE(nullptr, actualTimeOfFailure);
-            ASSERT_EQ(*expectedTimeOfFailure, *actualTimeOfFailure);
+            ASSERT_EQ(*expectedTimeOfFailure, actualTimeOfFailure);
         }
     }
 }
