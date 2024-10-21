@@ -38,7 +38,6 @@ namespace DiKErnel::Core::Test
             // Setup
             TimeDependentOutputConstructionProperties constructionProperties;
             constructionProperties._incrementDamage = nullptr;
-            constructionProperties._damage = make_unique<double>(0.1);
             constructionProperties._timeOfFailure = make_unique<int>(2);
 
             // Call
@@ -50,7 +49,6 @@ namespace DiKErnel::Core::Test
             // Setup
             TimeDependentOutputConstructionProperties constructionProperties;
             constructionProperties._incrementDamage = make_unique<double>(0.1);
-            constructionProperties._damage = nullptr;
             constructionProperties._timeOfFailure = make_unique<int>(2);
 
             // Call
@@ -62,12 +60,10 @@ namespace DiKErnel::Core::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
         auto timeOfFailure = 3;
 
         TimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
 
         // Call
@@ -75,7 +71,6 @@ namespace DiKErnel::Core::Test
 
         // Assert
         ASSERT_DOUBLE_EQ(incrementDamage, timeDependentOutput.GetIncrementDamage());
-        ASSERT_DOUBLE_EQ(damage, timeDependentOutput.GetDamage());
         ASSERT_EQ(timeOfFailure, *timeDependentOutput.GetTimeOfFailure());
     }
 
@@ -102,7 +97,6 @@ namespace DiKErnel::Core::Test
         // Setup
         TimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(0.1);
-        constructionProperties._damage = make_unique<double>(0.2);
         constructionProperties._timeOfFailure = nullptr;
 
         // Call

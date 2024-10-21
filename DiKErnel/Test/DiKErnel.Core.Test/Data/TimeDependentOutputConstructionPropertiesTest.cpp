@@ -33,7 +33,6 @@ namespace DiKErnel::Core::Test
 
         // Assert
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._damage);
         ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
     }
 
@@ -41,18 +40,15 @@ namespace DiKErnel::Core::Test
     {
         // Given
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
         auto timeOfFailure = 3;
 
         // When
         TimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._damage = make_unique<double>(damage);
         constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_DOUBLE_EQ(damage, *constructionProperties._damage);
         ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
     }
 }

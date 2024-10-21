@@ -39,7 +39,6 @@ namespace DiKErnel::Core::TestUtil
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(_incrementDamage);
-        timeDependentOutputConstructionProperties._damage = make_unique<double>(_damage);
         timeDependentOutputConstructionProperties._timeOfFailure = _timeOfFailure != nullptr
                                                                        ? make_unique<int>(*_timeOfFailure)
                                                                        : nullptr;

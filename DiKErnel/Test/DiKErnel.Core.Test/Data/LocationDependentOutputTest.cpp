@@ -40,7 +40,6 @@ namespace DiKErnel::Core::Test
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        timeDependentOutputConstructionProperties._damage = make_unique<double>(damage);
         timeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
 
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
@@ -64,7 +63,6 @@ namespace DiKErnel::Core::Test
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        timeDependentOutputConstructionProperties._damage = make_unique<double>(damage);
         timeDependentOutputConstructionProperties._timeOfFailure = nullptr;
 
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
