@@ -96,10 +96,10 @@ namespace DiKErnel::Integration
     {
         auto incrementDamage = 0.0;
 
-        _verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
+        const auto verticalDistanceWaterLevelElevation = HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
             GetZ(), timeDependentInput.GetWaterLevel());
 
-        if (_verticalDistanceWaterLevelElevation > 0)
+        if (verticalDistanceWaterLevelElevation > 0)
         {
             const auto beginTime = timeDependentInput.GetBeginTime();
 
@@ -146,6 +146,7 @@ namespace DiKErnel::Integration
     }
 
     double GrassRevetmentWaveRunupRayleighLocationDependentInput::CalculateCumulativeOverload(
+        const double verticalDistanceWaterLevelElevation,
         const double averageNumberOfWaves) const
     {
         GrassRevetmentWaveRunupRayleighCumulativeOverloadInput cumulativeOverloadInput
@@ -156,7 +157,7 @@ namespace DiKErnel::Integration
         cumulativeOverloadInput._averageNumberOfWaves = averageNumberOfWaves;
         cumulativeOverloadInput._representativeWaveRunup2P = _representativeWaveRunup2P;
         cumulativeOverloadInput._fixedNumberOfWaves = _fixedNumberOfWaves;
-        cumulativeOverloadInput._verticalDistanceWaterLevelElevation = _verticalDistanceWaterLevelElevation;
+        cumulativeOverloadInput._verticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation;
         cumulativeOverloadInput._criticalFrontVelocity = GetCriticalFrontVelocity();
         cumulativeOverloadInput._increasedLoadTransitionAlphaM = GetIncreasedLoadTransitionAlphaM();
         cumulativeOverloadInput._reducedStrengthTransitionAlphaS = GetReducedStrengthTransitionAlphaS();
@@ -167,13 +168,14 @@ namespace DiKErnel::Integration
 
     unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>
     GrassRevetmentWaveRunupRayleighLocationDependentInput::CreateConstructionProperties(
-        double incrementDamage)
+        double incrementDamage,
+        double verticalDistanceWaterLevelElevation)
     {
         auto constructionProperties = make_unique<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties>();
         constructionProperties->_incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties->_verticalDistanceWaterLevelElevation = make_unique<double>(_verticalDistanceWaterLevelElevation);
+        constructionProperties->_verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
 
-        if (_verticalDistanceWaterLevelElevation > 0)
+        if (verticalDistanceWaterLevelElevation > 0)
         {
             constructionProperties->_waveAngleImpact = make_unique<double>(_waveAngleImpact);
             constructionProperties->_representativeWaveRunup2P = make_unique<double>(_representativeWaveRunup2P);

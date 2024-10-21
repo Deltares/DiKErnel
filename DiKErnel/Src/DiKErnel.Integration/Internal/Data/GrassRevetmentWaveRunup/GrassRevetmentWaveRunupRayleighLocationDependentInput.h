@@ -71,7 +71,6 @@ namespace DiKErnel::Integration
             const int _fixedNumberOfWaves;
             const double _frontVelocityCu;
 
-            double _verticalDistanceWaterLevelElevation = std::numeric_limits<double>::infinity();
             double _waveAngleImpact = std::numeric_limits<double>::infinity();
             double _representativeWaveRunup2P = std::numeric_limits<double>::infinity();
             double _cumulativeOverload = std::numeric_limits<double>::infinity();
@@ -83,10 +82,12 @@ namespace DiKErnel::Integration
 
             [[nodiscard]]
             double CalculateCumulativeOverload(
+                double verticalDistanceWaterLevelElevation,
                 double averageNumberOfWaves) const;
 
             [[nodiscard]]
             std::unique_ptr<GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties> CreateConstructionProperties(
-                double incrementDamage);
+                double incrementDamage,
+                double verticalDistanceWaterLevelElevation);
     };
 }
