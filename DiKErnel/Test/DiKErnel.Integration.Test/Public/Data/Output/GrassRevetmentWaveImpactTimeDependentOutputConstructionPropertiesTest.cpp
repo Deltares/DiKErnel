@@ -37,7 +37,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
         ASSERT_EQ(nullptr, constructionProperties._loadingRevetment);
         ASSERT_EQ(nullptr, constructionProperties._upperLimitLoading);
         ASSERT_EQ(nullptr, constructionProperties._lowerLimitLoading);
@@ -51,7 +50,6 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         constexpr auto incrementDamage = 0.1;
-        constexpr auto timeOfFailure = 3;
         constexpr auto loadingRevetment = true;
         constexpr auto upperLimitLoading = 0.4;
         constexpr auto lowerLimitLoading = 0.5;
@@ -63,7 +61,6 @@ namespace DiKErnel::Integration::Test
         // When
         GrassRevetmentWaveImpactTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
         constructionProperties._loadingRevetment = make_unique<bool>(loadingRevetment);
         constructionProperties._upperLimitLoading = make_unique<double>(upperLimitLoading);
         constructionProperties._lowerLimitLoading = make_unique<double>(lowerLimitLoading);
@@ -74,7 +71,6 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
         ASSERT_EQ(loadingRevetment, *constructionProperties._loadingRevetment);
         ASSERT_DOUBLE_EQ(upperLimitLoading, *constructionProperties._upperLimitLoading);
         ASSERT_DOUBLE_EQ(lowerLimitLoading, *constructionProperties._lowerLimitLoading);
