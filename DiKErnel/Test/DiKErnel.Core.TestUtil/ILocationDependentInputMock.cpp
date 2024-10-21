@@ -39,9 +39,6 @@ namespace DiKErnel::Core::TestUtil
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(_incrementDamage);
-        timeDependentOutputConstructionProperties._timeOfFailure = _timeOfFailure != nullptr
-                                                                       ? make_unique<int>(*_timeOfFailure)
-                                                                       : nullptr;
 
         return make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties);
     }
@@ -56,18 +53,6 @@ namespace DiKErnel::Core::TestUtil
         const double incrementDamage)
     {
         _incrementDamage = incrementDamage;
-    }
-
-    void ILocationDependentInputMock::SetDamage(
-        const double damage)
-    {
-        _damage = damage;
-    }
-
-    void ILocationDependentInputMock::SetTimeOfFailure(
-        int* timeOfFailure)
-    {
-        _timeOfFailure = timeOfFailure;
     }
 
     void ILocationDependentInputMock::SetThrowExceptionOnCalculate(
