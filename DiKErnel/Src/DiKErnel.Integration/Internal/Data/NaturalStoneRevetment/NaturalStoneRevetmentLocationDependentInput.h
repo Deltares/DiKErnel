@@ -131,7 +131,6 @@ namespace DiKErnel::Integration
             [[nodiscard]]
             std::unique_ptr<NaturalStoneRevetmentTimeDependentOutputConstructionProperties> CreateConstructionProperties(
                 double incrementDamage,
-                double damage,
                 double slopeLowerLevel,
                 double slopeLowerPosition,
                 double slopeUpperLevel,
