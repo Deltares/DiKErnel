@@ -66,6 +66,12 @@ namespace DiKErnel::Core
                 CalculationMode locationCalculationMode,
                 CalculationMode timeStepCalculationMode);
 
+            static void CalculateTimeStepsForLocation(
+                const IProfileData& profileData,
+                const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputItems,
+                ILocationDependentInput& locationDependentInput,
+                std::vector<std::unique_ptr<TimeDependentOutput>>& timeDependentOutputItemsForLocation);
+
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
                 std::vector<std::vector<std::unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems);
