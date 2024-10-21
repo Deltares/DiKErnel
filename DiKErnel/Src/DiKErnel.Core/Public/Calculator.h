@@ -22,6 +22,7 @@
 
 #include <thread>
 
+#include "CalculationMode.h"
 #include "CalculationOutput.h"
 #include "DataResult.h"
 #include "ICalculationInput.h"
@@ -56,6 +57,14 @@ namespace DiKErnel::Core
 
             void PerformCalculation(
                 const ICalculationInput& calculationInput);
+
+            static void CalculateTimeStepsForLocations(
+                const IProfileData& profileData,
+                const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputItems,
+                const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
+                std::vector<std::vector<std::unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems,
+                CalculationMode locationCalculationMode,
+                CalculationMode timeStepCalculationMode);
 
             void CreateResultWithCalculationOutput(
                 const std::vector<std::reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,

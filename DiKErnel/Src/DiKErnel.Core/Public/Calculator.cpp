@@ -49,27 +49,8 @@ namespace DiKErnel::Core
 
             auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
 
-            for (auto i = 0; i < static_cast<int>(locationDependentInputItems.size()); ++i)
-            {
-                auto& locationDependentInput = locationDependentInputItems.at(i).get();
-
-                auto currentDamage = locationDependentInput.GetInitialDamage();
-
-                for (auto j = 0; j < static_cast<int>(timeDependentInputItems.size()); ++j)
-                {
-                    const auto& timeDependentInput = timeDependentInputItems.at(j).get();
-
-                    auto timeDependentOutput = locationDependentInput.Calculate(currentDamage, timeDependentInput, profileData);
-
-                    const double incrementDamage = timeDependentOutput->GetIncrementDamage();
-                    if (incrementDamage != numeric_limits<double>::infinity() && !isnan(incrementDamage))
-                    {
-                        currentDamage += incrementDamage;
-                    }
-
-                    timeDependentOutputItems.at(i).push_back(move(timeDependentOutput));
-                }
-            }
+            CalculateTimeStepsForLocations(profileData, timeDependentInputItems, locationDependentInputItems, timeDependentOutputItems,
+                                           CalculationMode::Sequential, CalculationMode::Sequential);
 
             CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
         }
@@ -79,6 +60,37 @@ namespace DiKErnel::Core
                                                        "information:\n" + static_cast<string>(e.what()), EventType::Error));
 
             CreateResultWithoutCalculationOutput();
+        }
+    }
+
+    void Calculator::CalculateTimeStepsForLocations(
+        const IProfileData& profileData,
+        const vector<reference_wrapper<ITimeDependentInput>>& timeDependentInputItems,
+        const vector<reference_wrapper<ILocationDependentInput>>& locationDependentInputItems,
+        vector<vector<unique_ptr<TimeDependentOutput>>>& timeDependentOutputItems,
+        CalculationMode locationCalculationMode,
+        CalculationMode timeStepCalculationMode)
+    {
+        for (auto i = 0; i < static_cast<int>(locationDependentInputItems.size()); ++i)
+        {
+            auto& locationDependentInput = locationDependentInputItems.at(i).get();
+
+            auto currentDamage = locationDependentInput.GetInitialDamage();
+
+            for (auto j = 0; j < static_cast<int>(timeDependentInputItems.size()); ++j)
+            {
+                const auto& timeDependentInput = timeDependentInputItems.at(j).get();
+
+                auto timeDependentOutput = locationDependentInput.Calculate(currentDamage, timeDependentInput, profileData);
+
+                const double incrementDamage = timeDependentOutput->GetIncrementDamage();
+                if (incrementDamage != numeric_limits<double>::infinity() && !isnan(incrementDamage))
+                {
+                    currentDamage += incrementDamage;
+                }
+
+                timeDependentOutputItems.at(i).push_back(move(timeDependentOutput));
+            }
         }
     }
 
