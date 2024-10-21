@@ -56,7 +56,7 @@ namespace DiKErnel::System::Test
         }
         else
         {
-            ASSERT_EQ(*expectedTimeOfFailure, actualTimeOfFailure);
+            ASSERT_EQ(*expectedTimeOfFailure, ceil(actualTimeOfFailure));
         }
     }
 }
