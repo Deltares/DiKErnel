@@ -49,15 +49,15 @@ namespace DiKErnel::Core
 
             auto timeDependentOutputItems = vector<vector<unique_ptr<TimeDependentOutput>>>(locationDependentInputItems.size());
 
-            for (auto i = 0; i < static_cast<int>(timeDependentInputItems.size()); ++i)
+            for (auto k = 0; k < static_cast<int>(timeDependentInputItems.size()); ++k)
             {
-                const auto& timeDependentInput = timeDependentInputItems.at(i).get();
+                const auto& timeDependentInput = timeDependentInputItems.at(k).get();
 
                 for (auto j = 0; j < static_cast<int>(locationDependentInputItems.size()); ++j)
                 {
                     auto& locationDependentInput = locationDependentInputItems.at(j).get();
 
-                    const auto initialDamage = i == 0
+                    const auto initialDamage = k == 0
                                                    ? locationDependentInput.GetInitialDamage()
                                                    : timeDependentOutputItems.at(j).back()->GetDamage();
 
