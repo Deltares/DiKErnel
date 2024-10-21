@@ -36,15 +36,12 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto damage = 0.2;
-        constexpr auto timeOfFailure = 3;
         constexpr auto z = 0.4;
 
         auto timeDependentOutputItems = vector<unique_ptr<TimeDependentOutput>>();
 
         TimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties;
         timeDependentOutputConstructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        timeDependentOutputConstructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
 
         timeDependentOutputItems.push_back(make_unique<TimeDependentOutputMock>(timeDependentOutputConstructionProperties));
 
@@ -53,8 +50,6 @@ namespace DiKErnel::Integration::Test
 
         // Assert
         AssertHelper::AssertIsInstanceOf<LocationDependentOutput>(&output);
-        ASSERT_EQ(vector{ damage }, output.GetDamages());
-        ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_EQ(1, output.GetTimeDependentOutputItems().size());
         ASSERT_DOUBLE_EQ(z, output.GetZ());
     }

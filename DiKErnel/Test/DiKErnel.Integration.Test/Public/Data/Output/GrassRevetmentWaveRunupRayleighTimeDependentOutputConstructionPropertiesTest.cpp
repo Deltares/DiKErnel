@@ -37,7 +37,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutputConstructionProperties>(&constructionProperties);
         ASSERT_EQ(nullptr, constructionProperties._incrementDamage);
-        ASSERT_EQ(nullptr, constructionProperties._timeOfFailure);
         ASSERT_EQ(nullptr, constructionProperties._verticalDistanceWaterLevelElevation);
         ASSERT_EQ(nullptr, constructionProperties._waveAngleImpact);
         ASSERT_EQ(nullptr, constructionProperties._representativeWaveRunup2P);
@@ -49,16 +48,13 @@ namespace DiKErnel::Integration::Test
     {
         // Given
         constexpr auto incrementDamage = 0.1;
-        constexpr auto timeOfFailure = 3;
         constexpr auto verticalDistanceWaterLevelElevation = 0.4;
         constexpr auto waveAngleImpact = 0.5;
-        constexpr auto representativeWaveRunup2P = 0.6;
         constexpr auto cumulativeOverload = 0.7;
 
         // When
         GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
         constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
         constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
         constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
@@ -66,7 +62,6 @@ namespace DiKErnel::Integration::Test
 
         // Then
         ASSERT_DOUBLE_EQ(incrementDamage, *constructionProperties._incrementDamage);
-        ASSERT_EQ(timeOfFailure, *constructionProperties._timeOfFailure);
         ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, *constructionProperties._verticalDistanceWaterLevelElevation);
         ASSERT_DOUBLE_EQ(waveAngleImpact, *constructionProperties._waveAngleImpact);
         ASSERT_DOUBLE_EQ(representativeWaveRunup2P, *constructionProperties._representativeWaveRunup2P);

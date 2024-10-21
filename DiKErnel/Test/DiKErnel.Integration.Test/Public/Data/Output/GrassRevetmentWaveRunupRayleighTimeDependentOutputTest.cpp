@@ -38,7 +38,6 @@ namespace DiKErnel::Integration::Test
             // Setup
             GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
             constructionProperties._incrementDamage = make_unique<double>(0.1);
-            constructionProperties._timeOfFailure = make_unique<int>(3);
             constructionProperties._verticalDistanceWaterLevelElevation = nullptr;
             constructionProperties._waveAngleImpact = make_unique<double>(0.4);
             constructionProperties._representativeWaveRunup2P = make_unique<double>(0.5);
@@ -53,15 +52,12 @@ namespace DiKErnel::Integration::Test
     {
         // Setup
         constexpr auto incrementDamage = 0.1;
-        constexpr auto timeOfFailure = 3;
         constexpr auto verticalDistanceWaterLevelElevation = 0.4;
         constexpr auto waveAngleImpact = 0.5;
-        constexpr auto representativeWaveRunup2P = 0.6;
         constexpr auto cumulativeOverload = 0.7;
 
         GrassRevetmentWaveRunupRayleighTimeDependentOutputConstructionProperties constructionProperties;
         constructionProperties._incrementDamage = make_unique<double>(incrementDamage);
-        constructionProperties._timeOfFailure = make_unique<int>(timeOfFailure);
         constructionProperties._verticalDistanceWaterLevelElevation = make_unique<double>(verticalDistanceWaterLevelElevation);
         constructionProperties._waveAngleImpact = make_unique<double>(waveAngleImpact);
         constructionProperties._representativeWaveRunup2P = make_unique<double>(representativeWaveRunup2P);
@@ -73,7 +69,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_EQ(timeOfFailure, *output.GetTimeOfFailure());
         ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
         ASSERT_DOUBLE_EQ(waveAngleImpact, *output.GetWaveAngleImpact());
         ASSERT_DOUBLE_EQ(representativeWaveRunup2P, *output.GetRepresentativeWaveRunup2P());
@@ -96,7 +91,6 @@ namespace DiKErnel::Integration::Test
         // Assert
         AssertHelper::AssertIsInstanceOf<TimeDependentOutput>(&output);
         ASSERT_DOUBLE_EQ(incrementDamage, output.GetIncrementDamage());
-        ASSERT_EQ(nullptr, output.GetTimeOfFailure());
         ASSERT_DOUBLE_EQ(verticalDistanceWaterLevelElevation, output.GetVerticalDistanceWaterLevelElevation());
         ASSERT_EQ(nullptr, output.GetWaveAngleImpact());
         ASSERT_EQ(nullptr, output.GetRepresentativeWaveRunup2P());
