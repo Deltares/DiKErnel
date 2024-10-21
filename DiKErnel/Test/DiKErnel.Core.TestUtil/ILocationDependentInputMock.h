@@ -33,6 +33,10 @@ namespace DiKErnel::Core::TestUtil
                         (const std::vector<std::reference_wrapper<ITimeDependentInput>>& timeDependentInputs, const IProfileData& profileData),
                         (const, override));
 
+            MOCK_METHOD(void, InitializeDerivedLocationDependentInput,
+                (const IProfileData& profileData),
+                (override));
+
             std::unique_ptr<TimeDependentOutput> Calculate(
                 double initialDamage,
                 const ITimeDependentInput& timeDependentInput,
