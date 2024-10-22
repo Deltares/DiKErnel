@@ -325,6 +325,13 @@ void CalculateAndWriteOutput(
     const CalculationMode locationCalculationMode = ParseCalculationMode(locationCalculationModeArgument);
     const CalculationMode timeStepCalculationMode = ParseCalculationMode(timeStepCalculationModeArgument);
 
+    if (failureMechanismArgument == naturalStoneWaveImpactIdentifier && timeStepCalculationMode != CalculationMode::Sequential)
+    {
+        cout << "Parallelization of time steps is not supported for natural stone wave impact";
+
+        return;
+    }
+
     const auto startTime = high_resolution_clock::now();
 
     const Calculator calculator(*calculationInput, locationCalculationMode, timeStepCalculationMode);
@@ -340,8 +347,7 @@ void CalculateAndWriteOutput(
     outputMessage << setw(4) << locationDependentInputItems.size() << ";";
     outputMessage << setw(8) << calculationInput->GetTimeDependentInputItems().size() << ";";
     outputMessage << setw(15) << locationCalculationModeArgument << ";";
-    outputMessage << setw(15) << calculationInput->GetTimeDependentInputItems().size() << ";";
-
+    outputMessage << setw(15) << timeStepCalculationModeArgument << ";";
     outputMessage << setw(7) << duration<double, milli>(endTime - startTime).count() / 1000.0 << ";";
 
     const auto& locationDependentOutputItems = calculator.GetResult()->GetData()->GetLocationDependentOutputItems();
