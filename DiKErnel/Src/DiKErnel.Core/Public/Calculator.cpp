@@ -26,6 +26,7 @@
 
 namespace DiKErnel::Core
 {
+    using namespace Concurrency;
     using namespace std;
     using namespace Util;
 
@@ -61,7 +62,7 @@ namespace DiKErnel::Core
             }
 
             CalculateTimeStepsForLocations(profileData, timeDependentInputItems, locationDependentInputItems, timeDependentOutputItems,
-                locationCalculationMode, timeStepCalculationMode);
+                                           locationCalculationMode, timeStepCalculationMode);
 
             CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
         }
@@ -101,18 +102,17 @@ namespace DiKErnel::Core
             }
             case CalculationMode::FullyParallel:
             {
-                Concurrency::parallel_for(static_cast<size_t>(0), locationDependentInputItems.size(), [&](
-                                      const size_t i)
-                                          {
-                                              auto& locationDependentInput = locationDependentInputItems.at(i).get();
-                                              auto& timeDependentOutputItemsForLocation = timeDependentOutputItems.at(i);
+                parallel_for(static_cast<size_t>(0), locationDependentInputItems.size(), [&](
+                         const size_t i)
+                             {
+                                 auto& locationDependentInput = locationDependentInputItems.at(i).get();
+                                 auto& timeDependentOutputItemsForLocation = timeDependentOutputItems.at(i);
 
-                                              locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+                                 locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
 
-                                              CalculateTimeStepsForLocation(profileData, timeDependentInputItems, locationDependentInput,
-                                                                            timeDependentOutputItemsForLocation, timeStepCalculationMode);
-                                          });
-
+                                 CalculateTimeStepsForLocation(profileData, timeDependentInputItems, locationDependentInput,
+                                                               timeDependentOutputItemsForLocation, timeStepCalculationMode);
+                             }, static_partitioner());
                 break;
             }
             case CalculationMode::ParallelChunks:
@@ -156,15 +156,15 @@ namespace DiKErnel::Core
             }
             case CalculationMode::FullyParallel:
             {
-                Concurrency::parallel_for(static_cast<size_t>(0), timeDependentInputItems.size(), [&](
-                    const size_t i)
-                    {
-                        const auto& timeDependentInput = timeDependentInputItems.at(i).get();
+                parallel_for(static_cast<size_t>(0), timeDependentInputItems.size(), [&](
+                         const size_t i)
+                             {
+                                 const auto& timeDependentInput = timeDependentInputItems.at(i).get();
 
-                        auto timeDependentOutput = locationDependentInput.Calculate(0, timeDependentInput, profileData);
+                                 auto timeDependentOutput = locationDependentInput.Calculate(0, timeDependentInput, profileData);
 
-                        timeDependentOutputItemsForLocation[i] = move(timeDependentOutput);
-                    });
+                                 timeDependentOutputItemsForLocation[i] = move(timeDependentOutput);
+                             });
 
                 // TODO: implement
 
