@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -98,7 +97,7 @@ namespace DiKErnel.Core
 
                     break;
                 }
-                case CalculationMode.FullyParallel:
+                case CalculationMode.Parallel:
                 {
                     Parallel.For(0, locationDependentInputItems.Count,
                                  i =>
@@ -111,25 +110,6 @@ namespace DiKErnel.Core
                                                                    profileData,
                                                                    locationDependentInput, timeStepCalculationMode);
                                  });
-
-                    break;
-                }
-                case CalculationMode.ParallelChunks:
-                {
-                    OrderablePartitioner<Tuple<int, int>> rangePartitioner = Partitioner.Create(0, locationDependentInputItems.Count);
-
-                    Parallel.ForEach(rangePartitioner, (range, loopState) =>
-                    {
-                        for (int i = range.Item1; i < range.Item2; i++)
-                        {
-                            ILocationDependentInput locationDependentInput = locationDependentInputItems.ElementAt(i);
-
-                            locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
-
-                            CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
-                                                          locationDependentInput, timeStepCalculationMode);
-                        }
-                    });
 
                     break;
                 }
@@ -166,7 +146,7 @@ namespace DiKErnel.Core
 
                     break;
                 }
-                case CalculationMode.FullyParallel:
+                case CalculationMode.Parallel:
                 {
                     timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
@@ -176,23 +156,6 @@ namespace DiKErnel.Core
                                      timeDependentOutputItemsForLocation[i] = CalculateTimeStepForLocation(
                                          timeDependentInputItems.ElementAt(i), locationDependentInput, profileData);
                                  });
-
-                    break;
-                }
-                case CalculationMode.ParallelChunks:
-                {
-                    timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
-
-                    OrderablePartitioner<Tuple<int, int>> rangePartitioner = Partitioner.Create(0, timeDependentInputItems.Count);
-
-                    Parallel.ForEach(rangePartitioner, (range, loopState) =>
-                    {
-                        for (int i = range.Item1; i < range.Item2; i++)
-                        {
-                            timeDependentOutputItemsForLocation[i] = CalculateTimeStepForLocation(
-                                timeDependentInputItems.ElementAt(i), locationDependentInput, profileData);
-                        }
-                    });
 
                     break;
                 }

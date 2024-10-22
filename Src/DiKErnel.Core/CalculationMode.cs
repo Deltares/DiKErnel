@@ -24,7 +24,6 @@ namespace DiKErnel.Core
     public enum CalculationMode
     {
         Sequential,
-        FullyParallel,
-        ParallelChunks
+        Parallel
     }
 }
