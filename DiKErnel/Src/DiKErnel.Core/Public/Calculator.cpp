@@ -30,9 +30,11 @@ namespace DiKErnel::Core
     using namespace Util;
 
     Calculator::Calculator(
-        const ICalculationInput& calculationInput)
+        const ICalculationInput& calculationInput,
+        const CalculationMode locationCalculationMode,
+        const CalculationMode timeStepCalculationMode)
     {
-        PerformCalculation(calculationInput);
+        PerformCalculation(calculationInput, locationCalculationMode, timeStepCalculationMode);
     }
 
     shared_ptr<DataResult<CalculationOutput>> Calculator::GetResult() const
@@ -41,7 +43,9 @@ namespace DiKErnel::Core
     }
 
     void Calculator::PerformCalculation(
-        const ICalculationInput& calculationInput)
+        const ICalculationInput& calculationInput,
+        const CalculationMode locationCalculationMode,
+        const CalculationMode timeStepCalculationMode)
     {
         try
         {
@@ -57,7 +61,7 @@ namespace DiKErnel::Core
             }
 
             CalculateTimeStepsForLocations(profileData, timeDependentInputItems, locationDependentInputItems, timeDependentOutputItems,
-                                           CalculationMode::Sequential, CalculationMode::Sequential);
+                locationCalculationMode, timeStepCalculationMode);
 
             CreateResultWithCalculationOutput(locationDependentInputItems, timeDependentOutputItems);
         }

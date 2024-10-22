@@ -41,7 +41,9 @@ namespace DiKErnel::Core
              *        The input used in the calculation.
              */
             explicit Calculator(
-                const ICalculationInput& calculationInput);
+                const ICalculationInput& calculationInput,
+                CalculationMode locationCalculationMode = CalculationMode::Sequential,
+                CalculationMode timeStepCalculationMode = CalculationMode::Sequential);
 
             /*!
              * \brief Gets the result of the calculator.
@@ -56,7 +58,9 @@ namespace DiKErnel::Core
             std::shared_ptr<Util::DataResult<CalculationOutput>> _result = nullptr;
 
             void PerformCalculation(
-                const ICalculationInput& calculationInput);
+                const ICalculationInput& calculationInput,
+                CalculationMode locationCalculationMode,
+                CalculationMode timeStepCalculationMode);
 
             static void CalculateTimeStepsForLocations(
                 const IProfileData& profileData,
