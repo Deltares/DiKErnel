@@ -82,6 +82,9 @@ void CalculateAndWriteOutput(
     const ICalculationInput*,
     const string&);
 
+CalculationMode ParseCalculationMode(
+    const string& calculationModeArgument);
+
 #pragma endregion
 
 int main(
@@ -98,7 +101,7 @@ int main(
 
     const auto input = builder->Build();
 
-    CalculateAndWriteOutput(input->GetData(), argv[1]);
+    CalculateAndWriteOutput(input->GetData(), argv[1], argv[4], argv[5]);
 
     return 0;
 }
@@ -313,11 +316,16 @@ vector<double> GetValuesFromFile(
 
 void CalculateAndWriteOutput(
     const ICalculationInput* calculationInput,
-    const string& failureMechanismArgument)
+    const string& failureMechanismArgument,
+    const string& locationCalculationModeArgument,
+    const string& timeStepCalculationModeArgument)
 {
+    const CalculationMode locationCalculationMode = ParseCalculationMode(locationCalculationModeArgument);
+    const CalculationMode timeStepCalculationMode = ParseCalculationMode(timeStepCalculationModeArgument);
+
     const auto startTime = high_resolution_clock::now();
 
-    const Calculator calculator(*calculationInput);
+    const Calculator calculator(*calculationInput, locationCalculationMode, timeStepCalculationMode);
 
     const auto endTime = high_resolution_clock::now();
 
@@ -348,4 +356,25 @@ void CalculateAndWriteOutput(
     outputMessageString.pop_back();
 
     cout << outputMessageString;
+}
+
+CalculationMode ParseCalculationMode(
+    const string& calculationModeArgument)
+{
+    if (calculationModeArgument == "Sequential")
+    {
+        return CalculationMode::Sequential;
+    }
+
+    if (calculationModeArgument == "ParallelChunks")
+    {
+        return CalculationMode::ParallelChunks;
+    }
+
+    if (calculationModeArgument == "FullyParallel")
+    {
+        return CalculationMode::FullyParallel;
+    }
+
+    throw std::invalid_argument("invalid calculation mode");
 }
