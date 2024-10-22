@@ -80,10 +80,12 @@ vector<double> GetValuesFromFile(
 
 void CalculateAndWriteOutput(
     const ICalculationInput*,
+    const string&,
+    const string&,
     const string&);
 
 CalculationMode ParseCalculationMode(
-    const string& calculationModeArgument);
+    const string&);
 
 #pragma endregion
 
@@ -337,6 +339,9 @@ void CalculateAndWriteOutput(
     outputMessage << setw(43) << failureMechanismArgument << ";";
     outputMessage << setw(4) << locationDependentInputItems.size() << ";";
     outputMessage << setw(8) << calculationInput->GetTimeDependentInputItems().size() << ";";
+    outputMessage << setw(15) << locationCalculationModeArgument << ";";
+    outputMessage << setw(15) << calculationInput->GetTimeDependentInputItems().size() << ";";
+
     outputMessage << setw(7) << duration<double, milli>(endTime - startTime).count() / 1000.0 << ";";
 
     const auto& locationDependentOutputItems = calculator.GetResult()->GetData()->GetLocationDependentOutputItems();
