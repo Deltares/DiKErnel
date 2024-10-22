@@ -377,14 +377,9 @@ CalculationMode ParseCalculationMode(
         return CalculationMode::Sequential;
     }
 
-    if (calculationModeArgument == "ParallelChunks")
+    if (calculationModeArgument == "Parallel")
     {
-        return CalculationMode::ParallelChunks;
-    }
-
-    if (calculationModeArgument == "FullyParallel")
-    {
-        return CalculationMode::FullyParallel;
+        return CalculationMode::Parallel;
     }
 
     throw std::invalid_argument("invalid calculation mode");

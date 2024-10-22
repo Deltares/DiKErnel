@@ -20,6 +20,7 @@
 
 #include "Calculator.h"
 
+#include <map>
 #include <ppl.h>
 
 #include "EventRegistry.h"
@@ -100,7 +101,7 @@ namespace DiKErnel::Core
 
                 break;
             }
-            case CalculationMode::FullyParallel:
+            case CalculationMode::Parallel:
             {
                 parallel_for(static_cast<size_t>(0), locationDependentInputItems.size(), [&](
                          const size_t i)
@@ -112,13 +113,7 @@ namespace DiKErnel::Core
 
                                  CalculateTimeStepsForLocation(profileData, timeDependentInputItems, locationDependentInput,
                                                                timeDependentOutputItemsForLocation, timeStepCalculationMode);
-                             }, static_partitioner());
-                break;
-            }
-            case CalculationMode::ParallelChunks:
-            {
-                // TODO: implement
-
+                             });
                 break;
             }
         }
@@ -154,25 +149,26 @@ namespace DiKErnel::Core
 
                 break;
             }
-            case CalculationMode::FullyParallel:
+            case CalculationMode::Parallel:
             {
+                map<std::thread::id, int> balancingCounter;
+                map<std::thread::id, string> indexCounter;
+
                 parallel_for(static_cast<size_t>(0), timeDependentInputItems.size(), [&](
                          const size_t i)
                              {
+                                 std::thread::id currentThreadId = std::this_thread::get_id();
+
+                                 balancingCounter[currentThreadId]++;
+
+                                 indexCounter[currentThreadId] += i + " ";
+
                                  const auto& timeDependentInput = timeDependentInputItems.at(i).get();
 
                                  auto timeDependentOutput = locationDependentInput.Calculate(0, timeDependentInput, profileData);
 
                                  timeDependentOutputItemsForLocation[i] = move(timeDependentOutput);
                              });
-
-                // TODO: implement
-
-                break;
-            }
-            case CalculationMode::ParallelChunks:
-            {
-                // TODO: implement
 
                 break;
             }
