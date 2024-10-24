@@ -193,7 +193,7 @@ namespace DiKErnel.Core
 
                             int indexValue = entry.Value[i];
 
-                            if (i != 0 && indexValue > entry.Value[i - 1] + 1)
+                            if (i != 0 && indexValue > entry.Value[i - 1] + 1 || indexValue < entry.Value[i - 1])
                             {
                                 if (!string.IsNullOrEmpty(valueString))
                                 {
