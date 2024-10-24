@@ -19,7 +19,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DiKErnel.Core.Data;
@@ -46,7 +45,7 @@ namespace DiKErnel.Core
             try
             {
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
-
+                
                 if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation) &&
                     timeStepCalculationMode != CalculationMode.Sequential)
                 {
@@ -152,74 +151,38 @@ namespace DiKErnel.Core
                 {
                     timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
-                    var indexCounter = new ConcurrentDictionary<int, List<int>>();
-
+                    var balancingCounter = new ConcurrentDictionary<int, int>();
+                    var indexCounter = new ConcurrentDictionary<int, string>();
+                    
                     Parallel.For(0, timeDependentInputItems.Count,
                                  i =>
                                  {
                                      int currentManagedThreadId = Environment.CurrentManagedThreadId;
 
-                                     indexCounter.TryAdd(currentManagedThreadId, new List<int>());
+                                     balancingCounter.TryAdd(currentManagedThreadId, 0);
 
-                                     indexCounter[currentManagedThreadId].Add(i);
+                                     balancingCounter[currentManagedThreadId] += 1;
 
+                                     indexCounter.TryAdd(currentManagedThreadId, "");
+
+                                     indexCounter[currentManagedThreadId] += i + " ";
+
+                                     
                                      timeDependentOutputItemsForLocation[i] = CalculateTimeStepForLocation(
                                          timeDependentInputItems.ElementAt(i), locationDependentInput, profileData);
                                  });
 
-                    using var outputFile = new StreamWriter("Result.txt");
-
-                    var threadCounter = 1;
-
-                    foreach (KeyValuePair<int, List<int>> entry in indexCounter)
+                    foreach (KeyValuePair<int, int> entry in balancingCounter)
                     {
-                        outputFile.WriteLine("------------------------------------------------");
-                        outputFile.WriteLine($"Thread counter: {threadCounter} of {indexCounter.Keys.Count}");
-                        outputFile.WriteLine($"Number of calculated iterations: {entry.Value.Count}");
-                        outputFile.WriteLine("------------------------------------------------");
-
-                        var valueString = "";
-                        var valueCounter = 0;
-
-                        for (var i = 0; i < entry.Value.Count; i++)
-                        {
-                            if (valueCounter == 20)
-                            {
-                                outputFile.WriteLine(valueString);
-
-                                valueCounter = 0;
-                                valueString = "";
-                            }
-
-                            int indexValue = entry.Value[i];
-
-                            if (i != 0 && indexValue > entry.Value[i - 1] + 1)
-                            {
-                                if (!string.IsNullOrEmpty(valueString))
-                                {
-                                    outputFile.WriteLine(valueString);
-                                }
-
-                                outputFile.WriteLine();
-
-                                valueCounter = 0;
-                                valueString = "";
-                            }
-
-                            valueString += indexValue + " ";
-                            valueCounter++;
-                        }
-
-                        if (!string.IsNullOrEmpty(valueString))
-                        {
-                            outputFile.WriteLine(valueString);
-                        }
-
-                        outputFile.WriteLine();
-
-                        threadCounter++;
+                        Console.WriteLine(entry.Key + ": " + entry.Value);
                     }
 
+                    foreach (KeyValuePair<int, string> entry in indexCounter)
+                    {
+                        Console.WriteLine(entry.Key + ": " + entry.Value);
+                    }
+
+                    
                     break;
                 }
                 default:
