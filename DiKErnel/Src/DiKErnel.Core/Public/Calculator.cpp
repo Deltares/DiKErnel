@@ -20,7 +20,6 @@
 
 #include "Calculator.h"
 
-#include <map>
 #include <ppl.h>
 
 #include "EventRegistry.h"
@@ -151,18 +150,9 @@ namespace DiKErnel::Core
             }
             case CalculationMode::Parallel:
             {
-                map<std::thread::id, int> balancingCounter;
-                map<std::thread::id, string> indexCounter;
-
                 parallel_for(static_cast<size_t>(0), timeDependentInputItems.size(), [&](
                          const size_t i)
                              {
-                                 std::thread::id currentThreadId = std::this_thread::get_id();
-
-                                 balancingCounter[currentThreadId]++;
-
-                                 indexCounter[currentThreadId] += i + " ";
-
                                  const auto& timeDependentInput = timeDependentInputItems.at(i).get();
 
                                  auto timeDependentOutput = locationDependentInput.Calculate(0, timeDependentInput, profileData);
