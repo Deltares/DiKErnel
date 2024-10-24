@@ -73,14 +73,17 @@ namespace DiKErnel.Performance.Test
         {
             double[] waterLevels = Resources.htime_12h.Split(',')
                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .Take(10000)
                                             .ToArray();
 
             double[] waveHeights = Resources.Hm0_12h.Split(',')
                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .Take(10000)
                                             .ToArray();
 
             double[] wavePeriods = Resources.Tmm10_12h.Split(',')
                                             .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                                            .Take(10000)
                                             .ToArray();
 
             double[] times = Enumerable.Range(0, waterLevels.Length + 1)
