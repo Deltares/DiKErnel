@@ -20,6 +20,7 @@
 
 #include "Calculator.h"
 
+#include <fstream>
 #include <map>
 #include <ppl.h>
 
@@ -151,17 +152,14 @@ namespace DiKErnel::Core
             }
             case CalculationMode::Parallel:
             {
-                map<std::thread::id, int> balancingCounter;
-                map<std::thread::id, string> indexCounter;
+                map<thread::id, vector<int>> indexCounter;
 
                 parallel_for(static_cast<size_t>(0), timeDependentInputItems.size(), [&](
                          const size_t i)
                              {
-                                 std::thread::id currentThreadId = std::this_thread::get_id();
+                                 const thread::id currentThreadId = std::this_thread::get_id();
 
-                                 balancingCounter[currentThreadId]++;
-
-                                 indexCounter[currentThreadId] += i + " ";
+                                 indexCounter[currentThreadId].push_back(i);
 
                                  const auto& timeDependentInput = timeDependentInputItems.at(i).get();
 
@@ -169,6 +167,61 @@ namespace DiKErnel::Core
 
                                  timeDependentOutputItemsForLocation[i] = move(timeDependentOutput);
                              });
+
+                ofstream outputFile("Result.txt");
+
+                auto threadCounter = 1;
+
+                for (auto [fst, snd] : indexCounter)
+                {
+                    outputFile << "------------------------------------------------" << "\n";
+                    outputFile << "Thread counter: " << threadCounter << " of " << indexCounter.size() << "\n";
+                    outputFile << "Number of calculated iterations: " << snd.size() << "\n";
+                    outputFile << "------------------------------------------------" << "\n";
+
+                    string valueString;
+                    auto valueCounter = 0;
+
+                    for (auto i = 0; i < snd.size(); i++)
+                    {
+                        if (valueCounter == 20)
+                        {
+                            outputFile << valueString << "\n";
+
+                            valueCounter = 0;
+                            valueString = "";
+                        }
+
+                        const int indexValue = snd[i];
+
+                        if (i != 0 && indexValue > snd[i - 1] + 1 || indexValue < snd[i - 1])
+                        {
+                            if (!valueString.empty())
+                            {
+                                outputFile << valueString << "\n";
+                            }
+
+                            outputFile << "\n";
+
+                            valueCounter = 0;
+                            valueString = "";
+                        }
+
+                        valueString += std::to_string(indexValue) + " ";
+                        valueCounter++;
+                    }
+
+                    if (!valueString.empty())
+                    {
+                        outputFile << valueString << "\n";
+                    }
+
+                    outputFile << "\n";
+
+                    threadCounter++;
+                }
+
+                outputFile.close();
 
                 break;
             }
