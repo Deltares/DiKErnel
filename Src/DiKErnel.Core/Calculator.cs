@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,7 +39,7 @@ namespace DiKErnel.Core
         /// <returns>The result of the calculation.</returns>
         public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput,
                                                               CalculationMode locationCalculationMode = CalculationMode.Sequential,
-                                                              CalculationMode timeStepCalculationMode = CalculationMode.Parallel)
+                                                              CalculationMode timeStepCalculationMode = CalculationMode.Sequential)
         {
             try
             {
@@ -151,38 +150,13 @@ namespace DiKErnel.Core
                 {
                     timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
-                    var balancingCounter = new ConcurrentDictionary<int, int>();
-                    var indexCounter = new ConcurrentDictionary<int, string>();
-                    
                     Parallel.For(0, timeDependentInputItems.Count,
                                  i =>
                                  {
-                                     int currentManagedThreadId = Environment.CurrentManagedThreadId;
-
-                                     balancingCounter.TryAdd(currentManagedThreadId, 0);
-
-                                     balancingCounter[currentManagedThreadId] += 1;
-
-                                     indexCounter.TryAdd(currentManagedThreadId, "");
-
-                                     indexCounter[currentManagedThreadId] += i + " ";
-
-                                     
                                      timeDependentOutputItemsForLocation[i] = CalculateTimeStepForLocation(
                                          timeDependentInputItems.ElementAt(i), locationDependentInput, profileData);
                                  });
 
-                    foreach (KeyValuePair<int, int> entry in balancingCounter)
-                    {
-                        Console.WriteLine(entry.Key + ": " + entry.Value);
-                    }
-
-                    foreach (KeyValuePair<int, string> entry in indexCounter)
-                    {
-                        Console.WriteLine(entry.Key + ": " + entry.Value);
-                    }
-
-                    
                     break;
                 }
                 default:
