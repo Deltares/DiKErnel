@@ -44,7 +44,7 @@ namespace DiKErnel.Core
             try
             {
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
-                
+
                 if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation) &&
                     timeStepCalculationMode != CalculationMode.Sequential)
                 {
@@ -99,17 +99,15 @@ namespace DiKErnel.Core
                 }
                 case CalculationMode.Parallel:
                 {
-                    Parallel.For(0, locationDependentInputItems.Count,
-                                 i =>
-                                 {
-                                     ILocationDependentInput locationDependentInput = locationDependentInputItems.ElementAt(i);
+                    Parallel.ForEach(locationDependentInputItems,
+                                     (locationDependentInput, state, index) =>
+                                     {
+                                         locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
 
-                                     locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
-
-                                     CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation,
-                                                                   profileData,
-                                                                   locationDependentInput, timeStepCalculationMode);
-                                 });
+                                         CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation,
+                                                                       profileData,
+                                                                       locationDependentInput, timeStepCalculationMode);
+                                     });
 
                     break;
                 }
@@ -151,10 +149,10 @@ namespace DiKErnel.Core
                     timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
                     Parallel.ForEach(timeDependentInputItems,
-                                     (timeDependentInputItem, state, index) =>
+                                     (timeDependentInput, state, index) =>
                                      {
                                          timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                             timeDependentInputItem, locationDependentInput, profileData);
+                                             timeDependentInput, locationDependentInput, profileData);
                                      });
 
                     break;
