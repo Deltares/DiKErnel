@@ -150,12 +150,12 @@ namespace DiKErnel.Core
                 {
                     timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
-                    Parallel.For(0, timeDependentInputItems.Count,
-                                 i =>
-                                 {
-                                     timeDependentOutputItemsForLocation[i] = CalculateTimeStepForLocation(
-                                         timeDependentInputItems.ElementAt(i), locationDependentInput, profileData);
-                                 });
+                    Parallel.ForEach(timeDependentInputItems,
+                                     (timeDependentInputItem, state, index) =>
+                                     {
+                                         timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
+                                             timeDependentInputItem, locationDependentInput, profileData);
+                                     });
 
                     break;
                 }
