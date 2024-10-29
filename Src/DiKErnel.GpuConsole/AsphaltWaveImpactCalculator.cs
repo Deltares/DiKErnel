@@ -89,14 +89,21 @@ namespace DiKErnel.GpuConsole
 
             timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentOutput[timeDependentInputItems.Count]);
 
+            TimeDependentInputStruct[] timeDependentInputStructs = timeDependentInputItems.Select(tdi => new TimeDependentInputStruct(
+                                                                                                  tdi.BeginTime, tdi.EndTime,
+                                                                                                  tdi.WaterLevel,
+                                                                                                  tdi.WaveHeightHm0, tdi.WavePeriodTm10,
+                                                                                                  tdi.WaveDirection))
+                                                                                          .ToArray();
+
             CalculateLocationDependentOutput(profileData, locationDependentInput, out double z, out double logFlexuralStrength,
                                              out double computationalThickness, out double stiffnessRelation, out double outerSlope);
 
-            Parallel.ForEach(timeDependentInputItems,
-                             (timeDependentInput, state, index) =>
+            Parallel.ForEach(timeDependentInputStructs,
+                             (timeDependentInputStruct, state, index) =>
                              {
                                  timeDependentOutputItemsForLocation[(int) index] = CalculateTimeDependentOutput(
-                                     timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
+                                     timeDependentInputStruct, locationDependentInput.AverageNumberOfWavesCtm,
                                      locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
                                      outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
                                      locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
@@ -132,15 +139,15 @@ namespace DiKErnel.GpuConsole
 
             Action<Index1D, ArrayView<TimeDependentInputStruct>, ArrayView<AsphaltWaveImpactTimeDependentOutputStruct>> loadedKernel =
                 accelerator.LoadAutoGroupedStreamKernel(
-                    (Index1D i, ArrayView<TimeDependentInputStruct> timeDependentInput,
-                     ArrayView<AsphaltWaveImpactTimeDependentOutputStruct> output) =>
+                    (Index1D i, ArrayView<TimeDependentInputStruct> inputStructs,
+                     ArrayView<AsphaltWaveImpactTimeDependentOutputStruct> outputStructs) =>
                     {
-                        output[i] = CalculateTimeDependentOutput(
-                            timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
-                            locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
-                            outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
-                            locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
-                            locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
+                        outputStructs[i] = CalculateTimeDependentOutput(
+                            inputStructs[i], locationDependentInput.AverageNumberOfWavesCtm, locationDependentInput.DensityOfWater,
+                            logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope, locationDependentInput.WidthFactors,
+                            locationDependentInput.DepthFactors, locationDependentInput.ImpactFactors, z,
+                            locationDependentInput.Fatigue.Alpha, locationDependentInput.Fatigue.Beta,
+                            locationDependentInput.ImpactNumberC);
                     });
 
             loadedKernel((int) timeDependentOutputStructs.Length, timeDependentInputStructs.View, timeDependentOutputStructs.View);
@@ -203,7 +210,7 @@ namespace DiKErnel.GpuConsole
         }
 
         private static AsphaltWaveImpactTimeDependentOutputStruct CalculateTimeDependentOutput(
-            ITimeDependentInput timeDependentInput, double averageNumberOfWavesCtm, double densityOfWater,
+            TimeDependentInputStruct timeDependentInput, double averageNumberOfWavesCtm, double densityOfWater,
             double logFlexuralStrength, double stiffnessRelation, double computationalThickness, double outerSlope,
             IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
             IReadOnlyList<(double, double)> impactFactors, double z, double fatigueAlpha, double fatigueBeta, double impactNumberC)
