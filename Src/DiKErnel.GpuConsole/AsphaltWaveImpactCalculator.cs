@@ -102,8 +102,8 @@ namespace DiKErnel.GpuConsole
             return (AsphaltWaveImpactTimeDependentOutput) locationDependentInput.Calculate(
                 timeDependentInput, profileData, damageAtStartOfCalculation);
         }
-        
-        private static TimeDependentOutput CalculateTimeDependentOutput(
+
+        private static AsphaltWaveImpactTimeDependentOutput CalculateTimeDependentOutput(
             ITimeDependentInput timeDependentInput, IProfileData profileData, double averageNumberOfWavesCtm, double densityOfWater)
         {
             double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime, timeDependentInput.EndTime);
