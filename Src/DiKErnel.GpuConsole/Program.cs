@@ -36,8 +36,6 @@ namespace DiKErnel.GpuConsole
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
         {
-            builder.AddForeshore(0.004, -4);
-
             builder.AddDikeProfileSegment(0, 7.09, 18.39, 13.22, 1);
             builder.AddDikeProfileSegment(18.39, 13.22, 23.39, 13.22, 1);
             builder.AddDikeProfileSegment(23.39, 13.22, 33.05, 0, 1);
