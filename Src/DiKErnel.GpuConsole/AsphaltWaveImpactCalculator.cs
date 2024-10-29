@@ -27,6 +27,9 @@ using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util;
+using ILGPU;
+using ILGPU.Runtime;
+using ILGPU.Runtime.CPU;
 
 namespace DiKErnel.GpuConsole
 {
@@ -70,7 +73,7 @@ namespace DiKErnel.GpuConsole
         {
             foreach (AsphaltWaveImpactLocationDependentInput locationDependentInput in locationDependentInputItems)
             {
-                CalculateTimeStepsForLocationOnCpu(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
+                CalculateTimeStepsForLocationOnGpu(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
                                                    locationDependentInput);
             }
         }
@@ -115,19 +118,39 @@ namespace DiKErnel.GpuConsole
             CalculateLocationDependentOutput(profileData, locationDependentInput, out double z, out double logFlexuralStrength,
                                              out double computationalThickness, out double stiffnessRelation, out double outerSlope);
 
-            Parallel.ForEach(timeDependentInputItems,
-                             (timeDependentInput, state, index) =>
-                             {
-                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeDependentOutput(
-                                     timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
-                                     locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
-                                     outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
-                                     locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
-                                     locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
-                             });
+            var context = Context.CreateDefault();
+            Accelerator accelerator = context.CreateCPUAccelerator(0);
+
+            MemoryBuffer1D<TimeDependentInputStruct, Stride1D.Dense> timeDependentInputStructs = accelerator.Allocate1D(
+                timeDependentInputItems.Select(tdi => new TimeDependentInputStruct(tdi.BeginTime, tdi.EndTime, tdi.WaterLevel,
+                                                                                   tdi.WaveHeightHm0, tdi.WavePeriodTm10,
+                                                                                   tdi.WaveDirection))
+                                       .ToArray());
+
+            MemoryBuffer1D<AsphaltWaveImpactTimeDependentOutputStruct, Stride1D.Dense> timeDependentOutputStructs =
+                accelerator.Allocate1D<AsphaltWaveImpactTimeDependentOutputStruct>(timeDependentInputItems.Count);
+
+            Action<Index1D, ArrayView<TimeDependentInputStruct>, ArrayView<AsphaltWaveImpactTimeDependentOutputStruct>> loadedKernel =
+                accelerator.LoadAutoGroupedStreamKernel(
+                    (Index1D i, ArrayView<TimeDependentInputStruct> timeDependentInput,
+                     ArrayView<AsphaltWaveImpactTimeDependentOutputStruct> output) =>
+                    {
+                        output[i] = CalculateTimeDependentOutput(
+                            timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
+                            locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
+                            outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
+                            locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
+                            locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
+                    });
+
+            loadedKernel((int) timeDependentOutputStructs.Length, timeDependentInputStructs.View, timeDependentOutputStructs.View);
+
+            accelerator.Synchronize();
+
+            accelerator.Dispose();
+            context.Dispose();
         }
-        
-        
+
         private static void CalculateLocationDependentOutput(IProfileData profileData,
                                                              AsphaltWaveImpactLocationDependentInput locationDependentInput,
                                                              out double z, out double logFlexuralStrength,
@@ -179,7 +202,7 @@ namespace DiKErnel.GpuConsole
                                                                profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
         }
 
-        private static AsphaltWaveImpactTimeDependentOutput CalculateTimeDependentOutput(
+        private static AsphaltWaveImpactTimeDependentOutputStruct CalculateTimeDependentOutput(
             ITimeDependentInput timeDependentInput, double averageNumberOfWavesCtm, double densityOfWater,
             double logFlexuralStrength, double stiffnessRelation, double computationalThickness, double outerSlope,
             IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
@@ -202,12 +225,49 @@ namespace DiKErnel.GpuConsole
 
             double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
 
-            return new AsphaltWaveImpactTimeDependentOutput(new AsphaltWaveImpactTimeDependentOutputConstructionProperties
-            {
-                IncrementDamage = incrementDamage,
-                MaximumPeakStress = maximumPeakStress,
-                AverageNumberOfWaves = averageNumberOfWaves
-            });
+            return new AsphaltWaveImpactTimeDependentOutputStruct(incrementDamage, maximumPeakStress, averageNumberOfWaves);
         }
+    }
+
+    internal struct TimeDependentInputStruct
+    {
+        public TimeDependentInputStruct(double beginTime, double endTime, double waterLevel, double waveHeightHm0,
+                                        double wavePeriodTm10, double waveDirection)
+        {
+            BeginTime = beginTime;
+            EndTime = endTime;
+            WaterLevel = waterLevel;
+            WaveHeightHm0 = waveHeightHm0;
+            WavePeriodTm10 = wavePeriodTm10;
+            WaveDirection = waveDirection;
+        }
+
+        public double BeginTime { get; }
+
+        public double EndTime { get; }
+
+        public double WaterLevel { get; }
+
+        public double WaveHeightHm0 { get; }
+
+        public double WavePeriodTm10 { get; }
+
+        public double WaveDirection { get; }
+    }
+
+    internal struct AsphaltWaveImpactTimeDependentOutputStruct
+    {
+        public AsphaltWaveImpactTimeDependentOutputStruct(double incrementDamage, double maximumPeakStress, double averageNumberOfWaves)
+        {
+            IncrementDamage = incrementDamage;
+            MaximumPeakStress = maximumPeakStress;
+            AverageNumberOfWaves = averageNumberOfWaves;
+        }
+
+        public double IncrementDamage { get; }
+
+        public double MaximumPeakStress { get; }
+
+        public double AverageNumberOfWaves { get; }
     }
 }
