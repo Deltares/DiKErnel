@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
@@ -125,9 +124,6 @@ namespace DiKErnel.GpuConsole
 
         private static void CalculateAndWriteOutput(ICalculationInput calculationInput)
         {
-            const CalculationMode locationCalculationMode = CalculationMode.Sequential;
-            const CalculationMode timeStepCalculationMode = CalculationMode.Parallel;
-
             var stopWatch = new Stopwatch();
 
             stopWatch.Start();
@@ -136,16 +132,13 @@ namespace DiKErnel.GpuConsole
                 AsphaltWaveImpactCalculator.Calculate(calculationInput.ProfileData,
                                                       calculationInput.LocationDependentInputItems
                                                                       .OfType<AsphaltWaveImpactLocationDependentInput>().ToList(),
-                                                      calculationInput.TimeDependentInputItems, locationCalculationMode,
-                                                      timeStepCalculationMode);
+                                                      calculationInput.TimeDependentInputItems);
 
             stopWatch.Stop();
 
             string outputMessage = "AsphaltWaveImpact;" +
                                    $"{calculationInput.LocationDependentInputItems.Count,4};" +
                                    $"{calculationInput.TimeDependentInputItems.Count,8};" +
-                                   $"{locationCalculationMode,15};" +
-                                   $"{timeStepCalculationMode,15};" +
                                    $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture),7};";
 
             for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
