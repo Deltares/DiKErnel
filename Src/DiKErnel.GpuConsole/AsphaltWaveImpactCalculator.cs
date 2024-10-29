@@ -99,5 +99,27 @@ namespace DiKErnel.GpuConsole
             return (AsphaltWaveImpactTimeDependentOutput) locationDependentInput.Calculate(
                 timeDependentInput, profileData, damageAtStartOfCalculation);
         }
+        
+        private static TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput, IProfileData profileData)
+        {
+            double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
+                                                                    timeDependentInput.EndTime);
+
+            double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
+                                                                                  timeDependentInput.WavePeriodTm10,
+                                                                                  AverageNumberOfWavesCtm);
+
+            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(timeDependentInput.WaveHeightHm0,
+                                                                                    NaturalConstants.GravitationalAcceleration,
+                                                                                    DensityOfWater);
+
+            AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                                                                      averageNumberOfWaves, maximumPeakStress);
+
+            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
+
+            return new AsphaltWaveImpactTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, averageNumberOfWaves, maximumPeakStress));
+        }
     }
 }
