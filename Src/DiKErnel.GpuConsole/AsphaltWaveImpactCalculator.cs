@@ -22,20 +22,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
+using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Util;
 
 namespace DiKErnel.GpuConsole
 {
-    public static class AsphaltWaveImpactCalculator
+    internal static class AsphaltWaveImpactCalculator
     {
-        public static DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput,
+        public static DataResult<CalculationOutput> Calculate(IProfileData profileData,
+                                                              IReadOnlyList<AsphaltWaveImpactLocationDependentInput> locationDependentInputItems,
+                                                              IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                                               CalculationMode locationCalculationMode = CalculationMode.Sequential,
                                                               CalculationMode timeStepCalculationMode = CalculationMode.Sequential)
         {
             try
             {
-                IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
-
                 if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation) &&
                     timeStepCalculationMode != CalculationMode.Sequential)
                 {
@@ -43,12 +44,11 @@ namespace DiKErnel.GpuConsole
                                                         "is not possible; output of one time step is input for the next time step...");
                 }
 
-                IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
                 CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
-                                               timeDependentOutputItemsPerLocation, calculationInput.ProfileData,
+                                               timeDependentOutputItemsPerLocation, profileData,
                                                locationCalculationMode, timeStepCalculationMode);
 
                 List<LocationDependentOutput> locationDependentOutputItems =
