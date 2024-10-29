@@ -15,8 +15,6 @@ namespace DiKErnel.GpuConsole
     {
         private const double xStartCalculationZoneOuterSlope = 7;
         private const double xEndCalculationZoneOuterSlope = 11;
-        private const double xStartCalculationZoneInnerSlope = 24;
-        private const double xEndCalculationZoneInnerSlope = 32;
 
         private const string oneHourTimeStepIdentifier = "1h";
         private const string twelveHoursTimeStepIdentifier = "12h";
@@ -27,13 +25,13 @@ namespace DiKErnel.GpuConsole
 
             AddDikeProfile(builder);
 
-            AddLocations(builder, args[0], int.Parse(args[1], CultureInfo.InvariantCulture));
+            AddLocations(builder, int.Parse(args[0], CultureInfo.InvariantCulture));
 
-            AddTimeSteps(builder, args[2]);
+            AddTimeSteps(builder, args[1]);
 
             DataResult<ICalculationInput> result = builder.Build();
 
-            CalculateAndWriteOutput(result.Data, args[0]);
+            CalculateAndWriteOutput(result.Data);
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -50,9 +48,9 @@ namespace DiKErnel.GpuConsole
             builder.AddDikeProfilePoint(33.05, CharacteristicPointType.InnerToe);
         }
 
-        private static void AddLocations(CalculationInputBuilder builder, string failureMechanismArgument, int numberOfLocations)
+        private static void AddLocations(CalculationInputBuilder builder, int numberOfLocations)
         {
-            foreach (double x in GetXValues(failureMechanismArgument, numberOfLocations))
+            foreach (double x in GetXValues(numberOfLocations))
             {
                 builder.AddAsphaltWaveImpactLocation(
                     new AsphaltWaveImpactLocationConstructionProperties(x, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
@@ -60,31 +58,28 @@ namespace DiKErnel.GpuConsole
             }
         }
 
-        private static List<double> GetXValues(string failureMechanismArgument, int numberOfLocations)
+        private static List<double> GetXValues(int numberOfLocations)
         {
             var xValues = new List<double>();
-
-            double xStartCalculationZone;
-            double xEndCalculationZone;
-
-            xStartCalculationZone = xStartCalculationZoneOuterSlope;
-            xEndCalculationZone = xEndCalculationZoneOuterSlope;
 
             switch (numberOfLocations)
             {
                 case 1:
-                    xValues.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 2);
+                    xValues.Add(xStartCalculationZoneOuterSlope +
+                                (xEndCalculationZoneOuterSlope - xStartCalculationZoneOuterSlope) * 1 / 2);
                     break;
                 case 2:
-                    xValues.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 1 / 3);
-                    xValues.Add(xStartCalculationZone + (xEndCalculationZone - xStartCalculationZone) * 2 / 3);
+                    xValues.Add(xStartCalculationZoneOuterSlope +
+                                (xEndCalculationZoneOuterSlope - xStartCalculationZoneOuterSlope) * 1 / 3);
+                    xValues.Add(xStartCalculationZoneOuterSlope +
+                                (xEndCalculationZoneOuterSlope - xStartCalculationZoneOuterSlope) * 2 / 3);
                     break;
                 default:
                 {
-                    double increment = (xEndCalculationZone - xStartCalculationZone) / (numberOfLocations - 1);
+                    double increment = (xEndCalculationZoneOuterSlope - xStartCalculationZoneOuterSlope) / (numberOfLocations - 1);
 
                     xValues.AddRange(Enumerable.Range(0, numberOfLocations)
-                                               .Select(i => xStartCalculationZone + i * increment));
+                                               .Select(i => xStartCalculationZoneOuterSlope + i * increment));
                     break;
                 }
             }
@@ -130,7 +125,7 @@ namespace DiKErnel.GpuConsole
             }
         }
 
-        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string failureMechanismArgument)
+        private static void CalculateAndWriteOutput(ICalculationInput calculationInput)
         {
             const CalculationMode locationCalculationMode = CalculationMode.Sequential;
             const CalculationMode timeStepCalculationMode = CalculationMode.Parallel;
@@ -143,7 +138,7 @@ namespace DiKErnel.GpuConsole
 
             stopWatch.Stop();
 
-            string outputMessage = $"{failureMechanismArgument,43};" +
+            string outputMessage = "AsphaltWaveImpact;" +
                                    $"{calculationInput.LocationDependentInputItems.Count,4};" +
                                    $"{calculationInput.TimeDependentInputItems.Count,8};" +
                                    $"{locationCalculationMode,15};" +
