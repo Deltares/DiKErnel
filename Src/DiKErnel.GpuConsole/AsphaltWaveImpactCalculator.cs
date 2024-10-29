@@ -104,7 +104,10 @@ namespace DiKErnel.GpuConsole
         }
 
         private static AsphaltWaveImpactTimeDependentOutput CalculateTimeDependentOutput(
-            ITimeDependentInput timeDependentInput, IProfileData profileData, double averageNumberOfWavesCtm, double densityOfWater)
+            ITimeDependentInput timeDependentInput, IProfileData profileData, double averageNumberOfWavesCtm, double densityOfWater,
+            double logFlexuralStrength, double stiffnessRelation, double computationalThickness, double outerSlope,
+            IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
+            IReadOnlyList<(double, double)> impactFactors, double z, double fatigueAlpha, double fatigueBeta, double impactNumberC)
         {
             double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
@@ -116,13 +119,19 @@ namespace DiKErnel.GpuConsole
                                                                                     NaturalConstants.GravitationalAcceleration,
                                                                                     densityOfWater);
 
-            AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                                                                      averageNumberOfWaves, maximumPeakStress);
+            var input = new AsphaltWaveImpactInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress, stiffnessRelation,
+                                                   computationalThickness, outerSlope, widthFactors, depthFactors, impactFactors, z,
+                                                   timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0, fatigueAlpha,
+                                                   fatigueBeta, impactNumberC);
 
             double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
 
-            return new AsphaltWaveImpactTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, averageNumberOfWaves, maximumPeakStress));
+            return new AsphaltWaveImpactTimeDependentOutput(new AsphaltWaveImpactTimeDependentOutputConstructionProperties
+            {
+                IncrementDamage = incrementDamage,
+                MaximumPeakStress = maximumPeakStress,
+                AverageNumberOfWaves = averageNumberOfWaves
+            });
         }
     }
 }
