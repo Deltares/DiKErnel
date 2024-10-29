@@ -7,11 +7,6 @@ using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
-using DiKErnel.Integration.Data.Grass;
-using DiKErnel.Integration.Data.GrassWaveImpact;
-using DiKErnel.Integration.Data.GrassWaveOvertopping;
-using DiKErnel.Integration.Data.GrassWaveRunup;
-using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
 using DiKErnel.Util;
 
 namespace DiKErnel.GpuConsole
@@ -22,14 +17,6 @@ namespace DiKErnel.GpuConsole
         private const double xEndCalculationZoneOuterSlope = 11;
         private const double xStartCalculationZoneInnerSlope = 24;
         private const double xEndCalculationZoneInnerSlope = 32;
-
-        private const string asphaltWaveImpactIdentifier = "AsphaltWaveImpact";
-        private const string grassWaveImpactIdentifier = "GrassWaveImpact";
-        private const string grassWaveOvertoppingRayleighAnalyticalIdentifier = "GrassWaveOvertoppingRayleighAnalytical";
-        private const string grassWaveOvertoppingRayleighDiscreteIdentifier = "GrassWaveOvertoppingRayleighDiscrete";
-        private const string grassWaveRunupBattjesGroenendijkAnalyticalIdentifier = "GrassWaveRunupBattjesGroenendijkAnalytical";
-        private const string grassWaveRunupRayleighDiscreteIdentifier = "GrassWaveRunupRayleighDiscrete";
-        private const string naturalStoneWaveImpactIdentifier = "NaturalStoneWaveImpact";
 
         private const string oneHourTimeStepIdentifier = "1h";
         private const string twelveHoursTimeStepIdentifier = "12h";
@@ -65,34 +52,11 @@ namespace DiKErnel.GpuConsole
 
         private static void AddLocations(CalculationInputBuilder builder, string failureMechanismArgument, int numberOfLocations)
         {
-            Action<double> addLocationAction = failureMechanismArgument switch
-            {
-                asphaltWaveImpactIdentifier => x => builder.AddAsphaltWaveImpactLocation(
-                    new AsphaltWaveImpactLocationConstructionProperties(x, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
-                                                                        0.3, 16000)),
-                grassWaveImpactIdentifier => x => builder.AddGrassWaveImpactLocation(
-                    new GrassWaveImpactLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
-                grassWaveOvertoppingRayleighAnalyticalIdentifier => x => builder.AddGrassWaveOvertoppingRayleighAnalyticalLocation(
-                    new GrassWaveOvertoppingRayleighLocationConstructionProperties(x, GrassTopLayerType.OpenSod)
-                    {
-                        DikeHeight = 11
-                    }),
-                grassWaveOvertoppingRayleighDiscreteIdentifier => x => builder.AddGrassWaveOvertoppingRayleighDiscreteLocation(
-                    new GrassWaveOvertoppingRayleighDiscreteLocationConstructionProperties(x, GrassTopLayerType.OpenSod)
-                    {
-                        DikeHeight = 11
-                    }),
-                grassWaveRunupBattjesGroenendijkAnalyticalIdentifier => x => builder.AddGrassWaveRunupBattjesGroenendijkAnalyticalLocation(
-                    new GrassWaveRunupBattjesGroenendijkAnalyticalLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
-                grassWaveRunupRayleighDiscreteIdentifier => x => builder.AddGrassWaveRunupRayleighDiscreteLocation(
-                    new GrassWaveRunupRayleighDiscreteLocationConstructionProperties(x, GrassTopLayerType.OpenSod)),
-                naturalStoneWaveImpactIdentifier => x => builder.AddNaturalStoneWaveImpactLocation(
-                    new NaturalStoneWaveImpactLocationConstructionProperties(x, NaturalStoneWaveImpactTopLayerType.NordicStone, 0.4, 1.65))
-            };
-
             foreach (double x in GetXValues(failureMechanismArgument, numberOfLocations))
             {
-                addLocationAction(x);
+                builder.AddAsphaltWaveImpactLocation(
+                    new AsphaltWaveImpactLocationConstructionProperties(x, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
+                                                                        0.3, 16000));
             }
         }
 
@@ -103,17 +67,8 @@ namespace DiKErnel.GpuConsole
             double xStartCalculationZone;
             double xEndCalculationZone;
 
-            if (failureMechanismArgument == grassWaveOvertoppingRayleighAnalyticalIdentifier ||
-                failureMechanismArgument == grassWaveOvertoppingRayleighDiscreteIdentifier)
-            {
-                xStartCalculationZone = xStartCalculationZoneInnerSlope;
-                xEndCalculationZone = xEndCalculationZoneInnerSlope;
-            }
-            else
-            {
-                xStartCalculationZone = xStartCalculationZoneOuterSlope;
-                xEndCalculationZone = xEndCalculationZoneOuterSlope;
-            }
+            xStartCalculationZone = xStartCalculationZoneOuterSlope;
+            xEndCalculationZone = xEndCalculationZoneOuterSlope;
 
             switch (numberOfLocations)
             {
