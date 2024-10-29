@@ -73,7 +73,7 @@ namespace DiKErnel.GpuConsole
         {
             foreach (AsphaltWaveImpactLocationDependentInput locationDependentInput in locationDependentInputItems)
             {
-                CalculateTimeStepsForLocationOnGpu(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
+                CalculateTimeStepsForLocationOnCpu(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
                                                    locationDependentInput);
             }
         }
@@ -84,10 +84,10 @@ namespace DiKErnel.GpuConsole
                 timeDependentOutputItemsPerLocation, IProfileData profileData,
             AsphaltWaveImpactLocationDependentInput locationDependentInput)
         {
-            List<AsphaltWaveImpactTimeDependentOutput> timeDependentOutputItemsForLocation =
-                timeDependentOutputItemsPerLocation[locationDependentInput];
+            var asphaltWaveImpactTimeDependentOutputStructs = new List<AsphaltWaveImpactTimeDependentOutputStruct>();
 
-            timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentOutput[timeDependentInputItems.Count]);
+            asphaltWaveImpactTimeDependentOutputStructs.AddRange(
+                new AsphaltWaveImpactTimeDependentOutputStruct[timeDependentInputItems.Count]);
 
             TimeDependentInputStruct[] timeDependentInputStructs = timeDependentInputItems.Select(tdi => new TimeDependentInputStruct(
                                                                                                   tdi.BeginTime, tdi.EndTime,
@@ -102,13 +102,22 @@ namespace DiKErnel.GpuConsole
             Parallel.ForEach(timeDependentInputStructs,
                              (timeDependentInputStruct, state, index) =>
                              {
-                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeDependentOutput(
+                                 asphaltWaveImpactTimeDependentOutputStructs[(int) index] = CalculateTimeDependentOutput(
                                      timeDependentInputStruct, locationDependentInput.AverageNumberOfWavesCtm,
                                      locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
                                      outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
                                      locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
                                      locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
                              });
+
+            timeDependentOutputItemsPerLocation[locationDependentInput].AddRange(
+                asphaltWaveImpactTimeDependentOutputStructs.Select(tdos => new AsphaltWaveImpactTimeDependentOutput(
+                                                                       new AsphaltWaveImpactTimeDependentOutputConstructionProperties
+                                                                       {
+                                                                           IncrementDamage = tdos.IncrementDamage,
+                                                                           MaximumPeakStress = tdos.MaximumPeakStress,
+                                                                           AverageNumberOfWaves = tdos.AverageNumberOfWaves
+                                                                       })));
         }
 
         private static void CalculateTimeStepsForLocationOnGpu(
