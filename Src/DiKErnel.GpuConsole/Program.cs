@@ -46,7 +46,7 @@ namespace DiKErnel.GpuConsole
 
             DataResult<ICalculationInput> result = builder.Build();
 
-            CalculateAndWriteOutput(result.Data, args[0], args[3], args[4]);
+            CalculateAndWriteOutput(result.Data, args[0]);
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -175,18 +175,10 @@ namespace DiKErnel.GpuConsole
             }
         }
 
-        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string failureMechanismArgument,
-                                                    string locationCalculationModeArgument, string timeStepCalculationModeArgument)
+        private static void CalculateAndWriteOutput(ICalculationInput calculationInput, string failureMechanismArgument)
         {
-            Enum.TryParse(locationCalculationModeArgument, out CalculationMode locationCalculationMode);
-            Enum.TryParse(timeStepCalculationModeArgument, out CalculationMode timeStepCalculationMode);
-
-            if (failureMechanismArgument == naturalStoneWaveImpactIdentifier && timeStepCalculationMode != CalculationMode.Sequential)
-            {
-                Console.Write("Parallelization of time steps is not supported for natural stone wave impact");
-
-                return;
-            }
+            const CalculationMode locationCalculationMode = CalculationMode.Sequential;
+            const CalculationMode timeStepCalculationMode = CalculationMode.Parallel;
 
             var stopWatch = new Stopwatch();
 
