@@ -101,6 +101,33 @@ namespace DiKErnel.GpuConsole
                              });
         }
 
+        private static void CalculateTimeStepsForLocationOnGpu(
+            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
+            IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<AsphaltWaveImpactTimeDependentOutput>>
+                timeDependentOutputItemsPerLocation, IProfileData profileData,
+            AsphaltWaveImpactLocationDependentInput locationDependentInput)
+        {
+            List<AsphaltWaveImpactTimeDependentOutput> timeDependentOutputItemsForLocation =
+                timeDependentOutputItemsPerLocation[locationDependentInput];
+
+            timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentOutput[timeDependentInputItems.Count]);
+
+            CalculateLocationDependentOutput(profileData, locationDependentInput, out double z, out double logFlexuralStrength,
+                                             out double computationalThickness, out double stiffnessRelation, out double outerSlope);
+
+            Parallel.ForEach(timeDependentInputItems,
+                             (timeDependentInput, state, index) =>
+                             {
+                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeDependentOutput(
+                                     timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
+                                     locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
+                                     outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
+                                     locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
+                                     locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
+                             });
+        }
+        
+        
         private static void CalculateLocationDependentOutput(IProfileData profileData,
                                                              AsphaltWaveImpactLocationDependentInput locationDependentInput,
                                                              out double z, out double logFlexuralStrength,
