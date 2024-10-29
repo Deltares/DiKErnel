@@ -44,7 +44,7 @@ namespace DiKErnel.GpuConsole
                                                         "is not possible; output of one time step is input for the next time step...");
                 }
 
-                Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
+                Dictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
                 CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
@@ -71,7 +71,7 @@ namespace DiKErnel.GpuConsole
         private static void CalculateTimeStepsForLocations(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
-            IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
+            IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, CalculationMode locationCalculationMode, CalculationMode timeStepCalculationMode)
         {
             switch (locationCalculationMode)
@@ -109,7 +109,7 @@ namespace DiKErnel.GpuConsole
 
         private static void CalculateTimeStepsForLocation(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
-            IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
+            IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, ILocationDependentInput locationDependentInput, CalculationMode timeStepCalculationMode)
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
