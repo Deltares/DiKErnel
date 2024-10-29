@@ -21,6 +21,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Constants;
+using DiKErnel.FunctionLibrary;
+using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Util;
 
@@ -100,18 +103,18 @@ namespace DiKErnel.GpuConsole
                 timeDependentInput, profileData, damageAtStartOfCalculation);
         }
         
-        private static TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput, IProfileData profileData)
+        private static TimeDependentOutput CalculateTimeDependentOutput(
+            ITimeDependentInput timeDependentInput, IProfileData profileData, double averageNumberOfWavesCtm, double densityOfWater)
         {
-            double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                    timeDependentInput.EndTime);
+            double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
             double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
                                                                                   timeDependentInput.WavePeriodTm10,
-                                                                                  AverageNumberOfWavesCtm);
+                                                                                  averageNumberOfWavesCtm);
 
             double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(timeDependentInput.WaveHeightHm0,
                                                                                     NaturalConstants.GravitationalAcceleration,
-                                                                                    DensityOfWater);
+                                                                                    densityOfWater);
 
             AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                                                                       averageNumberOfWaves, maximumPeakStress);
