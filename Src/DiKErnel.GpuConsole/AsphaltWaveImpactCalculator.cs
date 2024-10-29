@@ -70,14 +70,12 @@ namespace DiKErnel.GpuConsole
         {
             foreach (AsphaltWaveImpactLocationDependentInput locationDependentInput in locationDependentInputItems)
             {
-                locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
-
-                CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
-                                              locationDependentInput);
+                CalculateTimeStepsForLocationOnCpu(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
+                                                   locationDependentInput);
             }
         }
 
-        private static void CalculateTimeStepsForLocation(
+        private static void CalculateTimeStepsForLocationOnCpu(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<AsphaltWaveImpactTimeDependentOutput>>
                 timeDependentOutputItemsPerLocation, IProfileData profileData,
@@ -88,9 +86,28 @@ namespace DiKErnel.GpuConsole
 
             timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentOutput[timeDependentInputItems.Count]);
 
-            # region Location dependent output
+            CalculateLocationDependentOutput(profileData, locationDependentInput, out double z, out double logFlexuralStrength,
+                                             out double computationalThickness, out double stiffnessRelation, out double outerSlope);
 
-            double z = profileData.GetVerticalHeight(locationDependentInput.X);
+            Parallel.ForEach(timeDependentInputItems,
+                             (timeDependentInput, state, index) =>
+                             {
+                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeDependentOutput(
+                                     timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
+                                     locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
+                                     outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
+                                     locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
+                                     locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
+                             });
+        }
+
+        private static void CalculateLocationDependentOutput(IProfileData profileData,
+                                                             AsphaltWaveImpactLocationDependentInput locationDependentInput,
+                                                             out double z, out double logFlexuralStrength,
+                                                             out double computationalThickness, out double stiffnessRelation,
+                                                             out double outerSlope)
+        {
+            z = profileData.GetVerticalHeight(locationDependentInput.X);
 
             double subLayerThickness;
             double subLayerElasticModulus;
@@ -106,16 +123,16 @@ namespace DiKErnel.GpuConsole
                 subLayerElasticModulus = locationDependentInput.UpperLayer.ElasticModulus;
             }
 
-            double logFlexuralStrength = AsphaltWaveImpactFunctions.LogFlexuralStrength(locationDependentInput.FlexuralStrength);
+            logFlexuralStrength = AsphaltWaveImpactFunctions.LogFlexuralStrength(locationDependentInput.FlexuralStrength);
 
-            double computationalThickness = AsphaltWaveImpactFunctions.ComputationalThickness(locationDependentInput.UpperLayer.Thickness,
-                subLayerThickness,
-                locationDependentInput.UpperLayer.ElasticModulus,
-                subLayerElasticModulus);
+            computationalThickness = AsphaltWaveImpactFunctions.ComputationalThickness(locationDependentInput.UpperLayer.Thickness,
+                                                                                       subLayerThickness,
+                                                                                       locationDependentInput.UpperLayer.ElasticModulus,
+                                                                                       subLayerElasticModulus);
 
-            double stiffnessRelation = AsphaltWaveImpactFunctions.StiffnessRelation(computationalThickness, subLayerElasticModulus,
-                                                                                    locationDependentInput.SoilElasticity,
-                                                                                    locationDependentInput.StiffnessRelationNu);
+            stiffnessRelation = AsphaltWaveImpactFunctions.StiffnessRelation(computationalThickness, subLayerElasticModulus,
+                                                                             locationDependentInput.SoilElasticity,
+                                                                             locationDependentInput.StiffnessRelationNu);
 
             (double, double)? notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
                 profileData.CharacteristicPoints, CharacteristicPointType.NotchOuterBerm);
@@ -131,21 +148,8 @@ namespace DiKErnel.GpuConsole
 
             ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
 
-            double outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
-                                                                      profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
-
-            # endregion
-
-            Parallel.ForEach(timeDependentInputItems,
-                             (timeDependentInput, state, index) =>
-                             {
-                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeDependentOutput(
-                                     timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
-                                     locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
-                                     outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
-                                     locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
-                                     locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
-                             });
+            outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
+                                                               profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
         }
 
         private static AsphaltWaveImpactTimeDependentOutput CalculateTimeDependentOutput(
