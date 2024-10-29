@@ -25,6 +25,7 @@ using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
+using DiKErnel.Integration.Helpers;
 using DiKErnel.Util;
 
 namespace DiKErnel.GpuConsole
@@ -86,6 +87,54 @@ namespace DiKErnel.GpuConsole
                 timeDependentOutputItemsPerLocation[locationDependentInput];
 
             timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentOutput[timeDependentInputItems.Count]);
+
+            #region Location dependent output
+
+            double z = profileData.GetVerticalHeight(locationDependentInput.X);
+
+            double subLayerThickness;
+            double subLayerElasticModulus;
+
+            if (locationDependentInput.SubLayer != null)
+            {
+                subLayerThickness = locationDependentInput.SubLayer.Thickness;
+                subLayerElasticModulus = locationDependentInput.SubLayer.ElasticModulus;
+            }
+            else
+            {
+                subLayerThickness = 0;
+                subLayerElasticModulus = locationDependentInput.UpperLayer.ElasticModulus;
+            }
+
+            double logFlexuralStrength = AsphaltWaveImpactFunctions.LogFlexuralStrength(locationDependentInput.FlexuralStrength);
+
+            double computationalThickness = AsphaltWaveImpactFunctions.ComputationalThickness(locationDependentInput.UpperLayer.Thickness,
+                subLayerThickness,
+                locationDependentInput.UpperLayer.ElasticModulus,
+                subLayerElasticModulus);
+
+            double stiffnessRelation = AsphaltWaveImpactFunctions.StiffnessRelation(computationalThickness, subLayerElasticModulus,
+                                                                                    locationDependentInput.SoilElasticity,
+                                                                                    locationDependentInput.StiffnessRelationNu);
+
+            (double, double)? notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.NotchOuterBerm);
+            (double, double)? crestOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.CrestOuterBerm);
+
+            double horizontalPosition = locationDependentInput.X;
+            if (notchOuterBerm != null && crestOuterBerm != null && horizontalPosition > crestOuterBerm.Value.Item1
+                && horizontalPosition <= notchOuterBerm.Value.Item1)
+            {
+                horizontalPosition = crestOuterBerm.Value.Item1;
+            }
+
+            ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
+
+            double outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
+                                                                      profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
+
+            #endregion
 
             Parallel.ForEach(timeDependentInputItems,
                              (timeDependentInput, state, index) =>
