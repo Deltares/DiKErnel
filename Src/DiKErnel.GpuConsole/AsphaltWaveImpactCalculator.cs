@@ -88,7 +88,7 @@ namespace DiKErnel.GpuConsole
 
             timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentOutput[timeDependentInputItems.Count]);
 
-            #region Location dependent output
+            # region Location dependent output
 
             double z = profileData.GetVerticalHeight(locationDependentInput.X);
 
@@ -134,26 +134,22 @@ namespace DiKErnel.GpuConsole
             double outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
                                                                       profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
 
-            #endregion
+            # endregion
 
             Parallel.ForEach(timeDependentInputItems,
                              (timeDependentInput, state, index) =>
                              {
-                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                     timeDependentInput, locationDependentInput, profileData);
+                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeDependentOutput(
+                                     timeDependentInput, locationDependentInput.AverageNumberOfWavesCtm,
+                                     locationDependentInput.DensityOfWater, logFlexuralStrength, stiffnessRelation, computationalThickness,
+                                     outerSlope, locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
+                                     locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
+                                     locationDependentInput.Fatigue.Beta, locationDependentInput.ImpactNumberC);
                              });
         }
 
-        private static AsphaltWaveImpactTimeDependentOutput CalculateTimeStepForLocation(
-            ITimeDependentInput timeDependentInput, AsphaltWaveImpactLocationDependentInput locationDependentInput,
-            IProfileData profileData, double damageAtStartOfCalculation = double.NaN)
-        {
-            return (AsphaltWaveImpactTimeDependentOutput) locationDependentInput.Calculate(
-                timeDependentInput, profileData, damageAtStartOfCalculation);
-        }
-
         private static AsphaltWaveImpactTimeDependentOutput CalculateTimeDependentOutput(
-            ITimeDependentInput timeDependentInput, IProfileData profileData, double averageNumberOfWavesCtm, double densityOfWater,
+            ITimeDependentInput timeDependentInput, double averageNumberOfWavesCtm, double densityOfWater,
             double logFlexuralStrength, double stiffnessRelation, double computationalThickness, double outerSlope,
             IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
             IReadOnlyList<(double, double)> impactFactors, double z, double fatigueAlpha, double fatigueBeta, double impactNumberC)
