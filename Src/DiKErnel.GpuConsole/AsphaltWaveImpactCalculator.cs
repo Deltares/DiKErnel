@@ -30,7 +30,8 @@ namespace DiKErnel.GpuConsole
     internal static class AsphaltWaveImpactCalculator
     {
         public static DataResult<CalculationOutput> Calculate(IProfileData profileData,
-                                                              IReadOnlyList<AsphaltWaveImpactLocationDependentInput> locationDependentInputItems,
+                                                              IReadOnlyList<AsphaltWaveImpactLocationDependentInput>
+                                                                  locationDependentInputItems,
                                                               IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                                               CalculationMode locationCalculationMode = CalculationMode.Sequential,
                                                               CalculationMode timeStepCalculationMode = CalculationMode.Sequential)
@@ -70,7 +71,7 @@ namespace DiKErnel.GpuConsole
 
         private static void CalculateTimeStepsForLocations(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
-            IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
+            IReadOnlyCollection<AsphaltWaveImpactLocationDependentInput> locationDependentInputItems,
             IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, CalculationMode locationCalculationMode, CalculationMode timeStepCalculationMode)
         {
@@ -78,7 +79,7 @@ namespace DiKErnel.GpuConsole
             {
                 case CalculationMode.Sequential:
                 {
-                    foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
+                    foreach (AsphaltWaveImpactLocationDependentInput locationDependentInput in locationDependentInputItems)
                     {
                         locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
 
@@ -110,7 +111,8 @@ namespace DiKErnel.GpuConsole
         private static void CalculateTimeStepsForLocation(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
-            IProfileData profileData, ILocationDependentInput locationDependentInput, CalculationMode timeStepCalculationMode)
+            IProfileData profileData, AsphaltWaveImpactLocationDependentInput locationDependentInput,
+            CalculationMode timeStepCalculationMode)
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
