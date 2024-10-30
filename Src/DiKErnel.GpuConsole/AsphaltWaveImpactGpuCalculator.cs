@@ -162,15 +162,27 @@ namespace DiKErnel.GpuConsole
                                                                              tdi.WaveHeightHm0, tdi.WavePeriodTm10, tdi.WaveDirection))
                                                                  .ToArray();
 
+            var input = new AsphaltWaveImpactGpuInput(logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope, z,
+                                                      locationDependentInput.Fatigue.Alpha, locationDependentInput.Fatigue.Beta,
+                                                      locationDependentInput.AverageNumberOfWavesCtm,
+                                                      locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
+
             Parallel.ForEach(timeDependentGpuInputItems,
                              (timeDependentGpuInput, state, index) =>
                              {
                                  timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                     timeDependentGpuInput, logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope,
+                                     timeDependentGpuInput,
+                                     input.LogFlexuralStrength,
+                                     input.StiffnessRelation,
+                                     input.ComputationalThickness,
+                                     input.OuterSlope,
                                      locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
-                                     locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
-                                     locationDependentInput.Fatigue.Beta, locationDependentInput.AverageNumberOfWavesCtm,
-                                     locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
+                                     locationDependentInput.ImpactFactors,
+                                     input.Z,
+                                     input.FatigueAlpha,
+                                     input.FatigueBeta,
+                                     input.AverageNumberOfWavesCtm,
+                                     input.DensityOfWater, input.ImpactNumberC);
                              });
 
             timeDependentOutputItemsPerLocation[locationDependentInput].AddRange(
