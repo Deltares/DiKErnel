@@ -132,7 +132,7 @@ namespace DiKErnel.GpuConsole
 
             stopWatch.Start();
 
-            DataResult<CalculationOutput> result = Calculator.Calculate(calculationInput, locationCalculationMode, timeStepCalculationMode);
+            DataResult<CalculationOutput> result = AsphaltWaveImpactGpuCalculator.Calculate(calculationInput, locationCalculationMode, timeStepCalculationMode);
 
             stopWatch.Stop();
 
