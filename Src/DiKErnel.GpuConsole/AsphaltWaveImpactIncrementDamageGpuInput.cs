@@ -16,7 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
+using ILGPU;
 
 namespace DiKErnel.GpuConsole
 {
@@ -24,9 +24,12 @@ namespace DiKErnel.GpuConsole
     {
         public AsphaltWaveImpactIncrementDamageGpuInput(double logFlexuralStrength, double averageNumberOfWaves, double maximumPeakStress,
                                                         double stiffnessRelation, double computationalThickness, double outerSlope,
-                                                        IReadOnlyList<(double, double)> widthFactors,
-                                                        IReadOnlyList<(double, double)> depthFactors,
-                                                        IReadOnlyList<(double, double)> impactFactors,
+                                                        ArrayView<double> wfValues,
+                                                        ArrayView<double> wfProbabilities,
+                                                        ArrayView<double> dfValues,
+                                                        ArrayView<double> dfProbabilities,
+                                                        ArrayView<double> ifValues,
+                                                        ArrayView<double> ifProbabilities,
                                                         double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
                                                         double fatigueBeta, double impactNumberC)
         {
@@ -36,9 +39,12 @@ namespace DiKErnel.GpuConsole
             StiffnessRelation = stiffnessRelation;
             ComputationalThickness = computationalThickness;
             OuterSlope = outerSlope;
-            WidthFactors = widthFactors;
-            DepthFactors = depthFactors;
-            ImpactFactors = impactFactors;
+            WidthFactorValues = wfValues;
+            WidthFactorProbabilities = wfProbabilities;
+            DepthFactorValues = dfValues;
+            DepthFactorProbabilities = dfProbabilities;
+            ImpactFactorValues = ifValues;
+            ImpactFactorProbabilities = ifProbabilities;
             Z = z;
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
@@ -59,12 +65,6 @@ namespace DiKErnel.GpuConsole
 
         public double OuterSlope { get; }
 
-        public IReadOnlyList<(double, double)> WidthFactors { get; }
-
-        public IReadOnlyList<(double, double)> DepthFactors { get; }
-
-        public IReadOnlyList<(double, double)> ImpactFactors { get; }
-
         public double Z { get; }
 
         public double WaterLevel { get; }
@@ -76,5 +76,17 @@ namespace DiKErnel.GpuConsole
         public double FatigueBeta { get; }
 
         public double ImpactNumberC { get; }
+
+        public ArrayView<double> WidthFactorValues { get; }
+
+        public ArrayView<double> WidthFactorProbabilities { get; }
+
+        public ArrayView<double> DepthFactorValues { get; }
+
+        public ArrayView<double> DepthFactorProbabilities { get; }
+
+        public ArrayView<double> ImpactFactorValues { get; }
+
+        public ArrayView<double> ImpactFactorProbabilities { get; }
     }
 }

@@ -28,6 +28,9 @@ using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Helpers;
 using DiKErnel.Util;
+using ILGPU;
+using ILGPU.Runtime;
+using ILGPU.Runtime.CPU;
 
 namespace DiKErnel.GpuConsole
 {
@@ -152,38 +155,83 @@ namespace DiKErnel.GpuConsole
 
             # endregion
 
-            var timeDependentOutputItemsForLocation = new List<AsphaltWaveImpactTimeDependentGpuOutput>();
-
-            timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count]);
-
-            TimeDependentGpuInput[] timeDependentGpuInputItems = timeDependentInputItems
-                                                                 .Select(tdi => new TimeDependentGpuInput(
-                                                                             tdi.BeginTime, tdi.EndTime, tdi.WaterLevel,
-                                                                             tdi.WaveHeightHm0, tdi.WavePeriodTm10, tdi.WaveDirection))
-                                                                 .ToArray();
-
             var input = new AsphaltWaveImpactGpuInput(logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope, z,
                                                       locationDependentInput.Fatigue.Alpha, locationDependentInput.Fatigue.Beta,
                                                       locationDependentInput.AverageNumberOfWavesCtm,
                                                       locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
 
-            Parallel.ForEach(timeDependentGpuInputItems,
-                             (timeDependentGpuInput, state, index) =>
-                             {
-                                 timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                     timeDependentGpuInput,
-                                     input.LogFlexuralStrength,
-                                     input.StiffnessRelation,
-                                     input.ComputationalThickness,
-                                     input.OuterSlope,
-                                     locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
-                                     locationDependentInput.ImpactFactors,
-                                     input.Z,
-                                     input.FatigueAlpha,
-                                     input.FatigueBeta,
-                                     input.AverageNumberOfWavesCtm,
-                                     input.DensityOfWater, input.ImpactNumberC);
-                             });
+            var context = Context.CreateDefault();
+            Accelerator accelerator = context.CreateCPUAccelerator(0);
+
+            MemoryBuffer1D<TimeDependentGpuInput, Stride1D.Dense> timeDependentGpuInputItems =
+                accelerator.Allocate1D(timeDependentInputItems
+                                       .Select(tdi => new TimeDependentGpuInput(tdi.BeginTime, tdi.EndTime, tdi.WaterLevel,
+                                                                                tdi.WaveHeightHm0, tdi.WavePeriodTm10, tdi.WaveDirection))
+                                       .ToArray());
+
+            MemoryBuffer1D<AsphaltWaveImpactTimeDependentGpuOutput, Stride1D.Dense> timeDependentOutputItemsForLocation =
+                accelerator.Allocate1D<AsphaltWaveImpactTimeDependentGpuOutput>(timeDependentInputItems.Count);
+
+            MemoryBuffer1D<double, Stride1D.Dense> widthFactorValues =
+                accelerator.Allocate1D(locationDependentInput.WidthFactors.Select(widthFactor => widthFactor.Item1).ToArray());
+
+            MemoryBuffer1D<double, Stride1D.Dense> widthFactorProbabilities =
+                accelerator.Allocate1D(locationDependentInput.WidthFactors.Select(widthFactor => widthFactor.Item2).ToArray());
+
+            MemoryBuffer1D<double, Stride1D.Dense> depthFactorValues =
+                accelerator.Allocate1D(locationDependentInput.DepthFactors.Select(depthFactor => depthFactor.Item1).ToArray());
+
+            MemoryBuffer1D<double, Stride1D.Dense> depthFactorProbabilities =
+                accelerator.Allocate1D(locationDependentInput.DepthFactors.Select(depthFactor => depthFactor.Item2).ToArray());
+
+            MemoryBuffer1D<double, Stride1D.Dense> impactFactorValues =
+                accelerator.Allocate1D(locationDependentInput.ImpactFactors.Select(impactFactor => impactFactor.Item1).ToArray());
+
+            MemoryBuffer1D<double, Stride1D.Dense> impactFactorProbabilities =
+                accelerator.Allocate1D(locationDependentInput.ImpactFactors.Select(impactFactor => impactFactor.Item2).ToArray());
+
+            Action<Index1D, ArrayView<TimeDependentGpuInput>, ArrayView<AsphaltWaveImpactTimeDependentGpuOutput>, AsphaltWaveImpactGpuInput,
+                    ArrayView<double>, ArrayView<double>, ArrayView<double>, ArrayView<double>, ArrayView<double>, ArrayView<double>>
+                loadedKernel =
+                    accelerator.LoadAutoGroupedStreamKernel(
+                        (Index1D index,
+                         ArrayView<TimeDependentGpuInput> timeInput,
+                         ArrayView<AsphaltWaveImpactTimeDependentGpuOutput> timeOutput,
+                         AsphaltWaveImpactGpuInput locationInput,
+                         ArrayView<double> wfValues,
+                         ArrayView<double> wfProbabilities,
+                         ArrayView<double> dfValues,
+                         ArrayView<double> dfProbabilities,
+                         ArrayView<double> ifValues,
+                         ArrayView<double> ifProbabilities) =>
+                        {
+                            timeOutput[index] = CalculateTimeStepForLocation(
+                                timeInput[index],
+                                locationInput.LogFlexuralStrength,
+                                locationInput.StiffnessRelation,
+                                locationInput.ComputationalThickness,
+                                locationInput.OuterSlope,
+                                wfValues,
+                                wfProbabilities,
+                                dfValues,
+                                dfProbabilities,
+                                ifValues,
+                                ifProbabilities,
+                                locationInput.Z,
+                                locationInput.FatigueAlpha,
+                                locationInput.FatigueBeta,
+                                locationInput.AverageNumberOfWavesCtm,
+                                locationInput.DensityOfWater, locationInput.ImpactNumberC);
+                        });
+
+            loadedKernel((int) timeDependentOutputItemsForLocation.Length, timeDependentGpuInputItems.View,
+                         timeDependentOutputItemsForLocation.View, input, widthFactorValues.View, widthFactorProbabilities.View,
+                         depthFactorValues.View, depthFactorProbabilities.View, impactFactorValues.View, impactFactorProbabilities.View);
+
+            accelerator.Synchronize();
+
+            accelerator.Dispose();
+            context.Dispose();
 
             timeDependentOutputItemsPerLocation[locationDependentInput].AddRange(
                 timeDependentOutputItemsForLocation.Select(tdo => new AsphaltWaveImpactTimeDependentOutput(
@@ -197,8 +245,9 @@ namespace DiKErnel.GpuConsole
 
         private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
             TimeDependentGpuInput timeDependentInput, double logFlexuralStrength, double stiffnessRelation, double computationalThickness,
-            double outerSlope, IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
-            IReadOnlyList<(double, double)> impactFactors, double z, double fatigueAlpha, double fatigueBeta,
+            double outerSlope, ArrayView<double> wfValues, ArrayView<double> wfProbabilities, ArrayView<double> dfValues,
+            ArrayView<double> dfProbabilities, ArrayView<double> ifValues, ArrayView<double> ifProbabilities,
+            double z, double fatigueAlpha, double fatigueBeta,
             double averageNumberOfWavesCtm, double densityOfWater, double impactNumberC)
         {
             double incrementTime = RevetmentFunctions.IncrementTime(
@@ -212,7 +261,12 @@ namespace DiKErnel.GpuConsole
 
             var input = new AsphaltWaveImpactIncrementDamageGpuInput(
                 logFlexuralStrength, averageNumberOfWaves, maximumPeakStress, stiffnessRelation, computationalThickness, outerSlope,
-                widthFactors, depthFactors, impactFactors, z, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                wfValues,
+                wfProbabilities,
+                dfValues,
+                dfProbabilities,
+                ifValues,
+                ifProbabilities, z, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                 fatigueAlpha, fatigueBeta, impactNumberC);
 
             double incrementDamage = AsphaltWaveImpactGpuFunctions.IncrementDamage(input);

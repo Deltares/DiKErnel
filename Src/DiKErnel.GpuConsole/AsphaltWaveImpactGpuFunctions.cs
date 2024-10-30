@@ -33,14 +33,14 @@ namespace DiKErnel.GpuConsole
             double bendingStressPartial2 = -3 * input.MaximumPeakStress /
                                            (4 * Math.Pow(input.StiffnessRelation, 2) * Math.Pow(input.ComputationalThickness, 2));
 
-            foreach ((double, double) widthFactor in input.WidthFactors)
+            for (var i = 0; i < input.WidthFactorValues.Length; i++)
             {
-                double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, widthFactor.Item1,
+                double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, input.WidthFactorValues[i],
                                                                          input.WaveHeightHm0);
 
                 double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, bendingStressPartial2);
 
-                result += widthFactor.Item2 * depthFactorAccumulation;
+                result += input.WidthFactorProbabilities[i] * depthFactorAccumulation;
             }
 
             return result;
@@ -55,14 +55,15 @@ namespace DiKErnel.GpuConsole
             double cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
             double expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
 
-            foreach ((double, double) depthFactor in input.DepthFactors)
+            for (var i = 0; i < input.DepthFactorValues.Length; i++)
             {
                 double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
-                                                     expNegativeRelativeWidthWaveImpact, sinA, depthFactor.Item1, bendingStressPartial2);
+                                                     expNegativeRelativeWidthWaveImpact, sinA, input.DepthFactorValues[i],
+                                                     bendingStressPartial2);
 
                 double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
 
-                result += depthFactor.Item2 * impactFactorAccumulation;
+                result += input.DepthFactorProbabilities[i] * impactFactorAccumulation;
             }
 
             return result;
@@ -72,12 +73,12 @@ namespace DiKErnel.GpuConsole
         {
             double result = 0;
 
-            for (var i = 0; i < input.ImpactFactors.Count; i++)
+            for (var i = 0; i < input.ImpactFactorValues.Length; i++)
             {
-                double fatigue = Fatigue(input, bendingStress, ImpactNumber(input.OuterSlope, input.ImpactFactors[i].Item1,
+                double fatigue = Fatigue(input, bendingStress, ImpactNumber(input.OuterSlope, input.ImpactFactorValues[i],
                                                                             input.ImpactNumberC));
 
-                result += input.ImpactFactors[i].Item2 * input.AverageNumberOfWaves * fatigue;
+                result += input.ImpactFactorProbabilities[i] * input.AverageNumberOfWaves * fatigue;
             }
 
             return result;
