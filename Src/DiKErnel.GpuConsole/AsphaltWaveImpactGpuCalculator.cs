@@ -105,8 +105,6 @@ namespace DiKErnel.GpuConsole
             IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, AsphaltWaveImpactLocationDependentInput locationDependentInput)
         {
-            locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
-
             # region Location dependent output
 
             double z = profileData.GetVerticalHeight(locationDependentInput.X);
