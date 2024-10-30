@@ -22,6 +22,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
+using DiKErnel.DomainLibrary.Constants;
+using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Helpers;
@@ -160,53 +162,43 @@ namespace DiKErnel.GpuConsole
                              (timeDependentInput, state, index) =>
                              {
                                  timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                     timeDependentInput, locationDependentInput, profileData);
+                                     timeDependentInput, logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope,
+                                     locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
+                                     locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
+                                     locationDependentInput.Fatigue.Beta, locationDependentInput.AverageNumberOfWavesCtm,
+                                     locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
                              });
         }
 
-        private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
-                                                                        ILocationDependentInput locationDependentInput,
-                                                                        IProfileData profileData,
-                                                                        double damageAtStartOfCalculation = double.NaN)
+        private static AsphaltWaveImpactTimeDependentOutput CalculateTimeStepForLocation(
+            ITimeDependentInput timeDependentInput, double logFlexuralStrength, double stiffnessRelation, double computationalThickness,
+            double outerSlope, IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
+            IReadOnlyList<(double, double)> impactFactors, double z, double fatigueAlpha, double fatigueBeta,
+            double averageNumberOfWavesCtm, double densityOfWater, double impactNumberC)
         {
-            double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                    timeDependentInput.EndTime);
+            double incrementTime = RevetmentFunctions.IncrementTime(
+                timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
-            double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
-                                                                                  timeDependentInput.WavePeriodTm10,
-                                                                                  AverageNumberOfWavesCtm);
+            double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(
+                incrementTime, timeDependentInput.WavePeriodTm10, averageNumberOfWavesCtm);
 
-            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(timeDependentInput.WaveHeightHm0,
-                                                                                    NaturalConstants.GravitationalAcceleration,
-                                                                                    DensityOfWater);
+            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(
+                timeDependentInput.WaveHeightHm0, NaturalConstants.GravitationalAcceleration, densityOfWater);
 
-            AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                                                                      averageNumberOfWaves, maximumPeakStress);
+            var input = new AsphaltWaveImpactInput(
+                logFlexuralStrength, averageNumberOfWaves, maximumPeakStress, stiffnessRelation, computationalThickness, outerSlope,
+                widthFactors, depthFactors, impactFactors, z, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                fatigueAlpha, fatigueBeta, impactNumberC);
 
             double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
 
             return new AsphaltWaveImpactTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, averageNumberOfWaves, maximumPeakStress));
-        }
-
-        private AsphaltWaveImpactInput CreateIncrementDamageInput(double waterLevel, double waveHeightHm0, double averageNumberOfWaves,
-                                                                  double maximumPeakStress)
-        {
-            return new AsphaltWaveImpactInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
-                                              stiffnessRelation, computationalThickness, outerSlope, WidthFactors,
-                                              DepthFactors, ImpactFactors, Z, waterLevel, waveHeightHm0, Fatigue.Alpha,
-                                              Fatigue.Beta, ImpactNumberC);
-        }
-
-        private static AsphaltWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double averageNumberOfWaves, double maximumPeakStress)
-        {
-            return new AsphaltWaveImpactTimeDependentOutputConstructionProperties
-            {
-                IncrementDamage = incrementDamage,
-                MaximumPeakStress = maximumPeakStress,
-                AverageNumberOfWaves = averageNumberOfWaves
-            };
+                new AsphaltWaveImpactTimeDependentOutputConstructionProperties
+                {
+                    IncrementDamage = incrementDamage,
+                    MaximumPeakStress = maximumPeakStress,
+                    AverageNumberOfWaves = averageNumberOfWaves
+                });
         }
     }
 }
