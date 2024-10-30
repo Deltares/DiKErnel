@@ -156,11 +156,17 @@ namespace DiKErnel.GpuConsole
 
             timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count]);
 
-            Parallel.ForEach(timeDependentInputItems,
-                             (timeDependentInput, state, index) =>
+            TimeDependentGpuInput[] timeDependentGpuInputItems = timeDependentInputItems
+                                                                 .Select(tdi => new TimeDependentGpuInput(
+                                                                             tdi.BeginTime, tdi.EndTime, tdi.WaterLevel,
+                                                                             tdi.WaveHeightHm0, tdi.WavePeriodTm10, tdi.WaveDirection))
+                                                                 .ToArray();
+
+            Parallel.ForEach(timeDependentGpuInputItems,
+                             (timeDependentGpuInput, state, index) =>
                              {
                                  timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                     timeDependentInput, logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope,
+                                     timeDependentGpuInput, logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope,
                                      locationDependentInput.WidthFactors, locationDependentInput.DepthFactors,
                                      locationDependentInput.ImpactFactors, z, locationDependentInput.Fatigue.Alpha,
                                      locationDependentInput.Fatigue.Beta, locationDependentInput.AverageNumberOfWavesCtm,
@@ -178,7 +184,7 @@ namespace DiKErnel.GpuConsole
         }
 
         private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
-            ITimeDependentInput timeDependentInput, double logFlexuralStrength, double stiffnessRelation, double computationalThickness,
+            TimeDependentGpuInput timeDependentInput, double logFlexuralStrength, double stiffnessRelation, double computationalThickness,
             double outerSlope, IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
             IReadOnlyList<(double, double)> impactFactors, double z, double fatigueAlpha, double fatigueBeta,
             double averageNumberOfWavesCtm, double densityOfWater, double impactNumberC)
