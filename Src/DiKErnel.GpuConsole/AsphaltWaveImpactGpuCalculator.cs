@@ -152,9 +152,9 @@ namespace DiKErnel.GpuConsole
 
             # endregion
 
-            List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
+            var timeDependentOutputItemsForLocation = new List<AsphaltWaveImpactTimeDependentGpuOutput>();
 
-            timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
+            timeDependentOutputItemsForLocation.AddRange(new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count]);
 
             Parallel.ForEach(timeDependentInputItems,
                              (timeDependentInput, state, index) =>
@@ -166,9 +166,18 @@ namespace DiKErnel.GpuConsole
                                      locationDependentInput.Fatigue.Beta, locationDependentInput.AverageNumberOfWavesCtm,
                                      locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
                              });
+
+            timeDependentOutputItemsPerLocation[locationDependentInput].AddRange(
+                timeDependentOutputItemsForLocation.Select(tdo => new AsphaltWaveImpactTimeDependentOutput(
+                                                               new AsphaltWaveImpactTimeDependentOutputConstructionProperties
+                                                               {
+                                                                   IncrementDamage = tdo.IncrementDamage,
+                                                                   MaximumPeakStress = tdo.MaximumPeakStress,
+                                                                   AverageNumberOfWaves = tdo.AverageNumberOfWaves
+                                                               })));
         }
 
-        private static AsphaltWaveImpactTimeDependentOutput CalculateTimeStepForLocation(
+        private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
             ITimeDependentInput timeDependentInput, double logFlexuralStrength, double stiffnessRelation, double computationalThickness,
             double outerSlope, IReadOnlyList<(double, double)> widthFactors, IReadOnlyList<(double, double)> depthFactors,
             IReadOnlyList<(double, double)> impactFactors, double z, double fatigueAlpha, double fatigueBeta,
@@ -190,13 +199,7 @@ namespace DiKErnel.GpuConsole
 
             double incrementDamage = AsphaltWaveImpactGpuFunctions.IncrementDamage(input);
 
-            return new AsphaltWaveImpactTimeDependentOutput(
-                new AsphaltWaveImpactTimeDependentOutputConstructionProperties
-                {
-                    IncrementDamage = incrementDamage,
-                    MaximumPeakStress = maximumPeakStress,
-                    AverageNumberOfWaves = averageNumberOfWaves
-                });
+            return new AsphaltWaveImpactTimeDependentGpuOutput(incrementDamage, maximumPeakStress, averageNumberOfWaves);
         }
     }
 }
