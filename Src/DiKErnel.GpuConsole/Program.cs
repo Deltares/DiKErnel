@@ -126,13 +126,14 @@ namespace DiKErnel.GpuConsole
         private static void CalculateAndWriteOutput(ICalculationInput calculationInput)
         {
             const CalculationMode locationCalculationMode = CalculationMode.Sequential;
-            const CalculationMode timeStepCalculationMode = CalculationMode.Parallel;
 
             var stopWatch = new Stopwatch();
 
             stopWatch.Start();
 
-            DataResult<CalculationOutput> result = AsphaltWaveImpactGpuCalculator.Calculate(calculationInput, locationCalculationMode, timeStepCalculationMode);
+            DataResult<CalculationOutput> result = AsphaltWaveImpactGpuCalculator.Calculate(
+                calculationInput.ProfileData, calculationInput.LocationDependentInputItems, calculationInput.TimeDependentInputItems,
+                locationCalculationMode);
 
             stopWatch.Stop();
 
@@ -140,7 +141,6 @@ namespace DiKErnel.GpuConsole
                                    $"{calculationInput.LocationDependentInputItems.Count,4};" +
                                    $"{calculationInput.TimeDependentInputItems.Count,8};" +
                                    $"{locationCalculationMode,15};" +
-                                   $"{timeStepCalculationMode,15};" +
                                    $"{Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture),7};";
 
             for (var i = 0; i < result.Data.LocationDependentOutputItems.Count; i++)
