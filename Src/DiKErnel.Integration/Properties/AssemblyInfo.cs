@@ -18,6 +18,5 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("DiKErnel.GpuConsole")]
 [assembly: InternalsVisibleTo("DiKErnel.Integration.Test")]
 [assembly: InternalsVisibleTo("DiKErnel.Integration.TestUtil")]

@@ -59,8 +59,4 @@
         <ProjectReference Include="..\DiKErnel.Integration\DiKErnel.Integration.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="ILGPU" Version="1.5.1" />
-    </ItemGroup>
-
 </Project>
