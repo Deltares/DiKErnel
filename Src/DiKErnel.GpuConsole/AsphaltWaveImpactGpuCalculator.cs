@@ -188,7 +188,7 @@ namespace DiKErnel.GpuConsole
                 widthFactors, depthFactors, impactFactors, z, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                 fatigueAlpha, fatigueBeta, impactNumberC);
 
-            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
+            double incrementDamage = AsphaltWaveImpactGpuFunctions.IncrementDamage(input);
 
             return new AsphaltWaveImpactTimeDependentOutput(
                 new AsphaltWaveImpactTimeDependentOutputConstructionProperties
