@@ -18,7 +18,7 @@
 
 namespace DiKErnel.GpuConsole
 {
-    internal struct TimeDependentGpuInput
+    public struct TimeDependentGpuInput
     {
         public TimeDependentGpuInput(double beginTime, double endTime, double waterLevel, double waveHeightHm0,
                                      double wavePeriodTm10, double waveDirection)

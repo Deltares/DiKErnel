@@ -159,8 +159,15 @@ namespace DiKErnel.GpuConsole
                                                       locationDependentInput.Fatigue.Alpha, locationDependentInput.Fatigue.Beta,
                                                       locationDependentInput.AverageNumberOfWavesCtm,
                                                       locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
+            
+            using Context context = Context.Create(builder => builder.AllAccelerators());
+            Console.WriteLine("Context: " + context.ToString());
 
-            var context = Context.CreateDefault();
+            Device d = context.GetPreferredDevice(preferCPU: false);
+            Accelerator a = d.CreateAccelerator(context);
+
+            a.PrintInformation();
+            
             Accelerator accelerator = context.CreateCPUAccelerator(0);
 
             MemoryBuffer1D<TimeDependentGpuInput, Stride1D.Dense> timeDependentGpuInputItems =
@@ -230,9 +237,6 @@ namespace DiKErnel.GpuConsole
 
             accelerator.Synchronize();
 
-            accelerator.Dispose();
-            context.Dispose();
-
             for (var i = 0; i < timeDependentOutputItemsForLocation.View.Length; i++)
             {
                 AsphaltWaveImpactTimeDependentGpuOutput asphaltWaveImpactTimeDependentGpuOutput =
@@ -247,6 +251,9 @@ namespace DiKErnel.GpuConsole
                             AverageNumberOfWaves = asphaltWaveImpactTimeDependentGpuOutput.AverageNumberOfWaves
                         }));
             }
+            
+            accelerator.Dispose();
+            context.Dispose();
         }
 
         private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
