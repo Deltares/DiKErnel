@@ -192,7 +192,7 @@ namespace DiKErnel.GpuConsole
             double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(
                 timeDependentInput.WaveHeightHm0, NaturalConstants.GravitationalAcceleration, densityOfWater);
 
-            var input = new AsphaltWaveImpactGpuInput(
+            var input = new AsphaltWaveImpactIncrementDamageGpuInput(
                 logFlexuralStrength, averageNumberOfWaves, maximumPeakStress, stiffnessRelation, computationalThickness, outerSlope,
                 widthFactors, depthFactors, impactFactors, z, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                 fatigueAlpha, fatigueBeta, impactNumberC);

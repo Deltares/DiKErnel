@@ -25,7 +25,7 @@ namespace DiKErnel.GpuConsole
     {
         private static readonly double bendingStressPartial1 = Math.Pow(10, -99);
 
-        public static double IncrementDamage(AsphaltWaveImpactGpuInput input)
+        public static double IncrementDamage(AsphaltWaveImpactIncrementDamageGpuInput input)
         {
             double result = 0;
 
@@ -53,8 +53,8 @@ namespace DiKErnel.GpuConsole
             return result;
         }
 
-        private static double DepthFactorAccumulation(AsphaltWaveImpactGpuInput input, double relativeWidthWaveImpact, double sinA,
-                                                      double[] impactNumberLookup, double bendingStressPartial2)
+        private static double DepthFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, double relativeWidthWaveImpact,
+                                                      double sinA, double[] impactNumberLookup, double bendingStressPartial2)
         {
             double result = 0;
 
@@ -75,7 +75,8 @@ namespace DiKErnel.GpuConsole
             return result;
         }
 
-        private static double ImpactFactorAccumulation(AsphaltWaveImpactGpuInput input, double bendingStress, double[] impactNumberLookup)
+        private static double ImpactFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, double bendingStress,
+                                                       double[] impactNumberLookup)
         {
             double result = 0;
 
@@ -89,7 +90,7 @@ namespace DiKErnel.GpuConsole
             return result;
         }
 
-        private static double Fatigue(AsphaltWaveImpactGpuInput input, double bendingStress, double impactNumber)
+        private static double Fatigue(AsphaltWaveImpactIncrementDamageGpuInput input, double bendingStress, double impactNumber)
         {
             double logTension = LogTension(bendingStress, impactNumber);
 
@@ -106,7 +107,7 @@ namespace DiKErnel.GpuConsole
             return 4 * impactNumberC * outerSlope * impactFactorValue;
         }
 
-        private static double BendingStress(AsphaltWaveImpactGpuInput input, double relativeWidthWaveImpact,
+        private static double BendingStress(AsphaltWaveImpactIncrementDamageGpuInput input, double relativeWidthWaveImpact,
                                             double sinRelativeWidthWaveImpact, double cosRelativeWidthWaveImpact,
                                             double expNegativeRelativeWidthWaveImpact, double sinA, double depthFactorValue,
                                             double bendingStressPartial2)
@@ -118,10 +119,10 @@ namespace DiKErnel.GpuConsole
             return Math.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
         }
 
-        private static double SpatialDistributionBendingStress(AsphaltWaveImpactGpuInput input, double relativeWidthWaveImpact,
-                                                               double sinRelativeWidthWaveImpact, double cosRelativeWidthWaveImpact,
-                                                               double expNegativeRelativeWidthWaveImpact, double sinA,
-                                                               double depthFactorValue)
+        private static double SpatialDistributionBendingStress(AsphaltWaveImpactIncrementDamageGpuInput input,
+                                                               double relativeWidthWaveImpact, double sinRelativeWidthWaveImpact,
+                                                               double cosRelativeWidthWaveImpact, double expNegativeRelativeWidthWaveImpact,
+                                                               double sinA, double depthFactorValue)
         {
             double relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
 
@@ -161,7 +162,7 @@ namespace DiKErnel.GpuConsole
             return Math.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
         }
 
-        private static double RelativeDistanceCenterWaveImpact(AsphaltWaveImpactGpuInput input, double depthFactorValue,
+        private static double RelativeDistanceCenterWaveImpact(AsphaltWaveImpactIncrementDamageGpuInput input, double depthFactorValue,
                                                                double sinA)
         {
             return Math.Min(85, input.StiffnessRelation

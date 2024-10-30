@@ -20,15 +20,15 @@ using System.Collections.Generic;
 
 namespace DiKErnel.GpuConsole
 {
-    public struct AsphaltWaveImpactGpuInput
+    public struct AsphaltWaveImpactIncrementDamageGpuInput
     {
-        public AsphaltWaveImpactGpuInput(double logFlexuralStrength, double averageNumberOfWaves, double maximumPeakStress,
-                                         double stiffnessRelation, double computationalThickness, double outerSlope,
-                                         IReadOnlyList<(double, double)> widthFactors,
-                                         IReadOnlyList<(double, double)> depthFactors,
-                                         IReadOnlyList<(double, double)> impactFactors,
-                                         double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
-                                         double fatigueBeta, double impactNumberC)
+        public AsphaltWaveImpactIncrementDamageGpuInput(double logFlexuralStrength, double averageNumberOfWaves, double maximumPeakStress,
+                                                        double stiffnessRelation, double computationalThickness, double outerSlope,
+                                                        IReadOnlyList<(double, double)> widthFactors,
+                                                        IReadOnlyList<(double, double)> depthFactors,
+                                                        IReadOnlyList<(double, double)> impactFactors,
+                                                        double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
+                                                        double fatigueBeta, double impactNumberC)
         {
             LogFlexuralStrength = logFlexuralStrength;
             AverageNumberOfWaves = averageNumberOfWaves;
