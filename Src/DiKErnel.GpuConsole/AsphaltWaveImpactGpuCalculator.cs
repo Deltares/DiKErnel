@@ -233,14 +233,20 @@ namespace DiKErnel.GpuConsole
             accelerator.Dispose();
             context.Dispose();
 
-            timeDependentOutputItemsPerLocation[locationDependentInput].AddRange(
-                timeDependentOutputItemsForLocation.Select(tdo => new AsphaltWaveImpactTimeDependentOutput(
-                                                               new AsphaltWaveImpactTimeDependentOutputConstructionProperties
-                                                               {
-                                                                   IncrementDamage = tdo.IncrementDamage,
-                                                                   MaximumPeakStress = tdo.MaximumPeakStress,
-                                                                   AverageNumberOfWaves = tdo.AverageNumberOfWaves
-                                                               })));
+            for (var i = 0; i < timeDependentOutputItemsForLocation.View.Length; i++)
+            {
+                AsphaltWaveImpactTimeDependentGpuOutput asphaltWaveImpactTimeDependentGpuOutput =
+                    timeDependentOutputItemsForLocation.View[i];
+
+                timeDependentOutputItemsPerLocation[locationDependentInput].Add(
+                    new AsphaltWaveImpactTimeDependentOutput(
+                        new AsphaltWaveImpactTimeDependentOutputConstructionProperties
+                        {
+                            IncrementDamage = asphaltWaveImpactTimeDependentGpuOutput.IncrementDamage,
+                            MaximumPeakStress = asphaltWaveImpactTimeDependentGpuOutput.MaximumPeakStress,
+                            AverageNumberOfWaves = asphaltWaveImpactTimeDependentGpuOutput.AverageNumberOfWaves
+                        }));
+            }
         }
 
         private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
