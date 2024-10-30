@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using System.Linq;
 
 namespace DiKErnel.GpuConsole
 {
@@ -34,18 +33,12 @@ namespace DiKErnel.GpuConsole
             double bendingStressPartial2 = -3 * input.MaximumPeakStress /
                                            (4 * Math.Pow(input.StiffnessRelation, 2) * Math.Pow(input.ComputationalThickness, 2));
 
-            double[] impactNumberLookup = input.ImpactFactors
-                                               .Select(impactFactor => ImpactNumber(input.OuterSlope, impactFactor.Item1,
-                                                                                    input.ImpactNumberC))
-                                               .ToArray();
-
             foreach ((double, double) widthFactor in input.WidthFactors)
             {
                 double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, widthFactor.Item1,
                                                                          input.WaveHeightHm0);
 
-                double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, impactNumberLookup,
-                                                                         bendingStressPartial2);
+                double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, bendingStressPartial2);
 
                 result += widthFactor.Item2 * depthFactorAccumulation;
             }
@@ -54,7 +47,7 @@ namespace DiKErnel.GpuConsole
         }
 
         private static double DepthFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, double relativeWidthWaveImpact,
-                                                      double sinA, double[] impactNumberLookup, double bendingStressPartial2)
+                                                      double sinA, double bendingStressPartial2)
         {
             double result = 0;
 
@@ -67,7 +60,7 @@ namespace DiKErnel.GpuConsole
                 double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
                                                      expNegativeRelativeWidthWaveImpact, sinA, depthFactor.Item1, bendingStressPartial2);
 
-                double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress, impactNumberLookup);
+                double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
 
                 result += depthFactor.Item2 * impactFactorAccumulation;
             }
@@ -75,14 +68,14 @@ namespace DiKErnel.GpuConsole
             return result;
         }
 
-        private static double ImpactFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, double bendingStress,
-                                                       double[] impactNumberLookup)
+        private static double ImpactFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, double bendingStress)
         {
             double result = 0;
 
             for (var i = 0; i < input.ImpactFactors.Count; i++)
             {
-                double fatigue = Fatigue(input, bendingStress, impactNumberLookup[i]);
+                double fatigue = Fatigue(input, bendingStress, ImpactNumber(input.OuterSlope, input.ImpactFactors[i].Item1,
+                                                                            input.ImpactNumberC));
 
                 result += input.ImpactFactors[i].Item2 * input.AverageNumberOfWaves * fatigue;
             }
