@@ -236,10 +236,12 @@ namespace DiKErnel.GpuConsole
 
             accelerator.Synchronize();
 
-            for (var i = 0; i < timeDependentOutputItemsForLocation.View.Length; i++)
+            var timeDependentOutputItemsForLocationOnCpu = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count];
+                
+            for (var i = 0; i < timeDependentOutputItemsForLocationOnCpu.Length; i++)
             {
                 AsphaltWaveImpactTimeDependentGpuOutput asphaltWaveImpactTimeDependentGpuOutput =
-                    timeDependentOutputItemsForLocation.View[i];
+                    timeDependentOutputItemsForLocationOnCpu[i];
 
                 timeDependentOutputItemsPerLocation[locationDependentInput].Add(
                     new AsphaltWaveImpactTimeDependentOutput(
