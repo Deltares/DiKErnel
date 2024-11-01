@@ -261,8 +261,7 @@ namespace DiKErnel.GpuConsole
             float z, float fatigueAlpha, float fatigueBeta,
             float averageNumberOfWavesCtm, float densityOfWater, float impactNumberC)
         {
-            double incrementTime = RevetmentFunctions.IncrementTime(
-                timeDependentInput.BeginTime, timeDependentInput.EndTime);
+            float incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
 
             double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(
                 incrementTime, timeDependentInput.WavePeriodTm10, averageNumberOfWavesCtm);

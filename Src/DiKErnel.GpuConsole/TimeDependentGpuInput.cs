@@ -20,8 +20,8 @@ namespace DiKErnel.GpuConsole
 {
     public struct TimeDependentGpuInput
     {
-        public TimeDependentGpuInput(double beginTime, double endTime, double waterLevel, double waveHeightHm0,
-                                     double wavePeriodTm10, double waveDirection)
+        public TimeDependentGpuInput(float beginTime, float endTime, float waterLevel, float waveHeightHm0,
+                                     float wavePeriodTm10, float waveDirection)
         {
             BeginTime = beginTime;
             EndTime = endTime;
@@ -31,16 +31,16 @@ namespace DiKErnel.GpuConsole
             WaveDirection = waveDirection;
         }
 
-        public double BeginTime { get; }
+        public float BeginTime { get; }
 
-        public double EndTime { get; }
+        public float EndTime { get; }
 
-        public double WaterLevel { get; }
+        public float WaterLevel { get; }
 
-        public double WaveHeightHm0 { get; }
+        public float WaveHeightHm0 { get; }
 
-        public double WavePeriodTm10 { get; }
+        public float WavePeriodTm10 { get; }
 
-        public double WaveDirection { get; }
+        public float WaveDirection { get; }
     }
 }
