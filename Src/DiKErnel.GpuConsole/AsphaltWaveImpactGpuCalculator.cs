@@ -170,45 +170,46 @@ namespace DiKErnel.GpuConsole
 
             MemoryBuffer1D<TimeDependentGpuInput, Stride1D.Dense> timeDependentGpuInputItems =
                 accelerator.Allocate1D(timeDependentInputItems
-                                       .Select(tdi => new TimeDependentGpuInput(tdi.BeginTime, tdi.EndTime, tdi.WaterLevel,
-                                                                                tdi.WaveHeightHm0, tdi.WavePeriodTm10, tdi.WaveDirection))
+                                       .Select(tdi => new TimeDependentGpuInput((float) tdi.BeginTime, (float) tdi.EndTime,
+                                                                                (float) tdi.WaterLevel, (float) tdi.WaveHeightHm0,
+                                                                                (float) tdi.WavePeriodTm10, (float) tdi.WaveDirection))
                                        .ToArray());
 
             MemoryBuffer1D<AsphaltWaveImpactTimeDependentGpuOutput, Stride1D.Dense> timeDependentOutputItemsForLocation =
                 accelerator.Allocate1D<AsphaltWaveImpactTimeDependentGpuOutput>(timeDependentInputItems.Count);
 
-            MemoryBuffer1D<double, Stride1D.Dense> widthFactorValues =
-                accelerator.Allocate1D(locationDependentInput.WidthFactors.Select(widthFactor => widthFactor.Item1).ToArray());
+            MemoryBuffer1D<float, Stride1D.Dense> widthFactorValues =
+                accelerator.Allocate1D(locationDependentInput.WidthFactors.Select(widthFactor => (float) widthFactor.Item1).ToArray());
 
-            MemoryBuffer1D<double, Stride1D.Dense> widthFactorProbabilities =
-                accelerator.Allocate1D(locationDependentInput.WidthFactors.Select(widthFactor => widthFactor.Item2).ToArray());
+            MemoryBuffer1D<float, Stride1D.Dense> widthFactorProbabilities =
+                accelerator.Allocate1D(locationDependentInput.WidthFactors.Select(widthFactor => (float) widthFactor.Item2).ToArray());
 
-            MemoryBuffer1D<double, Stride1D.Dense> depthFactorValues =
-                accelerator.Allocate1D(locationDependentInput.DepthFactors.Select(depthFactor => depthFactor.Item1).ToArray());
+            MemoryBuffer1D<float, Stride1D.Dense> depthFactorValues =
+                accelerator.Allocate1D(locationDependentInput.DepthFactors.Select(depthFactor => (float) depthFactor.Item1).ToArray());
 
-            MemoryBuffer1D<double, Stride1D.Dense> depthFactorProbabilities =
-                accelerator.Allocate1D(locationDependentInput.DepthFactors.Select(depthFactor => depthFactor.Item2).ToArray());
+            MemoryBuffer1D<float, Stride1D.Dense> depthFactorProbabilities =
+                accelerator.Allocate1D(locationDependentInput.DepthFactors.Select(depthFactor => (float) depthFactor.Item2).ToArray());
 
-            MemoryBuffer1D<double, Stride1D.Dense> impactFactorValues =
-                accelerator.Allocate1D(locationDependentInput.ImpactFactors.Select(impactFactor => impactFactor.Item1).ToArray());
+            MemoryBuffer1D<float, Stride1D.Dense> impactFactorValues =
+                accelerator.Allocate1D(locationDependentInput.ImpactFactors.Select(impactFactor => (float) impactFactor.Item1).ToArray());
 
-            MemoryBuffer1D<double, Stride1D.Dense> impactFactorProbabilities =
-                accelerator.Allocate1D(locationDependentInput.ImpactFactors.Select(impactFactor => impactFactor.Item2).ToArray());
+            MemoryBuffer1D<float, Stride1D.Dense> impactFactorProbabilities =
+                accelerator.Allocate1D(locationDependentInput.ImpactFactors.Select(impactFactor => (float) impactFactor.Item2).ToArray());
 
             Action<Index1D, ArrayView<TimeDependentGpuInput>, ArrayView<AsphaltWaveImpactTimeDependentGpuOutput>, AsphaltWaveImpactGpuInput,
-                    ArrayView<double>, ArrayView<double>, ArrayView<double>, ArrayView<double>, ArrayView<double>, ArrayView<double>>
+                    ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>>
                 loadedKernel =
                     accelerator.LoadAutoGroupedStreamKernel(
                         (Index1D index,
                          ArrayView<TimeDependentGpuInput> timeInput,
                          ArrayView<AsphaltWaveImpactTimeDependentGpuOutput> timeOutput,
                          AsphaltWaveImpactGpuInput locationInput,
-                         ArrayView<double> wfValues,
-                         ArrayView<double> wfProbabilities,
-                         ArrayView<double> dfValues,
-                         ArrayView<double> dfProbabilities,
-                         ArrayView<double> ifValues,
-                         ArrayView<double> ifProbabilities) =>
+                         ArrayView<float> wfValues,
+                         ArrayView<float> wfProbabilities,
+                         ArrayView<float> dfValues,
+                         ArrayView<float> dfProbabilities,
+                         ArrayView<float> ifValues,
+                         ArrayView<float> ifProbabilities) =>
                         {
                             timeOutput[index] = CalculateTimeStepForLocation(
                                 timeInput[index],
