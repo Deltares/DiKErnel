@@ -255,11 +255,11 @@ namespace DiKErnel.GpuConsole
         }
 
         private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
-            TimeDependentGpuInput timeDependentInput, double logFlexuralStrength, double stiffnessRelation, double computationalThickness,
-            double outerSlope, ArrayView<double> wfValues, ArrayView<double> wfProbabilities, ArrayView<double> dfValues,
-            ArrayView<double> dfProbabilities, ArrayView<double> ifValues, ArrayView<double> ifProbabilities,
-            double z, double fatigueAlpha, double fatigueBeta,
-            double averageNumberOfWavesCtm, double densityOfWater, double impactNumberC)
+            TimeDependentGpuInput timeDependentInput, float logFlexuralStrength, float stiffnessRelation, float computationalThickness,
+            float outerSlope, ArrayView<float> wfValues, ArrayView<float> wfProbabilities, ArrayView<float> dfValues,
+            ArrayView<float> dfProbabilities, ArrayView<float> ifValues, ArrayView<float> ifProbabilities,
+            float z, float fatigueAlpha, float fatigueBeta,
+            float averageNumberOfWavesCtm, float densityOfWater, float impactNumberC)
         {
             double incrementTime = RevetmentFunctions.IncrementTime(
                 timeDependentInput.BeginTime, timeDependentInput.EndTime);
@@ -280,7 +280,7 @@ namespace DiKErnel.GpuConsole
                 ifProbabilities, z, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                 fatigueAlpha, fatigueBeta, impactNumberC);
 
-            double incrementDamage = AsphaltWaveImpactGpuFunctions.IncrementDamage(input);
+            float incrementDamage = AsphaltWaveImpactGpuFunctions.IncrementDamage(input);
 
             return new AsphaltWaveImpactTimeDependentGpuOutput(incrementDamage, maximumPeakStress, averageNumberOfWaves);
         }
