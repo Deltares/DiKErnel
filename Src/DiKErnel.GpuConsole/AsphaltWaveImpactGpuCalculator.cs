@@ -31,6 +31,7 @@ using DiKErnel.Util;
 using ILGPU;
 using ILGPU.Runtime;
 using ILGPU.Runtime.CPU;
+using ILGPU.Runtime.Cuda;
 
 namespace DiKErnel.GpuConsole
 {
@@ -160,15 +161,10 @@ namespace DiKErnel.GpuConsole
                                                       locationDependentInput.AverageNumberOfWavesCtm,
                                                       locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
             
-            using Context context = Context.Create(builder => builder.AllAccelerators());
-            Console.WriteLine("Context: " + context.ToString());
+            var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
+            Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
 
-            Device d = context.GetPreferredDevice(preferCPU: false);
-            Accelerator a = d.CreateAccelerator(context);
-
-            a.PrintInformation();
-            
-            Accelerator accelerator = context.CreateCPUAccelerator(0);
+            accelerator.PrintInformation();
 
             MemoryBuffer1D<TimeDependentGpuInput, Stride1D.Dense> timeDependentGpuInputItems =
                 accelerator.Allocate1D(timeDependentInputItems
