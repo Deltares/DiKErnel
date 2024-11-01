@@ -22,23 +22,23 @@ namespace DiKErnel.GpuConsole
 {
     public static class AsphaltWaveImpactGpuFunctions
     {
-        private static readonly double bendingStressPartial1 = Math.Pow(10, -99);
+        private static readonly float bendingStressPartial1 = MathF.Pow(10, -99);
 
-        public static double IncrementDamage(AsphaltWaveImpactIncrementDamageGpuInput input)
+        public static float IncrementDamage(AsphaltWaveImpactIncrementDamageGpuInput input)
         {
-            double result = 0;
+            float result = 0;
 
-            double sinA = Math.Sin(Math.Atan(input.OuterSlope));
+            float sinA = MathF.Sin(MathF.Atan(input.OuterSlope));
 
-            double bendingStressPartial2 = -3 * input.MaximumPeakStress /
-                                           (4 * Math.Pow(input.StiffnessRelation, 2) * Math.Pow(input.ComputationalThickness, 2));
+            float bendingStressPartial2 = -3 * input.MaximumPeakStress /
+                                          (4 * MathF.Pow(input.StiffnessRelation, 2) * MathF.Pow(input.ComputationalThickness, 2));
 
             for (var i = 0; i < input.WidthFactorValues.Length; i++)
             {
-                double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, input.WidthFactorValues[i],
-                                                                         input.WaveHeightHm0);
+                float relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, input.WidthFactorValues[i],
+                                                                        input.WaveHeightHm0);
 
-                double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, bendingStressPartial2);
+                float depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, bendingStressPartial2);
 
                 result += input.WidthFactorProbabilities[i] * depthFactorAccumulation;
             }
@@ -46,22 +46,22 @@ namespace DiKErnel.GpuConsole
             return result;
         }
 
-        private static double DepthFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, double relativeWidthWaveImpact,
-                                                      double sinA, double bendingStressPartial2)
+        private static float DepthFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, float relativeWidthWaveImpact,
+                                                     float sinA, float bendingStressPartial2)
         {
-            double result = 0;
+            float result = 0;
 
-            double sinRelativeWidthWaveImpact = Math.Sin(relativeWidthWaveImpact);
-            double cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
-            double expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
+            float sinRelativeWidthWaveImpact = MathF.Sin(relativeWidthWaveImpact);
+            float cosRelativeWidthWaveImpact = MathF.Cos(relativeWidthWaveImpact);
+            float expNegativeRelativeWidthWaveImpact = MathF.Exp(-relativeWidthWaveImpact);
 
             for (var i = 0; i < input.DepthFactorValues.Length; i++)
             {
-                double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
-                                                     expNegativeRelativeWidthWaveImpact, sinA, input.DepthFactorValues[i],
-                                                     bendingStressPartial2);
+                float bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
+                                                    expNegativeRelativeWidthWaveImpact, sinA, input.DepthFactorValues[i],
+                                                    bendingStressPartial2);
 
-                double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
+                float impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
 
                 result += input.DepthFactorProbabilities[i] * impactFactorAccumulation;
             }
@@ -69,14 +69,14 @@ namespace DiKErnel.GpuConsole
             return result;
         }
 
-        private static double ImpactFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, double bendingStress)
+        private static float ImpactFactorAccumulation(AsphaltWaveImpactIncrementDamageGpuInput input, float bendingStress)
         {
-            double result = 0;
+            float result = 0;
 
             for (var i = 0; i < input.ImpactFactorValues.Length; i++)
             {
-                double fatigue = Fatigue(input, bendingStress, ImpactNumber(input.OuterSlope, input.ImpactFactorValues[i],
-                                                                            input.ImpactNumberC));
+                float fatigue = Fatigue(input, bendingStress, ImpactNumber(input.OuterSlope, input.ImpactFactorValues[i],
+                                                                           input.ImpactNumberC));
 
                 result += input.ImpactFactorProbabilities[i] * input.AverageNumberOfWaves * fatigue;
             }
@@ -84,49 +84,49 @@ namespace DiKErnel.GpuConsole
             return result;
         }
 
-        private static double Fatigue(AsphaltWaveImpactIncrementDamageGpuInput input, double bendingStress, double impactNumber)
+        private static float Fatigue(AsphaltWaveImpactIncrementDamageGpuInput input, float bendingStress, float impactNumber)
         {
-            double logTension = LogTension(bendingStress, impactNumber);
+            float logTension = LogTension(bendingStress, impactNumber);
 
-            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
+            return MathF.Pow(10, -input.FatigueBeta * MathF.Pow(MathF.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
         }
 
-        private static double LogTension(double bendingStress, double impactNumber)
+        private static float LogTension(float bendingStress, float impactNumber)
         {
-            return Math.Log10(impactNumber * bendingStress);
+            return MathF.Log10(impactNumber * bendingStress);
         }
 
-        private static double ImpactNumber(double outerSlope, double impactFactorValue, double impactNumberC)
+        private static float ImpactNumber(float outerSlope, float impactFactorValue, float impactNumberC)
         {
             return 4 * impactNumberC * outerSlope * impactFactorValue;
         }
 
-        private static double BendingStress(AsphaltWaveImpactIncrementDamageGpuInput input, double relativeWidthWaveImpact,
-                                            double sinRelativeWidthWaveImpact, double cosRelativeWidthWaveImpact,
-                                            double expNegativeRelativeWidthWaveImpact, double sinA, double depthFactorValue,
-                                            double bendingStressPartial2)
+        private static float BendingStress(AsphaltWaveImpactIncrementDamageGpuInput input, float relativeWidthWaveImpact,
+                                           float sinRelativeWidthWaveImpact, float cosRelativeWidthWaveImpact,
+                                           float expNegativeRelativeWidthWaveImpact, float sinA, float depthFactorValue,
+                                           float bendingStressPartial2)
         {
-            double spatialDistributionBendingStress = SpatialDistributionBendingStress(
+            float spatialDistributionBendingStress = SpatialDistributionBendingStress(
                 input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact, expNegativeRelativeWidthWaveImpact,
                 sinA, depthFactorValue);
 
-            return Math.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
+            return MathF.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
         }
 
-        private static double SpatialDistributionBendingStress(AsphaltWaveImpactIncrementDamageGpuInput input,
-                                                               double relativeWidthWaveImpact, double sinRelativeWidthWaveImpact,
-                                                               double cosRelativeWidthWaveImpact, double expNegativeRelativeWidthWaveImpact,
-                                                               double sinA, double depthFactorValue)
+        private static float SpatialDistributionBendingStress(AsphaltWaveImpactIncrementDamageGpuInput input,
+                                                              float relativeWidthWaveImpact, float sinRelativeWidthWaveImpact,
+                                                              float cosRelativeWidthWaveImpact, float expNegativeRelativeWidthWaveImpact,
+                                                              float sinA, float depthFactorValue)
         {
-            double relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
+            float relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
 
-            double sinRelativeDistanceCenterWaveImpact = Math.Sin(relativeDistanceCenterWaveImpact);
-            double cosRelativeDistanceCenterWaveImpact = Math.Cos(relativeDistanceCenterWaveImpact);
-            double expNegativeRelativeDistanceCenterWaveImpact = Math.Exp(-relativeDistanceCenterWaveImpact);
+            float sinRelativeDistanceCenterWaveImpact = MathF.Sin(relativeDistanceCenterWaveImpact);
+            float cosRelativeDistanceCenterWaveImpact = MathF.Cos(relativeDistanceCenterWaveImpact);
+            float expNegativeRelativeDistanceCenterWaveImpact = MathF.Exp(-relativeDistanceCenterWaveImpact);
 
             if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
             {
-                double expRelativeDistanceCenterWaveImpact = Math.Exp(relativeDistanceCenterWaveImpact);
+                float expRelativeDistanceCenterWaveImpact = MathF.Exp(relativeDistanceCenterWaveImpact);
 
                 return (-sinRelativeDistanceCenterWaveImpact
                         * (expRelativeDistanceCenterWaveImpact - expNegativeRelativeDistanceCenterWaveImpact)
@@ -139,7 +139,7 @@ namespace DiKErnel.GpuConsole
                        / relativeWidthWaveImpact;
             }
 
-            double expRelativeWidthWaveImpact = Math.Exp(relativeWidthWaveImpact);
+            float expRelativeWidthWaveImpact = MathF.Exp(relativeWidthWaveImpact);
 
             return (cosRelativeDistanceCenterWaveImpact
                     * (expRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact)
@@ -151,16 +151,16 @@ namespace DiKErnel.GpuConsole
                    * expNegativeRelativeDistanceCenterWaveImpact / relativeWidthWaveImpact;
         }
 
-        private static double RelativeWidthWaveImpact(double stiffnessRelation, double widthFactorValue, double waveHeightHm0)
+        private static float RelativeWidthWaveImpact(float stiffnessRelation, float widthFactorValue, float waveHeightHm0)
         {
-            return Math.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
+            return MathF.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
         }
 
-        private static double RelativeDistanceCenterWaveImpact(AsphaltWaveImpactIncrementDamageGpuInput input, double depthFactorValue,
-                                                               double sinA)
+        private static float RelativeDistanceCenterWaveImpact(AsphaltWaveImpactIncrementDamageGpuInput input, float depthFactorValue,
+                                                              float sinA)
         {
-            return Math.Min(85, input.StiffnessRelation
-                                * Math.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
+            return MathF.Min(85, input.StiffnessRelation
+                                 * MathF.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
         }
     }
 }
