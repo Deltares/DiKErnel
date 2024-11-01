@@ -30,7 +30,6 @@ using DiKErnel.Integration.Helpers;
 using DiKErnel.Util;
 using ILGPU;
 using ILGPU.Runtime;
-using ILGPU.Runtime.CPU;
 using ILGPU.Runtime.Cuda;
 
 namespace DiKErnel.GpuConsole
@@ -156,11 +155,14 @@ namespace DiKErnel.GpuConsole
 
             # endregion
 
-            var input = new AsphaltWaveImpactGpuInput(logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope, z,
-                                                      locationDependentInput.Fatigue.Alpha, locationDependentInput.Fatigue.Beta,
-                                                      locationDependentInput.AverageNumberOfWavesCtm,
-                                                      locationDependentInput.DensityOfWater, locationDependentInput.ImpactNumberC);
-            
+            var input = new AsphaltWaveImpactGpuInput((float) logFlexuralStrength, (float) stiffnessRelation,
+                                                      (float) computationalThickness, (float) outerSlope, (float) z,
+                                                      (float) locationDependentInput.Fatigue.Alpha,
+                                                      (float) locationDependentInput.Fatigue.Beta,
+                                                      (float) locationDependentInput.AverageNumberOfWavesCtm,
+                                                      (float) locationDependentInput.DensityOfWater,
+                                                      (float) locationDependentInput.ImpactNumberC);
+
             var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
             Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
 
@@ -247,7 +249,7 @@ namespace DiKErnel.GpuConsole
                             AverageNumberOfWaves = asphaltWaveImpactTimeDependentGpuOutput.AverageNumberOfWaves
                         }));
             }
-            
+
             accelerator.Dispose();
             context.Dispose();
         }
