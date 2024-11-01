@@ -22,8 +22,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
-using DiKErnel.DomainLibrary.Constants;
-using DiKErnel.FunctionLibrary;
 using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
 using DiKErnel.Integration.Helpers;
@@ -36,6 +34,8 @@ namespace DiKErnel.GpuConsole
 {
     internal static class AsphaltWaveImpactGpuCalculator
     {
+        private static readonly float maximumPeakStressPartial = MathF.Pow(10, 6);
+
         public static DataResult<CalculationOutput> Calculate(IProfileData profileData,
                                                               IReadOnlyList<AsphaltWaveImpactLocationDependentInput>
                                                                   locationDependentInputItems,
@@ -263,11 +263,9 @@ namespace DiKErnel.GpuConsole
         {
             float incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
 
-            double averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(
-                incrementTime, timeDependentInput.WavePeriodTm10, averageNumberOfWavesCtm);
+            float averageNumberOfWaves = incrementTime / (averageNumberOfWavesCtm * timeDependentInput.WavePeriodTm10);
 
-            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(
-                timeDependentInput.WaveHeightHm0, NaturalConstants.GravitationalAcceleration, densityOfWater);
+            float maximumPeakStress = 9.81f * densityOfWater * timeDependentInput.WaveHeightHm0 / maximumPeakStressPartial;
 
             var input = new AsphaltWaveImpactIncrementDamageGpuInput(
                 logFlexuralStrength, averageNumberOfWaves, maximumPeakStress, stiffnessRelation, computationalThickness, outerSlope,
