@@ -54,7 +54,7 @@ namespace DiKErnel.Core.Data
 
             foreach (double incrementDamage in TimeDependentOutputItems.Select(timeDependentOutput => timeDependentOutput.IncrementDamage))
             {
-                if (!double.IsNaN(incrementDamage))
+                if (!double.IsNaN(incrementDamage) && !double.IsInfinity(incrementDamage))
                 {
                     cumulativeDamage += incrementDamage;
                 }

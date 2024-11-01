@@ -28,6 +28,7 @@ using DiKErnel.Integration.Helpers;
 using DiKErnel.Util;
 using ILGPU;
 using ILGPU.Runtime;
+using ILGPU.Runtime.CPU;
 using ILGPU.Runtime.Cuda;
 
 namespace DiKErnel.GpuConsole
@@ -238,6 +239,8 @@ namespace DiKErnel.GpuConsole
 
             var timeDependentOutputItemsForLocationOnCpu = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count];
                 
+            timeDependentOutputItemsForLocation.CopyToCPU(timeDependentOutputItemsForLocationOnCpu);
+            
             for (var i = 0; i < timeDependentOutputItemsForLocationOnCpu.Length; i++)
             {
                 AsphaltWaveImpactTimeDependentGpuOutput asphaltWaveImpactTimeDependentGpuOutput =
