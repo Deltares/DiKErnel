@@ -20,17 +20,17 @@ namespace DiKErnel.GpuConsole
 {
     public struct AsphaltWaveImpactTimeDependentGpuOutput
     {
-        public AsphaltWaveImpactTimeDependentGpuOutput(double incrementDamage, double maximumPeakStress, double averageNumberOfWaves)
+        public AsphaltWaveImpactTimeDependentGpuOutput(float incrementDamage, float maximumPeakStress, float averageNumberOfWaves)
         {
             IncrementDamage = incrementDamage;
             MaximumPeakStress = maximumPeakStress;
             AverageNumberOfWaves = averageNumberOfWaves;
         }
 
-        public double IncrementDamage { get; }
+        public float IncrementDamage { get; }
 
-        public double MaximumPeakStress { get; }
+        public float MaximumPeakStress { get; }
 
-        public double AverageNumberOfWaves { get; }
+        public float AverageNumberOfWaves { get; }
     }
 }

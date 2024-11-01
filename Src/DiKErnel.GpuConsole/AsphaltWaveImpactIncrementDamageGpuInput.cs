@@ -22,16 +22,16 @@ namespace DiKErnel.GpuConsole
 {
     public struct AsphaltWaveImpactIncrementDamageGpuInput
     {
-        public AsphaltWaveImpactIncrementDamageGpuInput(double logFlexuralStrength, double averageNumberOfWaves, double maximumPeakStress,
-                                                        double stiffnessRelation, double computationalThickness, double outerSlope,
-                                                        ArrayView<double> wfValues,
-                                                        ArrayView<double> wfProbabilities,
-                                                        ArrayView<double> dfValues,
-                                                        ArrayView<double> dfProbabilities,
-                                                        ArrayView<double> ifValues,
-                                                        ArrayView<double> ifProbabilities,
-                                                        double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
-                                                        double fatigueBeta, double impactNumberC)
+        public AsphaltWaveImpactIncrementDamageGpuInput(float logFlexuralStrength, float averageNumberOfWaves, float maximumPeakStress,
+                                                        float stiffnessRelation, float computationalThickness, float outerSlope,
+                                                        ArrayView<float> wfValues,
+                                                        ArrayView<float> wfProbabilities,
+                                                        ArrayView<float> dfValues,
+                                                        ArrayView<float> dfProbabilities,
+                                                        ArrayView<float> ifValues,
+                                                        ArrayView<float> ifProbabilities,
+                                                        float z, float waterLevel, float waveHeightHm0, float fatigueAlpha,
+                                                        float fatigueBeta, float impactNumberC)
         {
             LogFlexuralStrength = logFlexuralStrength;
             AverageNumberOfWaves = averageNumberOfWaves;
@@ -53,40 +53,40 @@ namespace DiKErnel.GpuConsole
             ImpactNumberC = impactNumberC;
         }
 
-        public double LogFlexuralStrength { get; }
+        public float LogFlexuralStrength { get; }
 
-        public double AverageNumberOfWaves { get; }
+        public float AverageNumberOfWaves { get; }
 
-        public double MaximumPeakStress { get; }
+        public float MaximumPeakStress { get; }
 
-        public double StiffnessRelation { get; }
+        public float StiffnessRelation { get; }
 
-        public double ComputationalThickness { get; }
+        public float ComputationalThickness { get; }
 
-        public double OuterSlope { get; }
+        public float OuterSlope { get; }
 
-        public double Z { get; }
+        public float Z { get; }
 
-        public double WaterLevel { get; }
+        public float WaterLevel { get; }
 
-        public double WaveHeightHm0 { get; }
+        public float WaveHeightHm0 { get; }
 
-        public double FatigueAlpha { get; }
+        public float FatigueAlpha { get; }
 
-        public double FatigueBeta { get; }
+        public float FatigueBeta { get; }
 
-        public double ImpactNumberC { get; }
+        public float ImpactNumberC { get; }
 
-        public ArrayView<double> WidthFactorValues { get; }
+        public ArrayView<float> WidthFactorValues { get; }
 
-        public ArrayView<double> WidthFactorProbabilities { get; }
+        public ArrayView<float> WidthFactorProbabilities { get; }
 
-        public ArrayView<double> DepthFactorValues { get; }
+        public ArrayView<float> DepthFactorValues { get; }
 
-        public ArrayView<double> DepthFactorProbabilities { get; }
+        public ArrayView<float> DepthFactorProbabilities { get; }
 
-        public ArrayView<double> ImpactFactorValues { get; }
+        public ArrayView<float> ImpactFactorValues { get; }
 
-        public ArrayView<double> ImpactFactorProbabilities { get; }
+        public ArrayView<float> ImpactFactorProbabilities { get; }
     }
 }

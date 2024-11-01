@@ -20,9 +20,9 @@ namespace DiKErnel.GpuConsole
 {
     public struct AsphaltWaveImpactGpuInput
     {
-        public AsphaltWaveImpactGpuInput(double logFlexuralStrength, double stiffnessRelation, double computationalThickness,
-                                         double outerSlope, double z, double fatigueAlpha, double fatigueBeta,
-                                         double averageNumberOfWavesCtm, double densityOfWater, double impactNumberC)
+        public AsphaltWaveImpactGpuInput(float logFlexuralStrength, float stiffnessRelation, float computationalThickness,
+                                         float outerSlope, float z, float fatigueAlpha, float fatigueBeta,
+                                         float averageNumberOfWavesCtm, float densityOfWater, float impactNumberC)
         {
             LogFlexuralStrength = logFlexuralStrength;
             StiffnessRelation = stiffnessRelation;
@@ -36,24 +36,24 @@ namespace DiKErnel.GpuConsole
             ImpactNumberC = impactNumberC;
         }
 
-        public double LogFlexuralStrength { get; }
+        public float LogFlexuralStrength { get; }
 
-        public double StiffnessRelation { get; }
+        public float StiffnessRelation { get; }
 
-        public double ComputationalThickness { get; }
+        public float ComputationalThickness { get; }
 
-        public double OuterSlope { get; }
+        public float OuterSlope { get; }
 
-        public double Z { get; }
+        public float Z { get; }
 
-        public double FatigueAlpha { get; }
+        public float FatigueAlpha { get; }
 
-        public double FatigueBeta { get; }
+        public float FatigueBeta { get; }
 
-        public double AverageNumberOfWavesCtm { get; }
+        public float AverageNumberOfWavesCtm { get; }
 
-        public double DensityOfWater { get; }
+        public float DensityOfWater { get; }
 
-        public double ImpactNumberC { get; }
+        public float ImpactNumberC { get; }
     }
 }
