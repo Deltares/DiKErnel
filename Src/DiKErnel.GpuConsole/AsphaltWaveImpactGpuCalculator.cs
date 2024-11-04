@@ -193,29 +193,14 @@ namespace DiKErnel.GpuConsole
             float[] impactFactorProbabilities = locationDependentInput.ImpactFactors
                                                                       .Select(impactFactor => (float) impactFactor.Item2)
                                                                       .ToArray();
-            
+
             var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
             Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
 
             accelerator.PrintInformation();
 
-            MemoryBuffer1D<TimeDependentGpuInput, Stride1D.Dense> timeDependentGpuInputItemsMemoryBuffer =
-                accelerator.Allocate1D(timeDependentGpuInputItems);
-
             MemoryBuffer1D<AsphaltWaveImpactTimeDependentGpuOutput, Stride1D.Dense> timeDependentOutputItemsForLocationMemoryBuffer =
                 accelerator.Allocate1D<AsphaltWaveImpactTimeDependentGpuOutput>(timeDependentInputItems.Count);
-
-            MemoryBuffer1D<float, Stride1D.Dense> widthFactorValuesMemoryBuffer = accelerator.Allocate1D(widthFactorValues);
-
-            MemoryBuffer1D<float, Stride1D.Dense> widthFactorProbabilitiesMemoryBuffer = accelerator.Allocate1D(widthFactorProbabilities);
-
-            MemoryBuffer1D<float, Stride1D.Dense> depthFactorValuesMemoryBuffer = accelerator.Allocate1D(depthFactorValues);
-
-            MemoryBuffer1D<float, Stride1D.Dense> depthFactorProbabilitiesMemoryBuffer = accelerator.Allocate1D(depthFactorProbabilities);
-
-            MemoryBuffer1D<float, Stride1D.Dense> impactFactorValuesMemoryBuffer = accelerator.Allocate1D(impactFactorValues);
-
-            MemoryBuffer1D<float, Stride1D.Dense> impactFactorProbabilitiesMemoryBuffer = accelerator.Allocate1D(impactFactorProbabilities);
 
             Action<Index1D, ArrayView<TimeDependentGpuInput>, ArrayView<AsphaltWaveImpactTimeDependentGpuOutput>, AsphaltWaveImpactGpuInput,
                     ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>>
@@ -251,12 +236,11 @@ namespace DiKErnel.GpuConsole
                                 locationInput.DensityOfWater, locationInput.ImpactNumberC);
                         });
 
-            loadedKernel((int) timeDependentOutputItemsForLocationMemoryBuffer.Length, timeDependentGpuInputItemsMemoryBuffer.View,
+            loadedKernel(timeDependentInputItems.Count, accelerator.Allocate1D(timeDependentGpuInputItems).View,
                          timeDependentOutputItemsForLocationMemoryBuffer.View, asphaltWaveImpactGpuInput,
-                         widthFactorValuesMemoryBuffer.View,
-                         widthFactorProbabilitiesMemoryBuffer.View, depthFactorValuesMemoryBuffer.View,
-                         depthFactorProbabilitiesMemoryBuffer.View, impactFactorValuesMemoryBuffer.View,
-                         impactFactorProbabilitiesMemoryBuffer.View);
+                         accelerator.Allocate1D(widthFactorValues).View, accelerator.Allocate1D(widthFactorProbabilities).View,
+                         accelerator.Allocate1D(depthFactorValues).View, accelerator.Allocate1D(depthFactorProbabilities).View,
+                         accelerator.Allocate1D(impactFactorValues).View, accelerator.Allocate1D(impactFactorProbabilities).View);
 
             accelerator.Synchronize();
 
