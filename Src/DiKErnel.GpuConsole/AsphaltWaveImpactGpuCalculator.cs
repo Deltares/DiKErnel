@@ -36,20 +36,18 @@ namespace DiKErnel.GpuConsole
     {
         private static readonly float maximumPeakStressPartial = MathF.Pow(10, 6);
 
-        public static DataResult<CalculationOutput> Calculate(IProfileData profileData,
-                                                              IReadOnlyList<AsphaltWaveImpactLocationDependentInput>
-                                                                  locationDependentInputItems,
-                                                              IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
-                                                              CalculationMode locationCalculationMode = CalculationMode.Sequential)
+        public static DataResult<CalculationOutput> Calculate(
+            IProfileData profileData, IReadOnlyList<AsphaltWaveImpactLocationDependentInput> locationDependentInputItems,
+            IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+            CalculationMode locationCalculationMode = CalculationMode.Sequential)
         {
             try
             {
                 Dictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
-                CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
-                                               timeDependentOutputItemsPerLocation, profileData,
-                                               locationCalculationMode);
+                CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems, timeDependentOutputItemsPerLocation,
+                                               profileData, locationCalculationMode);
 
                 List<LocationDependentOutput> locationDependentOutputItems =
                     locationDependentInputItems
@@ -108,60 +106,15 @@ namespace DiKErnel.GpuConsole
             IReadOnlyDictionary<AsphaltWaveImpactLocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, AsphaltWaveImpactLocationDependentInput locationDependentInput)
         {
-            # region Location dependent output
+            InitializeLocationDependentOutput(
+                profileData, locationDependentInput, out double z, out double logFlexuralStrength, out double computationalThickness,
+                out double stiffnessRelation, out double outerSlope);
 
-            double z = profileData.GetVerticalHeight(locationDependentInput.X);
-
-            double subLayerThickness;
-            double subLayerElasticModulus;
-
-            if (locationDependentInput.SubLayer != null)
-            {
-                subLayerThickness = locationDependentInput.SubLayer.Thickness;
-                subLayerElasticModulus = locationDependentInput.SubLayer.ElasticModulus;
-            }
-            else
-            {
-                subLayerThickness = 0;
-                subLayerElasticModulus = locationDependentInput.UpperLayer.ElasticModulus;
-            }
-
-            double logFlexuralStrength = AsphaltWaveImpactFunctions.LogFlexuralStrength(locationDependentInput.FlexuralStrength);
-
-            double computationalThickness = AsphaltWaveImpactFunctions.ComputationalThickness(
-                locationDependentInput.UpperLayer.Thickness, subLayerThickness, locationDependentInput.UpperLayer.ElasticModulus,
-                subLayerElasticModulus);
-
-            double stiffnessRelation = AsphaltWaveImpactFunctions.StiffnessRelation(
-                computationalThickness, subLayerElasticModulus, locationDependentInput.SoilElasticity,
-                locationDependentInput.StiffnessRelationNu);
-
-            (double, double)? notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.NotchOuterBerm);
-            (double, double)? crestOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
-                profileData.CharacteristicPoints, CharacteristicPointType.CrestOuterBerm);
-
-            double horizontalPosition = locationDependentInput.X;
-            if (notchOuterBerm != null && crestOuterBerm != null && horizontalPosition > crestOuterBerm.Value.Item1
-                && horizontalPosition <= notchOuterBerm.Value.Item1)
-            {
-                horizontalPosition = crestOuterBerm.Value.Item1;
-            }
-
-            ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
-
-            double outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
-                                                                      profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
-
-            # endregion
-
-            var asphaltWaveImpactGpuInput = new AsphaltWaveImpactGpuInput((float) logFlexuralStrength, (float) stiffnessRelation,
-                                                                          (float) computationalThickness, (float) outerSlope, (float) z,
-                                                                          (float) locationDependentInput.Fatigue.Alpha,
-                                                                          (float) locationDependentInput.Fatigue.Beta,
-                                                                          (float) locationDependentInput.AverageNumberOfWavesCtm,
-                                                                          (float) locationDependentInput.DensityOfWater,
-                                                                          (float) locationDependentInput.ImpactNumberC);
+            var asphaltWaveImpactGpuInput = new AsphaltWaveImpactGpuInput(
+                (float) logFlexuralStrength, (float) stiffnessRelation, (float) computationalThickness, (float) outerSlope, (float) z,
+                (float) locationDependentInput.Fatigue.Alpha, (float) locationDependentInput.Fatigue.Beta,
+                (float) locationDependentInput.AverageNumberOfWavesCtm, (float) locationDependentInput.DensityOfWater,
+                (float) locationDependentInput.ImpactNumberC);
 
             TimeDependentGpuInput[] timeDependentGpuInputItems = timeDependentInputItems
                                                                  .Select(tdi => new TimeDependentGpuInput(
@@ -194,8 +147,8 @@ namespace DiKErnel.GpuConsole
                                                                       .Select(impactFactor => (float) impactFactor.Item2)
                                                                       .ToArray();
 
-            var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
-            Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
+            using var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
+            using Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
 
             accelerator.PrintInformation();
 
@@ -204,37 +157,23 @@ namespace DiKErnel.GpuConsole
 
             Action<Index1D, ArrayView<TimeDependentGpuInput>, ArrayView<AsphaltWaveImpactTimeDependentGpuOutput>, AsphaltWaveImpactGpuInput,
                     ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>>
-                loadedKernel =
-                    accelerator.LoadAutoGroupedStreamKernel(
-                        (Index1D index,
-                         ArrayView<TimeDependentGpuInput> timeInput,
-                         ArrayView<AsphaltWaveImpactTimeDependentGpuOutput> timeOutput,
-                         AsphaltWaveImpactGpuInput locationInput,
-                         ArrayView<float> widthFactorValuesArrayView,
-                         ArrayView<float> widthFactorProbabilitiesArrayView,
-                         ArrayView<float> depthFactorValuesArrayView,
-                         ArrayView<float> depthFactorProbabilitiesArrayView,
-                         ArrayView<float> impactFactorValuesArrayView,
-                         ArrayView<float> impactFactorProbabilitiesArrayView) =>
-                        {
-                            timeOutput[index] = CalculateTimeStepForLocation(
-                                timeInput[index],
-                                locationInput.LogFlexuralStrength,
-                                locationInput.StiffnessRelation,
-                                locationInput.ComputationalThickness,
-                                locationInput.OuterSlope,
-                                widthFactorValuesArrayView,
-                                widthFactorProbabilitiesArrayView,
-                                depthFactorValuesArrayView,
-                                depthFactorProbabilitiesArrayView,
-                                impactFactorValuesArrayView,
-                                impactFactorProbabilitiesArrayView,
-                                locationInput.Z,
-                                locationInput.FatigueAlpha,
-                                locationInput.FatigueBeta,
-                                locationInput.AverageNumberOfWavesCtm,
-                                locationInput.DensityOfWater, locationInput.ImpactNumberC);
-                        });
+                loadedKernel = accelerator.LoadAutoGroupedStreamKernel(
+                    (Index1D index, ArrayView<TimeDependentGpuInput> timeDependentGpuInput,
+                     ArrayView<AsphaltWaveImpactTimeDependentGpuOutput> timeDependentGpuOutput,
+                     AsphaltWaveImpactGpuInput locationDependentGpuInput, ArrayView<float> widthFactorValuesArrayView,
+                     ArrayView<float> widthFactorProbabilitiesArrayView, ArrayView<float> depthFactorValuesArrayView,
+                     ArrayView<float> depthFactorProbabilitiesArrayView, ArrayView<float> impactFactorValuesArrayView,
+                     ArrayView<float> impactFactorProbabilitiesArrayView) =>
+                    {
+                        timeDependentGpuOutput[index] = CalculateTimeStepForLocation(
+                            timeDependentGpuInput[index], locationDependentGpuInput.LogFlexuralStrength,
+                            locationDependentGpuInput.StiffnessRelation, locationDependentGpuInput.ComputationalThickness,
+                            locationDependentGpuInput.OuterSlope, widthFactorValuesArrayView, widthFactorProbabilitiesArrayView,
+                            depthFactorValuesArrayView, depthFactorProbabilitiesArrayView, impactFactorValuesArrayView,
+                            impactFactorProbabilitiesArrayView, locationDependentGpuInput.Z, locationDependentGpuInput.FatigueAlpha,
+                            locationDependentGpuInput.FatigueBeta, locationDependentGpuInput.AverageNumberOfWavesCtm,
+                            locationDependentGpuInput.DensityOfWater, locationDependentGpuInput.ImpactNumberC);
+                    });
 
             loadedKernel(timeDependentInputItems.Count, accelerator.Allocate1D(timeDependentGpuInputItems).View,
                          timeDependentOutputItemsForLocationMemoryBuffer.View, asphaltWaveImpactGpuInput,
@@ -254,17 +193,61 @@ namespace DiKErnel.GpuConsole
                     timeDependentOutputItemsForLocationOnCpu[i];
 
                 timeDependentOutputItemsPerLocation[locationDependentInput].Add(
-                    new AsphaltWaveImpactTimeDependentOutput(
-                        new AsphaltWaveImpactTimeDependentOutputConstructionProperties
-                        {
-                            IncrementDamage = asphaltWaveImpactTimeDependentGpuOutput.IncrementDamage,
-                            MaximumPeakStress = asphaltWaveImpactTimeDependentGpuOutput.MaximumPeakStress,
-                            AverageNumberOfWaves = asphaltWaveImpactTimeDependentGpuOutput.AverageNumberOfWaves
-                        }));
+                    new AsphaltWaveImpactTimeDependentOutput(new AsphaltWaveImpactTimeDependentOutputConstructionProperties
+                    {
+                        IncrementDamage = asphaltWaveImpactTimeDependentGpuOutput.IncrementDamage,
+                        MaximumPeakStress = asphaltWaveImpactTimeDependentGpuOutput.MaximumPeakStress,
+                        AverageNumberOfWaves = asphaltWaveImpactTimeDependentGpuOutput.AverageNumberOfWaves
+                    }));
+            }
+        }
+
+        private static void InitializeLocationDependentOutput(
+            IProfileData profileData, AsphaltWaveImpactLocationDependentInput locationDependentInput, out double z,
+            out double logFlexuralStrength, out double computationalThickness, out double stiffnessRelation, out double outerSlope)
+        {
+            z = profileData.GetVerticalHeight(locationDependentInput.X);
+
+            double subLayerThickness;
+            double subLayerElasticModulus;
+
+            if (locationDependentInput.SubLayer != null)
+            {
+                subLayerThickness = locationDependentInput.SubLayer.Thickness;
+                subLayerElasticModulus = locationDependentInput.SubLayer.ElasticModulus;
+            }
+            else
+            {
+                subLayerThickness = 0;
+                subLayerElasticModulus = locationDependentInput.UpperLayer.ElasticModulus;
             }
 
-            accelerator.Dispose();
-            context.Dispose();
+            logFlexuralStrength = AsphaltWaveImpactFunctions.LogFlexuralStrength(locationDependentInput.FlexuralStrength);
+
+            computationalThickness = AsphaltWaveImpactFunctions.ComputationalThickness(
+                locationDependentInput.UpperLayer.Thickness, subLayerThickness, locationDependentInput.UpperLayer.ElasticModulus,
+                subLayerElasticModulus);
+
+            stiffnessRelation = AsphaltWaveImpactFunctions.StiffnessRelation(
+                computationalThickness, subLayerElasticModulus, locationDependentInput.SoilElasticity,
+                locationDependentInput.StiffnessRelationNu);
+
+            (double, double)? notchOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.NotchOuterBerm);
+            (double, double)? crestOuterBerm = CharacteristicPointsHelper.TryGetCoordinatesForType(
+                profileData.CharacteristicPoints, CharacteristicPointType.CrestOuterBerm);
+
+            double horizontalPosition = locationDependentInput.X;
+            if (notchOuterBerm != null && crestOuterBerm != null && horizontalPosition > crestOuterBerm.Value.Item1
+                && horizontalPosition <= notchOuterBerm.Value.Item1)
+            {
+                horizontalPosition = crestOuterBerm.Value.Item1;
+            }
+
+            ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
+
+            outerSlope = AsphaltWaveImpactFunctions.OuterSlope(
+                profileSegment.StartPoint.X, profileSegment.StartPoint.Z, profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
         }
 
         private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
