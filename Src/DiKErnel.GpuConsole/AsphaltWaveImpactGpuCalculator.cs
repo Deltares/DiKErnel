@@ -117,9 +117,8 @@ namespace DiKErnel.GpuConsole
                 out float[] depthFactorProbabilities, out float[] impactFactorValues, out float[] impactFactorProbabilities);
 
             AsphaltWaveImpactTimeDependentGpuOutput[] timeDependentOutputItemsForLocation =
-                CalculateWithGpu(timeDependentInputItems, timeDependentGpuInputItems, asphaltWaveImpactGpuInput, widthFactorValues,
-                                 widthFactorProbabilities, depthFactorValues, depthFactorProbabilities, impactFactorValues,
-                                 impactFactorProbabilities);
+                CalculateWithGpu(timeDependentGpuInputItems, asphaltWaveImpactGpuInput, widthFactorValues, widthFactorProbabilities,
+                                 depthFactorValues, depthFactorProbabilities, impactFactorValues, impactFactorProbabilities);
 
             foreach (AsphaltWaveImpactTimeDependentGpuOutput asphaltWaveImpactTimeDependentGpuOutput in timeDependentOutputItemsForLocation)
             {
@@ -228,9 +227,9 @@ namespace DiKErnel.GpuConsole
         }
 
         private static AsphaltWaveImpactTimeDependentGpuOutput[] CalculateWithGpu(
-            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems, TimeDependentGpuInput[] timeDependentGpuInputItems,
-            AsphaltWaveImpactGpuInput asphaltWaveImpactGpuInput, float[] widthFactorValues, float[] widthFactorProbabilities,
-            float[] depthFactorValues, float[] depthFactorProbabilities, float[] impactFactorValues, float[] impactFactorProbabilities)
+            TimeDependentGpuInput[] timeDependentGpuInputItems, AsphaltWaveImpactGpuInput asphaltWaveImpactGpuInput,
+            float[] widthFactorValues, float[] widthFactorProbabilities, float[] depthFactorValues, float[] depthFactorProbabilities,
+            float[] impactFactorValues, float[] impactFactorProbabilities)
         {
             using var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
             using Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
@@ -238,7 +237,7 @@ namespace DiKErnel.GpuConsole
             accelerator.PrintInformation();
 
             MemoryBuffer1D<AsphaltWaveImpactTimeDependentGpuOutput, Stride1D.Dense> timeDependentOutputItemsForLocationMemoryBuffer =
-                accelerator.Allocate1D<AsphaltWaveImpactTimeDependentGpuOutput>(timeDependentInputItems.Count);
+                accelerator.Allocate1D<AsphaltWaveImpactTimeDependentGpuOutput>(timeDependentGpuInputItems.Length);
 
             Action<Index1D, ArrayView<TimeDependentGpuInput>, ArrayView<AsphaltWaveImpactTimeDependentGpuOutput>, AsphaltWaveImpactGpuInput,
                     ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>>
@@ -260,7 +259,7 @@ namespace DiKErnel.GpuConsole
                             locationDependentGpuInput.DensityOfWater, locationDependentGpuInput.ImpactNumberC);
                     });
 
-            loadedKernel(timeDependentInputItems.Count, accelerator.Allocate1D(timeDependentGpuInputItems).View,
+            loadedKernel(timeDependentGpuInputItems.Length, accelerator.Allocate1D(timeDependentGpuInputItems).View,
                          timeDependentOutputItemsForLocationMemoryBuffer.View, asphaltWaveImpactGpuInput,
                          accelerator.Allocate1D(widthFactorValues).View, accelerator.Allocate1D(widthFactorProbabilities).View,
                          accelerator.Allocate1D(depthFactorValues).View, accelerator.Allocate1D(depthFactorProbabilities).View,
@@ -268,10 +267,10 @@ namespace DiKErnel.GpuConsole
 
             accelerator.Synchronize();
 
-            var timeDependentOutputItemsForLocation = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count];
+            var timeDependentOutputItemsForLocation = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentGpuInputItems.Length];
 
             timeDependentOutputItemsForLocationMemoryBuffer.CopyToCPU(timeDependentOutputItemsForLocation);
-            
+
             return timeDependentOutputItemsForLocation;
         }
 
