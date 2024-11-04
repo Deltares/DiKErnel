@@ -125,7 +125,7 @@ namespace DiKErnel.GpuConsole
 
         private static void CalculateAndWriteOutput(ICalculationInput calculationInput)
         {
-            const CalculationMode locationCalculationMode = CalculationMode.Sequential; // TODO: make configurable again
+            const CalculationMode locationCalculationMode = CalculationMode.Parallel; // TODO: make configurable again
 
             var stopWatch = new Stopwatch();
 
@@ -134,7 +134,8 @@ namespace DiKErnel.GpuConsole
             DataResult<CalculationOutput> result = AsphaltWaveImpactGpuCalculator.Calculate(
                 calculationInput.ProfileData,
                 calculationInput.LocationDependentInputItems.OfType<AsphaltWaveImpactLocationDependentInput>().ToArray(),
-                calculationInput.TimeDependentInputItems);
+                calculationInput.TimeDependentInputItems,
+                locationCalculationMode);
 
             stopWatch.Stop();
 
