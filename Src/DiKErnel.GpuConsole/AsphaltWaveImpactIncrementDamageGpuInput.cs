@@ -24,12 +24,9 @@ namespace DiKErnel.GpuConsole
     {
         public AsphaltWaveImpactIncrementDamageGpuInput(float logFlexuralStrength, float averageNumberOfWaves, float maximumPeakStress,
                                                         float stiffnessRelation, float computationalThickness, float outerSlope,
-                                                        ArrayView<float> wfValues,
-                                                        ArrayView<float> wfProbabilities,
-                                                        ArrayView<float> dfValues,
-                                                        ArrayView<float> dfProbabilities,
-                                                        ArrayView<float> ifValues,
-                                                        ArrayView<float> ifProbabilities,
+                                                        ArrayView<float> widthFactorValues, ArrayView<float> widthFactorProbabilities,
+                                                        ArrayView<float> depthFactorValues, ArrayView<float> depthFactorProbabilities,
+                                                        ArrayView<float> impactFactorValues, ArrayView<float> impactFactorProbabilities,
                                                         float z, float waterLevel, float waveHeightHm0, float fatigueAlpha,
                                                         float fatigueBeta, float impactNumberC)
         {
@@ -39,12 +36,12 @@ namespace DiKErnel.GpuConsole
             StiffnessRelation = stiffnessRelation;
             ComputationalThickness = computationalThickness;
             OuterSlope = outerSlope;
-            WidthFactorValues = wfValues;
-            WidthFactorProbabilities = wfProbabilities;
-            DepthFactorValues = dfValues;
-            DepthFactorProbabilities = dfProbabilities;
-            ImpactFactorValues = ifValues;
-            ImpactFactorProbabilities = ifProbabilities;
+            WidthFactorValues = widthFactorValues;
+            WidthFactorProbabilities = widthFactorProbabilities;
+            DepthFactorValues = depthFactorValues;
+            DepthFactorProbabilities = depthFactorProbabilities;
+            ImpactFactorValues = impactFactorValues;
+            ImpactFactorProbabilities = impactFactorProbabilities;
             Z = z;
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
