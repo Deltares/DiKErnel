@@ -116,45 +116,10 @@ namespace DiKErnel.GpuConsole
                 out float[] widthFactorValues, out float[] widthFactorProbabilities, out float[] depthFactorValues,
                 out float[] depthFactorProbabilities, out float[] impactFactorValues, out float[] impactFactorProbabilities);
 
-            using var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
-            using Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
-
-            accelerator.PrintInformation();
-
-            MemoryBuffer1D<AsphaltWaveImpactTimeDependentGpuOutput, Stride1D.Dense> timeDependentOutputItemsForLocationMemoryBuffer =
-                accelerator.Allocate1D<AsphaltWaveImpactTimeDependentGpuOutput>(timeDependentInputItems.Count);
-
-            Action<Index1D, ArrayView<TimeDependentGpuInput>, ArrayView<AsphaltWaveImpactTimeDependentGpuOutput>, AsphaltWaveImpactGpuInput,
-                    ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>>
-                loadedKernel = accelerator.LoadAutoGroupedStreamKernel(
-                    (Index1D index, ArrayView<TimeDependentGpuInput> timeDependentGpuInput,
-                     ArrayView<AsphaltWaveImpactTimeDependentGpuOutput> timeDependentGpuOutput,
-                     AsphaltWaveImpactGpuInput locationDependentGpuInput, ArrayView<float> widthFactorValuesArrayView,
-                     ArrayView<float> widthFactorProbabilitiesArrayView, ArrayView<float> depthFactorValuesArrayView,
-                     ArrayView<float> depthFactorProbabilitiesArrayView, ArrayView<float> impactFactorValuesArrayView,
-                     ArrayView<float> impactFactorProbabilitiesArrayView) =>
-                    {
-                        timeDependentGpuOutput[index] = CalculateTimeStepForLocation(
-                            timeDependentGpuInput[index], locationDependentGpuInput.LogFlexuralStrength,
-                            locationDependentGpuInput.StiffnessRelation, locationDependentGpuInput.ComputationalThickness,
-                            locationDependentGpuInput.OuterSlope, widthFactorValuesArrayView, widthFactorProbabilitiesArrayView,
-                            depthFactorValuesArrayView, depthFactorProbabilitiesArrayView, impactFactorValuesArrayView,
-                            impactFactorProbabilitiesArrayView, locationDependentGpuInput.Z, locationDependentGpuInput.FatigueAlpha,
-                            locationDependentGpuInput.FatigueBeta, locationDependentGpuInput.AverageNumberOfWavesCtm,
-                            locationDependentGpuInput.DensityOfWater, locationDependentGpuInput.ImpactNumberC);
-                    });
-
-            loadedKernel(timeDependentInputItems.Count, accelerator.Allocate1D(timeDependentGpuInputItems).View,
-                         timeDependentOutputItemsForLocationMemoryBuffer.View, asphaltWaveImpactGpuInput,
-                         accelerator.Allocate1D(widthFactorValues).View, accelerator.Allocate1D(widthFactorProbabilities).View,
-                         accelerator.Allocate1D(depthFactorValues).View, accelerator.Allocate1D(depthFactorProbabilities).View,
-                         accelerator.Allocate1D(impactFactorValues).View, accelerator.Allocate1D(impactFactorProbabilities).View);
-
-            accelerator.Synchronize();
-
-            var timeDependentOutputItemsForLocation = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count];
-
-            timeDependentOutputItemsForLocationMemoryBuffer.CopyToCPU(timeDependentOutputItemsForLocation);
+            AsphaltWaveImpactTimeDependentGpuOutput[] timeDependentOutputItemsForLocation =
+                CalculateWithGpu(timeDependentInputItems, timeDependentGpuInputItems, asphaltWaveImpactGpuInput, widthFactorValues,
+                                 widthFactorProbabilities, depthFactorValues, depthFactorProbabilities, impactFactorValues,
+                                 impactFactorProbabilities);
 
             foreach (AsphaltWaveImpactTimeDependentGpuOutput asphaltWaveImpactTimeDependentGpuOutput in timeDependentOutputItemsForLocation)
             {
@@ -260,6 +225,54 @@ namespace DiKErnel.GpuConsole
             impactFactorProbabilities = locationDependentInput.ImpactFactors
                                                               .Select(impactFactor => (float) impactFactor.Item2)
                                                               .ToArray();
+        }
+
+        private static AsphaltWaveImpactTimeDependentGpuOutput[] CalculateWithGpu(
+            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems, TimeDependentGpuInput[] timeDependentGpuInputItems,
+            AsphaltWaveImpactGpuInput asphaltWaveImpactGpuInput, float[] widthFactorValues, float[] widthFactorProbabilities,
+            float[] depthFactorValues, float[] depthFactorProbabilities, float[] impactFactorValues, float[] impactFactorProbabilities)
+        {
+            using var context = Context.Create(builder => builder.EnableAlgorithms().Cuda());
+            using Accelerator accelerator = context.GetPreferredDevice(preferCPU: false).CreateAccelerator(context);
+
+            accelerator.PrintInformation();
+
+            MemoryBuffer1D<AsphaltWaveImpactTimeDependentGpuOutput, Stride1D.Dense> timeDependentOutputItemsForLocationMemoryBuffer =
+                accelerator.Allocate1D<AsphaltWaveImpactTimeDependentGpuOutput>(timeDependentInputItems.Count);
+
+            Action<Index1D, ArrayView<TimeDependentGpuInput>, ArrayView<AsphaltWaveImpactTimeDependentGpuOutput>, AsphaltWaveImpactGpuInput,
+                    ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>, ArrayView<float>>
+                loadedKernel = accelerator.LoadAutoGroupedStreamKernel(
+                    (Index1D index, ArrayView<TimeDependentGpuInput> timeDependentGpuInput,
+                     ArrayView<AsphaltWaveImpactTimeDependentGpuOutput> timeDependentGpuOutput,
+                     AsphaltWaveImpactGpuInput locationDependentGpuInput, ArrayView<float> widthFactorValuesArrayView,
+                     ArrayView<float> widthFactorProbabilitiesArrayView, ArrayView<float> depthFactorValuesArrayView,
+                     ArrayView<float> depthFactorProbabilitiesArrayView, ArrayView<float> impactFactorValuesArrayView,
+                     ArrayView<float> impactFactorProbabilitiesArrayView) =>
+                    {
+                        timeDependentGpuOutput[index] = CalculateTimeStepForLocation(
+                            timeDependentGpuInput[index], locationDependentGpuInput.LogFlexuralStrength,
+                            locationDependentGpuInput.StiffnessRelation, locationDependentGpuInput.ComputationalThickness,
+                            locationDependentGpuInput.OuterSlope, widthFactorValuesArrayView, widthFactorProbabilitiesArrayView,
+                            depthFactorValuesArrayView, depthFactorProbabilitiesArrayView, impactFactorValuesArrayView,
+                            impactFactorProbabilitiesArrayView, locationDependentGpuInput.Z, locationDependentGpuInput.FatigueAlpha,
+                            locationDependentGpuInput.FatigueBeta, locationDependentGpuInput.AverageNumberOfWavesCtm,
+                            locationDependentGpuInput.DensityOfWater, locationDependentGpuInput.ImpactNumberC);
+                    });
+
+            loadedKernel(timeDependentInputItems.Count, accelerator.Allocate1D(timeDependentGpuInputItems).View,
+                         timeDependentOutputItemsForLocationMemoryBuffer.View, asphaltWaveImpactGpuInput,
+                         accelerator.Allocate1D(widthFactorValues).View, accelerator.Allocate1D(widthFactorProbabilities).View,
+                         accelerator.Allocate1D(depthFactorValues).View, accelerator.Allocate1D(depthFactorProbabilities).View,
+                         accelerator.Allocate1D(impactFactorValues).View, accelerator.Allocate1D(impactFactorProbabilities).View);
+
+            accelerator.Synchronize();
+
+            var timeDependentOutputItemsForLocation = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentInputItems.Count];
+
+            timeDependentOutputItemsForLocationMemoryBuffer.CopyToCPU(timeDependentOutputItemsForLocation);
+            
+            return timeDependentOutputItemsForLocation;
         }
 
         private static AsphaltWaveImpactTimeDependentGpuOutput CalculateTimeStepForLocation(
