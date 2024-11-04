@@ -28,6 +28,7 @@ using DiKErnel.Integration.Helpers;
 using DiKErnel.Util;
 using ILGPU;
 using ILGPU.Runtime;
+using ILGPU.Runtime.CPU;
 using ILGPU.Runtime.Cuda;
 
 namespace DiKErnel.GpuConsole
@@ -270,6 +271,38 @@ namespace DiKErnel.GpuConsole
             var timeDependentOutputItemsForLocation = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentGpuInputItems.Length];
 
             timeDependentOutputItemsForLocationMemoryBuffer.CopyToCPU(timeDependentOutputItemsForLocation);
+
+            return timeDependentOutputItemsForLocation;
+        }
+
+        private static AsphaltWaveImpactTimeDependentGpuOutput[] CalculateWithCpu(
+            TimeDependentGpuInput[] timeDependentGpuInputItems, AsphaltWaveImpactGpuInput asphaltWaveImpactGpuInput,
+            float[] widthFactorValues, float[] widthFactorProbabilities, float[] depthFactorValues, float[] depthFactorProbabilities,
+            float[] impactFactorValues, float[] impactFactorProbabilities)
+        {
+            using var context = Context.Create(builder => builder.CPU());
+            using Accelerator accelerator = context.GetPreferredDevice(preferCPU: true).CreateAccelerator(context);
+
+            accelerator.PrintInformation();
+
+            var timeDependentOutputItemsForLocation = new AsphaltWaveImpactTimeDependentGpuOutput[timeDependentGpuInputItems.Length];
+
+            Parallel.ForEach(timeDependentGpuInputItems,
+                             (timeDependentGpuInput, state, index) =>
+                             {
+                                 timeDependentOutputItemsForLocation[index] = CalculateTimeStepForLocation(
+                                     timeDependentGpuInput, asphaltWaveImpactGpuInput.LogFlexuralStrength,
+                                     asphaltWaveImpactGpuInput.StiffnessRelation, asphaltWaveImpactGpuInput.ComputationalThickness,
+                                     asphaltWaveImpactGpuInput.OuterSlope, accelerator.Allocate1D(widthFactorValues).View,
+                                     accelerator.Allocate1D(widthFactorProbabilities).View, accelerator.Allocate1D(depthFactorValues).View,
+                                     accelerator.Allocate1D(depthFactorProbabilities).View, accelerator.Allocate1D(impactFactorValues).View,
+                                     accelerator.Allocate1D(impactFactorProbabilities).View, asphaltWaveImpactGpuInput.Z,
+                                     asphaltWaveImpactGpuInput.FatigueAlpha, asphaltWaveImpactGpuInput.FatigueBeta,
+                                     asphaltWaveImpactGpuInput.AverageNumberOfWavesCtm, asphaltWaveImpactGpuInput.DensityOfWater,
+                                     asphaltWaveImpactGpuInput.ImpactNumberC);
+                             });
+
+            accelerator.Synchronize();
 
             return timeDependentOutputItemsForLocation;
         }
