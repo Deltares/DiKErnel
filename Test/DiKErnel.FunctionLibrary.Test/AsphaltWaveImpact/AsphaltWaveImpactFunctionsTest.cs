@@ -98,7 +98,7 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
                                                    fatigueAlpha, fatigueBeta, impactNumberC);
 
             // Call
-            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
+            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input, widthFactors, depthFactors, impactFactors);
 
             // Assert
             AssertHelper.AreEqual(7.94813500019044, incrementDamage);
