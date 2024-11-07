@@ -189,7 +189,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                                                                       averageNumberOfWaves, maximumPeakStress);
 
-            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input, input.WidthFactors.ToArray(), input.DepthFactors.ToArray(), input.ImpactFactors.ToArray());
+            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input, input.WidthFactors, input.DepthFactors, input.ImpactFactors);
 
             return new AsphaltWaveImpactTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, averageNumberOfWaves, maximumPeakStress));
