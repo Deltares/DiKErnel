@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DiKErnel.FunctionLibrary.AsphaltWaveImpact;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;
@@ -63,9 +64,9 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
             Assert.That(input.ComputationalThickness, Is.EqualTo(computationalThickness));
             Assert.That(input.OuterSlope, Is.EqualTo(outerSlope));
 
-            Assert.That(input.WidthFactors, Is.SameAs(widthFactors));
-            Assert.That(input.DepthFactors, Is.SameAs(depthFactors));
-            Assert.That(input.ImpactFactors, Is.SameAs(impactFactors));
+            Assert.That(input.WidthFactors.ToArray(), Is.EqualTo(widthFactors));
+            Assert.That(input.DepthFactors.ToArray(), Is.SameAs(depthFactors));
+            Assert.That(input.ImpactFactors.ToArray(), Is.SameAs(impactFactors));
 
             Assert.That(input.Z, Is.EqualTo(z));
             Assert.That(input.WaterLevel, Is.EqualTo(waterLevel));

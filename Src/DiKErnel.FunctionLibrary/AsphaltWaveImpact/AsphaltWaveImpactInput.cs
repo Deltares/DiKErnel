@@ -16,14 +16,16 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
     /// <summary>
     /// Input for the asphalt wave impact calculations.
     /// </summary>
-    public class AsphaltWaveImpactInput
+    public ref struct AsphaltWaveImpactInput
     {
         /// <summary>
         /// Creates a new instance.
@@ -58,9 +60,15 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             StiffnessRelation = stiffnessRelation;
             ComputationalThickness = computationalThickness;
             OuterSlope = outerSlope;
-            WidthFactors = widthFactors;
-            DepthFactors = depthFactors;
-            ImpactFactors = impactFactors;
+            WidthFactors = widthFactors.ToArray();
+            WidthFactorValues = widthFactors.Select(widthFactor => widthFactor.Item1).ToArray();
+            WidthFactorProbabilities = widthFactors.Select(widthFactor => widthFactor.Item2).ToArray();
+            DepthFactors = depthFactors.ToArray();
+            DepthFactorValues = depthFactors.Select(depthFactor => depthFactor.Item1).ToArray();
+            DepthFactorProbabilities = depthFactors.Select(depthFactor => depthFactor.Item2).ToArray();
+            ImpactFactors = impactFactors.ToArray();
+            ImpactFactorValues = impactFactors.Select(impactFactor => impactFactor.Item1).ToArray();
+            ImpactFactorProbabilities = impactFactors.Select(impactFactor => impactFactor.Item2).ToArray();
             Z = z;
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
@@ -102,17 +110,47 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <summary>
         /// Gets the width factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> WidthFactors { get; }
+        public Span<(double, double)> WidthFactors { get; }
+
+        /// <summary>
+        /// Gets the width factor values [-].
+        /// </summary>
+        public Span<double> WidthFactorValues { get; }
+
+        /// <summary>
+        /// Gets the width factor probabilities [-].
+        /// </summary>
+        public Span<double> WidthFactorProbabilities { get; }
 
         /// <summary>
         /// Gets the depth factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> DepthFactors { get; }
+        public Span<(double, double)> DepthFactors { get; }
+
+        /// <summary>
+        /// Gets the depth factor values [-].
+        /// </summary>
+        public Span<double> DepthFactorValues { get; }
+
+        /// <summary>
+        /// Gets the depth factor probabilities [-].
+        /// </summary>
+        public Span<double> DepthFactorProbabilities { get; }
 
         /// <summary>
         /// Gets the impact factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> ImpactFactors { get; }
+        public Span<(double, double)> ImpactFactors { get; }
+
+        /// <summary>
+        /// Gets the impact factor values [-].
+        /// </summary>
+        public Span<double> ImpactFactorValues { get; }
+
+        /// <summary>
+        /// Gets the impact factor probabilities [-].
+        /// </summary>
+        public Span<double> ImpactFactorProbabilities { get; }
 
         /// <summary>
         /// Gets the z coordinate [m].
