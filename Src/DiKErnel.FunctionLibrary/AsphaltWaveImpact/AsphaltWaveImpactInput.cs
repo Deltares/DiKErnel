@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
@@ -59,9 +58,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             StiffnessRelation = stiffnessRelation;
             ComputationalThickness = computationalThickness;
             OuterSlope = outerSlope;
-            WidthFactors = widthFactors.ToArray();
-            DepthFactors = depthFactors.ToArray();
-            ImpactFactors = impactFactors.ToArray();
+            WidthFactors = widthFactors;
+            DepthFactors = depthFactors;
+            ImpactFactors = impactFactors;
             Z = z;
             WaterLevel = waterLevel;
             WaveHeightHm0 = waveHeightHm0;
@@ -103,17 +102,17 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <summary>
         /// Gets the width factors [-].
         /// </summary>
-        public (double, double)[] WidthFactors { get; }
+        public IReadOnlyList<(double, double)> WidthFactors { get; }
 
         /// <summary>
         /// Gets the depth factors [-].
         /// </summary>
-        public (double, double)[] DepthFactors { get; }
+        public IReadOnlyList<(double, double)> DepthFactors { get; }
 
         /// <summary>
         /// Gets the impact factors [-].
         /// </summary>
-        public (double, double)[] ImpactFactors { get; }
+        public IReadOnlyList<(double, double)> ImpactFactors { get; }
 
         /// <summary>
         /// Gets the z coordinate [m].
