@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators;
@@ -189,7 +188,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
                                                                       averageNumberOfWaves, maximumPeakStress);
 
-            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input, input.WidthFactors.ToArray(), input.DepthFactors.ToArray(), input.ImpactFactors.ToArray());
+            double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
 
             return new AsphaltWaveImpactTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, averageNumberOfWaves, maximumPeakStress));
