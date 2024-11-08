@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using System.Linq;
 
 namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 {
@@ -34,7 +33,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
         /// <returns>The increment of damage [-].</returns>
-        public static double IncrementDamage(AsphaltWaveImpactInput input)
+        public static unsafe double IncrementDamage(AsphaltWaveImpactInput input)
         {
             double result = 0;
 
@@ -43,23 +42,33 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             double bendingStressPartial2 = -3 * input.MaximumPeakStress /
                                            (4 * Math.Pow(input.StiffnessRelation, 2) * Math.Pow(input.ComputationalThickness, 2));
 
-            double[] impactNumberLookup = input.ImpactFactors
-                                               .Select(impactFactor => ImpactNumber(input.OuterSlope, impactFactor.Item1,
-                                                                                    input.ImpactNumberC))
-                                               .ToArray();
+            var impactNumberLookup = new Span<double>(new double[input.ImpactFactors.Length]);
 
-            foreach ((double, double) widthFactor in input.WidthFactors)
+            Span<(double, double)> localImpactFactors = input.ImpactFactors;
+
+            for (var i = 0; i < localImpactFactors.Length; i++)
             {
-                double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, widthFactor.Item1,
-                                                                         input.WaveHeightHm0);
-
-                double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, impactNumberLookup,
-                                                                         bendingStressPartial2);
-
-                result += widthFactor.Item2 * depthFactorAccumulation;
+                impactNumberLookup[i] = ImpactNumber(input.OuterSlope, localImpactFactors[i].Item1,
+                                                     input.ImpactNumberC);
             }
 
-            return result;
+            fixed ((double, double)* localWidthFactors = &input.WidthFactors[0])
+            {
+                for (var i = 0; i < input.WidthFactors.Length; i++)
+                {
+                    (double, double) widthFactor = localWidthFactors[i];
+
+                    double relativeWidthWaveImpact = RelativeWidthWaveImpact(input.StiffnessRelation, widthFactor.Item1,
+                                                                             input.WaveHeightHm0);
+
+                    double depthFactorAccumulation = DepthFactorAccumulation(input, relativeWidthWaveImpact, sinA, impactNumberLookup,
+                                                                             bendingStressPartial2);
+
+                    result += widthFactor.Item2 * depthFactorAccumulation;
+                }
+
+                return result;
+            }
         }
 
         /// <summary>
@@ -132,8 +141,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
         }
 
-        private static double DepthFactorAccumulation(AsphaltWaveImpactInput input, double relativeWidthWaveImpact, double sinA,
-                                                      double[] impactNumberLookup, double bendingStressPartial2)
+        private static unsafe double DepthFactorAccumulation(AsphaltWaveImpactInput input, double relativeWidthWaveImpact, double sinA,
+                                                             Span<double> impactNumberLookup, double bendingStressPartial2)
         {
             double result = 0;
 
@@ -141,31 +150,42 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             double cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
             double expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
 
-            foreach ((double, double) depthFactor in input.DepthFactors)
+            fixed ((double, double)* localDepthFactors = &input.DepthFactors[0])
             {
-                double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
-                                                     expNegativeRelativeWidthWaveImpact, sinA, depthFactor.Item1, bendingStressPartial2);
+                for (var i = 0; i < input.DepthFactors.Length; i++)
+                {
+                    (double, double) depthFactor = localDepthFactors[i];
 
-                double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress, impactNumberLookup);
+                    double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact,
+                                                         cosRelativeWidthWaveImpact,
+                                                         expNegativeRelativeWidthWaveImpact, sinA, depthFactor.Item1,
+                                                         bendingStressPartial2);
 
-                result += depthFactor.Item2 * impactFactorAccumulation;
+                    double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress, impactNumberLookup);
+
+                    result += depthFactor.Item2 * impactFactorAccumulation;
+                }
+
+                return result;
             }
-
-            return result;
         }
 
-        private static double ImpactFactorAccumulation(AsphaltWaveImpactInput input, double bendingStress, double[] impactNumberLookup)
+        private static unsafe double ImpactFactorAccumulation(AsphaltWaveImpactInput input, double bendingStress,
+                                                              Span<double> impactNumberLookup)
         {
             double result = 0;
 
-            for (var i = 0; i < input.ImpactFactors.Count; i++)
+            fixed ((double, double)* localImpactFactors = &input.ImpactFactors[0])
             {
-                double fatigue = Fatigue(input, bendingStress, impactNumberLookup[i]);
+                for (var i = 0; i < input.ImpactFactors.Length; i++)
+                {
+                    double fatigue = Fatigue(input, bendingStress, impactNumberLookup[i]);
 
-                result += input.ImpactFactors[i].Item2 * input.AverageNumberOfWaves * fatigue;
+                    result += localImpactFactors[i].Item2 * input.AverageNumberOfWaves * fatigue;
+                }
+
+                return result;
             }
-
-            return result;
         }
 
         private static double Fatigue(AsphaltWaveImpactInput input, double bendingStress, double impactNumber)
