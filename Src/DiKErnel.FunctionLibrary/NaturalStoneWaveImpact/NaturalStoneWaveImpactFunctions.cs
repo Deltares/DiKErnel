@@ -134,7 +134,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
             double slopeAngleRadians = GenericFunctions.Radians(slopeAngle);
 
             return (distanceMaximumWaveElevation - 0.5 * normativeWidthWaveImpact * CMath.Cos(slopeAngleRadians))
-                   * Math.Tan(slopeAngleRadians);
+                   * CMath.Tan(slopeAngleRadians);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
                                                           double distanceMaximumWaveElevationBsmax)
         {
             return waveHeightHm0
-                   * (distanceMaximumWaveElevationAsmax / Math.Sqrt(waveSteepnessDeepWater) - distanceMaximumWaveElevationBsmax)
+                   * (distanceMaximumWaveElevationAsmax / CMath.Sqrt(waveSteepnessDeepWater) - distanceMaximumWaveElevationBsmax)
                    * impactShallowWater;
         }
 

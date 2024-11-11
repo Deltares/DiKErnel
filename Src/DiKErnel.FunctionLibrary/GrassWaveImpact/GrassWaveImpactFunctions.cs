@@ -47,7 +47,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveImpact
         /// <returns>The time line [-].</returns>
         public static double TimeLine(double waveHeightImpact, double timeLineAgwi, double timeLineBgwi, double timeLineCgwi)
         {
-            return 1 / timeLineBgwi * Math.Log((waveHeightImpact - timeLineCgwi) / timeLineAgwi);
+            return 1 / timeLineBgwi * CMath.Log((waveHeightImpact - timeLineCgwi) / timeLineAgwi);
         }
 
         /// <summary>

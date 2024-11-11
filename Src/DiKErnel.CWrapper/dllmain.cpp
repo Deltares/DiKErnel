@@ -39,6 +39,11 @@ extern "C" __declspec(dllexport) double Cos(double x)
     return cos(x);
 }
 
+extern "C" __declspec(dllexport) double Tan(double x)
+{
+    return tan(x);
+}
+
 extern "C" __declspec(dllexport) double Exp(double x)
 {
     return exp(x);
@@ -57,4 +62,14 @@ extern "C" __declspec(dllexport) double Max(double a, double b)
 extern "C" __declspec(dllexport) double Abs(double x)
 {
     return abs(x);
+}
+
+extern "C" __declspec(dllexport) double Log(double x)
+{
+    return log(x);
+}
+
+extern "C" __declspec(dllexport) double Sqrt(double x)
+{
+    return sqrt(x);
 }

@@ -253,7 +253,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         private static double LowerLimitWaveRunup(double verticalWaterLevelDistance, double upperLimitWaveRunup)
         {
             return (1d / 32) * (32 * verticalWaterLevelDistance + upperLimitWaveRunup +
-                                Math.Sqrt(upperLimitWaveRunup) * Math.Sqrt(64 * verticalWaterLevelDistance + upperLimitWaveRunup));
+                                CMath.Sqrt(upperLimitWaveRunup) * CMath.Sqrt(64 * verticalWaterLevelDistance + upperLimitWaveRunup));
         }
 
         private static double DepthForeshore(double waterLevel, double bottomForeshoreZ)

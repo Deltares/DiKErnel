@@ -41,6 +41,10 @@ namespace DiKErnel.FunctionLibrary
 
         [LibraryImport("DiKErnel.CWrapper.dll")]
         [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double Tan(double x);
+
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
         internal static partial double Exp(double x);
 
         [LibraryImport("DiKErnel.CWrapper.dll")]
@@ -54,5 +58,13 @@ namespace DiKErnel.FunctionLibrary
         [LibraryImport("DiKErnel.CWrapper.dll")]
         [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
         internal static partial double Abs(double x);
+
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double Log(double x);
+
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double Sqrt(double x);
     }
 }
