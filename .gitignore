@@ -4,6 +4,8 @@
 .vs/
 [Bb]in/
 [Oo]bj/
+x86/
+x64/
 
 # JetBrains Rider
 .idea/
