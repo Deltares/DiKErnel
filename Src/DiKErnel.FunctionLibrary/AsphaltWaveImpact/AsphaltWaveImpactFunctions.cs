@@ -26,8 +26,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
     /// </summary>
     public static class AsphaltWaveImpactFunctions
     {
-        private static readonly double maximumPeakStressPartial = Math.Pow(10, 6);
-        private static readonly double bendingStressPartial1 = Math.Pow(10, -99);
+        private static readonly double maximumPeakStressPartial = CMath.Pow(10, 6);
+        private static readonly double bendingStressPartial1 = CMath.Pow(10, -99);
 
         /// <summary>
         /// Calculates the increment of damage.
@@ -41,7 +41,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             double sinA = Math.Sin(Math.Atan(input.OuterSlope));
 
             double bendingStressPartial2 = -3 * input.MaximumPeakStress /
-                                           (4 * Math.Pow(input.StiffnessRelation, 2) * Math.Pow(input.ComputationalThickness, 2));
+                                           (4 * CMath.Pow(input.StiffnessRelation, 2) * CMath.Pow(input.ComputationalThickness, 2));
 
             double[] impactNumberLookup = input.ImpactFactors
                                                .Select(impactFactor => ImpactNumber(input.OuterSlope, impactFactor.Item1,
@@ -96,8 +96,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static double StiffnessRelation(double computationalThickness, double equivalentElasticModulus,
                                                double soilElasticity, double stiffnessRelationNu)
         {
-            return Math.Pow(3 * soilElasticity * (1 - Math.Pow(stiffnessRelationNu, 2))
-                            / (equivalentElasticModulus * Math.Pow(computationalThickness, 3)),
+            return CMath.Pow(3 * soilElasticity * (1 - CMath.Pow(stiffnessRelationNu, 2))
+                            / (equivalentElasticModulus * CMath.Pow(computationalThickness, 3)),
                             1d / 4);
         }
 
@@ -114,7 +114,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static double ComputationalThickness(double thicknessUpperLayer, double thicknessSubLayer,
                                                     double elasticModulusUpperLayer, double elasticModulusSubLayer)
         {
-            return thicknessUpperLayer * Math.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
+            return thicknessUpperLayer * CMath.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
                    + thicknessSubLayer;
         }
 
@@ -172,7 +172,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double logTension = LogTension(bendingStress, impactNumber);
 
-            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
+            return CMath.Pow(10, -input.FatigueBeta * CMath.Pow(Math.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
         }
 
         private static double LogTension(double bendingStress, double impactNumber)
