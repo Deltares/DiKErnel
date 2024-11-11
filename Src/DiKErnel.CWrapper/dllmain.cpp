@@ -23,3 +23,23 @@ extern "C" __declspec(dllexport) double Pow(double x, double y)
 {
     return pow(x, y);
 }
+
+extern "C" __declspec(dllexport) double Log10(double x)
+{
+    return log10(x);
+}
+
+extern "C" __declspec(dllexport) double Sin(double x)
+{
+    return sin(x);
+}
+
+extern "C" __declspec(dllexport) double Cos(double x)
+{
+    return cos(x);
+}
+
+extern "C" __declspec(dllexport) double Exp(double x)
+{
+    return exp(x);
+}

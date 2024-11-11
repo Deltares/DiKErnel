@@ -24,11 +24,23 @@ namespace DiKErnel.FunctionLibrary
     internal static partial class CMath
     {
         [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(
-            CallConvs = new[]
-            {
-                typeof(CallConvStdcall)
-            })]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
         internal static partial double Pow(double x, double y);
+        
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double Log10(double x);
+        
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double Sin(double x);
+
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double Cos(double x);
+
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double Exp(double x);
     }
 }

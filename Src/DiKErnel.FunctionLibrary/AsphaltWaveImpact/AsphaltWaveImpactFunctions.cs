@@ -38,7 +38,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double result = 0;
 
-            double sinA = Math.Sin(Math.Atan(input.OuterSlope));
+            double sinA = CMath.Sin(Math.Atan(input.OuterSlope));
 
             double bendingStressPartial2 = -3 * input.MaximumPeakStress /
                                            (4 * CMath.Pow(input.StiffnessRelation, 2) * CMath.Pow(input.ComputationalThickness, 2));
@@ -69,7 +69,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <returns>The logarithm of the flexural strength [MPa].</returns>
         public static double LogFlexuralStrength(double flexuralStrength)
         {
-            return Math.Log10(flexuralStrength);
+            return CMath.Log10(flexuralStrength);
         }
 
         /// <summary>
@@ -137,9 +137,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double result = 0;
 
-            double sinRelativeWidthWaveImpact = Math.Sin(relativeWidthWaveImpact);
-            double cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
-            double expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
+            double sinRelativeWidthWaveImpact = CMath.Sin(relativeWidthWaveImpact);
+            double cosRelativeWidthWaveImpact = CMath.Cos(relativeWidthWaveImpact);
+            double expNegativeRelativeWidthWaveImpact = CMath.Exp(-relativeWidthWaveImpact);
 
             foreach ((double, double) depthFactor in input.DepthFactors)
             {
@@ -204,13 +204,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
 
-            double sinRelativeDistanceCenterWaveImpact = Math.Sin(relativeDistanceCenterWaveImpact);
-            double cosRelativeDistanceCenterWaveImpact = Math.Cos(relativeDistanceCenterWaveImpact);
-            double expNegativeRelativeDistanceCenterWaveImpact = Math.Exp(-relativeDistanceCenterWaveImpact);
+            double sinRelativeDistanceCenterWaveImpact = CMath.Sin(relativeDistanceCenterWaveImpact);
+            double cosRelativeDistanceCenterWaveImpact = CMath.Cos(relativeDistanceCenterWaveImpact);
+            double expNegativeRelativeDistanceCenterWaveImpact = CMath.Exp(-relativeDistanceCenterWaveImpact);
 
             if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
             {
-                double expRelativeDistanceCenterWaveImpact = Math.Exp(relativeDistanceCenterWaveImpact);
+                double expRelativeDistanceCenterWaveImpact = CMath.Exp(relativeDistanceCenterWaveImpact);
 
                 return (-sinRelativeDistanceCenterWaveImpact
                         * (expRelativeDistanceCenterWaveImpact - expNegativeRelativeDistanceCenterWaveImpact)
@@ -223,7 +223,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                        / relativeWidthWaveImpact;
             }
 
-            double expRelativeWidthWaveImpact = Math.Exp(relativeWidthWaveImpact);
+            double expRelativeWidthWaveImpact = CMath.Exp(relativeWidthWaveImpact);
 
             return (cosRelativeDistanceCenterWaveImpact
                     * (expRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact)
