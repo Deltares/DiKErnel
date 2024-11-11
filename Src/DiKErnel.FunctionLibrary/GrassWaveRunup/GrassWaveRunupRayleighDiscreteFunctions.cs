@@ -43,8 +43,8 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                             double gravitationalAcceleration)
         {
             return frontVelocityCu * Math.Sqrt(gravitationalAcceleration * waveRunup)
-                                   * Math.Max(0, Math.Min(1, (waveRunup - verticalDistanceWaterLevelElevation)
-                                                             / (0.25 * waveRunup)));
+                                   * CMath.Max(0, CMath.Min(1, (waveRunup - verticalDistanceWaterLevelElevation)
+                                                               / (0.25 * waveRunup)));
         }
     }
 }

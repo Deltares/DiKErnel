@@ -82,7 +82,7 @@ namespace DiKErnel.FunctionLibrary
                                                      double gravitationalAcceleration)
         {
             return outerSlope / Math.Sqrt(2 * Math.PI * waveHeightHm0 / (gravitationalAcceleration
-                                                                         * Math.Pow(wavePeriodTm10, 2)));
+                                                                         * CMath.Pow(wavePeriodTm10, 2)));
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace DiKErnel.FunctionLibrary
         /// <returns>The wave steepness in deep water [-].</returns>
         public static double WaveSteepnessDeepWater(double waveHeightHm0, double wavePeriodTm10, double gravitationalAcceleration)
         {
-            return waveHeightHm0 / (gravitationalAcceleration / (2 * Math.PI) * Math.Pow(wavePeriodTm10, 2));
+            return waveHeightHm0 / (gravitationalAcceleration / (2 * Math.PI) * CMath.Pow(wavePeriodTm10, 2));
         }
 
         /// <summary>

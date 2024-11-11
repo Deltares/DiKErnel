@@ -97,8 +97,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                                                double soilElasticity, double stiffnessRelationNu)
         {
             return CMath.Pow(3 * soilElasticity * (1 - CMath.Pow(stiffnessRelationNu, 2))
-                            / (equivalentElasticModulus * CMath.Pow(computationalThickness, 3)),
-                            1d / 4);
+                             / (equivalentElasticModulus * CMath.Pow(computationalThickness, 3)),
+                             1d / 4);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 
         private static double LogTension(double bendingStress, double impactNumber)
         {
-            return Math.Log10(impactNumber * bendingStress);
+            return CMath.Log10(impactNumber * bendingStress);
         }
 
         private static double ImpactNumber(double outerSlope, double impactFactorValue, double impactNumberC)
@@ -194,7 +194,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                 input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact, expNegativeRelativeWidthWaveImpact,
                 sinA, depthFactorValue);
 
-            return Math.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
+            return CMath.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
         }
 
         private static double SpatialDistributionBendingStress(AsphaltWaveImpactInput input, double relativeWidthWaveImpact,
@@ -237,14 +237,14 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 
         private static double RelativeWidthWaveImpact(double stiffnessRelation, double widthFactorValue, double waveHeightHm0)
         {
-            return Math.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
+            return CMath.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
         }
 
         private static double RelativeDistanceCenterWaveImpact(AsphaltWaveImpactInput input, double depthFactorValue,
                                                                double sinA)
         {
-            return Math.Min(85, input.StiffnessRelation
-                                * Math.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
+            return CMath.Min(85, input.StiffnessRelation
+                                 * CMath.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
         }
     }
 }

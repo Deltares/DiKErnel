@@ -285,31 +285,31 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static double LambdaRu2(double kappa)
         {
-            return kappa > 3d ? Math.Pow(kappa, 4d / 9) : lambdaRu2Interpolator.Interpolate(kappa);
+            return kappa > 3d ? CMath.Pow(kappa, 4d / 9) : lambdaRu2Interpolator.Interpolate(kappa);
         }
 
         private static double VerticalWaveRunupLimit2(double scaledVerticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
         {
-            return Math.Max(scaledVerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
+            return CMath.Max(scaledVerticalDistanceWaterLevelElevation, upperLimitWaveRunup);
         }
 
         private static double VerticalWaveRunupLimit1(double waveRunupTransition, double verticalWaveRunupLimit2)
         {
-            return Math.Max(verticalWaveRunupLimit2, waveRunupTransition);
+            return CMath.Max(verticalWaveRunupLimit2, waveRunupTransition);
         }
 
         private static double VerticalWaveRunupLimit6(double verticalDistanceWaterLevelElevation,
                                                       double scaledVerticalDistanceWaterLevelElevation,
                                                       double lowerLimitWaveRunup)
         {
-            return Math.Max(Math.Min(scaledVerticalDistanceWaterLevelElevation, lowerLimitWaveRunup),
-                            verticalDistanceWaterLevelElevation);
+            return CMath.Max(CMath.Min(scaledVerticalDistanceWaterLevelElevation, lowerLimitWaveRunup),
+                             verticalDistanceWaterLevelElevation);
         }
 
         private static double VerticalWaveRunupLimit5(double scaledVerticalDistanceWaterLevelElevation, double waveRunupTransition,
                                                       double verticalWaveRunupLimit6)
         {
-            return Math.Max(verticalWaveRunupLimit6, Math.Min(scaledVerticalDistanceWaterLevelElevation, waveRunupTransition));
+            return CMath.Max(verticalWaveRunupLimit6, CMath.Min(scaledVerticalDistanceWaterLevelElevation, waveRunupTransition));
         }
 
         private static double ScaledVerticalDistanceWaterLevelElevation(double verticalDistanceWaterLevelElevation)
@@ -320,28 +320,28 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         private static double DeltaCumulativeLoad(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
                                                   double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
-            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration *
+            return input.IncreasedLoadTransitionAlphaM * CMath.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration *
                    scalingParameterRu * Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
-                   ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
-                   Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
+                   ((input.ReducedStrengthTransitionAlphaS * CMath.Pow(input.CriticalFrontVelocity, 2)) / k) *
+                   CMath.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
         private static double DeltaCumulativeLoadWithVerticalDistanceWaterLevel(
             GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
             double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
-            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *
+            return input.IncreasedLoadTransitionAlphaM * CMath.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *
                    (((4 * scalingParameterRu) / k) *
                     Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
                     ((4 * input.VerticalDistanceWaterLevelElevation) / k) *
-                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
-                   ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
-                   Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
+                    CMath.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
+                   ((input.ReducedStrengthTransitionAlphaS * CMath.Pow(input.CriticalFrontVelocity, 2)) / k) *
+                   CMath.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
         private static double Probability(double xi, double eta)
         {
-            double probability = SpecialFunctions.GammaLowerRegularized(1 + 1 / xi, Math.Pow(eta, xi));
+            double probability = SpecialFunctions.GammaLowerRegularized(1 + 1 / xi, CMath.Pow(eta, xi));
 
             double gammaNominator = SpecialFunctions.Gamma(1 + 1 / xi);
 

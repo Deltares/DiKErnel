@@ -62,7 +62,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveImpact
         public static double WaveHeightImpact(double minimumWaveHeight, double maximumWaveHeight, double waveAngleImpact,
                                               double waveHeightHm0)
         {
-            return Math.Min(maximumWaveHeight, Math.Max(waveAngleImpact * waveHeightHm0, minimumWaveHeight));
+            return CMath.Min(maximumWaveHeight, CMath.Max(waveAngleImpact * waveHeightHm0, minimumWaveHeight));
         }
 
         /// <summary>
@@ -104,12 +104,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveImpact
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactNwa, double waveAngleImpactQwa,
                                              double waveAngleImpactRwa)
         {
-            if (Math.Abs(waveAngle) <= 90d)
+            if (CMath.Abs(waveAngle) <= 90d)
             {
-                return Math.Max(Math.Pow(Math.Cos(GenericFunctions.Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
+                return CMath.Max(Math.Pow(Math.Cos(GenericFunctions.Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
             }
 
-            return Math.Max(waveAngleImpactQwa * ((90 + waveAngleImpactRwa - Math.Abs(waveAngle)) / waveAngleImpactRwa), 0);
+            return CMath.Max(waveAngleImpactQwa * ((90 + waveAngleImpactRwa - CMath.Abs(waveAngle)) / waveAngleImpactRwa), 0);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveImpact
         private static double WaveHeightBoundary(double timeLineAgwi, double timeLineBgwi, double timeLineCgwi,
                                                  double waveHeightCoefficient)
         {
-            return timeLineAgwi * Math.Exp(timeLineBgwi * waveHeightCoefficient) + timeLineCgwi;
+            return timeLineAgwi * CMath.Exp(timeLineBgwi * waveHeightCoefficient) + timeLineCgwi;
         }
 
         private static double LimitLoading(double waterLevel, double waveHeightHm0, double coefficientA)

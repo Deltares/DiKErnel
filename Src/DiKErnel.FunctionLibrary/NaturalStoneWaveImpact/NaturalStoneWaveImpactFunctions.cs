@@ -47,7 +47,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// <returns>The hydraulic load [m].</returns>
         public static double HydraulicLoad(NaturalStoneWaveImpactHydraulicLoadInput input)
         {
-            return input.WaveHeightHm0 / (input.A * Math.Pow(input.SurfSimilarityParameter, input.N)
+            return input.WaveHeightHm0 / (input.A * CMath.Pow(input.SurfSimilarityParameter, input.N)
                                           + input.B * input.SurfSimilarityParameter
                                           + input.C);
         }
@@ -77,7 +77,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         public static double SlopeUpperLevel(double outerToeHeight, double outerCrestHeight, double waterLevel,
                                              double waveHeightHm0, double slopeUpperLevelAus)
         {
-            return Math.Min(outerCrestHeight, Math.Max(waterLevel, outerToeHeight + slopeUpperLevelAus * waveHeightHm0));
+            return CMath.Min(outerCrestHeight, CMath.Max(waterLevel, outerToeHeight + slopeUpperLevelAus * waveHeightHm0));
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         public static double SlopeLowerLevel(double outerToeHeight, double slopeUpperLevel, double waveHeightHm0,
                                              double slopeLowerLevelAls)
         {
-            return Math.Max(outerToeHeight, slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
+            return CMath.Max(outerToeHeight, slopeUpperLevel - slopeLowerLevelAls * waveHeightHm0);
         }
 
         /// <summary>
@@ -102,8 +102,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         public static double UpperLimitLoading(NaturalStoneWaveImpactLimitLoadingInput input)
         {
             return input.WaterLevel - 2 * input.DepthMaximumWaveLoad
-                   + Math.Max(input.DepthMaximumWaveLoad + input.A,
-                              input.B * input.WaveHeightHm0 * Math.Min(input.SurfSimilarityParameter, input.C));
+                   + CMath.Max(input.DepthMaximumWaveLoad + input.A,
+                               input.B * input.WaveHeightHm0 * CMath.Min(input.SurfSimilarityParameter, input.C));
         }
 
         /// <summary>
@@ -115,8 +115,8 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         {
             return input.WaterLevel
                    - 2 * input.DepthMaximumWaveLoad
-                   + Math.Min(input.DepthMaximumWaveLoad - input.A,
-                              input.B * input.WaveHeightHm0 * Math.Min(input.SurfSimilarityParameter, input.C));
+                   + CMath.Min(input.DepthMaximumWaveLoad - input.A,
+                               input.B * input.WaveHeightHm0 * CMath.Min(input.SurfSimilarityParameter, input.C));
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         {
             double slopeAngleRadians = GenericFunctions.Radians(slopeAngle);
 
-            return (distanceMaximumWaveElevation - 0.5 * normativeWidthWaveImpact * Math.Cos(slopeAngleRadians))
+            return (distanceMaximumWaveElevation - 0.5 * normativeWidthWaveImpact * CMath.Cos(slopeAngleRadians))
                    * Math.Tan(slopeAngleRadians);
         }
 
@@ -180,7 +180,7 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
         /// <returns>The wave impact with respect to the wave angle [-].</returns>
         public static double WaveAngleImpact(double waveAngle, double waveAngleImpactBetamax)
         {
-            return Math.Pow(Math.Cos(GenericFunctions.Radians(Math.Min(waveAngleImpactBetamax, Math.Abs(waveAngle)))), 2d / 3);
+            return CMath.Pow(Math.Cos(GenericFunctions.Radians(CMath.Min(waveAngleImpactBetamax, CMath.Abs(waveAngle)))), 2d / 3);
         }
 
         /// <summary>
@@ -374,12 +374,12 @@ namespace DiKErnel.FunctionLibrary.NaturalStoneWaveImpact
 
         private static double Degradation(double referenceTimeDegradation, double wavePeriodTm10)
         {
-            return Math.Pow(referenceTimeDegradation / (wavePeriodTm10 * 1000), 0.1);
+            return CMath.Pow(referenceTimeDegradation / (wavePeriodTm10 * 1000), 0.1);
         }
 
         private static double ReferenceTime(double reference, double wavePeriodTm10)
         {
-            return 1000 * wavePeriodTm10 * Math.Pow(reference, 10);
+            return 1000 * wavePeriodTm10 * CMath.Pow(reference, 10);
         }
 
         private static double Reference(double resistance, double hydraulicLoad, double waveAngleImpact, double value)

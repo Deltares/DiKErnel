@@ -45,7 +45,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
         {
             return frontVelocityCwo * accelerationAlphaA
                                     * Math.Sqrt(gravitationalAcceleration
-                                                * Math.Max(0, waveRunup - verticalDistanceWaterLevelElevation));
+                                                * CMath.Max(0, waveRunup - verticalDistanceWaterLevelElevation));
         }
     }
 }

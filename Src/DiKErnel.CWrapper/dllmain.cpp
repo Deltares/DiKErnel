@@ -43,3 +43,18 @@ extern "C" __declspec(dllexport) double Exp(double x)
 {
     return exp(x);
 }
+
+extern "C" __declspec(dllexport) double Min(double a, double b)
+{
+    return min(a, b);
+}
+
+extern "C" __declspec(dllexport) double Max(double a, double b)
+{
+    return max(a, b);
+}
+
+extern "C" __declspec(dllexport) double Abs(double x)
+{
+    return abs(x);
+}
