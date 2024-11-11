@@ -8,7 +8,7 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>All</AnalysisMode>
     <Platforms>x86;x64</Platforms>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Company>Deltares</Company>
     <Copyright>Copyright © Stichting Deltares and State of the Netherlands 2023</Copyright>

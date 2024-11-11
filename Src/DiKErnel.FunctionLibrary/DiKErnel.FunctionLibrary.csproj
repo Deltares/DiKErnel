@@ -1,7 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\NetStandard.targets"/>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <Import Project="$(SolutionDir)Development\NetStandard.targets"/>
+    
     <ItemGroup>
         <ProjectReference Include="..\DiKErnel.External.Overtopping\DiKErnel.External.Overtopping.csproj"/>
     </ItemGroup>

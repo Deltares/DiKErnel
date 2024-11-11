@@ -16,13 +16,19 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DiKErnel.FunctionLibrary
 {
-    internal static class CMath
+    internal static partial class CMath
     {
-        [DllImport("DiKErnel.CWrapper.dll")]
-        public static extern double Pow(double x, double y);
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(
+            CallConvs = new[]
+            {
+                typeof(CallConvStdcall)
+            })]
+        internal static partial double Pow(double x, double y);
     }
 }
