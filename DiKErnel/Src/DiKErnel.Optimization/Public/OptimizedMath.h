@@ -20,7 +20,7 @@
 
 #pragma once
 
-namespace DiKErnel::Util
+namespace DiKErnel::Optimization
 {
     class OptimizedMath
     {

@@ -22,7 +22,7 @@
 
 #include <cmath>
 
-namespace DiKErnel::Util
+namespace DiKErnel::Optimization
 {
     using namespace std;
 
