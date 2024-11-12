@@ -96,4 +96,5 @@ target_include_directories(${LIBNAME} PUBLIC
 # Link dependencies
 target_link_libraries(${LIBNAME}
   DiKErnel.External.Overtopping
+  DiKErnel.Optimization
 )
