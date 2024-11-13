@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using DiKErnel.FunctionLibrary.Grass;
 
 namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
@@ -43,8 +44,8 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
                                             double accelerationAlphaA, double frontVelocityCwo, double gravitationalAcceleration)
         {
             return frontVelocityCwo * accelerationAlphaA
-                                    * CMath.Sqrt(gravitationalAcceleration
-                                                 * CMath.Max(0, waveRunup - verticalDistanceWaterLevelElevation));
+                                    * Math.Sqrt(gravitationalAcceleration
+                                                 * Math.Max(0, waveRunup - verticalDistanceWaterLevelElevation));
         }
     }
 }

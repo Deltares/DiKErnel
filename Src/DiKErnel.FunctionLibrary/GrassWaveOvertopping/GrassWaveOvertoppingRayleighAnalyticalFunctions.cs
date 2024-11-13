@@ -26,9 +26,9 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
     /// </summary>
     public static class GrassWaveOvertoppingRayleighAnalyticalFunctions
     {
-        private static readonly double parameterRayleighPartial = 2 * CMath.Log(0.02);
-        private static readonly double genericPartial = CMath.Sqrt(2);
-        private static readonly double integralPart1Partial = CMath.Sqrt(Math.PI / 2);
+        private static readonly double parameterRayleighPartial = 2 * Math.Log(0.02);
+        private static readonly double genericPartial = Math.Sqrt(2);
+        private static readonly double integralPart1Partial = Math.Sqrt(Math.PI / 2);
 
         /// <summary>
         /// Calculates the cumulative overload.
@@ -45,7 +45,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
             double parameterX0 = ParameterX0(input.VerticalDistanceWaterLevelElevation, parameterRayleigh,
                                              cumulativeOverloadPartial1, cumulativeOverloadPartial2);
 
-            double sharedResult = CMath.Exp(-Math.Pow(parameterX0, 2));
+            double sharedResult = Math.Exp(-Math.Pow(parameterX0, 2));
 
             double integralPart1 = IntegralPart1(parameterRayleigh, cumulativeOverloadPartial1, sharedResult, parameterX0);
 
@@ -54,12 +54,12 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 
             double integralPart3 = IntegralPart3(cumulativeOverloadPartial2, sharedResult);
 
-            return input.AverageNumberOfWaves * CMath.Max(integralPart1 + integralPart2 + integralPart3, 0);
+            return input.AverageNumberOfWaves * Math.Max(integralPart1 + integralPart2 + integralPart3, 0);
         }
 
         private static double ParameterRayleigh(double representativeWaveRunup2P)
         {
-            return CMath.Sqrt(-Math.Pow(representativeWaveRunup2P, 2) / parameterRayleighPartial);
+            return Math.Sqrt(-Math.Pow(representativeWaveRunup2P, 2) / parameterRayleighPartial);
         }
 
         private static double ParameterX0(double verticalDistanceWaterLevelElevation, double parameterRayleigh,

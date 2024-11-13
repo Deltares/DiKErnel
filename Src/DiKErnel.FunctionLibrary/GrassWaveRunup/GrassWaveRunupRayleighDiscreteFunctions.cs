@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using DiKErnel.FunctionLibrary.Grass;
 
 namespace DiKErnel.FunctionLibrary.GrassWaveRunup
@@ -41,8 +42,8 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         private static double FrontVelocity(double waveRunup, double verticalDistanceWaterLevelElevation, double frontVelocityCu,
                                             double gravitationalAcceleration)
         {
-            return frontVelocityCu * CMath.Sqrt(gravitationalAcceleration * waveRunup)
-                                   * CMath.Max(0, CMath.Min(1, (waveRunup - verticalDistanceWaterLevelElevation)
+            return frontVelocityCu * Math.Sqrt(gravitationalAcceleration * waveRunup)
+                                   * Math.Max(0, Math.Min(1, (waveRunup - verticalDistanceWaterLevelElevation)
                                                                / (0.25 * waveRunup)));
         }
     }

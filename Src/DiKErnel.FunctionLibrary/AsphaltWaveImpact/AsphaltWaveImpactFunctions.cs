@@ -26,8 +26,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
     /// </summary>
     public static class AsphaltWaveImpactFunctions
     {
-        private static readonly double maximumPeakStressPartial = CMath.Pow(10, 6);
-        private static readonly double bendingStressPartial1 = CMath.Pow(10, -99);
+        private static readonly double maximumPeakStressPartial = Math.Pow(10, 6);
+        private static readonly double bendingStressPartial1 = Math.Pow(10, -99);
 
         /// <summary>
         /// Calculates the increment of damage.
@@ -38,10 +38,10 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double result = 0;
 
-            double sinA = CMath.Sin(Math.Atan(input.OuterSlope));
+            double sinA = Math.Sin(Math.Atan(input.OuterSlope));
 
             double bendingStressPartial2 = -3 * input.MaximumPeakStress /
-                                           (4 * CMath.Pow(input.StiffnessRelation, 2) * CMath.Pow(input.ComputationalThickness, 2));
+                                           (4 * Math.Pow(input.StiffnessRelation, 2) * Math.Pow(input.ComputationalThickness, 2));
 
             double[] impactNumberLookup = input.ImpactFactors
                                                .Select(impactFactor => ImpactNumber(input.OuterSlope, impactFactor.Item1,
@@ -69,7 +69,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <returns>The logarithm of the flexural strength [MPa].</returns>
         public static double LogFlexuralStrength(double flexuralStrength)
         {
-            return CMath.Log10(flexuralStrength);
+            return Math.Log10(flexuralStrength);
         }
 
         /// <summary>
@@ -96,8 +96,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static double StiffnessRelation(double computationalThickness, double equivalentElasticModulus,
                                                double soilElasticity, double stiffnessRelationNu)
         {
-            return CMath.Pow(3 * soilElasticity * (1 - CMath.Pow(stiffnessRelationNu, 2))
-                             / (equivalentElasticModulus * CMath.Pow(computationalThickness, 3)),
+            return Math.Pow(3 * soilElasticity * (1 - Math.Pow(stiffnessRelationNu, 2))
+                             / (equivalentElasticModulus * Math.Pow(computationalThickness, 3)),
                              1d / 4);
         }
 
@@ -114,7 +114,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static double ComputationalThickness(double thicknessUpperLayer, double thicknessSubLayer,
                                                     double elasticModulusUpperLayer, double elasticModulusSubLayer)
         {
-            return thicknessUpperLayer * CMath.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
+            return thicknessUpperLayer * Math.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
                    + thicknessSubLayer;
         }
 
@@ -137,9 +137,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double result = 0;
 
-            double sinRelativeWidthWaveImpact = CMath.Sin(relativeWidthWaveImpact);
-            double cosRelativeWidthWaveImpact = CMath.Cos(relativeWidthWaveImpact);
-            double expNegativeRelativeWidthWaveImpact = CMath.Exp(-relativeWidthWaveImpact);
+            double sinRelativeWidthWaveImpact = Math.Sin(relativeWidthWaveImpact);
+            double cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
+            double expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
 
             foreach ((double, double) depthFactor in input.DepthFactors)
             {
@@ -172,12 +172,12 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double logTension = LogTension(bendingStress, impactNumber);
 
-            return CMath.Pow(10, -input.FatigueBeta * CMath.Pow(Math.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
+            return Math.Pow(10, -input.FatigueBeta * Math.Pow(Math.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
         }
 
         private static double LogTension(double bendingStress, double impactNumber)
         {
-            return CMath.Log10(impactNumber * bendingStress);
+            return Math.Log10(impactNumber * bendingStress);
         }
 
         private static double ImpactNumber(double outerSlope, double impactFactorValue, double impactNumberC)
@@ -194,7 +194,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                 input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact, expNegativeRelativeWidthWaveImpact,
                 sinA, depthFactorValue);
 
-            return CMath.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
+            return Math.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
         }
 
         private static double SpatialDistributionBendingStress(AsphaltWaveImpactInput input, double relativeWidthWaveImpact,
@@ -204,13 +204,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             double relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
 
-            double sinRelativeDistanceCenterWaveImpact = CMath.Sin(relativeDistanceCenterWaveImpact);
-            double cosRelativeDistanceCenterWaveImpact = CMath.Cos(relativeDistanceCenterWaveImpact);
-            double expNegativeRelativeDistanceCenterWaveImpact = CMath.Exp(-relativeDistanceCenterWaveImpact);
+            double sinRelativeDistanceCenterWaveImpact = Math.Sin(relativeDistanceCenterWaveImpact);
+            double cosRelativeDistanceCenterWaveImpact = Math.Cos(relativeDistanceCenterWaveImpact);
+            double expNegativeRelativeDistanceCenterWaveImpact = Math.Exp(-relativeDistanceCenterWaveImpact);
 
             if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
             {
-                double expRelativeDistanceCenterWaveImpact = CMath.Exp(relativeDistanceCenterWaveImpact);
+                double expRelativeDistanceCenterWaveImpact = Math.Exp(relativeDistanceCenterWaveImpact);
 
                 return (-sinRelativeDistanceCenterWaveImpact
                         * (expRelativeDistanceCenterWaveImpact - expNegativeRelativeDistanceCenterWaveImpact)
@@ -223,7 +223,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                        / relativeWidthWaveImpact;
             }
 
-            double expRelativeWidthWaveImpact = CMath.Exp(relativeWidthWaveImpact);
+            double expRelativeWidthWaveImpact = Math.Exp(relativeWidthWaveImpact);
 
             return (cosRelativeDistanceCenterWaveImpact
                     * (expRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact)
@@ -237,14 +237,14 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 
         private static double RelativeWidthWaveImpact(double stiffnessRelation, double widthFactorValue, double waveHeightHm0)
         {
-            return CMath.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
+            return Math.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
         }
 
         private static double RelativeDistanceCenterWaveImpact(AsphaltWaveImpactInput input, double depthFactorValue,
                                                                double sinA)
         {
-            return CMath.Min(85, input.StiffnessRelation
-                                 * CMath.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
+            return Math.Min(85, input.StiffnessRelation
+                                 * Math.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
         }
     }
 }
