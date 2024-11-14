@@ -24,10 +24,12 @@
 #include <cmath>
 
 #include "GenericFunctions.h"
+#include "OptimizedMath.h"
 
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
+    using namespace Optimization;
 
     double GrassRevetmentWaveImpactFunctions::IncrementDamage(
         const double incrementTime,
@@ -80,7 +82,7 @@ namespace DiKErnel::FunctionLibrary
     {
         if (abs(waveAngle) <= 90.0)
         {
-            return max(pow(cos(GenericFunctions::Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
+            return max(OptimizedMath::OptimizedPow(cos(GenericFunctions::Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
         }
 
         return max(waveAngleImpactQwa * ((90.0 + waveAngleImpactRwa - abs(waveAngle)) / waveAngleImpactRwa), 0.0);

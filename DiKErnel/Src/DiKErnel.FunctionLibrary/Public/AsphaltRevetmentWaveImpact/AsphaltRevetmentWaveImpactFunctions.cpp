@@ -30,8 +30,8 @@ namespace DiKErnel::FunctionLibrary
     using namespace std;
     using namespace Optimization;
 
-    double AsphaltRevetmentWaveImpactFunctions::_maximumPeakStressPartial = pow(10.0, 6.0);
-    double AsphaltRevetmentWaveImpactFunctions::_bendingStressPartial1 = pow(10.0, -99.0);
+    double AsphaltRevetmentWaveImpactFunctions::_maximumPeakStressPartial = OptimizedMath::OptimizedPow(10.0, 6.0);
+    double AsphaltRevetmentWaveImpactFunctions::_bendingStressPartial1 = OptimizedMath::OptimizedPow(10.0, -99.0);
 
     double AsphaltRevetmentWaveImpactFunctions::IncrementDamage(
         const AsphaltRevetmentWaveImpactFunctionsInput& input)
@@ -40,8 +40,8 @@ namespace DiKErnel::FunctionLibrary
 
         const auto sinA = sin(atan(input._outerSlope));
 
-        const double bendingStressPartial2 = -3.0 * input._maximumPeakStress / (4.0 * pow(input._stiffnessRelation, 2.0)
-            * pow(input._computationalThickness, 2.0));
+        const double bendingStressPartial2 = -3.0 * input._maximumPeakStress / (4.0 * OptimizedMath::OptimizedPow(input._stiffnessRelation, 2.0)
+            * OptimizedMath::OptimizedPow(input._computationalThickness, 2.0));
 
         vector<double> impactNumberLookup;
 
@@ -84,8 +84,8 @@ namespace DiKErnel::FunctionLibrary
         const double soilElasticity,
         const double stiffnessRelationNu)
     {
-        return pow(3.0 * soilElasticity * (1.0 - pow(stiffnessRelationNu, 2.0))
-                   / (equivalentElasticModulus * pow(computationalThickness, 3.0)), 1.0 / 4.0);
+        return OptimizedMath::OptimizedPow(3.0 * soilElasticity * (1.0 - OptimizedMath::OptimizedPow(stiffnessRelationNu, 2.0))
+                   / (equivalentElasticModulus * OptimizedMath::OptimizedPow(computationalThickness, 3.0)), 1.0 / 4.0);
     }
 
     double AsphaltRevetmentWaveImpactFunctions::ComputationalThickness(
@@ -95,7 +95,7 @@ namespace DiKErnel::FunctionLibrary
         const double elasticModulusSubLayer)
     {
         return thicknessUpperLayer
-                * pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0)
+                * OptimizedMath::OptimizedPow(elasticModulusUpperLayer / elasticModulusSubLayer, 1.0 / 3.0)
                 + thicknessSubLayer;
     }
 
@@ -158,8 +158,8 @@ namespace DiKErnel::FunctionLibrary
     {
         const auto logTension = LogTension(bendingStress, impactNumber);
 
-        return pow(10.0, -input._fatigueBeta
-                   * pow(max(0.0, input._logFailureTension - logTension), input._fatigueAlpha));
+        return OptimizedMath::OptimizedPow(10.0, -input._fatigueBeta
+                   * OptimizedMath::OptimizedPow(max(0.0, input._logFailureTension - logTension), input._fatigueAlpha));
     }
 
     double AsphaltRevetmentWaveImpactFunctions::LogTension(
