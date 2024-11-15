@@ -139,16 +139,9 @@ namespace DiKErnel::FunctionLibrary
         const double bendingStress,
         const vector<double>& impactNumberLookup)
     {
-        auto result = 0.0;
-
-        for (int i = 0; i < input._impactFactors.size(); i++)
-        {
-            const auto fatigue = Fatigue(input, bendingStress, impactNumberLookup[i]);
-
-            result += input._impactFactors[i].second * input._averageNumberOfWaves * fatigue;
-        }
-
-        return result;
+        return OptimizedMath::OptimizedImpactFactorAccumulation(
+            input._fatigueAlpha, input._fatigueBeta, input._averageNumberOfWaves, input._logFailureTension,
+            bendingStress, input._impactFactors, impactNumberLookup);
     }
 
     double AsphaltRevetmentWaveImpactFunctions::Fatigue(
