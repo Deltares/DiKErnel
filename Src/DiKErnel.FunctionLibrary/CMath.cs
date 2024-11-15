@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -27,6 +28,14 @@ namespace DiKErnel.FunctionLibrary
         [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
         internal static partial double Pow(double x, double y);
 
+        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+        internal static partial double OptimizedImpactFactorAccumulation(double fatigueAlpha, double fatigueBeta,
+                                                                         double averageNumberOfWaves, double logFailureTension,
+                                                                         double bendingStress, double[] impactFactorProbabilities,
+                                                                         int impactFactorProbabilitiesLength, double[] impactNumberLookup,
+                                                                         int impactNumberLookupLength);
+        
         [LibraryImport("DiKErnel.CWrapper.dll")]
         [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
         internal static partial double Log10(double x);
