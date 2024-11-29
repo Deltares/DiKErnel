@@ -61,7 +61,7 @@ namespace DiKErnel::FunctionLibrary
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
     {
-        return outerSlope / sqrt(2.0 * GenericFunctions::Pi() * waveHeightHm0 / (gravitationalAcceleration * OptimizedMath::OptimizedPow(wavePeriodTm10, 2.0)));
+        return outerSlope / sqrt(2.0 * GenericFunctions::Pi() * waveHeightHm0 / (gravitationalAcceleration * wavePeriodTm10 * wavePeriodTm10));
     }
 
     double HydraulicLoadFunctions::WaveSteepnessDeepWater(
@@ -69,7 +69,7 @@ namespace DiKErnel::FunctionLibrary
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
     {
-        return waveHeightHm0 / (gravitationalAcceleration / (2.0 * GenericFunctions::Pi()) * OptimizedMath::OptimizedPow(wavePeriodTm10, 2.0));
+        return waveHeightHm0 / (gravitationalAcceleration / (2.0 * GenericFunctions::Pi()) * wavePeriodTm10 * wavePeriodTm10);
     }
 
     double HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(
