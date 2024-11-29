@@ -20,9 +20,6 @@
 
 #include "OptimizedMath.h"
 
-#include <algorithm>
-#include <cmath>
-
 namespace DiKErnel::Optimization
 {
     using namespace std;
