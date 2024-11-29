@@ -24,12 +24,10 @@
 #include <cmath>
 
 #include "GenericFunctions.h"
-#include "OptimizedMath.h"
 
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
-    using namespace Optimization;
 
     double NaturalStoneRevetmentFunctions::IncrementDamage(
         const double hydraulicLoad,
@@ -43,7 +41,7 @@ namespace DiKErnel::FunctionLibrary
     double NaturalStoneRevetmentFunctions::HydraulicLoad(
         const NaturalStoneRevetmentHydraulicLoadInput& input)
     {
-        return input._waveHeightHm0 / (input._a * OptimizedMath::OptimizedPow(input._surfSimilarityParameter, input._n)
+        return input._waveHeightHm0 / (input._a * pow(input._surfSimilarityParameter, input._n)
             + input._b * input._surfSimilarityParameter
             + input._c);
     }
@@ -131,7 +129,7 @@ namespace DiKErnel::FunctionLibrary
         const double waveAngle,
         const double waveAngleImpactBetamax)
     {
-        return OptimizedMath::OptimizedPow(cos(GenericFunctions::Radians(min(waveAngleImpactBetamax, abs(waveAngle)))), 2.0 / 3.0);
+        return pow(cos(GenericFunctions::Radians(min(waveAngleImpactBetamax, abs(waveAngle)))), 2.0 / 3.0);
     }
 
     double NaturalStoneRevetmentFunctions::Resistance(
@@ -300,14 +298,14 @@ namespace DiKErnel::FunctionLibrary
         const double referenceTimeDegradation,
         const double wavePeriodTm10)
     {
-        return OptimizedMath::OptimizedPow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
+        return pow(referenceTimeDegradation / (wavePeriodTm10 * 1000.0), 0.1);
     }
 
     double NaturalStoneRevetmentFunctions::ReferenceTime(
         const double reference,
         const double wavePeriodTm10)
     {
-        return 1000.0 * wavePeriodTm10 * OptimizedMath::OptimizedPow(reference, 10.0);
+        return 1000.0 * wavePeriodTm10 * pow(reference, 10.0);
     }
 
     double NaturalStoneRevetmentFunctions::Reference(

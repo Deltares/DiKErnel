@@ -23,12 +23,10 @@
 #include <cmath>
 
 #include "GenericFunctions.h"
-#include "OptimizedMath.h"
 
 namespace DiKErnel::FunctionLibrary
 {
     using namespace std;
-    using namespace Optimization;
 
     double HydraulicLoadFunctions::WaveDirection(
         const double waveAngle)
@@ -61,7 +59,7 @@ namespace DiKErnel::FunctionLibrary
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
     {
-        return outerSlope / sqrt(2.0 * GenericFunctions::Pi() * waveHeightHm0 / (gravitationalAcceleration * OptimizedMath::OptimizedPow(wavePeriodTm10, 2.0)));
+        return outerSlope / sqrt(2.0 * GenericFunctions::Pi() * waveHeightHm0 / (gravitationalAcceleration * pow(wavePeriodTm10, 2.0)));
     }
 
     double HydraulicLoadFunctions::WaveSteepnessDeepWater(
@@ -69,7 +67,7 @@ namespace DiKErnel::FunctionLibrary
         const double wavePeriodTm10,
         const double gravitationalAcceleration)
     {
-        return waveHeightHm0 / (gravitationalAcceleration / (2.0 * GenericFunctions::Pi()) * OptimizedMath::OptimizedPow(wavePeriodTm10, 2.0));
+        return waveHeightHm0 / (gravitationalAcceleration / (2.0 * GenericFunctions::Pi()) * pow(wavePeriodTm10, 2.0));
     }
 
     double HydraulicLoadFunctions::VerticalDistanceWaterLevelElevation(

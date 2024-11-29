@@ -20,24 +20,13 @@
 
 #pragma once
 
-#include <vector>
-
 namespace DiKErnel::Optimization
 {
     class OptimizedMath
     {
         public:
-            static double OptimizedPow(
+            static double optimized_pow(
                 double x,
                 double y);
-
-            static double OptimizedImpactFactorAccumulation(
-                double fatigueAlpha,
-                double fatigueBeta,
-                double averageNumberOfWaves,
-                double logFailureTension,
-                double bendingStress,
-                const std::vector<std::pair<double, double>>&,
-                const std::vector<double>&);
     };
 }

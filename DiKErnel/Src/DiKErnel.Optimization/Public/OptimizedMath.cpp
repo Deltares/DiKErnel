@@ -20,37 +20,16 @@
 
 #include "OptimizedMath.h"
 
+#include <cmath>
+
 namespace DiKErnel::Optimization
 {
     using namespace std;
 
-    double OptimizedMath::OptimizedPow(
+    double OptimizedMath::optimized_pow(
         double x,
         double y)
     {
         return pow(x, y);
-    }
-
-    double OptimizedMath::OptimizedImpactFactorAccumulation(
-        const double fatigueAlpha,
-        const double fatigueBeta,
-        const double averageNumberOfWaves,
-        const double logFailureTension,
-        const double bendingStress,
-        const std::vector<std::pair<double, double>>& impactFactors,
-        const vector<double>& impactNumberLookup)
-    {
-        auto result = 0.0;
-
-        for (int i = 0; i < impactFactors.size(); i++)
-        {
-            const auto logTension = log10(impactNumberLookup[i] * bendingStress);
-
-            const auto fatigue = pow(10.0, -fatigueBeta * pow(max(0.0, logFailureTension - logTension), fatigueAlpha));
-
-            result += impactFactors[i].second * averageNumberOfWaves * fatigue;
-        }
-
-        return result;
     }
 }
