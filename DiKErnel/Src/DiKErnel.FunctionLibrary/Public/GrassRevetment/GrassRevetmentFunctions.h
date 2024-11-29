@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include <cmath>
 #include <algorithm>
 
 #include "GrassRevetmentCumulativeOverloadInput.h"
@@ -61,14 +60,14 @@ namespace DiKErnel::FunctionLibrary
             {
                 auto cumulativeFrontVelocity = 0.0;
 
-                const double cumulativeFrontVelocityPartial = std::pow(input._criticalFrontVelocity, 2.0);
+                const double cumulativeFrontVelocityPartial = input._criticalFrontVelocity * input._criticalFrontVelocity;
 
                 for (auto k = 1; k <= input._fixedNumberOfWaves; ++k)
                 {
                     const auto waveRunup = WaveRunup(input._representativeWaveRunup2P, input._fixedNumberOfWaves, k);
                     const auto frontVelocity = getFrontVelocity(waveRunup);
 
-                    cumulativeFrontVelocity += std::max(0.0, input._increasedLoadTransitionAlphaM * std::pow(frontVelocity, 2.0)
+                    cumulativeFrontVelocity += std::max(0.0, input._increasedLoadTransitionAlphaM * frontVelocity * frontVelocity
                                                         - input._reducedStrengthTransitionAlphaS * cumulativeFrontVelocityPartial);
                 }
 
