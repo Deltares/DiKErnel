@@ -49,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.Performance.Test",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.GpuConsole", "Src\DiKErnel.GpuConsole\DiKErnel.GpuConsole.csproj", "{26E3B215-70B5-4B7D-B0E1-630B976DF01C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiKErnel.CWrapper", "Src\DiKErnel.CWrapper\DiKErnel.CWrapper.vcxproj", "{B2CC8E33-AE1F-4FC3-BF5F-0756803125BC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiKErnel.Optimization", "Src\DiKErnel.Optimization\DiKErnel.Optimization.vcxproj", "{B2CC8E33-AE1F-4FC3-BF5F-0756803125BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

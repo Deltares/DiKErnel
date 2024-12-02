@@ -23,11 +23,11 @@ namespace DiKErnel.FunctionLibrary
 {
     internal static partial class CMath
     {
-        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [LibraryImport("DiKErnel.Optimization.dll")]
         [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
         internal static partial double Pow(double x, double y);
 
-        [LibraryImport("DiKErnel.CWrapper.dll")]
+        [LibraryImport("DiKErnel.Optimization.dll")]
         [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
         internal static partial double OptimizedImpactFactorAccumulation(double fatigueAlpha, double fatigueBeta,
                                                                          double averageNumberOfWaves, double logFailureTension,
