@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -35,45 +34,5 @@ namespace DiKErnel.FunctionLibrary
                                                                          double bendingStress, double[] impactFactorProbabilities,
                                                                          int impactFactorProbabilitiesLength, double[] impactNumberLookup,
                                                                          int impactNumberLookupLength);
-        
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Log10(double x);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Sin(double x);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Cos(double x);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Tan(double x);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Exp(double x);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Min(double a, double b);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Max(double a, double b);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Abs(double x);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Log(double x);
-
-        [LibraryImport("DiKErnel.CWrapper.dll")]
-        [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-        internal static partial double Sqrt(double x);
     }
 }
