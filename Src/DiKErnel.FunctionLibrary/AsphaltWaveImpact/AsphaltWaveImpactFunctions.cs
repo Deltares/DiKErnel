@@ -26,8 +26,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
     /// </summary>
     public static class AsphaltWaveImpactFunctions
     {
-        private static readonly double maximumPeakStressPartial = CMath.Pow(10, 6);
-        private static readonly double bendingStressPartial1 = CMath.Pow(10, -99);
+        private const double maximumPeakStressPartial = 1000000;
+        private const double bendingStressPartial1 = 1e-99;
 
         /// <summary>
         /// Calculates the increment of damage.
@@ -41,7 +41,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             double sinA = Math.Sin(Math.Atan(input.OuterSlope));
 
             double bendingStressPartial2 = -3 * input.MaximumPeakStress /
-                                           (4 * CMath.Pow(input.StiffnessRelation, 2) * CMath.Pow(input.ComputationalThickness, 2));
+                                           (4 * input.StiffnessRelation * input.StiffnessRelation * input.ComputationalThickness * input.ComputationalThickness);
 
             double[] impactNumberLookup = input.ImpactFactors
                                                .Select(impactFactor => ImpactNumber(input.OuterSlope, impactFactor.Item1,
@@ -108,8 +108,8 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static double StiffnessRelation(double computationalThickness, double equivalentElasticModulus,
                                                double soilElasticity, double stiffnessRelationNu)
         {
-            return CMath.Pow(3 * soilElasticity * (1 - CMath.Pow(stiffnessRelationNu, 2))
-                             / (equivalentElasticModulus * CMath.Pow(computationalThickness, 3)),
+            return CMath.Pow(3 * soilElasticity * (1 - stiffnessRelationNu * stiffnessRelationNu)
+                             / (equivalentElasticModulus * computationalThickness * computationalThickness * computationalThickness),
                              1d / 4);
         }
 
