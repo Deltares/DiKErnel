@@ -342,7 +342,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static double Probability(double xi, double eta)
         {
-            double probability = SpecialFunctions.GammaLowerRegularized(1 + 1 / xi, Math.Pow(eta, xi));
+            double probability = SpecialFunctions.GammaLowerRegularized(1 + 1 / xi, CMath.Pow(eta, xi));
 
             double gammaNominator = SpecialFunctions.Gamma(1 + 1 / xi);
 
