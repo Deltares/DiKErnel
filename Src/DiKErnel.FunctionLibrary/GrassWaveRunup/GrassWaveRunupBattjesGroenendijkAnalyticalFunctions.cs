@@ -181,7 +181,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                  double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration)
         {
             return (reducedStrengthTransitionAlphaS / increasedLoadTransitionAlphaM) *
-                   (Math.Pow(criticalFrontVelocity, 2) / (Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration));
+                   (criticalFrontVelocity * criticalFrontVelocity / (frontVelocityCu * frontVelocityCu * gravitationalAcceleration));
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
 
         private static double LambdaRu2(double kappa)
         {
-            return kappa > 3d ? Math.Pow(kappa, 4d / 9) : lambdaRu2Interpolator.Interpolate(kappa);
+            return kappa > 3d ? CMath.Pow(kappa, 4d / 9) : lambdaRu2Interpolator.Interpolate(kappa);
         }
 
         private static double VerticalWaveRunupLimit2(double scaledVerticalDistanceWaterLevelElevation, double upperLimitWaveRunup)
@@ -303,7 +303,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                       double lowerLimitWaveRunup)
         {
             return Math.Max(Math.Min(scaledVerticalDistanceWaterLevelElevation, lowerLimitWaveRunup),
-                             verticalDistanceWaterLevelElevation);
+                            verticalDistanceWaterLevelElevation);
         }
 
         private static double VerticalWaveRunupLimit5(double scaledVerticalDistanceWaterLevelElevation, double waveRunupTransition,
@@ -320,23 +320,24 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         private static double DeltaCumulativeLoad(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
                                                   double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
-            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration *
+            return input.IncreasedLoadTransitionAlphaM * input.FrontVelocityCu * input.FrontVelocityCu * input.GravitationalAcceleration *
                    scalingParameterRu * Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
-                   ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
-                   Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
+                   ((input.ReducedStrengthTransitionAlphaS * input.CriticalFrontVelocity * input.CriticalFrontVelocity) / k) *
+                   Math.Exp(-CMath.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
         private static double DeltaCumulativeLoadWithVerticalDistanceWaterLevel(
             GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
             double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
-            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *
+            return input.IncreasedLoadTransitionAlphaM * input.FrontVelocityCu * input.FrontVelocityCu * input.GravitationalAcceleration *
+                   k *
                    (((4 * scalingParameterRu) / k) *
                     Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
                     ((4 * input.VerticalDistanceWaterLevelElevation) / k) *
-                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
-                   ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
-                   Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
+                    Math.Exp(-CMath.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
+                   ((input.ReducedStrengthTransitionAlphaS * input.CriticalFrontVelocity * input.CriticalFrontVelocity) / k) *
+                   Math.Exp(-CMath.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
         private static double Probability(double xi, double eta)
