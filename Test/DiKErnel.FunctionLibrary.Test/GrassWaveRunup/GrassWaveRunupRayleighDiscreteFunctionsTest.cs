@@ -53,7 +53,7 @@ namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
             double cumulativeOverload = GrassWaveRunupRayleighDiscreteFunctions.CumulativeOverload(input);
 
             // Assert
-            AssertHelper.AreEqual(735.67446176679459, cumulativeOverload);
+            AssertHelper.AreEqual(735.67446176679471, cumulativeOverload);
         }
     }
 }
