@@ -180,18 +180,6 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                                                            impactNumberLookup, impactNumberLookup.Length);
         }
 
-        private static double Fatigue(AsphaltWaveImpactInput input, double bendingStress, double impactNumber)
-        {
-            double logTension = LogTension(bendingStress, impactNumber);
-
-            return CMath.Pow(10, -input.FatigueBeta * CMath.Pow(Math.Max(0, input.LogFlexuralStrength - logTension), input.FatigueAlpha));
-        }
-
-        private static double LogTension(double bendingStress, double impactNumber)
-        {
-            return Math.Log10(impactNumber * bendingStress);
-        }
-
         private static double ImpactNumber(double outerSlope, double impactFactorValue, double impactNumberC)
         {
             return 4 * impactNumberC * outerSlope * impactFactorValue;
