@@ -106,7 +106,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveImpact
         {
             if (Math.Abs(waveAngle) <= 90d)
             {
-                return Math.Max(Math.Pow(Math.Cos(GenericFunctions.Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
+                return Math.Max(CMath.Pow(Math.Cos(GenericFunctions.Radians(waveAngle)), waveAngleImpactNwa), waveAngleImpactQwa);
             }
 
             return Math.Max(waveAngleImpactQwa * ((90 + waveAngleImpactRwa - Math.Abs(waveAngle)) / waveAngleImpactRwa), 0);
