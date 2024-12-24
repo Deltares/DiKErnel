@@ -38,7 +38,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             float result = 0;
 
-            float sinA = Math.Sin(Math.Atan(input.OuterSlope));
+            float sinA = MathF.Sin(MathF.Atan(input.OuterSlope));
 
             float bendingStressPartial2 = -3 * input.MaximumPeakStress /
                                           (4 * input.StiffnessRelation * input.StiffnessRelation * input.ComputationalThickness *
@@ -81,7 +81,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <returns>The logarithm of the flexural strength [MPa].</returns>
         public static float LogFlexuralStrength(float flexuralStrength)
         {
-            return Math.Log10(flexuralStrength);
+            return MathF.Log10(flexuralStrength);
         }
 
         /// <summary>
@@ -108,9 +108,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static float StiffnessRelation(float computationalThickness, float equivalentElasticModulus,
                                               float soilElasticity, float stiffnessRelationNu)
         {
-            return CMath.Pow(3 * soilElasticity * (1 - stiffnessRelationNu * stiffnessRelationNu)
-                             / (equivalentElasticModulus * computationalThickness * computationalThickness * computationalThickness),
-                             1d / 4);
+            return CMathF.Pow(3 * soilElasticity * (1 - stiffnessRelationNu * stiffnessRelationNu)
+                              / (equivalentElasticModulus * computationalThickness * computationalThickness * computationalThickness),
+                              1d / 4);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static float ComputationalThickness(float thicknessUpperLayer, float thicknessSubLayer,
                                                    float elasticModulusUpperLayer, float elasticModulusSubLayer)
         {
-            return thicknessUpperLayer * CMath.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
+            return thicknessUpperLayer * CMathF.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
                    + thicknessSubLayer;
         }
 
@@ -151,9 +151,9 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             float result = 0;
 
-            float sinRelativeWidthWaveImpact = Math.Sin(relativeWidthWaveImpact);
-            float cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
-            float expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
+            float sinRelativeWidthWaveImpact = MathF.Sin(relativeWidthWaveImpact);
+            float cosRelativeWidthWaveImpact = MathF.Cos(relativeWidthWaveImpact);
+            float expNegativeRelativeWidthWaveImpact = MathF.Exp(-relativeWidthWaveImpact);
 
             for (var i = 0; i < depthFactorsCount; i++)
             {
@@ -174,10 +174,10 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         private static float ImpactFactorAccumulation(AsphaltWaveImpactInput input, float[] impactFactorProbabilities,
                                                       float bendingStress, float[] impactNumberLookup)
         {
-            return CMath.OptimizedImpactFactorAccumulation(input.FatigueAlpha, input.FatigueBeta, input.AverageNumberOfWaves,
-                                                           input.LogFlexuralStrength, bendingStress,
-                                                           impactFactorProbabilities, impactFactorProbabilities.Length,
-                                                           impactNumberLookup, impactNumberLookup.Length);
+            return CMathF.OptimizedImpactFactorAccumulation(input.FatigueAlpha, input.FatigueBeta, input.AverageNumberOfWaves,
+                                                            input.LogFlexuralStrength, bendingStress,
+                                                            impactFactorProbabilities, impactFactorProbabilities.Length,
+                                                            impactNumberLookup, impactNumberLookup.Length);
         }
 
         private static float ImpactNumber(float outerSlope, float impactFactorValue, float impactNumberC)
@@ -194,7 +194,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                 input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact, expNegativeRelativeWidthWaveImpact,
                 sinA, depthFactorValue);
 
-            return Math.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
+            return MathF.Max(bendingStressPartial1, bendingStressPartial2 * spatialDistributionBendingStress);
         }
 
         private static float SpatialDistributionBendingStress(AsphaltWaveImpactInput input, float relativeWidthWaveImpact,
@@ -204,13 +204,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             float relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
 
-            float sinRelativeDistanceCenterWaveImpact = Math.Sin(relativeDistanceCenterWaveImpact);
-            float cosRelativeDistanceCenterWaveImpact = Math.Cos(relativeDistanceCenterWaveImpact);
-            float expNegativeRelativeDistanceCenterWaveImpact = Math.Exp(-relativeDistanceCenterWaveImpact);
+            float sinRelativeDistanceCenterWaveImpact = MathF.Sin(relativeDistanceCenterWaveImpact);
+            float cosRelativeDistanceCenterWaveImpact = MathF.Cos(relativeDistanceCenterWaveImpact);
+            float expNegativeRelativeDistanceCenterWaveImpact = MathF.Exp(-relativeDistanceCenterWaveImpact);
 
             if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
             {
-                float expRelativeDistanceCenterWaveImpact = Math.Exp(relativeDistanceCenterWaveImpact);
+                float expRelativeDistanceCenterWaveImpact = MathF.Exp(relativeDistanceCenterWaveImpact);
 
                 return (-sinRelativeDistanceCenterWaveImpact
                         * (expRelativeDistanceCenterWaveImpact - expNegativeRelativeDistanceCenterWaveImpact)
@@ -223,7 +223,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                        / relativeWidthWaveImpact;
             }
 
-            float expRelativeWidthWaveImpact = Math.Exp(relativeWidthWaveImpact);
+            float expRelativeWidthWaveImpact = MathF.Exp(relativeWidthWaveImpact);
 
             return (cosRelativeDistanceCenterWaveImpact
                     * (expRelativeWidthWaveImpact * (cosRelativeWidthWaveImpact - sinRelativeWidthWaveImpact)
@@ -237,14 +237,14 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
 
         private static float RelativeWidthWaveImpact(float stiffnessRelation, float widthFactorValue, float waveHeightHm0)
         {
-            return Math.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
+            return MathF.Min(85, stiffnessRelation * widthFactorValue * waveHeightHm0 / 2);
         }
 
         private static float RelativeDistanceCenterWaveImpact(AsphaltWaveImpactInput input, float depthFactorValue,
                                                               float sinA)
         {
-            return Math.Min(85, input.StiffnessRelation
-                                * Math.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
+            return MathF.Min(85, input.StiffnessRelation
+                                 * MathF.Abs(input.Z - input.WaterLevel - depthFactorValue * input.WaveHeightHm0) / sinA);
         }
     }
 }
