@@ -108,8 +108,8 @@ namespace DiKErnel.GpuConsole
             IProfileData profileData, AsphaltWaveImpactLocationDependentInput locationDependentInput)
         {
             InitializeLocationDependentOutput(
-                profileData, locationDependentInput, out double z, out double logFlexuralStrength, out double computationalThickness,
-                out double stiffnessRelation, out double outerSlope);
+                profileData, locationDependentInput, out double z, out float logFlexuralStrength, out float computationalThickness,
+                out float stiffnessRelation, out float outerSlope);
 
             InitializeLocationDependentStructsAndArrays(
                 timeDependentInputItems, locationDependentInput, logFlexuralStrength, stiffnessRelation, computationalThickness, outerSlope,
@@ -135,7 +135,7 @@ namespace DiKErnel.GpuConsole
 
         private static void InitializeLocationDependentOutput(
             IProfileData profileData, AsphaltWaveImpactLocationDependentInput locationDependentInput, out double z,
-            out double logFlexuralStrength, out float computationalThickness, out double stiffnessRelation, out double outerSlope)
+            out float logFlexuralStrength, out float computationalThickness, out float stiffnessRelation, out float outerSlope)
         {
             z = profileData.GetVerticalHeight(locationDependentInput.X);
 
@@ -192,9 +192,9 @@ namespace DiKErnel.GpuConsole
         {
             asphaltWaveImpactGpuInput = new AsphaltWaveImpactGpuInput(
                 (float) logFlexuralStrength, (float) stiffnessRelation, (float) computationalThickness, (float) outerSlope, (float) z,
-                (float) locationDependentInput.Fatigue.Alpha, (float) locationDependentInput.Fatigue.Beta,
-                (float) locationDependentInput.AverageNumberOfWavesCtm, (float) locationDependentInput.DensityOfWater,
-                (float) locationDependentInput.ImpactNumberC);
+                locationDependentInput.Fatigue.Alpha, locationDependentInput.Fatigue.Beta,
+                (float) locationDependentInput.AverageNumberOfWavesCtm, locationDependentInput.DensityOfWater,
+                locationDependentInput.ImpactNumberC);
 
             timeDependentGpuInputItems = timeDependentInputItems
                                          .Select(tdi => new TimeDependentGpuInput(
@@ -204,27 +204,27 @@ namespace DiKErnel.GpuConsole
                                          .ToArray();
 
             widthFactorValues = locationDependentInput.WidthFactors
-                                                      .Select(widthFactor => (float) widthFactor.Item1)
+                                                      .Select(widthFactor => widthFactor.Item1)
                                                       .ToArray();
 
             widthFactorProbabilities = locationDependentInput.WidthFactors
-                                                             .Select(widthFactor => (float) widthFactor.Item2)
+                                                             .Select(widthFactor => widthFactor.Item2)
                                                              .ToArray();
 
             depthFactorValues = locationDependentInput.DepthFactors
-                                                      .Select(depthFactor => (float) depthFactor.Item1)
+                                                      .Select(depthFactor => depthFactor.Item1)
                                                       .ToArray();
 
             depthFactorProbabilities = locationDependentInput.DepthFactors
-                                                             .Select(depthFactor => (float) depthFactor.Item2)
+                                                             .Select(depthFactor => depthFactor.Item2)
                                                              .ToArray();
 
             impactFactorValues = locationDependentInput.ImpactFactors
-                                                       .Select(impactFactor => (float) impactFactor.Item1)
+                                                       .Select(impactFactor => impactFactor.Item1)
                                                        .ToArray();
 
             impactFactorProbabilities = locationDependentInput.ImpactFactors
-                                                              .Select(impactFactor => (float) impactFactor.Item2)
+                                                              .Select(impactFactor => impactFactor.Item2)
                                                               .ToArray();
         }
 
