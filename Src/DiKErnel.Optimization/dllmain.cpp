@@ -59,3 +59,31 @@ extern "C" __declspec(dllexport) double OptimizedImpactFactorAccumulation(
 
     return result;
 }
+
+extern "C" __declspec(dllexport) float OptimizedImpactFactorAccumulationF(
+        const float fatigueAlpha,
+        const float fatigueBeta,
+        const float averageNumberOfWaves,
+        const float logFailureTension,
+        const float bendingStress,
+        const float* impactFactorProbabilitiesPtr,
+        const int impactFactorProbabilitiesLength,
+        const float* impactNumberLookupPtr,
+        const int impactNumberLookupLength)
+{
+    auto result = 0.0f;
+
+    vector<float> impactFactorProbabilities(impactFactorProbabilitiesPtr, impactFactorProbabilitiesPtr + impactFactorProbabilitiesLength);
+    vector<float> impactNumberLookup(impactNumberLookupPtr, impactNumberLookupPtr + impactNumberLookupLength);
+    
+    for (int i = 0; i < impactFactorProbabilities.size(); i++)
+    {
+        const auto logTension = log10(impactNumberLookup[i] * bendingStress);
+
+        const auto fatigue = pow(10.0f, -fatigueBeta * pow(max(0.0f, logFailureTension - logTension), fatigueAlpha));
+
+        result += impactFactorProbabilities[i] * averageNumberOfWaves * fatigue;
+    }
+
+    return result;
+}
