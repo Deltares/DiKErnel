@@ -20,14 +20,14 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 {
     internal class AsphaltWaveImpactLayer
     {
-        public AsphaltWaveImpactLayer(double thickness, double elasticModulus)
+        public AsphaltWaveImpactLayer(float thickness, float elasticModulus)
         {
             Thickness = thickness;
             ElasticModulus = elasticModulus;
         }
 
-        public double Thickness { get; }
+        public float Thickness { get; }
 
-        public double ElasticModulus { get; }
+        public float ElasticModulus { get; }
     }
 }
