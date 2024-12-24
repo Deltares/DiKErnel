@@ -34,7 +34,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         private double logFlexuralStrength = double.NaN;
         private double computationalThickness = double.NaN;
         private double stiffnessRelation = double.NaN;
-        private double subLayerElasticModulus = double.NaN;
+        private float subLayerElasticModulus = float.NaN;
 
         public AsphaltWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                        double flexuralStrength, double densityOfWater,
@@ -49,7 +49,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                        IReadOnlyList<(double, double)> impactFactors)
             : base(x, initialDamage, failureNumber)
         {
-            FlexuralStrength = flexuralStrength;
+            FlexuralStrength = (float) flexuralStrength;
             DensityOfWater = densityOfWater;
             SoilElasticity = soilElasticity;
             UpperLayer = upperLayer;
@@ -63,7 +63,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             ImpactFactors = impactFactors;
         }
 
-        public double FlexuralStrength { get; }
+        public float FlexuralStrength { get; }
 
         public double DensityOfWater { get; }
 
@@ -128,7 +128,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 
-            double subLayerThickness;
+            float subLayerThickness;
 
             if (SubLayer != null)
             {
