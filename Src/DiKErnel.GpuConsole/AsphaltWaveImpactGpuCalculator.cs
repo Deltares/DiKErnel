@@ -139,8 +139,8 @@ namespace DiKErnel.GpuConsole
         {
             z = profileData.GetVerticalHeight(locationDependentInput.X);
 
-            double subLayerThickness;
-            double subLayerElasticModulus;
+            float subLayerThickness;
+            float subLayerElasticModulus;
 
             if (locationDependentInput.SubLayer != null)
             {
