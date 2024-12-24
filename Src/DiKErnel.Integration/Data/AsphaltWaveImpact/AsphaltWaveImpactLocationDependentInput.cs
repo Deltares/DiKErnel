@@ -31,9 +31,9 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
     internal class AsphaltWaveImpactLocationDependentInput : LocationDependentInput
     {
         private double outerSlope = double.NaN;
-        private double logFlexuralStrength = double.NaN;
+        private float logFlexuralStrength = float.NaN;
         private float computationalThickness = float.NaN;
-        private double stiffnessRelation = double.NaN;
+        private float stiffnessRelation = float.NaN;
         private float subLayerElasticModulus = float.NaN;
 
         public AsphaltWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
@@ -181,12 +181,12 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                                   timeDependentInput.WavePeriodTm10,
                                                                                   AverageNumberOfWavesCtm);
 
-            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress((float) timeDependentInput.WaveHeightHm0,
-                                                                                    (float) NaturalConstants.GravitationalAcceleration,
-                                                                                    DensityOfWater);
+            float maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress((float) timeDependentInput.WaveHeightHm0,
+                                                                                   (float) NaturalConstants.GravitationalAcceleration,
+                                                                                   DensityOfWater);
 
             AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
-                                                                      averageNumberOfWaves, maximumPeakStress);
+                                                                      (float) averageNumberOfWaves, maximumPeakStress);
 
             double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
 
@@ -194,8 +194,8 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                 CreateConstructionProperties(incrementDamage, averageNumberOfWaves, maximumPeakStress));
         }
 
-        private AsphaltWaveImpactInput CreateIncrementDamageInput(double waterLevel, double waveHeightHm0, double averageNumberOfWaves,
-                                                                  double maximumPeakStress)
+        private AsphaltWaveImpactInput CreateIncrementDamageInput(double waterLevel, double waveHeightHm0, float averageNumberOfWaves,
+                                                                  float maximumPeakStress)
         {
             return new AsphaltWaveImpactInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
                                               stiffnessRelation, computationalThickness, outerSlope, WidthFactors,
