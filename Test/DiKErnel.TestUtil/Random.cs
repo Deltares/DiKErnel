@@ -41,6 +41,11 @@ namespace DiKErnel.TestUtil
             return instance.NextDouble();
         }
 
+        public static float NextSingle()
+        {
+            return instance.NextSingle();
+        }
+        
         public static bool NextBoolean()
         {
             return Convert.ToBoolean(instance.Next(0, 2));

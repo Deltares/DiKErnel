@@ -210,7 +210,7 @@ namespace DiKErnel.PerformanceConsole
                           .GetCumulativeDamages(calculationInput.LocationDependentInputItems[i].InitialDamage);
 
                 var x = Math.Round(calculationInput.LocationDependentInputItems[i].X, 2).ToString(CultureInfo.InvariantCulture);
-                var damage = Math.Round(cumulativeDamages[cumulativeDamages.Count - 1], 2).ToString(CultureInfo.InvariantCulture);
+                var damage = cumulativeDamages[cumulativeDamages.Count - 1].ToString(CultureInfo.InvariantCulture);
 
                 outputMessage += $" {x,5}; {damage,8};";
             }
