@@ -17,6 +17,8 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Constants;
 using DiKErnel.DomainLibrary.Validators;
@@ -56,11 +58,14 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             SubLayer = subLayer;
             AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
             Fatigue = fatigue;
-            ImpactNumberC = impactNumberC;
+            ImpactNumberC = (float) impactNumberC;
             StiffnessRelationNu = (float) stiffnessRelationNu;
-            WidthFactors = widthFactors;
-            DepthFactors = depthFactors;
-            ImpactFactors = impactFactors;
+            WidthFactors = new ReadOnlyCollection<(float, float)>(
+                widthFactors.Select(widthFactor => ((float) widthFactor.Item1, (float) widthFactor.Item2)).ToList());
+            DepthFactors = new ReadOnlyCollection<(float, float)>(
+                depthFactors.Select(depthFactor => ((float) depthFactor.Item1, (float) depthFactor.Item2)).ToList());
+            ImpactFactors = new ReadOnlyCollection<(float, float)>(
+                impactFactors.Select(impactFactor => ((float) impactFactor.Item1, (float) impactFactor.Item2)).ToList());
         }
 
         public float FlexuralStrength { get; }
