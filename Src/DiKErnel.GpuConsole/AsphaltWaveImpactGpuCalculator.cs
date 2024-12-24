@@ -135,7 +135,7 @@ namespace DiKErnel.GpuConsole
 
         private static void InitializeLocationDependentOutput(
             IProfileData profileData, AsphaltWaveImpactLocationDependentInput locationDependentInput, out double z,
-            out double logFlexuralStrength, out double computationalThickness, out double stiffnessRelation, out double outerSlope)
+            out double logFlexuralStrength, out float computationalThickness, out double stiffnessRelation, out double outerSlope)
         {
             z = profileData.GetVerticalHeight(locationDependentInput.X);
 
@@ -178,7 +178,8 @@ namespace DiKErnel.GpuConsole
             ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
 
             outerSlope = AsphaltWaveImpactFunctions.OuterSlope(
-                profileSegment.StartPoint.X, profileSegment.StartPoint.Z, profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
+                (float) profileSegment.StartPoint.X, (float) profileSegment.StartPoint.Z, (float) profileSegment.EndPoint.X,
+                (float) profileSegment.EndPoint.Z);
         }
 
         private static void InitializeLocationDependentStructsAndArrays(
