@@ -27,7 +27,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
     public static class AsphaltWaveImpactFunctions
     {
         private const float maximumPeakStressPartial = 1000000;
-        private const float bendingStressPartial1 = 1e-99;
+        private const float bendingStressPartial1 = 1e-99f;
 
         /// <summary>
         /// Calculates the increment of damage.
@@ -110,7 +110,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         {
             return CMathF.Pow(3 * soilElasticity * (1 - stiffnessRelationNu * stiffnessRelationNu)
                               / (equivalentElasticModulus * computationalThickness * computationalThickness * computationalThickness),
-                              1d / 4);
+                              1f / 4);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         public static float ComputationalThickness(float thicknessUpperLayer, float thicknessSubLayer,
                                                    float elasticModulusUpperLayer, float elasticModulusSubLayer)
         {
-            return thicknessUpperLayer * CMathF.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1d / 3)
+            return thicknessUpperLayer * CMathF.Pow(elasticModulusUpperLayer / elasticModulusSubLayer, 1f / 3)
                    + thicknessSubLayer;
         }
 
