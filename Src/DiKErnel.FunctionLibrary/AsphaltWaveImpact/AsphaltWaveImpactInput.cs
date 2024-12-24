@@ -44,13 +44,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <param name="fatigueAlpha">The fatigue alpha coefficient [-].</param>
         /// <param name="fatigueBeta">The fatigue beta coefficient [-].</param>
         /// <param name="impactNumberC">The impact number c coefficient [-].</param>
-        public AsphaltWaveImpactInput(double logFlexuralStrength, double averageNumberOfWaves, double maximumPeakStress,
-                                      double stiffnessRelation, double computationalThickness, double outerSlope,
-                                      IReadOnlyList<(double, double)> widthFactors,
-                                      IReadOnlyList<(double, double)> depthFactors,
-                                      IReadOnlyList<(double, double)> impactFactors,
-                                      double z, double waterLevel, double waveHeightHm0, double fatigueAlpha,
-                                      double fatigueBeta, double impactNumberC)
+        public AsphaltWaveImpactInput(float logFlexuralStrength, float averageNumberOfWaves, float maximumPeakStress,
+                                      float stiffnessRelation, float computationalThickness, float outerSlope,
+                                      IReadOnlyList<(float, float)> widthFactors,
+                                      IReadOnlyList<(float, float)> depthFactors,
+                                      IReadOnlyList<(float, float)> impactFactors,
+                                      float z, float waterLevel, float waveHeightHm0, float fatigueAlpha,
+                                      float fatigueBeta, float impactNumberC)
         {
             LogFlexuralStrength = logFlexuralStrength;
             AverageNumberOfWaves = averageNumberOfWaves;
@@ -72,76 +72,76 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
         /// <summary>
         /// Gets the logarithm of the flexural strength [MPa].
         /// </summary>
-        public double LogFlexuralStrength { get; }
+        public float LogFlexuralStrength { get; }
 
         /// <summary>
         /// Gets the average number of waves [-].
         /// </summary>
-        public double AverageNumberOfWaves { get; }
+        public float AverageNumberOfWaves { get; }
 
         /// <summary>
         /// Gets the maximum peak stress [MPa].
         /// </summary>
-        public double MaximumPeakStress { get; }
+        public float MaximumPeakStress { get; }
 
         /// <summary>
         /// Gets the stiffness relation [m^-1].
         /// </summary>
-        public double StiffnessRelation { get; }
+        public float StiffnessRelation { get; }
 
         /// <summary>
         /// Gets the computational thickness [m].
         /// </summary>
-        public double ComputationalThickness { get; }
+        public float ComputationalThickness { get; }
 
         /// <summary>
         /// Gets the outer slope [-].
         /// </summary>
-        public double OuterSlope { get; }
+        public float OuterSlope { get; }
 
         /// <summary>
         /// Gets the width factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> WidthFactors { get; }
+        public IReadOnlyList<(float, float)> WidthFactors { get; }
 
         /// <summary>
         /// Gets the depth factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> DepthFactors { get; }
+        public IReadOnlyList<(float, float)> DepthFactors { get; }
 
         /// <summary>
         /// Gets the impact factors [-].
         /// </summary>
-        public IReadOnlyList<(double, double)> ImpactFactors { get; }
+        public IReadOnlyList<(float, float)> ImpactFactors { get; }
 
         /// <summary>
         /// Gets the z coordinate [m].
         /// </summary>
-        public double Z { get; }
+        public float Z { get; }
 
         /// <summary>
         /// Gets the water level [m].
         /// </summary>
-        public double WaterLevel { get; }
+        public float WaterLevel { get; }
 
         /// <summary>
         /// Gets the wave height [m].
         /// </summary>
-        public double WaveHeightHm0 { get; }
+        public float WaveHeightHm0 { get; }
 
         /// <summary>
         /// Gets the fatigue alpha coefficient [-].
         /// </summary>
-        public double FatigueAlpha { get; }
+        public float FatigueAlpha { get; }
 
         /// <summary>
         /// Gets the fatigue beta coefficient [-].
         /// </summary>
-        public double FatigueBeta { get; }
+        public float FatigueBeta { get; }
 
         /// <summary>
         /// Gets the impact number c coefficient [-].
         /// </summary>
-        public double ImpactNumberC { get; }
+        public float ImpactNumberC { get; }
     }
 }

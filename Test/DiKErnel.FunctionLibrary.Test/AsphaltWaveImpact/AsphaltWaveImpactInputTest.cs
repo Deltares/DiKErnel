@@ -31,23 +31,23 @@ namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
         public void Constructor_ExpectedValues()
         {
             // Setup
-            double logFlexuralStrength = Random.NextDouble();
-            double averageNumberOfWaves = Random.NextDouble();
-            double maximumPeakStress = Random.NextDouble();
-            double stiffnessRelation = Random.NextDouble();
-            double computationalThickness = Random.NextDouble();
-            double outerSlope = Random.NextDouble();
+            float logFlexuralStrength = Random.NextSingle();
+            float averageNumberOfWaves = Random.NextSingle();
+            float maximumPeakStress = Random.NextSingle();
+            float stiffnessRelation = Random.NextSingle();
+            float computationalThickness = Random.NextSingle();
+            float outerSlope = Random.NextSingle();
 
-            IReadOnlyList<(double, double)> widthFactors = Array.Empty<(double, double)>();
-            IReadOnlyList<(double, double)> depthFactors = Array.Empty<(double, double)>();
-            IReadOnlyList<(double, double)> impactFactors = Array.Empty<(double, double)>();
+            IReadOnlyList<(float, float)> widthFactors = Array.Empty<(float, float)>();
+            IReadOnlyList<(float, float)> depthFactors = Array.Empty<(float, float)>();
+            IReadOnlyList<(float, float)> impactFactors = Array.Empty<(float, float)>();
 
-            double z = Random.NextDouble();
-            double waterLevel = Random.NextDouble();
-            double waveHeightHm0 = Random.NextDouble();
-            double fatigueAlpha = Random.NextDouble();
-            double fatigueBeta = Random.NextDouble();
-            double impactNumberC = Random.NextDouble();
+            float z = Random.NextSingle();
+            float waterLevel = Random.NextSingle();
+            float waveHeightHm0 = Random.NextSingle();
+            float fatigueAlpha = Random.NextSingle();
+            float fatigueBeta = Random.NextSingle();
+            float impactNumberC = Random.NextSingle();
 
             // Call
             var input = new AsphaltWaveImpactInput(logFlexuralStrength, averageNumberOfWaves, maximumPeakStress,
