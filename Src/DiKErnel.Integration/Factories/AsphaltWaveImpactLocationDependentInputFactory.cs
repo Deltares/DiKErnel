@@ -31,8 +31,8 @@ namespace DiKErnel.Integration.Factories
                 AsphaltWaveImpactDefaultsFactory.CreateTopLayerDefaults();
 
             double elasticModulusUpperLayer = constructionProperties.ElasticModulusUpperLayer;
-            var upperLayer = new AsphaltWaveImpactLayer(constructionProperties.ThicknessUpperLayer,
-                                                        elasticModulusUpperLayer);
+            var upperLayer = new AsphaltWaveImpactLayer((float) constructionProperties.ThicknessUpperLayer,
+                                                        (float) elasticModulusUpperLayer);
 
             AsphaltWaveImpactLayer subLayer = null;
             double? thicknessSubLayer = constructionProperties.ThicknessSubLayer;
@@ -40,12 +40,12 @@ namespace DiKErnel.Integration.Factories
 
             if (thicknessSubLayer != null && elasticModulusSubLayer != null)
             {
-                subLayer = new AsphaltWaveImpactLayer(thicknessSubLayer.Value, elasticModulusSubLayer.Value);
+                subLayer = new AsphaltWaveImpactLayer((float) thicknessSubLayer.Value, (float) elasticModulusSubLayer.Value);
             }
 
             var fatigue = new AsphaltWaveImpactFatigue(
-                constructionProperties.FatigueAlpha ?? AsphaltWaveImpactDefaults.FatigueAlpha,
-                constructionProperties.FatigueBeta ?? AsphaltWaveImpactDefaults.FatigueBeta);
+                (float) (constructionProperties.FatigueAlpha ?? AsphaltWaveImpactDefaults.FatigueAlpha),
+                (float) (constructionProperties.FatigueBeta ?? AsphaltWaveImpactDefaults.FatigueBeta));
 
             return new AsphaltWaveImpactLocationDependentInput(
                 constructionProperties.X,
