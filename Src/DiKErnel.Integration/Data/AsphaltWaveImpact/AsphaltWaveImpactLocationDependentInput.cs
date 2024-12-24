@@ -50,7 +50,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             : base(x, initialDamage, failureNumber)
         {
             FlexuralStrength = (float) flexuralStrength;
-            DensityOfWater = densityOfWater;
+            DensityOfWater = (float) densityOfWater;
             SoilElasticity = (float) soilElasticity;
             UpperLayer = upperLayer;
             SubLayer = subLayer;
@@ -65,7 +65,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
         public float FlexuralStrength { get; }
 
-        public double DensityOfWater { get; }
+        public float DensityOfWater { get; }
 
         public float SoilElasticity { get; }
 
@@ -166,8 +166,8 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
             ProfileSegment profileSegment = profileData.GetProfileSegment(horizontalPosition);
 
-            outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
-                                                               profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
+            outerSlope = AsphaltWaveImpactFunctions.OuterSlope((float) profileSegment.StartPoint.X, (float) profileSegment.StartPoint.Z,
+                                                               (float) profileSegment.EndPoint.X, (float) profileSegment.EndPoint.Z);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
@@ -181,8 +181,8 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                                   timeDependentInput.WavePeriodTm10,
                                                                                   AverageNumberOfWavesCtm);
 
-            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress(timeDependentInput.WaveHeightHm0,
-                                                                                    NaturalConstants.GravitationalAcceleration,
+            double maximumPeakStress = AsphaltWaveImpactFunctions.MaximumPeakStress((float) timeDependentInput.WaveHeightHm0,
+                                                                                    (float) NaturalConstants.GravitationalAcceleration,
                                                                                     DensityOfWater);
 
             AsphaltWaveImpactInput input = CreateIncrementDamageInput(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
