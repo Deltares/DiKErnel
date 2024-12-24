@@ -32,7 +32,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
     {
         private double outerSlope = double.NaN;
         private double logFlexuralStrength = double.NaN;
-        private double computationalThickness = double.NaN;
+        private float computationalThickness = float.NaN;
         private double stiffnessRelation = double.NaN;
         private float subLayerElasticModulus = float.NaN;
 
@@ -51,13 +51,13 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         {
             FlexuralStrength = (float) flexuralStrength;
             DensityOfWater = densityOfWater;
-            SoilElasticity = soilElasticity;
+            SoilElasticity = (float) soilElasticity;
             UpperLayer = upperLayer;
             SubLayer = subLayer;
             AverageNumberOfWavesCtm = averageNumberOfWavesCtm;
             Fatigue = fatigue;
             ImpactNumberC = impactNumberC;
-            StiffnessRelationNu = stiffnessRelationNu;
+            StiffnessRelationNu = (float) stiffnessRelationNu;
             WidthFactors = widthFactors;
             DepthFactors = depthFactors;
             ImpactFactors = impactFactors;
@@ -67,7 +67,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
         public double DensityOfWater { get; }
 
-        public double SoilElasticity { get; }
+        public float SoilElasticity { get; }
 
         public AsphaltWaveImpactLayer UpperLayer { get; }
 
@@ -79,7 +79,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
         public double ImpactNumberC { get; }
 
-        public double StiffnessRelationNu { get; }
+        public float StiffnessRelationNu { get; }
 
         public IReadOnlyList<(double, double)> WidthFactors { get; }
 
