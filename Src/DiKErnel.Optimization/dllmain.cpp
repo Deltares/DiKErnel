@@ -27,6 +27,11 @@ extern "C" __declspec(dllexport) double Pow(double x, double y)
     return pow(x, y);
 }
 
+extern "C" __declspec(dllexport) float PowF(float x, float y)
+{
+    return pow(x, y);
+}
+
 extern "C" __declspec(dllexport) double OptimizedImpactFactorAccumulation(
         const double fatigueAlpha,
         const double fatigueBeta,
