@@ -16,6 +16,8 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
+
 namespace DiKErnel.Core.Data
 {
     /// <summary>
@@ -27,9 +29,10 @@ namespace DiKErnel.Core.Data
         /// Creates a new instance of <see cref="SuccessResult"/>.
         /// </summary>
         /// <param name="calculationOutput">The calculation output.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="calculationOutput"/> is <c>null</c>.</exception>
         public SuccessResult(CalculationOutput calculationOutput)
         {
-            CalculationOutput = calculationOutput;
+            CalculationOutput = calculationOutput ?? throw new ArgumentNullException(nameof(calculationOutput));
         }
 
         /// <summary>
