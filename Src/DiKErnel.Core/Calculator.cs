@@ -20,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
-using DiKErnel.Util;
 
 namespace DiKErnel.Core
 {
@@ -52,14 +51,14 @@ namespace DiKErnel.Core
         /// </summary>
         /// <param name="calculationInput">The input used for the calculation.</param>
         /// <returns>The result of the calculation.</returns>
-        public DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
+        public ICalculationResult Calculate(ICalculationInput calculationInput)
         {
             ReportProgress();
 
             return CalculateTimeStepsForLocations(calculationInput);
         }
 
-        private DataResult<CalculationOutput> CalculateTimeStepsForLocations(ICalculationInput calculationInput)
+        private ICalculationResult CalculateTimeStepsForLocations(ICalculationInput calculationInput)
         {
             try
             {
@@ -73,7 +72,7 @@ namespace DiKErnel.Core
 
                 if (ShouldCancel())
                 {
-                    return new DataResult<CalculationOutput>(EventRegistry.Flush());
+                    return new CancellationResult();
                 }
 
                 CalculationState = CalculationState.FinishedSuccessfully;
@@ -83,8 +82,7 @@ namespace DiKErnel.Core
                         .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]))
                         .ToList();
 
-                return new DataResult<CalculationOutput>(new CalculationOutput(locationDependentOutputItems),
-                                                         EventRegistry.Flush());
+                return new SuccessResult(new CalculationOutput(locationDependentOutputItems));
             }
             catch (Exception e)
             {
@@ -93,7 +91,7 @@ namespace DiKErnel.Core
                 LogErrorMessage("An unhandled error occurred while performing the calculation. See stack trace for more information:" +
                                 $"{Environment.NewLine}{e.Message}");
 
-                return new DataResult<CalculationOutput>(EventRegistry.Flush());
+                return new FailureResult();
             }
         }
 
