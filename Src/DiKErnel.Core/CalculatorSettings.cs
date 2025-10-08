@@ -32,6 +32,11 @@ namespace DiKErnel.Core
         public IProgress<int> ProgressHandler { get; set; }
 
         /// <summary>
+        /// Gets or sets the log handler.
+        /// </summary>
+        public ILogHandler LogHandler { get; set; }
+
+        /// <summary>
         /// Gets or sets the delegate that handles if a calculation should cancel.
         /// </summary>
         public Func<bool> ShouldCancel { get; set; }

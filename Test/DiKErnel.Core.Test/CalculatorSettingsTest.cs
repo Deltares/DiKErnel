@@ -31,6 +31,7 @@ namespace DiKErnel.Core.Test
 
             // Assert
             Assert.That(calculatorSettings.ProgressHandler, Is.Null);
+            Assert.That(calculatorSettings.LogHandler, Is.Null);
             Assert.That(calculatorSettings.ShouldCancel, Is.Null);
         }
     }
