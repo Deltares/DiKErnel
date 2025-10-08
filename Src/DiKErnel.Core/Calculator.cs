@@ -112,16 +112,16 @@ namespace DiKErnel.Core
             return locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
         }
 
-        private static bool ShouldCancel(CalculatorSettings calculatorSettings)
-        {
-            return calculatorSettings?.ShouldCancel != null && calculatorSettings.ShouldCancel();
-        }
-
         private static void ReportProgress(double progress, CalculatorSettings calculatorSettings)
         {
             var percentage = (int) Math.Round(progress * 100);
 
             calculatorSettings?.ProgressHandler?.Report(percentage);
+        }
+
+        private static bool ShouldCancel(CalculatorSettings calculatorSettings)
+        {
+            return calculatorSettings?.ShouldCancel != null && calculatorSettings.ShouldCancel();
         }
 
         private static void LogErrorMessage(string message, CalculatorSettings calculatorSettings)
