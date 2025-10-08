@@ -33,13 +33,14 @@ namespace DiKErnel.Core.Test
     public class CalculatorTest
     {
         [Test]
-        public void GivenCalculator_WhenWaitForCompletion_ThenCalculationPerformed()
+        public void GivenCalculator_WhenCalculate_ThenCalculationPerformed()
         {
             // Given
-            var calculator = new Calculator(CreateCalculationInput());
+            var calculator = new Calculator();
+            ICalculationInput calculationInput = CreateCalculationInput();
 
             // When
-            calculator.WaitForCompletion();
+            calculator.Calculate(calculationInput);
 
             // Then
             Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
@@ -49,7 +50,7 @@ namespace DiKErnel.Core.Test
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void GivenCalculator_WhenCalculationPerformed_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
+        public void GivenCalculator_WhenCalculate_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
         {
             // Given
             double damage = Random.NextDouble();
@@ -57,15 +58,15 @@ namespace DiKErnel.Core.Test
 
             ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
 
-            var calculator = new Calculator(calculationInput);
+            var calculator = new Calculator();
 
             // When
-            calculator.WaitForCompletion();
+            DataResult<CalculationOutput> result = calculator.Calculate(calculationInput);
 
             // Then
-            Assert.That(calculator.Result, Is.Not.Null);
+            Assert.That(result, Is.Not.Null);
 
-            CalculationOutput output = calculator.Result.Data;
+            CalculationOutput output = result.Data;
             Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(1));
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
