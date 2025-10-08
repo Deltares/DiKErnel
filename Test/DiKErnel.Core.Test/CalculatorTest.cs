@@ -78,7 +78,7 @@ namespace DiKErnel.Core.Test
             Assert.That(result, Is.InstanceOf<SuccessResult>());
 
             CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-            Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(1));
+            Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
             IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
