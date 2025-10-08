@@ -57,7 +57,7 @@ namespace DiKErnel.Core.Test
             }
 
             [TestFixture]
-            public class WhenCalculateWithoutCancel : GivenValidCalculationInput
+            public class WhenCalculate : GivenValidCalculationInput
             {
                 private ICalculationResult result;
 
@@ -83,13 +83,13 @@ namespace DiKErnel.Core.Test
                 }
 
                 [Test]
-                public void ThenExpectedMessagesLogged()
+                public void ThenLogsExpectedMessages()
                 {
                     Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
                 }
 
                 [Test]
-                public void ThenExpectedProgressReported()
+                public void ThenReportsExpectedProgress()
                 {
                     Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
 
@@ -125,13 +125,13 @@ namespace DiKErnel.Core.Test
                 }
 
                 [Test]
-                public void ThenExpectedMessagesLogged()
+                public void ThenLogsExpectedMessages()
                 {
                     Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
                 }
 
                 [Test]
-                public void ThenExpectedProgressReported()
+                public void ThenReportsExpectedProgress()
                 {
                     Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
 
@@ -190,7 +190,7 @@ namespace DiKErnel.Core.Test
                 }
 
                 [Test]
-                public void ThenExpectedMessagesLogged()
+                public void ThenLogsExpectedMessages()
                 {
                     Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
 
@@ -203,7 +203,7 @@ namespace DiKErnel.Core.Test
                 }
 
                 [Test]
-                public void ThenExpectedProgressReported()
+                public void ThenReportsExpectedProgress()
                 {
                     Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
 
