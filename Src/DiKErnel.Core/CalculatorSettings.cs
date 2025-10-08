@@ -28,7 +28,7 @@ namespace DiKErnel.Core
         /// <summary>
         /// Gets or sets the progress handler.
         /// </summary>
-        public IProgress<double> ProgressHandler { get; set; }
+        public IProgress<int> ProgressHandler { get; set; }
 
         /// <summary>
         /// Gets or sets the delegate that handles if a calculation should cancel.

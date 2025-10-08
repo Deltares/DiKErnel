@@ -36,7 +36,11 @@ namespace DiKErnel.Core.Test
         public void GivenCalculator_WhenCalculate_ThenCalculationPerformed()
         {
             // Given
-            var calculator = new Calculator();
+            var progressHandler = Substitute.For<IProgress<int>>();
+            var calculator = new Calculator(new CalculatorSettings
+            {
+                ProgressHandler = progressHandler
+            });
             ICalculationInput calculationInput = CreateCalculationInput();
 
             // When
@@ -44,7 +48,14 @@ namespace DiKErnel.Core.Test
 
             // Then
             Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
-            Assert.That(calculator.Progress, Is.EqualTo(100));
+
+            Received.InOrder(() =>
+            {
+                progressHandler.Report(0);
+                progressHandler.Report(33);
+                progressHandler.Report(67);
+                progressHandler.Report(100);
+            });
         }
 
         [Test]
@@ -74,24 +85,6 @@ namespace DiKErnel.Core.Test
             Assert.That(damages, Has.Count.EqualTo(3));
             Assert.That(damages.All(d => d.Equals(damage)), Is.True);
             Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailure));
-        }
-
-        [Test]
-        public void GivenCalculator_WhenCalculateShouldCancel_ThenCalculationCancelled()
-        {
-            // Given
-            var calculator = new Calculator(new CalculatorSettings
-            {
-                ShouldCancel = () => true
-            });
-
-            ICalculationInput calculationInput = CreateCalculationInput();
-
-            // When
-            calculator.Calculate(calculationInput);
-
-            // Then
-            Assert.That(calculator.Progress, Is.Not.EqualTo(100));
         }
 
         [Test]

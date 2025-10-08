@@ -37,6 +37,7 @@ namespace DiKErnel.Core
         /// Creates a new instance.
         /// </summary>
         /// <param name="calculatorSettings">The settings to use during the calculations (optional).</param>
+        /// <remarks>When applicable, the progress of the calculations is reported back as a rounded percentage in the range from 0 to 100.</remarks>
         public Calculator(CalculatorSettings calculatorSettings = null)
         {
             this.calculatorSettings = calculatorSettings ?? new CalculatorSettings();
@@ -48,19 +49,14 @@ namespace DiKErnel.Core
         public CalculationState CalculationState { get; private set; } = CalculationState.Running;
 
         /// <summary>
-        /// Gets the current progress of the calculation [%].
-        /// </summary>
-        /// <remarks>This method also returns the current progress when the calculation is
-        /// cancelled.</remarks>
-        public int Progress => (int) Math.Round(progress * 100);
-
-        /// <summary>
         /// Performs a calculation.
         /// </summary>
         /// <param name="calculationInput">The input used for the calculation.</param>
         /// <returns>The result of the calculation.</returns>
         public DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
+            ReportProgress();
+
             return CalculateTimeStepsForLocations(calculationInput);
         }
 
@@ -129,7 +125,7 @@ namespace DiKErnel.Core
                     currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
                                                                         currentOutputItems, profileData));
 
-                    progress += progressPerIteration;
+                    IncrementAndReportProgress(progressPerIteration);
                 }
             }
         }
@@ -149,6 +145,18 @@ namespace DiKErnel.Core
         private bool ShouldCancel()
         {
             return calculatorSettings.ShouldCancel != null && calculatorSettings.ShouldCancel();
+        }
+
+        private void ReportProgress()
+        {
+            calculatorSettings.ProgressHandler?.Report((int) Math.Round(progress * 100));
+        }
+
+        private void IncrementAndReportProgress(double progressPerIteration)
+        {
+            progress += progressPerIteration;
+
+            ReportProgress();
         }
     }
 }
