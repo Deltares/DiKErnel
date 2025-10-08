@@ -38,82 +38,120 @@ namespace DiKErnel.Core.Test
         [TestFixture]
         public class GivenValidCalculationInput : CalculatorTest
         {
+            private ILogHandler logHandler;
+            private IProgress<int> progressHandler;
+            private CalculatorSettings calculatorSettings;
             private ICalculationInput calculationInput;
 
             [SetUp]
             public virtual void Arrange()
             {
                 calculationInput = CreateCalculationInput();
-            }
-
-            [Test]
-            public void WhenCalculate_ThenReturnsSuccessResultWithExpectedCalculationOutput()
-            {
-                // When
-                ICalculationResult result = Calculator.Calculate(calculationInput);
-
-                // Then
-                Assert.That(result, Is.InstanceOf<SuccessResult>());
-
-                CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
-
-                LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
-                IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
-                Assert.That(damages, Has.Count.EqualTo(3));
-                Assert.That(damages.All(d => d.Equals(damageOfFirstLocation)), Is.True);
-                Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailureOfFirstLocation));
-
-                locationDependentOutput = output.LocationDependentOutputItems[1];
-                damages = locationDependentOutput.GetDamages();
-                Assert.That(damages, Has.Count.EqualTo(3));
-                Assert.That(damages.All(d => d.Equals(damageOfSecondLocation)), Is.True);
-                Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.Null);
-            }
-
-            [Test]
-            public void GivenLogHandler_WhenCalculate_ThenExpectedMessagesLogged()
-            {
-                // Given
-                var logHandler = Substitute.For<ILogHandler>();
-                var calculatorSettings = new CalculatorSettings
+                logHandler = Substitute.For<ILogHandler>();
+                progressHandler = Substitute.For<IProgress<int>>();
+                calculatorSettings = new CalculatorSettings
                 {
-                    LogHandler = logHandler
-                };
-
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
-
-                // Then
-                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
-            }
-
-            [Test]
-            public void GivenProgressHandler_WhenCalculate_ThenExpectedProgressReported()
-            {
-                // Given
-                var progressHandler = Substitute.For<IProgress<int>>();
-                var calculatorSettings = new CalculatorSettings
-                {
+                    LogHandler = logHandler,
                     ProgressHandler = progressHandler
                 };
+            }
 
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
+            [TestFixture]
+            public class WhenCalculateWithoutCancel : GivenValidCalculationInput
+            {
+                private ICalculationResult result;
 
-                // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
-
-                Received.InOrder(() =>
+                [Test]
+                public void ThenReturnsSuccessResultWithExpectedCalculationOutput()
                 {
-                    progressHandler.Report(0);
-                    progressHandler.Report(17);
-                    progressHandler.Report(33);
-                    progressHandler.Report(50);
-                    progressHandler.Report(67);
-                    progressHandler.Report(83);
-                    progressHandler.Report(100);
-                });
+                    Assert.That(result, Is.InstanceOf<SuccessResult>());
+
+                    CalculationOutput output = ((SuccessResult) result).CalculationOutput;
+                    Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
+
+                    LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
+                    IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
+                    Assert.That(damages, Has.Count.EqualTo(3));
+                    Assert.That(damages.All(d => d.Equals(damageOfFirstLocation)), Is.True);
+                    Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailureOfFirstLocation));
+
+                    locationDependentOutput = output.LocationDependentOutputItems[1];
+                    damages = locationDependentOutput.GetDamages();
+                    Assert.That(damages, Has.Count.EqualTo(3));
+                    Assert.That(damages.All(d => d.Equals(damageOfSecondLocation)), Is.True);
+                    Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.Null);
+                }
+
+                [Test]
+                public void ThenExpectedMessagesLogged()
+                {
+                    Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
+                }
+
+                [Test]
+                public void ThenExpectedProgressReported()
+                {
+                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
+
+                    Received.InOrder(() =>
+                    {
+                        progressHandler.Report(0);
+                        progressHandler.Report(17);
+                        progressHandler.Report(33);
+                        progressHandler.Report(50);
+                        progressHandler.Report(67);
+                        progressHandler.Report(83);
+                        progressHandler.Report(100);
+                    });
+                }
+
+                public override void Arrange()
+                {
+                    base.Arrange();
+
+                    result = Calculator.Calculate(calculationInput, calculatorSettings);
+                }
+            }
+
+            [TestFixture]
+            public class WhenCalculateWithCancel : GivenValidCalculationInput
+            {
+                private ICalculationResult result;
+
+                [Test]
+                public void ThenReturnsCancellationResult()
+                {
+                    Assert.That(result, Is.InstanceOf<CancellationResult>());
+                }
+
+                [Test]
+                public void ThenExpectedMessagesLogged()
+                {
+                    Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
+                }
+
+                [Test]
+                public void ThenExpectedProgressReported()
+                {
+                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
+
+                    Received.InOrder(() =>
+                    {
+                        progressHandler.Report(0);
+                        progressHandler.Report(17);
+                        progressHandler.Report(33);
+                        progressHandler.Report(50);
+                    });
+                }
+
+                public override void Arrange()
+                {
+                    base.Arrange();
+
+                    calculatorSettings.ShouldCancel = () => progressHandler.ReceivedCalls().Count() == 4;
+
+                    result = Calculator.Calculate(calculationInput, calculatorSettings);
+                }
             }
         }
 
