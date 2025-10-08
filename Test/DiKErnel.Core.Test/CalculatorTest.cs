@@ -49,8 +49,11 @@ namespace DiKErnel.Core.Test
             Received.InOrder(() =>
             {
                 progressHandler.Report(0);
+                progressHandler.Report(17);
                 progressHandler.Report(33);
+                progressHandler.Report(50);
                 progressHandler.Report(67);
+                progressHandler.Report(83);
                 progressHandler.Report(100);
             });
         }
@@ -123,6 +126,7 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
+                new TestLocationDependentCalculationInput(damage, timeOfFailure),
                 new TestLocationDependentCalculationInput(damage, timeOfFailure)
             });
 
