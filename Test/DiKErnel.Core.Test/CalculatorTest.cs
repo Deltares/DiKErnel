@@ -31,91 +31,73 @@ namespace DiKErnel.Core.Test
     [TestFixture]
     public class CalculatorTest
     {
-        [Test]
-        public void GivenCalculator_WhenCalculate_ThenCalculationPerformed()
+        private static readonly double damageOfFirstLocation = Random.NextDouble();
+        private static readonly double timeOfFailureOfFirstLocation = Random.NextDouble();
+        private static readonly double damageOfSecondLocation = Random.NextDouble();
+
+        [TestFixture]
+        public class GivenValidCalculationInput
         {
-            // Given
-            var progressHandler = Substitute.For<IProgress<int>>();
-            var calculatorSettings = new CalculatorSettings
-            {
-                ProgressHandler = progressHandler
-            };
-            ICalculationInput calculationInput = CreateCalculationInput();
+            private ICalculationInput calculationInput;
 
-            // When
-            Calculator.Calculate(calculationInput, calculatorSettings);
-
-            // Then
-            Received.InOrder(() =>
+            [SetUp]
+            public void Arrange()
             {
-                progressHandler.Report(0);
-                progressHandler.Report(17);
-                progressHandler.Report(33);
-                progressHandler.Report(50);
-                progressHandler.Report(67);
-                progressHandler.Report(83);
-                progressHandler.Report(100);
-            });
+                calculationInput = CreateCalculationInput();
+            }
+
+            [Test]
+            public void WhenCalculate_ThenReturnsSuccessResultWithExpectedCalculationOutput()
+            {
+                // When
+                ICalculationResult result = Calculator.Calculate(calculationInput);
+
+                // Then
+                Assert.That(result, Is.InstanceOf<SuccessResult>());
+
+                CalculationOutput output = ((SuccessResult) result).CalculationOutput;
+                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
+
+                LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
+                IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
+                Assert.That(damages, Has.Count.EqualTo(3));
+                Assert.That(damages.All(d => d.Equals(damageOfFirstLocation)), Is.True);
+                Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailureOfFirstLocation));
+
+                locationDependentOutput = output.LocationDependentOutputItems[1];
+                damages = locationDependentOutput.GetDamages();
+                Assert.That(damages, Has.Count.EqualTo(3));
+                Assert.That(damages.All(d => d.Equals(damageOfSecondLocation)), Is.True);
+                Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.Null);
+            }
         }
 
-        [Test]
-        [TestCase(true)]
-        [TestCase(false)]
-        public void GivenCalculator_WhenCalculate_ThenReturnsSuccessResultWithExpectedOutput(bool withTimeOfFailure)
+        [TestFixture]
+        public class GivenInvalidCalculationInput
         {
-            // Given
-            double damage = Random.NextDouble();
-            double? timeOfFailure = withTimeOfFailure ? Random.NextDouble() : (double?) null;
+            private ICalculationInput calculationInput;
+            private string exceptionMessageForSecondLocation;
 
-            ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
+            [SetUp]
+            public void Arrange()
+            {
+                exceptionMessageForSecondLocation = Random.NextString();
 
-            // When
-            ICalculationResult result = Calculator.Calculate(calculationInput);
+                calculationInput = CreateCalculationInput(exceptionMessageForSecondLocation);
+            }
 
-            // Then
-            Assert.That(result, Is.InstanceOf<SuccessResult>());
+            [Test]
+            public void WhenCalculate_ThenReturnsFailureResult()
+            {
+                // When
+                ICalculationResult result = Calculator.Calculate(calculationInput);
 
-            CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-            Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
-
-            LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
-            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
-            Assert.That(damages, Has.Count.EqualTo(3));
-            Assert.That(damages.All(d => d.Equals(damage)), Is.True);
-            Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailure));
+                // Then
+                Assert.That(result, Is.InstanceOf<FailureResult>());
+            }
         }
 
-        [Test]
-        public void GivenCalculator_WhenCalculateWithException_ThenLogsErrorMessageAndReturnsFailureResult()
-        {
-            // Given
-            ICalculationInput calculationInput = CreateCalculationInput();
-
-            string exceptionMessage = Random.NextString();
-            ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[0];
-            ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
-
-            var logHandler = Substitute.For<ILogHandler>();
-            var calculatorSettings = new CalculatorSettings
-            {
-                LogHandler = logHandler
-            };
-
-            // When
-            ICalculationResult result = Calculator.Calculate(calculationInput, calculatorSettings);
-
-            // Then
-            Received.InOrder(() =>
-            {
-                logHandler.Error(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the " +
-                                                              "calculation. See stack trace for more information:" +
-                                                              $"{Environment.NewLine}{exceptionMessage}")));
-            });
-
-            Assert.That(result, Is.InstanceOf<FailureResult>());
-        }
-
-        private static ICalculationInput CreateCalculationInput(double damage = 0, double? timeOfFailure = null)
+        private static ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -123,8 +105,8 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                new TestLocationDependentCalculationInput(damage, timeOfFailure),
-                new TestLocationDependentCalculationInput(damage, timeOfFailure)
+                new TestLocationDependentCalculationInput(damageOfFirstLocation, timeOfFailureOfFirstLocation),
+                new TestLocationDependentCalculationInput(damageOfSecondLocation, null, exceptionMessageForSecondLocation)
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -141,14 +123,14 @@ namespace DiKErnel.Core.Test
         {
             private readonly double damage;
             private readonly double? timeOfFailure;
+            private readonly string exceptionMessage;
 
-            public TestLocationDependentCalculationInput(double damage, double? timeOfFailure = null)
+            public TestLocationDependentCalculationInput(double damage, double? timeOfFailure = null, string exceptionMessage = null)
             {
                 this.damage = damage;
                 this.timeOfFailure = timeOfFailure;
+                this.exceptionMessage = exceptionMessage;
             }
-
-            public string ExceptionMessage { get; set; }
 
             public double X => 0;
 
@@ -166,9 +148,9 @@ namespace DiKErnel.Core.Test
             public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput,
                                                  IProfileData profileData)
             {
-                if (!string.IsNullOrEmpty(ExceptionMessage))
+                if (!string.IsNullOrEmpty(exceptionMessage))
                 {
-                    throw new InvalidOperationException(ExceptionMessage);
+                    throw new InvalidOperationException(exceptionMessage);
                 }
 
                 Thread.Sleep(10);
