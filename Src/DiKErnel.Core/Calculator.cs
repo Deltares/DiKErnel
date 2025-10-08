@@ -26,7 +26,7 @@ using DiKErnel.Util;
 namespace DiKErnel.Core
 {
     /// <summary>
-    /// Class responsible for performing calculations on a separate thread.
+    /// Class responsible for performing calculations.
     /// </summary>
     public class Calculator
     {
@@ -34,6 +34,16 @@ namespace DiKErnel.Core
 
         private double progress;
 
+        /// <summary>
+        /// Performs a calculation.
+        /// </summary>
+        /// <param name="calculationInput">The input used for the calculation.</param>
+        /// <returns>The result of the calculation.</returns>
+        public DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
+        {
+            return CalculateTimeStepsForLocations(calculationInput);
+        }
+        
         /// <summary>
         /// Creates a new instance.
         /// </summary>
@@ -43,7 +53,7 @@ namespace DiKErnel.Core
         /// <see cref="WaitForCompletion"/>).</remarks>
         public Calculator(ICalculationInput calculationInput)
         {
-            task = new Task<DataResult<CalculationOutput>>(() => Calculate(calculationInput));
+            task = new Task<DataResult<CalculationOutput>>(() => CalculateTimeStepsForLocations(calculationInput));
 
             task.Start();
         }
@@ -89,7 +99,7 @@ namespace DiKErnel.Core
             }
         }
 
-        private DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
+        private DataResult<CalculationOutput> CalculateTimeStepsForLocations(ICalculationInput calculationInput)
         {
             try
             {
