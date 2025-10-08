@@ -90,8 +90,8 @@ namespace DiKErnel.Core
             {
                 CalculationState = CalculationState.FinishedInError;
 
-                EventRegistry.Register(new Event("An unhandled error occurred while performing the calculation. See stack " +
-                                                 $"trace for more information:{Environment.NewLine}{e.Message}", EventType.Error));
+                LogErrorMessage("An unhandled error occurred while performing the calculation. See stack trace for more information:" +
+                                $"{Environment.NewLine}{e.Message}");
 
                 return new DataResult<CalculationOutput>(EventRegistry.Flush());
             }
@@ -109,14 +109,14 @@ namespace DiKErnel.Core
             {
                 if (ShouldCancel())
                 {
-                    break;
+                    return;
                 }
 
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                 {
                     if (ShouldCancel())
                     {
-                        break;
+                        return;
                     }
 
                     List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
@@ -156,6 +156,11 @@ namespace DiKErnel.Core
             progress += progressPerIteration;
 
             ReportProgress();
+        }
+
+        private void LogErrorMessage(string message)
+        {
+            calculatorSettings.LogHandler?.Error(message);
         }
     }
 }
