@@ -31,17 +31,17 @@ namespace DiKErnel.Core.Test
     [TestFixture]
     public class CalculatorTest
     {
-        private static readonly double damageOfFirstLocation = Random.NextDouble();
-        private static readonly double timeOfFailureOfFirstLocation = Random.NextDouble();
-        private static readonly double damageOfSecondLocation = Random.NextDouble();
+        private readonly double damageOfFirstLocation = Random.NextDouble();
+        private readonly double timeOfFailureOfFirstLocation = Random.NextDouble();
+        private readonly double damageOfSecondLocation = Random.NextDouble();
 
         [TestFixture]
-        public class GivenValidCalculationInput
+        public class GivenValidCalculationInput : CalculatorTest
         {
             private ICalculationInput calculationInput;
 
             [SetUp]
-            public void Arrange()
+            public virtual void Arrange()
             {
                 calculationInput = CreateCalculationInput();
             }
@@ -70,10 +70,55 @@ namespace DiKErnel.Core.Test
                 Assert.That(damages.All(d => d.Equals(damageOfSecondLocation)), Is.True);
                 Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.Null);
             }
+
+            [Test]
+            public void GivenLogHandler_WhenCalculate_ThenExpectedMessagesLogged()
+            {
+                // Given
+                var logHandler = Substitute.For<ILogHandler>();
+                var calculatorSettings = new CalculatorSettings
+                {
+                    LogHandler = logHandler
+                };
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
+            }
+
+            [Test]
+            public void GivenProgressHandler_WhenCalculate_ThenExpectedProgressReported()
+            {
+                // Given
+                var progressHandler = Substitute.For<IProgress<int>>();
+                var calculatorSettings = new CalculatorSettings
+                {
+                    ProgressHandler = progressHandler
+                };
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(17);
+                    progressHandler.Report(33);
+                    progressHandler.Report(50);
+                    progressHandler.Report(67);
+                    progressHandler.Report(83);
+                    progressHandler.Report(100);
+                });
+            }
         }
 
         [TestFixture]
-        public class GivenInvalidCalculationInput
+        public class GivenInvalidCalculationInput : CalculatorTest
         {
             private ICalculationInput calculationInput;
             private string exceptionMessageForSecondLocation;
@@ -97,7 +142,7 @@ namespace DiKErnel.Core.Test
             }
         }
 
-        private static ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
+        private ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
