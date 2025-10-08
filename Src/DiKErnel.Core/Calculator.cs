@@ -35,15 +35,10 @@ namespace DiKErnel.Core
         private double progress;
 
         /// <summary>
-        /// Performs a calculation.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="calculationInput">The input used for the calculation.</param>
-        /// <returns>The result of the calculation.</returns>
-        public DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
-        {
-            return CalculateTimeStepsForLocations(calculationInput);
-        }
-        
+        public Calculator() {}
+
         /// <summary>
         /// Creates a new instance.
         /// </summary>
@@ -77,6 +72,16 @@ namespace DiKErnel.Core
         /// successfully, cancelled or finished in error. When the calculation is still
         /// running, <c>null</c> is returned.</remarks>
         public DataResult<CalculationOutput> Result => CalculationState != CalculationState.Running ? task.Result : null;
+
+        /// <summary>
+        /// Performs a calculation.
+        /// </summary>
+        /// <param name="calculationInput">The input used for the calculation.</param>
+        /// <returns>The result of the calculation.</returns>
+        public DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
+        {
+            return CalculateTimeStepsForLocations(calculationInput);
+        }
 
         /// <summary>
         /// Handle that enables a calling instance to wait for the calculation to complete.
