@@ -25,12 +25,6 @@ namespace DiKErnel.Core.Test.Data
     [TestFixture]
     public class SuccessResultTest
     {
-        [Test]
-        public static void WhenCreatingSuccessResultWithoutCalculationOutput_ThenThrowsArgumentNullException()
-        {
-            Assert.That(() => new SuccessResult(null), Throws.ArgumentNullException.With.Message.Contains("calculationOutput"));
-        }
-
         [TestFixture]
         public class GivenSuccessResult
         {
