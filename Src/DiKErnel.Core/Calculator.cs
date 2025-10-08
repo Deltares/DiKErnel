@@ -19,7 +19,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DiKErnel.Core.Data;
 using DiKErnel.Util;
 
@@ -31,7 +30,6 @@ namespace DiKErnel.Core
     public class Calculator
     {
         private readonly CalculatorSettings calculatorSettings;
-        private readonly Task<DataResult<CalculationOutput>> task;
 
         private double progress;
 
@@ -42,20 +40,6 @@ namespace DiKErnel.Core
         public Calculator(CalculatorSettings calculatorSettings = null)
         {
             this.calculatorSettings = calculatorSettings ?? new CalculatorSettings();
-        }
-
-        /// <summary>
-        /// Creates a new instance.
-        /// </summary>
-        /// <param name="calculationInput">The input used in the calculation.</param>
-        /// <remarks>While creating the new instance, the thread that performs the
-        /// calculation is directly started (and can be waited for to finish by calling
-        /// <see cref="WaitForCompletion"/>).</remarks>
-        public Calculator(ICalculationInput calculationInput)
-        {
-            task = new Task<DataResult<CalculationOutput>>(() => CalculateTimeStepsForLocations(calculationInput));
-
-            task.Start();
         }
 
         /// <summary>
@@ -71,14 +55,6 @@ namespace DiKErnel.Core
         public int Progress => (int) Math.Round(progress * 100);
 
         /// <summary>
-        /// Gets the result of the calculation.
-        /// </summary>
-        /// <remarks>An actual result is returned when the calculation is finished
-        /// successfully, cancelled or finished in error. When the calculation is still
-        /// running, <c>null</c> is returned.</remarks>
-        public DataResult<CalculationOutput> Result => CalculationState != CalculationState.Running ? task.Result : null;
-
-        /// <summary>
         /// Performs a calculation.
         /// </summary>
         /// <param name="calculationInput">The input used for the calculation.</param>
@@ -86,14 +62,6 @@ namespace DiKErnel.Core
         public DataResult<CalculationOutput> Calculate(ICalculationInput calculationInput)
         {
             return CalculateTimeStepsForLocations(calculationInput);
-        }
-
-        /// <summary>
-        /// Handle that enables a calling instance to wait for the calculation to complete.
-        /// </summary>
-        public void WaitForCompletion()
-        {
-            task.Wait();
         }
 
         private DataResult<CalculationOutput> CalculateTimeStepsForLocations(ICalculationInput calculationInput)
