@@ -24,7 +24,6 @@ namespace DiKErnel.Core.Data
     public enum CalculationState
     {
         Running,
-        Cancelled,
         FinishedSuccessfully,
         FinishedInError
     }

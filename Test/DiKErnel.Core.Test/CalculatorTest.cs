@@ -77,34 +77,21 @@ namespace DiKErnel.Core.Test
         }
 
         [Test]
-        public void GivenCalculatorWithRunningCalculation_WhenCancelCalled_ThenCalculationCancelled()
+        public void GivenCalculator_WhenCalculateShouldCancel_ThenCalculationCancelled()
         {
             // Given
-            var calculator = new Calculator(CreateCalculationInput());
+            var calculator = new Calculator(new CalculatorSettings
+            {
+                ShouldCancel = () => true
+            });
+
+            ICalculationInput calculationInput = CreateCalculationInput();
 
             // When
-            calculator.Cancel();
-            calculator.WaitForCompletion();
+            calculator.Calculate(calculationInput);
 
             // Then
-            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.Cancelled));
             Assert.That(calculator.Progress, Is.Not.EqualTo(100));
-        }
-
-        [Test]
-        public void GivenCalculatorWithFinishedCalculation_WhenCancelCalled_ThenCalculationNotCancelled()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            calculator.WaitForCompletion();
-
-            // When
-            calculator.Cancel();
-
-            // Then
-            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
-            Assert.That(calculator.Progress, Is.EqualTo(100));
         }
 
         [Test]
@@ -120,53 +107,6 @@ namespace DiKErnel.Core.Test
             Assert.That(calculationState, Is.EqualTo(CalculationState.Running));
 
             calculator.WaitForCompletion();
-        }
-
-        [Test]
-        public void GivenCalculatorWithRunningCalculation_WhenGetResult_ThenReturnsNull()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            // When
-            DataResult<CalculationOutput> result = calculator.Result;
-
-            // Then
-            Assert.That(result, Is.Null);
-
-            calculator.WaitForCompletion();
-        }
-
-        [Test]
-        public void GivenCalculatorWithCancelledCalculation_WhenGetCalculationState_ThenExpectedResult()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            calculator.Cancel();
-            calculator.WaitForCompletion();
-
-            // When
-            CalculationState calculationState = calculator.CalculationState;
-
-            // Then
-            Assert.That(calculationState, Is.EqualTo(CalculationState.Cancelled));
-        }
-
-        [Test]
-        public void GivenCalculatorWithCancelledCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalse()
-        {
-            // Given
-            var calculator = new Calculator(CreateCalculationInput());
-
-            calculator.Cancel();
-            calculator.WaitForCompletion();
-
-            // When
-            DataResult<CalculationOutput> result = calculator.Result;
-
-            // Then
-            Assert.That(result.Successful, Is.False);
         }
 
         [Test]
@@ -190,7 +130,7 @@ namespace DiKErnel.Core.Test
         }
 
         [Test]
-        public void GivenCalculatorWithExceptionDuringCalculation_WhenGetResult_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenCalculator_WhenCalculateWithException_ThenReturnsResultWithSuccessfulFalseAndEvent()
         {
             // Given
             ICalculationInput calculationInput = CreateCalculationInput();
@@ -199,12 +139,10 @@ namespace DiKErnel.Core.Test
             ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[0];
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
-            var calculator = new Calculator(calculationInput);
-
-            calculator.WaitForCompletion();
+            var calculator = new Calculator();
 
             // When
-            DataResult<CalculationOutput> result = calculator.Result;
+            DataResult<CalculationOutput> result = calculator.Calculate(calculationInput);
 
             // Then
             Assert.That(result.Successful, Is.False);

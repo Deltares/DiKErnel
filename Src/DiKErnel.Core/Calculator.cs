@@ -30,6 +30,7 @@ namespace DiKErnel.Core
     /// </summary>
     public class Calculator
     {
+        private readonly CalculatorSettings calculatorSettings;
         private readonly Task<DataResult<CalculationOutput>> task;
 
         private double progress;
@@ -37,7 +38,11 @@ namespace DiKErnel.Core
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        public Calculator() {}
+        /// <param name="calculatorSettings">The settings to use during the calculations (optional).</param>
+        public Calculator(CalculatorSettings calculatorSettings = null)
+        {
+            this.calculatorSettings = calculatorSettings ?? new CalculatorSettings();
+        }
 
         /// <summary>
         /// Creates a new instance.
@@ -91,19 +96,6 @@ namespace DiKErnel.Core
             task.Wait();
         }
 
-        /// <summary>
-        /// Cancels the calculation.
-        /// </summary>
-        /// <remarks>A calculation can only be cancelled when it is actually
-        /// running.</remarks>
-        public void Cancel()
-        {
-            if (CalculationState == CalculationState.Running)
-            {
-                CalculationState = CalculationState.Cancelled;
-            }
-        }
-
         private DataResult<CalculationOutput> CalculateTimeStepsForLocations(ICalculationInput calculationInput)
         {
             try
@@ -116,7 +108,7 @@ namespace DiKErnel.Core
                 CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
                                                timeDependentOutputItemsPerLocation, calculationInput.ProfileData);
 
-                if (CalculationState == CalculationState.Cancelled)
+                if (ShouldCancel())
                 {
                     return new DataResult<CalculationOutput>(EventRegistry.Flush());
                 }
@@ -152,9 +144,14 @@ namespace DiKErnel.Core
 
             foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
             {
+                if (ShouldCancel())
+                {
+                    break;
+                }
+
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                 {
-                    if (CalculationState == CalculationState.Cancelled)
+                    if (ShouldCancel())
                     {
                         break;
                     }
@@ -179,6 +176,11 @@ namespace DiKErnel.Core
                                        : currentOutputItems[currentOutputItems.Count - 1].Damage;
 
             return locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
+        }
+
+        private bool ShouldCancel()
+        {
+            return calculatorSettings.ShouldCancel != null && calculatorSettings.ShouldCancel();
         }
     }
 }
