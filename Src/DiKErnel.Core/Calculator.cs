@@ -32,15 +32,15 @@ namespace DiKErnel.Core
         /// Performs a calculation.
         /// </summary>
         /// <param name="calculationInput">The input used for the calculation.</param>
-        /// <param name="calculatorSettings">The settings to use during the calculations (optional).</param>
+        /// <param name="calculatorSettings">The settings used for the calculation (optional).</param>
         /// <returns>The result of the calculation.</returns>
         public static ICalculationResult Calculate(ICalculationInput calculationInput, CalculatorSettings calculatorSettings = null)
         {
             try
             {
-                var currentProgress = 0.0;
+                var progress = 0.0;
 
-                ReportProgress(currentProgress, calculatorSettings);
+                ReportProgress(progress, calculatorSettings);
 
                 IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
@@ -48,7 +48,7 @@ namespace DiKErnel.Core
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
                 CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems, timeDependentOutputItemsPerLocation,
-                                               calculationInput.ProfileData, ref currentProgress, calculatorSettings);
+                                               calculationInput.ProfileData, ref progress, calculatorSettings);
 
                 if (ShouldCancel(calculatorSettings))
                 {
@@ -74,10 +74,8 @@ namespace DiKErnel.Core
         private static void CalculateTimeStepsForLocations(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
-            IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
-            IProfileData profileData,
-            ref double currentProgress,
-            CalculatorSettings calculatorSettings)
+            Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
+            IProfileData profileData, ref double currentProgress, CalculatorSettings calculatorSettings)
         {
             double progressPerIteration = 1d / timeDependentInputItems.Count / locationDependentInputItems.Count;
 
@@ -92,8 +90,8 @@ namespace DiKErnel.Core
 
                     List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-                    currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
-                                                                        currentOutputItems, profileData));
+                    currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput, currentOutputItems,
+                                                                        profileData));
 
                     currentProgress += progressPerIteration;
 
@@ -104,7 +102,7 @@ namespace DiKErnel.Core
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        IReadOnlyList<TimeDependentOutput> currentOutputItems,
+                                                                        List<TimeDependentOutput> currentOutputItems,
                                                                         IProfileData profileData)
         {
             double initialDamage = currentOutputItems.Count == 0
@@ -119,9 +117,11 @@ namespace DiKErnel.Core
             return calculatorSettings?.ShouldCancel != null && calculatorSettings.ShouldCancel();
         }
 
-        private static void ReportProgress(double progressAsFraction, CalculatorSettings calculatorSettings)
+        private static void ReportProgress(double progress, CalculatorSettings calculatorSettings)
         {
-            calculatorSettings?.ProgressHandler?.Report((int) Math.Round(progressAsFraction * 100));
+            var percentage = (int) Math.Round(progress * 100);
+
+            calculatorSettings?.ProgressHandler?.Report(percentage);
         }
 
         private static void LogErrorMessage(string message, CalculatorSettings calculatorSettings)
