@@ -46,11 +46,6 @@ namespace DiKErnel.Core
         /// <returns>The result of the calculation.</returns>
         public ICalculationResult Calculate(ICalculationInput calculationInput)
         {
-            return CalculateTimeStepsForLocations(calculationInput);
-        }
-
-        private ICalculationResult CalculateTimeStepsForLocations(ICalculationInput calculationInput)
-        {
             try
             {
                 var currentProgress = 0.0;
@@ -97,11 +92,6 @@ namespace DiKErnel.Core
 
             foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
             {
-                if (ShouldCancel())
-                {
-                    return;
-                }
-
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                 {
                     if (ShouldCancel())
