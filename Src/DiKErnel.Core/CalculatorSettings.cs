@@ -28,6 +28,7 @@ namespace DiKErnel.Core
         /// <summary>
         /// Gets or sets the progress handler.
         /// </summary>
+        /// <remarks>The progress of the calculations is reported back as a rounded percentage in the range from 0 to 100.</remarks>
         public IProgress<int> ProgressHandler { get; set; }
 
         /// <summary>

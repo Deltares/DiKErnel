@@ -37,7 +37,6 @@ namespace DiKErnel.Core
         /// Creates a new instance.
         /// </summary>
         /// <param name="calculatorSettings">The settings to use during the calculations (optional).</param>
-        /// <remarks>When applicable, the progress of the calculations is reported back as a rounded percentage in the range from 0 to 100.</remarks>
         public Calculator(CalculatorSettings calculatorSettings = null)
         {
             this.calculatorSettings = calculatorSettings ?? new CalculatorSettings();
