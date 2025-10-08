@@ -40,8 +40,8 @@ namespace DiKErnel.Core.Test
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
-            private CalculatorSettings calculatorSettings;
             private ICalculationInput calculationInput;
+            private CalculatorSettings calculatorSettings;
 
             [SetUp]
             public virtual void Arrange()
@@ -158,72 +158,68 @@ namespace DiKErnel.Core.Test
         [TestFixture]
         public class GivenInvalidCalculationInput : CalculatorTest
         {
+            private ILogHandler logHandler;
+            private IProgress<int> progressHandler;
             private ICalculationInput calculationInput;
+            private CalculatorSettings calculatorSettings;
             private string exceptionMessageForSecondLocation;
 
             [SetUp]
-            public void Arrange()
+            public virtual void Arrange()
             {
                 exceptionMessageForSecondLocation = Random.NextString();
-
                 calculationInput = CreateCalculationInput(exceptionMessageForSecondLocation);
-            }
-
-            [Test]
-            public void WhenCalculate_ThenReturnsFailureResult()
-            {
-                // When
-                ICalculationResult result = Calculator.Calculate(calculationInput);
-
-                // Then
-                Assert.That(result, Is.InstanceOf<FailureResult>());
-            }
-
-            [Test]
-            public void GivenLogHandler_WhenCalculate_ThenExpectedMessagesLogged()
-            {
-                // Given
-                var logHandler = Substitute.For<ILogHandler>();
-                var calculatorSettings = new CalculatorSettings
+                logHandler = Substitute.For<ILogHandler>();
+                progressHandler = Substitute.For<IProgress<int>>();
+                calculatorSettings = new CalculatorSettings
                 {
-                    LogHandler = logHandler
-                };
-
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
-
-                // Then
-                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
-
-                Received.InOrder(() =>
-                {
-                    logHandler.Error(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the calculation. See " +
-                                                                  $"stack trace for more information:{Environment.NewLine}" +
-                                                                  $"{exceptionMessageForSecondLocation}")));
-                });
-            }
-
-            [Test]
-            public void GivenProgressHandler_WhenCalculate_ThenExpectedProgressReported()
-            {
-                // Given
-                var progressHandler = Substitute.For<IProgress<int>>();
-                var calculatorSettings = new CalculatorSettings
-                {
+                    LogHandler = logHandler,
                     ProgressHandler = progressHandler
                 };
+            }
 
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
+            [TestFixture]
+            public class WhenCalculate : GivenInvalidCalculationInput
+            {
+                private ICalculationResult result;
 
-                // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
-
-                Received.InOrder(() =>
+                [Test]
+                public void ThenReturnsFailureResult()
                 {
-                    progressHandler.Report(0);
-                    progressHandler.Report(17);
-                });
+                    Assert.That(result, Is.InstanceOf<FailureResult>());
+                }
+
+                [Test]
+                public void ThenExpectedMessagesLogged()
+                {
+                    Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
+
+                    Received.InOrder(() =>
+                    {
+                        logHandler.Error(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the calculation. See " +
+                                                                      $"stack trace for more information:{Environment.NewLine}" +
+                                                                      $"{exceptionMessageForSecondLocation}")));
+                    });
+                }
+
+                [Test]
+                public void ThenExpectedProgressReported()
+                {
+                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
+
+                    Received.InOrder(() =>
+                    {
+                        progressHandler.Report(0);
+                        progressHandler.Report(17);
+                    });
+                }
+
+                public override void Arrange()
+                {
+                    base.Arrange();
+
+                    result = Calculator.Calculate(calculationInput, calculatorSettings);
+                }
             }
         }
 
