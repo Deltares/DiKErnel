@@ -36,14 +36,14 @@ namespace DiKErnel.Core.Test
         {
             // Given
             var progressHandler = Substitute.For<IProgress<int>>();
-            var calculator = new Calculator(new CalculatorSettings
+            var calculatorSettings = new CalculatorSettings
             {
                 ProgressHandler = progressHandler
-            });
+            };
             ICalculationInput calculationInput = CreateCalculationInput();
 
             // When
-            calculator.Calculate(calculationInput);
+            Calculator.Calculate(calculationInput, calculatorSettings);
 
             // Then
             Received.InOrder(() =>
@@ -69,10 +69,8 @@ namespace DiKErnel.Core.Test
 
             ICalculationInput calculationInput = CreateCalculationInput(damage, timeOfFailure);
 
-            var calculator = new Calculator();
-
             // When
-            ICalculationResult result = calculator.Calculate(calculationInput);
+            ICalculationResult result = Calculator.Calculate(calculationInput);
 
             // Then
             Assert.That(result, Is.InstanceOf<SuccessResult>());
@@ -98,14 +96,13 @@ namespace DiKErnel.Core.Test
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
             var logHandler = Substitute.For<ILogHandler>();
-
-            var calculator = new Calculator(new CalculatorSettings
+            var calculatorSettings = new CalculatorSettings
             {
                 LogHandler = logHandler
-            });
+            };
 
             // When
-            ICalculationResult result = calculator.Calculate(calculationInput);
+            ICalculationResult result = Calculator.Calculate(calculationInput, calculatorSettings);
 
             // Then
             Received.InOrder(() =>
