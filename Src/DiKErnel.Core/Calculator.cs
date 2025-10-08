@@ -42,11 +42,6 @@ namespace DiKErnel.Core
         }
 
         /// <summary>
-        /// Gets the state of the calculation.
-        /// </summary>
-        public CalculationState CalculationState { get; private set; } = CalculationState.Running;
-
-        /// <summary>
         /// Performs a calculation.
         /// </summary>
         /// <param name="calculationInput">The input used for the calculation.</param>
@@ -75,8 +70,6 @@ namespace DiKErnel.Core
                     return new CancellationResult();
                 }
 
-                CalculationState = CalculationState.FinishedSuccessfully;
-
                 List<LocationDependentOutput> locationDependentOutputItems =
                     locationDependentInputItems
                         .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]))
@@ -86,8 +79,6 @@ namespace DiKErnel.Core
             }
             catch (Exception e)
             {
-                CalculationState = CalculationState.FinishedInError;
-
                 LogErrorMessage("An unhandled error occurred while performing the calculation. See stack trace for more information:" +
                                 $"{Environment.NewLine}{e.Message}");
 

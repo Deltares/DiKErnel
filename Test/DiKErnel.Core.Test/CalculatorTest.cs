@@ -46,8 +46,6 @@ namespace DiKErnel.Core.Test
             calculator.Calculate(calculationInput);
 
             // Then
-            Assert.That(calculator.CalculationState, Is.EqualTo(CalculationState.FinishedSuccessfully));
-
             Received.InOrder(() =>
             {
                 progressHandler.Report(0);
