@@ -26,41 +26,31 @@ namespace DiKErnel.Core
     /// <summary>
     /// Class responsible for performing calculations.
     /// </summary>
-    public class Calculator
+    public static class Calculator
     {
-        private readonly CalculatorSettings calculatorSettings;
-
-        /// <summary>
-        /// Creates a new instance.
-        /// </summary>
-        /// <param name="calculatorSettings">The settings to use during the calculations (optional).</param>
-        public Calculator(CalculatorSettings calculatorSettings = null)
-        {
-            this.calculatorSettings = calculatorSettings ?? new CalculatorSettings();
-        }
-
         /// <summary>
         /// Performs a calculation.
         /// </summary>
         /// <param name="calculationInput">The input used for the calculation.</param>
+        /// <param name="calculatorSettings">The settings to use during the calculations (optional).</param>
         /// <returns>The result of the calculation.</returns>
-        public ICalculationResult Calculate(ICalculationInput calculationInput)
+        public static ICalculationResult Calculate(ICalculationInput calculationInput, CalculatorSettings calculatorSettings = null)
         {
             try
             {
                 var currentProgress = 0.0;
 
-                ReportProgress(currentProgress);
+                ReportProgress(currentProgress, calculatorSettings);
 
                 IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
-                CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems,
-                                               timeDependentOutputItemsPerLocation, calculationInput.ProfileData, ref currentProgress);
+                CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems, timeDependentOutputItemsPerLocation,
+                                               calculationInput.ProfileData, ref currentProgress, calculatorSettings);
 
-                if (ShouldCancel())
+                if (ShouldCancel(calculatorSettings))
                 {
                     return new CancellationResult();
                 }
@@ -75,18 +65,19 @@ namespace DiKErnel.Core
             catch (Exception e)
             {
                 LogErrorMessage("An unhandled error occurred while performing the calculation. See stack trace for more information:" +
-                                $"{Environment.NewLine}{e.Message}");
+                                $"{Environment.NewLine}{e.Message}", calculatorSettings);
 
                 return new FailureResult();
             }
         }
 
-        private void CalculateTimeStepsForLocations(
+        private static void CalculateTimeStepsForLocations(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData,
-            ref double currentProgress)
+            ref double currentProgress,
+            CalculatorSettings calculatorSettings)
         {
             double progressPerIteration = 1d / timeDependentInputItems.Count / locationDependentInputItems.Count;
 
@@ -94,7 +85,7 @@ namespace DiKErnel.Core
             {
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                 {
-                    if (ShouldCancel())
+                    if (ShouldCancel(calculatorSettings))
                     {
                         return;
                     }
@@ -106,7 +97,7 @@ namespace DiKErnel.Core
 
                     currentProgress += progressPerIteration;
 
-                    ReportProgress(currentProgress);
+                    ReportProgress(currentProgress, calculatorSettings);
                 }
             }
         }
@@ -123,19 +114,19 @@ namespace DiKErnel.Core
             return locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
         }
 
-        private bool ShouldCancel()
+        private static bool ShouldCancel(CalculatorSettings calculatorSettings)
         {
-            return calculatorSettings.ShouldCancel != null && calculatorSettings.ShouldCancel();
+            return calculatorSettings?.ShouldCancel != null && calculatorSettings.ShouldCancel();
         }
 
-        private void ReportProgress(double progressAsFraction)
+        private static void ReportProgress(double progressAsFraction, CalculatorSettings calculatorSettings)
         {
-            calculatorSettings.ProgressHandler?.Report((int) Math.Round(progressAsFraction * 100));
+            calculatorSettings?.ProgressHandler?.Report((int) Math.Round(progressAsFraction * 100));
         }
 
-        private void LogErrorMessage(string message)
+        private static void LogErrorMessage(string message, CalculatorSettings calculatorSettings)
         {
-            calculatorSettings.LogHandler?.Error(message);
+            calculatorSettings?.LogHandler?.Error(message);
         }
     }
 }
