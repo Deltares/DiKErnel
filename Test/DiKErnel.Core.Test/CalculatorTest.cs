@@ -22,7 +22,6 @@ using System.Linq;
 using System.Threading;
 using DiKErnel.Core.Data;
 using DiKErnel.Core.Extensions;
-using DiKErnel.Util;
 using NSubstitute;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;
@@ -61,7 +60,7 @@ namespace DiKErnel.Core.Test
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void GivenCalculator_WhenCalculate_ThenReturnsResultWithExpectedOutput(bool withTimeOfFailure)
+        public void GivenCalculator_WhenCalculate_ThenReturnsSuccessResultWithExpectedOutput(bool withTimeOfFailure)
         {
             // Given
             double damage = Random.NextDouble();
@@ -72,12 +71,12 @@ namespace DiKErnel.Core.Test
             var calculator = new Calculator();
 
             // When
-            DataResult<CalculationOutput> result = calculator.Calculate(calculationInput);
+            ICalculationResult result = calculator.Calculate(calculationInput);
 
             // Then
-            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.InstanceOf<SuccessResult>());
 
-            CalculationOutput output = result.Data;
+            CalculationOutput output = ((SuccessResult) result).CalculationOutput;
             Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(1));
 
             LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
@@ -88,7 +87,7 @@ namespace DiKErnel.Core.Test
         }
 
         [Test]
-        public void GivenCalculator_WhenCalculateWithException_ThenReturnsResultWithSuccessfulFalseAndEvent()
+        public void GivenCalculator_WhenCalculateWithException_ThenLogsErrorMessageAndReturnsFailureResult()
         {
             // Given
             ICalculationInput calculationInput = CreateCalculationInput();
@@ -97,20 +96,25 @@ namespace DiKErnel.Core.Test
             ILocationDependentInput locationDependentInput = calculationInput.LocationDependentInputItems[0];
             ((TestLocationDependentCalculationInput) locationDependentInput).ExceptionMessage = exceptionMessage;
 
-            var calculator = new Calculator();
+            var logHandler = Substitute.For<ILogHandler>();
+
+            var calculator = new Calculator(new CalculatorSettings
+            {
+                LogHandler = logHandler
+            });
 
             // When
-            DataResult<CalculationOutput> result = calculator.Calculate(calculationInput);
+            ICalculationResult result = calculator.Calculate(calculationInput);
 
             // Then
-            Assert.That(result.Successful, Is.False);
-            Assert.That(result.Events, Has.Count.EqualTo(1));
+            Received.InOrder(() =>
+            {
+                logHandler.Error(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the " +
+                                                              "calculation. See stack trace for more information:" +
+                                                              $"{Environment.NewLine}{exceptionMessage}")));
+            });
 
-            Event exceptionEvent = result.Events[0];
-            Assert.That(exceptionEvent.Type, Is.EqualTo(EventType.Error));
-            Assert.That(exceptionEvent.Message, Is.EqualTo("An unhandled error occurred while performing the " +
-                                                           "calculation. See stack trace for more information:" +
-                                                           $"{Environment.NewLine}{exceptionMessage}"));
+            Assert.That(result, Is.InstanceOf<FailureResult>());
         }
 
         private static ICalculationInput CreateCalculationInput(double damage = 0, double? timeOfFailure = null)
