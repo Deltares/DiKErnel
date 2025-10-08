@@ -140,6 +140,53 @@ namespace DiKErnel.Core.Test
                 // Then
                 Assert.That(result, Is.InstanceOf<FailureResult>());
             }
+
+            [Test]
+            public void GivenLogHandler_WhenCalculate_ThenExpectedMessagesLogged()
+            {
+                // Given
+                var logHandler = Substitute.For<ILogHandler>();
+                var calculatorSettings = new CalculatorSettings
+                {
+                    LogHandler = logHandler
+                };
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
+
+                Received.InOrder(() =>
+                {
+                    logHandler.Error(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the calculation. See " +
+                                                                  $"stack trace for more information:{Environment.NewLine}" +
+                                                                  $"{exceptionMessageForSecondLocation}")));
+                });
+            }
+
+            [Test]
+            public void GivenProgressHandler_WhenCalculate_ThenExpectedProgressReported()
+            {
+                // Given
+                var progressHandler = Substitute.For<IProgress<int>>();
+                var calculatorSettings = new CalculatorSettings
+                {
+                    ProgressHandler = progressHandler
+                };
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(17);
+                });
+            }
         }
 
         private ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
