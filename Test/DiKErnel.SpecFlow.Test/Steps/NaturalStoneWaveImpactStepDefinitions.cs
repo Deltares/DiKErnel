@@ -23,7 +23,7 @@ using TechTalk.SpecFlow;
 
 namespace DiKErnel.SpecFlow.Test.Steps
 {
-    public class NaturalStoneWaveImpactStepDefinitions : StepDefinitionsBase
+    internal sealed class NaturalStoneWaveImpactStepDefinitions : StepDefinitionsBase
     {
         public NaturalStoneWaveImpactStepDefinitions(ScenarioContext context) : base(context) {}
 

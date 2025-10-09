@@ -23,7 +23,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.Util.Test
 {
     [TestFixture]
-    public class DataResultTest
+    internal sealed class DataResultTest
     {
         [Test]
         public void ConstructorForValueType_WithData_ExpectedValues()

@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.Util.Test.Validation
 {
     [TestFixture]
-    public class ValidationIssueTest
+    internal sealed class ValidationIssueTest
     {
         [Test]
         public void Constructor_ExpectedValues()

@@ -31,7 +31,7 @@ using NUnit.Framework;
 namespace DiKErnel.System.Test
 {
     [TestFixture]
-    public class ValidationSystemTest
+    internal sealed class ValidationSystemTest
     {
         [Test]
         public void GivenCalculationInputWithInvalidTimeStep_WhenValidating_ThenReturnsExpectedValidationResult()

@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.Util.Test.Helpers
 {
     [TestFixture]
-    public class NumericsHelperTest
+    internal sealed class NumericsHelperTest
     {
         private const double tolerance = 1e-16;
 

@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Util.Test
 {
     [TestFixture]
-    public class EventRegistryTest
+    internal sealed class EventRegistryTest
     {
         [Test]
         public void GivenEventRegistryWithoutEventsRegistered_WhenFlush_ThenReturnsEmptyCollection()

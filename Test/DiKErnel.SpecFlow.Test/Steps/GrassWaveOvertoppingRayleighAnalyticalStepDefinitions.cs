@@ -23,7 +23,7 @@ using TechTalk.SpecFlow;
 
 namespace DiKErnel.SpecFlow.Test.Steps
 {
-    public class GrassWaveOvertoppingRayleighAnalyticalStepDefinitions : StepDefinitionsBase
+    internal sealed class GrassWaveOvertoppingRayleighAnalyticalStepDefinitions : StepDefinitionsBase
     {
         public GrassWaveOvertoppingRayleighAnalyticalStepDefinitions(ScenarioContext context) : base(context) {}
 

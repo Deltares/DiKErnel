@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.Util.Test
 {
     [TestFixture]
-    public class EventTest
+    internal sealed class EventTest
     {
         [Test]
         public void Constructor_ExpectedValues()

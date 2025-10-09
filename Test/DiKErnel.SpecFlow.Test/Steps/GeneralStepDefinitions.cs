@@ -30,7 +30,7 @@ using TechTalk.SpecFlow.Assist;
 namespace DiKErnel.SpecFlow.Test.Steps
 {
     [Binding]
-    public class GeneralStepDefinitions
+    internal sealed class GeneralStepDefinitions
     {
         public const double Tolerance = 1e-14;
 
