@@ -35,18 +35,11 @@ namespace DiKErnel.Core.Data
         {
             IncrementDamage = constructionProperties.IncrementDamage
                               ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.IncrementDamage));
-            Damage = constructionProperties.Damage
-                     ?? throw new InvalidTimeDependentOutputException(nameof(constructionProperties.Damage));
         }
 
         /// <summary>
         /// Gets the increment of damage.
         /// </summary>
         public double IncrementDamage { get; }
-
-        /// <summary>
-        /// Gets the damage.
-        /// </summary>
-        public double Damage { get; }
     }
 }

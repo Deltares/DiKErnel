@@ -27,10 +27,5 @@ namespace DiKErnel.Core.Data
         /// Gets or sets the increment of damage.
         /// </summary>
         public double? IncrementDamage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the damage.
-        /// </summary>
-        public double? Damage { get; set; }
     }
 }
