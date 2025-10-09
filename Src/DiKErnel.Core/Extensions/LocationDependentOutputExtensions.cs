@@ -72,18 +72,24 @@ namespace DiKErnel.Core.Extensions
                 return null;
             }
 
+            double damageBeginTime = initialDamage;
+
             for (var i = 0; i < timeDependentInputItems.Count; i++)
             {
-                if (initialDamage < failureNumber && damages[i] >= failureNumber)
+                double damageEndTime = damages[i];
+
+                if (damageBeginTime < failureNumber && damageEndTime >= failureNumber)
                 {
                     ITimeDependentInput timeDependentInput = timeDependentInputItems[i];
 
                     double incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
                     double incrementDamage = locationDependentOutput.TimeDependentOutputItems[i].IncrementDamage;
-                    double durationInTimeStepFailure = (failureNumber - initialDamage) / incrementDamage * incrementTime;
+                    double durationInTimeStepFailure = (failureNumber - damageBeginTime) / incrementDamage * incrementTime;
 
                     return timeDependentInput.BeginTime + durationInTimeStepFailure;
                 }
+
+                damageBeginTime = damageEndTime;
             }
 
             return null;
