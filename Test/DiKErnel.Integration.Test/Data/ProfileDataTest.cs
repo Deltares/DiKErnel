@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data
 {
     [TestFixture]
-    public class ProfileDataTest
+    internal sealed class ProfileDataTest
     {
         private const double tolerance = 1e-15;
 

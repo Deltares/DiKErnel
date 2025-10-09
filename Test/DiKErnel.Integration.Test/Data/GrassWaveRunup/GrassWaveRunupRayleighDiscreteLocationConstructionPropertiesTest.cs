@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassWaveRunupRayleighDiscreteLocationConstructionPropertiesTest
+    internal sealed class GrassWaveRunupRayleighDiscreteLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()

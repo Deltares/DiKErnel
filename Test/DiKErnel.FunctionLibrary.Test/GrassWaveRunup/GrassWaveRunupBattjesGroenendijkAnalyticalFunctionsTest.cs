@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassWaveRunupBattjesGroenendijkAnalyticalFunctionsTest
+    internal sealed class GrassWaveRunupBattjesGroenendijkAnalyticalFunctionsTest
     {
         [Test]
         [TestCase(0.8, 0, 300, 1.38280392857274, 95.12417141759073)]

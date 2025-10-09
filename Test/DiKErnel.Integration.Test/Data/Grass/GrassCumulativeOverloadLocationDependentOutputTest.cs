@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.Grass
 {
     [TestFixture]
-    public class GrassCumulativeOverloadLocationDependentOutputTest
+    internal sealed class GrassCumulativeOverloadLocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()

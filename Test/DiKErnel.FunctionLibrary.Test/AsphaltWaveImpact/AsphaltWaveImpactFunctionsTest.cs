@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltWaveImpactFunctionsTest
+    internal sealed class AsphaltWaveImpactFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()

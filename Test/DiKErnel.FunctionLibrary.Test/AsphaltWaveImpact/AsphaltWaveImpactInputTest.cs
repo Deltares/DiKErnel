@@ -25,7 +25,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.FunctionLibrary.Test.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltWaveImpactInputTest
+    internal sealed class AsphaltWaveImpactInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()

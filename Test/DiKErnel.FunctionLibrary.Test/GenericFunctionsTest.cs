@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test
 {
     [TestFixture]
-    public class GenericFunctionsTest
+    internal sealed class GenericFunctionsTest
     {
         [Test]
         public void Radians_ValidInput_ExpectedValue()

@@ -28,7 +28,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.Integration.Test.Helpers
 {
     [TestFixture]
-    public class ValidationHelperTest
+    internal sealed class ValidationHelperTest
     {
         [Test]
         public void GivenValidationIssuesOfNonErrorTypes_WhenRegisterValidationIssues_ThenExpectedResult()

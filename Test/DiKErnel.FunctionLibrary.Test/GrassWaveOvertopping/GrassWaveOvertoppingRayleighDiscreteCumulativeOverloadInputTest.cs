@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveOvertopping
 {
     [TestFixture]
-    public class GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInputTest
+    internal sealed class GrassWaveOvertoppingRayleighDiscreteCumulativeOverloadInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()

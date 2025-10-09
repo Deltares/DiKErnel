@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.External.Overtopping.Test
 {
     [TestFixture]
-    public class OvertoppingAdapterTest
+    internal sealed class OvertoppingAdapterTest
     {
         [Test]
         public void Validate_WithInvalidData_ReturnsNonEmptyMessages()

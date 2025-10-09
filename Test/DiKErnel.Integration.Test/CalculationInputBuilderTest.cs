@@ -34,7 +34,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.Integration.Test
 {
     [TestFixture]
-    public class CalculationInputBuilderTest
+    internal sealed class CalculationInputBuilderTest
     {
         [Test]
         public void GivenBuilderWithValidData_WhenBuild_ThenReturnsResultWithCalculationInput()

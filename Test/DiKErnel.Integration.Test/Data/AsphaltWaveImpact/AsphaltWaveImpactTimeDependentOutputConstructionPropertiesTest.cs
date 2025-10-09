@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltWaveImpactTimeDependentOutputConstructionPropertiesTest
+    internal sealed class AsphaltWaveImpactTimeDependentOutputConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()

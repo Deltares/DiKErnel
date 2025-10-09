@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test
 {
     [TestFixture]
-    public class HydraulicLoadFunctionsTest
+    internal sealed class HydraulicLoadFunctionsTest
     {
         private const double epsilon = 1e-6;
 

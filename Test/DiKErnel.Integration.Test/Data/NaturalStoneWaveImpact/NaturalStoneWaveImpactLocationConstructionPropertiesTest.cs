@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneWaveImpactLocationConstructionPropertiesTest
+    internal sealed class NaturalStoneWaveImpactLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()

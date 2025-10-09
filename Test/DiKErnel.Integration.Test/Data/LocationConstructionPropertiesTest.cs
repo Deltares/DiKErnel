@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data
 {
     [TestFixture]
-    public class LocationConstructionPropertiesTest
+    internal sealed class LocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()

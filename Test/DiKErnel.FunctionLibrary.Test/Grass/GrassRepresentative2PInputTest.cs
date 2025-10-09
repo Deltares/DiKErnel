@@ -25,7 +25,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.FunctionLibrary.Test.Grass
 {
     [TestFixture]
-    public class GrassRepresentative2PInputTest
+    internal sealed class GrassRepresentative2PInputTest
     {
         [Test]
         public void Constructor_ExpectedValues()

@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.GrassWaveOvertopping
 {
     [TestFixture]
-    public class GrassWaveOvertoppingRayleighLocationConstructionPropertiesTest
+    internal sealed class GrassWaveOvertoppingRayleighLocationConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()

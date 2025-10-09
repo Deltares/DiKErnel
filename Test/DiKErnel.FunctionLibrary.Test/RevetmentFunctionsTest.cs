@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test
 {
     [TestFixture]
-    public class RevetmentFunctionsTest
+    internal sealed class RevetmentFunctionsTest
     {
         [Test]
         public void IncrementTime_ValidInput_ExpectedValue()

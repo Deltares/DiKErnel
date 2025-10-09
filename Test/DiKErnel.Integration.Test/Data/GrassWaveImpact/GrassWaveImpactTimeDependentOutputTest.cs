@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassWaveImpactTimeDependentOutputTest
+    internal sealed class GrassWaveImpactTimeDependentOutputTest
     {
         [Test]
         public void Constructor_WithAllValuesSet_ExpectedValues()

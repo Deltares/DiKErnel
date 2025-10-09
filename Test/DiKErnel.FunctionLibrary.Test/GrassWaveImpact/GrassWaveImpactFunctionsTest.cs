@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassWaveImpactFunctionsTest
+    internal sealed class GrassWaveImpactFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()

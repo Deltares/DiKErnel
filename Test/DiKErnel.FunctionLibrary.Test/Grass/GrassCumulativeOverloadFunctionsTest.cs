@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.FunctionLibrary.Test.Grass
 {
     [TestFixture]
-    public class GrassCumulativeOverloadFunctionsTest
+    internal sealed class GrassCumulativeOverloadFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()

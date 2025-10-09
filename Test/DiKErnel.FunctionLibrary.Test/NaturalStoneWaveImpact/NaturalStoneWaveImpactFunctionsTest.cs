@@ -24,7 +24,7 @@ using AssertHelper = DiKErnel.FunctionLibrary.TestUtil.AssertHelper;
 namespace DiKErnel.FunctionLibrary.Test.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneWaveImpactFunctionsTest
+    internal sealed class NaturalStoneWaveImpactFunctionsTest
     {
         [Test]
         public void IncrementDamage_ValidInput_ExpectedValue()
