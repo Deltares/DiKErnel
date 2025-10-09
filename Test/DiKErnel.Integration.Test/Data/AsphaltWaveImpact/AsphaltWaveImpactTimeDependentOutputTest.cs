@@ -33,7 +33,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double timeOfFailure = Random.NextDouble();
             double maximumPeakStress = Random.NextDouble();
             double averageNumberOfWaves = Random.NextDouble();
 
@@ -41,7 +40,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 MaximumPeakStress = maximumPeakStress,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
@@ -53,7 +51,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.That(output.TimeOfFailure, Is.EqualTo(timeOfFailure));
             Assert.That(output.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
             Assert.That(output.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
@@ -71,7 +68,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = null,
                 MaximumPeakStress = maximumPeakStress,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
@@ -83,7 +79,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(output.Damage, Is.EqualTo(damage));
-            Assert.That(output.TimeOfFailure, Is.Null);
             Assert.That(output.MaximumPeakStress, Is.EqualTo(maximumPeakStress));
             Assert.That(output.AverageNumberOfWaves, Is.EqualTo(averageNumberOfWaves));
         }
@@ -134,7 +129,6 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             {
                 IncrementDamage = Random.NextDouble(),
                 Damage = Random.NextDouble(),
-                TimeOfFailure = Random.NextDouble(),
                 MaximumPeakStress = Random.NextDouble(),
                 AverageNumberOfWaves = Random.NextDouble()
             };
