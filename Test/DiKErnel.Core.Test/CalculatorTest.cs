@@ -30,9 +30,6 @@ namespace DiKErnel.Core.Test
     [TestFixture]
     internal class CalculatorTest
     {
-        private readonly double damageOfFirstLocation = Random.NextDouble();
-        private readonly double damageOfSecondLocation = Random.NextDouble();
-
         [TestFixture]
         internal class GivenValidCalculationInput : CalculatorTest
         {
@@ -219,8 +216,8 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                new TestLocationDependentCalculationInput(damageOfFirstLocation),
-                new TestLocationDependentCalculationInput(damageOfSecondLocation, exceptionMessageForSecondLocation)
+                new TestLocationDependentCalculationInput(),
+                new TestLocationDependentCalculationInput(exceptionMessageForSecondLocation)
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -235,12 +232,10 @@ namespace DiKErnel.Core.Test
 
         private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
-            private readonly double damage;
             private readonly string exceptionMessage;
 
-            public TestLocationDependentCalculationInput(double damage, string exceptionMessage = null)
+            public TestLocationDependentCalculationInput(string exceptionMessage = null)
             {
-                this.damage = damage;
                 this.exceptionMessage = exceptionMessage;
             }
 
@@ -270,7 +265,6 @@ namespace DiKErnel.Core.Test
                 var timeDependentOutputConstructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
 
                 timeDependentOutputConstructionProperties.IncrementDamage = Random.NextDouble();
-                timeDependentOutputConstructionProperties.Damage = damage;
 
                 return Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties);
             }
