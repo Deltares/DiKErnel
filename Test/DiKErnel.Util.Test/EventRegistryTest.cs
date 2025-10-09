@@ -23,6 +23,7 @@ using NUnit.Framework;
 
 namespace DiKErnel.Util.Test
 {
+    [TestFixture]
     public class EventRegistryTest
     {
         [Test]
