@@ -44,9 +44,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
             DataResult<ICalculationInput> inputResult = builder.Build();
 
-            var result = (SuccessResult) Calculator.Calculate(inputResult.Data);
+            var outputResult = (SuccessResult) Calculator.Calculate(inputResult.Data);
 
-            Context[GeneralDefinitions.Output] = result.CalculationOutput.LocationDependentOutputItems[0];
+            Context[GeneralDefinitions.Output] = outputResult.CalculationOutput.LocationDependentOutputItems[0];
         }
 
         protected virtual void ConfigureBuilder(CalculationInputBuilder builder)
