@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
 using DiKErnel.Core;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration;
@@ -80,13 +79,13 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddTimeSteps(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> times = Context.GetDoubleCollection(HydraulicLoadDefinitions.TimeSteps);
-            IReadOnlyList<double> waterLevels = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaterLevels);
-            IReadOnlyList<double> waveHeightsHm0 = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaveHeights);
-            IReadOnlyList<double> wavePeriodsTm10 = Context.GetDoubleCollection(HydraulicLoadDefinitions.WavePeriods);
-            IReadOnlyList<double> waveDirections = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaveDirections);
+            double[] times = Context.GetDoubleCollection(HydraulicLoadDefinitions.TimeSteps);
+            double[] waterLevels = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaterLevels);
+            double[] waveHeightsHm0 = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaveHeights);
+            double[] wavePeriodsTm10 = Context.GetDoubleCollection(HydraulicLoadDefinitions.WavePeriods);
+            double[] waveDirections = Context.GetDoubleCollection(HydraulicLoadDefinitions.WaveDirections);
 
-            for (var i = 0; i < times.Count - 1; i++)
+            for (var i = 0; i < times.Length - 1; i++)
             {
                 builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeightsHm0[i], wavePeriodsTm10[i],
                                     waveDirections[i]);
@@ -95,11 +94,11 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
         private void AddDikeProfile(CalculationInputBuilder builder)
         {
-            IReadOnlyList<double> xLocations = Context.GetDoubleCollection(DikeProfileDefinitions.XCoordinates);
-            IReadOnlyList<double> zLocations = Context.GetDoubleCollection(DikeProfileDefinitions.ZCoordinates);
-            IReadOnlyList<double> roughnessCoefficients = Context.GetNullableDoubleCollection(DikeProfileDefinitions.RoughnessCoefficients);
+            double[] xLocations = Context.GetDoubleCollection(DikeProfileDefinitions.XCoordinates);
+            double[] zLocations = Context.GetDoubleCollection(DikeProfileDefinitions.ZCoordinates);
+            double[] roughnessCoefficients = Context.GetNullableDoubleCollection(DikeProfileDefinitions.RoughnessCoefficients);
 
-            for (var i = 0; i < xLocations.Count - 1; i++)
+            for (var i = 0; i < xLocations.Length - 1; i++)
             {
                 builder.AddDikeProfileSegment(xLocations[i], zLocations[i], xLocations[i + 1], zLocations[i + 1],
                                               roughnessCoefficients?[i]);
