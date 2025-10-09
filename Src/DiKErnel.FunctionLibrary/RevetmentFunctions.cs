@@ -45,16 +45,5 @@ namespace DiKErnel.FunctionLibrary
         {
             return incrementTime / (averageNumberOfWavesCtm * wavePeriodTm10);
         }
-
-        /// <summary>
-        /// Calculates the damage.
-        /// </summary>
-        /// <param name="incrementDamage">The increment of damage [-].</param>
-        /// <param name="initialDamage">The initial damage [-].</param>
-        /// <returns>The damage [-].</returns>
-        public static double Damage(double incrementDamage, double initialDamage)
-        {
-            return initialDamage + incrementDamage;
-        }
     }
 }
