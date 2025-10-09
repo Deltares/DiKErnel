@@ -198,7 +198,7 @@ namespace DiKErnel.Core.Test
                     {
                         logHandler.Error(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the calculation. See " +
                                                                       $"stack trace for more information:{Environment.NewLine}" +
-                                                                      $"{exceptionMessageForSecondLocation}")));
+                                                                      $"{exceptionMessageForSecondLocation}", StringComparison.Ordinal)));
                     });
                 }
 

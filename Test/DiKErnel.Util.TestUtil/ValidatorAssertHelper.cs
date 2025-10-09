@@ -36,11 +36,6 @@ namespace DiKErnel.Util.TestUtil
 
         public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value)
         {
-            if (validationFunc == null)
-            {
-                throw new ArgumentNullException(nameof(validationFunc));
-            }
-
             // Call
             ValidationIssue validationIssue = validationFunc(value);
 
@@ -51,11 +46,6 @@ namespace DiKErnel.Util.TestUtil
         public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value,
                                           ValidationIssueType validationIssueType, string message)
         {
-            if (validationFunc == null)
-            {
-                throw new ArgumentNullException(nameof(validationFunc));
-            }
-
             // Call
             ValidationIssue validationIssue = validationFunc(value);
 
