@@ -22,6 +22,7 @@ using NUnit.Framework;
 
 namespace DiKErnel.Core.Test.Data
 {
+    [TestFixture]
     internal static class SuccessResultTest
     {
         [TestFixture]
