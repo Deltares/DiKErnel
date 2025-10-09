@@ -172,8 +172,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
         }
 
-        protected override TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
-                                                                            ITimeDependentInput timeDependentInput,
+        protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData)
         {
             double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,

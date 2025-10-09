@@ -65,7 +65,7 @@ namespace DiKErnel.Integration.Data
                 InitializeDerivedLocationDependentInput(profileData);
             }
 
-            return CalculateTimeDependentOutput(initialDamage, timeDependentInput, profileData);
+            return CalculateTimeDependentOutput(timeDependentInput, profileData);
         }
 
         public abstract LocationDependentOutput GetLocationDependentOutput(
@@ -76,8 +76,7 @@ namespace DiKErnel.Integration.Data
             Z = profileData.GetVerticalHeight(X);
         }
 
-        protected abstract TimeDependentOutput CalculateTimeDependentOutput(double initialDamage,
-                                                                            ITimeDependentInput timeDependentInput,
+        protected abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData);
     }
 }
