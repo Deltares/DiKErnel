@@ -166,7 +166,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
             var incrementDamage = 0d;
             double damage = initialDamage;
-            double? timeOfFailure = null;
 
             if (loadingRevetment)
             {
@@ -192,15 +191,9 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                     hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
 
                 damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
-
-                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
-                {
-                    timeOfFailure = CalculateTimeOfFailure(timeDependentInput.WavePeriodTm10, timeDependentInput.BeginTime);
-                }
             }
 
-            return new NaturalStoneWaveImpactTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+            return new NaturalStoneWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage, damage));
         }
 
         private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
@@ -268,26 +261,13 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                                  : HydraulicLoads.HydraulicLoadNs));
         }
 
-        private double CalculateTimeOfFailure(double wavePeriodTm10, double beginTime)
-        {
-            double referenceFailure = NaturalStoneWaveImpactFunctions.ReferenceFailure(
-                resistance, hydraulicLoad, waveAngleImpact, FailureNumber);
-            double referenceTimeFailure = NaturalStoneWaveImpactFunctions.ReferenceTimeFailure(
-                referenceFailure, wavePeriodTm10);
-            double durationInTimeStepFailure = NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
-                referenceTimeFailure, referenceTimeDegradation);
-
-            return RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure, beginTime);
-        }
-
         private NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, double? timeOfFailure)
+            double incrementDamage, double damage)
         {
             var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 OuterSlope = outerSlope,
                 SlopeUpperLevel = slopeUpperLevel,
                 SlopeUpperPosition = slopeUpperPosition,
