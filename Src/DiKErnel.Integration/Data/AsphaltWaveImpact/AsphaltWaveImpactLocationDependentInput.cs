@@ -192,18 +192,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             double incrementDamage = AsphaltWaveImpactFunctions.IncrementDamage(input);
             double damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
 
-            double? timeOfFailure = null;
-
-            if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
-            {
-                double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
-                    incrementTime, incrementDamage, FailureNumber, initialDamage);
-                timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
-                                                                 timeDependentInput.BeginTime);
-            }
-
-            return new AsphaltWaveImpactTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+            return new AsphaltWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage, damage));
         }
 
         private AsphaltWaveImpactInput CreateIncrementDamageInput(double waterLevel, double waveHeightHm0)
@@ -215,13 +204,12 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         }
 
         private AsphaltWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, double? timeOfFailure)
+            double incrementDamage, double damage)
         {
             return new AsphaltWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 MaximumPeakStress = maximumPeakStress,
                 AverageNumberOfWaves = averageNumberOfWaves
             };
