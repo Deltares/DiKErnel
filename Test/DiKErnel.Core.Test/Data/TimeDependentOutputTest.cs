@@ -33,12 +33,10 @@ namespace DiKErnel.Core.Test.Data
             // Setup
             double incrementDamage = Random.NextDouble();
             double damage = Random.NextDouble();
-            double timeOfFailure = Random.NextDouble();
 
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
             constructionProperties.IncrementDamage = incrementDamage;
             constructionProperties.Damage = damage;
-            constructionProperties.TimeOfFailure = timeOfFailure;
 
             // Call
             var timeDependentOutput = Substitute.For<TimeDependentOutput>(constructionProperties);
@@ -46,7 +44,6 @@ namespace DiKErnel.Core.Test.Data
             // Assert
             Assert.That(timeDependentOutput.IncrementDamage, Is.EqualTo(incrementDamage));
             Assert.That(timeDependentOutput.Damage, Is.EqualTo(damage));
-            Assert.That(timeDependentOutput.TimeOfFailure, Is.EqualTo(timeOfFailure));
         }
 
         [Test]
@@ -55,7 +52,6 @@ namespace DiKErnel.Core.Test.Data
             // Setup
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
             constructionProperties.Damage = Random.NextDouble();
-            constructionProperties.TimeOfFailure = Random.NextDouble();
 
             // Call
             void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
@@ -70,33 +66,12 @@ namespace DiKErnel.Core.Test.Data
             // Setup
             var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
             constructionProperties.IncrementDamage = Random.NextDouble();
-            constructionProperties.TimeOfFailure = Random.NextDouble();
 
             // Call
             void Call() => Substitute.For<TimeDependentOutput>(constructionProperties);
 
             // Assert
             AssertHelper.AssertInnerException<InvalidTimeDependentOutputException>(Call, "Damage must be set.");
-        }
-
-        [Test]
-        public void Constructor_TimeOfFailureNull_ExpectedValues()
-        {
-            // Setup
-            double incrementDamage = Random.NextDouble();
-            double damage = Random.NextDouble();
-
-            var constructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
-            constructionProperties.IncrementDamage = incrementDamage;
-            constructionProperties.Damage = damage;
-
-            // Call
-            var timeDependentOutput = Substitute.For<TimeDependentOutput>(constructionProperties);
-
-            // Assert
-            Assert.That(timeDependentOutput.IncrementDamage, Is.EqualTo(incrementDamage));
-            Assert.That(timeDependentOutput.Damage, Is.EqualTo(damage));
-            Assert.That(timeDependentOutput.TimeOfFailure, Is.Null);
         }
     }
 }
