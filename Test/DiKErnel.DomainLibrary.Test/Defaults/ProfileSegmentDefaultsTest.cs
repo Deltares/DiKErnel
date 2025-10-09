@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults
 {
     [TestFixture]
-    public class ProfileSegmentDefaultsTest
+    internal sealed class ProfileSegmentDefaultsTest
     {
         [Test]
         public void RoughnessCoefficient_ExpectedValue()

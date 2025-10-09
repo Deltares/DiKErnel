@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
     [TestFixture]
-    public class GrassRayleighDiscreteDefaultsTest
+    internal sealed class GrassRayleighDiscreteDefaultsTest
     {
         [Test]
         public void FixedNumberOfWaves_ExpectedValue()

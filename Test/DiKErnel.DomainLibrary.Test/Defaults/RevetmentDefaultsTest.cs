@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults
 {
     [TestFixture]
-    public class RevetmentDefaultsTest
+    internal sealed class RevetmentDefaultsTest
     {
         [Test]
         public void InitialDamage_ExpectedValue()

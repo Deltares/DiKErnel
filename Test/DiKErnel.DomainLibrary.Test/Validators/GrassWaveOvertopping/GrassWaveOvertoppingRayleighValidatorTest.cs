@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveOvertopping
 {
     [TestFixture]
-    public class GrassWaveOvertoppingRayleighValidatorTest
+    internal sealed class GrassWaveOvertoppingRayleighValidatorTest
     {
         [Test]
         public void AccelerationAlphaA_VariousScenarios_ExpectedValues()

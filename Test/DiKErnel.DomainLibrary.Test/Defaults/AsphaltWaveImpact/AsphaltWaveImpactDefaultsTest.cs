@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltWaveImpactDefaultsTest
+    internal sealed class AsphaltWaveImpactDefaultsTest
     {
         [Test]
         public void DensityOfWater_ExpectedValue()

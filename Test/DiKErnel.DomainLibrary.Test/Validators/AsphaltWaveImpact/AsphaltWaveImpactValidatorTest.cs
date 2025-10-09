@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.AsphaltWaveImpact
 {
     [TestFixture]
-    public class AsphaltWaveImpactValidatorTest
+    internal sealed class AsphaltWaveImpactValidatorTest
     {
         [Test]
         public void FatigueAlpha_VariousScenarios_ExpectedValues()

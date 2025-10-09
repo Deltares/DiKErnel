@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassWaveRunupDefaultsTest
+    internal sealed class GrassWaveRunupDefaultsTest
     {
         [Test]
         public void FrontVelocityCu_ExpectedValue()

@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveRunup
 {
     [TestFixture]
-    public class GrassWaveRunupValidatorTest
+    internal sealed class GrassWaveRunupValidatorTest
     {
         [Test]
         public void FrontVelocityCu_VariousScenarios_ExpectedValues()

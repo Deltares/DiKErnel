@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneWaveImpactValidatorTest
+    internal sealed class NaturalStoneWaveImpactValidatorTest
     {
         [Test]
         public void RelativeDensity_VariousScenarios_ExpectedValues()

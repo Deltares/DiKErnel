@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassWaveImpactDefaultsTest
+    internal sealed class GrassWaveImpactDefaultsTest
     {
         [Test]
         public void MinimumWaveHeightTemax_ExpectedValue()

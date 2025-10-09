@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
     [TestFixture]
-    public class GrassCumulativeOverloadOpenSodTopLayerDefaultsTest
+    internal sealed class GrassCumulativeOverloadOpenSodTopLayerDefaultsTest
     {
         [Test]
         public void Constructor_ExpectedValues()

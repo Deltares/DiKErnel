@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassWaveImpactOpenSodTopLayerDefaultsTest
+    internal sealed class GrassWaveImpactOpenSodTopLayerDefaultsTest
     {
         [Test]
         public void Constructor_ExpectedValues()

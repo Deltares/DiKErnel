@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.GrassWaveOvertopping
 {
     [TestFixture]
-    public class GrassWaveOvertoppingRayleighDefaultsTest
+    internal sealed class GrassWaveOvertoppingRayleighDefaultsTest
     {
         [Test]
         public void FrontVelocityCwo_ExpectedValue()

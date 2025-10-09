@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Constants
 {
     [TestFixture]
-    public class NaturalConstantsTest
+    internal sealed class NaturalConstantsTest
     {
         [Test]
         public void GravitationalAcceleration_ExpectedValue()

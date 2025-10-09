@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators
 {
     [TestFixture]
-    public class RevetmentValidatorTest
+    internal sealed class RevetmentValidatorTest
     {
         [Test]
         public void InitialDamage_VariousScenarios_ExpectedValues()

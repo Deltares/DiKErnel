@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Constants
 {
     [TestFixture]
-    public class GrassWaveRunupBattjesGroenendijkAnalyticalConstantsTests
+    internal sealed class GrassWaveRunupBattjesGroenendijkAnalyticalConstantsTests
     {
         [Test]
         public void K1_ExpectedValue()

@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.Grass
 {
     [TestFixture]
-    public class GrassCumulativeOverloadValidatorTest
+    internal sealed class GrassCumulativeOverloadValidatorTest
     {
         [Test]
         public void CriticalCumulativeOverload_VariousScenarios_ExpectedValues()

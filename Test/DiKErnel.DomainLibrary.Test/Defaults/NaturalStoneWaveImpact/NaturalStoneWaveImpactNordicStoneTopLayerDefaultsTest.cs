@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.NaturalStoneWaveImpact
 {
     [TestFixture]
-    public class NaturalStoneWaveImpactNordicStoneTopLayerDefaultsTest
+    internal sealed class NaturalStoneWaveImpactNordicStoneTopLayerDefaultsTest
     {
         [Test]
         public void Constructor_ExpectedValues()

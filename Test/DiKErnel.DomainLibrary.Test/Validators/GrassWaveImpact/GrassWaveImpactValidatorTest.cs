@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.GrassWaveImpact
 {
     [TestFixture]
-    public class GrassWaveImpactValidatorTest
+    internal sealed class GrassWaveImpactValidatorTest
     {
         [Test]
         public void TimeLineAgwi_VariousScenarios_ExpectedValues()

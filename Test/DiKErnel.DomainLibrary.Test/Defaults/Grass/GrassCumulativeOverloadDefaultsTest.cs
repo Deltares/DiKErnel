@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Defaults.Grass
 {
     [TestFixture]
-    public class GrassCumulativeOverloadDefaultsTest
+    internal sealed class GrassCumulativeOverloadDefaultsTest
     {
         [Test]
         public void IncreasedLoadTransitionAlphaM_ExpectedValue()

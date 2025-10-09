@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators
 {
     [TestFixture]
-    public class ProfileValidatorTest
+    internal sealed class ProfileValidatorTest
     {
         [Test]
         public void DikeOrientation_VariousScenarios_ExpectedValues()

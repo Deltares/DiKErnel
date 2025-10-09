@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators.Grass
 {
     [TestFixture]
-    public class GrassRayleighDiscreteValidatorTest
+    internal sealed class GrassRayleighDiscreteValidatorTest
     {
         [Test]
         public void FixedNumberOfWaves_VariousScenarios_ExpectedValues()

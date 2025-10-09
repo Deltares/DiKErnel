@@ -25,7 +25,7 @@ using NUnit.Framework;
 namespace DiKErnel.DomainLibrary.Test.Validators
 {
     [TestFixture]
-    public class HydraulicLoadsValidatorTest
+    internal sealed class HydraulicLoadsValidatorTest
     {
         [Test]
         public void WaveHeightHm0_VariousScenarios_ExpectedValues()
