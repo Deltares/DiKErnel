@@ -115,7 +115,6 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
 
             var incrementDamage = 0d;
             double damage = initialDamage;
-            double? timeOfFailure = null;
 
             if (loadingRevetment)
             {
@@ -139,19 +138,9 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                 incrementDamage = GrassWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
 
                 damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
-
-                if (RevetmentFunctions.FailureRevetment(damage, initialDamage, FailureNumber))
-                {
-                    double durationInTimeStepFailure = RevetmentFunctions.DurationInTimeStepFailure(
-                        incrementTime, incrementDamage, FailureNumber, initialDamage);
-
-                    timeOfFailure = RevetmentFunctions.TimeOfFailure(durationInTimeStepFailure,
-                                                                     timeDependentInput.BeginTime);
-                }
             }
 
-            return new GrassWaveImpactTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, damage, timeOfFailure));
+            return new GrassWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage, damage));
         }
 
         private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
@@ -165,13 +154,12 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         }
 
         private GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage, double? timeOfFailure)
+            double incrementDamage, double damage)
         {
             var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
                 Damage = damage,
-                TimeOfFailure = timeOfFailure,
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading
