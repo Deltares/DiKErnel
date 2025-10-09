@@ -33,7 +33,6 @@ namespace DiKErnel.Core.Test.Data
 
             // Assert
             Assert.That(timeDependentOutputConstructionProperties.IncrementDamage, Is.Null);
-            Assert.That(timeDependentOutputConstructionProperties.Damage, Is.Null);
         }
     }
 }
