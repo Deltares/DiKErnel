@@ -32,16 +32,17 @@ namespace DiKErnel.Core.Test.Extensions
         public void GivenLocationDependentOutput_WhenGetDamages_ThenExpectedValues()
         {
             // Given
-            double damage1 = Random.NextDouble();
-            double damage2 = Random.NextDouble();
+            double initialDamage = Random.NextDouble();
+            double incrementDamage1 = Random.NextDouble();
+            double incrementDamage2 = Random.NextDouble();
 
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties1.IncrementDamage = Random.NextDouble();
-            timeDependentOutputConstructionProperties1.Damage = damage1;
+            timeDependentOutputConstructionProperties1.Damage = incrementDamage1;
 
             var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties2.IncrementDamage = Random.NextDouble();
-            timeDependentOutputConstructionProperties2.Damage = damage2;
+            timeDependentOutputConstructionProperties2.Damage = incrementDamage2;
 
             var timeDependentOutputItems = new List<TimeDependentOutput>
             {
@@ -52,13 +53,13 @@ namespace DiKErnel.Core.Test.Extensions
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
 
             // When
-            IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
+            IReadOnlyList<double> damages = locationDependentOutput.GetDamages(initialDamage);
 
             // Then
             Assert.That(damages, Is.EqualTo(new[]
             {
-                damage1,
-                damage2
+                initialDamage + incrementDamage1,
+                initialDamage + incrementDamage1 + incrementDamage2
             }));
         }
 
