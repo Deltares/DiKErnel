@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using DiKErnel.Core.Data;
-using DiKErnel.Core.Extensions;
 using NSubstitute;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;
@@ -32,7 +31,6 @@ namespace DiKErnel.Core.Test
     internal class CalculatorTest
     {
         private readonly double damageOfFirstLocation = Random.NextDouble();
-        private readonly double timeOfFailureOfFirstLocation = Random.NextDouble();
         private readonly double damageOfSecondLocation = Random.NextDouble();
 
         [TestFixture]
@@ -68,18 +66,8 @@ namespace DiKErnel.Core.Test
 
                     CalculationOutput output = ((SuccessResult) result).CalculationOutput;
                     Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
-
-                    LocationDependentOutput locationDependentOutput = output.LocationDependentOutputItems[0];
-                    IReadOnlyList<double> damages = locationDependentOutput.GetDamages();
-                    Assert.That(damages, Has.Count.EqualTo(3));
-                    Assert.That(damages.All(d => d.Equals(damageOfFirstLocation)), Is.True);
-                    Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.EqualTo(timeOfFailureOfFirstLocation));
-
-                    locationDependentOutput = output.LocationDependentOutputItems[1];
-                    damages = locationDependentOutput.GetDamages();
-                    Assert.That(damages, Has.Count.EqualTo(3));
-                    Assert.That(damages.All(d => d.Equals(damageOfSecondLocation)), Is.True);
-                    Assert.That(locationDependentOutput.GetTimeOfFailure(), Is.Null);
+                    Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                    Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
                 }
 
                 [Test]
@@ -231,8 +219,8 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
-                new TestLocationDependentCalculationInput(damageOfFirstLocation, timeOfFailureOfFirstLocation),
-                new TestLocationDependentCalculationInput(damageOfSecondLocation, null, exceptionMessageForSecondLocation)
+                new TestLocationDependentCalculationInput(damageOfFirstLocation),
+                new TestLocationDependentCalculationInput(damageOfSecondLocation, exceptionMessageForSecondLocation)
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -248,13 +236,11 @@ namespace DiKErnel.Core.Test
         private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
             private readonly double damage;
-            private readonly double? timeOfFailure;
             private readonly string exceptionMessage;
 
-            public TestLocationDependentCalculationInput(double damage, double? timeOfFailure = null, string exceptionMessage = null)
+            public TestLocationDependentCalculationInput(double damage, string exceptionMessage = null)
             {
                 this.damage = damage;
-                this.timeOfFailure = timeOfFailure;
                 this.exceptionMessage = exceptionMessage;
             }
 
