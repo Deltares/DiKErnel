@@ -90,7 +90,7 @@ namespace DiKErnel.SpecFlow.Test.Steps
             }
         }
 
-        private static IReadOnlyList<(double, double)> GetDoubleValueTuples(this ScenarioContext context, string id)
+        private static (double, double)[] GetDoubleValueTuples(this ScenarioContext context, string id)
         {
             var valueTuples = (IReadOnlyList<ValueTuple<string, string>>) context[id];
 
