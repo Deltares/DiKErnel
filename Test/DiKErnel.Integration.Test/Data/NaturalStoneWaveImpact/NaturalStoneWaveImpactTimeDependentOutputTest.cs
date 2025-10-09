@@ -32,7 +32,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
         {
             // Setup
             double incrementDamage = Random.NextDouble();
-            double damage = Random.NextDouble();
             double outerSlope = Random.NextDouble();
             double slopeUpperLevel = Random.NextDouble();
             double slopeUpperPosition = Random.NextDouble();
@@ -55,7 +54,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 OuterSlope = outerSlope,
                 SlopeUpperLevel = slopeUpperLevel,
                 SlopeUpperPosition = slopeUpperPosition,
@@ -82,7 +80,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
-            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
             Assert.That(output.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
             Assert.That(output.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
@@ -108,7 +105,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
         {
             // Setup
             double incrementDamage = Random.NextDouble();
-            double damage = Random.NextDouble();
             double outerSlope = Random.NextDouble();
             double slopeUpperLevel = Random.NextDouble();
             double slopeUpperPosition = Random.NextDouble();
@@ -126,7 +122,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 OuterSlope = outerSlope,
                 SlopeUpperLevel = slopeUpperLevel,
                 SlopeUpperPosition = slopeUpperPosition,
@@ -153,7 +148,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             // Assert
             Assert.That(output, Is.InstanceOf<TimeDependentOutput>());
             Assert.That(output.IncrementDamage, Is.EqualTo(incrementDamage));
-            Assert.That(output.Damage, Is.EqualTo(damage));
             Assert.That(output.OuterSlope, Is.EqualTo(outerSlope));
             Assert.That(output.SlopeUpperLevel, Is.EqualTo(slopeUpperLevel));
             Assert.That(output.SlopeUpperPosition, Is.EqualTo(slopeUpperPosition));
@@ -399,7 +393,6 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             return new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = Random.NextDouble(),
-                Damage = Random.NextDouble(),
                 OuterSlope = Random.NextDouble(),
                 SlopeUpperLevel = Random.NextDouble(),
                 SlopeUpperPosition = Random.NextDouble(),
