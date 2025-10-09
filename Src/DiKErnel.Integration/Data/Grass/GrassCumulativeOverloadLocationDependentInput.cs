@@ -93,7 +93,6 @@ namespace DiKErnel.Integration.Data.Grass
                                                                             IProfileData profileData)
         {
             var incrementDamage = 0d;
-            double damage = initialDamage;
 
             verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 GetRunupHeight(), timeDependentInput.WaterLevel);
@@ -115,11 +114,9 @@ namespace DiKErnel.Integration.Data.Grass
 
                 incrementDamage = GrassCumulativeOverloadFunctions.IncrementDamage(cumulativeOverload,
                                                                                    CriticalCumulativeOverload);
-
-                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
             }
 
-            return new GrassCumulativeOverloadTimeDependentOutput(CreateConstructionProperties(incrementDamage, damage));
+            return new GrassCumulativeOverloadTimeDependentOutput(CreateConstructionProperties(incrementDamage));
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
@@ -174,13 +171,11 @@ namespace DiKErnel.Integration.Data.Grass
                                                profileData.DikeOrientation));
         }
 
-        private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage)
+        private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(double incrementDamage)
         {
             var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 VerticalDistanceWaterLevelElevation = verticalDistanceWaterLevelElevation
             };
 
