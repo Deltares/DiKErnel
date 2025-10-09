@@ -347,8 +347,8 @@ namespace DiKErnel.Integration
         private ProfileDataFactoryPoint GetProfileDataFactoryPointForCharacteristicPointType(
             CharacteristicPointType characteristicPointType)
         {
-            return profileDataFactoryPoints.Find(
-                profileDataFactoryPoint => profileDataFactoryPoint.CharacteristicPointType == characteristicPointType);
+            return profileDataFactoryPoints.Find(profileDataFactoryPoint =>
+                                                     profileDataFactoryPoint.CharacteristicPointType == characteristicPointType);
         }
 
         private bool ValidateLocations(ProfileDataFactoryPoint outerToe, ProfileDataFactoryPoint outerCrest,
