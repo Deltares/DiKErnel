@@ -90,8 +90,7 @@ namespace DiKErnel.Core
 
                     List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-                    currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput, currentOutputItems,
-                                                                        profileData));
+                    currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput, profileData));
 
                     currentProgress += progressPerIteration;
 
@@ -102,14 +101,9 @@ namespace DiKErnel.Core
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        List<TimeDependentOutput> currentOutputItems,
                                                                         IProfileData profileData)
         {
-            double initialDamage = currentOutputItems.Count == 0
-                                       ? locationDependentInput.InitialDamage
-                                       : currentOutputItems[currentOutputItems.Count - 1].Damage;
-
-            return locationDependentInput.Calculate(initialDamage, timeDependentInput, profileData);
+            return locationDependentInput.Calculate(timeDependentInput, profileData);
         }
 
         private static void ReportProgress(double progress, CalculatorSettings calculatorSettings)

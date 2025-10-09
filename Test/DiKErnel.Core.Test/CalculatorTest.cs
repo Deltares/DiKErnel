@@ -252,8 +252,7 @@ namespace DiKErnel.Core.Test
                 return true;
             }
 
-            public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput,
-                                                 IProfileData profileData)
+            public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
             {
                 if (!string.IsNullOrEmpty(exceptionMessage))
                 {

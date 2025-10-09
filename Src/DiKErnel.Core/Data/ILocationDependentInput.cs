@@ -58,13 +58,11 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Performs a location dependent calculation.
         /// </summary>
-        /// <param name="initialDamage">The damage at the start of the calculation.</param>
         /// <param name="timeDependentInput">The time dependent input to use in the
         /// calculation.</param>
         /// <param name="profileData">The profile data to use in the calculation.</param>
         /// <returns>The time dependent output.</returns>
-        public TimeDependentOutput Calculate(double initialDamage, ITimeDependentInput timeDependentInput,
-                                             IProfileData profileData);
+        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData);
 
         /// <summary>
         /// Gets location dependent output based on the derived location dependent input and
