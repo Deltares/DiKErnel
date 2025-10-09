@@ -22,8 +22,7 @@ using NUnit.Framework;
 
 namespace DiKErnel.Core.Test.Data
 {
-    [TestFixture]
-    internal sealed class SuccessResultTest
+    internal static class SuccessResultTest
     {
         [TestFixture]
         internal sealed class GivenSuccessResult
