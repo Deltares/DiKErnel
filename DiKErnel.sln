@@ -43,6 +43,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.FunctionLibrary.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.SpecFlow.Test", "Test\DiKErnel.SpecFlow.Test\DiKErnel.SpecFlow.Test.csproj", "{37F95BA6-7219-4724-85CB-B36B6B5BCC80}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\dotnet9.dockerfile = Deployment\dotnet9.dockerfile
+		Development\Base.targets = Development\Base.targets
+		Development\Copying.Lesser.licenseheader = Development\Copying.Lesser.licenseheader
+		Development\GlobalAssembly.cs = Development\GlobalAssembly.cs
+		Development\NetStandard.targets = Development\NetStandard.targets
+		Development\Test.targets = Development\Test.targets
+		Development\TestAssembly.cs = Development\TestAssembly.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Coverage|x64 = Coverage|x64
