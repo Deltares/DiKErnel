@@ -1,29 +1,29 @@
 <Project>
-  <PropertyGroup>
-    <TestProjectType>UnitTest</TestProjectType>
-  </PropertyGroup>
-  <Import Project="$(SolutionDir)Development\Base.targets" />
-  <PropertyGroup> 
-    <TargetFrameworks>net481;net9.0</TargetFrameworks>
-    <OutDir>$(BuildDir)\Regression\$(TargetFramework)</OutDir>
-    <GenerateDependencyFile>true</GenerateDependencyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">
-    <DebugType>none</DebugType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <NoWarn>CA1707;CA5394;CA1062</NoWarn>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="$(SolutionDir)Development\TestAssembly.cs">
-      <Link>Properties\TestAssembly.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.14.0"/>
-    <PackageReference Include="NUnit.Analyzers" Version="3.10.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <PropertyGroup>
+        <TestProjectType>UnitTest</TestProjectType>
+    </PropertyGroup>
+    <Import Project="$(SolutionDir)Development\Base.targets"/>
+    <PropertyGroup>
+        <TargetFrameworks>net481;net9.0</TargetFrameworks>
+        <OutDir>$(BuildDir)\Regression\$(TargetFramework)</OutDir>
+        <GenerateDependencyFile>true</GenerateDependencyFile>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">
+        <DebugType>none</DebugType>
+    </PropertyGroup>
+    <PropertyGroup>
+        <NoWarn>CA1707;CA5394;CA1062</NoWarn>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="$(SolutionDir)Development\TestAssembly.cs">
+            <Link>Properties\TestAssembly.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NUnit" Version="3.14.0"/>
+        <PackageReference Include="NUnit.Analyzers" Version="3.10.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>

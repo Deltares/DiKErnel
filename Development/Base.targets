@@ -1,49 +1,49 @@
 <Project>
-  <PropertyGroup>
-      <BuildDir>$(SolutionDir)\bin\</BuildDir>
-      <ExternalDependenciesDir>$(SolutionDir)Dependencies\Windows\Overtopping\$(Platform)\</ExternalDependenciesDir>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OutDir>$(BuildDir)\Deployment\</OutDir>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AnalysisMode>All</AnalysisMode>
-    <Platforms>x86;x64</Platforms>
-    <LangVersion>8.0</LangVersion>
-    <FileAlignment>512</FileAlignment>
-    <Company>Deltares</Company>
-    <Copyright>Copyright © Stichting Deltares and State of the Netherlands 2023</Copyright>
-    <Version>24.1.1</Version>
-    <Configurations>Debug;Release;Coverage</Configurations>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GenerateDependencyFile>false</GenerateDependencyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86' Or '$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <ConfigurationGroup>Debug</ConfigurationGroup>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86' Or '$(Configuration)|$(Platform)' == 'Release|x64'">
-    <ConfigurationGroup>Release</ConfigurationGroup>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE;RELEASE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">
-    <ConfigurationGroup>Release</ConfigurationGroup>
-    <DefineConstants>TRACE;COVERAGE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="$(SolutionDir)Development\GlobalAssembly.cs">
-      <Link>Properties\GlobalAssembly.cs</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\Development\Copying.Lesser.licenseheader">
-      <Link>Copying.Lesser.licenseheader</Link>
-    </None>
-  </ItemGroup>
+    <PropertyGroup>
+        <BuildDir>$(SolutionDir)\bin\</BuildDir>
+        <ExternalDependenciesDir>$(SolutionDir)Dependencies\Windows\Overtopping\$(Platform)\</ExternalDependenciesDir>
+    </PropertyGroup>
+    <PropertyGroup>
+        <OutDir>$(BuildDir)\Deployment\</OutDir>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <AnalysisMode>All</AnalysisMode>
+        <Platforms>x86;x64</Platforms>
+        <LangVersion>8.0</LangVersion>
+        <FileAlignment>512</FileAlignment>
+        <Company>Deltares</Company>
+        <Copyright>Copyright © Stichting Deltares and State of the Netherlands 2023</Copyright>
+        <Version>24.1.1</Version>
+        <Configurations>Debug;Release;Coverage</Configurations>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86' Or '$(Configuration)|$(Platform)' == 'Debug|x64'">
+        <ConfigurationGroup>Debug</ConfigurationGroup>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <DefineConstants>TRACE;DEBUG</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86' Or '$(Configuration)|$(Platform)' == 'Release|x64'">
+        <ConfigurationGroup>Release</ConfigurationGroup>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <DefineConstants>TRACE;RELEASE</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">
+        <ConfigurationGroup>Release</ConfigurationGroup>
+        <DefineConstants>TRACE;COVERAGE</DefineConstants>
+        <Optimize>true</Optimize>
+        <DebugType>pdbonly</DebugType>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="$(SolutionDir)Development\GlobalAssembly.cs">
+            <Link>Properties\GlobalAssembly.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\..\Development\Copying.Lesser.licenseheader">
+            <Link>Copying.Lesser.licenseheader</Link>
+        </None>
+    </ItemGroup>
 </Project>
