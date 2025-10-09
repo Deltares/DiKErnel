@@ -114,7 +114,6 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                          timeDependentInput.WaveHeightHm0);
 
             var incrementDamage = 0d;
-            double damage = initialDamage;
 
             if (loadingRevetment)
             {
@@ -136,11 +135,9 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                                     TimeLine.TimeLineBgwi, TimeLine.TimeLineCgwi);
 
                 incrementDamage = GrassWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
-
-                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
             }
 
-            return new GrassWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage, damage));
+            return new GrassWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage));
         }
 
         private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
@@ -153,13 +150,11 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }
 
-        private GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage)
+        private GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(double incrementDamage)
         {
             var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 LoadingRevetment = loadingRevetment,
                 UpperLimitLoading = upperLimitLoading,
                 LowerLimitLoading = lowerLimitLoading
