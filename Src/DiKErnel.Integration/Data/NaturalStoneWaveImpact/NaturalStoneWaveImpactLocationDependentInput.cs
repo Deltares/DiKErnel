@@ -165,7 +165,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0);
 
             var incrementDamage = 0d;
-            double damage = initialDamage;
 
             if (loadingRevetment)
             {
@@ -189,11 +188,9 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
                 incrementDamage = NaturalStoneWaveImpactFunctions.IncrementDamage(
                     hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
-
-                damage = RevetmentFunctions.Damage(incrementDamage, initialDamage);
             }
 
-            return new NaturalStoneWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage, damage));
+            return new NaturalStoneWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage));
         }
 
         private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
@@ -261,13 +258,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                                  : HydraulicLoads.HydraulicLoadNs));
         }
 
-        private NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double damage)
+        private NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(double incrementDamage)
         {
             var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
                 IncrementDamage = incrementDamage,
-                Damage = damage,
                 OuterSlope = outerSlope,
                 SlopeUpperLevel = slopeUpperLevel,
                 SlopeUpperPosition = slopeUpperPosition,
