@@ -22,7 +22,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test.Data
 {
     [TestFixture]
-    public class FailureResultTest
+    internal sealed class FailureResultTest
     {
         [Test]
         public void GivenFailureResult_ThenIsInstanceOfICalculationResult()

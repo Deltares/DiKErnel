@@ -24,7 +24,7 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.Core.Test.Exceptions
 {
     [TestFixture]
-    public class InvalidTimeDependentOutputExceptionTest
+    internal sealed class InvalidTimeDependentOutputExceptionTest
     {
         [Test]
         public void ConstructorExpectedValues()

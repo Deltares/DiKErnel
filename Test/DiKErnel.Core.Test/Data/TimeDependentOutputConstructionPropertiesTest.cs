@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test.Data
 {
     [TestFixture]
-    public class TimeDependentOutputConstructionPropertiesTest
+    internal sealed class TimeDependentOutputConstructionPropertiesTest
     {
         [Test]
         public void Constructor_ExpectedValues()

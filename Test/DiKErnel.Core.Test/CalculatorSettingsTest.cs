@@ -21,7 +21,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test
 {
     [TestFixture]
-    public class CalculatorSettingsTest
+    internal sealed class CalculatorSettingsTest
     {
         [Test]
         public void Constructor_ExpectedValues()

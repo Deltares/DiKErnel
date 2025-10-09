@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test.Data
 {
     [TestFixture]
-    public class ProfilePointTest
+    internal sealed class ProfilePointTest
     {
         [Test]
         public void Constructor_ExpectedValues()

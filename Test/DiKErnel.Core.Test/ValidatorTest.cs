@@ -27,7 +27,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test
 {
     [TestFixture]
-    public class ValidatorTest
+    internal sealed class ValidatorTest
     {
         [Test, Combinatorial]
         public void Validate_ValidOrInvalidData_ReturnsExpectedResult([Values(true, false)] bool profileDataValid,

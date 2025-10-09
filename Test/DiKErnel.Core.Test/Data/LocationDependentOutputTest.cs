@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test.Data
 {
     [TestFixture]
-    public class LocationDependentOutputTest
+    internal sealed class LocationDependentOutputTest
     {
         [Test]
         public void Constructor_ExpectedValues()

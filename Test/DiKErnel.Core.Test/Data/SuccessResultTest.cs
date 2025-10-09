@@ -23,10 +23,10 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test.Data
 {
     [TestFixture]
-    public class SuccessResultTest
+    internal sealed class SuccessResultTest
     {
         [TestFixture]
-        public class GivenSuccessResult
+        internal sealed class GivenSuccessResult
         {
             private static CalculationOutput calculationOutput;
             private static SuccessResult result;

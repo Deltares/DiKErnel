@@ -29,14 +29,14 @@ using Random = DiKErnel.TestUtil.Random;
 namespace DiKErnel.Core.Test
 {
     [TestFixture]
-    public class CalculatorTest
+    internal class CalculatorTest
     {
         private readonly double damageOfFirstLocation = Random.NextDouble();
         private readonly double timeOfFailureOfFirstLocation = Random.NextDouble();
         private readonly double damageOfSecondLocation = Random.NextDouble();
 
         [TestFixture]
-        public class GivenValidCalculationInput : CalculatorTest
+        internal class GivenValidCalculationInput : CalculatorTest
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
@@ -57,7 +57,7 @@ namespace DiKErnel.Core.Test
             }
 
             [TestFixture]
-            public class WhenCalculate : GivenValidCalculationInput
+            internal sealed class WhenCalculate : GivenValidCalculationInput
             {
                 private ICalculationResult result;
 
@@ -114,7 +114,7 @@ namespace DiKErnel.Core.Test
             }
 
             [TestFixture]
-            public class WhenCalculateWithCancel : GivenValidCalculationInput
+            internal sealed class WhenCalculateWithCancel : GivenValidCalculationInput
             {
                 private ICalculationResult result;
 
@@ -156,7 +156,7 @@ namespace DiKErnel.Core.Test
         }
 
         [TestFixture]
-        public class GivenInvalidCalculationInput : CalculatorTest
+        internal class GivenInvalidCalculationInput : CalculatorTest
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
@@ -179,7 +179,7 @@ namespace DiKErnel.Core.Test
             }
 
             [TestFixture]
-            public class WhenCalculate : GivenInvalidCalculationInput
+            internal sealed class WhenCalculate : GivenInvalidCalculationInput
             {
                 private ICalculationResult result;
 

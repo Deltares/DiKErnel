@@ -26,7 +26,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test.Extensions
 {
     [TestFixture]
-    public class LocationDependentOutputExtensionsTest
+    internal sealed class LocationDependentOutputExtensionsTest
     {
         [Test]
         public void GivenLocationDependentOutput_WhenGetDamages_ThenExpectedValues()

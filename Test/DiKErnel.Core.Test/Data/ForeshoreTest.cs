@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace DiKErnel.Core.Test.Data
 {
     [TestFixture]
-    public class ForeshoreTest
+    internal sealed class ForeshoreTest
     {
         [Test]
         public void Constructor_ExpectedValues()
