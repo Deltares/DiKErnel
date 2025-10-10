@@ -45,12 +45,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.SpecFlow.Test", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}"
 	ProjectSection(SolutionItems) = preProject
-		Deployment\dotnet8.dockerfile = Deployment\dotnet8.dockerfile
+		DEPENDENCIES.md = DEPENDENCIES.md
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Development", "Development", "{5F1D6058-C0C1-4827-B463-1B5CBB3C34EB}"
+	ProjectSection(SolutionItems) = preProject
 		Development\Base.targets = Development\Base.targets
 		Development\Copying.Lesser.licenseheader = Development\Copying.Lesser.licenseheader
 		Development\GlobalAssembly.cs = Development\GlobalAssembly.cs
 		Development\Test.targets = Development\Test.targets
 		Development\TestAssembly.cs = Development\TestAssembly.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{8FB97111-BF31-44D4-8A97-9739DCD551A4}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\dotnet8.dockerfile = Deployment\dotnet8.dockerfile
 	EndProjectSection
 EndProject
 Global
@@ -302,6 +313,8 @@ Global
 		{8D6C2908-8C22-4A53-AE28-5C3C53E629CF} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
 		{62E9523C-ACCD-4CA5-A830-A76940CB5928} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
 		{37F95BA6-7219-4724-85CB-B36B6B5BCC80} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
+		{5F1D6058-C0C1-4827-B463-1B5CBB3C34EB} = {2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}
+		{8FB97111-BF31-44D4-8A97-9739DCD551A4} = {2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9DE8BC8-16B6-49DD-B841-360F52874090}

@@ -30,8 +30,8 @@ The terms under which DiKErnel can be redistributed and/or modified.
 ## Build
 
 ### Development prerequisites
-- .NET9.0 SDK
+- .NET8.0 SDK
 
 ### Deployment prerequisites
-- .NET9.0 Runtime
+- .NET8.0 Runtime
 - Microsoft Visual C++ Redistributable 2022
