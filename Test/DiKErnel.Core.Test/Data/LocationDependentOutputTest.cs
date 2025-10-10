@@ -18,6 +18,7 @@
 
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
+using DiKErnel.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -37,6 +38,39 @@ namespace DiKErnel.Core.Test.Data
 
             // Assert
             Assert.That(locationDependentOutput.TimeDependentOutputItems, Is.SameAs(timeDependentOutputItems));
+        }
+
+        [Test]
+        public void GivenLocationDependentOutput_WhenGetDamages_ThenExpectedValues()
+        {
+            // Given
+            double initialDamage = Random.NextDouble();
+            double incrementDamage1 = Random.NextDouble();
+            double incrementDamage2 = Random.NextDouble();
+
+            var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties1.IncrementDamage = incrementDamage1;
+
+            var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
+            timeDependentOutputConstructionProperties2.IncrementDamage = incrementDamage2;
+
+            var timeDependentOutputItems = new List<TimeDependentOutput>
+            {
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
+            };
+
+            var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
+
+            // When
+            IReadOnlyList<double> damages = locationDependentOutput.GetDamages(initialDamage);
+
+            // Then
+            Assert.That(damages, Is.EqualTo(new[]
+            {
+                initialDamage + incrementDamage1,
+                initialDamage + incrementDamage1 + incrementDamage2
+            }));
         }
     }
 }
