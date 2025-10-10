@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiKErnel.SpecFlow.Test", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}"
 	ProjectSection(SolutionItems) = preProject
-		Deployment\dotnet9.dockerfile = Deployment\dotnet9.dockerfile
+		Deployment\dotnet8.dockerfile = Deployment\dotnet8.dockerfile
 		Development\Base.targets = Development\Base.targets
 		Development\Copying.Lesser.licenseheader = Development\Copying.Lesser.licenseheader
 		Development\GlobalAssembly.cs = Development\GlobalAssembly.cs
