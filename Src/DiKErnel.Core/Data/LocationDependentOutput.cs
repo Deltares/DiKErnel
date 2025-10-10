@@ -74,8 +74,8 @@ namespace DiKErnel.Core.Data
         /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
         /// </list>
         /// </returns>
-        public double? GetTimeOfFailure(double initialDamage, double failureNumber,
-                                        IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
+        public virtual double? GetTimeOfFailure(double initialDamage, double failureNumber,
+                                                IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
         {
             IReadOnlyList<double> damages = GetDamages(initialDamage);
 
