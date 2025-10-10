@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                             NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation,
                                                             NaturalStoneWaveImpactNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
                                                             NaturalStoneWaveImpactWaveAngleImpact waveAngleImpact)
-            : base(x, initialDamage, failureNumber, true)
+            : base(x, initialDamage, failureNumber)
         {
             RelativeDensity = relativeDensity;
             ThicknessTopLayer = thicknessTopLayer;
