@@ -247,12 +247,15 @@ namespace DiKErnel.Core.Test
 
             public double FailureNumber => 1;
 
+            public bool RequiresDamageAtStartOfCalculation => false;
+
             public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
             {
                 return true;
             }
 
-            public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
+            public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
+                                                 double damageAtStartOfCalculation = double.NaN)
             {
                 if (!string.IsNullOrEmpty(exceptionMessage))
                 {
