@@ -9,6 +9,6 @@
         /// Logs an error message.
         /// </summary>
         /// <param name="message">The message to log.</param>
-        void Error(string message);
+        void LogError(string message);
     }
 }

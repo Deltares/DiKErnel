@@ -128,7 +128,7 @@ namespace DiKErnel.Core
 
         private static void LogErrorMessage(string message, CalculatorSettings calculatorSettings)
         {
-            calculatorSettings?.LogHandler?.Error(message);
+            calculatorSettings?.LogHandler?.LogError(message);
         }
     }
 }
