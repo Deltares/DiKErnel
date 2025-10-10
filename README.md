@@ -1,4 +1,5 @@
 # DiKErnel
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Deltares_DiKErnel&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Deltares_DiKErnel)
 
 ## Contents of repository
@@ -30,8 +31,10 @@ The terms under which DiKErnel can be redistributed and/or modified.
 ## Build
 
 ### Development prerequisites
+
 - .NET8.0 SDK
 
 ### Deployment prerequisites
+
 - .NET8.0 Runtime
 - Microsoft Visual C++ Redistributable 2022
