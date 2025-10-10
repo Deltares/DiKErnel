@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
-using System.Linq;
 using DiKErnel.Core.Data;
 using DiKErnel.FunctionLibrary.NaturalStoneWaveImpact;
 
@@ -49,45 +48,24 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         /// </summary>
         public double Resistance { get; }
 
-        public override double? GetTimeOfFailure(double initialDamage, double failureNumber,
-                                                 IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
+        protected override double CalculateTimeOfFailure(double failureNumber, ITimeDependentInput timeDependentInput,
+                                                         TimeDependentOutput timeDependentOutput,
+                                                         double damageAtStartOfCalculation)
         {
-            IReadOnlyList<double> damages = GetDamages(initialDamage);
+            var naturalStoneWaveImpactTimeDependentOutput = (NaturalStoneWaveImpactTimeDependentOutput) timeDependentOutput;
 
-            if (damages.Any(double.IsNaN))
-            {
-                return null;
-            }
+            double referenceFailure = NaturalStoneWaveImpactFunctions.ReferenceFailure(
+                Resistance, naturalStoneWaveImpactTimeDependentOutput.HydraulicLoad ?? double.NaN,
+                naturalStoneWaveImpactTimeDependentOutput.WaveAngleImpact ?? double.NaN,
+                failureNumber);
 
-            double damageBeginTime = initialDamage;
+            double referenceTimeFailure = NaturalStoneWaveImpactFunctions.ReferenceTimeFailure(
+                referenceFailure, timeDependentInput.WavePeriodTm10);
 
-            for (var i = 0; i < timeDependentInputItems.Count; i++)
-            {
-                double damageEndTime = damages[i];
+            double durationInTimeStepFailure = NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
+                referenceTimeFailure, naturalStoneWaveImpactTimeDependentOutput.ReferenceTimeDegradation ?? double.NaN);
 
-                if (damageBeginTime < failureNumber && damageEndTime >= failureNumber)
-                {
-                    ITimeDependentInput timeDependentInput = timeDependentInputItems[i];
-
-                    var timeDependentOutput = (NaturalStoneWaveImpactTimeDependentOutput) TimeDependentOutputItems[i];
-
-                    double referenceFailure = NaturalStoneWaveImpactFunctions.ReferenceFailure(
-                        Resistance, timeDependentOutput.HydraulicLoad ?? double.NaN, timeDependentOutput.WaveAngleImpact ?? double.NaN,
-                        failureNumber);
-
-                    double referenceTimeFailure = NaturalStoneWaveImpactFunctions.ReferenceTimeFailure(
-                        referenceFailure, timeDependentInput.WavePeriodTm10);
-
-                    double durationInTimeStepFailure = NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
-                        referenceTimeFailure, timeDependentOutput.ReferenceTimeDegradation ?? double.NaN);
-
-                    return timeDependentInput.BeginTime + durationInTimeStepFailure;
-                }
-
-                damageBeginTime = damageEndTime;
-            }
-
-            return null;
+            return timeDependentInput.BeginTime + durationInTimeStepFailure;
         }
     }
 }
