@@ -48,6 +48,44 @@ namespace DiKErnel.Core.Test.Data
             double incrementDamage1 = Random.NextDouble();
             double incrementDamage2 = Random.NextDouble();
 
+            LocationDependentOutput locationDependentOutput = CreateLocationDependentOutput(incrementDamage1, incrementDamage2);
+
+            // When
+            IReadOnlyList<double> cumulativeDamages = locationDependentOutput.GetCumulativeDamages(initialDamage);
+
+            // Then
+            Assert.That(cumulativeDamages, Is.EqualTo(new[]
+            {
+                initialDamage + incrementDamage1,
+                initialDamage + incrementDamage1 + incrementDamage2
+            }));
+        }
+
+        [Test]
+        [TestCase(0.2, 0.3, 0.5, 280)]
+        [TestCase(0.2, 0.3, 0.2, 400)]
+        [TestCase(0.2, 0.4, 0.1, 200)]
+        [TestCase(0.2, 0.1, 0.2, null)]
+        [TestCase(0.6, 0.1, 0.1, null)]
+        public void GivenLocationDependentOutput_WhenGetTimeOfFailure_ThenExpectedValue(
+            double initialDamage, double incrementDamage1, double incrementDamage2, double? expectedTimeOfFailure)
+        {
+            // Given
+            const double failureNumber = 0.6;
+
+            LocationDependentOutput locationDependentOutput = CreateLocationDependentOutput(incrementDamage1, incrementDamage2);
+
+            List<ITimeDependentInput> timeDependentInputItems = CreateTimeDependentInputItems();
+
+            // When
+            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure(initialDamage, failureNumber, timeDependentInputItems);
+
+            // Then
+            Assert.That(timeOfFailure, Is.EqualTo(expectedTimeOfFailure).Within(1.0e-13));
+        }
+
+        private static TestLocationDependentOutput CreateLocationDependentOutput(double incrementDamage1, double incrementDamage2)
+        {
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties1.IncrementDamage = incrementDamage1;
 
@@ -60,17 +98,30 @@ namespace DiKErnel.Core.Test.Data
                 Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
             };
 
-            var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
+            return new TestLocationDependentOutput(timeDependentOutputItems);
+        }
 
-            // When
-            IReadOnlyList<double> cumulativeDamages = locationDependentOutput.GetCumulativeDamages(initialDamage);
+        private static List<ITimeDependentInput> CreateTimeDependentInputItems()
+        {
+            var timeDependentInput1 = Substitute.For<ITimeDependentInput>();
+            timeDependentInput1.BeginTime.Returns(0);
+            timeDependentInput1.EndTime.Returns(200);
 
-            // Then
-            Assert.That(cumulativeDamages, Is.EqualTo(new[]
+            var timeDependentInput2 = Substitute.For<ITimeDependentInput>();
+            timeDependentInput2.BeginTime.Returns(200);
+            timeDependentInput2.EndTime.Returns(600);
+
+            return new List<ITimeDependentInput>
             {
-                initialDamage + incrementDamage1,
-                initialDamage + incrementDamage1 + incrementDamage2
-            }));
+                timeDependentInput1,
+                timeDependentInput2
+            };
+        }
+
+        private class TestLocationDependentOutput : LocationDependentOutput
+        {
+            public TestLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) :
+                base(timeDependentOutputItems) {}
         }
     }
 }
