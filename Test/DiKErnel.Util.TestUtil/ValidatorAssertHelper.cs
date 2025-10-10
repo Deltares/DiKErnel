@@ -36,6 +36,8 @@ namespace DiKErnel.Util.TestUtil
 
         public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value)
         {
+            ArgumentNullException.ThrowIfNull(validationFunc);
+
             // Call
             ValidationIssue validationIssue = validationFunc(value);
 
@@ -46,6 +48,8 @@ namespace DiKErnel.Util.TestUtil
         public static void AssertValue<T>(Func<T, ValidationIssue> validationFunc, T value,
                                           ValidationIssueType validationIssueType, string message)
         {
+            ArgumentNullException.ThrowIfNull(validationFunc);
+
             // Call
             ValidationIssue validationIssue = validationFunc(value);
 
