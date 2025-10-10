@@ -118,7 +118,7 @@ namespace DiKErnel.Core.Test.Data
             };
         }
 
-        private class TestLocationDependentOutput : LocationDependentOutput
+        private sealed class TestLocationDependentOutput : LocationDependentOutput
         {
             public TestLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) :
                 base(timeDependentOutputItems) {}
