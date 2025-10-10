@@ -41,7 +41,7 @@ namespace DiKErnel.Core.Test.Data
         }
 
         [Test]
-        public void GivenLocationDependentOutput_WhenGetDamages_ThenExpectedValues()
+        public void GivenLocationDependentOutput_WhenGetCumulativeDamages_ThenExpectedValues()
         {
             // Given
             double initialDamage = Random.NextDouble();
@@ -63,10 +63,10 @@ namespace DiKErnel.Core.Test.Data
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
 
             // When
-            IReadOnlyList<double> damages = locationDependentOutput.GetDamages(initialDamage);
+            IReadOnlyList<double> cumulativeDamages = locationDependentOutput.GetCumulativeDamages(initialDamage);
 
             // Then
-            Assert.That(damages, Is.EqualTo(new[]
+            Assert.That(cumulativeDamages, Is.EqualTo(new[]
             {
                 initialDamage + incrementDamage1,
                 initialDamage + incrementDamage1 + incrementDamage2
