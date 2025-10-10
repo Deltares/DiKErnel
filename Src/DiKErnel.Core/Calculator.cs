@@ -79,18 +79,25 @@ namespace DiKErnel.Core
         {
             double progressPerIteration = 1d / timeDependentInputItems.Count / locationDependentInputItems.Count;
 
-            foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+            foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
             {
-                foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
+                List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
+
+                double damageAtStartOfTimeStep = locationDependentInput.InitialDamage;
+
+                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
                     if (ShouldCancel(calculatorSettings))
                     {
                         return;
                     }
 
-                    List<TimeDependentOutput> currentOutputItems = timeDependentOutputItemsPerLocation[locationDependentInput];
+                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
+                        timeDependentInput, locationDependentInput, profileData, damageAtStartOfTimeStep);
 
-                    currentOutputItems.Add(CalculateTimeStepForLocation(timeDependentInput, locationDependentInput, profileData));
+                    damageAtStartOfTimeStep += timeDependentOutput.IncrementDamage;
+
+                    timeDependentOutputItemsForLocation.Add(timeDependentOutput);
 
                     currentProgress += progressPerIteration;
 
@@ -101,9 +108,9 @@ namespace DiKErnel.Core
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        IProfileData profileData)
+                                                                        IProfileData profileData, double damageAtStartOfTimeStep)
         {
-            return locationDependentInput.Calculate(timeDependentInput, profileData);
+            return locationDependentInput.Calculate(timeDependentInput, profileData, damageAtStartOfTimeStep);
         }
 
         private static void ReportProgress(double progress, CalculatorSettings calculatorSettings)
