@@ -190,12 +190,14 @@ namespace DiKErnel.Core.Test
                 [Test]
                 public void ThenReportsExpectedProgress()
                 {
-                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
+                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
 
                     Received.InOrder(() =>
                     {
                         progressHandler.Report(0);
                         progressHandler.Report(17);
+                        progressHandler.Report(33);
+                        progressHandler.Report(50);
                     });
                 }
 
@@ -208,7 +210,7 @@ namespace DiKErnel.Core.Test
             }
         }
 
-        private ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
+        private static ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
