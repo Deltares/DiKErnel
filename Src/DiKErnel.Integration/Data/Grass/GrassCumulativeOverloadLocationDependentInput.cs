@@ -89,7 +89,8 @@ namespace DiKErnel.Integration.Data.Grass
         protected double DikeHeight { get; private set; } = double.NaN;
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
+                                                                            IProfileData profileData,
+                                                                            double damageOfPreviousTimeStep = double.NaN)
         {
             var incrementDamage = 0d;
 

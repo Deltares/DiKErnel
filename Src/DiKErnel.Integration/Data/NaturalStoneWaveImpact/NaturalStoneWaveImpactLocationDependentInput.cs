@@ -62,7 +62,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                             NaturalStoneWaveImpactDistanceMaximumWaveElevation distanceMaximumWaveElevation,
                                                             NaturalStoneWaveImpactNormativeWidthOfWaveImpact normativeWidthOfWaveImpact,
                                                             NaturalStoneWaveImpactWaveAngleImpact waveAngleImpact)
-            : base(x, initialDamage, failureNumber)
+            : base(x, initialDamage, failureNumber, true)
         {
             RelativeDensity = relativeDensity;
             ThicknessTopLayer = thicknessTopLayer;
@@ -132,7 +132,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
+                                                                            IProfileData profileData,
+                                                                            double damageOfPreviousTimeStep = double.NaN)
         {
             outerSlope = CalculateOuterSlope(
                 timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0, profileData);
@@ -174,7 +175,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 waveAngleImpact = NaturalStoneWaveImpactFunctions.WaveAngleImpact(waveAngle, WaveAngleImpact.Betamax);
 
                 referenceDegradation = NaturalStoneWaveImpactFunctions.ReferenceDegradation(
-                    resistance, hydraulicLoad, waveAngleImpact, initialDamage);
+                    resistance, hydraulicLoad, waveAngleImpact, damageOfPreviousTimeStep);
 
                 referenceTimeDegradation = NaturalStoneWaveImpactFunctions.ReferenceTimeDegradation(
                     referenceDegradation, timeDependentInput.WavePeriodTm10);

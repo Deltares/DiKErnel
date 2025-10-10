@@ -28,12 +28,16 @@ namespace DiKErnel.Integration.Data
     {
         private bool derivedLocationDependentInputInitialized;
 
-        protected LocationDependentInput(double x, double initialDamage, double failureNumber)
+        protected LocationDependentInput(double x, double initialDamage, double failureNumber,
+                                         bool requiresDamageOfPreviousTimeStep = false)
         {
             X = x;
             InitialDamage = initialDamage;
             FailureNumber = failureNumber;
+            RequiresDamageOfPreviousTimeStep = requiresDamageOfPreviousTimeStep;
         }
+
+        public bool RequiresDamageOfPreviousTimeStep { get; }
 
         public double X { get; }
 
@@ -76,6 +80,7 @@ namespace DiKErnel.Integration.Data
         }
 
         protected abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData);
+                                                                            IProfileData profileData,
+                                                                            double damageOfPreviousTimeStep = double.NaN);
     }
 }

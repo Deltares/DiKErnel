@@ -107,7 +107,8 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
+                                                                            IProfileData profileData,
+                                                                            double damageOfPreviousTimeStep = double.NaN)
         {
             loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel,
                                                          timeDependentInput.WaveHeightHm0);
