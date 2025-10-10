@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DiKErnel.Core.Data
 {
@@ -77,6 +78,11 @@ namespace DiKErnel.Core.Data
                                         IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
         {
             IReadOnlyList<double> cumulativeDamages = GetCumulativeDamages(initialDamage);
+
+            if (cumulativeDamages.Any(double.IsNaN))
+            {
+                return null;
+            }
 
             double damageAtStartOfCalculation = initialDamage;
 
