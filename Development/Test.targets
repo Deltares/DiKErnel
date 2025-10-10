@@ -4,7 +4,6 @@
     </PropertyGroup>
     <Import Project="$(SolutionDir)Development\Base.targets"/>
     <PropertyGroup>
-        <TargetFrameworks>net481;net9.0</TargetFrameworks>
         <OutDir>$(BuildDir)\Regression\$(TargetFramework)</OutDir>
         <GenerateDependencyFile>true</GenerateDependencyFile>
     </PropertyGroup>

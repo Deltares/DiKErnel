@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\NetStandard.targets"/>
+    <Import Project="$(SolutionDir)Development\Base.targets"/>
 
     <ItemGroup>
         <ProjectReference Include="..\DiKErnel.Core\DiKErnel.Core.csproj"/>
