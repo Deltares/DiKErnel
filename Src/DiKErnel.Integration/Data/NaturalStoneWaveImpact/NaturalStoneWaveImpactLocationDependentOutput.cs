@@ -55,15 +55,14 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             var naturalStoneWaveImpactTimeDependentOutput = (NaturalStoneWaveImpactTimeDependentOutput) timeDependentOutput;
 
             double referenceFailure = NaturalStoneWaveImpactFunctions.ReferenceFailure(
-                Resistance, naturalStoneWaveImpactTimeDependentOutput.HydraulicLoad ?? double.NaN,
-                naturalStoneWaveImpactTimeDependentOutput.WaveAngleImpact ?? double.NaN,
-                failureNumber);
+                Resistance, naturalStoneWaveImpactTimeDependentOutput.HydraulicLoad!.Value,
+                naturalStoneWaveImpactTimeDependentOutput.WaveAngleImpact!.Value, failureNumber);
 
             double referenceTimeFailure = NaturalStoneWaveImpactFunctions.ReferenceTimeFailure(
                 referenceFailure, timeDependentInput.WavePeriodTm10);
 
             double durationInTimeStepFailure = NaturalStoneWaveImpactFunctions.DurationInTimeStepFailure(
-                referenceTimeFailure, naturalStoneWaveImpactTimeDependentOutput.ReferenceTimeDegradation ?? double.NaN);
+                referenceTimeFailure, naturalStoneWaveImpactTimeDependentOutput.ReferenceTimeDegradation!.Value);
 
             return timeDependentInput.BeginTime + durationInTimeStepFailure;
         }
