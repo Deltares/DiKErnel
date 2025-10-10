@@ -47,6 +47,11 @@ namespace DiKErnel.Core.Data
         public double FailureNumber { get; }
 
         /// <summary>
+        /// Gets whether <see cref="Calculate"/> requires the damage at the start of the calculation.
+        /// </summary>
+        public bool RequiresDamageAtStartOfCalculation { get; }
+
+        /// <summary>
         /// Performs validation on the input.
         /// </summary>
         /// <param name="timeDependentInputItems">One or more time dependent input items to
@@ -61,8 +66,10 @@ namespace DiKErnel.Core.Data
         /// <param name="timeDependentInput">The time dependent input to use in the
         /// calculation.</param>
         /// <param name="profileData">The profile data to use in the calculation.</param>
+        /// <param name="damageAtStartOfCalculation">The damage at the start of the calculation.</param>
         /// <returns>The time dependent output.</returns>
-        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData);
+        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
+                                             double damageAtStartOfCalculation = double.NaN);
 
         /// <summary>
         /// Gets location dependent output based on the derived location dependent input and

@@ -90,7 +90,7 @@ namespace DiKErnel.Integration.Data.Grass
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData,
-                                                                            double damageOfPreviousTimeStep = double.NaN)
+                                                                            double damageAtStartOfCalculation = double.NaN)
         {
             var incrementDamage = 0d;
 

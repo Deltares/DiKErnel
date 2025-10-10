@@ -29,15 +29,13 @@ namespace DiKErnel.Integration.Data
         private bool derivedLocationDependentInputInitialized;
 
         protected LocationDependentInput(double x, double initialDamage, double failureNumber,
-                                         bool requiresDamageOfPreviousTimeStep = false)
+                                         bool requiresDamageAtStartOfCalculation = false)
         {
             X = x;
             InitialDamage = initialDamage;
             FailureNumber = failureNumber;
-            RequiresDamageOfPreviousTimeStep = requiresDamageOfPreviousTimeStep;
+            RequiresDamageAtStartOfCalculation = requiresDamageAtStartOfCalculation;
         }
-
-        public bool RequiresDamageOfPreviousTimeStep { get; }
 
         public double X { get; }
 
@@ -46,6 +44,8 @@ namespace DiKErnel.Integration.Data
         public double InitialDamage { get; }
 
         public double FailureNumber { get; }
+
+        public bool RequiresDamageAtStartOfCalculation { get; }
 
         public virtual bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                      IProfileData profileData)
@@ -59,7 +59,8 @@ namespace DiKErnel.Integration.Data
             return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
 
-        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
+        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
+                                             double damageAtStartOfCalculation = double.NaN)
         {
             if (!derivedLocationDependentInputInitialized)
             {
@@ -68,7 +69,7 @@ namespace DiKErnel.Integration.Data
                 InitializeDerivedLocationDependentInput(profileData);
             }
 
-            return CalculateTimeDependentOutput(timeDependentInput, profileData);
+            return CalculateTimeDependentOutput(timeDependentInput, profileData, damageAtStartOfCalculation);
         }
 
         public abstract LocationDependentOutput GetLocationDependentOutput(
@@ -81,6 +82,6 @@ namespace DiKErnel.Integration.Data
 
         protected abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData,
-                                                                            double damageOfPreviousTimeStep = double.NaN);
+                                                                            double damageAtStartOfCalculation = double.NaN);
     }
 }
