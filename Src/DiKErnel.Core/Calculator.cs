@@ -83,7 +83,7 @@ namespace DiKErnel.Core
             {
                 List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-                double damageAtStartOfTimeStep = locationDependentInput.InitialDamage;
+                double currentDamage = locationDependentInput.InitialDamage;
 
                 foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
@@ -93,9 +93,9 @@ namespace DiKErnel.Core
                     }
 
                     TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
-                        timeDependentInput, locationDependentInput, profileData, damageAtStartOfTimeStep);
+                        timeDependentInput, locationDependentInput, profileData, currentDamage);
 
-                    damageAtStartOfTimeStep += timeDependentOutput.IncrementDamage;
+                    currentDamage += timeDependentOutput.IncrementDamage;
 
                     timeDependentOutputItemsForLocation.Add(timeDependentOutput);
 
@@ -108,9 +108,10 @@ namespace DiKErnel.Core
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        IProfileData profileData, double damageAtStartOfTimeStep)
+                                                                        IProfileData profileData,
+                                                                        double damageAtStartOfCalculation = double.NaN)
         {
-            return locationDependentInput.Calculate(timeDependentInput, profileData, damageAtStartOfTimeStep);
+            return locationDependentInput.Calculate(timeDependentInput, profileData, damageAtStartOfCalculation);
         }
 
         private static void ReportProgress(double progress, CalculatorSettings calculatorSettings)
