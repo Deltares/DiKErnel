@@ -44,11 +44,11 @@ namespace DiKErnel.Util.Helpers
         /// </summary>
         /// <param name="value">The value to convert.</param>
         /// <returns>The converted string.</returns>
-        /// <remarks>Numbers are rounded to 6 decimal places. When less decimals are present,
+        /// <remarks>Numbers are rounded to 6 decimal places. When fewer decimals are present,
         /// trailing zeros are not presented.</remarks>
         public static string ToString(double value)
         {
-            return Math.Round(value, 6).ToString(CultureInfo.InvariantCulture).Replace("E", "e");
+            return Math.Round(value, 6).ToString(CultureInfo.InvariantCulture).Replace("E", "e", StringComparison.Ordinal);
         }
     }
 }
