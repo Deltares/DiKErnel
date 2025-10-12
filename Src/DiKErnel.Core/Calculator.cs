@@ -131,14 +131,21 @@ namespace DiKErnel.Core
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, ILocationDependentInput locationDependentInput, CalculatorSettings calculatorSettings)
         {
+            List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
+
             if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
             {
-                
+                timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
+
+                Parallel.ForEach(timeDependentInputItems,
+                                 (timeDependentInput, state, index) =>
+                                 {
+                                     timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
+                                         timeDependentInput, locationDependentInput, profileData);
+                                 });
             }
             else
             {
-                List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
-
                 double currentDamage = locationDependentInput.InitialDamage;
 
                 foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
@@ -164,15 +171,22 @@ namespace DiKErnel.Core
             IProfileData profileData, ILocationDependentInput locationDependentInput, CalculatorSettings calculatorSettings,
             ref double currentProgress, double progressPerLocation)
         {
+            List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
+
             if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
             {
-                
+                timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
+
+                Parallel.ForEach(timeDependentInputItems,
+                                 (timeDependentInput, state, index) =>
+                                 {
+                                     timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
+                                         timeDependentInput, locationDependentInput, profileData);
+                                 });
             }
             else
             {
                 double progressPerTimeStep = progressPerLocation / timeDependentInputItems.Count;
-
-                List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
                 double currentDamage = locationDependentInput.InitialDamage;
 
