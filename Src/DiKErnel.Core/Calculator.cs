@@ -131,23 +131,30 @@ namespace DiKErnel.Core
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, ILocationDependentInput locationDependentInput, CalculatorSettings calculatorSettings)
         {
-            List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
-
-            double currentDamage = locationDependentInput.InitialDamage;
-
-            foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+            if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
             {
-                if (ShouldCancel(calculatorSettings))
+                
+            }
+            else
+            {
+                List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
+
+                double currentDamage = locationDependentInput.InitialDamage;
+
+                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
-                    return;
+                    if (ShouldCancel(calculatorSettings))
+                    {
+                        return;
+                    }
+
+                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
+                                                                                           profileData, currentDamage);
+
+                    currentDamage += timeDependentOutput.IncrementDamage;
+
+                    timeDependentOutputItemsForLocation.Add(timeDependentOutput);
                 }
-
-                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
-                                                                                       profileData, currentDamage);
-
-                currentDamage += timeDependentOutput.IncrementDamage;
-
-                timeDependentOutputItemsForLocation.Add(timeDependentOutput);
             }
         }
 
@@ -157,29 +164,36 @@ namespace DiKErnel.Core
             IProfileData profileData, ILocationDependentInput locationDependentInput, CalculatorSettings calculatorSettings,
             ref double currentProgress, double progressPerLocation)
         {
-            double progressPerTimeStep = progressPerLocation / timeDependentInputItems.Count;
-
-            List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
-
-            double currentDamage = locationDependentInput.InitialDamage;
-
-            foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
+            if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
             {
-                if (ShouldCancel(calculatorSettings))
+                
+            }
+            else
+            {
+                double progressPerTimeStep = progressPerLocation / timeDependentInputItems.Count;
+
+                List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
+
+                double currentDamage = locationDependentInput.InitialDamage;
+
+                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
-                    return;
+                    if (ShouldCancel(calculatorSettings))
+                    {
+                        return;
+                    }
+
+                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
+                                                                                           profileData, currentDamage);
+
+                    currentDamage += timeDependentOutput.IncrementDamage;
+
+                    timeDependentOutputItemsForLocation.Add(timeDependentOutput);
+
+                    currentProgress += progressPerTimeStep;
+
+                    ReportProgress(currentProgress, calculatorSettings);
                 }
-
-                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput, 
-                                                                                       profileData, currentDamage);
-
-                currentDamage += timeDependentOutput.IncrementDamage;
-
-                timeDependentOutputItemsForLocation.Add(timeDependentOutput);
-
-                currentProgress += progressPerTimeStep;
-
-                ReportProgress(currentProgress, calculatorSettings);
             }
         }
 
