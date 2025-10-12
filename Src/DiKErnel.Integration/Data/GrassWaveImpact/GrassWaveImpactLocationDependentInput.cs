@@ -105,12 +105,10 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                                             double damageAtStartOfCalculation = double.NaN)
         {
             double lowerLimitLoading = GrassWaveImpactFunctions.LowerLimitLoading(timeDependentInput.WaterLevel,
-                                                                                  timeDependentInput.WaveHeightHm0,
-                                                                                  LowerLimitLoadingAll);
+                                                                                  timeDependentInput.WaveHeightHm0, LowerLimitLoadingAll);
 
             double upperLimitLoading = GrassWaveImpactFunctions.UpperLimitLoading(timeDependentInput.WaterLevel,
-                                                                                  timeDependentInput.WaveHeightHm0,
-                                                                                  UpperLimitLoadingAul);
+                                                                                  timeDependentInput.WaveHeightHm0, UpperLimitLoadingAul);
 
             bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
 
