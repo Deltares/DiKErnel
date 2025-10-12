@@ -38,20 +38,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         private double slopeLowerLevel = double.NaN;
         private double slopeUpperPosition = double.NaN;
         private double slopeUpperLevel = double.NaN;
-        private double outerSlope = double.NaN;
-        private double waveSteepnessDeepWater = double.NaN;
-        private double distanceMaximumWaveElevation = double.NaN;
-        private double surfSimilarityParameter = double.NaN;
-        private double normativeWidthWaveImpact = double.NaN;
-        private double depthMaximumWaveLoad = double.NaN;
-        private double upperLimitLoading = double.NaN;
-        private double lowerLimitLoading = double.NaN;
-        private bool loadingRevetment;
-        private double hydraulicLoad = double.NaN;
-        private double waveAngle = double.NaN;
-        private double waveAngleImpact = double.NaN;
-        private double referenceTimeDegradation = double.NaN;
-        private double referenceDegradation = double.NaN;
 
         public NaturalStoneWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                             double relativeDensity, double thicknessTopLayer,
@@ -135,36 +121,53 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                                             IProfileData profileData,
                                                                             double damageAtStartOfCalculation = double.NaN)
         {
-            outerSlope = CalculateOuterSlope(
+            double outerSlope = CalculateOuterSlope(
                 timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0, profileData);
 
             double slopeAngle = HydraulicLoadFunctions.SlopeAngle(outerSlope);
 
-            waveSteepnessDeepWater = HydraulicLoadFunctions.WaveSteepnessDeepWater(
+            double waveSteepnessDeepWater = HydraulicLoadFunctions.WaveSteepnessDeepWater(
                 timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
                 NaturalConstants.GravitationalAcceleration);
 
-            distanceMaximumWaveElevation = NaturalStoneWaveImpactFunctions.DistanceMaximumWaveElevation(
+            double distanceMaximumWaveElevation = NaturalStoneWaveImpactFunctions.DistanceMaximumWaveElevation(
                 1d, waveSteepnessDeepWater, timeDependentInput.WaveHeightHm0,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationAsmax,
                 DistanceMaximumWaveElevation.DistanceMaximumWaveElevationBsmax);
 
-            surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
+            double surfSimilarityParameter = HydraulicLoadFunctions.SurfSimilarityParameter(
                 outerSlope, timeDependentInput.WaveHeightHm0, timeDependentInput.WavePeriodTm10,
                 NaturalConstants.GravitationalAcceleration);
 
-            normativeWidthWaveImpact = NaturalStoneWaveImpactFunctions.NormativeWidthWaveImpact(
+            double normativeWidthWaveImpact = NaturalStoneWaveImpactFunctions.NormativeWidthWaveImpact(
                 surfSimilarityParameter, timeDependentInput.WaveHeightHm0,
                 NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactAwi,
                 NormativeWidthOfWaveImpact.NormativeWidthOfWaveImpactBwi);
 
-            depthMaximumWaveLoad = NaturalStoneWaveImpactFunctions.DepthMaximumWaveLoad(
+            double depthMaximumWaveLoad = NaturalStoneWaveImpactFunctions.DepthMaximumWaveLoad(
                 distanceMaximumWaveElevation, normativeWidthWaveImpact, slopeAngle);
 
-            loadingRevetment = CalculateLoadingRevetment(
-                timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0);
+            var lowerLimitLoadingInput = new NaturalStoneWaveImpactLimitLoadingInput(
+                depthMaximumWaveLoad, surfSimilarityParameter, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                LowerLimitLoading.LowerLimitAll, LowerLimitLoading.LowerLimitBll, LowerLimitLoading.LowerLimitCll);
+
+            double lowerLimitLoading = NaturalStoneWaveImpactFunctions.LowerLimitLoading(lowerLimitLoadingInput);
+
+            var upperLimitLoadingInput = new NaturalStoneWaveImpactLimitLoadingInput(
+                depthMaximumWaveLoad, surfSimilarityParameter, timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0,
+                UpperLimitLoading.UpperLimitAul, UpperLimitLoading.UpperLimitBul, UpperLimitLoading.UpperLimitCul);
+
+            double upperLimitLoading = NaturalStoneWaveImpactFunctions.UpperLimitLoading(upperLimitLoadingInput);
+
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
 
             var incrementDamage = 0d;
+
+            double hydraulicLoad = double.NaN;
+            double waveAngle = double.NaN;
+            double waveAngleImpact = double.NaN;
+            double referenceDegradation = double.NaN;
+            double referenceTimeDegradation = double.NaN;
 
             if (loadingRevetment)
             {
@@ -219,23 +222,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             }
 
             return NaturalStoneWaveImpactFunctions.OuterSlope(outerSlopeInput);
-        }
-
-        private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
-        {
-            var lowerLimitLoadingInput = new NaturalStoneWaveImpactLimitLoadingInput(
-                depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0,
-                LowerLimitLoading.LowerLimitAll, LowerLimitLoading.LowerLimitBll, LowerLimitLoading.LowerLimitCll);
-
-            lowerLimitLoading = NaturalStoneWaveImpactFunctions.LowerLimitLoading(lowerLimitLoadingInput);
-
-            var upperLimitLoadingInput = new NaturalStoneWaveImpactLimitLoadingInput(
-                depthMaximumWaveLoad, surfSimilarityParameter, waterLevel, waveHeightHm0,
-                UpperLimitLoading.UpperLimitAul, UpperLimitLoading.UpperLimitBul, UpperLimitLoading.UpperLimitCul);
-
-            upperLimitLoading = NaturalStoneWaveImpactFunctions.UpperLimitLoading(upperLimitLoadingInput);
-
-            return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }
 
         private double CalculateHydraulicLoad(double waveHeightHm0)
