@@ -133,7 +133,7 @@ namespace DiKErnel.Core
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-            if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
+            if (!locationDependentInput.RequiresDamageAtStartOfCalculation && ShouldCalculateTimeStepsInParallel(calculatorSettings))
             {
                 timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
@@ -173,7 +173,7 @@ namespace DiKErnel.Core
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-            if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
+            if (!locationDependentInput.RequiresDamageAtStartOfCalculation && ShouldCalculateTimeStepsInParallel(calculatorSettings))
             {
                 timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
