@@ -30,6 +30,8 @@ namespace DiKErnel.Core.Test
             var calculatorSettings = new CalculatorSettings();
 
             // Assert
+            Assert.That(calculatorSettings.CalculateLocationsInParallel, Is.False);
+            Assert.That(calculatorSettings.CalculateTimeStepsInParallel, Is.False);
             Assert.That(calculatorSettings.ProgressHandler, Is.Null);
             Assert.That(calculatorSettings.LogHandler, Is.Null);
             Assert.That(calculatorSettings.ShouldCancel, Is.Null);

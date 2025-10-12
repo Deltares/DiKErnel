@@ -26,6 +26,16 @@ namespace DiKErnel.Core
     public class CalculatorSettings
     {
         /// <summary>
+        /// Gets or sets whether to perform the location calculations in parallel.
+        /// </summary>
+        public bool CalculateLocationsInParallel { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to perform the time step calculations in parallel.
+        /// </summary>
+        public bool CalculateTimeStepsInParallel { get; set; }
+
+        /// <summary>
         /// Gets or sets the progress handler.
         /// </summary>
         /// <remarks>The progress of a calculation is reported as a rounded percentage in the range from 0 to 100.</remarks>
