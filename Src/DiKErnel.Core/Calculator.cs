@@ -78,6 +78,13 @@ namespace DiKErnel.Core
 
                 return new FailureResult();
             }
+            finally
+            {
+                if (ShouldCalculateLocationsInParallel(calculatorSettings) && ShouldCalculateTimeStepsInParallel(calculatorSettings))
+                {
+                    ReportProgress(1, calculatorSettings);
+                }
+            }
         }
 
         private static void CalculateTimeStepsForLocations(
