@@ -32,10 +32,6 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         private double maximumWaveHeight = double.NaN;
         private double lowerLimitLoading = double.NaN;
         private double upperLimitLoading = double.NaN;
-        private bool loadingRevetment;
-        private double waveAngle = double.NaN;
-        private double waveAngleImpact = double.NaN;
-        private double waveHeightImpact = double.NaN;
 
         public GrassWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                      GrassWaveImpactWaveAngleImpact waveAngleImpact,
@@ -110,34 +106,35 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                                             IProfileData profileData,
                                                                             double damageAtStartOfCalculation = double.NaN)
         {
-            loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel,
-                                                         timeDependentInput.WaveHeightHm0);
+            bool loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0);
 
             var incrementDamage = 0d;
 
+            double waveAngle = double.NaN;
+            double waveAngleImpact = double.NaN;
+            double waveHeightImpact = double.NaN;
+
             if (loadingRevetment)
             {
-                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                        timeDependentInput.EndTime);
+                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
                 waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
-                waveAngleImpact = GrassWaveImpactFunctions.WaveAngleImpact(waveAngle,
-                                                                           WaveAngleImpact.WaveAngleImpactNwa,
+                waveAngleImpact = GrassWaveImpactFunctions.WaveAngleImpact(waveAngle, WaveAngleImpact.WaveAngleImpactNwa,
                                                                            WaveAngleImpact.WaveAngleImpactQwa,
                                                                            WaveAngleImpact.WaveAngleImpactRwa);
 
-                waveHeightImpact = GrassWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight, maximumWaveHeight,
-                                                                             waveAngleImpact,
+                waveHeightImpact = GrassWaveImpactFunctions.WaveHeightImpact(minimumWaveHeight, maximumWaveHeight, waveAngleImpact,
                                                                              timeDependentInput.WaveHeightHm0);
 
-                double timeLine = GrassWaveImpactFunctions.TimeLine(waveHeightImpact, TimeLine.TimeLineAgwi,
-                                                                    TimeLine.TimeLineBgwi, TimeLine.TimeLineCgwi);
+                double timeLine = GrassWaveImpactFunctions.TimeLine(waveHeightImpact, TimeLine.TimeLineAgwi, TimeLine.TimeLineBgwi,
+                                                                    TimeLine.TimeLineCgwi);
 
                 incrementDamage = GrassWaveImpactFunctions.IncrementDamage(incrementTime, timeLine);
             }
 
-            return new GrassWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage));
+            return new GrassWaveImpactTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, loadingRevetment, waveAngle, waveAngleImpact, waveHeightImpact));
         }
 
         private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
@@ -150,7 +147,8 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
         }
 
-        private GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(double incrementDamage)
+        private GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
+            double incrementDamage, bool loadingRevetment, double waveAngle, double waveAngleImpact, double waveHeightImpact)
         {
             var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
