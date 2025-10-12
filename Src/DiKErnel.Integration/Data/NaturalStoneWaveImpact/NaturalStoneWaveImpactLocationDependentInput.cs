@@ -34,10 +34,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         private (double, double)? notchOuterBerm;
         private (double, double)? crestOuterBerm;
         private double resistance = double.NaN;
-        private double slopeLowerPosition = double.NaN;
-        private double slopeLowerLevel = double.NaN;
-        private double slopeUpperPosition = double.NaN;
-        private double slopeUpperLevel = double.NaN;
 
         public NaturalStoneWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                             double relativeDensity, double thicknessTopLayer,
@@ -121,8 +117,30 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                                             IProfileData profileData,
                                                                             double damageAtStartOfCalculation = double.NaN)
         {
-            double outerSlope = CalculateOuterSlope(
-                timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0, profileData);
+            double slopeUpperLevel = NaturalStoneWaveImpactFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
+                                                                                     timeDependentInput.WaterLevel,
+                                                                                     timeDependentInput.WaveHeightHm0, Slope.UpperLevelAus);
+
+            double slopeUpperPosition = profileData.GetHorizontalPosition(slopeUpperLevel);
+
+            double slopeLowerLevel = NaturalStoneWaveImpactFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
+                                                                                     timeDependentInput.WaveHeightHm0, Slope.LowerLevelAls);
+
+            double slopeLowerPosition = profileData.GetHorizontalPosition(slopeLowerLevel);
+
+            var outerSlopeInput = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
+                                                                            slopeUpperPosition, slopeUpperLevel,
+                                                                            outerToeHeight, outerCrestHeight);
+
+            if (notchOuterBerm != null && crestOuterBerm != null)
+            {
+                outerSlopeInput.NotchOuterBermPosition = notchOuterBerm.Value.Item1;
+                outerSlopeInput.NotchOuterBermHeight = notchOuterBerm.Value.Item2;
+                outerSlopeInput.CrestOuterBermPosition = crestOuterBerm.Value.Item1;
+                outerSlopeInput.CrestOuterBermHeight = crestOuterBerm.Value.Item2;
+            }
+
+            double outerSlope = NaturalStoneWaveImpactFunctions.OuterSlope(outerSlopeInput);
 
             double slopeAngle = HydraulicLoadFunctions.SlopeAngle(outerSlope);
 
@@ -194,38 +212,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             }
 
             return new NaturalStoneWaveImpactTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, outerSlope, loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater,
+                CreateConstructionProperties(incrementDamage, outerSlope, slopeUpperLevel, slopeUpperPosition, slopeLowerLevel,
+                                             slopeLowerPosition, loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater,
                                              upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation,
                                              normativeWidthWaveImpact, hydraulicLoad, waveAngle, waveAngleImpact,
                                              referenceTimeDegradation, referenceDegradation));
-        }
-
-        private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
-        {
-            slopeUpperLevel = NaturalStoneWaveImpactFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
-                                                                              waterLevel, waveHeightHm0,
-                                                                              Slope.UpperLevelAus);
-
-            slopeUpperPosition = profileData.GetHorizontalPosition(slopeUpperLevel);
-
-            slopeLowerLevel = NaturalStoneWaveImpactFunctions.SlopeLowerLevel(outerToeHeight, slopeUpperLevel,
-                                                                              waveHeightHm0, Slope.LowerLevelAls);
-
-            slopeLowerPosition = profileData.GetHorizontalPosition(slopeLowerLevel);
-
-            var outerSlopeInput = new NaturalStoneWaveImpactOuterSlopeInput(slopeLowerPosition, slopeLowerLevel,
-                                                                            slopeUpperPosition, slopeUpperLevel,
-                                                                            outerToeHeight, outerCrestHeight);
-
-            if (notchOuterBerm != null && crestOuterBerm != null)
-            {
-                outerSlopeInput.NotchOuterBermPosition = notchOuterBerm.Value.Item1;
-                outerSlopeInput.NotchOuterBermHeight = notchOuterBerm.Value.Item2;
-                outerSlopeInput.CrestOuterBermPosition = crestOuterBerm.Value.Item1;
-                outerSlopeInput.CrestOuterBermHeight = crestOuterBerm.Value.Item2;
-            }
-
-            return NaturalStoneWaveImpactFunctions.OuterSlope(outerSlopeInput);
         }
 
         private double CalculateHydraulicLoad(double waveHeightHm0, double surfSimilarityParameter)
@@ -249,7 +240,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         }
 
         private NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, double outerSlope, bool loadingRevetment, double surfSimilarityParameter, double waveSteepnessDeepWater,
+            double incrementDamage, double outerSlope, double slopeUpperLevel, double slopeUpperPosition, double slopeLowerLevel,
+            double slopeLowerPosition, bool loadingRevetment, double surfSimilarityParameter, double waveSteepnessDeepWater,
             double upperLimitLoading, double lowerLimitLoading, double depthMaximumWaveLoad, double distanceMaximumWaveElevation,
             double normativeWidthWaveImpact, double hydraulicLoad, double waveAngle, double waveAngleImpact,
             double referenceTimeDegradation, double referenceDegradation)
