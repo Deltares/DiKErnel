@@ -30,8 +30,6 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
     {
         private double minimumWaveHeight = double.NaN;
         private double maximumWaveHeight = double.NaN;
-        private double lowerLimitLoading = double.NaN;
-        private double upperLimitLoading = double.NaN;
 
         public GrassWaveImpactLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                      GrassWaveImpactWaveAngleImpact waveAngleImpact,
@@ -106,7 +104,15 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                                             IProfileData profileData,
                                                                             double damageAtStartOfCalculation = double.NaN)
         {
-            bool loadingRevetment = CalculateLoadingRevetment(timeDependentInput.WaterLevel, timeDependentInput.WaveHeightHm0);
+            double lowerLimitLoading = GrassWaveImpactFunctions.LowerLimitLoading(timeDependentInput.WaterLevel,
+                                                                                  timeDependentInput.WaveHeightHm0,
+                                                                                  LowerLimitLoadingAll);
+
+            double upperLimitLoading = GrassWaveImpactFunctions.UpperLimitLoading(timeDependentInput.WaterLevel,
+                                                                                  timeDependentInput.WaveHeightHm0,
+                                                                                  UpperLimitLoadingAul);
+
+            bool loadingRevetment = HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
 
             var incrementDamage = 0d;
 
@@ -134,21 +140,13 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             }
 
             return new GrassWaveImpactTimeDependentOutput(
-                CreateConstructionProperties(incrementDamage, loadingRevetment, waveAngle, waveAngleImpact, waveHeightImpact));
+                CreateConstructionProperties(incrementDamage, upperLimitLoading, lowerLimitLoading, loadingRevetment, waveAngle,
+                                             waveAngleImpact, waveHeightImpact));
         }
 
-        private bool CalculateLoadingRevetment(double waterLevel, double waveHeightHm0)
-        {
-            lowerLimitLoading = GrassWaveImpactFunctions.LowerLimitLoading(waterLevel, waveHeightHm0,
-                                                                           LowerLimitLoadingAll);
-            upperLimitLoading = GrassWaveImpactFunctions.UpperLimitLoading(waterLevel, waveHeightHm0,
-                                                                           UpperLimitLoadingAul);
-
-            return HydraulicLoadFunctions.LoadingRevetment(lowerLimitLoading, upperLimitLoading, Z);
-        }
-
-        private GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
-            double incrementDamage, bool loadingRevetment, double waveAngle, double waveAngleImpact, double waveHeightImpact)
+        private static GrassWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
+            double incrementDamage, double upperLimitLoading, double lowerLimitLoading, bool loadingRevetment, double waveAngle,
+            double waveAngleImpact, double waveHeightImpact)
         {
             var constructionProperties = new GrassWaveImpactTimeDependentOutputConstructionProperties
             {
