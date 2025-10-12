@@ -81,6 +81,15 @@ namespace DiKErnel.Integration.Data.Grass
             return new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
+        public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        {
+            base.InitializeDerivedLocationDependentInput(profileData);
+
+            InitializeCalculationProfile(profileData);
+
+            DikeHeight = CalculateDikeHeight(profileData);
+        }
+
         protected double DikeHeight { get; private set; } = double.NaN;
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
@@ -114,15 +123,6 @@ namespace DiKErnel.Integration.Data.Grass
             return new GrassCumulativeOverloadTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, verticalDistanceWaterLevelElevation, representativeWaveRunup2P,
                                              cumulativeOverload, averageNumberOfWaves));
-        }
-
-        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
-        {
-            base.InitializeDerivedLocationDependentInput(profileData);
-
-            InitializeCalculationProfile(profileData);
-
-            DikeHeight = CalculateDikeHeight(profileData);
         }
 
         protected abstract double CalculateDikeHeight(IProfileData profileData);

@@ -257,6 +257,8 @@ namespace DiKErnel.Core.Test
                 return true;
             }
 
+            public void InitializeDerivedLocationDependentInput(IProfileData profileData) {}
+
             public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
                                                  double damageAtStartOfCalculation = double.NaN)
             {

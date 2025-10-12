@@ -124,7 +124,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                 computationalThickness, subLayerElasticModulus);
         }
 
-        protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
 

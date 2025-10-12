@@ -75,7 +75,7 @@ namespace DiKErnel.Integration.Data
         public abstract LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
 
-        protected virtual void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        public virtual void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             Z = profileData.GetVerticalHeight(X);
         }
