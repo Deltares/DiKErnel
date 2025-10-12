@@ -171,7 +171,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
             if (loadingRevetment)
             {
-                hydraulicLoad = CalculateHydraulicLoad(timeDependentInput.WaveHeightHm0);
+                hydraulicLoad = CalculateHydraulicLoad(timeDependentInput.WaveHeightHm0, surfSimilarityParameter);
 
                 waveAngle = HydraulicLoadFunctions.WaveAngle(timeDependentInput.WaveDirection, profileData.DikeOrientation);
 
@@ -193,7 +193,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                     hydraulicLoad, resistance, incrementDegradation, waveAngleImpact);
             }
 
-            return new NaturalStoneWaveImpactTimeDependentOutput(CreateConstructionProperties(incrementDamage));
+            return new NaturalStoneWaveImpactTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, outerSlope, loadingRevetment, surfSimilarityParameter, waveSteepnessDeepWater,
+                                             upperLimitLoading, lowerLimitLoading, depthMaximumWaveLoad, distanceMaximumWaveElevation,
+                                             normativeWidthWaveImpact, hydraulicLoad, waveAngle, waveAngleImpact,
+                                             referenceTimeDegradation, referenceDegradation));
         }
 
         private double CalculateOuterSlope(double waterLevel, double waveHeightHm0, IProfileData profileData)
@@ -224,7 +228,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             return NaturalStoneWaveImpactFunctions.OuterSlope(outerSlopeInput);
         }
 
-        private double CalculateHydraulicLoad(double waveHeightHm0)
+        private double CalculateHydraulicLoad(double waveHeightHm0, double surfSimilarityParameter)
         {
             bool usePlungingBreakers = HydraulicLoads.HydraulicLoadXib >= surfSimilarityParameter;
 
@@ -244,7 +248,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                                  : HydraulicLoads.HydraulicLoadNs));
         }
 
-        private NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(double incrementDamage)
+        private NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateConstructionProperties(
+            double incrementDamage, double outerSlope, bool loadingRevetment, double surfSimilarityParameter, double waveSteepnessDeepWater,
+            double upperLimitLoading, double lowerLimitLoading, double depthMaximumWaveLoad, double distanceMaximumWaveElevation,
+            double normativeWidthWaveImpact, double hydraulicLoad, double waveAngle, double waveAngleImpact,
+            double referenceTimeDegradation, double referenceDegradation)
         {
             var constructionProperties = new NaturalStoneWaveImpactTimeDependentOutputConstructionProperties
             {
