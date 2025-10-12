@@ -40,8 +40,8 @@ namespace DiKErnel.Core
             {
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
 
-                if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation) &&
-                    (calculatorSettings?.CalculateTimeStepsInParallel ?? false))
+                if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation)
+                    && ShouldCalculateTimeStepsInParallel(calculatorSettings))
                 {
                     LogWarningMessage("The calculation is configured to run time steps in parallel but for on or more locations this is " +
                                       "not possible; the output of the previous time step is used as input for the next time step, so " +
@@ -145,6 +145,16 @@ namespace DiKErnel.Core
         private static bool ShouldCancel(CalculatorSettings calculatorSettings)
         {
             return calculatorSettings?.ShouldCancel != null && calculatorSettings.ShouldCancel();
+        }
+
+        private static bool ShouldCalculateLocationsInParallel(CalculatorSettings calculatorSettings)
+        {
+            return calculatorSettings?.CalculateLocationsInParallel ?? false;
+        }
+
+        private static bool ShouldCalculateTimeStepsInParallel(CalculatorSettings calculatorSettings)
+        {
+            return calculatorSettings?.CalculateTimeStepsInParallel ?? false;
         }
 
         private static void LogWarningMessage(string message, CalculatorSettings calculatorSettings)
