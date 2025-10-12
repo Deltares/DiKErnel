@@ -33,11 +33,6 @@ namespace DiKErnel.Integration.Data.Grass
         private readonly List<double> zValuesProfile = new List<double>();
         private readonly List<double> roughnessCoefficients = new List<double>();
 
-        private double verticalDistanceWaterLevelElevation = double.NaN;
-        private double representativeWaveRunup2P = double.NaN;
-        private double cumulativeOverload = double.NaN;
-        private double averageNumberOfWaves = double.NaN;
-
         protected GrassCumulativeOverloadLocationDependentInput(double x, double initialDamage, double failureNumber,
                                                                 double criticalCumulativeOverload,
                                                                 double criticalFrontVelocity,
@@ -94,29 +89,31 @@ namespace DiKErnel.Integration.Data.Grass
         {
             var incrementDamage = 0d;
 
-            verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
+            double verticalDistanceWaterLevelElevation = HydraulicLoadFunctions.VerticalDistanceWaterLevelElevation(
                 GetRunupHeight(), timeDependentInput.WaterLevel);
+
+            double averageNumberOfWaves = double.NaN;
+            double representativeWaveRunup2P = double.NaN;
+            double cumulativeOverload = double.NaN;
 
             if (HasLoading(verticalDistanceWaterLevelElevation))
             {
-                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime,
-                                                                        timeDependentInput.EndTime);
+                double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime, timeDependentInput.EndTime);
 
-                averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime,
-                                                                               timeDependentInput.WavePeriodTm10,
+                averageNumberOfWaves = RevetmentFunctions.AverageNumberOfWaves(incrementTime, timeDependentInput.WavePeriodTm10,
                                                                                AverageNumberOfWavesCtm);
 
                 representativeWaveRunup2P = CalculateRepresentativeWaveRunup2P(timeDependentInput, profileData);
 
                 cumulativeOverload = CalculateCumulativeOverload(averageNumberOfWaves, representativeWaveRunup2P,
-                                                                 verticalDistanceWaterLevelElevation,
-                                                                 timeDependentInput, profileData);
+                                                                 verticalDistanceWaterLevelElevation, timeDependentInput, profileData);
 
-                incrementDamage = GrassCumulativeOverloadFunctions.IncrementDamage(cumulativeOverload,
-                                                                                   CriticalCumulativeOverload);
+                incrementDamage = GrassCumulativeOverloadFunctions.IncrementDamage(cumulativeOverload, CriticalCumulativeOverload);
             }
 
-            return new GrassCumulativeOverloadTimeDependentOutput(CreateConstructionProperties(incrementDamage));
+            return new GrassCumulativeOverloadTimeDependentOutput(
+                CreateConstructionProperties(incrementDamage, verticalDistanceWaterLevelElevation, representativeWaveRunup2P,
+                                             cumulativeOverload, averageNumberOfWaves));
         }
 
         protected override void InitializeDerivedLocationDependentInput(IProfileData profileData)
@@ -171,7 +168,9 @@ namespace DiKErnel.Integration.Data.Grass
                                                profileData.DikeOrientation));
         }
 
-        private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(double incrementDamage)
+        private GrassCumulativeOverloadTimeDependentOutputConstructionProperties CreateConstructionProperties(
+            double incrementDamage, double verticalDistanceWaterLevelElevation, double representativeWaveRunup2P, double cumulativeOverload,
+            double averageNumberOfWaves)
         {
             var constructionProperties = new GrassCumulativeOverloadTimeDependentOutputConstructionProperties
             {
