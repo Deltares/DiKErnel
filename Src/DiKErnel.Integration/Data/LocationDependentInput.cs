@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.DomainLibrary.Validators;
@@ -59,14 +60,19 @@ namespace DiKErnel.Integration.Data
             return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
 
+        public virtual void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        {
+            derivedLocationDependentInputInitialized = true;
+
+            Z = profileData.GetVerticalHeight(X);
+        }
+
         public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
                                              double damageAtStartOfCalculation = double.NaN)
         {
             if (!derivedLocationDependentInputInitialized)
             {
-                derivedLocationDependentInputInitialized = true;
-
-                InitializeDerivedLocationDependentInput(profileData);
+                throw new InvalidOperationException("Location dependent input must be initialized first.");
             }
 
             return CalculateTimeDependentOutput(timeDependentInput, profileData, damageAtStartOfCalculation);
@@ -74,11 +80,6 @@ namespace DiKErnel.Integration.Data
 
         public abstract LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
-
-        public virtual void InitializeDerivedLocationDependentInput(IProfileData profileData)
-        {
-            Z = profileData.GetVerticalHeight(X);
-        }
 
         protected abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
                                                                             IProfileData profileData,

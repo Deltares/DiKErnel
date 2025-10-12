@@ -75,12 +75,6 @@ namespace DiKErnel.Integration.Data.Grass
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            return new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, Z);
-        }
-
         public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
@@ -88,6 +82,12 @@ namespace DiKErnel.Integration.Data.Grass
             InitializeCalculationProfile(profileData);
 
             DikeHeight = CalculateDikeHeight(profileData);
+        }
+
+        public override LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return new GrassCumulativeOverloadLocationDependentOutput(timeDependentOutputItems, Z);
         }
 
         protected double DikeHeight { get; private set; } = double.NaN;

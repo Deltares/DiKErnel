@@ -79,13 +79,6 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            return new GrassWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, minimumWaveHeight,
-                                                              maximumWaveHeight);
-        }
-
         public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
@@ -98,6 +91,13 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
                                                                            MinimumWaveHeightTemax);
             maximumWaveHeight = GrassWaveImpactFunctions.MaximumWaveHeight(timeLineAgwi, timeLineBgwi, timeLineCgwi,
                                                                            MaximumWaveHeightTemin);
+        }
+
+        public override LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return new GrassWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, minimumWaveHeight,
+                                                              maximumWaveHeight);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,

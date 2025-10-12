@@ -116,14 +116,6 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            return new AsphaltWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, outerSlope,
-                                                                logFlexuralStrength, stiffnessRelation,
-                                                                computationalThickness, subLayerElasticModulus);
-        }
-
         public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
@@ -168,6 +160,14 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
             outerSlope = AsphaltWaveImpactFunctions.OuterSlope(profileSegment.StartPoint.X, profileSegment.StartPoint.Z,
                                                                profileSegment.EndPoint.X, profileSegment.EndPoint.Z);
+        }
+
+        public override LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return new AsphaltWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, outerSlope,
+                                                                logFlexuralStrength, stiffnessRelation,
+                                                                computationalThickness, subLayerElasticModulus);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,

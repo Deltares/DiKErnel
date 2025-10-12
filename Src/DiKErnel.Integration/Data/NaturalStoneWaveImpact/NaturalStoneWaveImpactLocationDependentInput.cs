@@ -91,12 +91,6 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
-        {
-            return new NaturalStoneWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, resistance);
-        }
-
         public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
         {
             base.InitializeDerivedLocationDependentInput(profileData);
@@ -111,6 +105,12 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 profileData.CharacteristicPoints, CharacteristicPointType.CrestOuterBerm);
 
             resistance = NaturalStoneWaveImpactFunctions.Resistance(RelativeDensity, ThicknessTopLayer);
+        }
+
+        public override LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        {
+            return new NaturalStoneWaveImpactLocationDependentOutput(timeDependentOutputItems, Z, resistance);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
