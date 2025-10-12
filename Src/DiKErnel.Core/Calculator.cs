@@ -41,7 +41,7 @@ namespace DiKErnel.Core
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
 
                 if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation) &&
-                    calculatorSettings.CalculateTimeStepsInParallel)
+                    (calculatorSettings?.CalculateTimeStepsInParallel ?? false))
                 {
                     throw new InvalidOperationException("Trying to calculate time steps for one or more locations in parallel while this " +
                                                         "is not possible; output of one time step is input for the next time step...");
