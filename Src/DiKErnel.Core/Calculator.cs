@@ -91,8 +91,8 @@ namespace DiKErnel.Core
         private static void CalculateTimeStepsForLocations(
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
-            Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
-            IProfileData profileData, CalculatorSettings calculatorSettings, ref double currentProgress)
+            Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation, IProfileData profileData,
+            CalculatorSettings calculatorSettings, ref double currentProgress)
         {
             if (ShouldCalculateLocationsInParallel(calculatorSettings))
             {
@@ -142,8 +142,8 @@ namespace DiKErnel.Core
                     return;
                 }
 
-                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
-                    timeDependentInput, locationDependentInput, profileData, currentDamage);
+                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
+                                                                                       profileData, currentDamage);
 
                 currentDamage += timeDependentOutput.IncrementDamage;
 
@@ -170,8 +170,8 @@ namespace DiKErnel.Core
                     return;
                 }
 
-                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(
-                    timeDependentInput, locationDependentInput, profileData, currentDamage);
+                TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput, 
+                                                                                       profileData, currentDamage);
 
                 currentDamage += timeDependentOutput.IncrementDamage;
 
