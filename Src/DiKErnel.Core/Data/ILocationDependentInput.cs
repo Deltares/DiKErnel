@@ -47,6 +47,11 @@ namespace DiKErnel.Core.Data
         public double FailureNumber { get; }
 
         /// <summary>
+        /// Gets whether <see cref="Calculate"/> requires the damage at the start of the calculation.
+        /// </summary>
+        public bool RequiresDamageAtStartOfCalculation { get; }
+
+        /// <summary>
         /// Performs validation on the input.
         /// </summary>
         /// <param name="timeDependentInputItems">One or more time dependent input items to
