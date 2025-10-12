@@ -43,8 +43,9 @@ namespace DiKErnel.Core
                 if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation) &&
                     (calculatorSettings?.CalculateTimeStepsInParallel ?? false))
                 {
-                    throw new InvalidOperationException("Trying to calculate time steps for one or more locations in parallel while this " +
-                                                        "is not possible; output of one time step is input for the next time step...");
+                    LogWarningMessage("The calculation is configured to run time steps in parallel but for on or more locations this is " +
+                                      "not possible; the output of the previous time step is used as input for the next time step, so " +
+                                      "these calculations are forced to be performed sequentially.", calculatorSettings);
                 }
 
                 var progress = 0.0;
@@ -144,6 +145,11 @@ namespace DiKErnel.Core
         private static bool ShouldCancel(CalculatorSettings calculatorSettings)
         {
             return calculatorSettings?.ShouldCancel != null && calculatorSettings.ShouldCancel();
+        }
+
+        private static void LogWarningMessage(string message, CalculatorSettings calculatorSettings)
+        {
+            calculatorSettings?.LogHandler?.LogWarning(message);
         }
 
         private static void LogErrorMessage(string message, CalculatorSettings calculatorSettings)
