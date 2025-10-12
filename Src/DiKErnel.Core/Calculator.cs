@@ -93,14 +93,15 @@ namespace DiKErnel.Core
             Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, ref double currentProgress, CalculatorSettings calculatorSettings)
         {
-            double progressPerIteration = 1d / locationDependentInputItems.Count / timeDependentInputItems.Count;
+            double progressPerLocation = 1d / locationDependentInputItems.Count;
+            double progressPerTimeStep = progressPerLocation / timeDependentInputItems.Count;
 
             foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
             {
                 locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
 
                 CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
-                                              locationDependentInput, ref currentProgress, progressPerIteration, calculatorSettings);
+                                              locationDependentInput, ref currentProgress, progressPerTimeStep, calculatorSettings);
             }
         }
 
@@ -108,7 +109,7 @@ namespace DiKErnel.Core
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IProfileData profileData, ILocationDependentInput locationDependentInput, ref double currentProgress,
-            double progressPerIteration, CalculatorSettings calculatorSettings)
+            double progressPerTimeStep, CalculatorSettings calculatorSettings)
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
@@ -128,7 +129,7 @@ namespace DiKErnel.Core
 
                 timeDependentOutputItemsForLocation.Add(timeDependentOutput);
 
-                currentProgress += progressPerIteration;
+                currentProgress += progressPerTimeStep;
 
                 ReportProgress(currentProgress, calculatorSettings);
             }
