@@ -38,12 +38,20 @@ namespace DiKErnel.Core
         {
             try
             {
+                IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
+
+                if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation) &&
+                    calculatorSettings.CalculateTimeStepsInParallel)
+                {
+                    throw new InvalidOperationException("Trying to calculate time steps for one or more locations in parallel while this " +
+                                                        "is not possible; output of one time step is input for the next time step...");
+                }
+
                 var progress = 0.0;
 
                 ReportProgress(progress, calculatorSettings);
 
                 IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
-                IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
