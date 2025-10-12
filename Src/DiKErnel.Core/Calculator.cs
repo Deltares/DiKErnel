@@ -80,7 +80,7 @@ namespace DiKErnel.Core
             }
             finally
             {
-                if (ShouldCalculateLocationsInParallel(calculatorSettings) && ShouldCalculateTimeStepsInParallel(calculatorSettings))
+                if (ShouldCalculateLocationsInParallel(calculatorSettings))
                 {
                     ReportProgress(1, calculatorSettings);
                 }
