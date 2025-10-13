@@ -48,7 +48,8 @@ namespace DiKErnel.Core.Data
         public double FailureNumber { get; }
 
         /// <summary>
-        /// Gets whether <see cref="Calculate"/> requires the damage at the start of the calculation.
+        /// Gets whether <see cref="Calculate"/> requires the damage at the start of the
+        /// calculation.
         /// </summary>
         public bool RequiresDamageAtStartOfCalculation { get; }
 
@@ -62,10 +63,13 @@ namespace DiKErnel.Core.Data
         public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData);
 
         /// <summary>
-        /// Initializes the location dependent calculations.
+        /// Initializes the location dependent input by calculating all output that is not
+        /// time-dependent.
         /// </summary>
-        /// <param name="profileData">The profile data to use in the calculations.</param>
-        public void InitializeDerivedLocationDependentInput(IProfileData profileData);
+        /// <param name="profileData">The profile data to use in the calculation.</param>
+        /// <remarks>The output at stake is calculated only once and is reused in every
+        /// <see cref="Calculate"/> call.</remarks>
+        public void Initialize(IProfileData profileData);
 
         /// <summary>
         /// Performs a location dependent calculation.
@@ -73,10 +77,11 @@ namespace DiKErnel.Core.Data
         /// <param name="timeDependentInput">The time dependent input to use in the
         /// calculation.</param>
         /// <param name="profileData">The profile data to use in the calculation.</param>
-        /// <param name="damageAtStartOfCalculation">The damage at the start of the calculation.</param>
+        /// <param name="damageAtStartOfCalculation">The damage at the start of the
+        /// calculation.</param>
         /// <returns>The time dependent output.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when <see cref="InitializeDerivedLocationDependentInput"/> has not been
-        /// called.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when <see cref="Initialize"/>
+        /// has not been called.</exception>
         public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
                                              double damageAtStartOfCalculation = double.NaN);
 

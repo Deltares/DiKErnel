@@ -99,7 +99,7 @@ namespace DiKErnel.Core
                 Parallel.ForEach(locationDependentInputItems,
                                  (locationDependentInput, state, index) =>
                                  {
-                                     locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+                                     locationDependentInput.Initialize(profileData);
 
                                      CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation,
                                                                    profileData, locationDependentInput, calculatorSettings);
@@ -111,7 +111,7 @@ namespace DiKErnel.Core
 
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                 {
-                    locationDependentInput.InitializeDerivedLocationDependentInput(profileData);
+                    locationDependentInput.Initialize(profileData);
 
                     CalculateTimeStepsForLocation(timeDependentInputItems, timeDependentOutputItemsPerLocation, profileData,
                                                   locationDependentInput, calculatorSettings, ref currentProgress, progressPerLocation);

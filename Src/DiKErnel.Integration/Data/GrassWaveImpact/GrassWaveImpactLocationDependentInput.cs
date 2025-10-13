@@ -79,9 +79,9 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        public override void Initialize(IProfileData profileData)
         {
-            base.InitializeDerivedLocationDependentInput(profileData);
+            base.Initialize(profileData);
 
             double timeLineAgwi = TimeLine.TimeLineAgwi;
             double timeLineBgwi = TimeLine.TimeLineBgwi;

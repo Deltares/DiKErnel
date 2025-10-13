@@ -60,7 +60,7 @@ namespace DiKErnel.Integration.Data
             return ValidationHelper.RegisterValidationIssues(validationIssues);
         }
 
-        public virtual void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        public virtual void Initialize(IProfileData profileData)
         {
             derivedLocationDependentInputInitialized = true;
 

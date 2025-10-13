@@ -91,9 +91,9 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
-        public override void InitializeDerivedLocationDependentInput(IProfileData profileData)
+        public override void Initialize(IProfileData profileData)
         {
-            base.InitializeDerivedLocationDependentInput(profileData);
+            base.Initialize(profileData);
 
             outerToeHeight = CharacteristicPointsHelper.GetCoordinatesForType(
                 profileData.CharacteristicPoints, CharacteristicPointType.OuterToe).Item2;
