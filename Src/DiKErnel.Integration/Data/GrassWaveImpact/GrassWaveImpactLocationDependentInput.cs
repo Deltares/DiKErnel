@@ -101,8 +101,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData,
-                                                                            double damageAtStartOfCalculation = double.NaN)
+                                                                            IProfileData profileData)
         {
             double lowerLimitLoading = GrassWaveImpactFunctions.LowerLimitLoading(timeDependentInput.WaterLevel,
                                                                                   timeDependentInput.WaveHeightHm0, LowerLimitLoadingAll);
