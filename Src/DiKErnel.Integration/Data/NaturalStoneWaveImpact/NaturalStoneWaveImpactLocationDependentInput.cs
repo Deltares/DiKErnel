@@ -29,6 +29,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 {
     internal class NaturalStoneWaveImpactLocationDependentInput : LocationDependentInput
     {
+        private double cumulativeDamage = double.NaN;
         private double outerToeHeight = double.NaN;
         private double outerCrestHeight = double.NaN;
         private (double, double)? notchOuterBerm;
@@ -95,6 +96,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         {
             base.Initialize(profileData);
 
+            cumulativeDamage = InitialDamage;
+
             outerToeHeight = CharacteristicPointsHelper.GetCoordinatesForType(
                 profileData.CharacteristicPoints, CharacteristicPointType.OuterToe).Item2;
             outerCrestHeight = CharacteristicPointsHelper.GetCoordinatesForType(
@@ -114,8 +117,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData,
-                                                                            double damageAtStartOfCalculation = double.NaN)
+                                                                            IProfileData profileData)
         {
             double slopeUpperLevel = NaturalStoneWaveImpactFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
                                                                                      timeDependentInput.WaterLevel,
@@ -195,7 +197,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 waveAngleImpact = NaturalStoneWaveImpactFunctions.WaveAngleImpact(waveAngle, WaveAngleImpact.Betamax);
 
                 referenceDegradation = NaturalStoneWaveImpactFunctions.ReferenceDegradation(resistance, hydraulicLoad, waveAngleImpact,
-                                                                                            damageAtStartOfCalculation);
+                                                                                            cumulativeDamage);
 
                 referenceTimeDegradation = NaturalStoneWaveImpactFunctions.ReferenceTimeDegradation(referenceDegradation,
                     timeDependentInput.WavePeriodTm10);
@@ -208,6 +210,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                 incrementDamage = NaturalStoneWaveImpactFunctions.IncrementDamage(hydraulicLoad, resistance, incrementDegradation,
                                                                                   waveAngleImpact);
             }
+
+            cumulativeDamage += incrementDamage;
 
             return new NaturalStoneWaveImpactTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, outerSlope, slopeUpperLevel, slopeUpperPosition, slopeLowerLevel,
