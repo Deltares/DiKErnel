@@ -252,5 +252,28 @@ namespace DiKErnel.Core
         {
             calculatorSettings?.LogHandler?.LogError(message);
         }
+
+        private class ProgressIncrementHandler : Progress<double>
+        {
+            private readonly double progressPerLocation;
+            private readonly double progressPerTimeStep;
+
+            public ProgressIncrementHandler(Action<double> handler, double numberOfLocations, double numberOfTimeSteps)
+                : base(handler)
+            {
+                progressPerLocation = 1d / numberOfLocations;
+                progressPerTimeStep = progressPerLocation / numberOfTimeSteps;
+            }
+
+            public void ReportLocationCalculated()
+            {
+                OnReport(progressPerLocation);
+            }
+            
+            public void ReportTimeStepCalculated()
+            {
+                OnReport(progressPerTimeStep);
+            }
+        }
     }
 }
