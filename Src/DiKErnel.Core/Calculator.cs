@@ -37,10 +37,24 @@ namespace DiKErnel.Core
         /// <returns>The result of the calculation.</returns>
         public static ICalculationResult Calculate(ICalculationInput calculationInput, CalculatorSettings calculatorSettings = null)
         {
+            IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
+            IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
+
+            var progress = 0.0;
+
+            ProgressIncrementHandler progressIncrementHandler = calculatorSettings?.ProgressHandler != null
+                                                                    ? new ProgressIncrementHandler(progressIncrement =>
+                                                                    {
+                                                                        progress += progressIncrement;
+
+                                                                        var percentage = (int) Math.Round(progress * 100);
+
+                                                                        calculatorSettings.ProgressHandler.Report(percentage);
+                                                                    }, locationDependentInputItems.Count, timeDependentInputItems.Count)
+                                                                    : null;
+
             try
             {
-                IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
-
                 if (ShouldCalculateTimeStepsInParallel(calculatorSettings)
                     && locationDependentInputItems.Any(ldi => ldi.CalculateIsStateful))
                 {
@@ -48,17 +62,14 @@ namespace DiKErnel.Core
                                       "not possible; the output of previous time steps is used as input for the next time step, so these " +
                                       "calculations are forced to be performed chronologically.", calculatorSettings);
                 }
+                
+                progressIncrementHandler?.ReportCalculationStarted();
 
-                var progress = 0.0;
-
-                ReportProgress(progress, calculatorSettings);
-
-                IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
                 CalculateTimeStepsForLocations(locationDependentInputItems, timeDependentOutputItemsPerLocation, timeDependentInputItems,
-                                               calculationInput.ProfileData, calculatorSettings, ref progress);
+                                               calculationInput.ProfileData, calculatorSettings, progressIncrementHandler);
 
                 if (ShouldCancel(calculatorSettings))
                 {
@@ -83,7 +94,7 @@ namespace DiKErnel.Core
             {
                 if (ShouldCalculateLocationsInParallel(calculatorSettings))
                 {
-                    ReportProgress(1, calculatorSettings);
+                    progressIncrementHandler?.ReportCalculationEnded();
                 }
             }
         }
@@ -92,7 +103,7 @@ namespace DiKErnel.Core
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
             Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems, IProfileData profileData,
-            CalculatorSettings calculatorSettings, ref double currentProgress)
+            CalculatorSettings calculatorSettings, ProgressIncrementHandler progressIncrementHandler)
         {
             if (ShouldCalculateLocationsInParallel(calculatorSettings))
             {
@@ -107,20 +118,16 @@ namespace DiKErnel.Core
             }
             else
             {
-                double progressPerLocation = 1d / locationDependentInputItems.Count;
-
                 foreach (ILocationDependentInput locationDependentInput in locationDependentInputItems)
                 {
                     locationDependentInput.Initialize(profileData);
 
                     CalculateTimeStepsForLocation(locationDependentInput, timeDependentOutputItemsPerLocation, timeDependentInputItems,
-                                                  profileData, calculatorSettings, ref currentProgress, progressPerLocation);
+                                                  profileData, calculatorSettings, progressIncrementHandler);
 
                     if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
                     {
-                        currentProgress += progressPerLocation;
-
-                        ReportProgress(currentProgress, calculatorSettings);
+                        progressIncrementHandler?.ReportLocationCalculated();
                     }
                 }
             }
@@ -130,7 +137,7 @@ namespace DiKErnel.Core
             ILocationDependentInput locationDependentInput,
             IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems, IProfileData profileData,
-            CalculatorSettings calculatorSettings)
+            CalculatorSettings calculatorSettings, ProgressIncrementHandler progressIncrementHandler = null)
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
@@ -163,53 +170,8 @@ namespace DiKErnel.Core
                                                                                            profileData);
 
                     timeDependentOutputItemsForLocation.Add(timeDependentOutput);
-                }
-            }
-        }
 
-        private static void CalculateTimeStepsForLocation(
-            ILocationDependentInput locationDependentInput,
-            IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
-            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems, IProfileData profileData,
-            CalculatorSettings calculatorSettings, ref double currentProgress, double progressPerLocation)
-        {
-            List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
-
-            if (ShouldCalculateTimeStepsInParallel(calculatorSettings) && !locationDependentInput.CalculateIsStateful)
-            {
-                timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
-
-                Parallel.ForEach(timeDependentInputItems,
-                                 (timeDependentInput, state, index) =>
-                                 {
-                                     if (ShouldCancel(calculatorSettings))
-                                     {
-                                         return;
-                                     }
-
-                                     timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                         locationDependentInput, timeDependentInput, profileData);
-                                 });
-            }
-            else
-            {
-                double progressPerTimeStep = progressPerLocation / timeDependentInputItems.Count;
-
-                foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
-                {
-                    if (ShouldCancel(calculatorSettings))
-                    {
-                        return;
-                    }
-
-                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(locationDependentInput, timeDependentInput,
-                                                                                           profileData);
-
-                    timeDependentOutputItemsForLocation.Add(timeDependentOutput);
-
-                    currentProgress += progressPerTimeStep;
-
-                    ReportProgress(currentProgress, calculatorSettings);
+                    progressIncrementHandler?.ReportTimeStepCalculated();
                 }
             }
         }
@@ -219,13 +181,6 @@ namespace DiKErnel.Core
                                                                         IProfileData profileData)
         {
             return locationDependentInput.Calculate(timeDependentInput, profileData);
-        }
-
-        private static void ReportProgress(double progress, CalculatorSettings calculatorSettings)
-        {
-            var percentage = (int) Math.Round(progress * 100);
-
-            calculatorSettings?.ProgressHandler?.Report(percentage);
         }
 
         private static bool ShouldCancel(CalculatorSettings calculatorSettings)
@@ -255,24 +210,34 @@ namespace DiKErnel.Core
 
         private class ProgressIncrementHandler : Progress<double>
         {
-            private readonly double progressPerLocation;
-            private readonly double progressPerTimeStep;
+            private readonly double progressIncrementPerLocation;
+            private readonly double progressIncrementPerTimeStep;
 
-            public ProgressIncrementHandler(Action<double> handler, double numberOfLocations, double numberOfTimeSteps)
-                : base(handler)
+            public ProgressIncrementHandler(Action<double> progressIncrementAction, double numberOfLocations, double numberOfTimeSteps)
+                : base(progressIncrementAction)
             {
-                progressPerLocation = 1d / numberOfLocations;
-                progressPerTimeStep = progressPerLocation / numberOfTimeSteps;
+                progressIncrementPerLocation = 1d / numberOfLocations;
+                progressIncrementPerTimeStep = progressIncrementPerLocation / numberOfTimeSteps;
+            }
+
+            public void ReportCalculationStarted()
+            {
+                OnReport(0);
             }
 
             public void ReportLocationCalculated()
             {
-                OnReport(progressPerLocation);
+                OnReport(progressIncrementPerLocation);
             }
-            
+
             public void ReportTimeStepCalculated()
             {
-                OnReport(progressPerTimeStep);
+                OnReport(progressIncrementPerTimeStep);
+            }
+            
+            public void ReportCalculationEnded()
+            {
+                OnReport(1);
             }
         }
     }
