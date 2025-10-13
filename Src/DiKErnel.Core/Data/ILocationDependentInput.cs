@@ -16,7 +16,6 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System;
 using System.Collections.Generic;
 
 namespace DiKErnel.Core.Data
@@ -79,13 +78,10 @@ namespace DiKErnel.Core.Data
         /// <param name="timeDependentInput">The time dependent input to use in the
         /// calculation.</param>
         /// <param name="profileData">The profile data to use in the calculation.</param>
-        /// <param name="damageAtStartOfCalculation">The damage at the start of the
-        /// calculation.</param>
         /// <returns>The time dependent output.</returns>
         /// <exception cref="InvalidOperationException">Thrown when <see cref="Initialize"/>
         /// has not been called.</exception>
-        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
-                                             double damageAtStartOfCalculation = double.NaN);
+        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData);
 
         /// <summary>
         /// Gets location dependent output based on the derived location dependent input and

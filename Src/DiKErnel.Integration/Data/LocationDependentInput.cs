@@ -66,22 +66,20 @@ namespace DiKErnel.Integration.Data
             Z = profileData.GetVerticalHeight(X);
         }
 
-        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
-                                             double damageAtStartOfCalculation = double.NaN)
+        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
         {
             if (!derivedLocationDependentInputInitialized)
             {
                 throw new InvalidOperationException("Location dependent input must be initialized first.");
             }
 
-            return CalculateTimeDependentOutput(timeDependentInput, profileData, damageAtStartOfCalculation);
+            return CalculateTimeDependentOutput(timeDependentInput, profileData);
         }
 
         public abstract LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
 
         protected abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData,
-                                                                            double damageAtStartOfCalculation = double.NaN);
+                                                                            IProfileData profileData);
     }
 }
