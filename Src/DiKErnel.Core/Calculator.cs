@@ -57,7 +57,7 @@ namespace DiKErnel.Core
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
-                CalculateTimeStepsForLocations(timeDependentInputItems, locationDependentInputItems, timeDependentOutputItemsPerLocation,
+                CalculateTimeStepsForLocations(locationDependentInputItems, timeDependentOutputItemsPerLocation, timeDependentInputItems,
                                                calculationInput.ProfileData, calculatorSettings, ref progress);
 
                 if (ShouldCancel(calculatorSettings))
@@ -89,9 +89,9 @@ namespace DiKErnel.Core
         }
 
         private static void CalculateTimeStepsForLocations(
-            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyCollection<ILocationDependentInput> locationDependentInputItems,
-            Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation, IProfileData profileData,
+            Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
+            IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems, IProfileData profileData,
             CalculatorSettings calculatorSettings, ref double currentProgress)
         {
             if (ShouldCalculateLocationsInParallel(calculatorSettings))
@@ -140,8 +140,13 @@ namespace DiKErnel.Core
                 Parallel.ForEach(timeDependentInputItems,
                                  (timeDependentInput, state, index) =>
                                  {
+                                     if (ShouldCancel(calculatorSettings))
+                                     {
+                                         return;
+                                     }
+
                                      timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                         timeDependentInput, locationDependentInput, profileData);
+                                         locationDependentInput, timeDependentInput, profileData);
                                  });
             }
             else
@@ -153,7 +158,7 @@ namespace DiKErnel.Core
                         return;
                     }
 
-                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
+                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(locationDependentInput, timeDependentInput,
                                                                                            profileData);
 
                     timeDependentOutputItemsForLocation.Add(timeDependentOutput);
@@ -176,8 +181,13 @@ namespace DiKErnel.Core
                 Parallel.ForEach(timeDependentInputItems,
                                  (timeDependentInput, state, index) =>
                                  {
+                                     if (ShouldCancel(calculatorSettings))
+                                     {
+                                         return;
+                                     }
+
                                      timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                         timeDependentInput, locationDependentInput, profileData);
+                                         locationDependentInput, timeDependentInput, profileData);
                                  });
             }
             else
@@ -191,7 +201,7 @@ namespace DiKErnel.Core
                         return;
                     }
 
-                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
+                    TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(locationDependentInput, timeDependentInput,
                                                                                            profileData);
 
                     timeDependentOutputItemsForLocation.Add(timeDependentOutput);
@@ -203,8 +213,8 @@ namespace DiKErnel.Core
             }
         }
 
-        private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
-                                                                        ILocationDependentInput locationDependentInput,
+        private static TimeDependentOutput CalculateTimeStepForLocation(ILocationDependentInput locationDependentInput,
+                                                                        ITimeDependentInput timeDependentInput,
                                                                         IProfileData profileData)
         {
             return locationDependentInput.Calculate(timeDependentInput, profileData);
