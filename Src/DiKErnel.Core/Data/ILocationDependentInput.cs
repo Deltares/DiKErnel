@@ -48,10 +48,12 @@ namespace DiKErnel.Core.Data
         public double FailureNumber { get; }
 
         /// <summary>
-        /// Gets whether <see cref="Calculate"/> requires the damage at the start of the
-        /// calculation.
+        /// Gets whether <see cref="Calculate"/> requires state that is built by previous
+        /// calls to <see cref="Calculate"/>.
         /// </summary>
-        public bool RequiresDamageAtStartOfCalculation { get; }
+        /// <remarks>When <c>true</c>, calls to <see cref="Calculate"/> should not be run
+        /// in parallel in order to prevent race conditions.</remarks>
+        public bool CalculateIsStateful { get; }
 
         /// <summary>
         /// Performs validation on the input.
