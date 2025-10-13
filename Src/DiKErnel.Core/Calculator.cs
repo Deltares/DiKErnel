@@ -41,12 +41,12 @@ namespace DiKErnel.Core
             {
                 IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
 
-                if (locationDependentInputItems.Any(ldi => ldi.RequiresDamageAtStartOfCalculation)
-                    && ShouldCalculateTimeStepsInParallel(calculatorSettings))
+                if (ShouldCalculateTimeStepsInParallel(calculatorSettings)
+                    && locationDependentInputItems.Any(ldi => ldi.CalculateIsStateful))
                 {
                     LogWarningMessage("The calculation is configured to run time steps in parallel but for on or more locations this is " +
-                                      "not possible; the output of the previous time step is used as input for the next time step, so " +
-                                      "these calculations are forced to be performed sequentially.", calculatorSettings);
+                                      "not possible; the output of previous time steps is used as input for the next time step, so these " +
+                                      "calculations are forced to be performed chronologically.", calculatorSettings);
                 }
 
                 var progress = 0.0;
@@ -133,7 +133,7 @@ namespace DiKErnel.Core
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-            if (!locationDependentInput.RequiresDamageAtStartOfCalculation && ShouldCalculateTimeStepsInParallel(calculatorSettings))
+            if (ShouldCalculateTimeStepsInParallel(calculatorSettings) && !locationDependentInput.CalculateIsStateful)
             {
                 timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
@@ -173,7 +173,7 @@ namespace DiKErnel.Core
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-            if (!locationDependentInput.RequiresDamageAtStartOfCalculation && ShouldCalculateTimeStepsInParallel(calculatorSettings))
+            if (ShouldCalculateTimeStepsInParallel(calculatorSettings) && !locationDependentInput.CalculateIsStateful)
             {
                 timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 
