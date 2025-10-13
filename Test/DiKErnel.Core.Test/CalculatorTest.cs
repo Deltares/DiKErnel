@@ -259,8 +259,7 @@ namespace DiKErnel.Core.Test
 
             public void Initialize(IProfileData profileData) {}
 
-            public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData,
-                                                 double damageAtStartOfCalculation = double.NaN)
+            public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
             {
                 if (!string.IsNullOrEmpty(exceptionMessage))
                 {

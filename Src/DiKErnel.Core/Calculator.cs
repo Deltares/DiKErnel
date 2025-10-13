@@ -146,8 +146,6 @@ namespace DiKErnel.Core
             }
             else
             {
-                double currentDamage = locationDependentInput.InitialDamage;
-
                 foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
                     if (ShouldCancel(calculatorSettings))
@@ -156,9 +154,7 @@ namespace DiKErnel.Core
                     }
 
                     TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
-                                                                                           profileData, currentDamage);
-
-                    currentDamage += timeDependentOutput.IncrementDamage;
+                                                                                           profileData);
 
                     timeDependentOutputItemsForLocation.Add(timeDependentOutput);
                 }
@@ -188,8 +184,6 @@ namespace DiKErnel.Core
             {
                 double progressPerTimeStep = progressPerLocation / timeDependentInputItems.Count;
 
-                double currentDamage = locationDependentInput.InitialDamage;
-
                 foreach (ITimeDependentInput timeDependentInput in timeDependentInputItems)
                 {
                     if (ShouldCancel(calculatorSettings))
@@ -198,9 +192,7 @@ namespace DiKErnel.Core
                     }
 
                     TimeDependentOutput timeDependentOutput = CalculateTimeStepForLocation(timeDependentInput, locationDependentInput,
-                                                                                           profileData, currentDamage);
-
-                    currentDamage += timeDependentOutput.IncrementDamage;
+                                                                                           profileData);
 
                     timeDependentOutputItemsForLocation.Add(timeDependentOutput);
 
@@ -213,10 +205,9 @@ namespace DiKErnel.Core
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ITimeDependentInput timeDependentInput,
                                                                         ILocationDependentInput locationDependentInput,
-                                                                        IProfileData profileData,
-                                                                        double damageAtStartOfCalculation = double.NaN)
+                                                                        IProfileData profileData)
         {
-            return locationDependentInput.Calculate(timeDependentInput, profileData, damageAtStartOfCalculation);
+            return locationDependentInput.Calculate(timeDependentInput, profileData);
         }
 
         private static void ReportProgress(double progress, CalculatorSettings calculatorSettings)
