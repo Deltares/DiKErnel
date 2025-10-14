@@ -16,6 +16,7 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 
 namespace DiKErnel.Core.Data
@@ -87,9 +88,12 @@ namespace DiKErnel.Core.Data
         /// Gets location dependent output based on the derived location dependent input and
         /// the provided time dependent output items.
         /// </summary>
+        /// <param name="timeDependentInputItems">The time dependent input items that were
+        /// used for the calculation.</param>
         /// <param name="timeDependentOutputItems">One or more time dependent output items
         /// that were calculated for the location.</param>
         /// <returns>The location dependent output.</returns>
-        public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
+        public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                                                  IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
     }
 }
