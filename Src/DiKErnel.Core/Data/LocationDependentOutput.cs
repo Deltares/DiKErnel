@@ -33,11 +33,14 @@ namespace DiKErnel.Core.Data
         /// </summary>
         /// <param name="initialDamage">The initial damage of the location.</param>
         /// <param name="failureNumber">The failure number of the location.</param>
+        /// <param name="timeDependentInputItems">The time dependent input items.</param>
         /// <param name="timeDependentOutputItems">The time dependent output items of the
         /// location.</param>
-        /// <remarks><paramref name="initialDamage"/> and <paramref name="failureNumber"/>
-        /// are input parameters that are used to derive the final output results.</remarks>
+        /// <remarks><paramref name="initialDamage"/>, <paramref name="failureNumber"/> and
+        /// <paramref name="timeDependentInputItems"/> are input parameters that are used to
+        /// derive the final output results.</remarks>
         protected LocationDependentOutput(double initialDamage, double failureNumber,
+                                          IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                           IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
             TimeDependentOutputItems = timeDependentOutputItems;
