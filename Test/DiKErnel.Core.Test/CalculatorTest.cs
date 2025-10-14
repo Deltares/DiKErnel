@@ -73,7 +73,7 @@ namespace DiKErnel.Core.Test
             }
 
             [Test, Combinatorial]
-            public void GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenLogsExpectedMessages(
+            public void GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenLogsNoMessages(
                 [Values(false, true)] bool calculateLocationsInParallel,
                 [Values(false, true)] bool calculateTimeStepsInParallel)
             {
@@ -170,7 +170,7 @@ namespace DiKErnel.Core.Test
                 {
                     LogHandler = logHandler,
                     ProgressHandler = progressHandler,
-                    ShouldCancel = () => secondLocation.NumberOfPerformedTimeSteps == 1
+                    ShouldCancel = () => secondLocation.NumberOfPerformedTimeSteps >= 1
                 };
             }
 
@@ -191,7 +191,7 @@ namespace DiKErnel.Core.Test
             }
 
             [Test, Combinatorial]
-            public void GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenLogsExpectedMessages(
+            public void GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenLogsNoMessages(
                 [Values(false, true)] bool calculateLocationsInParallel,
                 [Values(false, true)] bool calculateTimeStepsInParallel)
             {
@@ -273,7 +273,7 @@ namespace DiKErnel.Core.Test
             private string exceptionMessageForSecondLocation;
 
             [SetUp]
-            public virtual void Arrange()
+            public void Arrange()
             {
                 exceptionMessageForSecondLocation = Random.NextString();
                 calculationInput = CreateCalculationInput(exceptionMessageForSecondLocation);
@@ -286,51 +286,99 @@ namespace DiKErnel.Core.Test
                 };
             }
 
-            [TestFixture]
-            internal sealed class WhenCalculate : GivenInvalidCalculationInput
+            [Test, Combinatorial]
+            public void GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenReturnsFailureResult(
+                [Values(false, true)] bool calculateLocationsInParallel,
+                [Values(false, true)] bool calculateTimeStepsInParallel)
             {
-                private ICalculationResult result;
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
 
-                [Test]
-                public void ThenReturnsFailureResult()
+                // When
+                ICalculationResult result = Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(result, Is.InstanceOf<FailureResult>());
+            }
+
+            [Test, Combinatorial]
+            public void GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenLogsExpectedMessage(
+                [Values(false, true)] bool calculateLocationsInParallel,
+                [Values(false, true)] bool calculateTimeStepsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
+
+                Received.InOrder(() =>
                 {
-                    Assert.That(result, Is.InstanceOf<FailureResult>());
-                }
+                    logHandler.LogError(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the calculation. " +
+                                                                     $"See stack trace for more information:{Environment.NewLine}" +
+                                                                     $"{exceptionMessageForSecondLocation}",
+                                                                     StringComparison.Ordinal)));
+                });
+            }
 
-                [Test]
-                public void ThenLogsExpectedMessages()
+            [Test]
+            public void GivenCalculatorSettingsWithoutParallelization_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
+
+                Received.InOrder(() =>
                 {
-                    Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
+                    progressHandler.Report(0);
+                    progressHandler.Report(17);
+                    progressHandler.Report(33);
+                    progressHandler.Report(50);
+                });
+            }
 
-                    Received.InOrder(() =>
-                    {
-                        logHandler.LogError(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the calculation. " +
-                                                                         $"See stack trace for more information:{Environment.NewLine}" +
-                                                                         $"{exceptionMessageForSecondLocation}",
-                                                                         StringComparison.Ordinal)));
-                    });
-                }
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForLocations_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = true;
 
-                [Test]
-                public void ThenReportsExpectedProgress()
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(1));
+
+                Received.InOrder(() =>
                 {
-                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
+                    progressHandler.Report(0);
+                });
+            }
 
-                    Received.InOrder(() =>
-                    {
-                        progressHandler.Report(0);
-                        progressHandler.Report(17);
-                        progressHandler.Report(33);
-                        progressHandler.Report(50);
-                    });
-                }
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForTimeSteps_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateTimeStepsInParallel = true;
 
-                public override void Arrange()
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
+
+                Received.InOrder(() =>
                 {
-                    base.Arrange();
-
-                    result = Calculator.Calculate(calculationInput, calculatorSettings);
-                }
+                    progressHandler.Report(0);
+                    progressHandler.Report(50);
+                });
             }
         }
 

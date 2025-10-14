@@ -68,6 +68,11 @@ namespace DiKErnel.Core
                     return new CancellationResult();
                 }
 
+                if (!ShouldCancel(calculatorSettings) && ShouldCalculateLocationsInParallel(calculatorSettings))
+                {
+                    progressIncrementHandler?.ReportCalculationEnded();
+                }
+
                 List<LocationDependentOutput> locationDependentOutputItems =
                     locationDependentInputItems
                         .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]))
@@ -81,13 +86,6 @@ namespace DiKErnel.Core
                                 $"{Environment.NewLine}{e.Message}", calculatorSettings);
 
                 return new FailureResult();
-            }
-            finally
-            {
-                if (!ShouldCancel(calculatorSettings) && ShouldCalculateLocationsInParallel(calculatorSettings))
-                {
-                    progressIncrementHandler?.ReportCalculationEnded();
-                }
             }
         }
 
