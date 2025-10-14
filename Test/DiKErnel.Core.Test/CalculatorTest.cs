@@ -19,9 +19,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using DiKErnel.Core.Data;
 using NSubstitute;
+using NSubstitute.Core;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;
 
@@ -118,7 +118,7 @@ namespace DiKErnel.Core.Test
                 [Test]
                 public void ThenReportsExpectedProgress()
                 {
-                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
+                    Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(5));
 
                     Received.InOrder(() =>
                     {
@@ -126,6 +126,7 @@ namespace DiKErnel.Core.Test
                         progressHandler.Report(17);
                         progressHandler.Report(33);
                         progressHandler.Report(50);
+                        progressHandler.Report(67);
                     });
                 }
 
@@ -133,7 +134,9 @@ namespace DiKErnel.Core.Test
                 {
                     base.Arrange();
 
-                    calculatorSettings.ShouldCancel = () => progressHandler.ReceivedCalls().Count() == 4;
+                    var secondLocation = (TestLocationDependentCalculationInput) calculationInput.LocationDependentInputItems[1];
+
+                    calculatorSettings.ShouldCancel = () => secondLocation.NumberOfPerformedTimeSteps == 1;
 
                     result = Calculator.Calculate(calculationInput, calculatorSettings);
                 }
@@ -242,6 +245,8 @@ namespace DiKErnel.Core.Test
                 this.exceptionMessage = exceptionMessage;
             }
 
+            public int NumberOfPerformedTimeSteps { get; private set; }
+
             public double X => 0;
 
             public double Z => 0;
@@ -266,11 +271,11 @@ namespace DiKErnel.Core.Test
                     throw new InvalidOperationException(exceptionMessage);
                 }
 
-                Thread.Sleep(10);
-
                 var timeDependentOutputConstructionProperties = Substitute.For<TimeDependentOutputConstructionProperties>();
 
                 timeDependentOutputConstructionProperties.IncrementDamage = Random.NextDouble();
+
+                NumberOfPerformedTimeSteps++;
 
                 return Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties);
             }
