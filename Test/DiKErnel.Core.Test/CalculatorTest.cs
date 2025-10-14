@@ -448,9 +448,11 @@ namespace DiKErnel.Core.Test
                 return Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties);
             }
 
-            public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+            public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                                                      IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
             {
-                return Substitute.For<LocationDependentOutput>(InitialDamage, FailureNumber, timeDependentOutputItems);
+                return Substitute.For<LocationDependentOutput>(InitialDamage, FailureNumber, timeDependentInputItems,
+                                                               timeDependentOutputItems);
             }
         }
     }
