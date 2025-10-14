@@ -123,9 +123,7 @@ namespace DiKErnel.Core
                     CalculateTimeStepsForLocation(locationDependentInput, timeDependentOutputItemsPerLocation, timeDependentInputItems,
                                                   profileData, calculatorSettings, progressIncrementHandler);
 
-                    if (!ShouldCancel(calculatorSettings)
-                        && ShouldCalculateTimeStepsInParallel(calculatorSettings)
-                        && !locationDependentInput.CalculateIsStateful)
+                    if (!ShouldCancel(calculatorSettings) && ShouldCalculateTimeStepsInParallel(calculatorSettings))
                     {
                         progressIncrementHandler?.ReportLocationCalculated();
                     }
@@ -186,7 +184,8 @@ namespace DiKErnel.Core
         }
 
         private static TimeDependentOutput CalculateTimeStepForLocation(ILocationDependentInput locationDependentInput,
-                                                                        ITimeDependentInput timeDependentInput, IProfileData profileData)
+                                                                        ITimeDependentInput timeDependentInput,
+                                                                        IProfileData profileData)
         {
             return locationDependentInput.Calculate(timeDependentInput, profileData);
         }
@@ -233,27 +232,27 @@ namespace DiKErnel.Core
 
             public void ReportCalculationStarted()
             {
-                SetAndReportProgress(0);
+                UpdateAndReportProgress(0);
             }
 
             public void ReportLocationCalculated()
             {
-                SetAndReportProgress(progress + progressIncrementPerLocation);
+                UpdateAndReportProgress(progress + progressIncrementPerLocation);
             }
 
             public void ReportTimeStepCalculated()
             {
-                SetAndReportProgress(progress + progressIncrementPerTimeStep);
+                UpdateAndReportProgress(progress + progressIncrementPerTimeStep);
             }
 
             public void ReportCalculationEnded()
             {
-                SetAndReportProgress(1);
+                UpdateAndReportProgress(1);
             }
 
-            private void SetAndReportProgress(double progressToSet)
+            private void UpdateAndReportProgress(double updatedProgress)
             {
-                progress = progressToSet;
+                progress = updatedProgress;
 
                 var percentage = (int) Math.Round(progress * 100);
 
