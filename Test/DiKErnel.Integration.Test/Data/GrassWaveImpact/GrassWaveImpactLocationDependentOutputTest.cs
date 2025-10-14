@@ -31,13 +31,14 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
         public void Constructor_ExpectedValues()
         {
             // Setup
+            double initialDamage = Random.NextDouble();
             double z = Random.NextDouble();
             double minimumWaveHeight = Random.NextDouble();
             double maximumWaveHeight = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassWaveImpactLocationDependentOutput(timeDependentOutputItems, z, minimumWaveHeight,
+            var output = new GrassWaveImpactLocationDependentOutput(initialDamage, timeDependentOutputItems, z, minimumWaveHeight,
                                                                     maximumWaveHeight);
 
             // Assert
