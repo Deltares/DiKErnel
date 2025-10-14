@@ -100,10 +100,18 @@ namespace DiKErnel.Core
                 Parallel.ForEach(locationDependentInputItems,
                                  (locationDependentInput, state, index) =>
                                  {
-                                     locationDependentInput.Initialize(profileData);
+                                     try
+                                     {
+                                         locationDependentInput.Initialize(profileData);
 
-                                     CalculateTimeStepsForLocation(locationDependentInput, timeDependentOutputItemsPerLocation,
-                                                                   timeDependentInputItems, profileData, calculatorSettings);
+                                         CalculateTimeStepsForLocation(locationDependentInput, timeDependentOutputItemsPerLocation,
+                                                                       timeDependentInputItems, profileData, calculatorSettings);
+                                     }
+                                     catch (Exception)
+                                     {
+                                         state.Stop();
+                                         throw;
+                                     }
                                  });
             }
             else
@@ -138,13 +146,22 @@ namespace DiKErnel.Core
                 Parallel.ForEach(timeDependentInputItems,
                                  (timeDependentInput, state, index) =>
                                  {
-                                     if (ShouldCancel(calculatorSettings))
+                                     try
                                      {
-                                         return;
-                                     }
+                                         if (ShouldCancel(calculatorSettings))
+                                         {
+                                             state.Stop();
+                                             return;
+                                         }
 
-                                     timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
-                                         locationDependentInput, timeDependentInput, profileData);
+                                         timeDependentOutputItemsForLocation[(int) index] = CalculateTimeStepForLocation(
+                                             locationDependentInput, timeDependentInput, profileData);
+                                     }
+                                     catch (Exception)
+                                     {
+                                         state.Stop();
+                                         throw;
+                                     }
                                  });
             }
             else
