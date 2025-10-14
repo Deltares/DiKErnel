@@ -84,7 +84,7 @@ namespace DiKErnel.Core
             }
             finally
             {
-                if (ShouldCalculateLocationsInParallel(calculatorSettings))
+                if (!ShouldCancel(calculatorSettings) && ShouldCalculateLocationsInParallel(calculatorSettings))
                 {
                     progressIncrementHandler?.ReportCalculationEnded();
                 }
@@ -117,7 +117,7 @@ namespace DiKErnel.Core
                     CalculateTimeStepsForLocation(locationDependentInput, timeDependentOutputItemsPerLocation, timeDependentInputItems,
                                                   profileData, calculatorSettings, progressIncrementHandler);
 
-                    if (ShouldCalculateTimeStepsInParallel(calculatorSettings))
+                    if (!ShouldCancel(calculatorSettings) && ShouldCalculateTimeStepsInParallel(calculatorSettings))
                     {
                         progressIncrementHandler?.ReportLocationCalculated();
                     }
@@ -232,7 +232,7 @@ namespace DiKErnel.Core
 
             public void ReportCalculationEnded()
             {
-                UpdateAndReportProgress(100);
+                UpdateAndReportProgress(1);
             }
 
             private void UpdateAndReportProgress(double updatedProgress)
