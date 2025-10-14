@@ -36,6 +36,7 @@ namespace DiKErnel.Core.Test.Data
 
             // Call
             var locationDependentOutput = Substitute.For<LocationDependentOutput>(Random.NextDouble(), Random.NextDouble(),
+                                                                                  Array.Empty<ITimeDependentInput>(),
                                                                                   timeDependentOutputItems);
 
             // Assert
