@@ -32,8 +32,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         /// <param name="resistance">The calculated resistance.</param>
         public NaturalStoneWaveImpactLocationDependentOutput(
             double initialDamage, double failureNumber, IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z,
-            double resistance)
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double resistance)
             : base(initialDamage, failureNumber, timeDependentInputItems, timeDependentOutputItems)
         {
             Z = z;
@@ -51,8 +50,7 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         public double Resistance { get; }
 
         protected override double CalculateTimeOfFailure(double failureNumber, ITimeDependentInput timeDependentInput,
-                                                         TimeDependentOutput timeDependentOutput,
-                                                         double damageAtStartOfCalculation)
+                                                         TimeDependentOutput timeDependentOutput, double damageAtStartOfCalculation)
         {
             var naturalStoneWaveImpactTimeDependentOutput = (NaturalStoneWaveImpactTimeDependentOutput) timeDependentOutput;
 
