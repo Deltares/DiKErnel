@@ -16,11 +16,12 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
-using DiKErnel.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Core.Test.Data
 {
@@ -51,7 +52,8 @@ namespace DiKErnel.Core.Test.Data
             double incrementDamage2 = Random.NextDouble();
 
             LocationDependentOutput locationDependentOutput =
-                CreateLocationDependentOutput(initialDamage, failureNumber, incrementDamage1, incrementDamage2);
+                CreateLocationDependentOutput(initialDamage, failureNumber, Array.Empty<ITimeDependentInput>(), incrementDamage1,
+                                              incrementDamage2);
 
             // Then
             Assert.That(locationDependentOutput.CumulativeDamages, Is.EqualTo(new[]
@@ -73,10 +75,10 @@ namespace DiKErnel.Core.Test.Data
             // Given
             const double failureNumber = 0.6;
 
-            LocationDependentOutput locationDependentOutput =
-                CreateLocationDependentOutput(initialDamage, failureNumber, incrementDamage1, incrementDamage2);
-
             List<ITimeDependentInput> timeDependentInputItems = CreateTimeDependentInputItems();
+
+            LocationDependentOutput locationDependentOutput =
+                CreateLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems, incrementDamage1, incrementDamage2);
 
             // When
             double? timeOfFailure = locationDependentOutput.GetTimeOfFailure(initialDamage, failureNumber, timeDependentInputItems);
@@ -86,6 +88,7 @@ namespace DiKErnel.Core.Test.Data
         }
 
         private static TestLocationDependentOutput CreateLocationDependentOutput(double initialDamage, double failureNumber,
+                                                                                 IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                                                                  double incrementDamage1, double incrementDamage2)
         {
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
@@ -100,7 +103,7 @@ namespace DiKErnel.Core.Test.Data
                 Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
             };
 
-            return new TestLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems);
+            return new TestLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems, timeDependentOutputItems);
         }
 
         private static List<ITimeDependentInput> CreateTimeDependentInputItems()
@@ -123,8 +126,9 @@ namespace DiKErnel.Core.Test.Data
         private sealed class TestLocationDependentOutput : LocationDependentOutput
         {
             public TestLocationDependentOutput(double initialDamage, double failureNumber,
+                                               IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                                IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) :
-                base(initialDamage, failureNumber, timeDependentOutputItems) {}
+                base(initialDamage, failureNumber, timeDependentInputItems, timeDependentOutputItems) {}
         }
     }
 }
