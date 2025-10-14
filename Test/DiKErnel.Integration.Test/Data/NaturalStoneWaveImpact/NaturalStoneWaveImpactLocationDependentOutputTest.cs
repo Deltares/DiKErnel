@@ -60,10 +60,11 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             const double incrementDamage2 = 0.5;
             const double failureNumber = 0.6;
 
-            LocationDependentOutput locationDependentOutput = CreateLocationDependentOutput(initialDamage, failureNumber, incrementDamage1,
-                                                                                            incrementDamage2);
-
             List<ITimeDependentInput> timeDependentInputItems = CreateTimeDependentInputItems();
+
+            LocationDependentOutput locationDependentOutput = CreateLocationDependentOutput(initialDamage, failureNumber,
+                                                                                            timeDependentInputItems, incrementDamage1,
+                                                                                            incrementDamage2);
 
             // When
             double? timeOfFailure = locationDependentOutput.GetTimeOfFailure(initialDamage, failureNumber, timeDependentInputItems);
@@ -73,7 +74,8 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
         }
 
         private static NaturalStoneWaveImpactLocationDependentOutput CreateLocationDependentOutput(
-            double initialDamage, double failureNumber, double incrementDamage1, double incrementDamage2)
+            double initialDamage, double failureNumber, IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+            double incrementDamage1, double incrementDamage2)
         {
             NaturalStoneWaveImpactTimeDependentOutputConstructionProperties timeDependentOutputConstructionProperties1 =
                 CreateTimeDependentOutputConstructionProperties(incrementDamage1, Random.NextDouble(), Random.NextDouble(),
@@ -88,8 +90,8 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
                 new NaturalStoneWaveImpactTimeDependentOutput(timeDependentOutputConstructionProperties2)
             };
 
-            return new NaturalStoneWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems,
-                                                                     Random.NextDouble(), 0.59);
+            return new NaturalStoneWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems,
+                                                                     timeDependentOutputItems, Random.NextDouble(), 0.59);
         }
 
         private static NaturalStoneWaveImpactTimeDependentOutputConstructionProperties CreateTimeDependentOutputConstructionProperties(

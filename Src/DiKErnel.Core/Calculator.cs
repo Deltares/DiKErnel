@@ -75,7 +75,7 @@ namespace DiKErnel.Core
 
                 List<LocationDependentOutput> locationDependentOutputItems =
                     locationDependentInputItems
-                        .Select(ldi => ldi.GetLocationDependentOutput(timeDependentOutputItemsPerLocation[ldi]))
+                        .Select(ldi => ldi.GetLocationDependentOutput(timeDependentInputItems, timeDependentOutputItemsPerLocation[ldi]))
                         .ToList();
 
                 return new SuccessResult(new CalculationOutput(locationDependentOutputItems));
