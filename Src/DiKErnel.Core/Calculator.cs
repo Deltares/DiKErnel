@@ -40,17 +40,9 @@ namespace DiKErnel.Core
             IReadOnlyList<ILocationDependentInput> locationDependentInputItems = calculationInput.LocationDependentInputItems;
             IReadOnlyList<ITimeDependentInput> timeDependentInputItems = calculationInput.TimeDependentInputItems;
 
-            var progress = 0.0;
-
             ProgressIncrementHandler progressIncrementHandler = calculatorSettings?.ProgressHandler != null
-                                                                    ? new ProgressIncrementHandler(progressIncrement =>
-                                                                    {
-                                                                        progress += progressIncrement;
-
-                                                                        var percentage = (int) Math.Round(progress * 100);
-
-                                                                        calculatorSettings.ProgressHandler.Report(percentage);
-                                                                    }, locationDependentInputItems.Count, timeDependentInputItems.Count)
+                                                                    ? new ProgressIncrementHandler(calculatorSettings.ProgressHandler,
+                                                                        locationDependentInputItems.Count, timeDependentInputItems.Count)
                                                                     : null;
 
             try
@@ -62,7 +54,7 @@ namespace DiKErnel.Core
                                       "not possible; the output of previous time steps is used as input for the next time step, so these " +
                                       "calculations are forced to be performed chronologically.", calculatorSettings);
                 }
-                
+
                 progressIncrementHandler?.ReportCalculationStarted();
 
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
@@ -208,36 +200,48 @@ namespace DiKErnel.Core
             calculatorSettings?.LogHandler?.LogError(message);
         }
 
-        private class ProgressIncrementHandler : Progress<double>
+        private class ProgressIncrementHandler
         {
+            private readonly IProgress<int> progressHandler;
             private readonly double progressIncrementPerLocation;
             private readonly double progressIncrementPerTimeStep;
 
-            public ProgressIncrementHandler(Action<double> progressIncrementAction, double numberOfLocations, double numberOfTimeSteps)
-                : base(progressIncrementAction)
+            private double progress;
+
+            public ProgressIncrementHandler(IProgress<int> progressHandler, double numberOfLocations, double numberOfTimeSteps)
             {
+                this.progressHandler = progressHandler;
                 progressIncrementPerLocation = 1d / numberOfLocations;
                 progressIncrementPerTimeStep = progressIncrementPerLocation / numberOfTimeSteps;
             }
 
             public void ReportCalculationStarted()
             {
-                OnReport(0);
+                UpdateAndReportProgress(0);
             }
 
             public void ReportLocationCalculated()
             {
-                OnReport(progressIncrementPerLocation);
+                UpdateAndReportProgress(progress + progressIncrementPerLocation);
             }
 
             public void ReportTimeStepCalculated()
             {
-                OnReport(progressIncrementPerTimeStep);
+                UpdateAndReportProgress(progress + progressIncrementPerTimeStep);
             }
-            
+
             public void ReportCalculationEnded()
             {
-                OnReport(1);
+                UpdateAndReportProgress(100);
+            }
+
+            private void UpdateAndReportProgress(double updatedProgress)
+            {
+                progress = updatedProgress;
+
+                var percentage = (int) Math.Round(progress * 100);
+
+                progressHandler.Report(percentage);
             }
         }
     }
