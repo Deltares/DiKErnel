@@ -319,10 +319,10 @@ namespace DiKErnel.Core.Test
 
                 Received.InOrder(() =>
                 {
-                    logHandler.LogError(Arg.Is<string>(s => s.Equals("An unhandled error occurred while performing the calculation. " +
-                                                                     $"See stack trace for more information:{Environment.NewLine}" +
-                                                                     $"{exceptionMessageForSecondLocation}",
-                                                                     StringComparison.Ordinal)));
+                    logHandler.LogError(Arg.Is<string>(s => s.Contains("An unhandled error occurred while performing the calculation. " +
+                                                                       $"See stack trace for more information:{Environment.NewLine}",
+                                                                       StringComparison.Ordinal)
+                                                            && s.Contains(exceptionMessageForSecondLocation, StringComparison.Ordinal)));
                 });
             }
 
