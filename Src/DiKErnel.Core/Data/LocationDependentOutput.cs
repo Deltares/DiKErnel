@@ -29,17 +29,26 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Creates a new instance.
         /// </summary>
+        /// <param name="initialDamage">The initial damage.</param>
         /// <param name="timeDependentOutputItems">The time dependent output items of the
         /// location.</param>
-        protected LocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
+        /// <remarks><paramref name="initialDamage"/> is input that is used to derive
+        /// the final output results.</remarks>
+        protected LocationDependentOutput(double initialDamage, IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
             TimeDependentOutputItems = timeDependentOutputItems;
+            CumulativeDamages = GetCumulativeDamages(initialDamage);
         }
 
         /// <summary>
         /// Gets the time dependent output items.
         /// </summary>
         public IReadOnlyList<TimeDependentOutput> TimeDependentOutputItems { get; }
+
+        /// <summary>
+        /// Gets the cumulative damages.
+        /// </summary>
+        public IReadOnlyList<double> CumulativeDamages { get; }
 
         /// <summary>
         /// Gets the cumulative damages.
