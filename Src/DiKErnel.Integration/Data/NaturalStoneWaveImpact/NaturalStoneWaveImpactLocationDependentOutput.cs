@@ -31,8 +31,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         /// <param name="z">The calculated z.</param>
         /// <param name="resistance">The calculated resistance.</param>
         public NaturalStoneWaveImpactLocationDependentOutput(
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double resistance)
-            : base(timeDependentOutputItems)
+            double initialDamage, IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z, double resistance)
+            : base(initialDamage, timeDependentOutputItems)
         {
             Z = z;
             Resistance = resistance;
