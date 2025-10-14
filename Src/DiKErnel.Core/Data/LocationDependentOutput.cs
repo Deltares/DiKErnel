@@ -46,6 +46,7 @@ namespace DiKErnel.Core.Data
             TimeDependentOutputItems = timeDependentOutputItems;
 
             SetCumulativeDamages(initialDamage);
+            SetTimeOfFailure(initialDamage, failureNumber, timeDependentInputItems);
         }
 
         /// <summary>
@@ -59,42 +60,13 @@ namespace DiKErnel.Core.Data
         public IReadOnlyList<double> CumulativeDamages => cumulativeDamages;
 
         /// <summary>
-        /// Gets the time of failure.
-        /// </summary>
-        /// <param name="initialDamage">The initial damage.</param>
-        /// <param name="failureNumber">The failure number.</param>
-        /// <param name="timeDependentInputItems">The time dependent input items.</param>
-        /// <returns>The time of failure for the location dependent output, or <c>null</c> when:
+        /// Gets the time of failure, or <c>null</c> when:
         /// <list type="bullet">
         /// <item>the revetment at the location did not fail;</item>
         /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
         /// </list>
-        /// </returns>
-        public double? GetTimeOfFailure(double initialDamage, double failureNumber,
-                                        IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
-        {
-            if (cumulativeDamages.Any(double.IsNaN))
-            {
-                return null;
-            }
-
-            double damageAtStartOfCalculation = initialDamage;
-
-            for (var i = 0; i < timeDependentInputItems.Count; i++)
-            {
-                double damageAtEndOfCalculation = cumulativeDamages[i];
-
-                if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
-                {
-                    return CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], TimeDependentOutputItems[i],
-                                                  damageAtStartOfCalculation);
-                }
-
-                damageAtStartOfCalculation = damageAtEndOfCalculation;
-            }
-
-            return null;
-        }
+        /// </summary>
+        public double? TimeOfFailure { get; private set; }
 
         /// <summary>
         /// Calculates the time of failure.
@@ -105,8 +77,7 @@ namespace DiKErnel.Core.Data
         /// <param name="damageAtStartOfCalculation">The damage at the start of the calculation.</param>
         /// <returns>The time of failure.</returns>
         protected virtual double CalculateTimeOfFailure(double failureNumber, ITimeDependentInput timeDependentInput,
-                                                        TimeDependentOutput timeDependentOutput,
-                                                        double damageAtStartOfCalculation)
+                                                        TimeDependentOutput timeDependentOutput, double damageAtStartOfCalculation)
         {
             double incrementTime = timeDependentInput.EndTime - timeDependentInput.BeginTime;
             double incrementDamage = timeDependentOutput.IncrementDamage;
@@ -126,6 +97,32 @@ namespace DiKErnel.Core.Data
                 currentDamage += timeDependentOutput.IncrementDamage;
 
                 cumulativeDamages.Add(currentDamage);
+            }
+        }
+
+        private void SetTimeOfFailure(double initialDamage, double failureNumber,
+                                      IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
+        {
+            if (cumulativeDamages.Any(double.IsNaN))
+            {
+                return;
+            }
+
+            double damageAtStartOfCalculation = initialDamage;
+
+            for (var i = 0; i < timeDependentInputItems.Count; i++)
+            {
+                double damageAtEndOfCalculation = cumulativeDamages[i];
+
+                if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
+                {
+                    TimeOfFailure = CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], TimeDependentOutputItems[i],
+                                                           damageAtStartOfCalculation);
+
+                    return;
+                }
+
+                damageAtStartOfCalculation = damageAtEndOfCalculation;
             }
         }
     }
