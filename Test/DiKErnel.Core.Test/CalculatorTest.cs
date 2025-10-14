@@ -564,13 +564,13 @@ namespace DiKErnel.Core.Test
 
             public int NumberOfPerformedTimeSteps { get; private set; }
 
-            public double X => Random.NextDouble();
+            public double X => 0;
 
-            public double Z => Random.NextDouble();
+            public double Z => 0;
 
-            public double InitialDamage => Random.NextDouble();
+            public double InitialDamage => 0;
 
-            public double FailureNumber => Random.NextDouble();
+            public double FailureNumber => 1;
 
             public bool CalculateIsStateful { get; set; }
 
