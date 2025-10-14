@@ -30,9 +30,10 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         /// <param name="z">The calculated z.</param>
         /// <param name="minimumWaveHeight">The calculated minimum wave height.</param>
         /// <param name="maximumWaveHeight">The calculated maximum wave height.</param>
-        public GrassWaveImpactLocationDependentOutput(double initialDamage, IReadOnlyList<TimeDependentOutput> timeDependentOutputItems,
-                                                      double z, double minimumWaveHeight, double maximumWaveHeight)
-            : base(initialDamage, timeDependentOutputItems)
+        public GrassWaveImpactLocationDependentOutput(double initialDamage, double failureNumber,
+                                                      IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z,
+                                                      double minimumWaveHeight, double maximumWaveHeight)
+            : base(initialDamage, failureNumber, timeDependentOutputItems)
         {
             Z = z;
             MinimumWaveHeight = minimumWaveHeight;

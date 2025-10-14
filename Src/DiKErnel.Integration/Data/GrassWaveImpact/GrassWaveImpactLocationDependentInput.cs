@@ -96,7 +96,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
         public override LocationDependentOutput GetLocationDependentOutput(
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new GrassWaveImpactLocationDependentOutput(InitialDamage, timeDependentOutputItems, Z, minimumWaveHeight,
+            return new GrassWaveImpactLocationDependentOutput(InitialDamage, FailureNumber, timeDependentOutputItems, Z, minimumWaveHeight,
                                                               maximumWaveHeight);
         }
 
