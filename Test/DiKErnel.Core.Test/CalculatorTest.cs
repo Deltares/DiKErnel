@@ -150,133 +150,6 @@ namespace DiKErnel.Core.Test
         }
 
         [TestFixture]
-        internal class GivenValidCalculationInputWithStatefulLocation : CalculatorTest
-        {
-            private ILogHandler logHandler;
-            private IProgress<int> progressHandler;
-            private ICalculationInput calculationInput;
-            private CalculatorSettings calculatorSettings;
-
-            [SetUp]
-            public void Arrange()
-            {
-                calculationInput = CreateCalculationInput();
-
-                var secondLocation = (TestLocationDependentCalculationInput) calculationInput.LocationDependentInputItems[1];
-
-                secondLocation.CalculateIsStateful = true;
-
-                logHandler = Substitute.For<ILogHandler>();
-                progressHandler = Substitute.For<IProgress<int>>();
-                calculatorSettings = new CalculatorSettings
-                {
-                    LogHandler = logHandler,
-                    ProgressHandler = progressHandler
-                };
-            }
-
-            [Test, Combinatorial]
-            public void
-                GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenReturnsSuccessResultWithExpectedCalculationOutput(
-                    [Values(false, true)] bool calculateLocationsInParallel,
-                    [Values(false, true)] bool calculateTimeStepsInParallel)
-            {
-                // Given
-                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
-                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
-
-                // When
-                ICalculationResult result = Calculator.Calculate(calculationInput, calculatorSettings);
-
-                // Then
-                Assert.That(result, Is.InstanceOf<SuccessResult>());
-
-                CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
-                Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
-                Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
-            }
-
-            [Test, Combinatorial]
-            public void GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenLogsNoMessages(
-                [Values(false, true)] bool calculateLocationsInParallel,
-                [Values(false, true)] bool calculateTimeStepsInParallel)
-            {
-                // Given
-                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
-                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
-
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
-
-                // Then
-                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
-            }
-
-            [Test]
-            public void GivenCalculatorSettingsWithoutParallelization_WhenCalculate_ThenReportsExpectedProgress()
-            {
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
-
-                // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
-
-                Received.InOrder(() =>
-                {
-                    progressHandler.Report(0);
-                    progressHandler.Report(17);
-                    progressHandler.Report(33);
-                    progressHandler.Report(50);
-                    progressHandler.Report(67);
-                    progressHandler.Report(83);
-                    progressHandler.Report(100);
-                });
-            }
-
-            [Test]
-            public void GivenCalculatorSettingsWithParallelizationForLocations_WhenCalculate_ThenReportsExpectedProgress()
-            {
-                // Given
-                calculatorSettings.CalculateLocationsInParallel = true;
-
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
-
-                // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
-
-                Received.InOrder(() =>
-                {
-                    progressHandler.Report(0);
-                    progressHandler.Report(100);
-                });
-            }
-
-            [Test]
-            public void GivenCalculatorSettingsWithParallelizationForTimeSteps_WhenCalculate_ThenReportsExpectedProgress()
-            {
-                // Given
-                calculatorSettings.CalculateTimeStepsInParallel = true;
-
-                // When
-                Calculator.Calculate(calculationInput, calculatorSettings);
-
-                // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(5));
-
-                Received.InOrder(() =>
-                {
-                    progressHandler.Report(0);
-                    progressHandler.Report(50);
-                    progressHandler.Report(67);
-                    progressHandler.Report(83);
-                    progressHandler.Report(100);
-                });
-            }
-        }
-
-        [TestFixture]
         internal class GivenValidCalculationInputAndCancelCondition : CalculatorTest
         {
             private ILogHandler logHandler;
@@ -386,6 +259,155 @@ namespace DiKErnel.Core.Test
                 {
                     progressHandler.Report(0);
                     progressHandler.Report(50);
+                });
+            }
+        }
+
+        [TestFixture]
+        internal class GivenValidCalculationInputWithStatefulLocation : CalculatorTest
+        {
+            private ILogHandler logHandler;
+            private IProgress<int> progressHandler;
+            private ICalculationInput calculationInput;
+            private CalculatorSettings calculatorSettings;
+
+            [SetUp]
+            public void Arrange()
+            {
+                calculationInput = CreateCalculationInput();
+
+                var secondLocation = (TestLocationDependentCalculationInput) calculationInput.LocationDependentInputItems[1];
+
+                secondLocation.CalculateIsStateful = true;
+
+                logHandler = Substitute.For<ILogHandler>();
+                progressHandler = Substitute.For<IProgress<int>>();
+                calculatorSettings = new CalculatorSettings
+                {
+                    LogHandler = logHandler,
+                    ProgressHandler = progressHandler
+                };
+            }
+
+            [Test, Combinatorial]
+            public void
+                GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenReturnsSuccessResultWithExpectedCalculationOutput(
+                    [Values(false, true)] bool calculateLocationsInParallel,
+                    [Values(false, true)] bool calculateTimeStepsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
+
+                // When
+                ICalculationResult result = Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(result, Is.InstanceOf<SuccessResult>());
+
+                CalculationOutput output = ((SuccessResult) result).CalculationOutput;
+                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
+                Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
+            }
+
+            [Test, Combinatorial]
+            public void GivenCalculatorSettingsWithoutParallelizationForTimeSteps_WhenCalculate_ThenLogsNoMessages(
+                [Values(false, true)] bool calculateLocationsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
+            }
+
+            [Test, Combinatorial]
+            public void GivenCalculatorSettingsWithParallelizationForTimeSteps_WhenCalculate_ThenLogsExpectedMessage(
+                [Values(false, true)] bool calculateLocationsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
+
+                Received.InOrder(() =>
+                {
+                    logHandler.LogWarning(Arg.Is<string>(s => s.Equals("The calculation is configured to run time steps in parallel but " +
+                                                                       "for on or more locations this is not possible; the output of " +
+                                                                       "previous time steps is used as input for the next time step, so " +
+                                                                       "these calculations are forced to be performed chronologically.",
+                                                                       StringComparison.Ordinal)));
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithoutParallelization_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(17);
+                    progressHandler.Report(33);
+                    progressHandler.Report(50);
+                    progressHandler.Report(67);
+                    progressHandler.Report(83);
+                    progressHandler.Report(100);
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForLocations_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(100);
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForTimeSteps_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateTimeStepsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(5));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(50);
+                    progressHandler.Report(67);
+                    progressHandler.Report(83);
+                    progressHandler.Report(100);
                 });
             }
         }
