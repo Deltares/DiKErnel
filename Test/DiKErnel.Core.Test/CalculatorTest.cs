@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DiKErnel.Core.Data;
 using NSubstitute;
-using NSubstitute.Core;
 using NUnit.Framework;
 using Random = DiKErnel.TestUtil.Random;
 
@@ -33,10 +32,10 @@ namespace DiKErnel.Core.Test
         [TestFixture]
         internal class GivenValidCalculationInput : CalculatorTest
         {
-            private ILogHandler logHandler;
-            private IProgress<int> progressHandler;
-            private ICalculationInput calculationInput;
-            private CalculatorSettings calculatorSettings;
+            private static ILogHandler logHandler;
+            private static IProgress<int> progressHandler;
+            private static ICalculationInput calculationInput;
+            private static CalculatorSettings calculatorSettings;
 
             [SetUp]
             public virtual void Arrange()
@@ -51,28 +50,46 @@ namespace DiKErnel.Core.Test
                 };
             }
 
+            [Test, Combinatorial]
+            public static void WhenCalculate_ThenReturnsSuccessResultWithExpectedCalculationOutput(
+                [Values(false, true)] bool calculateLocationsInParallel,
+                [Values(false, true)] bool calculateTimeStepsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
+
+                // When
+                ICalculationResult result = Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(result, Is.InstanceOf<SuccessResult>());
+
+                CalculationOutput output = ((SuccessResult) result).CalculationOutput;
+                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
+                Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
+            }
+
+            [Test, Combinatorial]
+            public static void WhenCalculate_ThenLogsExpectedMessages(
+                [Values(false, true)] bool calculateLocationsInParallel,
+                [Values(false, true)] bool calculateTimeStepsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
+            }
+
             [TestFixture]
             internal sealed class WhenCalculate : GivenValidCalculationInput
             {
-                private ICalculationResult result;
-
-                [Test]
-                public void ThenReturnsSuccessResultWithExpectedCalculationOutput()
-                {
-                    Assert.That(result, Is.InstanceOf<SuccessResult>());
-
-                    CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-                    Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
-                    Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
-                    Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
-                }
-
-                [Test]
-                public void ThenLogsExpectedMessages()
-                {
-                    Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
-                }
-
                 [Test]
                 public void ThenReportsExpectedProgress()
                 {
@@ -94,7 +111,7 @@ namespace DiKErnel.Core.Test
                 {
                     base.Arrange();
 
-                    result = Calculator.Calculate(calculationInput, calculatorSettings);
+                    Calculator.Calculate(calculationInput, calculatorSettings);
                 }
             }
 
