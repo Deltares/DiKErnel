@@ -26,6 +26,8 @@ namespace DiKErnel.Core.Data
     /// </summary>
     public abstract class LocationDependentOutput
     {
+        private List<double> cumulativeDamages;
+
         /// <summary>
         /// Creates a new instance.
         /// </summary>
@@ -37,7 +39,8 @@ namespace DiKErnel.Core.Data
         protected LocationDependentOutput(double initialDamage, IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
             TimeDependentOutputItems = timeDependentOutputItems;
-            CumulativeDamages = GetCumulativeDamages(initialDamage);
+
+            SetCumulativeDamages(initialDamage);
         }
 
         /// <summary>
@@ -48,28 +51,7 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Gets the cumulative damages.
         /// </summary>
-        public IReadOnlyList<double> CumulativeDamages { get; }
-
-        /// <summary>
-        /// Gets the cumulative damages.
-        /// </summary>
-        /// <param name="initialDamage">The initial damage.</param>
-        /// <returns>The cumulative damages for the location dependent output.</returns>
-        public IReadOnlyList<double> GetCumulativeDamages(double initialDamage)
-        {
-            var cumulativeDamages = new List<double>();
-
-            double currentDamage = initialDamage;
-
-            foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
-            {
-                currentDamage += timeDependentOutput.IncrementDamage;
-
-                cumulativeDamages.Add(currentDamage);
-            }
-
-            return cumulativeDamages;
-        }
+        public IReadOnlyList<double> CumulativeDamages => cumulativeDamages;
 
         /// <summary>
         /// Gets the time of failure.
@@ -86,8 +68,6 @@ namespace DiKErnel.Core.Data
         public double? GetTimeOfFailure(double initialDamage, double failureNumber,
                                         IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
         {
-            IReadOnlyList<double> cumulativeDamages = GetCumulativeDamages(initialDamage);
-
             if (cumulativeDamages.Any(double.IsNaN))
             {
                 return null;
@@ -128,6 +108,20 @@ namespace DiKErnel.Core.Data
             double durationInTimeStepFailure = (failureNumber - damageAtStartOfCalculation) / incrementDamage * incrementTime;
 
             return timeDependentInput.BeginTime + durationInTimeStepFailure;
+        }
+
+        private void SetCumulativeDamages(double initialDamage)
+        {
+            cumulativeDamages = new List<double>();
+
+            double currentDamage = initialDamage;
+
+            foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
+            {
+                currentDamage += timeDependentOutput.IncrementDamage;
+
+                cumulativeDamages.Add(currentDamage);
+            }
         }
     }
 }

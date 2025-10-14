@@ -74,11 +74,9 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the damage is (.*)")]
         public void ThenTheDamageIs(double expectedDamage)
         {
-            var locationDependentInput = (ILocationDependentInput) context[GeneralDefinitions.LocationDependentInput];
             var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutput];
 
-            IReadOnlyList<double> cumulativeDamages = locationDependentOutput.GetCumulativeDamages(locationDependentInput.InitialDamage);
-            double actualDamage = cumulativeDamages[cumulativeDamages.Count - 1];
+            double actualDamage = locationDependentOutput.CumulativeDamages[^1];
             Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(Tolerance));
         }
 
