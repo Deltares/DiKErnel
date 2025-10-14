@@ -450,7 +450,7 @@ namespace DiKErnel.Core.Test
 
             public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
             {
-                return Substitute.For<LocationDependentOutput>(timeDependentOutputItems);
+                return Substitute.For<LocationDependentOutput>(InitialDamage, timeDependentOutputItems);
             }
         }
     }
