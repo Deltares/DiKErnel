@@ -29,8 +29,9 @@ namespace DiKErnel.Integration.Data.Grass
         /// <inheritdoc/>
         /// <param name="z">The calculated z.</param>
         public GrassCumulativeOverloadLocationDependentOutput(
-            double initialDamage, double failureNumber, IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
-            : base(initialDamage, failureNumber, timeDependentOutputItems)
+            double initialDamage, double failureNumber, IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z)
+            : base(initialDamage, failureNumber, timeDependentInputItems, timeDependentOutputItems)
         {
             Z = z;
         }

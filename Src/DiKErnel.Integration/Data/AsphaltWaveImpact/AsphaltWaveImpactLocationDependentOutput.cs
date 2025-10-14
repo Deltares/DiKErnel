@@ -34,10 +34,11 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
         /// <param name="computationalThickness">The calculated computational thickness.</param>
         /// <param name="equivalentElasticModulus">The calculated equivalent elastic modulus.</param>
         public AsphaltWaveImpactLocationDependentOutput(double initialDamage, double failureNumber,
+                                                        IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                                         IReadOnlyList<TimeDependentOutput> timeDependentOutputItems, double z,
                                                         double outerSlope, double logFlexuralStrength, double stiffnessRelation,
                                                         double computationalThickness, double equivalentElasticModulus)
-            : base(initialDamage, failureNumber, timeDependentOutputItems)
+            : base(initialDamage, failureNumber, timeDependentInputItems, timeDependentOutputItems)
         {
             Z = z;
             OuterSlope = outerSlope;
