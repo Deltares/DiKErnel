@@ -52,7 +52,7 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
         }
 
         [Test]
-        public void GivenNaturalStoneWaveImpactLocationDependentOutput_WhenGetTimeOfFailure_ThenExpectedValue()
+        public void GivenNaturalStoneWaveImpactLocationDependentOutput_ThenTimeOfFailureHasExpectedValue()
         {
             // Given
             const double initialDamage = 0.2;
@@ -66,11 +66,8 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
                                                                                             timeDependentInputItems, incrementDamage1,
                                                                                             incrementDamage2);
 
-            // When
-            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure(initialDamage, failureNumber, timeDependentInputItems);
-
             // Then
-            Assert.That(timeOfFailure, Is.EqualTo(280).Within(1.0e-1));
+            Assert.That(locationDependentOutput.TimeOfFailure, Is.EqualTo(280).Within(1.0e-1));
         }
 
         private static NaturalStoneWaveImpactLocationDependentOutput CreateLocationDependentOutput(

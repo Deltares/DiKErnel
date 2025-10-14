@@ -31,8 +31,8 @@ namespace DiKErnel.Core.Data
         /// <summary>
         /// Creates a new instance.
         /// </summary>
-        /// <param name="initialDamage">The initial damage of the location.</param>
-        /// <param name="failureNumber">The failure number of the location.</param>
+        /// <param name="initialDamage">The initial damage.</param>
+        /// <param name="failureNumber">The failure number.</param>
         /// <param name="timeDependentInputItems">The time dependent input items.</param>
         /// <param name="timeDependentOutputItems">The time dependent output items of the
         /// location.</param>

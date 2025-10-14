@@ -70,7 +70,7 @@ namespace DiKErnel.Core.Test.Data
         [TestCase(0.2, 0.4, 0.1, 200)]
         [TestCase(0.2, 0.1, 0.2, null)]
         [TestCase(0.6, 0.1, 0.1, null)]
-        public void GivenLocationDependentOutput_WhenGetTimeOfFailure_ThenExpectedValue(
+        public void GivenLocationDependentOutput_ThenTimeOfFailureHasExpectedValue(
             double initialDamage, double incrementDamage1, double incrementDamage2, double? expectedTimeOfFailure)
         {
             // Given
@@ -81,11 +81,8 @@ namespace DiKErnel.Core.Test.Data
             LocationDependentOutput locationDependentOutput =
                 CreateLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems, incrementDamage1, incrementDamage2);
 
-            // When
-            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure(initialDamage, failureNumber, timeDependentInputItems);
-
             // Then
-            Assert.That(timeOfFailure, Is.EqualTo(expectedTimeOfFailure).Within(1.0e-13));
+            Assert.That(locationDependentOutput.TimeOfFailure, Is.EqualTo(expectedTimeOfFailure).Within(1.0e-13));
         }
 
         private static TestLocationDependentOutput CreateLocationDependentOutput(double initialDamage, double failureNumber,
