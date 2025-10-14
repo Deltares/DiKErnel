@@ -68,15 +68,15 @@ namespace DiKErnel.Core
                     return new CancellationResult();
                 }
 
+                if (!ShouldCancel(calculatorSettings) && ShouldCalculateLocationsInParallel(calculatorSettings))
+                {
+                    progressIncrementHandler?.ReportCalculationEnded();
+                }
+
                 List<LocationDependentOutput> locationDependentOutputItems =
                     locationDependentInputItems
                         .Select(ldi => ldi.GetLocationDependentOutput(timeDependentInputItems, timeDependentOutputItemsPerLocation[ldi]))
                         .ToList();
-
-                if (ShouldCalculateLocationsInParallel(calculatorSettings))
-                {
-                    progressIncrementHandler?.ReportCalculationEnded();
-                }
 
                 return new SuccessResult(new CalculationOutput(locationDependentOutputItems));
             }
@@ -223,7 +223,6 @@ namespace DiKErnel.Core
             private readonly double progressIncrementPerTimeStep;
 
             private double progress;
-            private int reportedProgress = -1;
 
             public ProgressIncrementHandler(IProgress<int> progressHandler, double numberOfLocations, double numberOfTimeSteps)
             {
@@ -256,16 +255,9 @@ namespace DiKErnel.Core
             {
                 progress = progressToSet;
 
-                var progressToReport = (int) Math.Round(progress * 100);
+                var percentage = (int) Math.Round(progress * 100);
 
-                if (progressToReport == reportedProgress)
-                {
-                    return;
-                }
-
-                progressHandler.Report(progressToReport);
-
-                reportedProgress = progressToReport;
+                progressHandler.Report(percentage);
             }
         }
     }
