@@ -16,12 +16,13 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data.NaturalStoneWaveImpact;
-using DiKErnel.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
 {
@@ -34,13 +35,14 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
             // Setup
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();
+            ITimeDependentInput[] timeDependentInputItems = Array.Empty<ITimeDependentInput>();
             double z = Random.NextDouble();
             double resistance = Random.NextDouble();
-            var timeDependentOutputItems = new List<TimeDependentOutput>();
+            TimeDependentOutput[] timeDependentOutputItems = Array.Empty<TimeDependentOutput>();
 
             // Call
-            var output = new NaturalStoneWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems, z,
-                                                                           resistance);
+            var output = new NaturalStoneWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems,
+                                                                           timeDependentOutputItems, z, resistance);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

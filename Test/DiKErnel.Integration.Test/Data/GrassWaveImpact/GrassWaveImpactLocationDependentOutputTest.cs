@@ -16,11 +16,11 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
+using System;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data.GrassWaveImpact;
-using DiKErnel.TestUtil;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
 {
@@ -33,14 +33,15 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
             // Setup
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();
+            ITimeDependentInput[] timeDependentInputItems = Array.Empty<ITimeDependentInput>();
             double z = Random.NextDouble();
             double minimumWaveHeight = Random.NextDouble();
             double maximumWaveHeight = Random.NextDouble();
-            var timeDependentOutputItems = new List<TimeDependentOutput>();
+            TimeDependentOutput[] timeDependentOutputItems = Array.Empty<TimeDependentOutput>();
 
             // Call
-            var output = new GrassWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems, z,
-                                                                    minimumWaveHeight, maximumWaveHeight);
+            var output = new GrassWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems,
+                                                                    timeDependentOutputItems, z, minimumWaveHeight, maximumWaveHeight);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

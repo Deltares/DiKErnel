@@ -16,11 +16,11 @@
 // All names, logos, and references to "Deltares" are registered trademarks of Stichting
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
-using System.Collections.Generic;
+using System;
 using DiKErnel.Core.Data;
 using DiKErnel.Integration.Data.AsphaltWaveImpact;
-using DiKErnel.TestUtil;
 using NUnit.Framework;
+using Random = DiKErnel.TestUtil.Random;
 
 namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
 {
@@ -33,18 +33,19 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             // Setup
             double initialDamage = Random.NextDouble();
             double failureNumber = Random.NextDouble();
+            ITimeDependentInput[] timeDependentInputItems = Array.Empty<ITimeDependentInput>();
             double z = Random.NextDouble();
             double outerSlope = Random.NextDouble();
             double logFlexuralStrength = Random.NextDouble();
             double stiffnessRelation = Random.NextDouble();
             double computationalThickness = Random.NextDouble();
             double equivalentElasticModulus = Random.NextDouble();
-            var timeDependentOutputItems = new List<TimeDependentOutput>();
+            TimeDependentOutput[] timeDependentOutputItems = Array.Empty<TimeDependentOutput>();
 
             // Call
-            var output = new AsphaltWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems, z, outerSlope,
-                                                                      logFlexuralStrength, stiffnessRelation, computationalThickness,
-                                                                      equivalentElasticModulus);
+            var output = new AsphaltWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems,
+                                                                      timeDependentOutputItems, z, outerSlope, logFlexuralStrength,
+                                                                      stiffnessRelation, computationalThickness, equivalentElasticModulus);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());
