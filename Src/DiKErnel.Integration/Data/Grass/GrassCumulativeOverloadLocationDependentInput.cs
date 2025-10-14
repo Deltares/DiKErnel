@@ -85,9 +85,11 @@ namespace DiKErnel.Integration.Data.Grass
         }
 
         public override LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new GrassCumulativeOverloadLocationDependentOutput(InitialDamage, FailureNumber, timeDependentOutputItems, Z);
+            return new GrassCumulativeOverloadLocationDependentOutput(InitialDamage, FailureNumber, timeDependentInputItems,
+                                                                      timeDependentOutputItems, Z);
         }
 
         protected double DikeHeight { get; private set; } = double.NaN;

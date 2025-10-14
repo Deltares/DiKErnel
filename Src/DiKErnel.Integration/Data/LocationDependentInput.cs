@@ -77,6 +77,7 @@ namespace DiKErnel.Integration.Data
         }
 
         public abstract LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
 
         protected abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,

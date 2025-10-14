@@ -111,9 +111,11 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
         }
 
         public override LocationDependentOutput GetLocationDependentOutput(
+            IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
             IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
-            return new NaturalStoneWaveImpactLocationDependentOutput(InitialDamage, FailureNumber, timeDependentOutputItems, Z, resistance);
+            return new NaturalStoneWaveImpactLocationDependentOutput(InitialDamage, FailureNumber, timeDependentInputItems,
+                                                                     timeDependentOutputItems, Z, resistance);
         }
 
         protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
