@@ -26,7 +26,13 @@ namespace DiKErnel.Core.Data
     /// </summary>
     public abstract class LocationDependentOutput
     {
+        private readonly double initialDamage;
+        private readonly double failureNumber;
+        private readonly IReadOnlyList<ITimeDependentInput> timeDependentInputItems;
+
         private List<double> cumulativeDamages;
+        private bool timeOfFailureIsSet;
+        private double? timeOfFailure;
 
         /// <summary>
         /// Creates a new instance.
@@ -43,10 +49,13 @@ namespace DiKErnel.Core.Data
                                           IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                           IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
         {
+            this.initialDamage = initialDamage;
+            this.failureNumber = failureNumber;
+            this.timeDependentInputItems = timeDependentInputItems;
+
             TimeDependentOutputItems = timeDependentOutputItems;
 
-            SetCumulativeDamages(initialDamage);
-            SetTimeOfFailure(initialDamage, failureNumber, timeDependentInputItems);
+            SetCumulativeDamages();
         }
 
         /// <summary>
@@ -66,7 +75,22 @@ namespace DiKErnel.Core.Data
         /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
         /// </list>
         /// </summary>
-        public double? TimeOfFailure { get; private set; }
+        public double? TimeOfFailure
+        {
+            get
+            {
+                if (timeOfFailureIsSet)
+                {
+                    return timeOfFailure;
+                }
+
+                SetTimeOfFailure();
+
+                timeOfFailureIsSet = true;
+
+                return timeOfFailure;
+            }
+        }
 
         /// <summary>
         /// Calculates the time of failure.
@@ -86,7 +110,7 @@ namespace DiKErnel.Core.Data
             return timeDependentInput.BeginTime + durationInTimeStepFailure;
         }
 
-        private void SetCumulativeDamages(double initialDamage)
+        private void SetCumulativeDamages()
         {
             cumulativeDamages = new List<double>();
 
@@ -100,8 +124,7 @@ namespace DiKErnel.Core.Data
             }
         }
 
-        private void SetTimeOfFailure(double initialDamage, double failureNumber,
-                                      IReadOnlyList<ITimeDependentInput> timeDependentInputItems)
+        private void SetTimeOfFailure()
         {
             if (cumulativeDamages.Any(double.IsNaN))
             {
@@ -116,7 +139,7 @@ namespace DiKErnel.Core.Data
 
                 if (damageAtStartOfCalculation < failureNumber && damageAtEndOfCalculation >= failureNumber)
                 {
-                    TimeOfFailure = CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], TimeDependentOutputItems[i],
+                    timeOfFailure = CalculateTimeOfFailure(failureNumber, timeDependentInputItems[i], TimeDependentOutputItems[i],
                                                            damageAtStartOfCalculation);
 
                     return;
