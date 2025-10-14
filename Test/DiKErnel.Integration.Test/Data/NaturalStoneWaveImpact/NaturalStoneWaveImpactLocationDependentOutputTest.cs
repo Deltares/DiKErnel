@@ -33,12 +33,14 @@ namespace DiKErnel.Integration.Test.Data.NaturalStoneWaveImpact
         {
             // Setup
             double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
             double z = Random.NextDouble();
             double resistance = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new NaturalStoneWaveImpactLocationDependentOutput(initialDamage, timeDependentOutputItems, z, resistance);
+            var output = new NaturalStoneWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems, z,
+                                                                           resistance);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

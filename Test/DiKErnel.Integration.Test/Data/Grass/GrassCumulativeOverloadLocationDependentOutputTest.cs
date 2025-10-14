@@ -32,11 +32,12 @@ namespace DiKErnel.Integration.Test.Data.Grass
         {
             // Setup
             double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
             double z = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassCumulativeOverloadLocationDependentOutput(initialDamage, timeDependentOutputItems, z);
+            var output = new GrassCumulativeOverloadLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems, z);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

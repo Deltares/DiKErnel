@@ -32,14 +32,15 @@ namespace DiKErnel.Integration.Test.Data.GrassWaveImpact
         {
             // Setup
             double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
             double z = Random.NextDouble();
             double minimumWaveHeight = Random.NextDouble();
             double maximumWaveHeight = Random.NextDouble();
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new GrassWaveImpactLocationDependentOutput(initialDamage, timeDependentOutputItems, z, minimumWaveHeight,
-                                                                    maximumWaveHeight);
+            var output = new GrassWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems, z,
+                                                                    minimumWaveHeight, maximumWaveHeight);
 
             // Assert
             Assert.That(output, Is.InstanceOf<LocationDependentOutput>());

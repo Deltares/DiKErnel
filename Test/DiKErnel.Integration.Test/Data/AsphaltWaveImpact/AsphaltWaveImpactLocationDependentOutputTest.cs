@@ -32,6 +32,7 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
         {
             // Setup
             double initialDamage = Random.NextDouble();
+            double failureNumber = Random.NextDouble();
             double z = Random.NextDouble();
             double outerSlope = Random.NextDouble();
             double logFlexuralStrength = Random.NextDouble();
@@ -41,7 +42,7 @@ namespace DiKErnel.Integration.Test.Data.AsphaltWaveImpact
             var timeDependentOutputItems = new List<TimeDependentOutput>();
 
             // Call
-            var output = new AsphaltWaveImpactLocationDependentOutput(initialDamage, timeDependentOutputItems, z, outerSlope,
+            var output = new AsphaltWaveImpactLocationDependentOutput(initialDamage, failureNumber, timeDependentOutputItems, z, outerSlope,
                                                                       logFlexuralStrength, stiffnessRelation, computationalThickness,
                                                                       equivalentElasticModulus);
 
