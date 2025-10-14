@@ -67,9 +67,10 @@ namespace DiKErnel.Core.Test
                 Assert.That(result, Is.InstanceOf<SuccessResult>());
 
                 CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
+                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(3));
                 Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
                 Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[2].TimeDependentOutputItems, Has.Count.EqualTo(3));
             }
 
             [Test, Combinatorial]
@@ -95,16 +96,19 @@ namespace DiKErnel.Core.Test
                 Calculator.Calculate(calculationInput, calculatorSettings);
 
                 // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(10));
 
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(17);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
                     progressHandler.Report(33);
-                    progressHandler.Report(50);
+                    progressHandler.Report(44);
+                    progressHandler.Report(56);
                     progressHandler.Report(67);
-                    progressHandler.Report(83);
+                    progressHandler.Report(78);
+                    progressHandler.Report(89);
                     progressHandler.Report(100);
                 });
             }
@@ -138,12 +142,13 @@ namespace DiKErnel.Core.Test
                 Calculator.Calculate(calculationInput, calculatorSettings);
 
                 // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(3));
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
 
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(50);
+                    progressHandler.Report(33);
+                    progressHandler.Report(67);
                     progressHandler.Report(100);
                 });
             }
@@ -218,10 +223,10 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(17);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
                     progressHandler.Report(33);
-                    progressHandler.Report(50);
-                    progressHandler.Report(67);
+                    progressHandler.Report(44);
                 });
             }
 
@@ -258,7 +263,161 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(50);
+                    progressHandler.Report(33);
+                });
+            }
+        }
+
+        [TestFixture]
+        internal class GivenValidCalculationInputWithStatefulLocation : CalculatorTest
+        {
+            private ILogHandler logHandler;
+            private IProgress<int> progressHandler;
+            private ICalculationInput calculationInput;
+            private CalculatorSettings calculatorSettings;
+
+            [SetUp]
+            public void Arrange()
+            {
+                calculationInput = CreateCalculationInput();
+
+                var secondLocation = (TestLocationDependentCalculationInput) calculationInput.LocationDependentInputItems[1];
+
+                secondLocation.CalculateIsStateful = true;
+
+                logHandler = Substitute.For<ILogHandler>();
+                progressHandler = Substitute.For<IProgress<int>>();
+                calculatorSettings = new CalculatorSettings
+                {
+                    LogHandler = logHandler,
+                    ProgressHandler = progressHandler
+                };
+            }
+
+            [Test, Combinatorial]
+            public void
+                GivenCalculatorSettingsWithAnyParallelizationConfiguration_WhenCalculate_ThenReturnsSuccessResultWithExpectedCalculationOutput(
+                    [Values(false, true)] bool calculateLocationsInParallel,
+                    [Values(false, true)] bool calculateTimeStepsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = calculateTimeStepsInParallel;
+
+                // When
+                ICalculationResult result = Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(result, Is.InstanceOf<SuccessResult>());
+
+                CalculationOutput output = ((SuccessResult) result).CalculationOutput;
+                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[2].TimeDependentOutputItems, Has.Count.EqualTo(3));
+            }
+
+            [Test, Combinatorial]
+            public void GivenCalculatorSettingsWithoutParallelizationForTimeSteps_WhenCalculate_ThenLogsNoMessages(
+                [Values(false, true)] bool calculateLocationsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(0));
+            }
+
+            [Test, Combinatorial]
+            public void GivenCalculatorSettingsWithParallelizationForTimeSteps_WhenCalculate_ThenLogsExpectedMessage(
+                [Values(false, true)] bool calculateLocationsInParallel)
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = calculateLocationsInParallel;
+                calculatorSettings.CalculateTimeStepsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(logHandler.ReceivedCalls().Count(), Is.EqualTo(1));
+
+                Received.InOrder(() =>
+                {
+                    logHandler.LogWarning(Arg.Is<string>(s => s.Equals("The calculation is configured to run time steps in parallel but " +
+                                                                       "for on or more locations this is not possible; the output of " +
+                                                                       "previous time steps is used as input for the next time step, so " +
+                                                                       "these calculations are forced to be performed chronologically.",
+                                                                       StringComparison.Ordinal)));
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithoutParallelization_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(10));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
+                    progressHandler.Report(33);
+                    progressHandler.Report(44);
+                    progressHandler.Report(56);
+                    progressHandler.Report(67);
+                    progressHandler.Report(78);
+                    progressHandler.Report(89);
+                    progressHandler.Report(100);
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForLocations_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(100);
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForTimeSteps_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateTimeStepsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(6));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(33);
+                    progressHandler.Report(44);
+                    progressHandler.Report(56);
+                    progressHandler.Report(67);
+                    progressHandler.Report(100);
                 });
             }
         }
@@ -275,8 +434,13 @@ namespace DiKErnel.Core.Test
             [SetUp]
             public void Arrange()
             {
+                calculationInput = CreateCalculationInput();
+
+                var secondLocation = (TestLocationDependentCalculationInput) calculationInput.LocationDependentInputItems[1];
+
                 exceptionMessageForSecondLocation = Random.NextString();
-                calculationInput = CreateCalculationInput(exceptionMessageForSecondLocation);
+                secondLocation.SetExceptionMessage(exceptionMessageForSecondLocation);
+
                 logHandler = Substitute.For<ILogHandler>();
                 progressHandler = Substitute.For<IProgress<int>>();
                 calculatorSettings = new CalculatorSettings
@@ -338,9 +502,9 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(17);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
                     progressHandler.Report(33);
-                    progressHandler.Report(50);
                 });
             }
 
@@ -377,12 +541,12 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(50);
+                    progressHandler.Report(33);
                 });
             }
         }
 
-        private static ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
+        private static ICalculationInput CreateCalculationInput()
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -391,7 +555,8 @@ namespace DiKErnel.Core.Test
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
                 new TestLocationDependentCalculationInput(),
-                new TestLocationDependentCalculationInput(exceptionMessageForSecondLocation)
+                new TestLocationDependentCalculationInput(),
+                new TestLocationDependentCalculationInput()
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -406,24 +571,24 @@ namespace DiKErnel.Core.Test
 
         private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
-            private readonly string exceptionMessage;
-
-            public TestLocationDependentCalculationInput(string exceptionMessage = null)
-            {
-                this.exceptionMessage = exceptionMessage;
-            }
+            private string exceptionMessage;
 
             public int NumberOfPerformedTimeSteps { get; private set; }
 
-            public double X => 0;
+            public double X => Random.NextDouble();
 
-            public double Z => 0;
+            public double Z => Random.NextDouble();
 
-            public double InitialDamage => 0;
+            public double InitialDamage => Random.NextDouble();
 
-            public double FailureNumber => 1;
+            public double FailureNumber => Random.NextDouble();
 
-            public bool CalculateIsStateful => false;
+            public bool CalculateIsStateful { get; set; }
+
+            public void SetExceptionMessage(string message)
+            {
+                exceptionMessage = message;
+            }
 
             public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
             {
@@ -451,17 +616,9 @@ namespace DiKErnel.Core.Test
             public LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
                                                                       IReadOnlyList<TimeDependentOutput> timeDependentOutputItems)
             {
-                return new TestLocationDependentOutput(InitialDamage, FailureNumber, timeDependentInputItems,
-                                                       timeDependentOutputItems);
+                return Substitute.For<LocationDependentOutput>(InitialDamage, FailureNumber, timeDependentInputItems,
+                                                               timeDependentOutputItems);
             }
-        }
-
-        private sealed class TestLocationDependentOutput : LocationDependentOutput
-        {
-            public TestLocationDependentOutput(double initialDamage, double failureNumber,
-                                               IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
-                                               IReadOnlyList<TimeDependentOutput> timeDependentOutputItems) : base(
-                initialDamage, failureNumber, timeDependentInputItems, timeDependentOutputItems) {}
         }
     }
 }

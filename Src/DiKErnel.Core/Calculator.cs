@@ -35,6 +35,8 @@ namespace DiKErnel.Core
         /// <param name="calculationInput">The input used for the calculation.</param>
         /// <param name="calculatorSettings">The settings used for the calculation (optional).</param>
         /// <returns>The result of the calculation.</returns>
+        /// <remarks>When a <see cref="CalculatorSettings.LogHandler"/> is provided, progress
+        /// will only be reported for the calculation parts that are not run in parallel.</remarks>
         public static ICalculationResult Calculate(ICalculationInput calculationInput, CalculatorSettings calculatorSettings = null)
         {
             try
