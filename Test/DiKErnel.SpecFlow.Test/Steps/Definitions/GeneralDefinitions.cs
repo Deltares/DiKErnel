@@ -20,8 +20,6 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
     internal static class GeneralDefinitions
     {
-        public const string LocationDependentInput = "Location dependent input";
-        public const string TimeDependentInput = "Time dependent input";
         public const string LocationDependentOutput = "Location dependent output";
 
         public const string NotApplicable = "N.A.";

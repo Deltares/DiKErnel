@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DiKErnel.Core.Data;
@@ -83,13 +82,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the rounded time of failure is (.*)")]
         public void ThenTheRoundedTimeOfFailureIs(string expectedValue)
         {
-            var locationDependentInput = (ILocationDependentInput) context[GeneralDefinitions.LocationDependentInput];
-            var timeDependentInputItems = (IReadOnlyList<ITimeDependentInput>) context[GeneralDefinitions.TimeDependentInput];
             var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutput];
 
             int? roundedTimeOfFailure = null;
-            double? timeOfFailure = locationDependentOutput.GetTimeOfFailure(
-                locationDependentInput.InitialDamage, locationDependentInput.FailureNumber, timeDependentInputItems);
+            double? timeOfFailure = locationDependentOutput.TimeOfFailure;
 
             if (timeOfFailure.HasValue)
             {
