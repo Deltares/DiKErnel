@@ -67,9 +67,10 @@ namespace DiKErnel.Core.Test
                 Assert.That(result, Is.InstanceOf<SuccessResult>());
 
                 CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
+                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(3));
                 Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
                 Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[2].TimeDependentOutputItems, Has.Count.EqualTo(3));
             }
 
             [Test, Combinatorial]
@@ -95,16 +96,19 @@ namespace DiKErnel.Core.Test
                 Calculator.Calculate(calculationInput, calculatorSettings);
 
                 // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(10));
 
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(17);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
                     progressHandler.Report(33);
-                    progressHandler.Report(50);
+                    progressHandler.Report(44);
+                    progressHandler.Report(56);
                     progressHandler.Report(67);
-                    progressHandler.Report(83);
+                    progressHandler.Report(78);
+                    progressHandler.Report(89);
                     progressHandler.Report(100);
                 });
             }
@@ -138,12 +142,13 @@ namespace DiKErnel.Core.Test
                 Calculator.Calculate(calculationInput, calculatorSettings);
 
                 // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(3));
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
 
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(50);
+                    progressHandler.Report(33);
+                    progressHandler.Report(67);
                     progressHandler.Report(100);
                 });
             }
@@ -218,10 +223,10 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(17);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
                     progressHandler.Report(33);
-                    progressHandler.Report(50);
-                    progressHandler.Report(67);
+                    progressHandler.Report(44);
                 });
             }
 
@@ -258,7 +263,7 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(50);
+                    progressHandler.Report(33);
                 });
             }
         }
@@ -306,9 +311,10 @@ namespace DiKErnel.Core.Test
                 Assert.That(result, Is.InstanceOf<SuccessResult>());
 
                 CalculationOutput output = ((SuccessResult) result).CalculationOutput;
-                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(2));
+                Assert.That(output.LocationDependentOutputItems, Has.Count.EqualTo(3));
                 Assert.That(output.LocationDependentOutputItems[0].TimeDependentOutputItems, Has.Count.EqualTo(3));
                 Assert.That(output.LocationDependentOutputItems[1].TimeDependentOutputItems, Has.Count.EqualTo(3));
+                Assert.That(output.LocationDependentOutputItems[2].TimeDependentOutputItems, Has.Count.EqualTo(3));
             }
 
             [Test, Combinatorial]
@@ -356,16 +362,19 @@ namespace DiKErnel.Core.Test
                 Calculator.Calculate(calculationInput, calculatorSettings);
 
                 // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(7));
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(10));
 
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(17);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
                     progressHandler.Report(33);
-                    progressHandler.Report(50);
+                    progressHandler.Report(44);
+                    progressHandler.Report(56);
                     progressHandler.Report(67);
-                    progressHandler.Report(83);
+                    progressHandler.Report(78);
+                    progressHandler.Report(89);
                     progressHandler.Report(100);
                 });
             }
@@ -399,14 +408,15 @@ namespace DiKErnel.Core.Test
                 Calculator.Calculate(calculationInput, calculatorSettings);
 
                 // Then
-                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(5));
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(6));
 
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(50);
+                    progressHandler.Report(33);
+                    progressHandler.Report(44);
+                    progressHandler.Report(56);
                     progressHandler.Report(67);
-                    progressHandler.Report(83);
                     progressHandler.Report(100);
                 });
             }
@@ -492,9 +502,9 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(17);
+                    progressHandler.Report(11);
+                    progressHandler.Report(22);
                     progressHandler.Report(33);
-                    progressHandler.Report(50);
                 });
             }
 
@@ -531,7 +541,7 @@ namespace DiKErnel.Core.Test
                 Received.InOrder(() =>
                 {
                     progressHandler.Report(0);
-                    progressHandler.Report(50);
+                    progressHandler.Report(33);
                 });
             }
         }
@@ -544,6 +554,7 @@ namespace DiKErnel.Core.Test
 
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
+                new TestLocationDependentCalculationInput(),
                 new TestLocationDependentCalculationInput(),
                 new TestLocationDependentCalculationInput()
             });
