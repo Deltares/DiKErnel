@@ -424,8 +424,13 @@ namespace DiKErnel.Core.Test
             [SetUp]
             public void Arrange()
             {
+                calculationInput = CreateCalculationInput();
+
+                var secondLocation = (TestLocationDependentCalculationInput) calculationInput.LocationDependentInputItems[1];
+
                 exceptionMessageForSecondLocation = Random.NextString();
-                calculationInput = CreateCalculationInput(exceptionMessageForSecondLocation);
+                secondLocation.SetExceptionMessage(exceptionMessageForSecondLocation);
+
                 logHandler = Substitute.For<ILogHandler>();
                 progressHandler = Substitute.For<IProgress<int>>();
                 calculatorSettings = new CalculatorSettings
@@ -531,7 +536,7 @@ namespace DiKErnel.Core.Test
             }
         }
 
-        private static ICalculationInput CreateCalculationInput(string exceptionMessageForSecondLocation = null)
+        private static ICalculationInput CreateCalculationInput()
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -540,7 +545,7 @@ namespace DiKErnel.Core.Test
             calculationInput.LocationDependentInputItems.Returns(new[]
             {
                 new TestLocationDependentCalculationInput(),
-                new TestLocationDependentCalculationInput(exceptionMessageForSecondLocation)
+                new TestLocationDependentCalculationInput()
             });
 
             calculationInput.TimeDependentInputItems.Returns(new[]
@@ -555,12 +560,7 @@ namespace DiKErnel.Core.Test
 
         private sealed class TestLocationDependentCalculationInput : ILocationDependentInput
         {
-            private readonly string exceptionMessage;
-
-            public TestLocationDependentCalculationInput(string exceptionMessage = null)
-            {
-                this.exceptionMessage = exceptionMessage;
-            }
+            private string exceptionMessage;
 
             public int NumberOfPerformedTimeSteps { get; private set; }
 
@@ -573,6 +573,11 @@ namespace DiKErnel.Core.Test
             public double FailureNumber => 1;
 
             public bool CalculateIsStateful { get; set; }
+
+            public void SetExceptionMessage(string message)
+            {
+                exceptionMessage = message;
+            }
 
             public bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
             {
