@@ -43,9 +43,29 @@ namespace DiKErnel.SpecFlow.Test.Steps
 
             DataResult<ICalculationInput> inputResult = builder.Build();
 
-            var outputResult = (SuccessResult) Calculator.Calculate(inputResult.Data);
+            var outputResultWithoutParallelization = (SuccessResult) Calculator.Calculate(inputResult.Data);
+            var outputResultWithLocationsInParallel = (SuccessResult) Calculator.Calculate(inputResult.Data, new CalculatorSettings
+            {
+                CalculateLocationsInParallel = true
+            });
+            var outputResultWithTimeStepsInParallel = (SuccessResult) Calculator.Calculate(inputResult.Data, new CalculatorSettings
+            {
+                CalculateTimeStepsInParallel = true
+            });
+            var outputResultWithFullParallelization = (SuccessResult) Calculator.Calculate(inputResult.Data, new CalculatorSettings
+            {
+                CalculateLocationsInParallel = true,
+                CalculateTimeStepsInParallel = true
+            });
 
-            Context[GeneralDefinitions.LocationDependentOutput] = outputResult.CalculationOutput.LocationDependentOutputItems[0];
+            Context[GeneralDefinitions.LocationDependentOutputWithoutParallelization] =
+                outputResultWithoutParallelization.CalculationOutput.LocationDependentOutputItems[0];
+            Context[GeneralDefinitions.LocationDependentOutputWithLocationsInParallel] =
+                outputResultWithLocationsInParallel.CalculationOutput.LocationDependentOutputItems[0];
+            Context[GeneralDefinitions.LocationDependentOutputWithTimeStepsInParallel] =
+                outputResultWithTimeStepsInParallel.CalculationOutput.LocationDependentOutputItems[0];
+            Context[GeneralDefinitions.LocationDependentOutputWithFullParallelization] =
+                outputResultWithFullParallelization.CalculationOutput.LocationDependentOutputItems[0];
         }
 
         protected virtual void ConfigureBuilder(CalculationInputBuilder builder)

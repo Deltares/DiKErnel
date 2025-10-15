@@ -73,17 +73,37 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Then(@"the damage is (.*)")]
         public void ThenTheDamageIs(double expectedDamage)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutput];
-
-            double actualDamage = locationDependentOutput.CumulativeDamages[^1];
-            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(Tolerance));
+            AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithoutParallelization],
+                         expectedDamage);
+            AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithLocationsInParallel],
+                         expectedDamage);
+            AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithTimeStepsInParallel],
+                         expectedDamage);
+            AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithFullParallelization],
+                         expectedDamage);
         }
 
         [Then(@"the rounded time of failure is (.*)")]
         public void ThenTheRoundedTimeOfFailureIs(string expectedValue)
         {
-            var locationDependentOutput = (LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutput];
+            AsserTimeOfFailure((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithoutParallelization],
+                               expectedValue);
+            AsserTimeOfFailure((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithLocationsInParallel],
+                               expectedValue);
+            AsserTimeOfFailure((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithTimeStepsInParallel],
+                               expectedValue);
+            AsserTimeOfFailure((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithFullParallelization],
+                               expectedValue);
+        }
 
+        private static void AssertDamage(LocationDependentOutput locationDependentOutput, double expectedDamage)
+        {
+            double actualDamage = locationDependentOutput.CumulativeDamages[^1];
+            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(Tolerance));
+        }
+
+        private static void AsserTimeOfFailure(LocationDependentOutput locationDependentOutput, string expectedValue)
+        {
             int? roundedTimeOfFailure = null;
             double? timeOfFailure = locationDependentOutput.TimeOfFailure;
 

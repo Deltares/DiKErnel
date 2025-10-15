@@ -20,7 +20,10 @@ namespace DiKErnel.SpecFlow.Test.Steps.Definitions
 {
     internal static class GeneralDefinitions
     {
-        public const string LocationDependentOutput = "Location dependent output";
+        public const string LocationDependentOutputWithoutParallelization = "Location dependent output without parallelization";
+        public const string LocationDependentOutputWithLocationsInParallel = "Location dependent output with locations in parallel";
+        public const string LocationDependentOutputWithTimeStepsInParallel = "Location dependent output with time steps in parallel";
+        public const string LocationDependentOutputWithFullParallelization = "Location dependent output with full parallelization";
 
         public const string NotApplicable = "N.A.";
         public const string CalculationPosition = "Position";
