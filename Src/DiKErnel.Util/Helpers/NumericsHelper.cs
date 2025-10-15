@@ -48,7 +48,7 @@ namespace DiKErnel.Util.Helpers
         /// trailing zeros are not presented.</remarks>
         public static string ToString(double value)
         {
-            return Math.Round(value, 6).ToString(CultureInfo.InvariantCulture).Replace("E", "e", StringComparison.Ordinal);
+            return Math.Round(value, 6).ToString(CultureInfo.InvariantCulture).Replace("E", "e");
         }
     }
 }
