@@ -31,10 +31,11 @@ namespace DiKErnel.Performance.Test
     [TestFixture]
     public abstract class PerformanceTestBase
     {
-        private readonly double expectedDamage;
-        private readonly Action<CalculationInputBuilder> addLocationForFailureMechanismAction;
-
         private CalculationInputBuilder builder;
+
+        protected abstract double ExpectedDamage { get; }
+
+        protected abstract Action<CalculationInputBuilder> AddLocationForFailureMechanismAction { get; }
 
         [SetUp]
         public void Arrange()
@@ -52,24 +53,19 @@ namespace DiKErnel.Performance.Test
         {
             int numberOfLocations = calculatorSettings.CalculateLocationsInParallel ? 20 : 1;
 
-            Enumerable.Repeat<>(addLocationForFailureMechanismAction(builder), numberOfLocations);
+            for (var i = 0; i < numberOfLocations; i++)
+            {
+                AddLocationForFailureMechanismAction(builder);
+            }
 
             ICalculationInput calculationInput = builder.Build().Data;
 
             SuccessResult result = PerformCalculationAndWriteDuration(calculatorSettings, calculationInput);
 
-            IReadOnlyList<double> cumulativeDamages = result.CalculationOutput.LocationDependentOutputItems[0].CumulativeDamages;
-
-            double damage = Math.Round(cumulativeDamages[^1], 2);
-
-            Assert.That(damage, Is.EqualTo(expectedDamage));
-        }
-
-        protected PerformanceTestBase(Action<CalculationInputBuilder> addLocationForFailureMechanismAction,
-                                      double expectedDamage)
-        {
-            this.addLocationForFailureMechanismAction = addLocationForFailureMechanismAction;
-            this.expectedDamage = expectedDamage;
+            for (var i = 0; i < numberOfLocations; i++)
+            {
+                AssertDamage(result.CalculationOutput.LocationDependentOutputItems[i]);
+            }
         }
 
         private static void AddDikeProfile(CalculationInputBuilder builder)
@@ -143,11 +139,19 @@ namespace DiKErnel.Performance.Test
 
             stopWatch.Stop();
 
-            var duration = Math.Round(stopWatch.Elapsed.TotalSeconds, 2).ToString(CultureInfo.InvariantCulture);
+            double durationPerLocation = stopWatch.Elapsed.TotalSeconds / calculationInput.LocationDependentInputItems.Count;
 
-            Console.WriteLine($"##teamcity[buildStatisticValue key='DurationPerLocation' value='{duration}']");
+            Console.WriteLine($"##teamcity[buildStatisticValue key='DurationPerLocation' value='{Math.Round(durationPerLocation, 2)}']",
+                              CultureInfo.InvariantCulture);
 
             return result;
+        }
+
+        private void AssertDamage(LocationDependentOutput locationDependentOutput)
+        {
+            double damage = Math.Round(locationDependentOutput.CumulativeDamages[^1], 2);
+
+            Assert.That(damage, Is.EqualTo(ExpectedDamage));
         }
     }
 }
