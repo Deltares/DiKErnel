@@ -41,13 +41,14 @@ namespace DiKErnel.SpecFlow.Test.Steps
         [Scope(Feature = "Grass wave run-up Battjes-Groenendijk analytical with BM Gras Benchmarks")]
         public void ThenTheCumulativeOverloadIs(double? expectedCumulativeOverload)
         {
-            var output = (LocationDependentOutput) Context[GeneralDefinitions.LocationDependentOutput];
-
-            GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverloadOutputItems =
-                output.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
-
-            Assert.That(cumulativeOverloadOutputItems[cumulativeOverloadOutputItems.Length - 1].CumulativeOverload,
-                        Is.EqualTo(expectedCumulativeOverload).Within(GeneralStepDefinitions.Tolerance));
+            AssertCumulativeOverload((LocationDependentOutput) Context[GeneralDefinitions.LocationDependentOutputWithoutParallelization],
+                                     expectedCumulativeOverload);
+            AssertCumulativeOverload((LocationDependentOutput) Context[GeneralDefinitions.LocationDependentOutputWithLocationsInParallel],
+                                     expectedCumulativeOverload);
+            AssertCumulativeOverload((LocationDependentOutput) Context[GeneralDefinitions.LocationDependentOutputWithTimeStepsInParallel],
+                                     expectedCumulativeOverload);
+            AssertCumulativeOverload((LocationDependentOutput) Context[GeneralDefinitions.LocationDependentOutputWithFullParallelization],
+                                     expectedCumulativeOverload);
         }
 
         protected override void ConfigureBuilder(CalculationInputBuilder builder)
@@ -78,6 +79,15 @@ namespace DiKErnel.SpecFlow.Test.Steps
         {
             builder.AddForeshore(Context.GetDouble(DikeProfileDefinitions.SlopeForeshore),
                                  Context.GetDouble(DikeProfileDefinitions.BottomZForeshore));
+        }
+
+        private static void AssertCumulativeOverload(LocationDependentOutput output, double? expectedValue)
+        {
+            GrassCumulativeOverloadTimeDependentOutput[] cumulativeOverloadOutputItems =
+                output.TimeDependentOutputItems.Cast<GrassCumulativeOverloadTimeDependentOutput>().ToArray();
+
+            Assert.That(cumulativeOverloadOutputItems[cumulativeOverloadOutputItems.Length - 1].CumulativeOverload,
+                        Is.EqualTo(expectedValue).Within(GeneralStepDefinitions.Tolerance));
         }
     }
 }
