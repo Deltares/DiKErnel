@@ -71,16 +71,16 @@ namespace DiKErnel.SpecFlow.Test.Steps
         }
 
         [Then(@"the damage is (.*)")]
-        public void ThenTheDamageIs(double expectedDamage)
+        public void ThenTheDamageIs(double expectedValue)
         {
             AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithoutParallelization],
-                         expectedDamage);
+                         expectedValue);
             AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithLocationsInParallel],
-                         expectedDamage);
+                         expectedValue);
             AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithTimeStepsInParallel],
-                         expectedDamage);
+                         expectedValue);
             AssertDamage((LocationDependentOutput) context[GeneralDefinitions.LocationDependentOutputWithFullParallelization],
-                         expectedDamage);
+                         expectedValue);
         }
 
         [Then(@"the rounded time of failure is (.*)")]
@@ -96,10 +96,10 @@ namespace DiKErnel.SpecFlow.Test.Steps
                                expectedValue);
         }
 
-        private static void AssertDamage(LocationDependentOutput locationDependentOutput, double expectedDamage)
+        private static void AssertDamage(LocationDependentOutput locationDependentOutput, double expectedValue)
         {
             double actualDamage = locationDependentOutput.CumulativeDamages[^1];
-            Assert.That(actualDamage, Is.EqualTo(expectedDamage).Within(Tolerance));
+            Assert.That(actualDamage, Is.EqualTo(expectedValue).Within(Tolerance));
         }
 
         private static void AsserTimeOfFailure(LocationDependentOutput locationDependentOutput, string expectedValue)
