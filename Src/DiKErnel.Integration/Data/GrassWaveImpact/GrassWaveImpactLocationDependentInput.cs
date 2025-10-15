@@ -85,7 +85,7 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
             {
                 return;
             }
-            
+
             base.Initialize(profileData);
 
             double timeLineAgwi = TimeLine.TimeLineAgwi;

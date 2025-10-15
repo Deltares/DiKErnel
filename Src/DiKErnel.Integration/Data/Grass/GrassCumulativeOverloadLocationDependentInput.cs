@@ -81,7 +81,7 @@ namespace DiKErnel.Integration.Data.Grass
             {
                 return;
             }
-            
+
             base.Initialize(profileData);
 
             InitializeCalculationProfile(profileData);

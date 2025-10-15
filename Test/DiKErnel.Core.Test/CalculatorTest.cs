@@ -509,7 +509,7 @@ namespace DiKErnel.Core.Test
                 });
             }
         }
-        
+
         [TestFixture]
         internal class GivenInvalidCalculationInput : CalculatorTest
         {

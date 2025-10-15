@@ -65,7 +65,7 @@ namespace DiKErnel.Integration.Data
             {
                 return;
             }
-            
+
             IsInitialized = true;
 
             Z = profileData.GetVerticalHeight(X);
