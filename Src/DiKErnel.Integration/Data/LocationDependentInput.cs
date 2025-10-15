@@ -61,11 +61,6 @@ namespace DiKErnel.Integration.Data
 
         public virtual void Initialize(IProfileData profileData)
         {
-            if (IsInitialized)
-            {
-                return;
-            }
-
             IsInitialized = true;
 
             Z = profileData.GetVerticalHeight(X);
