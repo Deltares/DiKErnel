@@ -423,6 +423,94 @@ namespace DiKErnel.Core.Test
         }
 
         [TestFixture]
+        internal class GivenValidCalculationInputWithManyTimeSteps : CalculatorTest
+        {
+            private ILogHandler logHandler;
+            private IProgress<int> progressHandler;
+            private ICalculationInput calculationInput;
+            private CalculatorSettings calculatorSettings;
+
+            [SetUp]
+            public void Arrange()
+            {
+                calculationInput = CreateCalculationInput(10000);
+                logHandler = Substitute.For<ILogHandler>();
+                progressHandler = Substitute.For<IProgress<int>>();
+                calculatorSettings = new CalculatorSettings
+                {
+                    LogHandler = logHandler,
+                    ProgressHandler = progressHandler
+                };
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithoutParallelization_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(101));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(1);
+                    progressHandler.Report(2);
+                    progressHandler.Report(3);
+                    progressHandler.Report(4);
+                    progressHandler.Report(5);
+                    progressHandler.Report(95);
+                    progressHandler.Report(96);
+                    progressHandler.Report(97);
+                    progressHandler.Report(98);
+                    progressHandler.Report(99);
+                    progressHandler.Report(100);
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForLocations_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateLocationsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(2));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(100);
+                });
+            }
+
+            [Test]
+            public void GivenCalculatorSettingsWithParallelizationForTimeSteps_WhenCalculate_ThenReportsExpectedProgress()
+            {
+                // Given
+                calculatorSettings.CalculateTimeStepsInParallel = true;
+
+                // When
+                Calculator.Calculate(calculationInput, calculatorSettings);
+
+                // Then
+                Assert.That(progressHandler.ReceivedCalls().Count(), Is.EqualTo(4));
+
+                Received.InOrder(() =>
+                {
+                    progressHandler.Report(0);
+                    progressHandler.Report(33);
+                    progressHandler.Report(67);
+                    progressHandler.Report(100);
+                });
+            }
+        }
+        
+        [TestFixture]
         internal class GivenInvalidCalculationInput : CalculatorTest
         {
             private ILogHandler logHandler;
@@ -546,7 +634,7 @@ namespace DiKErnel.Core.Test
             }
         }
 
-        private static ICalculationInput CreateCalculationInput()
+        private static ICalculationInput CreateCalculationInput(int numberOfTimeSteps = 3)
         {
             var calculationInput = Substitute.For<ICalculationInput>();
 
@@ -559,12 +647,14 @@ namespace DiKErnel.Core.Test
                 new TestLocationDependentCalculationInput()
             });
 
-            calculationInput.TimeDependentInputItems.Returns(new[]
+            var timeDependentInputs = new List<ITimeDependentInput>();
+
+            for (var i = 0; i < numberOfTimeSteps; i++)
             {
-                Substitute.For<ITimeDependentInput>(),
-                Substitute.For<ITimeDependentInput>(),
-                Substitute.For<ITimeDependentInput>()
-            });
+                timeDependentInputs.Add(Substitute.For<ITimeDependentInput>());
+            }
+
+            calculationInput.TimeDependentInputItems.Returns(timeDependentInputs);
 
             return calculationInput;
         }
