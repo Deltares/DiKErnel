@@ -10,7 +10,7 @@ namespace DiKErnel.Performance.Test
 
         protected override Action<CalculationInputBuilder> AddLocationForFailureMechanismAction =>
             builder => builder.AddAsphaltWaveImpactLocation(
-                new AsphaltWaveImpactLocationConstructionProperties(
-                    10, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60, 0.3, 16000));
+                new AsphaltWaveImpactLocationConstructionProperties(10, AsphaltWaveImpactTopLayerType.HydraulicAsphaltConcrete, 1.75, 60,
+                                                                    0.3, 16000));
     }
 }
