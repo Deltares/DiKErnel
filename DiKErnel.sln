@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", 
 		Deployment\dotnet8.dockerfile = Deployment\dotnet8.dockerfile
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiKErnel.Performance.Test", "Test\DiKErnel.Performance.Test\DiKErnel.Performance.Test.csproj", "{D8079DA2-E61D-49FA-9E51-1D9291D0E365}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Coverage|x64 = Coverage|x64
@@ -291,6 +293,18 @@ Global
 		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x64.Build.0 = Release|x64
 		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x86.ActiveCfg = Release|x86
 		{37F95BA6-7219-4724-85CB-B36B6B5BCC80}.Release|x86.Build.0 = Release|x86
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Coverage|x64.ActiveCfg = Coverage|x64
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Coverage|x64.Build.0 = Coverage|x64
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Coverage|x86.ActiveCfg = Coverage|x86
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Coverage|x86.Build.0 = Coverage|x86
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Debug|x64.ActiveCfg = Debug|x64
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Debug|x64.Build.0 = Debug|x64
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Debug|x86.ActiveCfg = Debug|x86
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Debug|x86.Build.0 = Debug|x86
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Release|x64.ActiveCfg = Release|x64
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Release|x64.Build.0 = Release|x64
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Release|x86.ActiveCfg = Release|x86
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -316,6 +330,7 @@ Global
 		{37F95BA6-7219-4724-85CB-B36B6B5BCC80} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
 		{5F1D6058-C0C1-4827-B463-1B5CBB3C34EB} = {2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}
 		{8FB97111-BF31-44D4-8A97-9739DCD551A4} = {2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}
+		{D8079DA2-E61D-49FA-9E51-1D9291D0E365} = {644BC15F-ABF9-4A39-969B-E48DD7FB885F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9DE8BC8-16B6-49DD-B841-360F52874090}
