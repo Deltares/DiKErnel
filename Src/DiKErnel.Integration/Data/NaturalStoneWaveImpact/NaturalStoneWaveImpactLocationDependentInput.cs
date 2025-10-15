@@ -94,14 +94,14 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
 
         public override void Initialize(IProfileData profileData)
         {
+            cumulativeDamage = InitialDamage;
+
             if (IsInitialized)
             {
                 return;
             }
-            
-            base.Initialize(profileData);
 
-            cumulativeDamage = InitialDamage;
+            base.Initialize(profileData);
 
             outerToeHeight = CharacteristicPointsHelper.GetCoordinatesForType(
                 profileData.CharacteristicPoints, CharacteristicPointType.OuterToe).Item2;
