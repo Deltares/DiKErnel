@@ -1,0 +1,6 @@
+<Project>
+    <Import Project="$(SolutionDir)Development\Base.targets"/>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+</Project>

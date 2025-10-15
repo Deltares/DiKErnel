@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\Base.targets"/>
+    <Import Project="$(SolutionDir)Development\Source.targets"/>
     <Target Name="CopyOvertoppingDependencies" AfterTargets="PostBuildEvent">
         <Exec Command="xcopy /d/s/y &quot;$(ExternalDependenciesDir)*&quot; &quot;$(OutDir)&quot;"/>
     </Target>

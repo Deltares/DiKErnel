@@ -57,6 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Development", "Development"
 		Development\GlobalAssembly.cs = Development\GlobalAssembly.cs
 		Development\Test.targets = Development\Test.targets
 		Development\TestAssembly.cs = Development\TestAssembly.cs
+		Development\Source.targets = Development\Source.targets
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{8FB97111-BF31-44D4-8A97-9739DCD551A4}"

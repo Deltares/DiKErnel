@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="$(SolutionDir)Development\Base.targets"/>
+    <Import Project="$(SolutionDir)Development\Source.targets"/>
 
 </Project>
