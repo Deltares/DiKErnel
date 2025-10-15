@@ -145,7 +145,7 @@ namespace DiKErnel.Core
 
         private static void CalculateTimeStepsForLocation(
             ILocationDependentInput locationDependentInput,
-            IReadOnlyDictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
+            Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation,
             IReadOnlyCollection<ITimeDependentInput> timeDependentInputItems, IProfileData profileData,
             CalculatorSettings calculatorSettings, ProgressIncrementHandler progressIncrementHandler = null)
         {
@@ -226,7 +226,7 @@ namespace DiKErnel.Core
             calculatorSettings?.LogHandler?.LogError(message);
         }
 
-        private class ProgressIncrementHandler
+        private sealed class ProgressIncrementHandler
         {
             private readonly IProgress<int> progressHandler;
             private readonly double progressIncrementPerLocation;

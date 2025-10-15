@@ -122,7 +122,7 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
             {
                 return;
             }
-            
+
             base.Initialize(profileData);
 
             double subLayerThickness;

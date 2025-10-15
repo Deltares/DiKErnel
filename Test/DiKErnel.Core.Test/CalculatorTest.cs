@@ -30,7 +30,7 @@ namespace DiKErnel.Core.Test
     internal class CalculatorTest
     {
         [TestFixture]
-        internal class GivenValidCalculationInput : CalculatorTest
+        internal sealed class GivenValidCalculationInput : CalculatorTest
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
@@ -155,7 +155,7 @@ namespace DiKErnel.Core.Test
         }
 
         [TestFixture]
-        internal class GivenValidCalculationInputAndCancelCondition : CalculatorTest
+        internal sealed class GivenValidCalculationInputAndCancelCondition : CalculatorTest
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
@@ -269,7 +269,7 @@ namespace DiKErnel.Core.Test
         }
 
         [TestFixture]
-        internal class GivenValidCalculationInputWithStatefulLocation : CalculatorTest
+        internal sealed class GivenValidCalculationInputWithStatefulLocation : CalculatorTest
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
@@ -423,7 +423,7 @@ namespace DiKErnel.Core.Test
         }
 
         [TestFixture]
-        internal class GivenValidCalculationInputWithManyTimeSteps : CalculatorTest
+        internal sealed class GivenValidCalculationInputWithManyTimeSteps : CalculatorTest
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
@@ -511,7 +511,7 @@ namespace DiKErnel.Core.Test
         }
 
         [TestFixture]
-        internal class GivenInvalidCalculationInput : CalculatorTest
+        internal sealed class GivenInvalidCalculationInput : CalculatorTest
         {
             private ILogHandler logHandler;
             private IProgress<int> progressHandler;
