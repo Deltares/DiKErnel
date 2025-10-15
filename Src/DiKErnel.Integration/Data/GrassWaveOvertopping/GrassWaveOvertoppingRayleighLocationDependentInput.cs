@@ -77,6 +77,11 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
 
         public override void Initialize(IProfileData profileData)
         {
+            if (IsInitialized)
+            {
+                return;
+            }
+
             base.Initialize(profileData);
 
             InitializeAccelerationAlphaAValue(profileData);

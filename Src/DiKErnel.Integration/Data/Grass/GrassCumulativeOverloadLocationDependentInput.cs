@@ -77,6 +77,11 @@ namespace DiKErnel.Integration.Data.Grass
 
         public override void Initialize(IProfileData profileData)
         {
+            if (IsInitialized)
+            {
+                return;
+            }
+            
             base.Initialize(profileData);
 
             InitializeCalculationProfile(profileData);

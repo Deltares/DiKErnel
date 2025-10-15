@@ -81,6 +81,11 @@ namespace DiKErnel.Integration.Data.GrassWaveImpact
 
         public override void Initialize(IProfileData profileData)
         {
+            if (IsInitialized)
+            {
+                return;
+            }
+            
             base.Initialize(profileData);
 
             double timeLineAgwi = TimeLine.TimeLineAgwi;

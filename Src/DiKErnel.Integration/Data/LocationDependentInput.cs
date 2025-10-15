@@ -27,7 +27,7 @@ namespace DiKErnel.Integration.Data
 {
     internal abstract class LocationDependentInput : ILocationDependentInput
     {
-        private bool derivedLocationDependentInputInitialized;
+        protected bool IsInitialized;
 
         protected LocationDependentInput(double x, double initialDamage, double failureNumber, bool calculateIsStateful = false)
         {
@@ -61,14 +61,19 @@ namespace DiKErnel.Integration.Data
 
         public virtual void Initialize(IProfileData profileData)
         {
-            derivedLocationDependentInputInitialized = true;
+            if (IsInitialized)
+            {
+                return;
+            }
+            
+            IsInitialized = true;
 
             Z = profileData.GetVerticalHeight(X);
         }
 
         public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
         {
-            if (!derivedLocationDependentInputInitialized)
+            if (!IsInitialized)
             {
                 throw new InvalidOperationException("Location dependent input must be initialized first.");
             }

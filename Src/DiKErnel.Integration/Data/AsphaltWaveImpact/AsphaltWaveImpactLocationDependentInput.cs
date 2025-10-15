@@ -118,6 +118,11 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
 
         public override void Initialize(IProfileData profileData)
         {
+            if (IsInitialized)
+            {
+                return;
+            }
+            
             base.Initialize(profileData);
 
             double subLayerThickness;
