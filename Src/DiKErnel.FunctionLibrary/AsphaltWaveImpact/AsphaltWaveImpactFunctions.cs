@@ -118,14 +118,19 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return (slopeUpperLevel - slopeLowerLevel) / (slopeUpperPosition - slopeLowerPosition);
         }
 
-        private static double DepthFactorAccumulation(AsphaltWaveImpactInput input, double relativeWidthWaveImpact,
-                                                      double sinA)
+        private static double DepthFactorAccumulation(AsphaltWaveImpactInput input, double relativeWidthWaveImpact, double sinA)
         {
             double result = 0;
 
+            double sinRelativeWidthWaveImpact = Math.Sin(relativeWidthWaveImpact);
+            double cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
+            double expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
+
             foreach ((double, double) depthFactor in input.DepthFactors)
             {
-                double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinA, depthFactor.Item1);
+                double bendingStress = BendingStress(input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact,
+                                                     expNegativeRelativeWidthWaveImpact, sinA, depthFactor.Item1);
+
                 double impactFactorAccumulation = ImpactFactorAccumulation(input, bendingStress);
 
                 result += depthFactor.Item2 * impactFactorAccumulation;
@@ -168,11 +173,13 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
             return 4 * impactNumberC * outerSlope * impactFactorValue;
         }
 
-        private static double BendingStress(AsphaltWaveImpactInput input, double relativeWidthWaveImpact, double sinA,
-                                            double depthFactorValue)
+        private static double BendingStress(AsphaltWaveImpactInput input, double relativeWidthWaveImpact,
+                                            double sinRelativeWidthWaveImpact, double cosRelativeWidthWaveImpact,
+                                            double expNegativeRelativeWidthWaveImpact, double sinA, double depthFactorValue)
         {
-            double spatialDistributionBendingStress = SpatialDistributionBendingStress(input, relativeWidthWaveImpact, sinA,
-                                                                                       depthFactorValue);
+            double spatialDistributionBendingStress = SpatialDistributionBendingStress(
+                input, relativeWidthWaveImpact, sinRelativeWidthWaveImpact, cosRelativeWidthWaveImpact, expNegativeRelativeWidthWaveImpact,
+                sinA, depthFactorValue);
 
             return Math.Max(Math.Pow(10, -99),
                             -3 * input.MaximumPeakStress / (4 * Math.Pow(input.StiffnessRelation, 2)
@@ -180,18 +187,16 @@ namespace DiKErnel.FunctionLibrary.AsphaltWaveImpact
                             * spatialDistributionBendingStress);
         }
 
-        private static double SpatialDistributionBendingStress(AsphaltWaveImpactInput input,
-                                                               double relativeWidthWaveImpact, double sinA,
+        private static double SpatialDistributionBendingStress(AsphaltWaveImpactInput input, double relativeWidthWaveImpact,
+                                                               double sinRelativeWidthWaveImpact, double cosRelativeWidthWaveImpact,
+                                                               double expNegativeRelativeWidthWaveImpact, double sinA,
                                                                double depthFactorValue)
         {
             double relativeDistanceCenterWaveImpact = RelativeDistanceCenterWaveImpact(input, depthFactorValue, sinA);
 
             double sinRelativeDistanceCenterWaveImpact = Math.Sin(relativeDistanceCenterWaveImpact);
-            double sinRelativeWidthWaveImpact = Math.Sin(relativeWidthWaveImpact);
             double cosRelativeDistanceCenterWaveImpact = Math.Cos(relativeDistanceCenterWaveImpact);
-            double cosRelativeWidthWaveImpact = Math.Cos(relativeWidthWaveImpact);
             double expNegativeRelativeDistanceCenterWaveImpact = Math.Exp(-relativeDistanceCenterWaveImpact);
-            double expNegativeRelativeWidthWaveImpact = Math.Exp(-relativeWidthWaveImpact);
 
             if (relativeWidthWaveImpact >= relativeDistanceCenterWaveImpact)
             {
