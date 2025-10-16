@@ -330,12 +330,13 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
             double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
-            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration * k *
+            return input.IncreasedLoadTransitionAlphaM * input.FrontVelocityCu * input.FrontVelocityCu * input.GravitationalAcceleration *
+                   k *
                    (((4 * scalingParameterRu) / k) *
                     Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
                     ((4 * input.VerticalDistanceWaterLevelElevation) / k) *
                     Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k))) +
-                   ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
+                   ((input.ReducedStrengthTransitionAlphaS * input.CriticalFrontVelocity * input.CriticalFrontVelocity) / k) *
                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
