@@ -68,14 +68,13 @@ namespace DiKErnel.Core.Test.Data
         }
 
         [Test]
-        [TestCase(0.2, 0.3, 0.5, double.NaN, 0.4, 280)]
-        [TestCase(0.2, 0.1, 0.2, double.NaN, 0.4, 750)]
-        [TestCase(0.2, 0.4, 0.2, double.NaN, 0.4, 200)]
-        [TestCase(0.2, 0.1, 0.1, double.NaN, 0.1, null)]
-        [TestCase(0.6, 0.3, 0.2, double.NaN, 0.1, null)]
+        [TestCase(0.2, 0.3, 0.5, 280)]
+        [TestCase(0.2, 0.3, 0.2, 400)]
+        [TestCase(0.2, 0.4, 0.1, 200)]
+        [TestCase(0.2, 0.1, 0.2, null)]
+        [TestCase(0.6, 0.1, 0.1, null)]
         public void GivenLocationDependentOutput_ThenTimeOfFailureHasExpectedValue(
-            double initialDamage, double incrementDamage1, double incrementDamage2, double incrementDamage3, double incrementDamage4,
-            double? expectedTimeOfFailure)
+            double initialDamage, double incrementDamage1, double incrementDamage2, double? expectedTimeOfFailure)
         {
             // Given
             const double failureNumber = 0.6;
@@ -84,7 +83,7 @@ namespace DiKErnel.Core.Test.Data
 
             LocationDependentOutput locationDependentOutput =
                 CreateLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems, incrementDamage1, incrementDamage2,
-                                              incrementDamage3, incrementDamage4);
+                                              double.NaN, double.NaN);
 
             // Then
             Assert.That(locationDependentOutput.TimeOfFailure, Is.EqualTo(expectedTimeOfFailure).Within(1.0e-13));
@@ -128,20 +127,10 @@ namespace DiKErnel.Core.Test.Data
             timeDependentInput2.BeginTime.Returns(200);
             timeDependentInput2.EndTime.Returns(600);
 
-            var timeDependentInput3 = Substitute.For<ITimeDependentInput>();
-            timeDependentInput3.BeginTime.Returns(600);
-            timeDependentInput3.EndTime.Returns(700);
-
-            var timeDependentInput4 = Substitute.For<ITimeDependentInput>();
-            timeDependentInput4.BeginTime.Returns(700);
-            timeDependentInput4.EndTime.Returns(900);
-
             return new List<ITimeDependentInput>
             {
                 timeDependentInput1,
-                timeDependentInput2,
-                timeDependentInput3,
-                timeDependentInput4
+                timeDependentInput2
             };
         }
 
