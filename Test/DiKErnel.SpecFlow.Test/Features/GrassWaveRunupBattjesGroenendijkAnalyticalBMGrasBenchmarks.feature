@@ -112,8 +112,11 @@ Feature: Grass wave run-up Battjes-Groenendijk analytical with BM Gras benchmark
 
   Scenario Outline: BM Gras benchmark 17 - Variable input of water depth
   Remarks:
-  - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-  - When the value of water depth (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced by DiKErnel (NaN) in this situation.
+  - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This
+    validation is not performed by DiKErnel.
+  - When the value of water depth (water level - bottom level foreshore) equals 0 m, then in DiKErnel a division by
+    zero occurs. This results in an increment of damage equal to NaN, which will be ignored when calculating the
+    cumulative damage.
 
     Given the following adjusted dike geometry:
       | X     | Z   | Roughness coefficient |
@@ -134,7 +137,7 @@ Feature: Grass wave run-up Battjes-Groenendijk analytical with BM Gras benchmark
 
     Examples:
       | Bottom level foreshore | Damage            | Cumulative overload | Benchmark for BM Gras | BM Gras   |
-      | 0                      | NaN               | NaN                 | 0                     | N.A.      |
+      | 0                      | 0                 | NaN                 | 0                     | N.A.      |
       | -0.004                 | 18.89917220621742 | 132294.20544352196  | 133115.947            | N.A.      |
       | -0.04                  | 1.95306009187703  | 13671.4206431392    | 13756.388             | 13755.272 |
       | -0.1                   | 0.81770905700087  | 5723.963399006075   | 5729.582              | 5759.07   |
@@ -145,8 +148,11 @@ Feature: Grass wave run-up Battjes-Groenendijk analytical with BM Gras benchmark
 
   Scenario Outline: BM Gras benchmark 18 - Variable input of water depth and critical depth
   Remarks:
-  - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This validation is not performed by DiKErnel.
-  - When the value of water depth (water level - bottom level foreshore) equals 0 m, then division by zero occurs. No results are produced then by DiKErnel (NaN).
+  - In BM Gras the value of water depth (water level - bottom level foreshore) must be > 0 and <= 10 m. This
+    validation is not performed by DiKErnel.
+  - When the value of water depth (water level - bottom level foreshore) equals 0 m, then in DiKErnel a division by
+    zero occurs. This results in an increment of damage equal to NaN, which will be ignored when calculating the
+    cumulative damage.
 
     Given the following adjusted dike geometry:
       | X     | Z   | Roughness coefficient |
@@ -168,7 +174,7 @@ Feature: Grass wave run-up Battjes-Groenendijk analytical with BM Gras benchmark
 
     Examples:
       | Bottom level foreshore | Critical cumulative overload | Damage              | Cumulative overload   | Benchmark for BM Gras | BM Gras   |
-      | 0                      | 1000                         | NaN                 | NaN                   | 0                     | N.A.      |
+      | 0                      | 1000                         | 0                   | NaN                   | 0                     | N.A.      |
       | -0.004                 | 1000                         | 132.29420544352197  | 132294.20544352196157 | 133115.947            | N.A.      |
       | -0.04                  | 100                          | 136.71420643139200  | 13671.42064313919946  | 13756.388             | 13755.272 |
       | -0.1                   | 10                           | 572.39633990060747  | 5723.96339900607472   | 5759.582              | 5759.07   |
