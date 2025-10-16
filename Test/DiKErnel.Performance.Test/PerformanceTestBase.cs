@@ -31,6 +31,11 @@ namespace DiKErnel.Performance.Test
     [TestFixture]
     public abstract class PerformanceTestBase
     {
+        private readonly double[] times;
+        private readonly double[] waterLevels;
+        private readonly double[] waveHeights;
+        private readonly double[] wavePeriods;
+
         private CalculationInputBuilder builder;
 
         protected abstract double ExpectedDamage { get; }
@@ -42,9 +47,9 @@ namespace DiKErnel.Performance.Test
         {
             builder = new CalculationInputBuilder(0);
 
-            AddDikeProfile(builder);
+            AddDikeProfile();
 
-            AddTimeSteps(builder);
+            AddTimeSteps();
         }
 
         [Test]
@@ -60,7 +65,7 @@ namespace DiKErnel.Performance.Test
 
             ICalculationInput calculationInput = builder.Build().Data;
 
-            SuccessResult result = PerformCalculationAndWriteDuration(calculatorSettings, calculationInput);
+            SuccessResult result = PerformCalculationAndWriteBuildStatisticValue(calculatorSettings, calculationInput);
 
             for (var i = 0; i < numberOfLocations; i++)
             {
@@ -68,7 +73,15 @@ namespace DiKErnel.Performance.Test
             }
         }
 
-        private static void AddDikeProfile(CalculationInputBuilder builder)
+        protected PerformanceTestBase()
+        {
+            waterLevels = ParseTimeDependentData(Resources.htime_12h);
+            waveHeights = ParseTimeDependentData(Resources.Hm0_12h);
+            wavePeriods = ParseTimeDependentData(Resources.Tmm10_12h);
+            times = Enumerable.Range(0, waterLevels.Length + 1).Select(i => 12 * 3600d * i).ToArray();
+        }
+
+        private void AddDikeProfile()
         {
             builder.AddForeshore(0.004, -4);
 
@@ -82,28 +95,19 @@ namespace DiKErnel.Performance.Test
             builder.AddDikeProfilePoint(33.05, CharacteristicPointType.InnerToe);
         }
 
-        private static void AddTimeSteps(CalculationInputBuilder builder)
+        private void AddTimeSteps()
         {
-            double[] waterLevels = Resources.htime_12h.Split(',')
-                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                            .ToArray();
-
-            double[] waveHeights = Resources.Hm0_12h.Split(',')
-                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                            .ToArray();
-
-            double[] wavePeriods = Resources.Tmm10_12h.Split(',')
-                                            .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
-                                            .ToArray();
-
-            double[] times = Enumerable.Range(0, waterLevels.Length + 1)
-                                       .Select(i => 12 * 3600d * i)
-                                       .ToArray();
-
             for (var i = 0; i <= waterLevels.Length - 1; i++)
             {
                 builder.AddTimeStep(times[i], times[i + 1], waterLevels[i], waveHeights[i], wavePeriods[i], 0);
             }
+        }
+
+        private static double[] ParseTimeDependentData(string dataToParse)
+        {
+            return dataToParse.Split(',')
+                              .Select(s => double.Parse(s, CultureInfo.InvariantCulture))
+                              .ToArray();
         }
 
         private static IEnumerable<TestCaseData> ParallelizationCases()
@@ -128,8 +132,8 @@ namespace DiKErnel.Performance.Test
             }).SetName("FullParallelization");
         }
 
-        private static SuccessResult PerformCalculationAndWriteDuration(CalculatorSettings calculatorSettings,
-                                                                        ICalculationInput calculationInput)
+        private static SuccessResult PerformCalculationAndWriteBuildStatisticValue(CalculatorSettings calculatorSettings,
+                                                                                   ICalculationInput calculationInput)
         {
             var stopWatch = new Stopwatch();
 
