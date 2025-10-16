@@ -44,13 +44,13 @@ namespace DiKErnel.Integration.Data.GrassWaveOvertopping
             {
                 return;
             }
-            
+
             base.Initialize(profileData);
 
-            cumulativeOverloadPartial1 = IncreasedLoadTransitionAlphaM * Math.Pow(AccelerationAlphaAValue, 2) *
-                                         Math.Pow(FrontVelocityCwo, 2) * NaturalConstants.GravitationalAcceleration;
+            cumulativeOverloadPartial1 = IncreasedLoadTransitionAlphaM * AccelerationAlphaAValue * AccelerationAlphaAValue *
+                                         FrontVelocityCwo * FrontVelocityCwo * NaturalConstants.GravitationalAcceleration;
 
-            cumulativeOverloadPartial2 = ReducedStrengthTransitionAlphaS * Math.Pow(CriticalFrontVelocity, 2);
+            cumulativeOverloadPartial2 = ReducedStrengthTransitionAlphaS * CriticalFrontVelocity * CriticalFrontVelocity;
         }
 
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
