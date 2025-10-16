@@ -141,8 +141,8 @@ namespace DiKErnel.Performance.Test
 
             double durationPerLocation = stopWatch.Elapsed.TotalSeconds / calculationInput.LocationDependentInputItems.Count;
 
-            Console.WriteLine($"##teamcity[buildStatisticValue key='DurationPerLocation' value='{Math.Round(durationPerLocation, 2)}']",
-                              CultureInfo.InvariantCulture);
+            Console.WriteLine($"##teamcity[buildStatisticValue key='{TestContext.CurrentContext.Test.Name}' " +
+                              $"value='{Math.Round(durationPerLocation, 2)}']", CultureInfo.InvariantCulture);
 
             return result;
         }
