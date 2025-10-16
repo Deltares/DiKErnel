@@ -6,7 +6,7 @@ namespace DiKErnel.Performance.Test
 {
     public class AsphaltWaveImpactPerformanceTest : PerformanceTestBase
     {
-        protected override double ExpectedDamage => 0.67;
+        protected override double ExpectedDamage => double.NaN;
 
         protected override Action<CalculationInputBuilder> AddLocationForFailureMechanismAction =>
             builder => builder.AddAsphaltWaveImpactLocation(

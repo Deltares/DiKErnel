@@ -118,10 +118,7 @@ namespace DiKErnel.Core.Data
 
             foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
             {
-                if (!double.IsNaN(timeDependentOutput.IncrementDamage))
-                {
-                    currentDamage += timeDependentOutput.IncrementDamage;
-                }
+                currentDamage += timeDependentOutput.IncrementDamage;
 
                 cumulativeDamages.Add(currentDamage);
             }
