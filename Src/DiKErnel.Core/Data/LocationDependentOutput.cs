@@ -17,7 +17,6 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DiKErnel.Core.Data
 {
@@ -69,11 +68,7 @@ namespace DiKErnel.Core.Data
         public IReadOnlyList<double> CumulativeDamages => cumulativeDamages;
 
         /// <summary>
-        /// Gets the time of failure, or <c>null</c> when:
-        /// <list type="bullet">
-        /// <item>the revetment at the location did not fail;</item>
-        /// <item>one or more of the calculated damages equal <c>NaN</c>.</item>
-        /// </list>
+        /// Gets the time of failure or <c>null</c> when the revetment at the location did not fail.
         /// </summary>
         public double? TimeOfFailure
         {
@@ -129,11 +124,6 @@ namespace DiKErnel.Core.Data
 
         private void SetTimeOfFailure()
         {
-            if (cumulativeDamages.Any(double.IsNaN))
-            {
-                return;
-            }
-
             double damageAtStartOfCalculation = initialDamage;
 
             for (var i = 0; i < timeDependentInputItems.Count; i++)
