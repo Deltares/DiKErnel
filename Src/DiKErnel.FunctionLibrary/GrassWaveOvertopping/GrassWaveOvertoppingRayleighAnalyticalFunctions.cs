@@ -27,6 +27,8 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
     public static class GrassWaveOvertoppingRayleighAnalyticalFunctions
     {
         private static readonly double parameterRayleighPartial = 2 * Math.Log(0.02);
+        private static readonly double sqrt_2 = Math.Sqrt(2);
+        private static readonly double sqrt_half_pi = Math.Sqrt(Math.PI / 2);
 
         /// <summary>
         /// Calculates the cumulative overload.
@@ -66,7 +68,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
                                           double sharedResult1, double sharedResult2)
         {
             return LowerLimitWaveRunup(verticalDistanceWaterLevelElevation, sharedResult1, sharedResult2) /
-                   (Math.Sqrt(2) * parameterRayleigh);
+                   (sqrt_2 * parameterRayleigh);
         }
 
         private static double LowerLimitWaveRunup(double verticalDistanceWaterLevelElevation, double sharedResult1,
@@ -79,8 +81,8 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
                                             double parameterX0)
         {
             return sharedResult1 * parameterRayleigh *
-                   (Math.Sqrt(Math.PI / 2) + Math.Sqrt(2) * parameterX0 * sharedResult3 -
-                    Math.Sqrt(Math.PI / 2) * SpecialFunctions.Erf(parameterX0));
+                   (sqrt_half_pi + sqrt_2 * parameterX0 * sharedResult3 -
+                    sqrt_half_pi * SpecialFunctions.Erf(parameterX0));
         }
 
         private static double IntegralPart2(double verticalDistanceWaterLevelElevation, double sharedResult1,
