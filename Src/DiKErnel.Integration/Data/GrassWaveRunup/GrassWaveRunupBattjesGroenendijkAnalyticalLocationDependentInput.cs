@@ -29,6 +29,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
     internal class GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput
         : GrassWaveRunupLocationDependentInput
     {
+        private double upperLimitWaveRunup;
+
         public GrassWaveRunupBattjesGroenendijkAnalyticalLocationDependentInput(double x, double initialDamage,
                                                                                 double failureNumber,
                                                                                 double criticalCumulativeOverload,
@@ -54,6 +56,20 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
             return ValidationHelper.RegisterValidationIssues(validationIssues) && baseValidationSuccessful;
         }
 
+        public override void Initialize(IProfileData profileData)
+        {
+            if (IsInitialized)
+            {
+                return;
+            }
+
+            base.Initialize(profileData);
+
+            upperLimitWaveRunup = GrassWaveRunupBattjesGroenendijkAnalyticalFunctions.UpperLimitWaveRunup(
+                IncreasedLoadTransitionAlphaM, ReducedStrengthTransitionAlphaS, FrontVelocityCu, CriticalFrontVelocity,
+                NaturalConstants.GravitationalAcceleration);
+        }
+
         protected override double CalculateCumulativeOverload(double averageNumberOfWaves,
                                                               double representativeWaveRunup2P,
                                                               double verticalDistanceWaterLevelElevation,
@@ -69,7 +85,8 @@ namespace DiKErnel.Integration.Data.GrassWaveRunup
                     NaturalConstants.GravitationalAcceleration, FrontVelocityCu, timeDependentInput.WaterLevel,
                     timeDependentInput.WaveHeightHm0, foreshore.BottomZ, foreshore.Slope,
                     GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K1,
-                    GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K2));
+                    GrassWaveRunupBattjesGroenendijkAnalyticalConstants.K2),
+                upperLimitWaveRunup);
         }
     }
 }

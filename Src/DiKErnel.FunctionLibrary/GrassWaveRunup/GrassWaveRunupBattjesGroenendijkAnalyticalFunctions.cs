@@ -169,18 +169,30 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
             Interpolate.Linear(lambdasRu2.Select(x => x.Item1), lambdasRu2.Select(x => x.Item2));
 
         /// <summary>
+        /// Calculates the upper limit wave run-up.
+        /// </summary>
+        /// <param name="increasedLoadTransitionAlphaM">The increased load transition alpha M [-].</param>
+        /// <param name="reducedStrengthTransitionAlphaS">The reduced strength transition alpha S [-].</param>
+        /// <param name="frontVelocityCu">The Cu coefficient [-].</param>
+        /// <param name="criticalFrontVelocity">The critical front velocity [m/s].</param>
+        /// <param name="gravitationalAcceleration">The gravitational acceleration [m/s^2].</param>
+        /// <returns>The upper limit wave run-up [m].</returns>
+        public static double UpperLimitWaveRunup(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
+                                                 double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration)
+        {
+            return (reducedStrengthTransitionAlphaS / increasedLoadTransitionAlphaM) *
+                   (Math.Pow(criticalFrontVelocity, 2) / (Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration));
+        }
+
+        /// <summary>
         /// Calculates the cumulative overload.
         /// </summary>
         /// <param name="input">The input to use for the calculation.</param>
+        /// <param name="upperLimitWaveRunup">The upper limit wave run-up [m].</param>
         /// <returns>The cumulative overload [m^2/s^2].</returns>
-        public static double CumulativeOverload(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input)
+        public static double CumulativeOverload(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
+                                                double upperLimitWaveRunup)
         {
-            double upperLimitWaveRunup = UpperLimitWaveRunup(input.IncreasedLoadTransitionAlphaM,
-                                                             input.ReducedStrengthTransitionAlphaS,
-                                                             input.FrontVelocityCu,
-                                                             input.CriticalFrontVelocity,
-                                                             input.GravitationalAcceleration);
-
             double lowerLimitWaveRunup = LowerLimitWaveRunup(input.VerticalDistanceWaterLevelElevation,
                                                              upperLimitWaveRunup);
 
@@ -236,13 +248,6 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                  cumulativeOverload3 - cumulativeOverload4 +
                                                  cumulativeOverload5 - cumulativeOverload6 +
                                                  cumulativeOverload7 - cumulativeOverload8);
-        }
-
-        private static double UpperLimitWaveRunup(double increasedLoadTransitionAlphaM, double reducedStrengthTransitionAlphaS,
-                                                  double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration)
-        {
-            return (reducedStrengthTransitionAlphaS / increasedLoadTransitionAlphaM) *
-                   (Math.Pow(criticalFrontVelocity, 2) / (Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration));
         }
 
         private static double LowerLimitWaveRunup(double verticalWaterLevelDistance, double upperLimitWaveRunup)
