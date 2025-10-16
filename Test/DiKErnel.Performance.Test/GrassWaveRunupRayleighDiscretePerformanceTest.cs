@@ -7,7 +7,7 @@ namespace DiKErnel.Performance.Test
 {
     public class GrassWaveRunupRayleighDiscretePerformanceTest : PerformanceTestBase
     {
-        protected override double ExpectedDamage => double.NaN;
+        protected override double ExpectedDamage => 12.78;
 
         protected override Action<CalculationInputBuilder> AddLocationForFailureMechanismAction =>
             builder => builder.AddGrassWaveRunupRayleighDiscreteLocation(
