@@ -45,7 +45,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
             double parameterX0 = ParameterX0(input.VerticalDistanceWaterLevelElevation, parameterRayleigh,
                                              cumulativeOverloadPartial1, cumulativeOverloadPartial2);
 
-            double sharedResult = Math.Exp(-Math.Pow(parameterX0, 2));
+            double sharedResult = Math.Exp(-parameterX0 * parameterX0);
 
             double integralPart1 = IntegralPart1(parameterRayleigh, cumulativeOverloadPartial1, sharedResult, parameterX0);
 
@@ -59,7 +59,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveOvertopping
 
         private static double ParameterRayleigh(double representativeWaveRunup2P)
         {
-            return Math.Sqrt(-Math.Pow(representativeWaveRunup2P, 2) / parameterRayleighPartial);
+            return Math.Sqrt(-representativeWaveRunup2P * representativeWaveRunup2P / parameterRayleighPartial);
         }
 
         private static double ParameterX0(double verticalDistanceWaterLevelElevation, double parameterRayleigh,
