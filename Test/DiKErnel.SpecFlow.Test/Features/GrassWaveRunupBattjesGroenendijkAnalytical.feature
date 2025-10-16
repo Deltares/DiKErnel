@@ -245,7 +245,7 @@ Feature: Grass wave run-up Battjes-Groenendijk analytical
   Scenario: Robustness edge case
   Remark: The time step 36000 - 43200 results in a 0 for the representative wave run-up (2 percent).
   This results in a division by zero due to the wave run-up transition and the wave run-up root mean square being
-  both 0. Therefore, no result will be produced by the DiKErnel (NaN).
+  both 0. Therefore, no increment of damage (NaN) is calculated by DiKErnel for this time step.
     Given the following adjusted hydraulic loads:
       | Time step | Water level | Wave height | Wave period | Wave direction |
       | -6840     | 3.53232     | 2.443434    | 4.132323    | 200.434343     |
@@ -275,5 +275,5 @@ Feature: Grass wave run-up Battjes-Groenendijk analytical
       | Critical cumulative overload | 6212.32434 |
       | Critical front velocity      | 4.54434343 |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is NaN
-    And the rounded time of failure is undefined
+    Then the damage is 2042.9470286049759
+    And the rounded time of failure is -6634

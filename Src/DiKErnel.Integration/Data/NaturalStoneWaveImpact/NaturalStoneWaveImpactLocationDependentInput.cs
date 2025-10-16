@@ -218,7 +218,10 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                                                   waveAngleImpact);
             }
 
-            cumulativeDamage += incrementDamage;
+            if (!double.IsNaN(incrementDamage))
+            {
+                cumulativeDamage += incrementDamage;
+            }
 
             return new NaturalStoneWaveImpactTimeDependentOutput(
                 CreateConstructionProperties(incrementDamage, outerSlope, slopeUpperLevel, slopeUpperPosition, slopeLowerLevel,
