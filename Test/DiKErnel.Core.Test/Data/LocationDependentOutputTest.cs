@@ -51,19 +51,16 @@ namespace DiKErnel.Core.Test.Data
             double failureNumber = Random.NextDouble();
             double incrementDamage1 = Random.NextDouble();
             double incrementDamage2 = Random.NextDouble();
-            double incrementDamage4 = Random.NextDouble();
 
             LocationDependentOutput locationDependentOutput =
                 CreateLocationDependentOutput(initialDamage, failureNumber, Array.Empty<ITimeDependentInput>(), incrementDamage1,
-                                              incrementDamage2, double.NaN, incrementDamage4);
+                                              incrementDamage2);
 
             // Then
             Assert.That(locationDependentOutput.CumulativeDamages, Is.EqualTo(new[]
             {
                 initialDamage + incrementDamage1,
-                initialDamage + incrementDamage1 + incrementDamage2,
-                initialDamage + incrementDamage1 + incrementDamage2,
-                initialDamage + incrementDamage1 + incrementDamage2 + incrementDamage4
+                initialDamage + incrementDamage1 + incrementDamage2
             }));
         }
 
@@ -82,8 +79,7 @@ namespace DiKErnel.Core.Test.Data
             List<ITimeDependentInput> timeDependentInputItems = CreateTimeDependentInputItems();
 
             LocationDependentOutput locationDependentOutput =
-                CreateLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems, incrementDamage1, incrementDamage2,
-                                              double.NaN, double.NaN);
+                CreateLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems, incrementDamage1, incrementDamage2);
 
             // Then
             Assert.That(locationDependentOutput.TimeOfFailure, Is.EqualTo(expectedTimeOfFailure).Within(1.0e-13));
@@ -91,8 +87,7 @@ namespace DiKErnel.Core.Test.Data
 
         private static TestLocationDependentOutput CreateLocationDependentOutput(double initialDamage, double failureNumber,
                                                                                  IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
-                                                                                 double incrementDamage1, double incrementDamage2,
-                                                                                 double incrementDamage3, double incrementDamage4)
+                                                                                 double incrementDamage1, double incrementDamage2)
         {
             var timeDependentOutputConstructionProperties1 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties1.IncrementDamage = incrementDamage1;
@@ -100,18 +95,10 @@ namespace DiKErnel.Core.Test.Data
             var timeDependentOutputConstructionProperties2 = Substitute.For<TimeDependentOutputConstructionProperties>();
             timeDependentOutputConstructionProperties2.IncrementDamage = incrementDamage2;
 
-            var timeDependentOutputConstructionProperties3 = Substitute.For<TimeDependentOutputConstructionProperties>();
-            timeDependentOutputConstructionProperties3.IncrementDamage = incrementDamage3;
-
-            var timeDependentOutputConstructionProperties4 = Substitute.For<TimeDependentOutputConstructionProperties>();
-            timeDependentOutputConstructionProperties4.IncrementDamage = incrementDamage4;
-
             var timeDependentOutputItems = new List<TimeDependentOutput>
             {
                 Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties1),
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2),
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties3),
-                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties4)
+                Substitute.For<TimeDependentOutput>(timeDependentOutputConstructionProperties2)
             };
 
             return new TestLocationDependentOutput(initialDamage, failureNumber, timeDependentInputItems, timeDependentOutputItems);
