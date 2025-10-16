@@ -275,5 +275,5 @@ Feature: Grass wave run-up Battjes-Groenendijk analytical
       | Critical cumulative overload | 6212.32434 |
       | Critical front velocity      | 4.54434343 |
     When I run the grass wave run-up Battjes-Groenendijk analytical calculation
-    Then the damage is NaN
-    And the rounded time of failure is undefined
+    Then the damage is 2042.9470286049759
+    And the rounded time of failure is -6634
