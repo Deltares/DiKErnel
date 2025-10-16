@@ -18,6 +18,7 @@
 
 using System;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("Stichting Deltares and State of the Netherlands")]
@@ -27,9 +28,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: ComVisible(false)]
-[assembly: CLSCompliant(false)]
-
 [assembly: AssemblyVersion("24.1.1.0")]
 [assembly: AssemblyFileVersion("24.1.1.0")]
 [assembly: AssemblyInformationalVersion("24.1.1.0")]
+
+[assembly: ComVisible(false)]
+[assembly: CLSCompliant(false)]
+[assembly: NeutralResourcesLanguage("en")]
