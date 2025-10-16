@@ -33,14 +33,14 @@ namespace DiKErnel.FunctionLibrary.Grass
         {
             double cumulativeFrontVelocity = 0;
 
-            double cumulativeFrontVelocityPartial = Math.Pow(input.CriticalFrontVelocity, 2);
+            double cumulativeFrontVelocityPartial = input.CriticalFrontVelocity * input.CriticalFrontVelocity;
 
             for (var k = 1; k <= fixedNumberOfWaves; k++)
             {
                 double waveRunup = WaveRunup(input.RepresentativeWaveRunup2P, fixedNumberOfWaves, k);
                 double frontVelocity = getFrontVelocityFunc(waveRunup);
 
-                cumulativeFrontVelocity += Math.Max(0, input.IncreasedLoadTransitionAlphaM * Math.Pow(frontVelocity, 2)
+                cumulativeFrontVelocity += Math.Max(0, input.IncreasedLoadTransitionAlphaM * frontVelocity * frontVelocity
                                                        - input.ReducedStrengthTransitionAlphaS
                                                        * cumulativeFrontVelocityPartial);
             }

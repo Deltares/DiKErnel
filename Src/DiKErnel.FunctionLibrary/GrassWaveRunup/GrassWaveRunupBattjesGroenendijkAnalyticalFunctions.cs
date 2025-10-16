@@ -181,7 +181,7 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
                                                  double frontVelocityCu, double criticalFrontVelocity, double gravitationalAcceleration)
         {
             return (reducedStrengthTransitionAlphaS / increasedLoadTransitionAlphaM) *
-                   (Math.Pow(criticalFrontVelocity, 2) / (Math.Pow(frontVelocityCu, 2) * gravitationalAcceleration));
+                   (criticalFrontVelocity * criticalFrontVelocity / (frontVelocityCu * frontVelocityCu * gravitationalAcceleration));
         }
 
         /// <summary>
@@ -320,9 +320,9 @@ namespace DiKErnel.FunctionLibrary.GrassWaveRunup
         private static double DeltaCumulativeLoad(GrassWaveRunupBattjesGroenendijkAnalyticalCumulativeOverloadInput input,
                                                   double verticalWaveRunupLimit, double scalingParameterRu, double k)
         {
-            return input.IncreasedLoadTransitionAlphaM * Math.Pow(input.FrontVelocityCu, 2) * input.GravitationalAcceleration *
+            return input.IncreasedLoadTransitionAlphaM * input.FrontVelocityCu * input.FrontVelocityCu * input.GravitationalAcceleration *
                    scalingParameterRu * Probability(k, verticalWaveRunupLimit / scalingParameterRu) +
-                   ((input.ReducedStrengthTransitionAlphaS * Math.Pow(input.CriticalFrontVelocity, 2)) / k) *
+                   ((input.ReducedStrengthTransitionAlphaS * input.CriticalFrontVelocity * input.CriticalFrontVelocity) / k) *
                    Math.Exp(-Math.Pow(verticalWaveRunupLimit / scalingParameterRu, k));
         }
 
