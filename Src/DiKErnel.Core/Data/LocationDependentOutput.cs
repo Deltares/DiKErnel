@@ -17,6 +17,7 @@
 // Deltares and remain full property of Stichting Deltares at all times. All rights reserved.
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DiKErnel.Core.Data
 {
@@ -111,11 +112,11 @@ namespace DiKErnel.Core.Data
 
             double currentDamage = initialDamage;
 
-            foreach (TimeDependentOutput timeDependentOutput in TimeDependentOutputItems)
+            foreach (double incrementDamage in TimeDependentOutputItems.Select(tdo => tdo.IncrementDamage))
             {
-                if (!double.IsNaN(timeDependentOutput.IncrementDamage))
+                if (!double.IsNaN(incrementDamage))
                 {
-                    currentDamage += timeDependentOutput.IncrementDamage;
+                    currentDamage += incrementDamage;
                 }
 
                 cumulativeDamages.Add(currentDamage);
