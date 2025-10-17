@@ -75,15 +75,13 @@ namespace DiKErnel.Core.Data
         {
             get
             {
-                if (timeOfFailureIsSet)
+                if (!timeOfFailureIsSet)
                 {
-                    return timeOfFailure;
+                    SetTimeOfFailure();
+
+                    timeOfFailureIsSet = true;
                 }
-
-                SetTimeOfFailure();
-
-                timeOfFailureIsSet = true;
-
+                
                 return timeOfFailure;
             }
         }
