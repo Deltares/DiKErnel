@@ -28,12 +28,12 @@ namespace DiKErnel.Integration.Data
     {
         protected bool IsInitialized;
 
-        protected LocationDependentInput(double x, double initialDamage, double failureNumber, bool calculateIsStateful = false)
+        protected LocationDependentInput(double x, double initialDamage, double failureNumber, bool isStateful = false)
         {
             X = x;
             InitialDamage = initialDamage;
             FailureNumber = failureNumber;
-            CalculateIsStateful = calculateIsStateful;
+            IsStateful = isStateful;
         }
 
         public double X { get; }
@@ -44,7 +44,7 @@ namespace DiKErnel.Integration.Data
 
         public double FailureNumber { get; }
 
-        public bool CalculateIsStateful { get; }
+        public bool IsStateful { get; }
 
         public virtual bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
         {

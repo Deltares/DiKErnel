@@ -283,7 +283,7 @@ namespace DiKErnel.Core.Test
 
                 var secondLocation = (TestLocationDependentCalculationInput) calculationInput.LocationDependentInputItems[1];
 
-                secondLocation.CalculateIsStateful = true;
+                secondLocation.IsStateful = true;
 
                 logHandler = Substitute.For<ILogHandler>();
                 progressHandler = Substitute.For<IProgress<int>>();
@@ -673,7 +673,7 @@ namespace DiKErnel.Core.Test
 
             public double FailureNumber => Random.NextDouble();
 
-            public bool CalculateIsStateful { get; set; }
+            public bool IsStateful { get; set; }
 
             public void SetExceptionMessage(string message)
             {

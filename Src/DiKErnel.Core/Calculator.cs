@@ -46,7 +46,7 @@ namespace DiKErnel.Core
                 Dictionary<ILocationDependentInput, List<TimeDependentOutput>> timeDependentOutputItemsPerLocation =
                     locationDependentInputItems.ToDictionary(ldi => ldi, ldi => new List<TimeDependentOutput>());
 
-                if (CalculateTimeStepsInParallel(calculatorSettings) && locationDependentInputItems.Any(ldi => ldi.CalculateIsStateful))
+                if (CalculateTimeStepsInParallel(calculatorSettings) && locationDependentInputItems.Any(ldi => ldi.IsStateful))
                 {
                     LogWarning("The calculation is configured to run time steps in parallel but for on or more locations this is " +
                                "not possible; the output of previous time steps is used as input for the next time step, so these " +
@@ -135,7 +135,7 @@ namespace DiKErnel.Core
 
                     if (!ShouldCancel(calculatorSettings)
                         && CalculateTimeStepsInParallel(calculatorSettings)
-                        && !locationDependentInput.CalculateIsStateful)
+                        && !locationDependentInput.IsStateful)
                     {
                         progressIncrementHandler?.ReportLocationCalculated();
                     }
@@ -151,7 +151,7 @@ namespace DiKErnel.Core
         {
             List<TimeDependentOutput> timeDependentOutputItemsForLocation = timeDependentOutputItemsPerLocation[locationDependentInput];
 
-            if (CalculateTimeStepsInParallel(calculatorSettings) && !locationDependentInput.CalculateIsStateful)
+            if (CalculateTimeStepsInParallel(calculatorSettings) && !locationDependentInput.IsStateful)
             {
                 timeDependentOutputItemsForLocation.AddRange(new TimeDependentOutput[timeDependentInputItems.Count]);
 

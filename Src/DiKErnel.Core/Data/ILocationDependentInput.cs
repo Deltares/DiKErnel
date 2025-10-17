@@ -52,7 +52,7 @@ namespace DiKErnel.Core.Data
         /// </summary>
         /// <remarks>When <c>true</c>, calls to <see cref="CalculateTimeDependentOutput"/>
         /// should not be run in parallel in order to prevent race conditions.</remarks>
-        public bool CalculateIsStateful { get; }
+        public bool IsStateful { get; }
 
         /// <summary>
         /// Performs validation on the input.
