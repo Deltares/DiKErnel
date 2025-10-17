@@ -47,11 +47,11 @@ namespace DiKErnel.Core.Data
         public double FailureNumber { get; }
 
         /// <summary>
-        /// Gets whether <see cref="Calculate"/> requires state that is built by previous
-        /// calls to <see cref="Calculate"/>.
+        /// Gets whether <see cref="CalculateTimeDependentOutput"/> requires state that is
+        /// built by previous calls to <see cref="CalculateTimeDependentOutput"/>.
         /// </summary>
-        /// <remarks>When <c>true</c>, calls to <see cref="Calculate"/> should not be run
-        /// in parallel in order to prevent race conditions.</remarks>
+        /// <remarks>When <c>true</c>, calls to <see cref="CalculateTimeDependentOutput"/>
+        /// should not be run in parallel in order to prevent race conditions.</remarks>
         public bool CalculateIsStateful { get; }
 
         /// <summary>
@@ -69,17 +69,17 @@ namespace DiKErnel.Core.Data
         /// </summary>
         /// <param name="profileData">The profile data to use in the calculation.</param>
         /// <remarks>The output at stake is calculated only once and is reused in every
-        /// <see cref="Calculate"/> call.</remarks>
+        /// <see cref="CalculateTimeDependentOutput"/> call.</remarks>
         public void Initialize(IProfileData profileData);
 
         /// <summary>
-        /// Performs a location dependent calculation.
+        /// Calculates time dependent output.
         /// </summary>
         /// <param name="timeDependentInput">The time dependent input to use in the
         /// calculation.</param>
         /// <param name="profileData">The profile data to use in the calculation.</param>
         /// <returns>The time dependent output.</returns>
-        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData);
+        public TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput, IProfileData profileData);
 
         /// <summary>
         /// Gets location dependent output based on the derived location dependent input and

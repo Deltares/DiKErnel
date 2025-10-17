@@ -97,10 +97,8 @@ namespace DiKErnel.Integration.Data.Grass
                                                                       timeDependentOutputItems, Z);
         }
 
-        protected double DikeHeight { get; private set; } = double.NaN;
-
-        protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
+        public override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
+                                                                         IProfileData profileData)
         {
             var incrementDamage = 0d;
 
@@ -130,6 +128,8 @@ namespace DiKErnel.Integration.Data.Grass
                 CreateConstructionProperties(incrementDamage, verticalDistanceWaterLevelElevation, representativeWaveRunup2P,
                                              cumulativeOverload, averageNumberOfWaves));
         }
+
+        protected double DikeHeight { get; private set; } = double.NaN;
 
         protected abstract double CalculateDikeHeight(IProfileData profileData);
 

@@ -176,8 +176,8 @@ namespace DiKErnel.Integration.Data.AsphaltWaveImpact
                                                                 stiffnessRelation, computationalThickness, subLayerElasticModulus);
         }
 
-        protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
+        public override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
+                                                                         IProfileData profileData)
         {
             double incrementTime = RevetmentFunctions.IncrementTime(timeDependentInput.BeginTime, timeDependentInput.EndTime);
 

@@ -687,7 +687,7 @@ namespace DiKErnel.Core.Test
 
             public void Initialize(IProfileData profileData) {}
 
-            public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
+            public TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput, IProfileData profileData)
             {
                 if (!string.IsNullOrEmpty(exceptionMessage))
                 {

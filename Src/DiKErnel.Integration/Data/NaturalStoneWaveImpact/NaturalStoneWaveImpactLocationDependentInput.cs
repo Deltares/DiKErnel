@@ -123,8 +123,8 @@ namespace DiKErnel.Integration.Data.NaturalStoneWaveImpact
                                                                      timeDependentOutputItems, Z, resistance);
         }
 
-        protected override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData)
+        public override TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
+                                                                         IProfileData profileData)
         {
             double slopeUpperLevel = NaturalStoneWaveImpactFunctions.SlopeUpperLevel(outerToeHeight, outerCrestHeight,
                                                                                      timeDependentInput.WaterLevel,

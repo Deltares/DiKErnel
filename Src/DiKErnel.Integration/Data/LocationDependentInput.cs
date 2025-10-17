@@ -46,8 +46,7 @@ namespace DiKErnel.Integration.Data
 
         public bool CalculateIsStateful { get; }
 
-        public virtual bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
-                                     IProfileData profileData)
+        public virtual bool Validate(IReadOnlyList<ITimeDependentInput> timeDependentInputItems, IProfileData profileData)
         {
             var validationIssues = new List<ValidationIssue>
             {
@@ -65,16 +64,9 @@ namespace DiKErnel.Integration.Data
             Z = profileData.GetVerticalHeight(X);
         }
 
-        public TimeDependentOutput Calculate(ITimeDependentInput timeDependentInput, IProfileData profileData)
-        {
-            return CalculateTimeDependentOutput(timeDependentInput, profileData);
-        }
+        public abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput, IProfileData profileData);
 
-        public abstract LocationDependentOutput GetLocationDependentOutput(
-            IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
-            IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
-
-        protected abstract TimeDependentOutput CalculateTimeDependentOutput(ITimeDependentInput timeDependentInput,
-                                                                            IProfileData profileData);
+        public abstract LocationDependentOutput GetLocationDependentOutput(IReadOnlyList<ITimeDependentInput> timeDependentInputItems,
+                                                                           IReadOnlyList<TimeDependentOutput> timeDependentOutputItems);
     }
 }

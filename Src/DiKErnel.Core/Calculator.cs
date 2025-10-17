@@ -198,7 +198,7 @@ namespace DiKErnel.Core
         private static TimeDependentOutput CalculateTimeStepForLocation(ILocationDependentInput locationDependentInput,
                                                                         ITimeDependentInput timeDependentInput, IProfileData profileData)
         {
-            return locationDependentInput.Calculate(timeDependentInput, profileData);
+            return locationDependentInput.CalculateTimeDependentOutput(timeDependentInput, profileData);
         }
 
         private static bool ShouldCancel(CalculatorSettings calculatorSettings)
