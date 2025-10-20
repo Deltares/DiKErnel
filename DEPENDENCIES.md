@@ -14,4 +14,4 @@ the [Licenses subfolder](Licenses).
 | NUnit                  | 4.4.0   | MIT             | https://github.com/nunit/nunit               |
 | NUnit.Analyzers        | 4.10.0  | MIT             | https://github.com/nunit/nunit.analyzers     |
 | NUnit3TestAdapter      | 5.2.0   | MIT             | https://github.com/nunit/nunit3-vs-adapter   |
-| SpecFlow.NUnit         | 3.9.74  | New BSD License | https://github.com/SpecFlowOSS/SpecFlow      |
+| SpecFlow.NUnit         | 3.9.22  | New BSD License | https://github.com/SpecFlowOSS/SpecFlow      |
