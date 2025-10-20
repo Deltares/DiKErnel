@@ -2,6 +2,7 @@
     <PropertyGroup>
         <TestProjectType>UnitTest</TestProjectType>
         <TargetFramework>net8.0</TargetFramework>
+        <IsPublishable>false</IsPublishable>
     </PropertyGroup>
     <Import Project="$(SolutionDir)Development\Base.targets"/>
     <PropertyGroup>
