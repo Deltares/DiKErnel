@@ -4,9 +4,9 @@
         <NoWarn>$NoWarn;CA1812</NoWarn>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-        <PackageReference Include="SpecFlow.NUnit" Version="3.9.22"/>
-        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+        <PackageReference Include="SpecFlow.NUnit"/>
+        <PackageReference Include="NUnit3TestAdapter"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\Src\DiKErnel.Integration\DiKErnel.Integration.csproj"/>

@@ -46,6 +46,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2DDDF5EB-24F3-405E-9BB0-5EED1138C7D1}"
 	ProjectSection(SolutionItems) = preProject
 		DEPENDENCIES.md = DEPENDENCIES.md
+		Directory.Packages.props = Directory.Packages.props
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -55,10 +56,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Development", "Development"
 		Development\Base.targets = Development\Base.targets
 		Development\Copying.Lesser.licenseheader = Development\Copying.Lesser.licenseheader
 		Development\GlobalAssembly.cs = Development\GlobalAssembly.cs
+		Development\PublishToFolderBase.pubxml = Development\PublishToFolderBase.pubxml
+		Development\Source.targets = Development\Source.targets
 		Development\Test.targets = Development\Test.targets
 		Development\TestAssembly.cs = Development\TestAssembly.cs
-		Development\Source.targets = Development\Source.targets
-		Development\PublishToFolderBase.pubxml = Development\PublishToFolderBase.pubxml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{8FB97111-BF31-44D4-8A97-9739DCD551A4}"
