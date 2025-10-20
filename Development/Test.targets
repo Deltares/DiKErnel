@@ -6,7 +6,6 @@
     </PropertyGroup>
     <Import Project="$(SolutionDir)Development\Base.targets"/>
     <PropertyGroup>
-        <OutDir>$(BuildDir)\Regression</OutDir>
         <GenerateDependencyFile>true</GenerateDependencyFile>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Coverage|x86' Or '$(Configuration)|$(Platform)' == 'Coverage|x64'">

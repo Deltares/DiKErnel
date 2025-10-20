@@ -4,7 +4,7 @@
         <ExternalDependenciesDir>$(SolutionDir)Dependencies\Windows\Overtopping\$(Platform)\</ExternalDependenciesDir>
     </PropertyGroup>
     <PropertyGroup>
-        <OutDir>$(BuildDir)\Deployment\</OutDir>
+        <OutDir>$(BuildDir)</OutDir>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <AnalysisMode>All</AnalysisMode>
         <Platforms>x86;x64</Platforms>
